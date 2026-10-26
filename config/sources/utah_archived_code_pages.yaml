@@ -1,0 +1,179 @@
+source_id: utah_archived_code_pages
+publisher: Utah State Legislature (code pages as captured by the Internet Archive's Wayback Machine)
+title: Utah Code Title 32A section pages, 2008 and 2010, from the Internet Archive
+landing_url: https://web.archive.org/
+citation: >-
+  Utah State Legislature, Utah Code section pages (le.utah.gov/~code/TITLE32A/), as captured by the Internet
+  Archive Wayback Machine on 2008-07-10 and 2010-07-29. https://web.archive.org/
+update_frequency: Fixed captures
+source_family: policy
+rights_status: government_edict
+notes: >-
+  The Legislature's own Utah Code pages for Title 32A sections, as they were published while Title 32A was in
+  force, kept by the Internet Archive. Each page gives the section's text, its history note and a "Last
+  revised" date. They supply the text of Title 32A sections that no 2003-2010 bill printed (32A-12-202,
+  32A-3-104) and an independent print against which the sections rebuilt from session laws are checked.
+  Captures are requested in their original form (the "id_" address) one at a time, ten seconds apart.
+  Parsed by src/alcohol_data/legal/utah_archived_code.py.
+host_min_interval_seconds: 10
+assets:
+  - asset_id: wayback_32a_12_202_20080710
+    url: https://web.archive.org/web/20080710095026id_/http://le.utah.gov/~code/TITLE32A/htm/32A12_020200.htm
+    filename: 32A12_020200_20080710.htm
+    edition: "Utah Code 32A-12-202 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-12-202}
+  - asset_id: wayback_32a_12_202_20100729
+    url: https://web.archive.org/web/20100729220626id_/http://le.utah.gov/~code/TITLE32A/htm/32A12_020200.htm
+    filename: 32A12_020200_20100729.htm
+    edition: "Utah Code 32A-12-202 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-12-202}
+  - asset_id: wayback_32a_3_104_20080710
+    url: https://web.archive.org/web/20080710095148id_/http://le.utah.gov/~code/TITLE32A/htm/32A03_010400.htm
+    filename: 32A03_010400_20080710.htm
+    edition: "Utah Code 32A-3-104 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-3-104}
+  - asset_id: wayback_32a_3_104_20100729
+    url: https://web.archive.org/web/20100729212047id_/http://le.utah.gov/~code/TITLE32A/htm/32A03_010400.htm
+    filename: 32A03_010400_20100729.htm
+    edition: "Utah Code 32A-3-104 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-3-104}
+  - asset_id: wayback_32a_10_101_20080710
+    url: https://web.archive.org/web/20080710094805id_/http://le.utah.gov/~code/TITLE32A/htm/32A10_010100.htm
+    filename: 32A10_010100_20080710.htm
+    edition: "Utah Code 32A-10-101 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-10-101}
+  - asset_id: wayback_32a_10_101_20100729
+    url: https://web.archive.org/web/20100729215322id_/http://le.utah.gov/~code/TITLE32A/htm/32A10_010100.htm
+    filename: 32A10_010100_20100729.htm
+    edition: "Utah Code 32A-10-101 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-10-101}
+  - asset_id: wayback_32a_12_201_20080710
+    url: https://web.archive.org/web/20080710095016id_/http://le.utah.gov/~code/TITLE32A/htm/32A12_020100.htm
+    filename: 32A12_020100_20080710.htm
+    edition: "Utah Code 32A-12-201 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-12-201}
+  - asset_id: wayback_32a_12_201_20100729
+    url: https://web.archive.org/web/20100729220606id_/http://le.utah.gov/~code/TITLE32A/htm/32A12_020100.htm
+    filename: 32A12_020100_20100729.htm
+    edition: "Utah Code 32A-12-201 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-12-201}
+  - asset_id: wayback_32a_8_505_20080710
+    url: https://web.archive.org/web/20080710095224id_/http://le.utah.gov/~code/TITLE32A/htm/32A08_050500.htm
+    filename: 32A08_050500_20080710.htm
+    edition: "Utah Code 32A-8-505 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-8-505}
+  - asset_id: wayback_32a_8_505_20100729
+    url: https://web.archive.org/web/20100729215101id_/http://le.utah.gov/~code/TITLE32A/htm/32A08_050500.htm
+    filename: 32A08_050500_20100729.htm
+    edition: "Utah Code 32A-8-505 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-8-505}
+  - asset_id: wayback_32a_3_101_20080710
+    url: https://web.archive.org/web/20080710095147id_/http://le.utah.gov/~code/TITLE32A/htm/32A03_010100.htm
+    filename: 32A03_010100_20080710.htm
+    edition: "Utah Code 32A-3-101 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-3-101}
+  - asset_id: wayback_32a_3_101_20100729
+    url: https://web.archive.org/web/20100729211947id_/http://le.utah.gov/~code/TITLE32A/htm/32A03_010100.htm
+    filename: 32A03_010100_20100729.htm
+    edition: "Utah Code 32A-3-101 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-3-101}
+  - asset_id: wayback_32a_1_105_20080710
+    url: https://web.archive.org/web/20080710094906id_/http://le.utah.gov/~code/TITLE32A/htm/32A01_010500.htm
+    filename: 32A01_010500_20080710.htm
+    edition: "Utah Code 32A-1-105 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-1-105}
+  - asset_id: wayback_32a_1_105_20100729
+    url: https://web.archive.org/web/20100729210342id_/http://le.utah.gov/~code/TITLE32A/htm/32A01_010500.htm
+    filename: 32A01_010500_20100729.htm
+    edition: "Utah Code 32A-1-105 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-1-105}
+  - asset_id: wayback_32a_8_106_20080710
+    url: https://web.archive.org/web/20080710095222id_/http://le.utah.gov/~code/TITLE32A/htm/32A08_010600.htm
+    filename: 32A08_010600_20080710.htm
+    edition: "Utah Code 32A-8-106 page, captured 2008-07-10"
+    source_series: utah_archived_code_page
+    source_vintage: "20080710"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-8-106}
+  - asset_id: wayback_32a_8_106_20100729
+    url: https://web.archive.org/web/20100729214820id_/http://le.utah.gov/~code/TITLE32A/htm/32A08_010600.htm
+    filename: 32A08_010600_20100729.htm
+    edition: "Utah Code 32A-8-106 page, captured 2010-07-29"
+    source_series: utah_archived_code_page
+    source_vintage: "20100729"
+    format: html
+    priority: 15
+    redistribute_raw: true
+    options: {section: 32A-8-106}

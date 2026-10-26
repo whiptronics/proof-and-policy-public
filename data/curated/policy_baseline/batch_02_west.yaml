@@ -1,0 +1,600 @@
+# Nationwide policy baseline, batch 2: western states. Each entry is a dated snapshot: the status the cited
+# text shows on the day it was read, or on the date or year the source states for itself. Nothing here says
+# anything about other days.
+#
+# support: explicit_text (default) when the excerpt names the outlet type or arrangement;
+# no_outlet_restriction when it creates a general retail license and the outlet type's eligibility is
+# inferred from the absence of a restriction; indirect when the text implies the status without stating it.
+#
+# Not in this batch, and why (see data/curated/research/source_leads.csv):
+#   Alaska: the statutes site (akleg.gov/basis/statutes.asp) serves the text through scripts; a plain request
+#     returned an empty shell, so no excerpt could be cut from pinned bytes.
+#   Nevada: retail licensing is by counties and cities; the state chapter (NRS 369) defines a retail liquor
+#     store but no state license names an outlet type. Needs the county and city licensing provisions.
+#   Colorado current code: the General Assembly links to LexisNexis for current statutes; the agency's
+#     bulletins (sbg.colorado.gov) returned 403. Colorado is coded from the 2024 annual printout only.
+batch: batch_02_west
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ California
+  - id: base_ca_grocery_wine
+    geo_id: "state:06"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-sale beer and wine (type 20) and off-sale general (type 21) licenses are issued to retail stores; no outlet type is named or excluded.
+    asset:
+      asset_id: law_ca_abc_license_types
+      url: https://www.abc.ca.gov/licensing/license-types/
+      edition: California Department of Alcoholic Beverage Control, License Types page
+      filename: ca_abc_license_types.html
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: California ABC, License Types (Business and Professions Code license types 20 and 21)
+    locator: license types 20 and 21
+    find:
+      - "20 - Off-Sale Beer & Wine Issued to retail stores. Authorizes the sale of beer and wine for consumption off the premises where sold."
+      - "21 - Off-Sale General Issued to retail stores. Authorizes the sale of beer, wine and distilled spirits for consumption off the premises where sold."
+    evidence_strength: agency_guidance
+    support: no_outlet_restriction
+  - id: base_ca_grocery_beer
+    geo_id: "state:06"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same licenses as wine (types 20 and 21), issued to retail stores.
+    asset: law_ca_abc_license_types
+    citation: California ABC, License Types (license types 20 and 21)
+    locator: license types 20 and 21
+    find:
+      - "20 - Off-Sale Beer & Wine Issued to retail stores. Authorizes the sale of beer and wine for consumption off the premises where sold."
+    evidence_strength: agency_guidance
+    support: no_outlet_restriction
+  - id: base_ca_grocery_spirits
+    geo_id: "state:06"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: The off-sale general license (type 21), issued to retail stores, covers distilled spirits.
+    asset: law_ca_abc_license_types
+    citation: California ABC, License Types (license type 21)
+    locator: license type 21
+    find: "21 - Off-Sale General Issued to retail stores. Authorizes the sale of beer, wine and distilled spirits for consumption off the premises where sold."
+    evidence_strength: agency_guidance
+    support: no_outlet_restriction
+  - id: base_ca_spirits_retail
+    geo_id: "state:06"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Licensed retail stores holding an off-sale general license sell distilled spirits.
+    asset: law_ca_abc_license_types
+    citation: California ABC, License Types (license type 21)
+    locator: license type 21
+    find: "21 - Off-Sale General Issued to retail stores. Authorizes the sale of beer, wine and distilled spirits for consumption off the premises where sold."
+    evidence_strength: agency_guidance
+  # ------------------------------------------------------------------ Arizona
+  - id: base_az_grocery_wine
+    geo_id: "state:04"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: An off-sale retailer includes any established retail store that sells other commodities; the beer and wine store license is an off-sale retailer's license to sell beer and wine.
+    asset:
+      asset_id: law_az_ars_4_101
+      url: https://www.azleg.gov/ars/4/00101.htm
+      edition: "Arizona Revised Statutes § 4-101 (Definitions), Arizona Legislature page"
+      rights_status: government_edict
+    citation: A.R.S. § 4-101
+    locator: paragraph 31 ("Off-sale retailer")
+    find: '"Off-sale retailer" means any person that operates a bona fide regularly established retail liquor store that sells spirituous liquors, wines and beer and any established retail store that sells commodities other than spirituous liquors and that is engaged in the sale of spirituous liquors only in the original unbroken package'
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: The beer and wine store license is defined in A.R.S. § 4-209 (snapshot base_az_grocery_beer).
+  - id: base_az_grocery_beer
+    geo_id: "state:04"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: The beer and wine store license is an off-sale retailer's license to sell beer and wine.
+    asset:
+      asset_id: law_az_ars_4_209
+      url: https://www.azleg.gov/ars/4/00209.htm
+      edition: "Arizona Revised Statutes § 4-209 (Fees), Arizona Legislature page"
+      rights_status: government_edict
+    citation: A.R.S. § 4-209
+    locator: subsection B, paragraph 10
+    find: "For a beer and wine store license, which is an off-sale retailer's license to sell beer and wine, $1,500."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_az_grocery_spirits
+    geo_id: "state:04"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: The liquor store license is an off-sale retailer's license to sell all spirituous liquors; an off-sale retailer includes an established retail store selling other commodities.
+    asset: law_az_ars_4_209
+    citation: A.R.S. § 4-209
+    locator: subsection B, paragraph 9
+    find: "For a liquor store license, which is an off-sale retailer's license to sell all spirituous liquors, $1,500."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Liquor store licenses are limited in number per county (A.R.S. § 4-206.01, not excerpted here).
+  - id: base_az_spirits_retail
+    geo_id: "state:04"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held liquor store (off-sale retailer) licenses.
+    asset: law_az_ars_4_209
+    citation: A.R.S. § 4-209
+    locator: subsection B, paragraph 9
+    find: "For a liquor store license, which is an off-sale retailer's license to sell all spirituous liquors, $1,500."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Oregon
+  - id: base_or_grocery_wine
+    geo_id: "state:41"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: The off-premises sales license allows sale of sealed malt beverages, wine and cider; no outlet type is named or excluded.
+    asset:
+      asset_id: law_or_ors_chapter_471
+      url: https://www.oregonlegislature.gov/bills_laws/ors/ors471.html
+      edition: "Oregon Revised Statutes chapter 471, 2025 edition, Oregon Legislature page"
+      rights_status: government_edict
+    citation: ORS 471.186
+    locator: subsection (1)
+    find: "(1) The holder of an off-premises sales license may sell factory-sealed containers of malt beverages, wine and cider for consumption off the licensed premises."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      The page is the 2025 edition. The Legislature's table of sections amended in the 2026 regular session
+      (https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026OrLawAR.pdf, read 2026-10-08) lists no
+      change to ORS 471.186, 471.740 or 471.750; the only chapter 471 entry is 471.810.
+  - id: base_or_grocery_beer
+    geo_id: "state:41"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same license as wine (off-premises sales license).
+    asset: law_or_ors_chapter_471
+    citation: ORS 471.186
+    locator: subsection (1)
+    find: "(1) The holder of an off-premises sales license may sell factory-sealed containers of malt beverages, wine and cider for consumption off the licensed premises."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: 2025 edition; see base_or_grocery_wine for the 2026 amendment check.
+  - id: base_or_spirits_retail_2012
+    geo_id: "state:41"
+    dimension: spirits_off_premise_retail_system
+    value: state_contract_agencies_only
+    detail: Packaged distilled spirits are sold through retail liquor stores operated by contracted agents who are not state employees.
+    asset:
+      asset_id: law_or_lpro_background_brief_liquor_control_2012
+      url: https://www.oregonlegislature.gov/lpro/Publications/OregonLiquorControl.pdf
+      edition: "Legislative Committee Services, Background Brief on Oregon Liquor Control, September 2012"
+      format: pdf
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Oregon Legislative Committee Services, Background Brief on Oregon Liquor Control (September 2012)
+    locator: page 1 and Liquor Agents and Stores, page 3
+    find:
+      - 'giving the state the exclusive right to sell packaged distilled spirits through retail liquor stores operated by contracted agents'
+      - "The OLCC sells distilled spirits through 246 retail liquor stores that are independently owned and operated."
+    observed_year: 2012
+    observed_basis: document_date
+    evidence_strength: agency_guidance
+    notes: >-
+      Dated September 2012 and recorded at year precision. Current statute (ORS 471.750) provides for commission
+      stores and appointed retail sales agents but does not itself say that no store is state-run, so no current
+      snapshot is recorded for this dimension yet.
+  - id: base_or_spirits_wholesale
+    geo_id: "state:41"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: The commission holds the exclusive right to purchase, import and sell alcoholic beverages except as the chapter provides.
+    asset: law_or_ors_chapter_471
+    citation: ORS 471.740
+    locator: section text
+    find: "the Oregon Liquor and Cannabis Commission is vested with the exclusive right to purchase, sell, have in possession for sale, import or transport alcoholic beverages"
+    evidence_strength: current_code
+    notes: The section begins "Except as provided in this chapter"; beer, wine and cider move through private licensees under other sections. 2025 edition; see base_or_grocery_wine for the 2026 amendment check.
+  # ------------------------------------------------------------------ Washington
+  - id: base_wa_grocery_wine
+    geo_id: "state:53"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Grocery store license to sell wine and/or beer, including strong beer, in original containers for off-premises consumption.
+    asset:
+      asset_id: law_wa_rcw_66_24_360
+      url: https://app.leg.wa.gov/RCW/default.aspx?cite=66.24.360
+      edition: "Revised Code of Washington 66.24.360 (Grocery store license), Washington Legislature page"
+      filename: wa_rcw_66_24_360.html
+      rights_status: government_edict
+    citation: RCW 66.24.360
+    locator: subsection (1)
+    find: "(1) There is a grocery store license to sell wine and/or beer, including without limitation strong beer at retail in original containers, not to be consumed upon the premises where sold."
+    evidence_strength: current_code
+  - id: base_wa_grocery_beer
+    geo_id: "state:53"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same grocery store license as wine.
+    asset: law_wa_rcw_66_24_360
+    citation: RCW 66.24.360
+    locator: subsection (1)
+    find: "(1) There is a grocery store license to sell wine and/or beer, including without limitation strong beer at retail in original containers, not to be consumed upon the premises where sold."
+    evidence_strength: current_code
+  - id: base_wa_grocery_spirits
+    geo_id: "state:53"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: A separate spirits retail license, issued (with exceptions) only for premises of at least 10,000 square feet of enclosed retail space; grocery premises already licensed for beer or wine are treated as licensed premises when applying.
+    asset:
+      asset_id: law_wa_rcw_66_24_630
+      url: https://app.leg.wa.gov/RCW/default.aspx?cite=66.24.630
+      edition: "Revised Code of Washington 66.24.630 (Spirits retail license), Washington Legislature page"
+      filename: wa_rcw_66_24_630.html
+      rights_status: government_edict
+    citation: RCW 66.24.630
+    locator: subsections (1) and (3)
+    find:
+      - "the board may issue spirits retail licenses only for premises comprising at least 10,000 square feet of fully enclosed retail space within a single structure"
+      - 'existing grocery premises licensed to sell beer and/or wine are deemed to be premises "now licensed"'
+    evidence_strength: current_code
+    notes: The size floor confines spirits to large stores; the exceptions in subsection (3)(c) are not coded.
+  - id: base_wa_spirits_retail
+    geo_id: "state:53"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held spirits retail licenses.
+    asset: law_wa_rcw_66_24_630
+    citation: RCW 66.24.630
+    locator: subsection (1)
+    find: "(1) There is a spirits retail license to: Sell spirits in original containers to consumers for consumption off the licensed premises"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Idaho
+  - id: base_id_grocery_wine
+    geo_id: "state:16"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized_local_option
+    detail: Retail wine licenses (table and dessert wine, off-premises) are issued only in counties whose commissioners or voters permit retail wine sales; no outlet type is named or excluded.
+    asset:
+      asset_id: law_id_23_1304
+      url: https://legislature.idaho.gov/statutesrules/idstat/Title23/T23CH13/SECT23-1304
+      edition: "Idaho Code § 23-1304 (County option), Idaho Legislature page"
+      filename: id_23_1304.html
+      rights_status: government_edict
+    citation: Idaho Code § 23-1304
+    locator: subsection (a)
+    find: "(a) the board of county commissioners of each county of this state may, by resolution regularly adopted, provided that retail sale of table wine and/or dessert wine, as defined in this chapter, shall be permitted within the county, and upon a certification of such resolution to the director, a retail wine license shall thereafter be issued for premises within such county so long as such resolution remains in effect"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      The retail wine license is defined in Idaho Code § 23-1303(l). Which counties have adopted the option is
+      not recorded here (grocery_wine_local_adoption_share). Wine over 16% alcohol is sold through the state
+      liquor system (§ 23-203(b)). The Legislature's site says statutes are updated to the website July 1
+      following each session.
+  - id: base_id_grocery_beer
+    geo_id: "state:16"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: A beer retailer is any person licensed to sell beer to consumers at the licensed premises; no outlet type is named or excluded.
+    asset:
+      asset_id: law_id_23_1001
+      url: https://legislature.idaho.gov/statutesrules/idstat/Title23/T23CH10/SECT23-1001
+      edition: "Idaho Code § 23-1001 (Definitions, beer), Idaho Legislature page"
+      filename: id_23_1001.html
+      rights_status: government_edict
+    citation: Idaho Code § 23-1001
+    locator: subsection (k)
+    find: '"Retailer" means a person licensed to sell beer to consumers at premises described in the license.'
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: A retailer also needs county and city licenses (Idaho Code §§ 23-1010, 23-1015; not excerpted here).
+  - id: base_id_spirits_retail
+    geo_id: "state:16"
+    dimension: spirits_off_premise_retail_system
+    value: state_stores_and_contract_agencies
+    detail: The liquor division operates state liquor stores and distribution stations (contract stores run by private businesses).
+    asset:
+      asset_id: law_id_23_203
+      url: https://legislature.idaho.gov/statutesrules/idstat/Title23/T23CH2/SECT23-203
+      edition: "Idaho Code § 23-203 (Powers of division), Idaho Legislature page"
+      filename: id_23_203.html
+      rights_status: government_edict
+    citation: Idaho Code § 23-203
+    locator: subsection (c)
+    find: "(c) Operation of Liquor Stores. To establish, maintain and discontinue warehouses, state liquor stores and distribution stations"
+    evidence_strength: current_code
+    notes: >-
+      That "distribution stations" are privately operated contract stores comes from the division's rules
+      (IDAPA 15.10.01), not from this excerpt.
+  # ------------------------------------------------------------------ Montana
+  - id: base_mt_grocery_wine
+    geo_id: "state:30"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises beer and table wine license; where the premises are run with another business, it must be a grocery store or a drugstore licensed as a pharmacy.
+    asset:
+      asset_id: law_mt_16_4_115
+      url: https://mca.legmt.gov/bills/mca/title_0160/chapter_0040/part_0010/section_0150/0160-0040-0010-0150.html
+      edition: "Montana Code Annotated 2025, § 16-4-115, Montana Legislature page"
+      rights_status: government_edict
+    citation: MCA § 16-4-115
+    locator: subsection (1)
+    find:
+      - "A retail license to sell beer or table wine, or both, in the original packages for off-premises consumption may be issued only to individuals or entities qualified for licensure under 16-4-401"
+      - "If the premises proposed for licensing are operated in conjunction with another business, that business must be a grocery store or drugstore licensed as a pharmacy."
+    evidence_strength: current_code
+    notes: Table wine only. Montana's legislature meets in odd years, so the 2025 code is the current edition.
+  - id: base_mt_grocery_beer
+    geo_id: "state:30"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same license as wine.
+    asset: law_mt_16_4_115
+    citation: MCA § 16-4-115
+    locator: subsection (1)
+    find:
+      - "A retail license to sell beer or table wine, or both, in the original packages for off-premises consumption may be issued only to individuals or entities qualified for licensure under 16-4-401"
+      - "If the premises proposed for licensing are operated in conjunction with another business, that business must be a grocery store or drugstore licensed as a pharmacy."
+    evidence_strength: current_code
+  - id: base_mt_grocery_spirits
+    geo_id: "state:30"
+    dimension: ordinary_grocery_spirits_authorization
+    value: conditional_or_special_channel
+    detail: Spirits are sold by agency liquor stores; an agency store may not be in or next to a grocery store in communities over 3,000 people.
+    asset:
+      asset_id: law_mt_16_2_101
+      url: https://mca.legmt.gov/bills/mca/title_0160/chapter_0020/part_0010/section_0010/0160-0020-0010-0010.html
+      edition: "Montana Code Annotated 2025, § 16-2-101, Montana Legislature page"
+      rights_status: government_edict
+    citation: MCA § 16-2-101
+    locator: subsections (1) and (3)
+    find:
+      - "The department shall enter into agency franchise agreements to operate agency liquor stores as the department finds feasible for the wholesale and retail sale of liquor."
+      - "Agency liquor stores may not be located in or adjacent to grocery stores in communities with populations over 3,000."
+    evidence_strength: current_code
+    support: indirect
+    notes: That an agency store may sit in a grocery store in smaller communities is implied by the restriction, not stated.
+  - id: base_mt_spirits_retail
+    geo_id: "state:30"
+    dimension: spirits_off_premise_retail_system
+    value: state_contract_agencies_only
+    detail: Liquor is sold at retail by agency liquor stores operating under state franchise agreements.
+    asset: law_mt_16_2_101
+    citation: MCA § 16-2-101
+    locator: subsection (1)
+    find: "The department shall enter into agency franchise agreements to operate agency liquor stores as the department finds feasible for the wholesale and retail sale of liquor."
+    evidence_strength: current_code
+    support: indirect
+    notes: The section provides only for agency stores; that the state runs no stores of its own is inferred from that, not stated.
+  # ------------------------------------------------------------------ Wyoming
+  - id: base_wy_grocery_wine
+    geo_id: "state:56"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises wine is sold under the general retail liquor license, whose number is limited by population formulas; no outlet type is named or excluded.
+    asset:
+      asset_id: law_wy_title_12
+      url: https://wyoleg.gov/statutes/compress/title12.pdf
+      edition: "Wyoming Statutes Title 12 (Alcoholic Beverages), Wyoming Legislature compilation (PDF created 2026-05-08)"
+      format: pdf
+      rights_status: government_edict
+    citation: W.S. 12-4-201
+    locator: subsection (a)
+    find: "(a) A retail liquor license is the authority under which a licensee is permitted to sell alcoholic liquor or malt beverages for use or consumption but not for resale"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Wine is "alcoholic liquor" under W.S. 12-1-101(a)(i). The license quota (population formulas) is in the same section and is not excerpted here.
+  - id: base_wy_grocery_beer
+    geo_id: "state:56"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Malt beverages are sold under the same general retail liquor license.
+    asset: law_wy_title_12
+    citation: W.S. 12-4-201
+    locator: subsection (a)
+    find: "(a) A retail liquor license is the authority under which a licensee is permitted to sell alcoholic liquor or malt beverages for use or consumption but not for resale"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_wy_spirits_retail
+    geo_id: "state:56"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retail liquor licenses.
+    asset: law_wy_title_12
+    citation: W.S. 12-4-201
+    locator: subsection (a)
+    find: "(a) A retail liquor license is the authority under which a licensee is permitted to sell alcoholic liquor or malt beverages for use or consumption but not for resale"
+    evidence_strength: current_code
+  - id: base_wy_spirits_wholesale
+    geo_id: "state:56"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: The state liquor division is the exclusive wholesaler of alcoholic liquor.
+    asset: law_wy_title_12
+    citation: W.S. 12-2-301
+    locator: subsection (a)
+    find: "the division is the exclusive wholesale distributor and seller of alcoholic liquor within Wyoming. It is granted the sole right to sell alcoholic liquors at wholesale"
+    evidence_strength: current_code
+    notes: Subject to the exception in W.S. 12-2-203(g).
+  - id: base_wy_wine_wholesale
+    geo_id: "state:56"
+    dimension: wine_wholesale_system
+    value: state_operated
+    detail: Wine is "alcoholic liquor" (any spirituous or fermented beverage other than malt beverage), which the division alone wholesales.
+    asset: law_wy_title_12
+    citation: W.S. 12-1-101(a)(i) and 12-2-301(a)
+    locator: definitions; powers and duties
+    find:
+      - '"Alcoholic liquor" means any spirituous or fermented fluid, substance or compound other than malt beverage intended for beverage purposes'
+      - "the division is the exclusive wholesale distributor and seller of alcoholic liquor within Wyoming. It is granted the sole right to sell alcoholic liquors at wholesale"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ New Mexico
+  - id: base_nm_grocery_wine
+    geo_id: "state:35"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: The retailer's license covers retail sale of alcoholic beverages in any local option district; no outlet type is named or excluded.
+    asset:
+      asset_id: law_nm_abc_chapter_60_2025
+      url: https://www.rld.nm.gov/wp-content/uploads/2026/07/ABC-NMSA-Chapter-60-LCA-effective-7.1.2025-issued-7.24.2025-UNLOCKED.pdf
+      edition: "NMSA 1978 Chapter 60 (Liquor Control Act), compiled by the Alcoholic Beverage Control Division, effective July 1, 2025, issued July 24, 2025"
+      format: pdf
+      rights_status: government_edict
+    citation: NMSA 1978 § 60-6A-2
+    locator: subsection A
+    find:
+      - "Current through the First Regular Session of the Fifty-Seventh Legislature (2025)"
+      - "In any local option district, a person qualified under the provisions of the Liquor Control Act [60-3A-1 NMSA 1978] may apply for and be issued a retailer's license for the retail sale of alcoholic beverages."
+    observed_on: "2025-07-01"
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+    support: no_outlet_restriction
+    notes: >-
+      The agency's compilation of the statute, not the official code; it states it is current through the 2025
+      regular session and effective July 1, 2025. Changes from the 2026 session are not reflected. A local option
+      district is a county or municipality that has approved alcohol sales; that is a general local option, not
+      one specific to grocery stores.
+  - id: base_nm_grocery_beer
+    geo_id: "state:35"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same retailer's license as wine.
+    asset: law_nm_abc_chapter_60_2025
+    citation: NMSA 1978 § 60-6A-2
+    locator: subsection A
+    find: "In any local option district, a person qualified under the provisions of the Liquor Control Act [60-3A-1 NMSA 1978] may apply for and be issued a retailer's license for the retail sale of alcoholic beverages."
+    observed_on: "2025-07-01"
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+    support: no_outlet_restriction
+  - id: base_nm_grocery_spirits
+    geo_id: "state:35"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same retailer's license, which covers all alcoholic beverages.
+    asset: law_nm_abc_chapter_60_2025
+    citation: NMSA 1978 § 60-6A-2
+    locator: subsection A
+    find: "In any local option district, a person qualified under the provisions of the Liquor Control Act [60-3A-1 NMSA 1978] may apply for and be issued a retailer's license for the retail sale of alcoholic beverages."
+    observed_on: "2025-07-01"
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+    support: no_outlet_restriction
+  - id: base_nm_spirits_retail
+    geo_id: "state:35"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retailer's licenses.
+    asset: law_nm_abc_chapter_60_2025
+    citation: NMSA 1978 § 60-6A-2
+    locator: subsection A
+    find: "In any local option district, a person qualified under the provisions of the Liquor Control Act [60-3A-1 NMSA 1978] may apply for and be issued a retailer's license for the retail sale of alcoholic beverages."
+    observed_on: "2025-07-01"
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+  # ------------------------------------------------------------------ Hawaii
+  - id: base_hi_grocery_wine
+    geo_id: "state:15"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Class 4 retail dealer license (general, or beer and wine) for sale in original packages; no outlet type is named or excluded.
+    asset:
+      asset_id: law_hi_hrs_281_31
+      url: https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0281/HRS_0281-0031.htm
+      edition: "Hawaii Revised Statutes § 281-31 (Licenses, classes), Hawaii Legislature current HRS file"
+      rights_status: government_edict
+    citation: HRS § 281-31
+    locator: subsection (e)
+    find:
+      - "Class 4. Retail dealer license. A license to sell liquor at retail or to class 10 licensees shall authorize the licensee to sell the liquor therein specified in their original packages."
+      - "(1) General (includes all liquor except alcohol); (2) Beer and wine; and (3) Alcohol."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      Licenses are issued by the county liquor commissions. The same file at www.capitol.hawaii.gov returned
+      403 to an automated request on 2026-10-08; the Legislature's data host served it.
+  - id: base_hi_grocery_beer
+    geo_id: "state:15"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same class 4 retail dealer license.
+    asset: law_hi_hrs_281_31
+    citation: HRS § 281-31
+    locator: subsection (e)
+    find:
+      - "Class 4. Retail dealer license. A license to sell liquor at retail or to class 10 licensees shall authorize the licensee to sell the liquor therein specified in their original packages."
+      - "(1) General (includes all liquor except alcohol); (2) Beer and wine; and (3) Alcohol."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_hi_grocery_spirits
+    geo_id: "state:15"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: The general kind of class 4 license covers all liquor except alcohol.
+    asset: law_hi_hrs_281_31
+    citation: HRS § 281-31
+    locator: subsection (e)
+    find:
+      - "Class 4. Retail dealer license. A license to sell liquor at retail or to class 10 licensees shall authorize the licensee to sell the liquor therein specified in their original packages."
+      - "(1) General (includes all liquor except alcohol); (2) Beer and wine; and (3) Alcohol."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_hi_spirits_retail
+    geo_id: "state:15"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held class 4 retail dealer licenses issued by county liquor commissions.
+    asset: law_hi_hrs_281_31
+    citation: HRS § 281-31
+    locator: subsection (e)
+    find: "Class 4. Retail dealer license. A license to sell liquor at retail or to class 10 licensees shall authorize the licensee to sell the liquor therein specified in their original packages."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Colorado (2024 annual printout)
+  - id: base_co_grocery_wine_2024
+    geo_id: "state:08"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Fermented malt beverage and wine retailer license for off-premises sales (from March 1, 2023); grocery stores are named among article 3 and 4 licensees.
+    asset:
+      asset_id: law_co_crs_2024_title_44
+      url: https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-44.pdf
+      edition: "Colorado Revised Statutes 2024, Title 44, uncertified printout, Office of Legislative Legal Services"
+      format: pdf
+      rights_status: government_edict
+    citation: C.R.S. § 44-4-107(1)(a); § 44-3-108 (stakeholder group membership)
+    locator: § 44-4-107 subsection (1)(a); § 44-3-108 membership list
+    find:
+      - "(a) (I) Sales of fermented malt beverages and wine for consumption off the premises of the licensee"
+      - "Three individuals, each representing a grocery store licensed under this article 3 or article 4 of this title 44 to sell alcohol beverages"
+    observed_year: 2024
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      Year precision: the printout is the 2024 annual edition. Current statutes are hosted by LexisNexis, and the
+      licensing agency's pages (sbg.colorado.gov) returned 403, so no 2026 snapshot exists yet. Wine in grocery
+      stores dates from Proposition 125 (2022), effective March 1, 2023.
+  - id: base_co_grocery_beer_2024
+    geo_id: "state:08"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same license as wine.
+    asset: law_co_crs_2024_title_44
+    citation: C.R.S. § 44-4-107(1)(a); § 44-3-108 (stakeholder group membership)
+    locator: § 44-4-107 subsection (1)(a); § 44-3-108 membership list
+    find:
+      - "(a) (I) Sales of fermented malt beverages and wine for consumption off the premises of the licensee"
+      - "Three individuals, each representing a grocery store licensed under this article 3 or article 4 of this title 44 to sell alcohol beverages"
+    observed_year: 2024
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_co_spirits_retail_2024
+    geo_id: "state:08"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retail liquor store licenses (also liquor-licensed drugstores under § 44-3-410).
+    asset: law_co_crs_2024_title_44
+    citation: C.R.S. § 44-3-409(1)(a)(I)
+    locator: subsection (1)(a)(I)
+    find: "A retail liquor store license shall be issued to persons selling only malt, vinous, and spirituous liquors in sealed containers not to be consumed at the place where sold."
+    observed_year: 2024
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    notes: Year precision (2024 annual printout).

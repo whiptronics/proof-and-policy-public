@@ -1,0 +1,51 @@
+source_id: pa_auditor_general_plcb
+publisher: Pennsylvania Department of the Auditor General
+title: Financial audits of the Pennsylvania Liquor Control Board's State Stores Fund and Liquor License Fund
+landing_url: https://www.paauditor.gov/
+citation: >-
+  Pennsylvania Department of the Auditor General. Liquor Control Board: State Stores Fund and Liquor License
+  Fund, financial audits for the years ended June 30, 2025 and 2024 (report dated 2025-12-11) and June 30, 2024 and
+  2023 (report dated 2024-12-12).
+update_frequency: Annual
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Audited statements of the State Stores Fund, the fund through which the Pennsylvania Liquor Control Board
+  wholesales and retails wine and spirits. Read by hand for the statement of revenues, expenses and changes in
+  fund net position and its notes; values are transcribed into data/curated/manual_observations.csv with page
+  citations. The PDFs are not redistributed.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: pa_ag_plcb_audit_fy2025
+    url: https://www.paauditor.gov/wp-content/uploads/fedLCBAuditReport121125.pdf
+    method: manual_import
+    filename: fedLCBAuditReport121125.pdf
+    edition: "Financial audit, State Stores Fund and Liquor License Fund, years ended June 30, 2025 and 2024 (report dated 2025-12-11, 48 pages)"
+    source_series: pa_ag_plcb_audit
+    source_vintage: fy2025
+    format: pdf
+    priority: 20
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 through the browser pane of the Claude desktop app on the maintainer's computer (the
+      project's download tools are refused by the host), checked to be the same bytes the site served, and imported
+      with 'alcohol-data import-asset'; the SHA-256 is pinned.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed State Stores Fund values against the cited pages.
+  - asset_id: pa_ag_plcb_audit_fy2024
+    url: https://www.paauditor.gov/wp-content/uploads/fedLCBAuditReport121224.pdf
+    method: manual_import
+    filename: fedLCBAuditReport121224.pdf
+    edition: "Financial audit, State Stores Fund and Liquor License Fund, years ended June 30, 2024 and 2023 (report dated 2024-12-12, 47 pages)"
+    source_series: pa_ag_plcb_audit
+    source_vintage: fy2024
+    format: pdf
+    priority: 10
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 the same way as the FY2025 audit and imported with 'alcohol-data import-asset'; the SHA-256
+      is pinned.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed State Stores Fund values against the cited pages.

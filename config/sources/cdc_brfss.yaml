@@ -1,0 +1,41 @@
+source_id: cdc_brfss_prevalence
+publisher: Centers for Disease Control and Prevention (CDC), Behavioral Risk Factor Surveillance System
+title: BRFSS Prevalence Data (data.cdc.gov), alcohol consumption, overall state estimates
+landing_url: https://www.cdc.gov/brfss/brfssprevalence/index.html
+citation: "Centers for Disease Control and Prevention. Behavioral Risk Factor Surveillance System (BRFSS) Prevalence Data (2011 to present), data.cdc.gov dataset dttw-5yxu; and (2010 and prior), dataset y4ft-s73h."
+update_frequency: Annual
+source_family: behavior
+rights_status: public_domain_us_federal
+rights_evidence_url: https://data.cdc.gov/api/views/dttw-5yxu.json
+notes: >-
+  Published state crude prevalence with 95% confidence limits; no microdata. 2011 is a methodology break
+  (weighting and cell-phone sample changes). www.cdc.gov refused automated requests (HTTP 403) on
+  2026-10-06; the official open-data portal data.cdc.gov serves the same published estimates.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: cdc_brfss_2011_present_alcohol_overall
+    url: "https://data.cdc.gov/resource/dttw-5yxu.csv?$where=class%3D%27Alcohol%20Consumption%27%20AND%20break_out%3D%27Overall%27&$order=year%2Clocationabbr%2Cquestionid%2Cresponseid&$limit=50000"
+    edition: "BRFSS Prevalence Data (2011 to present), dataset dttw-5yxu snapshot; Socrata metadata reported rows updated 2026-09-15"
+    source_series: cdc_brfss_prevalence_2011_present
+    source_vintage: dttw-5yxu
+    format: csv
+    parser: cdc_brfss_prevalence
+    blockers: www.cdc.gov documentation pages refused automated requests (HTTP 403); the data come from data.cdc.gov.
+    next_action: Add questionnaire/codebook citations per year (www.cdc.gov, read manually) and SMART metro estimates where geography is compatible.
+    priority: 20
+    redistribute_raw: true
+    rights_status: public_domain_us_federal
+    notes: data.cdc.gov license field for this dataset is "Public Domain".
+  - asset_id: cdc_brfss_1995_2010_alcohol_overall
+    url: "https://data.cdc.gov/resource/y4ft-s73h.csv?$where=class%3D%27Alcohol%20Consumption%27%20AND%20break_out%3D%27Overall%27&$order=year%2Clocationabbr%2Cquestionid%2Cresponseid&$limit=50000"
+    edition: "BRFSS Prevalence Data (2010 and prior), dataset y4ft-s73h snapshot; Socrata metadata reported rows updated 2025-02-13"
+    source_series: cdc_brfss_prevalence_1995_2010
+    source_vintage: y4ft-s73h
+    format: csv
+    parser: cdc_brfss_prevalence
+    priority: 20
+    redistribute_raw: true
+    rights_status: open_license
+    notes: >-
+      data.cdc.gov lists this dataset's license as Open Data Commons Attribution (ODC-BY 1.0), unlike the
+      2011+ dataset. Attribution is given in THIRD_PARTY_NOTICES.md and every release manifest.

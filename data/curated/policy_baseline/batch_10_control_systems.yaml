@@ -1,0 +1,267 @@
+# Nationwide policy baseline, batch 10: liquor-control arrangements of Utah's peer states (Virginia,
+# Pennsylvania, Idaho, Oregon), from statute text. Wholesale and retail are separate dimensions, and spirits
+# and wine are coded apart, because the peers differ on each. Utah itself is coded as verified intervals
+# (data/curated/policy_events.csv, claims ut_liquor_wholesale_by_department and
+# ut_liquor_retail_state_stores_and_agencies), not here.
+# Every entry is a dated snapshot of current law: it says nothing about earlier days.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+batch: batch_10_control_systems
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-10"
+entries:
+  # ------------------------------------------------------------------ Virginia (Virginia Law Library pages)
+  - id: base_va_spirits_wholesale
+    geo_id: "state:51"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: >-
+      The Board buys, imports and sells alcoholic beverages other than beer and wine not produced by farm
+      wineries, that is, spirits; the Code's wholesale licenses (§ 4.1-206.2) are for beer and wine only.
+    asset:
+      asset_id: law_va_4_1_103
+      url: https://law.lis.virginia.gov/vacode/title4.1/chapter1/section4.1-103/
+      edition: "Code of Virginia § 4.1-103 (General powers of Board), Virginia Law Library page"
+      rights_status: government_edict
+      options: {normalize: strip_lis_page_variants}
+    citation: Code of Virginia § 4.1-103
+    locator: subdivision 11
+    find:
+      - "Buy, import, and sell alcoholic beverages other than beer and wine not produced by farm wineries"
+    evidence_strength: current_code
+    support: indirect
+    notes: >-
+      The section grants the Board the power; that no one else wholesales spirits is inferred from § 4.1-206.2,
+      whose wholesale licenses cover beer and wine only (pinned as law_va_4_1_206_2). Distillers' sales at their
+      own premises as agents of the Board (§ 4.1-119 D) are retail, not wholesale.
+  - id: base_va_wine_wholesale
+    geo_id: "state:51"
+    dimension: wine_wholesale_system
+    value: private_licensed
+    detail: >-
+      Wine reaches retailers through private wholesale wine licensees. The Board's own buying power covers wine
+      only when produced by Virginia farm wineries, which it buys for its own stores.
+    asset:
+      asset_id: law_va_4_1_206_2
+      url: https://law.lis.virginia.gov/vacode/title4.1/chapter2/section4.1-206.2/
+      edition: "Code of Virginia § 4.1-206.2 (Wholesale licenses), Virginia Law Library page"
+      rights_status: government_edict
+      options: {normalize: strip_lis_page_variants}
+    citation: Code of Virginia § 4.1-206.2
+    locator: subdivision 3 (wholesale wine licenses)
+    find:
+      - "Wholesale wine licenses, including those granted pursuant to subdivision 4, which shall authorize the licensee to acquire and receive deliveries and shipments of wine and to sell and deliver or ship the wine"
+    evidence_strength: current_code
+    notes: >-
+      Farm wineries' own distribution rights and the state's purchases of farm-winery wine for government stores
+      are not coded separately. Subdivision numbering was read from the page and may shift between versions.
+  - id: base_va_wine_retail_government_stores
+    geo_id: "state:51"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: >-
+      Government stores sell wine produced by Virginia farm wineries; other wine is sold by private retail
+      off-premises licensees (§ 4.1-206.3).
+    asset: law_va_4_1_119
+    citation: Code of Virginia § 4.1-119 (version effective until July 1, 2028)
+    locator: subsection A
+    find:
+      - "the Board may establish, maintain, and operate government stores for the sale of spirits, nonalcoholic spirit alternatives, wine produced by farm wineries"
+    evidence_strength: current_code
+    notes: The page also carries a version effective July 1, 2028; that future version is not coded here.
+  - id: base_va_wine_retail_licensees
+    geo_id: "state:51"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: Private retail off-premises wine and beer licensees sell wine alongside the government stores.
+    asset: law_va_4_1_206_3
+    citation: Code of Virginia § 4.1-206.3
+    locator: subsection C 1
+    find:
+      - "Such license shall authorize the licensee to sell wine and beer in closed containers for off-premises consumption"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Pennsylvania (the Liquor Code, General Assembly PDF)
+  - id: base_pa_spirits_retail
+    geo_id: "state:42"
+    dimension: spirits_off_premise_retail_system
+    value: state_operated_stores
+    detail: >-
+      The Board establishes, operates and maintains Pennsylvania Liquor Stores for the sale of liquor and alcohol.
+    asset:
+      asset_id: law_pa_liquor_code
+      url: https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?txtType=PDF&SessYr=1951&SessInd=0&ActNum=0021.
+      edition: "Liquor Code, Act of April 12, 1951 (P.L.90, No.21), as amended; Pennsylvania General Assembly unconsolidated statutes, PDF version"
+      filename: pa_liquor_code_1951_act21.pdf
+      format: pdf
+      rights_status: government_edict
+    citation: Liquor Code § 301 (47 P.S. § 3-301)
+    locator: section 301(a)
+    find:
+      - "The board shall establish, operate and maintain at such places throughout the Commonwealth as it shall deem essential and advisable, stores to be known as"
+      - "for the sale of liquor and alcohol in accordance with the provisions of and the regulations made under this act"
+    evidence_strength: current_code
+    notes: >-
+      Narrower spirits channels exist and are not coded: ready-to-drink cocktail permits (section 415.1) and
+      licensed distilleries' sales of their own products. That bottled spirits are sold at retail only by the
+      state stores is the arrangement the section establishes, not a phrase it contains.
+  - id: base_pa_spirits_wholesale
+    geo_id: "state:42"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: >-
+      The Board buys, imports and sells liquor and fixes the wholesale and retail prices at which liquors are sold
+      at Pennsylvania Liquor Stores.
+    asset: law_pa_liquor_code
+    citation: Liquor Code § 207 (47 P.S. § 2-207)
+    locator: section 207(a) and (b)(1)
+    find:
+      - "To buy, import or have in its possession for sale and sell liquor, alcohol"
+      - "to fix the wholesale and retail prices at which liquors and alcohol shall be sold at Pennsylvania Liquor Stores"
+    evidence_strength: current_code
+    support: indirect
+    notes: That the Board is the only wholesaler of liquor is inferred from these powers; no exclusive phrase was located.
+  - id: base_pa_wine_retail
+    geo_id: "state:42"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: >-
+      Wine is "liquor" (vinous beverages) sold by the state stores; holders of a restaurant or hotel liquor license
+      with a wine expanded permit may also sell up to 3,000 ml of wine per transaction for off-premises consumption.
+    asset: law_pa_liquor_code
+    citation: Liquor Code §§ 102, 301 and 415 (47 P.S. §§ 1-102, 3-301, 4-415)
+    locator: definition of "liquor"; section 301(a); section 415(a)(1) and (d)
+    find:
+      - "shall mean and include any alcoholic, spirituous, vinous, fermented or other alcoholic beverage"
+      - "The board shall issue a wine expanded permit to a person holding and possessing a valid restaurant liquor license or hotel liquor license"
+      - "A wine expanded permit holder may sell for off-premises consumption, in a single transaction, up to three thousand (3,000) milliliters of wine"
+    evidence_strength: current_code
+    notes: >-
+      Section 415 was added by Act 39 of 2016 (June 8, 2016), the same act that changed many other parts of the
+      Liquor Code; the date is the statute's own note and is not coded as an interval here. A grocery store sells
+      wine under this route only if it holds a restaurant or hotel license (not coded in this batch).
+  - id: base_pa_wine_wholesale
+    geo_id: "state:42"
+    dimension: wine_wholesale_system
+    value: state_operated
+    detail: >-
+      Wine expanded permit holders buy their wine from the Board: the renewal fee and the price floor are set on
+      "wine purchased from the board" and "the licensee's purchase price from the board".
+    asset: law_pa_liquor_code
+    citation: Liquor Code § 415 (47 P.S. § 4-415)
+    locator: section 415(b)(2) and (f)
+    find:
+      - "wine purchased from the board for off-premises consumption"
+      - "purchase price from the board of the wine product"
+    evidence_strength: current_code
+    support: indirect
+    notes: >-
+      Inferred from the purchase rules; limited wineries' own sales to licensees and to the public are not checked
+      and may make the arrangement mixed in part.
+  # ------------------------------------------------------------------ Idaho (Idaho Legislature statute pages)
+  - id: base_id_spirits_wholesale
+    geo_id: "state:16"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: The State Liquor Division buys, imports, transports, stores, sells and delivers alcoholic liquor.
+    asset: law_id_23_203
+    citation: Idaho Code § 23-203
+    locator: subsection (b)
+    find:
+      - "Traffic in Liquor. To buy, import, transport, store, sell and deliver alcoholic liquor"
+    evidence_strength: current_code
+    support: indirect
+    notes: >-
+      The division's exclusive role is inferred from its powers; no exclusive phrase was located in this section.
+      History note: added 1939; amended 2006, 2009 and 2011 (not traced here).
+  - id: base_id_wine_wholesale_division
+    geo_id: "state:16"
+    dimension: wine_wholesale_system
+    value: mixed
+    detail: >-
+      The division handles wine over 16% alcohol, Idaho-made table wine and sparkling wine; other table wine
+      (16% or less) moves through private licensed distributors (§ 23-1310).
+    asset: law_id_23_203
+    citation: Idaho Code § 23-203
+    locator: subsection (b)
+    find:
+      - "wine containing more than sixteen percent (16%) alcohol by volume, table wine, as defined in section"
+    evidence_strength: current_code
+  - id: base_id_wine_wholesale_distributors
+    geo_id: "state:16"
+    dimension: wine_wholesale_system
+    value: mixed
+    detail: Private wine distributors store and buy wine for resale from licensed importers, distributors, wineries and bonded warehouses.
+    asset:
+      asset_id: law_id_23_1310
+      url: https://legislature.idaho.gov/statutesrules/idstat/Title23/T23CH13/SECT23-1310/
+      edition: "Idaho Code § 23-1310 (Storage or purchase by distributor), Idaho Legislature page"
+      rights_status: government_edict
+    citation: Idaho Code § 23-1310
+    locator: section text
+    find:
+      - "No distributor may store or purchase wine for purposes of storage or resale unless said wine has been received from persons holding a valid wine importer"
+    evidence_strength: current_code
+    notes: '"Table wine" is wine of not more than 16% alcohol by volume (§ 23-1303).'
+  - id: base_id_wine_retail_division
+    geo_id: "state:16"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: >-
+      State liquor stores sell wine over 16% alcohol, Idaho-made table wine and sparkling wine; retail wine
+      licensees sell table wine.
+    asset: law_id_23_203
+    citation: Idaho Code § 23-203
+    locator: subsections (b) and (c)
+    find:
+      - "Operation of Liquor Stores. To establish, maintain and discontinue warehouses, state liquor stores and distribution stations"
+      - "wine containing more than sixteen percent (16%) alcohol by volume, table wine, as defined in section"
+    evidence_strength: current_code
+  - id: base_id_wine_retail_licensees
+    geo_id: "state:16"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: Anyone who sells wine in Idaho must hold a license from the director; retail wine licenses are issued under chapter 13.
+    asset:
+      asset_id: law_id_23_1306
+      url: https://legislature.idaho.gov/statutesrules/idstat/Title23/T23CH13/SECT23-1306/
+      edition: "Idaho Code § 23-1306 (Licenses required), Idaho Legislature page"
+      rights_status: government_edict
+    citation: Idaho Code § 23-1306
+    locator: subsection (1)
+    find:
+      - "or distribute or sell wine within the state of Idaho, he shall apply to the director for a license"
+    evidence_strength: current_code
+    notes: >-
+      Retail wine sales are subject to a county option (§ 23-1304), coded elsewhere as
+      ordinary_grocery_wine_authorization = authorized_local_option.
+  # ------------------------------------------------------------------ Oregon (ORS chapter 471, Oregon Legislature page)
+  - id: base_or_wine_wholesale
+    geo_id: "state:41"
+    dimension: wine_wholesale_system
+    value: mixed
+    detail: >-
+      Private wholesale malt beverage and wine licensees distribute wine to licensees; wine over 21% alcohol is
+      imported and sold to the commission.
+    asset: law_or_ors_chapter_471
+    citation: ORS 471.235
+    locator: subsection (1)
+    find:
+      - "A wholesale malt beverage and wine license shall allow the importation, storage, transportation, wholesale sale and distribution to licensees"
+      - "the importation and sale to the commission and the export of wine of alcoholic content in excess of 21 percent alcohol by volume"
+    evidence_strength: current_code
+  - id: base_or_wine_retail
+    geo_id: "state:41"
+    dimension: wine_off_premise_retail_system
+    value: mixed_state_and_private
+    detail: >-
+      Off-premises sales licensees sell wine in factory-sealed containers; the commission's stores sell distilled
+      liquors, wines and other liquors over 5% alcohol in sealed containers.
+    asset: law_or_ors_chapter_471
+    citation: ORS 471.186 and 471.750
+    locator: ORS 471.186(1); ORS 471.750(1)
+    find:
+      - "The holder of an off-premises sales license may sell factory-sealed containers of malt beverages, wine and cider for consumption off the licensed premises"
+      - "for the sale of distilled liquors, wines and other alcoholic liquors containing over five percent alcohol by volume, in sealed containers for consumption off the premises"
+    evidence_strength: current_code
+    notes: >-
+      Whether the commission's stores are run by state employees or by appointed agents is not settled by the
+      statute (ORS 471.750(1) and (4)); the spirits retail arrangement stays coded only from the 2012 brief.

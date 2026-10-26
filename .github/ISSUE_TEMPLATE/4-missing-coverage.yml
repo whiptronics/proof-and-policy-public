@@ -1,0 +1,14 @@
+name: Missing jurisdiction or year
+description: A jurisdiction, year or measure you expected is not covered.
+labels: [coverage]
+body:
+  - type: input
+    id: what
+    attributes: {label: Measure, geography and period missing}
+    validations: {required: true}
+  - type: input
+    id: where
+    attributes: {label: Where it is published (URL), description: Leave blank if you do not know whether it exists}
+  - type: textarea
+    id: why
+    attributes: {label: Why it matters for your use}

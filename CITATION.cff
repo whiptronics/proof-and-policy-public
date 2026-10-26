@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: >-
+  If you use these data, cite the release you used (its release_id is in manifest.json) and the
+  original sources listed in metadata/source_registry.csv.
+type: dataset
+title: "Proof & Policy: Alcohol Policy and Revenue Open Data"
+version: 0.3.0
+repository-code: "https://github.com/whiptronics/proof-and-policy-public"
+url: "https://proofandpolicy.us"
+authors:
+  - family-names: Whipple
+    given-names: Ethan
+license: CC-BY-4.0
+abstract: >-
+  A reproducible, source-traceable dataset of U.S. state alcohol policy, population, apparent alcohol
+  consumption, drinking behavior and public revenue, with the code that builds it. Research preview;
+  no causal claims.
+keywords:
+  - alcohol policy
+  - public finance
+  - open data
+  - reproducibility

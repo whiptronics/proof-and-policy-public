@@ -1,0 +1,767 @@
+source_id: utah_session_laws
+publisher: Utah State Legislature (Office of Legislative Research and General Counsel)
+title: Utah session laws 2002-2013 (Digests of Legislation, passed-bill indexes, enrolled bills)
+landing_url: https://le.utah.gov/
+citation: >-
+  Utah State Legislature. Digest of Legislation (2003-2014 editions); Passed Bills by session; enrolled bills
+  and bill status pages. https://le.utah.gov/
+update_frequency: Fixed historical records (the pages' site navigation may change)
+source_family: policy
+rights_status: government_edict
+notes: >-
+  Evidence for Utah law before 2014-01-01, where the Historical Code begins: Title 32B from its 2011-07-01
+  commencement (2010 S.B. 167, Laws of Utah 2010 ch. 276), and the beer tax (59-15-101) from 2003 S.B. 66
+  (ch. 307, effective 2003-05-05). Each Digest lists every bill enacted in the
+  sessions it covers, with the code sections affected, effective date and session-law chapter; each
+  passed-bills index lists the same bills with their chapters, and the two are cross-checked session by
+  session. Enrolled bills mark inserted text <u> and deleted text [<strike>]; both the text before and after
+  each amendment are read from them. Parsed by src/alcohol_data/legal/utah_session_laws.py
+  ('alcohol-data legal ledger-utah').
+host_min_interval_seconds: 2
+assets:
+  # ------------------------------------------------------------------ Digests of Legislation
+  # 2001 and 2002: registered and pinned (research dashboard, 2026-10-07) but not parsed. Their own series
+  # keeps them out of the ledger's inventory until a parser handles their layout, so they extend nothing.
+  # The 2002 digest covers the 2002 General Session and the 2001 First and Second Special Sessions; which
+  # digest covers any 2002 special sessions before the Fourth (2003 lists the Fourth to Sixth) is not yet known.
+  - asset_id: ut_digest_2001
+    url: https://le.utah.gov/session/2001/pdfdoc/digest2001.pdf
+    edition: "Digest of Legislation, 2001 General Session (Research Report No. 69, April 2001)"
+    source_series: utah_digest_of_legislation_unparsed
+    source_vintage: "2001"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    notes: "Registered for the 1993-2002 inventory gap; not parsed."
+  - asset_id: ut_digest_2002
+    url: https://le.utah.gov/session/2002/pdfdoc/digest2002.pdf
+    edition: "Digest of Legislation, 2002 General Session, 2001 First and Second Special Sessions (Research Report No. 70, April 2002)"
+    source_series: utah_digest_of_legislation_unparsed
+    source_vintage: "2002"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    notes: "Registered for the 1993-2002 inventory gap; not parsed."
+  - asset_id: ut_digest_2003
+    url: https://le.utah.gov/session/2003/pdfdoc/Digest2003.pdf
+    edition: "Digest of Legislation, 2003 General Session, 2002 Veto Override Session and 2002 Fourth-Sixth Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2003"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2003}
+  - asset_id: ut_digest_2004
+    url: https://le.utah.gov/session/2004/pdfdoc/Digest2004.pdf
+    edition: "Digest of Legislation, 2004 General Session, 2004 Veto Override Session and 2003 First and Second Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2004"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2004}
+  - asset_id: ut_digest_2005
+    url: https://le.utah.gov/session/2005/pdfdoc/Digest2005.pdf
+    edition: "Digest of Legislation, 2005 General Session, 2004 Third and Fourth and 2005 First Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2005"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2005}
+  - asset_id: ut_digest_2006
+    url: https://le.utah.gov/session/2006/pdfdoc/Digest2006.pdf
+    edition: "Digest of Legislation, 2006 General Session and 2005 Second Special Session"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2006"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2006}
+  - asset_id: ut_digest_2007
+    url: https://le.utah.gov/session/2007/pdfdoc/Digest2007.pdf
+    edition: "Digest of Legislation, 2007 General Session and 2006 Third-Fifth Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2007"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2007}
+  - asset_id: ut_digest_2008
+    url: https://le.utah.gov/session/2008/pdfdoc/Digest2008.pdf
+    edition: "Digest of Legislation, 2008 General Session and 2007 First Special Session"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2008"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2008}
+  - asset_id: ut_digest_2009
+    url: https://le.utah.gov/session/2009/pdfdoc/Digest2009.pdf
+    edition: "Digest of Legislation, 2009 General Session and 2008 Second Special Session"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2009"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2009}
+  - asset_id: ut_digest_2010
+    url: https://le.utah.gov/session/2010/pdfdoc/Digest2010.pdf
+    edition: "Digest of Legislation, 2010 General Session and 2009 First Special Session (June 2010)"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2010"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2010}
+  - asset_id: ut_digest_2011
+    url: https://le.utah.gov/session/2011/pdfdoc/Digest2011.pdf
+    edition: "Digest of Legislation, 2011 General Session, 2010 Second Special Session, 2011 First Special Session and 2011 Veto Override Session (June 2011)"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2011"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2011}
+  - asset_id: ut_digest_2012
+    url: https://le.utah.gov/session/2012/pdfdoc/Digest2012.pdf
+    edition: "Digest of Legislation, 2012 General Session, 2011 Second and Third Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2012"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2012}
+  - asset_id: ut_digest_2013
+    url: https://le.utah.gov/session/2013/pdfdoc/Digest2013.pdf
+    edition: "Digest of Legislation, 2013 General Session and 2012 Fourth Special Session"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2013"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2013}
+  - asset_id: ut_digest_2014
+    url: https://le.utah.gov/session/2014/pdfdoc/Digest2014.pdf
+    edition: "Digest of Legislation, 2014 General Session, 2013 First House Session, 2013 First and Second Special Sessions"
+    source_series: utah_digest_of_legislation
+    source_vintage: "2014"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    options: {digest_year: 2014}
+  # ------------------------------------------------------------------ passed-bill indexes
+  # The page states the time of the request ('Bills Passed as of <time>'); that time is blanked before
+  # hashing so the pin identifies the list, not the request.
+  - asset_id: ut_passed_bills_2002s4
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2002S4
+    filename: passedbills_2002S4.html
+    edition: "Passed bills, 2002 Fourth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2002S4
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2002S4, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2002s5
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2002S5
+    filename: passedbills_2002S5.html
+    edition: "Passed bills, 2002 Fifth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2002S5
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2002S5, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2002s6
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2002S6
+    filename: passedbills_2002S6.html
+    edition: "Passed bills, 2002 Sixth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2002S6
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2002S6, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2003gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2003GS
+    filename: passedbills_2003GS.html
+    edition: "Passed bills, 2003 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2003GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2003s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2003S1
+    filename: passedbills_2003S1.html
+    edition: "Passed bills, 2003 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2003S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2003s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2003S2
+    filename: passedbills_2003S2.html
+    edition: "Passed bills, 2003 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2003S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003S2, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2004gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2004GS
+    filename: passedbills_2004GS.html
+    edition: "Passed bills, 2004 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2004GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2004GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2004s3
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2004S3
+    filename: passedbills_2004S3.html
+    edition: "Passed bills, 2004 Third Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2004S3
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2004S3, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2004s4
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2004S4
+    filename: passedbills_2004S4.html
+    edition: "Passed bills, 2004 Fourth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2004S4
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2004S4, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2005gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2005GS
+    filename: passedbills_2005GS.html
+    edition: "Passed bills, 2005 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2005GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2005GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2005s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2005S1
+    filename: passedbills_2005S1.html
+    edition: "Passed bills, 2005 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2005S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2005S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2005s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2005S2
+    filename: passedbills_2005S2.html
+    edition: "Passed bills, 2005 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2005S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2005S2, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2006gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2006GS
+    filename: passedbills_2006GS.html
+    edition: "Passed bills, 2006 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2006GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2006GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2006s3
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2006S3
+    filename: passedbills_2006S3.html
+    edition: "Passed bills, 2006 Third Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2006S3
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2006S3, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2006s4
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2006S4
+    filename: passedbills_2006S4.html
+    edition: "Passed bills, 2006 Fourth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2006S4
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2006S4, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2006s5
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2006S5
+    filename: passedbills_2006S5.html
+    edition: "Passed bills, 2006 Fifth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2006S5
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2006S5, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2007gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2007GS
+    filename: passedbills_2007GS.html
+    edition: "Passed bills, 2007 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2007GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2007GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2007s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2007S1
+    filename: passedbills_2007S1.html
+    edition: "Passed bills, 2007 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2007S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2007S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2008gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2008GS
+    filename: passedbills_2008GS.html
+    edition: "Passed bills, 2008 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2008GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2008GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2008s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2008S2
+    filename: passedbills_2008S2.html
+    edition: "Passed bills, 2008 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2008S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2008S2, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2009gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2009GS
+    filename: passedbills_2009GS.html
+    edition: "Passed bills, 2009 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2009GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2009GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2009s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2009S1
+    filename: passedbills_2009S1.html
+    edition: "Passed bills, 2009 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2009S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2009S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2010gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2010GS
+    filename: passedbills_2010GS.html
+    edition: "Passed bills, 2010 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2010GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2010GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2010s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2010S2
+    filename: passedbills_2010S2.html
+    edition: "Passed bills, 2010 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2010S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2010S2, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2011gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2011GS
+    filename: passedbills_2011GS.html
+    edition: "Passed bills, 2011 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2011GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2011s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2011S1
+    filename: passedbills_2011S1.html
+    edition: "Passed bills, 2011 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2011S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2011s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2011S2
+    filename: passedbills_2011S2.html
+    edition: "Passed bills, 2011 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2011S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011S2, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2011s3
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2011S3
+    filename: passedbills_2011S3.html
+    edition: "Passed bills, 2011 Third Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2011S3
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011S3, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2012gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2012GS
+    filename: passedbills_2012GS.html
+    edition: "Passed bills, 2012 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2012GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2012GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2012s4
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2012S4
+    filename: passedbills_2012S4.html
+    edition: "Passed bills, 2012 Fourth Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2012S4
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2012S4, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2013gs
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2013GS
+    filename: passedbills_2013GS.html
+    edition: "Passed bills, 2013 General Session"
+    source_series: utah_passed_bills
+    source_vintage: 2013GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013GS, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2013s1
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2013S1
+    filename: passedbills_2013S1.html
+    edition: "Passed bills, 2013 First Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2013S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013S1, normalize: strip_passed_bills_timestamp}
+  - asset_id: ut_passed_bills_2013s2
+    url: https://le.utah.gov/asp/passedbills/passedbills.asp?session=2013S2
+    filename: passedbills_2013S2.html
+    edition: "Passed bills, 2013 Second Special Session"
+    source_series: utah_passed_bills
+    source_vintage: 2013S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013S2, normalize: strip_passed_bills_timestamp}
+  # ------------------------------------------------------------------ the recodification
+  - asset_id: ut_2010gs_sb0167_status
+    url: https://le.utah.gov/~2010/bills/static/SB0167.html
+    edition: "2010 S.B. 167 Alcoholic Beverage Control Act Recodification, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2010GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2010GS, bill: SB 167}
+  - asset_id: ut_2010gs_sb0167_enrolled
+    url: https://le.utah.gov/~2010/bills/sbillenr/sb0167.htm
+    edition: "2010 S.B. 167 Alcoholic Beverage Control Act Recodification, enrolled copy (Laws of Utah 2010, ch. 276)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2010GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2010GS, bill: SB 167, chapter: 276}
+  - asset_id: ut_lrgc_recodification_index
+    url: https://le.utah.gov/lrgc/recodification.htm
+    edition: "Office of Legislative Research and General Counsel, recodification index"
+    source_series: utah_lrgc
+    source_vintage: retrieved_2026_10
+    format: html
+    priority: 20
+    redistribute_raw: true
+    notes: Cited for the list of recodified titles; not parsed.
+  # ------------------------------------------------------------------ bills that amended tracked sections, 2011-2013
+  - asset_id: ut_2011gs_sb0012_status
+    url: https://le.utah.gov/~2011/bills/static/SB0012.html
+    edition: "2011 S.B. 12 Alcoholic Beverage Control Act - Modifications, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2011GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011GS, bill: SB 12}
+  - asset_id: ut_2011gs_sb0012_enrolled
+    url: https://le.utah.gov/~2011/bills/sbillenr/SB0012.htm
+    edition: "2011 S.B. 12 Alcoholic Beverage Control Act - Modifications, enrolled copy (Laws of Utah 2011, ch. 307)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2011GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011GS, bill: SB 12, chapter: 307}
+  - asset_id: ut_2011gs_sb0314_status
+    url: https://le.utah.gov/~2011/bills/static/SB0314.html
+    edition: "2011 S.B. 314 Alcoholic Beverage Amendments, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2011GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011GS, bill: SB 314}
+  - asset_id: ut_2011gs_sb0314_enrolled
+    url: https://le.utah.gov/~2011/bills/sbillenr/SB0314.htm
+    edition: "2011 S.B. 314 Alcoholic Beverage Amendments, enrolled copy (Laws of Utah 2011, ch. 334)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2011GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011GS, bill: SB 314, chapter: 334}
+  - asset_id: ut_2011s2_sb2002_status
+    url: https://le.utah.gov/~2011S2/bills/static/SB2002.html
+    edition: "2011 Second Special Session S.B. 2002 Alcoholic Beverage Control Act Amendments, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2011S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011S2, bill: SB 2002}
+  - asset_id: ut_2011s2_sb2002_enrolled
+    url: https://le.utah.gov/~2011S2/bills/sbillenr/SB2002.htm
+    edition: "2011 Second Special Session S.B. 2002 Alcoholic Beverage Control Act Amendments, enrolled copy (Laws of Utah 2011, Second Special Session, ch. 2)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2011S2
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2011S2, bill: SB 2002, chapter: 2}
+  - asset_id: ut_2013gs_hb0228_status
+    url: https://le.utah.gov/~2013/bills/static/HB0228.html
+    edition: "2013 H.B. 228 Alcoholic Beverage Control Act Amendments, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2013GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013GS, bill: HB 228}
+  - asset_id: ut_2013gs_hb0228_enrolled
+    url: https://le.utah.gov/~2013/bills/hbillenr/HB0228.htm
+    edition: "2013 H.B. 228 Alcoholic Beverage Control Act Amendments, enrolled copy (Laws of Utah 2013, ch. 349)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2013GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013GS, bill: HB 228, chapter: 349}
+  # ------------------------------------------------------------------ chaptered bills the Digest does not list
+  # The 2014 Digest lists only H.B. 1001 and H.B. 1002 for the 2013 First Special Session; the passed-bill
+  # index lists three more chaptered bills. Their own "Utah Code Sections Affected" lists are read instead.
+  - asset_id: ut_2013s1_hb1003_enrolled
+    url: https://le.utah.gov/~2013S1/bills/hbillenr/HB1003.htm
+    edition: "2013 First Special Session H.B. 1003 Private Investigator Regulation Act Amendments, enrolled copy (ch. 3)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2013S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013S1, bill: HB 1003, chapter: 3}
+  - asset_id: ut_2013s1_hb1004_enrolled
+    url: https://le.utah.gov/~2013S1/bills/hbillenr/HB1004.htm
+    edition: "2013 First Special Session H.B. 1004 Law Enforcement Modifications, enrolled copy (ch. 4)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2013S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013S1, bill: HB 1004, chapter: 4}
+  - asset_id: ut_2013s1_sb1001_enrolled
+    url: https://le.utah.gov/~2013S1/bills/sbillenr/SB1001.htm
+    edition: "2013 First Special Session S.B. 1001 Deep Creek Case Appropriation, enrolled copy (ch. 5)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2013S1
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2013S1, bill: SB 1001, chapter: 5}
+  # ------------------------------------------------------------------ beer tax: 2003 S.B. 66
+  - asset_id: ut_2003gs_sb0066_status
+    url: https://le.utah.gov/~2003/bills/static/SB0066.html
+    edition: "2003 S.B. 66 Alcoholic Beverage Enforcement and Treatment, bill status page"
+    source_series: utah_bill_status
+    source_vintage: 2003GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003GS, bill: SB 66}
+  - asset_id: ut_2003gs_sb0066_enrolled
+    url: https://le.utah.gov/~2003/bills/sbillenr/SB0066.htm
+    edition: "2003 S.B. 66 Alcoholic Beverage Enforcement and Treatment, enrolled copy (Laws of Utah 2003, ch. 307)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2003GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003GS, bill: SB 66, chapter: 307}
+  # ------------------------------------------------------------------ Title 32A -> 32B recodification tables
+  - asset_id: ut_2010_title32a_recod_table
+    url: https://le.utah.gov/session/2010/pdfdoc/Recod.Title32ATABLE.pdf
+    filename: Recod.Title32ATABLE.pdf
+    edition: "Alcoholic Beverage Control Act recodification, table of sections Old to New (Title 32A to Title 32B), 2010"
+    source_series: utah_recodification_table
+    source_vintage: 2010GS
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    notes: Linked from the Legislature's recodification index (le.utah.gov/lrgc/recodification.htm). A finding aid prepared by legislative staff, not enacted text.
+  - asset_id: ut_2010_title32a_recod_outline
+    url: https://le.utah.gov/session/2010/pdfdoc/Recod.Title32A.HeadingsSections.pdf
+    filename: Recod.Title32A.HeadingsSections.pdf
+    edition: "Alcoholic Beverage Control Act recodification, outline and table of contents (Title 32B headings and sections), 2010"
+    source_series: utah_recodification_table
+    source_vintage: 2010GS
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    notes: Linked from the Legislature's recodification index. A finding aid, not enacted text.
+  # ------------------------------------------------------------------ Title 32A predecessors, 2003-2009
+  # Every bill in the 2002 S4-2010 S2 inventory that amended or enacted a Title 32A section the
+  # recodification table maps into a tracked Title 32B section.
+  - asset_id: ut_2003gs_sb0153_enrolled
+    url: https://le.utah.gov/~2003/bills/sbillenr/SB0153.htm
+    edition: "2003 S.B. 153, enrolled copy (Laws of Utah 2003, ch. 314)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2003GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003GS, bill: SB 153, chapter: 314}
+  - asset_id: ut_2003gs_hb0244_enrolled
+    url: https://le.utah.gov/~2003/bills/hbillenr/HB0244.htm
+    edition: "2003 H.B. 244, enrolled copy (Laws of Utah 2003, ch. 292)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2003GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2003GS, bill: HB 244, chapter: 292}
+  - asset_id: ut_2004gs_sb0058_enrolled
+    url: https://le.utah.gov/~2004/bills/sbillenr/SB0058.htm
+    edition: "2004 S.B. 58, enrolled copy (Laws of Utah 2004, ch. 268)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2004GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2004GS, bill: SB 58, chapter: 268}
+  - asset_id: ut_2005gs_sb0065_enrolled
+    url: https://le.utah.gov/~2005/bills/sbillenr/SB0065.htm
+    edition: "2005 S.B. 65, enrolled copy (Laws of Utah 2005, ch. 152)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2005GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2005GS, bill: SB 65, chapter: 152}
+  - asset_id: ut_2006gs_sb0058_enrolled
+    url: https://le.utah.gov/~2006/bills/sbillenr/SB0058.htm
+    edition: "2006 S.B. 58, enrolled copy (Laws of Utah 2006, ch. 342)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2006GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2006GS, bill: SB 58, chapter: 342}
+  - asset_id: ut_2007gs_sb0205_enrolled
+    url: https://le.utah.gov/~2007/bills/sbillenr/SB0205.htm
+    edition: "2007 S.B. 205, enrolled copy (Laws of Utah 2007, ch. 284)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2007GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2007GS, bill: SB 205, chapter: 284}
+  - asset_id: ut_2008gs_hb0157_enrolled
+    url: https://le.utah.gov/~2008/bills/hbillenr/HB0157.htm
+    edition: "2008 H.B. 157, enrolled copy (Laws of Utah 2008, ch. 317)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2008GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2008GS, bill: HB 157, chapter: 317}
+  - asset_id: ut_2008gs_hb0171_enrolled
+    url: https://le.utah.gov/~2008/bills/hbillenr/HB0171.htm
+    edition: "2008 H.B. 171, enrolled copy (Laws of Utah 2008, ch. 322)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2008GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2008GS, bill: HB 171, chapter: 322}
+  - asset_id: ut_2008gs_sb0211_enrolled
+    url: https://le.utah.gov/~2008/bills/sbillenr/SB0211.htm
+    edition: "2008 S.B. 211, enrolled copy (Laws of Utah 2008, ch. 391)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2008GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2008GS, bill: SB 211, chapter: 391}
+  - asset_id: ut_2009gs_sb0187_enrolled
+    url: https://le.utah.gov/~2009/bills/sbillenr/SB0187.htm
+    edition: "2009 S.B. 187, enrolled copy (Laws of Utah 2009, ch. 383)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2009GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2009GS, bill: SB 187, chapter: 383}
+  - asset_id: ut_2009gs_hb0250_enrolled
+    url: https://le.utah.gov/~2009/bills/hbillenr/HB0250.htm
+    edition: "2009 H.B. 250, enrolled copy (Laws of Utah 2009, ch. 356)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2009GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2009GS, bill: HB 250, chapter: 356}
+  - asset_id: ut_2009gs_hb0352_enrolled
+    url: https://le.utah.gov/~2009/bills/hbillenr/HB0352.htm
+    edition: "2009 H.B. 352, enrolled copy (Laws of Utah 2009, ch. 190)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2009GS
+    format: html
+    priority: 20
+    redistribute_raw: true
+    options: {session: 2009GS, bill: HB 352, chapter: 190}

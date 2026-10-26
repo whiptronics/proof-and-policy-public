@@ -1,0 +1,38 @@
+source_id: niaaa_apparent_consumption
+publisher: National Institute on Alcohol Abuse and Alcoholism (NIAAA), Alcohol Epidemiologic Data System
+title: Apparent per capita alcohol consumption by state and beverage type (surveillance report data files)
+landing_url: https://www.niaaa.nih.gov/publications/surveillance-reports
+citation: "Slater, M.E., and Alpert, H.R. (2026). Surveillance Report #124: Apparent Per Capita Alcohol Consumption: National, State, and Regional Trends, 1977-2024. Bethesda, MD: NIAAA. Data file pcyr1970-2024 (updated 04/09/2026)."
+update_frequency: About annual (new surveillance report and data file)
+source_family: consumption
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.nih.gov/web-policies-notices
+notes: >-
+  Apparent consumption is computed from beverage sales, shipment or tax-receipt data, not from observing
+  what residents drink. Visitor purchases, cross-border shopping and inventory changes affect it.
+  Per capita values use NIAAA's own age 14+ and 21+ population denominators.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: niaaa_pcyr_sr124
+    url: https://www.niaaa.nih.gov/sites/default/files/pcyr1970-2024_final.txt
+    edition: "Surveillance Report #124 data file pcyr1970-2024.txt (file header: updated 04/09/2026)"
+    source_series: niaaa_apparent_consumption
+    source_vintage: sr124
+    format: text_fixed_width
+    parser: niaaa_pcyr
+    priority: 20
+    redistribute_raw: true
+    notes: >-
+      The NIAAA index page (checked 2026-10-06) says "Data for 1970-2023 from this report can be found in one
+      data file" while the linked file's own header and rows cover 1970 through 2024. The file also says it
+      updates population estimates for 2020-2023. Coverage is taken from the parsed rows, not either label.
+  - asset_id: niaaa_pcyr_sr122
+    url: https://www.niaaa.nih.gov/sites/default/files/pcyr1970-2023.txt
+    edition: "Surveillance Report #122 data file pcyr1970-2023.txt (file header: updated 03/31/2025)"
+    source_series: niaaa_apparent_consumption
+    source_vintage: sr122
+    format: text_fixed_width
+    parser: niaaa_pcyr
+    priority: 10
+    redistribute_raw: true
+    notes: Prior edition, kept so revisions between editions are visible. Not preferred.

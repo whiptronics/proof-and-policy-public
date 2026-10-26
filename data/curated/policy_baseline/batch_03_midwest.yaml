@@ -1,0 +1,591 @@
+# Nationwide policy baseline, batch 3: the Midwest. Each entry is a dated snapshot of what the cited text
+# shows on the day it was read (or the date or year the source states); nothing here covers other days.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+#
+# Not in this batch, and why (see data/curated/research/source_leads.csv):
+#   Indiana: the official code site (iga.in.gov) serves statute text by script; the Alcohol and Tobacco
+#     Commission's "Alcohol Permits 101" guide does not say which beverages each dealer permit covers.
+#   Ohio spirits retail system: the statute (R.C. 4301.17) allows "state liquor stores or agencies"; that
+#     every outlet is now a contract agency needs an official Division of Liquor Control statement.
+#   South Dakota grocery permissions: the license schedule (SDCL 35-4-2) lists classes without saying which
+#     outlets hold them; the definitions in SDCL 35-1-1 are needed.
+batch: batch_03_midwest
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ Illinois
+  - id: base_il_grocery_wine
+    geo_id: "state:17"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: The retailer's license covers retail sale of alcoholic liquor; no outlet type is named or excluded.
+    asset:
+      asset_id: law_il_235_ilcs_5_5_1
+      url: https://www.ilga.gov/Documents/legislation/ilcs/documents/023500050K5-1.htm
+      edition: "235 ILCS 5/5-1 (Liquor Control Act, kinds of licenses), Illinois General Assembly page"
+      rights_status: government_edict
+    citation: 235 ILCS 5/5-1(d)
+    locator: paragraph (d)
+    find: "(d) A retailer's license shall allow the licensee to sell and offer for sale at retail, in or from the premises specified in the license, alcoholic liquor for use or consumption, but not for resale in any form except as otherwise provided in this Act."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Local liquor control commissioners also license retailers, and localities may prohibit sales under the Act's local option; neither is coded here.
+  - id: base_il_grocery_beer
+    geo_id: "state:17"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same retailer's license.
+    asset: law_il_235_ilcs_5_5_1
+    citation: 235 ILCS 5/5-1(d)
+    locator: paragraph (d)
+    find: "(d) A retailer's license shall allow the licensee to sell and offer for sale at retail, in or from the premises specified in the license, alcoholic liquor for use or consumption, but not for resale in any form except as otherwise provided in this Act."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_il_grocery_spirits
+    geo_id: "state:17"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same retailer's license, which covers all alcoholic liquor.
+    asset: law_il_235_ilcs_5_5_1
+    citation: 235 ILCS 5/5-1(d)
+    locator: paragraph (d)
+    find: "(d) A retailer's license shall allow the licensee to sell and offer for sale at retail, in or from the premises specified in the license, alcoholic liquor for use or consumption, but not for resale in any form except as otherwise provided in this Act."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_il_spirits_retail
+    geo_id: "state:17"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retailer's licenses.
+    asset: law_il_235_ilcs_5_5_1
+    citation: 235 ILCS 5/5-1(d)
+    locator: paragraph (d)
+    find: "(d) A retailer's license shall allow the licensee to sell and offer for sale at retail, in or from the premises specified in the license, alcoholic liquor for use or consumption, but not for resale in any form except as otherwise provided in this Act."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Iowa (Iowa Code 2026 edition)
+  - id: base_ia_grocery_wine_2026
+    geo_id: "state:19"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Class "B" retail alcohol license to sell wine and beer in original unopened containers for off-premises consumption; no outlet type is named or excluded.
+    asset:
+      asset_id: law_ia_code_123_30
+      url: https://www.legis.iowa.gov/docs/code/123.30.pdf
+      edition: "Iowa Code 2026, § 123.30 (Retail alcohol licenses - classes), Iowa Legislature PDF"
+      format: pdf
+      rights_status: government_edict
+    citation: Iowa Code § 123.30(3)(a)
+    locator: subsection 3, paragraph a (class "B")
+    find: 'A class "B " retail alcohol license may be issued and shall authorize the holder to purchase wine from a class " A " wine permittee only and beer from a class " A " beer permittee only , and to sell wine and beer in original unopened containers at retail to patrons for consumption off the licensed premises.'
+    observed_year: 2026
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      Year precision: the PDF is the Iowa Code 2026 edition (generated 2025-12-10), so changes made in the 2026
+      session are not reflected. The odd spacing inside quotation marks is the PDF's own text layer.
+  - id: base_ia_grocery_beer_2026
+    geo_id: "state:19"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same class "B" license.
+    asset: law_ia_code_123_30
+    citation: Iowa Code § 123.30(3)(a)
+    locator: subsection 3, paragraph a (class "B")
+    find: 'A class "B " retail alcohol license may be issued and shall authorize the holder to purchase wine from a class " A " wine permittee only and beer from a class " A " beer permittee only , and to sell wine and beer in original unopened containers at retail to patrons for consumption off the licensed premises.'
+    observed_year: 2026
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ia_grocery_spirits_2026
+    geo_id: "state:19"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Class "E" retail alcohol license to sell liquor, wine and beer for off-premises consumption; no outlet type is named or excluded.
+    asset: law_ia_code_123_30
+    citation: Iowa Code § 123.30(3)(e)
+    locator: subsection 3 (class "E")
+    find: 'A class "E" retail alcohol license may be issued and shall authorize the holder to purchase alcoholic liquor in original unopened containers from the department only , wine from a class " A " wine permittee only , and beer from a class " A " beer permittee only; to sell alcoholic liquor , wine, and beer in original unopened containers at retail to patrons for consumption off the licensed premises'
+    observed_year: 2026
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ia_spirits_retail_2026
+    geo_id: "state:19"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Class "E" licensees sell liquor at retail and buy it from the state.
+    asset: law_ia_code_123_30
+    citation: Iowa Code § 123.30(3)(e) and (1)(d)
+    locator: subsection 3 (class "E")
+    find: 'A class "E" retail alcohol license may be issued and shall authorize the holder to purchase alcoholic liquor in original unopened containers from the department only , wine from a class " A " wine permittee only , and beer from a class " A " beer permittee only; to sell alcoholic liquor , wine, and beer in original unopened containers at retail to patrons for consumption off the licensed premises'
+    observed_year: 2026
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    notes: A city council may hold a class "E" license only where no private class "E" licensee operates in the city, and must give it up once one does (subsection 1, paragraph d).
+  - id: base_ia_spirits_wholesale_2026
+    geo_id: "state:19"
+    dimension: spirits_wholesale_system
+    value: state_operated
+    detail: The state alcoholic beverages division is the sole wholesaler of liquor to class "E" retailers.
+    asset:
+      asset_id: law_ia_code_123_22
+      url: https://www.legis.iowa.gov/docs/code/123.22.pdf
+      edition: "Iowa Code 2026, § 123.22 (State monopoly), Iowa Legislature PDF"
+      format: pdf
+      rights_status: government_edict
+    citation: Iowa Code § 123.22(1)
+    locator: subsection 1
+    find: 'The department shall act as the sole wholesaler of alcoholic liquor to class "E" retail alcohol licensees.'
+    observed_year: 2026
+    observed_basis: currency_statement
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Kansas
+  - id: base_ks_grocery_wine
+    geo_id: "state:20"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: Wine and spirits are sold off-premises under the retailer's (liquor store) license, whose holder's sales of other goods may not exceed 20% of gross sales, which a grocery store cannot meet.
+    asset:
+      asset_id: law_ks_41_308
+      url: https://www.ksrevisor.gov/statutes/chapters/ch41/041_003_0008.html
+      edition: "Kansas Statutes Annotated 41-308 (Retailer's license; rights of licensee), Office of Revisor of Statutes page"
+      rights_status: government_edict
+    citation: K.S.A. 41-308
+    locator: subsections (a) and (c)(7)
+    find:
+      - "a retailer's license shall allow the licensee to sell and offer for sale at retail and deliver in the original package, as therein prescribed, alcoholic liquor and cereal malt beverage for use or consumption off and away from the premises specified in such license"
+      - "(7) sell any other good or service on the licensed premises, except that the gross sales of other goods and services, excluding fees derived from the sale of lottery tickets and revenues from sales of cigarettes and tobacco products, shall not exceed 20% of the retailer's total gross sales"
+    evidence_strength: current_code
+    support: indirect
+    notes: >-
+      The conclusion that a grocery store cannot hold this license follows from the 20% cap; the excerpt does not
+      say so in words, and does not by itself show that no other license allows wine. Grocery stores may sell
+      beer up to 6% alcohol (base_ks_grocery_beer).
+  - id: base_ks_grocery_spirits
+    geo_id: "state:20"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same as wine.
+    asset: law_ks_41_308
+    citation: K.S.A. 41-308
+    locator: subsections (a) and (c)(7)
+    find:
+      - "a retailer's license shall allow the licensee to sell and offer for sale at retail and deliver in the original package, as therein prescribed, alcoholic liquor and cereal malt beverage for use or consumption off and away from the premises specified in such license"
+      - "(7) sell any other good or service on the licensed premises, except that the gross sales of other goods and services, excluding fees derived from the sale of lottery tickets and revenues from sales of cigarettes and tobacco products, shall not exceed 20% of the retailer's total gross sales"
+    evidence_strength: current_code
+    support: indirect
+  - id: base_ks_grocery_beer
+    geo_id: "state:20"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Cereal malt beverage retailer's license, covering beer up to 6% alcohol by volume; no outlet type is named or excluded.
+    asset:
+      asset_id: law_ks_41_2702
+      url: https://www.ksrevisor.gov/statutes/chapters/ch41/041_027_0002.html
+      edition: "Kansas Statutes Annotated 41-2702 (Cereal malt beverage retailer's license), Office of Revisor of Statutes page"
+      rights_status: government_edict
+    citation: K.S.A. 41-2702(a)
+    locator: subsection (a)
+    find: "No retailer shall sell any cereal malt beverage or beer containing not more than 6% alcohol by volume without having first secured a license for each place of business as herein provided."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Licenses are issued by cities and counties. Kansas's beer ceiling for this channel (6%) belongs in beer_definition_max_alcohol, not coded here.
+  - id: base_ks_spirits_retail
+    geo_id: "state:20"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retailer's (liquor store) licenses.
+    asset: law_ks_41_308
+    citation: K.S.A. 41-308(a)
+    locator: subsection (a)
+    find: "a retailer's license shall allow the licensee to sell and offer for sale at retail and deliver in the original package, as therein prescribed, alcoholic liquor and cereal malt beverage for use or consumption off and away from the premises specified in such license"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Michigan
+  - id: base_mi_grocery_wine
+    geo_id: "state:26"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Specially designated merchant (SDM) license for beer, wine and mixed spirit drinks off-premises; no outlet type is named or excluded.
+    asset:
+      asset_id: law_mi_mcl_436_1537
+      url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-436-1537
+      edition: "Michigan Compiled Laws 436.1537 (License classifications), Michigan Legislature page"
+      filename: mi_mcl_436_1537.html
+      rights_status: government_edict
+    citation: MCL 436.1537(1)(f)
+    locator: subsection (1)(f)
+    find: "(f) Specially designated merchants, where beer, wine, and mixed spirit drink may be sold for consumption off the premises only."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_mi_grocery_beer
+    geo_id: "state:26"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same SDM license.
+    asset: law_mi_mcl_436_1537
+    citation: MCL 436.1537(1)(f)
+    locator: subsection (1)(f)
+    find: "(f) Specially designated merchants, where beer, wine, and mixed spirit drink may be sold for consumption off the premises only."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_mi_grocery_spirits
+    geo_id: "state:26"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Specially designated distributor (SDD) license for spirits off-premises; no outlet type is named or excluded.
+    asset: law_mi_mcl_436_1537
+    citation: MCL 436.1537(1)(g)
+    locator: subsection (1)(g)
+    find: "(g) Specially designated distributors, where spirits may be sold for consumption off the premises only."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: SDD licenses are subject to population quotas and distance rules elsewhere in the Code (not excerpted).
+  - id: base_mi_spirits_retail
+    geo_id: "state:26"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held SDD licenses.
+    asset: law_mi_mcl_436_1537
+    citation: MCL 436.1537(1)(g)
+    locator: subsection (1)(g)
+    find: "(g) Specially designated distributors, where spirits may be sold for consumption off the premises only."
+    evidence_strength: current_code
+    notes: Michigan's state role at wholesale (the Liquor Control Commission buys spirits and sells them through authorized distribution agents) is not coded here.
+  # ------------------------------------------------------------------ Minnesota
+  - id: base_mn_grocery_wine
+    geo_id: "state:27"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: Off-sale intoxicating liquor licenses go to exclusive liquor stores; a general food store may hold one only in a city of the first class and only if it held one on 1989-08-01.
+    asset:
+      asset_id: law_mn_ch_340a
+      url: https://www.revisor.mn.gov/statutes/cite/340A/full
+      edition: "Minnesota Statutes 2025, chapter 340A (full text), Office of the Revisor of Statutes page"
+      filename: mn_340a_full.html
+      rights_status: government_edict
+    citation: Minn. Stat. § 340A.405, subd. 1
+    locator: subdivision 1, paragraphs (a) and (b)
+    find:
+      - "(a) A city other than a city of the first class may issue with the approval of the commissioner, an off-sale intoxicating liquor license to an exclusive liquor store, or to a drugstore to which an off-sale license had been issued on or prior to May 1, 1994."
+      - "(b) A city of the first class may issue an off-sale license to an exclusive liquor store, a general food store to which an off-sale license had been issued on August 1, 1989, or a drugstore to which an off-sale license had been issued on or prior to May 1, 1994."
+    evidence_strength: current_code
+    notes: >-
+      Wine is intoxicating liquor in Minnesota. Grandfathered general food stores in first-class cities are an
+      exception to the value, not an ordinary route. The page lists the sections amended in the 2026 session;
+      340A.405 and 340A.601 are not among them.
+  - id: base_mn_grocery_spirits
+    geo_id: "state:27"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same off-sale license rule as wine.
+    asset: law_mn_ch_340a
+    citation: Minn. Stat. § 340A.405, subd. 1
+    locator: subdivision 1, paragraphs (a) and (b)
+    find:
+      - "(a) A city other than a city of the first class may issue with the approval of the commissioner, an off-sale intoxicating liquor license to an exclusive liquor store, or to a drugstore to which an off-sale license had been issued on or prior to May 1, 1994."
+      - "(b) A city of the first class may issue an off-sale license to an exclusive liquor store, a general food store to which an off-sale license had been issued on August 1, 1989, or a drugstore to which an off-sale license had been issued on or prior to May 1, 1994."
+    evidence_strength: current_code
+  - id: base_mn_spirits_retail
+    geo_id: "state:27"
+    dimension: spirits_off_premise_retail_system
+    value: mixed_local_government_and_private
+    detail: Private exclusive liquor stores hold off-sale licenses, and cities of up to 10,000 people may own and run municipal liquor stores.
+    asset: law_mn_ch_340a
+    citation: Minn. Stat. §§ 340A.405, subd. 1; 340A.601, subd. 1
+    locator: 340A.405 subdivision 1 (a); 340A.601 subdivision 1
+    find:
+      - "(a) A city other than a city of the first class may issue with the approval of the commissioner, an off-sale intoxicating liquor license to an exclusive liquor store, or to a drugstore to which an off-sale license had been issued on or prior to May 1, 1994."
+      - "A city having a population of not more than 10,000 may establish, own, and operate a municipal liquor store which may sell at retail alcoholic beverages"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Missouri
+  - id: base_mo_grocery_wine
+    geo_id: "state:29"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Original-package licenses may be issued to grocery stores, among other listed businesses.
+    asset:
+      asset_id: law_mo_rsmo_311_200
+      url: https://revisor.mo.gov/main/OneSection.aspx?section=311.200
+      edition: "Revised Statutes of Missouri 311.200 (Licenses, retail liquor dealers), Missouri Revisor of Statutes page"
+      filename: mo_rsmo_311_200.html
+      rights_status: government_edict
+    citation: RSMo 311.200.1
+    locator: subsection 1
+    find: "No license shall be issued for the sale of intoxicating liquor in the original package, not to be consumed upon the premises where sold, except to a person engaged in, and to be used in connection with, the operation of one or more of the following businesses: a drug store, a cigar and tobacco store, a grocery store, a general merchandise store, a confectionery or delicatessen store"
+    evidence_strength: current_code
+  - id: base_mo_grocery_beer
+    geo_id: "state:29"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same original-package license; Missouri's "intoxicating liquor" includes beer.
+    asset: law_mo_rsmo_311_200
+    citation: RSMo 311.200.1
+    locator: subsection 1
+    find: "No license shall be issued for the sale of intoxicating liquor in the original package, not to be consumed upon the premises where sold, except to a person engaged in, and to be used in connection with, the operation of one or more of the following businesses: a drug store, a cigar and tobacco store, a grocery store, a general merchandise store, a confectionery or delicatessen store"
+    evidence_strength: current_code
+    notes: That "intoxicating liquor" includes malt liquor rests on RSMo 311.020, not excerpted here.
+  - id: base_mo_grocery_spirits
+    geo_id: "state:29"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same original-package license.
+    asset: law_mo_rsmo_311_200
+    citation: RSMo 311.200.1
+    locator: subsection 1
+    find: "No license shall be issued for the sale of intoxicating liquor in the original package, not to be consumed upon the premises where sold, except to a person engaged in, and to be used in connection with, the operation of one or more of the following businesses: a drug store, a cigar and tobacco store, a grocery store, a general merchandise store, a confectionery or delicatessen store"
+    evidence_strength: current_code
+  - id: base_mo_spirits_retail
+    geo_id: "state:29"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held original-package licenses.
+    asset: law_mo_rsmo_311_200
+    citation: RSMo 311.200.1
+    locator: subsection 1
+    find: "No license shall be issued for the sale of intoxicating liquor in the original package, not to be consumed upon the premises where sold, except to a person engaged in, and to be used in connection with, the operation of one or more of the following businesses: a drug store, a cigar and tobacco store, a grocery store, a general merchandise store, a confectionery or delicatessen store"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Nebraska
+  - id: base_ne_grocery_wine
+    geo_id: "state:31"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Class D license for alcoholic liquor, including beer, off-premises in original packages; no outlet type is named or excluded.
+    asset:
+      asset_id: law_ne_53_124
+      url: https://nebraskalegislature.gov/laws/statutes.php?statute=53-124
+      edition: "Nebraska Revised Statutes 53-124 (Retail licenses; classes), Nebraska Legislature page"
+      filename: ne_53_124.html
+      rights_status: government_edict
+    citation: Neb. Rev. Stat. § 53-124
+    locator: Class D
+    find: "Class D: Alcoholic liquor, including beer, for consumption off the premises, sales in the original packages only"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ne_grocery_beer
+    geo_id: "state:31"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same Class D license.
+    asset: law_ne_53_124
+    citation: Neb. Rev. Stat. § 53-124
+    locator: Class D
+    find: "Class D: Alcoholic liquor, including beer, for consumption off the premises, sales in the original packages only"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ne_grocery_spirits
+    geo_id: "state:31"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same Class D license.
+    asset: law_ne_53_124
+    citation: Neb. Rev. Stat. § 53-124
+    locator: Class D
+    find: "Class D: Alcoholic liquor, including beer, for consumption off the premises, sales in the original packages only"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ne_spirits_retail
+    geo_id: "state:31"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held Class D licenses.
+    asset: law_ne_53_124
+    citation: Neb. Rev. Stat. § 53-124
+    locator: Class D
+    find: "Class D: Alcoholic liquor, including beer, for consumption off the premises, sales in the original packages only"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ North Dakota
+  - id: base_nd_grocery_wine
+    geo_id: "state:38"
+    dimension: ordinary_grocery_wine_authorization
+    value: conditional_or_special_channel
+    detail: A grocery store may sell alcoholic beverages only in a separately licensed area walled off from the rest of the store.
+    asset:
+      asset_id: law_nd_cc_5_02
+      url: https://ndlegis.gov/cencode/t05c02.pdf
+      edition: "North Dakota Century Code chapter 5-02 (Retail licenses), Legislative Assembly PDF"
+      format: pdf
+      rights_status: government_edict
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find:
+      - "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+      - "The area licensed for the sale of alcoholic beverages must be separated from the nonlicensed portion of the business by a wall designed to allow sales personnel to serve customers and make sales in both the licensed and unlicensed portions of the premises"
+    evidence_strength: current_code
+  - id: base_nd_grocery_beer
+    geo_id: "state:38"
+    dimension: ordinary_grocery_beer_authorization
+    value: conditional_or_special_channel
+    detail: Same separately licensed, walled-off area.
+    asset: law_nd_cc_5_02
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find:
+      - "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+      - "The area licensed for the sale of alcoholic beverages must be separated from the nonlicensed portion of the business by a wall designed to allow sales personnel to serve customers and make sales in both the licensed and unlicensed portions of the premises"
+    evidence_strength: current_code
+  - id: base_nd_grocery_spirits
+    geo_id: "state:38"
+    dimension: ordinary_grocery_spirits_authorization
+    value: conditional_or_special_channel
+    detail: Same separately licensed, walled-off area.
+    asset: law_nd_cc_5_02
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find:
+      - "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+      - "The area licensed for the sale of alcoholic beverages must be separated from the nonlicensed portion of the business by a wall designed to allow sales personnel to serve customers and make sales in both the licensed and unlicensed portions of the premises"
+    evidence_strength: current_code
+  - id: base_nd_convenience_wine
+    geo_id: "state:38"
+    dimension: ordinary_convenience_wine_authorization
+    value: conditional_or_special_channel
+    detail: The same walled-off area rule applies to convenience stores and gas stations.
+    asset: law_nd_cc_5_02
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find: "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+    evidence_strength: current_code
+  - id: base_nd_convenience_beer
+    geo_id: "state:38"
+    dimension: ordinary_convenience_beer_authorization
+    value: conditional_or_special_channel
+    detail: The same walled-off area rule applies to convenience stores and gas stations.
+    asset: law_nd_cc_5_02
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find: "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+    evidence_strength: current_code
+  - id: base_nd_spirits_retail
+    geo_id: "state:38"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Businesses holding state retail off-sale licenses (with local licenses) sell alcoholic beverages.
+    asset: law_nd_cc_5_02
+    citation: N.D.C.C. § 5-02-02.1
+    locator: section 5-02-02.1
+    find: "Before a state retail off sale alcoholic beverage license may be issued to a person whose business to be licensed is located in a building that is primarily a gas station, grocery store, or convenience store, the area to be licensed for the sale of alcoholic beverages must be clearly set out in a blueprint or diagram."
+    evidence_strength: current_code
+    support: indirect
+    notes: The excerpt shows licensed private businesses; that no state or municipal stores sell spirits is not stated in it.
+  # ------------------------------------------------------------------ Ohio
+  - id: base_oh_grocery_wine
+    geo_id: "state:39"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: C-2 permit for a retail store to sell wine in sealed containers off-premises; no outlet type is named or excluded.
+    asset:
+      asset_id: law_oh_orc_4303_12
+      url: https://codes.ohio.gov/ohio-revised-code/section-4303.12
+      edition: "Ohio Revised Code 4303.12 (C-2 permit), effective 2003-09-26, Ohio Laws page"
+      rights_status: government_edict
+    citation: R.C. 4303.12
+    locator: section text
+    find: "Permit C-2 may be issued to the owner or operator of a retail store to sell wine in sealed containers only and not for consumption on the premises where sold in original containers."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_oh_grocery_beer
+    geo_id: "state:39"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: C-1 permit for a retail store to sell beer in containers off-premises; no outlet type is named or excluded.
+    asset:
+      asset_id: law_oh_orc_4303_11
+      url: https://codes.ohio.gov/ohio-revised-code/section-4303.11
+      edition: "Ohio Revised Code 4303.11 (C-1 permit), effective 2003-09-26, Ohio Laws page"
+      rights_status: government_edict
+    citation: R.C. 4303.11
+    locator: section text
+    find: "Permit C-1 may be issued to the owner or operator of a retail store to sell beer in containers and not for consumption on the premises where sold in original containers having a capacity of not more than five and one-sixth gallons."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_oh_grocery_spirits
+    geo_id: "state:39"
+    dimension: ordinary_grocery_spirits_authorization
+    value: conditional_or_special_channel
+    detail: Spirituous liquor is sold by agents of the Division of Liquor Control; any mercantile business may act as an agent under contract.
+    asset:
+      asset_id: law_oh_orc_4301_17
+      url: https://codes.ohio.gov/ohio-revised-code/section-4301.17
+      edition: "Ohio Revised Code 4301.17 (State liquor stores and agencies), effective 2024-10-24, Ohio Laws page"
+      rights_status: government_edict
+    citation: R.C. 4301.17(A)(1)
+    locator: division (A)(1)
+    find: "A person engaged in a mercantile business may act as the agent for the division of liquor control for the sale of spirituous liquor in a municipal corporation, in the unincorporated area of a township, or in an area designated and approved as a resort area under section 4303.262 of the Revised Code."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Agency stores are capped per county by population in the same division. The Ohio spirits retail system itself is not coded (see the batch header).
+  # ------------------------------------------------------------------ South Dakota
+  - id: base_sd_spirits_retail
+    geo_id: "state:46"
+    dimension: spirits_off_premise_retail_system
+    value: mixed_local_government_and_private
+    detail: The license schedule lists off-sale licenses and off-sale licenses issued to municipalities under local option (municipal liquor stores).
+    asset:
+      asset_id: law_sd_sdcl_35_4_2
+      url: https://sdlegislature.gov/api/Statutes/35-4-2.html
+      edition: "South Dakota Codified Laws 35-4-2 (Classes of licenses), South Dakota Legislature statute file"
+      filename: sd_sdcl_35_4_2.html
+      rights_status: government_edict
+    citation: SDCL 35-4-2
+    locator: paragraphs (3) and (5)
+    find:
+      - "(3) Off-sale--not less than three hundred dollars."
+      - "(5) Off-sale licenses issued to municipalities under local option--not less than two hundred fifty dollars"
+    evidence_strength: current_code
+    support: indirect
+    notes: That off-sale licenses under paragraph (3) are held by private businesses is not stated in this section.
+  # ------------------------------------------------------------------ Wisconsin
+  - id: base_wi_grocery_wine
+    geo_id: "state:55"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Retail "Class A" liquor license for intoxicating liquor (wine and spirits) off-premises; issued by municipalities; no outlet type is named or excluded.
+    asset:
+      asset_id: law_wi_stat_125_51
+      url: https://docs.legis.wisconsin.gov/document/statutes/125.51
+      edition: "Wisconsin Statutes 125.51 (Retail licenses for intoxicating liquor), Wisconsin Legislature page"
+      filename: wi_stat_125_51.html
+      rights_status: government_edict
+    citation: Wis. Stat. § 125.51(2)(a)
+    locator: subsection (2)(a)
+    find: '(a) A "Class A" license authorizes the retail sale of intoxicating liquor for consumption off the premises where sold and in original packages and containers.'
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_wi_grocery_beer
+    geo_id: "state:55"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Class "A" fermented malt beverage license, issued by municipalities; no outlet type is named or excluded.
+    asset:
+      asset_id: law_wi_stat_125_25
+      url: https://docs.legis.wisconsin.gov/document/statutes/125.25
+      edition: "Wisconsin Statutes 125.25 (Class A licenses, fermented malt beverages), Wisconsin Legislature page"
+      filename: wi_stat_125_25.html
+      rights_status: government_edict
+    citation: Wis. Stat. § 125.25(1)
+    locator: subsection (1)
+    find: 'A Class "A" license authorizes retail sales of fermented malt beverages for consumption off the premises where sold and in original packages, containers, and bottles.'
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_wi_grocery_spirits
+    geo_id: "state:55"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same "Class A" liquor license.
+    asset: law_wi_stat_125_51
+    citation: Wis. Stat. § 125.51(2)(a)
+    locator: subsection (2)(a)
+    find: '(a) A "Class A" license authorizes the retail sale of intoxicating liquor for consumption off the premises where sold and in original packages and containers.'
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_wi_spirits_retail
+    geo_id: "state:55"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held "Class A" licenses issued by municipalities.
+    asset: law_wi_stat_125_51
+    citation: Wis. Stat. § 125.51(2)(a)
+    locator: subsection (2)(a)
+    find: '(a) A "Class A" license authorizes the retail sale of intoxicating liquor for consumption off the premises where sold and in original packages and containers.'
+    evidence_strength: current_code

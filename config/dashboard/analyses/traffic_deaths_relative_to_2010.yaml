@@ -1,0 +1,21 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: traffic_deaths_relative_to_2010
+title: "Traffic deaths and alcohol-impaired-driving deaths, 2010 = 100"
+question: >-
+  Relative to each jurisdiction's own 2010 level, how did traffic deaths and alcohol-impaired-driving
+  deaths (FARS) move in Utah, the worked example's states and the United States?
+metrics:
+  - fars_alcohol_impaired_driving_fatalities@calendar_year
+  - fars_traffic_fatalities@calendar_year
+geos: ["state:49", "state:47", "state:51", "state:21", "nation:us"]
+years: [2000, 2023]
+shown: index
+base_year: 2010
+notes:
+  - "An index divides each year by the jurisdiction's own 2010 value, so states of different sizes share an axis; it hides the levels, which are in each value's record."
+  - "Alcohol-impaired-driving deaths are estimated from NHTSA's ten imputations of unknown driver BACs, averaged, at .08 g/dL or more."
+cannot_show:
+  - "Any effect of Utah's .05 BAC limit (from 2018-12-30): the limit is not coded as a policy in this dataset, and FARS applies .08 in every state."
+  - "Rates per resident or per mile driven: these are counts by the state where the crash happened."
+  - "That alcohol caused a crash: the measure says a driver at .08 or more was involved."

@@ -1,0 +1,74 @@
+{
+  "bls_cpi_u_2017_2026": {
+    "bytes": 3347,
+    "edition": "BLS API response, CUUR0000SA0, 2017-2026",
+    "filename": "cpi_u_2017_2026.json",
+    "retrieved_at": "2026-10-07T02:22:02Z",
+    "sha256": "a331b245b89edb23bff74167b6d2e628ba4d92362ebc071737adcc192951784b",
+    "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/"
+  },
+  "cdc_brfss_1995_2010_alcohol_overall": {
+    "bytes": 28988,
+    "edition": "BRFSS Prevalence Data (2010 and prior), dataset y4ft-s73h snapshot; Socrata metadata reported rows updated 2025-02-13",
+    "filename": "y4ft-s73h.csv",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "546752f0aaef28e13e52209bcdf64e323c110549eb1c77285bf1828fb27621b4",
+    "url": "https://data.cdc.gov/resource/y4ft-s73h.csv?$where=class%3D'Alcohol+Consumption'+AND+break_out%3D'Overall'&$order=year,locationabbr,questionid,responseid&$limit=50000"
+  },
+  "cdc_brfss_2011_present_alcohol_overall": {
+    "bytes": 32332,
+    "edition": "BRFSS Prevalence Data (2011 to present), dataset dttw-5yxu snapshot; Socrata metadata reported rows updated 2026-09-15",
+    "filename": "dttw-5yxu.csv",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "af6f1bac83abd786b7bf56e46135b44002c5c3e00d9184593976506b39f0af37",
+    "url": "https://data.cdc.gov/resource/dttw-5yxu.csv?$where=class%3D'Alcohol+Consumption'+AND+break_out%3D'Overall'&$order=year,locationabbr,questionid,responseid&$limit=50000"
+  },
+  "census_pep_icen_1995": {
+    "bytes": 14592,
+    "edition": "1990-1999 Intercensal State and County Characteristics Population Estimates (layout dated 2003-06-23)",
+    "filename": "stch-icen1995.txt",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "4b2e619fbff2c3d5efa4024bd672bff8e6c5633cc92fed4aa263c952f46bfc6d",
+    "url": "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1995.txt"
+  },
+  "census_pep_icen_2000s_agesex": {
+    "bytes": 16828,
+    "edition": "Intercensal Estimates of the Resident Population by Single Year of Age and Sex for States: 2000-2010",
+    "filename": "st-est00int-agesex.csv",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "02f247c150595fe51a539f835838fd426dd9309e9b990702f229cf70b73495b3",
+    "url": "https://www2.census.gov/programs-surveys/popest/datasets/2000-2010/intercensal/state/st-est00int-agesex.csv"
+  },
+  "census_pep_v2025_alldata6": {
+    "bytes": 165937,
+    "edition": "Vintage 2025 Annual State Resident Population Estimates by Single Year of Age, Sex, Race, and Hispanic Origin (alldata6)",
+    "filename": "sc-est2025-alldata6.csv",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "c4c18b78ec94bcd32e11957838596c1ac5d36289c41a90e3e3eeb69aee79d55d",
+    "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/state/asrh/sc-est2025-alldata6.csv"
+  },
+  "census_stc_fy2025_flat": {
+    "bytes": 7975,
+    "edition": "FY2025 flat file (released April 2026)",
+    "filename": "FY2025-Flat-File.txt",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "fff59c4d24c317dbd8c207f5d833fcd9c3239bfcccfec6a4aa4e7d0461fa2e0a",
+    "url": "https://www2.census.gov/programs-surveys/stc/datasets/2025/FY2025-Flat-File.txt"
+  },
+  "census_stc_historical_db_2025": {
+    "bytes": 10978,
+    "edition": "STC_Historical_DB (2025) sheet; server Last-Modified 2026-04-15",
+    "filename": "STC-Historical-DB.xlsx",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "561702b3db65588cc5ba220ac6aed7aad81e2a12c94e291c5dffe1f5941b1d61",
+    "url": "https://www2.census.gov/programs-surveys/stc/datasets/historical/STC-Historical-DB.xlsx"
+  },
+  "niaaa_pcyr_sr124": {
+    "bytes": 10887,
+    "edition": "Surveillance Report #124 data file pcyr1970-2024.txt (file header: updated 04/09/2026)",
+    "filename": "pcyr1970-2024_final.txt",
+    "retrieved_at": "2026-10-07T02:06:53Z",
+    "sha256": "554f59b0dcf00a0d8e2228db388c7f4f9954f1fba9be36c3eb242326efd27d7a",
+    "url": "https://www.niaaa.nih.gov/sites/default/files/pcyr1970-2024_final.txt"
+  }
+}

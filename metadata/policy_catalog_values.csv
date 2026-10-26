@@ -1,0 +1,30 @@
+value_set,value,label,definition
+retail_permission,not_authorized,Not authorized,The outlet type cannot sell the beverage anywhere in the state under its ordinary license.
+retail_permission,authorized,Authorized,"State law lets the outlet type be licensed to sell the beverage. Localities may still prohibit sales under a general local-option law (see local_prohibition_option)."
+retail_permission,authorized_local_option,Authorized only where localities opt in,"State law permits the outlet type to sell the beverage only in localities that adopt it for this channel (for example by referendum). Take-up is a separate, local dimension."
+retail_permission,conditional_or_special_channel,Only through a special channel,"Sales happen only through a special arrangement, such as a state-contract agency or a separately licensed area inside the store, not under the outlet's ordinary license."
+retail_permission,chains_and_supermarkets_barred,Barred for chain stores and supermarkets,"State law bars chain stores and supermarkets of the outlet type from the ordinary license (licenses already held may be exempt); other stores of the type may be licensed. Local rules may differ."
+package_store_beer,permitted,Permitted,Package stores may sell beer.
+package_store_beer,not_permitted,Not permitted,Package stores may not sell beer.
+yes_no_option,permitted,Permitted,State law allows it.
+yes_no_option,not_permitted,Not permitted,State law does not allow it.
+special_channel,available,Available,The channel exists under state law.
+special_channel,not_available,Not available,The channel does not exist under state law.
+retail_system,state_operated_stores,State-operated stores,Off-premises sales of the beverage are made by stores the state itself runs.
+retail_system,state_stores_and_contract_agencies,State stores and state-contract agencies,The state runs stores and also contracts private businesses to sell on its behalf.
+retail_system,state_contract_agencies_only,State-contract agencies only,Sales are made by private businesses under contract with the state; the state runs no stores.
+retail_system,local_government_stores,Local-government stores,"Off-premises sales are made by stores run by local governments or local boards (for example county boards)."
+retail_system,private_licensed,Private licensed retailers,Private businesses licensed by the state sell the beverage.
+retail_system,mixed_state_and_private,Mixed state and private,Both state-run (or state-contract) and private licensed retailers sell the beverage.
+retail_system,mixed_local_government_and_private,Mixed local-government and private,"Stores run by local governments (for example municipal liquor stores) and private licensed retailers both sell the beverage; the state runs no stores."
+wholesale_system,state_operated,State is the wholesaler,The state buys from suppliers and wholesales the beverage itself.
+wholesale_system,private_licensed,Private licensed wholesalers,Private wholesalers licensed by the state distribute the beverage.
+wholesale_system,mixed,Mixed,Both the state and private wholesalers distribute the beverage (for example by product or strength class).
+price_rule,no_sales_below_cost_plus_20pct,No sales below cost plus 20%,Retail wine may not be sold below the retailer's cost plus 20 percent.
+price_rule,no_minimum_price_rule,No minimum price rule,State law sets no floor on retail wine prices.
+sunday_sales,allowed,Allowed,Off-premises sales of the beverage are allowed on Sunday statewide (hours may be restricted).
+sunday_sales,prohibited,Prohibited,Off-premises sales of the beverage are prohibited on Sunday statewide.
+sunday_sales,local_option,Local option,State law lets localities decide whether Sunday off-premises sales are allowed.
+delivery,allowed,Allowed,The practice is allowed under state law (conditions may apply).
+delivery,prohibited,Prohibited,The practice is prohibited under state law.
+delivery,conditional,Allowed with significant conditions,"Allowed only under conditions that limit it materially (for example only some license types, or volume caps)."

@@ -1,0 +1,31 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+
+# Secrets — never commit real keys. .env.example holds placeholders only.
+.env
+.env.*
+!.env.example
+
+# Data that is regenerated or subject to source rights
+data/raw/
+data/staging/
+data/processed/
+dist/
+site/_build/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Research dashboard (web/): dependencies, build output and the generated data export
+web/node_modules/
+web/dist/
+web/public/data/

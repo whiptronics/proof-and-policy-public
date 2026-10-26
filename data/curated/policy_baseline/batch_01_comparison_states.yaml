@@ -1,0 +1,321 @@
+# Nationwide policy baseline, batch 1: the dashboard's comparison states (Tennessee, Virginia, Georgia,
+# Arkansas, Kentucky) and Utah. Each entry is a dated snapshot: the status the cited page shows on the day
+# it was read (or on the date the document carries). Nothing here says anything about other days.
+# Build rows with scripts/policy_snapshots.py (sync, fetch, rows).
+batch: batch_01_comparison_states
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-07"
+entries:
+  # ------------------------------------------------------------------ Virginia
+  - id: base_va_grocery_wine
+    geo_id: "state:51"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Retail off-premises wine and beer license may be granted to grocery stores, convenience grocery stores and other listed outlets.
+    asset:
+      asset_id: law_va_4_1_206_3
+      url: https://law.lis.virginia.gov/vacode/title4.1/chapter2/section4.1-206.3/
+      edition: "Code of Virginia § 4.1-206.3 (Retail licenses), Virginia Law Library page"
+      rights_status: government_edict
+      options: {normalize: strip_lis_page_variants}
+    citation: Code of Virginia § 4.1-206.3
+    locator: subsection C 1
+    find:
+      - "Retail off-premises wine and beer licenses, which may be granted to a convenience grocery store, delicatessen, drugstore, gift shop, gourmet oyster house, gourmet shop, grocery store, or marina store"
+      - "Such license shall authorize the licensee to sell wine and beer in closed containers for off-premises consumption"
+    evidence_strength: current_code
+    notes: The licensee must meet food inventory and sales volume requirements set by Board regulation.
+  - id: base_va_grocery_beer
+    geo_id: "state:51"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same license as wine (retail off-premises wine and beer).
+    asset: law_va_4_1_206_3
+    citation: Code of Virginia § 4.1-206.3
+    locator: subsection C 1
+    find:
+      - "Retail off-premises wine and beer licenses, which may be granted to a convenience grocery store, delicatessen, drugstore, gift shop, gourmet oyster house, gourmet shop, grocery store, or marina store"
+      - "Such license shall authorize the licensee to sell wine and beer in closed containers for off-premises consumption"
+    evidence_strength: current_code
+  - id: base_va_convenience_wine
+    geo_id: "state:51"
+    dimension: ordinary_convenience_wine_authorization
+    value: authorized
+    detail: The same license may be granted to a convenience grocery store.
+    asset: law_va_4_1_206_3
+    citation: Code of Virginia § 4.1-206.3
+    locator: subsection C 1
+    find: "Retail off-premises wine and beer licenses, which may be granted to a convenience grocery store"
+    evidence_strength: current_code
+  - id: base_va_convenience_beer
+    geo_id: "state:51"
+    dimension: ordinary_convenience_beer_authorization
+    value: authorized
+    detail: The same license may be granted to a convenience grocery store.
+    asset: law_va_4_1_206_3
+    citation: Code of Virginia § 4.1-206.3
+    locator: subsection C 1
+    find: "Retail off-premises wine and beer licenses, which may be granted to a convenience grocery store"
+    evidence_strength: current_code
+  - id: base_va_spirits_retail
+    geo_id: "state:51"
+    dimension: spirits_off_premise_retail_system
+    value: state_operated_stores
+    detail: The Alcoholic Beverage Control Board operates government stores for spirits, staffed by its employees.
+    asset:
+      asset_id: law_va_4_1_119
+      url: https://law.lis.virginia.gov/vacode/title4.1/chapter1/section4.1-119/
+      edition: "Code of Virginia § 4.1-119 (Operation of government stores), Virginia Law Library page"
+      rights_status: government_edict
+      options: {normalize: strip_lis_page_variants}
+    citation: Code of Virginia § 4.1-119 (version effective until July 1, 2028)
+    locator: subsections A and D
+    find:
+      - "the Board may establish, maintain, and operate government stores for the sale of spirits"
+      - "Alcoholic beverages at government stores shall be sold by employees of the Authority"
+    evidence_strength: current_code
+    notes: >-
+      Licensed distillers may be appointed agents of the Board to sell their own spirits at government stores on
+      their premises (subsection D). The page also carries a version of this section effective July 1, 2028; that
+      future version is not coded here.
+  # ------------------------------------------------------------------ Tennessee
+  - id: base_tn_grocery_wine
+    geo_id: "state:47"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized_local_option
+    detail: Retail food store wine license, available where local voters approved wine sales in food stores.
+    asset:
+      asset_id: law_tn_abc_retail_food_store_wine
+      url: https://www.tn.gov/abc/licensing/retail-food-store-wine-license.html
+      edition: Tennessee Alcoholic Beverage Commission, Retail Food Store Wine License page
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Tennessee Alcoholic Beverage Commission, Retail Food Store Wine License (license page)
+    locator: Overview; Requirements
+    find:
+      - "A retail food store wine license allows businesses such as grocery stores and convenience stores to sell wine for off-premises consumption."
+      - "approved sales of wine by local option election, from the store's local jurisdiction"
+    evidence_strength: agency_guidance
+    policy_id: ""
+    notes: >-
+      Which localities adopted food-store wine is not recorded (grocery_wine_local_adoption_share stays unknown).
+      This snapshot shows the license exists in 2026; it does not verify the years since 2016-07-01.
+  - id: base_tn_convenience_wine
+    geo_id: "state:47"
+    dimension: ordinary_convenience_wine_authorization
+    value: authorized_local_option
+    detail: Convenience stores qualify for the retail food store wine license if they meet its food-sales and floor-space definition.
+    asset: law_tn_abc_retail_food_store_wine
+    citation: Tennessee Alcoholic Beverage Commission, Retail Food Store Wine License (license page)
+    locator: Overview
+    find: "A retail food store wine license allows businesses such as grocery stores and convenience stores to sell wine for off-premises consumption."
+    evidence_strength: agency_guidance
+    notes: Only stores meeting the 'retail food store' definition (at least 20% of taxable sales from food, at least 1,200 sq. ft.) qualify.
+  - id: base_tn_spirits_retail
+    geo_id: "state:47"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately owned retail package stores licensed by the Commission sell liquor, wine and beer.
+    asset:
+      asset_id: law_tn_abc_retail_package_store
+      url: https://www.tn.gov/abc/licensing/retail-package-store.html
+      edition: Tennessee Alcoholic Beverage Commission, Retail Package Store license page
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Tennessee Alcoholic Beverage Commission, Retail Package Store (license page)
+    locator: Overview
+    find: "A Retail Package Store license allows you to sell liquor, wine and beer at a retail package store located in a city which has authorized the sale of alcoholic beverages for consumption off premise."
+    evidence_strength: agency_guidance
+  # ------------------------------------------------------------------ Georgia
+  - id: base_ga_grocery_wine
+    geo_id: "state:13"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Grocery stores are listed among retailers of beer and wine.
+    asset:
+      asset_id: law_ga_dor_delivery_faq
+      url: https://dor.georgia.gov/delivery-alcoholic-beverages-faq
+      edition: Georgia Department of Revenue, Delivery of Alcoholic Beverages - FAQ
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Georgia Department of Revenue, Delivery of Alcoholic Beverages - FAQ
+    locator: list of retailers and the types of alcoholic beverages that can be sold for delivery
+    find: "Grocery Stores, Gas Stations/Convenience Stores: Beer Wine"
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: >-
+      Indirect: the Department lists grocery stores among beer and wine retailers in its delivery guidance. Retail
+      licenses are issued by both the state and the city or county, and local governments decide whether sales
+      are allowed at all.
+  - id: base_ga_grocery_beer
+    geo_id: "state:13"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Grocery stores are listed among retailers of beer and wine.
+    asset: law_ga_dor_delivery_faq
+    citation: Georgia Department of Revenue, Delivery of Alcoholic Beverages - FAQ
+    locator: list of retailers and the types of alcoholic beverages that can be sold for delivery
+    find: "Grocery Stores, Gas Stations/Convenience Stores: Beer Wine"
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: Indirect (delivery guidance). Local governments also license and may prohibit sales.
+  - id: base_ga_convenience_wine
+    geo_id: "state:13"
+    dimension: ordinary_convenience_wine_authorization
+    value: authorized
+    detail: Gas stations and convenience stores are listed among retailers of beer and wine.
+    asset: law_ga_dor_delivery_faq
+    citation: Georgia Department of Revenue, Delivery of Alcoholic Beverages - FAQ
+    locator: list of retailers and the types of alcoholic beverages that can be sold for delivery
+    find: "Grocery Stores, Gas Stations/Convenience Stores: Beer Wine"
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: Indirect (delivery guidance).
+  - id: base_ga_convenience_beer
+    geo_id: "state:13"
+    dimension: ordinary_convenience_beer_authorization
+    value: authorized
+    detail: Gas stations and convenience stores are listed among retailers of beer and wine.
+    asset: law_ga_dor_delivery_faq
+    citation: Georgia Department of Revenue, Delivery of Alcoholic Beverages - FAQ
+    locator: list of retailers and the types of alcoholic beverages that can be sold for delivery
+    find: "Grocery Stores, Gas Stations/Convenience Stores: Beer Wine"
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: Indirect (delivery guidance).
+  - id: base_ga_spirits_retail
+    geo_id: "state:13"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately owned retail package liquor stores sell distilled spirits.
+    asset:
+      asset_id: law_ga_dor_retail_package
+      url: https://dor.georgia.gov/retail-package
+      edition: Georgia Department of Revenue, Retail Package license page
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Georgia Department of Revenue, Retail Package (license description)
+    locator: License Description
+    find: "A Retail Package Liquor Store is any business establishment that sells alcoholic beverages, malt beverages, wine and distilled spirits, either in unbroken packages only at retail, to consumers and not for resale."
+    evidence_strength: agency_guidance
+  # ------------------------------------------------------------------ Arkansas
+  - id: base_ar_grocery_wine
+    geo_id: "state:05"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Grocery store off-premises wine permit (wine and hard cider up to 21% alcohol by weight), in counties wet as of 2017-01-01.
+    asset:
+      asset_id: law_ar_abc_rulebook_2025
+      url: https://www.dfa.arkansas.gov/wp-content/uploads/ABC_Rulebook.pdf
+      edition: "Arkansas Alcoholic Beverage Control Division rulebook (Title 3 of the Code of Arkansas Rules), printed 01/14/2025"
+      format: pdf
+      rights_status: government_edict
+    citation: 3 CAR (Arkansas ABC rules), permit definition (46), grocery store off-premises wine permit
+    locator: permit (46)(A), (C), (F) and (I)
+    find:
+      - "Grocery store off-premises wine permit authorizes a permittee to purchase and sell wine and hard cider"
+      - "A grocery store wine permit shall be available for issue only in a county in which the retail sale of alcohol under Arkansas Code"
+    observed_on: "2025-01-14"
+    observed_basis: document_date
+    evidence_strength: current_code
+    notes: >-
+      Observed as of the rulebook's printing date (2025-01-14). The permit dates from Act 508 of 2017 (pinned as
+      ar_act_2017_508; interval ar_grocery_store_wine_permit_2017 starts 2017-10-01).
+      A grocery store may derive no more than 20% of gross sales from alcohol, unless it already did on 2017-01-01.
+  - id: base_ar_spirits_retail
+    geo_id: "state:05"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held off-premises retail liquor permits.
+    asset: law_ar_abc_rulebook_2025
+    citation: 3 CAR (Arkansas ABC rules), restrictions on retail liquor permits
+    locator: grounds for denial (3)
+    find: "No off-premises retail liquor permit shall be issued after the effective date of this part, either as a new permit or as a replacement of an existing permit, to any person having any interest in another off-premises retail liquor permit"
+    observed_on: "2025-01-14"
+    observed_basis: document_date
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Kentucky
+  - id: base_ky_grocery_wine
+    geo_id: "state:21"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: No package license for wine or distilled spirits at premises where staple groceries or gasoline are a substantial part of sales.
+    asset:
+      asset_id: law_ky_krs_243_230
+      url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=45959
+      edition: "Kentucky Revised Statutes 243.230 (effective June 29, 2017), Legislative Research Commission"
+      filename: krs_243_230.pdf
+      format: pdf
+      rights_status: government_edict
+    citation: KRS 243.230
+    locator: subsection (5)
+    find: "No quota retail package license or quota retail drink license for the sale of distilled spirits or wine shall be issued for any premises used as or in connection with the operation of any business in which a substantial part of the commercial transaction consists of selling at retail staple groceries or gasoline and lubricating oil."
+    evidence_strength: current_code
+    notes: >-
+      'Substantial part' is defined in an administrative regulation (804 KAR 4:270, not pinned here). Chains can
+      operate separately licensed package stores next to their grocery stores; that is not an ordinary grocery
+      license.
+  - id: base_ky_grocery_spirits
+    geo_id: "state:21"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same prohibition covers distilled spirits.
+    asset: law_ky_krs_243_230
+    citation: KRS 243.230
+    locator: subsection (5)
+    find: "No quota retail package license or quota retail drink license for the sale of distilled spirits or wine shall be issued for any premises used as or in connection with the operation of any business in which a substantial part of the commercial transaction consists of selling at retail staple groceries"
+    evidence_strength: current_code
+  - id: base_ky_convenience_wine
+    geo_id: "state:21"
+    dimension: ordinary_convenience_wine_authorization
+    value: not_authorized
+    detail: The prohibition also covers businesses where gasoline and lubricating oil are a substantial part of sales.
+    asset: law_ky_krs_243_230
+    citation: KRS 243.230
+    locator: subsection (5)
+    find: "a substantial part of the commercial transaction consists of selling at retail staple groceries or gasoline and lubricating oil."
+    evidence_strength: current_code
+    notes: Applies to convenience stores whose grocery or gasoline sales are a substantial part of their business.
+  - id: base_ky_spirits_retail
+    geo_id: "state:21"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Quota retail package licenses issued to private premises.
+    asset: law_ky_krs_243_230
+    citation: KRS 243.230
+    locator: subsection (3)(a)
+    find: "Quota retail package licenses may be issued only for premises located within"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Utah
+  - id: base_ut_spirits_retail_state_stores
+    geo_id: "state:49"
+    dimension: spirits_off_premise_retail_system
+    value: state_stores_and_contract_agencies
+    detail: State stores staffed by state employees, alongside package agencies operating under state contract.
+    asset:
+      asset_id: law_ut_32b_2_501_current
+      url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S501_1800010118000101.html
+      filename: C32B-2-S501_1800010118000101.html
+      edition: "Utah Code 32B-2-501 (Commission's power to establish a state store); version file named current by the section page on retrieval"
+      rights_status: government_edict
+    citation: Utah Code 32B-2-501
+    locator: subsection (1)
+    find: "The commission may establish state stores in the numbers and at places, owned or leased by the department, that the commission considers proper for the sale of liquor by employees of the state"
+    evidence_strength: current_code
+    notes: The section page on le.utah.gov named this version file as current (versionDefault) on the day it was read. Package agencies are snapshot base_ut_spirits_retail_package_agencies.
+  - id: base_ut_spirits_retail_package_agencies
+    geo_id: "state:49"
+    dimension: spirits_off_premise_retail_system
+    value: state_stores_and_contract_agencies
+    detail: Package agencies sell liquor under contract with the department.
+    asset:
+      asset_id: law_ut_32b_2_601_current
+      url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S601_1800010118000101.html
+      filename: C32B-2-S601_1800010118000101.html
+      edition: "Utah Code 32B-2-601 (Commission's power to issue a package agency); version file named current by the section page on retrieval"
+      rights_status: government_edict
+    citation: Utah Code 32B-2-601
+    locator: subsection (1)(a)
+    find: "issue authority to operate as a package agency by directing the department to enter into a package agency agreement with a person to sell, offer for sale, or furnish liquor in sealed containers from premises other than those owned or leased by the state"
+    evidence_strength: current_code
+    notes: The section page named this version file as current on the day it was read.

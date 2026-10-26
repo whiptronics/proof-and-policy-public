@@ -1,0 +1,70 @@
+# Nationwide policy baseline, batch 7: second pass over the leads, from agency pages where the statute sites
+# could not be read. Agency guidance is weaker than code; each entry says so in evidence_strength.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+batch: batch_07_leads_pass_2
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ Texas (agency guidance; the code site is a script application)
+  - id: base_tx_grocery_wine
+    geo_id: "state:48"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Wine and malt beverage retailer's off-premise permit (BQ); no outlet type is named or excluded.
+    asset:
+      asset_id: law_tx_tabc_license_descriptions
+      url: https://www.tabc.texas.gov/licensing/license_and_permit_description.asp
+      edition: Texas Alcoholic Beverage Commission, License and Permit Descriptions page
+      filename: tx_tabc_license_descriptions.html
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Texas Alcoholic Beverage Commission, License and Permit Descriptions (permit BQ; Alcoholic Beverage Code ch. 26)
+    locator: Wine and Malt Beverage Retailer's Off-Premise Permit (BQ)
+    find: "Wine and Malt Beverage Retailer's Off-Premise Permit (BQ) Authorizes the sale of malt beverages and wine for off-premise consumption."
+    evidence_strength: agency_guidance
+    support: no_outlet_restriction
+    notes: The statute text (Alcoholic Beverage Code) could not be read from statutes.capitol.texas.gov; see lead_tx_alcoholic_beverage_code. Local option elections decide where sales are legal.
+  - id: base_tx_grocery_beer
+    geo_id: "state:48"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Retail dealer's off-premise license (BF) for malt beverages, and the BQ permit; no outlet type is named or excluded.
+    asset: law_tx_tabc_license_descriptions
+    citation: Texas Alcoholic Beverage Commission, License and Permit Descriptions (license BF)
+    locator: Retail Dealer's Off-Premise License (BF)
+    find: "Retail Dealer's Off-Premise License (BF) Authorizes the sale of malt beverages for off-premise consumption."
+    evidence_strength: agency_guidance
+    support: no_outlet_restriction
+  - id: base_tx_spirits_retail
+    geo_id: "state:48"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held package store permits are the off-premise channel for distilled spirits.
+    asset: law_tx_tabc_license_descriptions
+    citation: Texas Alcoholic Beverage Commission, License and Permit Descriptions (permit P)
+    locator: Package Store Permit (P)
+    find: "Package Store Permit (P) Authorizes the sale of distilled spirits, wine and malt beverages to consumers for off-premise consumption."
+    evidence_strength: agency_guidance
+    notes: Whether a grocery store may hold a package store permit is not settled by this page, so grocery spirits are not coded for Texas.
+  # ------------------------------------------------------------------ Pennsylvania (agency guidance)
+  - id: base_pa_grocery_wine
+    geo_id: "state:42"
+    dimension: ordinary_grocery_wine_authorization
+    value: conditional_or_special_channel
+    detail: Wine to go is sold under a wine expanded permit, available only to restaurant and hotel licensees; a grocery store sells wine only if it holds such a license.
+    asset:
+      asset_id: law_pa_plcb_wine_expanded_permits
+      url: https://www.pa.gov/agencies/lcb/shop-wine-spirits/wholesale-wine-and-spirits-sales/wine-expanded-permits
+      edition: Pennsylvania Liquor Control Board, Wine Expanded Permits page
+      filename: pa_plcb_wine_expanded_permits.html
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Pennsylvania Liquor Control Board, Wine Expanded Permits (Liquor Code § 415, Act 39 of 2016)
+    locator: page introduction
+    find: "Wine expanded permits authorizing the sale of up to three liters of wine to go per retail transaction may be requested through PLCB+ by restaurant and hotel licensees."
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: >-
+      The page does not name grocery stores; that grocery wine runs through a restaurant or hotel license inside
+      the store comes from Act 39 of 2016 (lead_pa_act39_2016), not from this excerpt. The spirits retail
+      system (state-run Fine Wine & Good Spirits stores) is not coded until an official statement is pinned.

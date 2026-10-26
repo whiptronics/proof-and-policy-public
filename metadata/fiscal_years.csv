@@ -1,0 +1,7 @@
+geo_id,fy_end_month,fy_end_day,valid_from_fy,valid_to_fy,evidence,verified_against_source
+state:36,3,31,1985,2099,"Census STC 2025 Technical Documentation (fiscal years end March 31 for New York); FY Ending Date in STC-Historical-DB (2025) is 03-31 for every year 1985-2025",true
+state:48,8,31,1985,2099,"Census STC 2025 Technical Documentation (August 31 for Texas); STC-Historical-DB (2025) FY Ending Date 08-31 for 1985-2025",true
+state:01,9,30,1985,2099,"Census STC 2025 Technical Documentation (September 30 for Alabama); STC-Historical-DB (2025) FY Ending Date 09-30 for 1985-2025",true
+state:26,9,30,1985,2099,"Census STC 2025 Technical Documentation (September 30 for Michigan); STC-Historical-DB (2025) FY Ending Date 09-30 for 1985-2025",true
+state:11,9,30,1985,2099,"District of Columbia government fiscal year runs October 1 - September 30 (D.C. Home Rule Act sec. 441). Not stated in the STC documentation, which lists only NY, TX, AL and MI as exceptions to June 30, and DC is absent from STC-Historical-DB; citation not yet checked against enacted text",false
+*,6,30,1985,2099,"Census STC 2025 Technical Documentation: state fiscal years end June 30 in all but four states (NY, TX, AL, MI); STC-Historical-DB (2025) FY Ending Date is 06-30 for every other state in every year 1985-2025",true

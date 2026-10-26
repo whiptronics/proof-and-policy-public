@@ -1,0 +1,232 @@
+class_code,class_name,beverage_group,basis,dabs_department_groups
+ADF,VODKA - BASIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_VODKA1750|Spirits_VODKA375|Spirits_Vodka
+ADM,VODKA - FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_FlavoredVodka|Spirits_FlavoredVodka1750|Spirits_FlavoredVodka375
+ADW,VODKA - DOMESTIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_VODKA1750|Spirits_VODKA375|Spirits_Vodka
+ADX,VODKA - IMPORTED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_VODKA1750|Spirits_Vodka
+AHG,GIN - DRY,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_GIN|Spirits_GIN1750|Spirits_GIN375
+AHM,GIN - FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_GIN|Spirits_GIN1750
+AHW,GIN - DOMESTIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_GIN|Spirits_GIN1750|Spirits_GIN375
+AHX,GIN - IMPORTED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_GIN|Spirits_GIN375
+ALE,RUM - LIGHT,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM|Spirits_RUM1750|Spirits_RUM375
+ALJ,RUM - DARK,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM|Spirits_RUM1750|Spirits_RUM375
+ALP,RUM - SPICED AND FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM|Spirits_RUM1750|Spirits_RUM375
+ALU,RUM - MISC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM
+ALW,RUM - DOMESTIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM|Spirits_RUM1750
+ALX,RUM - IMPORTED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_RUM|Spirits_RUM1750
+APD,TEQUILA - SILVER,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_TEQUILA|Spirits_TEQUILA1750|Spirits_TEQUILA375
+APF,TEQUILA - GOLD,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_TEQUILA|Spirits_TEQUILA1750|Spirits_TEQUILA375
+APJ,TEQUILA - REPOSADO & ANEJO,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_TEQUILA|Spirits_TEQUILA1750|Spirits_TEQUILA375
+APM,TEQUILA - FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_TEQUILA|Spirits_TEQUILA1750|Spirits_TEQUILA375
+APQ,TEQUILA - MEZCAL,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_TEQUILA
+ATB,BRANDY - BASIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY|Spirits_BRANDY1750|Spirits_BRANDY375
+ATG,BRANDY - COGNAC & ARMAGNAC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY|Spirits_BRANDY1750|Spirits_BRANDY375
+ATJ,BRANDY - CALVADOS & APPLEJACK,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY
+ATM,BRANDY - SPICED & FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY|Spirits_BRANDY375
+ATR,BRANDY - GRAPPA & EAUX DE VIE,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY|Spirits_BRANDY375
+ATW,BRANDY - DOMESTIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY|Spirits_BRANDY375
+ATX,BRANDY - IMPORTED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Spirits_BRANDY
+AWB,WHISKEY - CANADIAN,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Canadian|Whiskey_Canadian1750|Whiskey_Canadian375
+AWE,WHISKEY - BLENDED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_American|Whiskey_American1750|Whiskey_American375
+AWH,WHISKEY - BOURBON & TENNESSEE,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_American|Whiskey_American1750|Whiskey_American375
+AWK,"WHISKEY - BOURBON SINGLE BARREL, BATCH",spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_American|Whiskey_American1750|Whiskey_American375
+AWN,WHISKEY - IRISH,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Irish
+AWR,WHISKEY - SCOTCH BLENDED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Scotch|Whiskey_Scotch1750|Whiskey_Scotch375
+AWS,WHISKEY - SCOTCH SINGLE MALT,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Scotch|Whiskey_Scotch1750|Whiskey_Scotch375
+AWT,WHISKEY - FLAVORED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Flavored|Whiskey_Flavored1750|Whiskey_Flavored375
+AWU,WHISKEY - RYE,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Rye|Whiskey_Rye1750|Whiskey_Rye375
+AWW,WHISKEY - DOMESTIC,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_American|Whiskey_American1750|Whiskey_American375
+AWX,WHISKEY - MISC IMPORTED,spirits,"class code A: vodka, gin, rum, tequila, brandy, whiskey",Whiskey_Japanese|Whiskey_Japanese375
+CHB,LIQUEURS - TRIPLE SEC & ORANGE,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CHE,LIQUEURS - FRUIT,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CHH,LIQUEURS - AMARETTO,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CHK,LIQUEURS - COFFEE,spirits,class code C: liqueurs and schnapps,Liqueurs_Coffee & Cream
+CHN,LIQUEURS - CHOCOLATE,spirits,class code C: liqueurs and schnapps,Liqueurs_Coffee & Cream
+CHQ,LIQUEURS - ANISE & SAMBUCA,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CHS,LIQUEURS - BITTERS & HERBAL,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CHU,LIQUEURS - MISC,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CHV,LIQUEURS - CREAM,spirits,class code C: liqueurs and schnapps,Liqueurs_Coffee & Cream
+CHW,LIQUEURS - DOMESTIC,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CHX,LIQUEURS - IMPORTED,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CPC,SCHNAPPS - PEPPERMINT,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CPG,SCHNAPPS - FRUIT,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CPK,SCHNAPPS - HOT & SPICED,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CPP,SCHNAPPS - BUTTERSCOTCH,spirits,class code C: liqueurs and schnapps,Liqueurs_Fruit & Nut
+CPS,SCHNAPPS - GOLD,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CPU,SCHNAPPS - MISC,spirits,class code C: liqueurs and schnapps,Liqueurs_Bitters & Herbal
+CWF,PREMIXED - MARGARITA,premixed,class name: premixed (spirit or wine base not stated),PreMixed|PreMixed_Large (500ml+)
+CWL,PREMIXED - LONG ISLAND TEA,premixed,class name: premixed (spirit or wine base not stated),PreMixed|PreMixed_Large (500ml+)
+CWR,PREMIXED - MUDSLIDE,premixed,class name: premixed (spirit or wine base not stated),PreMixed|PreMixed_Large (500ml+)
+CWU,PREMIXED - MISC,premixed,class name: premixed (spirit or wine base not stated),PreMixed|PreMixed_Large (500ml+)
+EDD,VERMOUTH - DRY,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_Vermouth
+EDP,VERMOUTH - SWEET,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_Vermouth
+EDU,"VERMOUTH - MISC, HERBAL & FLAVORED",wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_Vermouth
+EDX,VERMOUTH - IMPORTED,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_Vermouth
+EHD,SHERRY - DRY - FINO,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+EHJ,SHERRY - MEDIUM - AMONTILLADO,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+EHP,SHERRY - CREAM,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+EHU,SHERRY - MISC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+EHW,SHERRY - DOMESTIC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+EHX,SHERRY - IMPORTED,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Sherry
+ELD,MARSALA - DRY,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+ELP,MARSALA - SWEET,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+ELW,MARSALA - DOMESTIC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+EPD,"MADIERA - DRY- RAINWATER, SERCIAL, VERDE",wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+EPP,MADEIRA - SWEET - BUAL & MALMSEY,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+EPX,MADEIRA - IMPORTED,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",Wine_MarsalaMadiera
+ESC,PORT - RUBY,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+ESG,PORT - TAWNY,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+ESK,PORT - VINTAGE CHARACTER,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+ESN,PORT - LATE BOTTLED,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+ESR,PORT - VINTAGE & QUINTA,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+ESU,PORT - MISC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",wine_Port
+EVF,LATE HARVEST - MUSCAT,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",White_375s|Wine_LateHarvest|Wine_SmallPackage
+EVL,"LATE HARVEST - RIESLING, BA, TBA, ICE",wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",White_375s
+EVR,"LATE HARVEST - SAUV, SEMILLON, SAUTERNES",wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",White_375s|Wine_SmallPackage
+EVU,LATE HARVEST - WHITE MISC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",White_375s|Wine_LateHarvest|Wine_SmallPackage
+EVV,LATE HARVEST - RED MISC,wine,"class code E: vermouth, sherry, marsala, madeira, port, late harvest (fortified or aromatized wine)",White_375s|Wine_LateHarvest|Wine_SmallPackage
+GFE,WINE - FRUIT,wine,"class code G: fruit wine, sangria, sake (taxed as wine federally)",Wine_Bulk|Wine_Fruit
+GFL,WINE - COOLER,premixed,"class name: wine cooler, but DABS files it in its PreMixed department group (base not verifiable)",PreMixed|PreMixed_Large (500ml+)
+GFS,WINE - SANGRIA,wine,"class code G: fruit wine, sangria, sake (taxed as wine federally)",White_375s|Wine_Bulk|Wine_Fruit
+GLC,CIDER - BASIC,cider,class name: cider (DABS department group BEER_Cider; kept apart from beer and wine),BEER_Cider
+GLM,CIDER - FLAVORED,cider,class name: cider (DABS department group BEER_Cider; kept apart from beer and wine),BEER_Cider
+GPW,SAKE - DOMESTIC,wine,"class code G: fruit wine, sangria, sake (taxed as wine federally)",Misc_Commercial|Wine_Sake
+GPX,SAKE - IMPORTED,wine,"class code G: fruit wine, sangria, sake (taxed as wine federally)",Wine_Sake
+IHC,SPARKLING WINE - FLAVORED,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IHF,SPARKLING WINE - COLD DUCK & PINK,wine,class code I: sparkling wine,Sparklingwine
+IHI,SPARKLING WINE - SPUMANTE & DEMI-SEC,wine,class code I: sparkling wine,Sparklingwine
+IHL,SPARKLING WINE - EXTRA DRY,wine,class code I: sparkling wine,Sparklingwine
+IHP,SPARKLING WINE - BRUT & BLANC DE BLANCS,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IHS,SPARKLING WINE - BLANC DE NOIRS & ROSE,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IHU,SPARKLING WINE - MISC,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IPD,SPARKLING WINE - DOMESTIC,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IPH,SPARKLING WINE - FRENCH & CHAMPAGNE,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IPI,SPARKLING WINE - PROSECCO,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+IPL,SPARKLING WINE - ITALIAN,wine,class code I: sparkling wine,Sparklingwine
+IPP,SPARKLING WINE - SPANISH CAVA,wine,class code I: sparkling wine,Sparklingwine
+IPX,SPARKLING WINE - IMPORTED MISC,wine,class code I: sparkling wine,Sparklingwine|Sparklingwine_375
+KFE,WHITE GENERIC - RHINE,wine,class code K: white wine,Wine_Bulk
+KFJ,WHITE GENERIC - CHABLIS,wine,class code K: white wine,White_1500s|Wine_Bulk
+KFP,WHITE GENERIC - TABLE & PROPRIETARY,wine,class code K: white wine,White_375s|White_Misc
+KKB,WHITE VARIETAL - CHARDONNAY,wine,class code K: white wine,White_1500s|White_375s|White_Chardonnay|Wine_Bulk|Wine_SmallPackage
+KKD,WHITE VARIETAL - SAUVIGNON BLANC,wine,class code K: white wine,White_1500s|White_375s|White_SauvBlanc|Wine_Bulk
+KKF,WHITE VARIETAL - PINOT BLANC,wine,class code K: white wine,White_Misc
+KKH,WHITE VARIETAL - PINOT GRIS,wine,class code K: white wine,White_1500s|White_375s|White_PinotGris|Wine_Bulk|Wine_SmallPackage
+KKJ,WHITE VARIETAL - VIOGNIER,wine,class code K: white wine,White_375s|White_Misc
+KKK,WHITE VARIETAL - MARSANNE & ROUSSANNE,wine,class code K: white wine,White_Blends
+KKL,WHITE VARIETAL - SEMILLON,wine,class code K: white wine,White_Blends
+KKN,WHITE VARIETAL - GEWURZTRAMINER,wine,class code K: white wine,White_Misc
+KKP,WHITE VARIETAL - CHENIN BLANC,wine,class code K: white wine,White_Misc|Wine_Bulk
+KKR,WHITE VARIETAL - RIESLING,wine,class code K: white wine,White_1500s|White_Riesling|Wine_Bulk
+KKT,WHITE VARIETAL - MUSCAT & MOSCATO,wine,class code K: white wine,White_1500s|White_375s|White_Moscato|Wine_Bulk
+KKU,WHITE VARIETAL - MISC,wine,class code K: white wine,White_1500s|White_Blends|Wine_SmallPackage
+KRA,FRENCH WHITE - BURGUNDY,wine,class code K: white wine,White_375s|White_French
+KRB,FRENCH WHITE - BORDEAUX & LOIRE,wine,class code K: white wine,White_375s|White_French
+KRC,FRENCH WHITE - ALSATIAN,wine,class code K: white wine,White_French
+KRD,FRENCH WHITE - MISC,wine,class code K: white wine,White_French|Wine_SmallPackage
+KRE,FRENCH WHITE - VARIETAL,wine,class code K: white wine,White_French
+KRG,GERMAN WHITE - RHEIN,wine,class code K: white wine,White_German
+KRH,GERMAN WHITE - MOSEL,wine,class code K: white wine,White_German|Wine_SmallPackage
+KRI,GERMAN WHITE - MISC & VARIETAL,wine,class code K: white wine,White_German
+KRJ,AUSTRIAN WHITE,wine,class code K: white wine,White_German|Wine_Bulk
+KRK,ITALIAN WHITE - PINOT GRIGIO,wine,class code K: white wine,White_1500s|White_Italian
+KRL,ITALIAN WHITE - MISC DOC,wine,class code K: white wine,White_Italian
+KRM,ITALIAN WHITE - VARIETAL,wine,class code K: white wine,White_Italian
+KRN,SPANISH WHITE,wine,class code K: white wine,White_Spanish
+KRO,PORTUGESE WHITE,wine,class code K: white wine,White_Spanish
+KRP,GREEK WHITE,wine,class code K: white wine,White_Greek
+KRQ,SOUTH AFRICAN WHITE,wine,class code K: white wine,White_SouthAfrican
+KRR,CHILEAN WHITE,wine,class code K: white wine,White_Chilean
+KRS,ARGENTINE WHITE,wine,class code K: white wine,White_Argentine
+KRT,AUSTRALIAN WHITE,wine,class code K: white wine,White_1500s|White_Australian
+KRV,NEW ZEALAND WHITE,wine,class code K: white wine,White_1500s|White_NewZealand
+KRY,IMPORTED WHITE - MISC,wine,class code K: white wine,White_1500s|White_Misc
+LAB,ALLOCATED BEER,beer,class name: allocated beer,Allocated_Items
+LAS,ALLOCATED SPIRIT,spirits,class name: allocated spirit,Allocated_Items
+LAW,ALLOCATED WINE,wine,class name: allocated wine,Allocated_Items
+LTB,BEER OFFER,beer,class name: beer offer,Gift_Packs - Seasonal
+LTO,WINE OFFER,wine,class name: wine offer,Gift_Packs - Seasonal
+LTS,SPIRIT OFFER,spirits,class name: spirit offer,Gift_Packs - Seasonal
+MHB,BLUSH WINE - GENERIC,wine,"class code M: blush, rose and orange wine",Wine_Bulk
+MHJ,BLUSH WINE - WHITE ZINFANDEL,wine,"class code M: blush, rose and orange wine",White_1500s|White_Blush|Wine_Bulk
+MHQ,BLUSH WINE - WHITE GRENACHE,wine,"class code M: blush, rose and orange wine",Wine_Bulk
+MHU,BLUSH WINE - MISC,wine,"class code M: blush, rose and orange wine",White_1500s|White_Blush
+MHW,BLUSH WINE - DOMESTIC,wine,"class code M: blush, rose and orange wine",White_1500s|White_Blush|Wine_Bulk
+MHX,BLUSH WINE - IMPORTED,wine,"class code M: blush, rose and orange wine",White_Blush
+MOU,ORANGE WINE - MISC,wine,"class code M: blush, rose and orange wine",Wine_Orange
+MOW,ORANGE WINE - DOMESTIC,wine,"class code M: blush, rose and orange wine",Wine_Bulk|Wine_Orange
+MOX,ORANGE WINE - IMPORTED,wine,"class code M: blush, rose and orange wine",Wine_Orange
+MPB,ROSE WINE - GENERIC,wine,"class code M: blush, rose and orange wine",White_1500s|Wine_Bulk
+MPQ,ROSE WINE - VARIETAL & VIN GRIS,wine,"class code M: blush, rose and orange wine",White_1500s|White_375s|Wine_Bulk|Wine_Rose
+MPW,ROSE WINE - DOMESTIC,wine,"class code M: blush, rose and orange wine",White_1500s|White_375s|Wine_Bulk|Wine_Rose|Wine_SmallPackage
+MPX,ROSE WINE - IMPORTED,wine,"class code M: blush, rose and orange wine",White_375s|Wine_Bulk|Wine_Rose
+PFD,RED GENERIC - BURGUNDY,wine,class code P: red wine,Red_1500s|Red_Blends|Wine_Bulk
+PFP,RED GENERIC - RED TABLE & PROPRIETARY,wine,class code P: red wine,Red_1500s|Red_375s|Red_Blends|Wine_Bulk
+PLB,RED VARIETAL - CABERNET,wine,class code P: red wine,Red_1500s|Red_375s|Red_Cabernet|Wine_Bulk|Wine_SmallPackage
+PLD,RED VARIETAL - MERITAGE,wine,class code P: red wine,Red_1500s|Red_375s|Red_Blends
+PLF,RED VARIETAL - MERLOT,wine,class code P: red wine,Red_1500s|Red_375s|Red_Merlot|Wine_Bulk
+PLG,"RED VARIETAL - CAB FRANC, VERDOT",wine,class code P: red wine,Red_Blends
+PLH,RED VARIETAL - ZINFANDEL,wine,class code P: red wine,Red_1500s|Red_375s|Red_Zinfandel|Wine_Bulk
+PLJ,"RED VARIETAL - SYRAH, PETITE SIRAH",wine,class code P: red wine,Red_1500s|Red_Syrah
+PLL,RED VARIETAL - GRENACHE,wine,class code P: red wine,Red_Blends
+PLN,RED VARIETAL - MOURVEDRE,wine,class code P: red wine,Red_Blends
+PLQ,"RED VARIETAL - SANGIOVESE, NEBBIOLO",wine,class code P: red wine,Red_Misc.
+PLR,RED VARIETAL - PINOT NOIR,wine,class code P: red wine,Red_1500s|Red_375s|Red_PinotNoir|Wine_Bulk
+PLS,RED VARIETAL - GAMAY & BEAUJOLAIS,wine,class code P: red wine,Red_Blends
+PLU,RED VARIETAL - MISC,wine,class code P: red wine,Red_1500s|Red_Blends|Wine_Bulk|Wine_SmallPackage
+PRA,FRENCH RED - BORDEAUX,wine,class code P: red wine,Red_French
+PRB,FRENCH RED - BURGUNDY,wine,class code P: red wine,Red_French
+PRC,FRENCH RED - BEAUJOLAIS,wine,class code P: red wine,Red_French
+PRD,FRENCH RED - RHONE,wine,class code P: red wine,Red_1500s|Red_French|Wine_Bulk
+PRE,FRENCH RED - MISC AOC,wine,class code P: red wine,Red_French
+PRF,FRENCH RED - VARIETAL,wine,class code P: red wine,Red_French
+PRG,GERMAN & AUSTRIAN RED,wine,class code P: red wine,Red_German
+PRH,ITALIAN RED - CHIANTI,wine,class code P: red wine,Red_1500s|Red_Italian
+PRI,ITALIAN RED - TUSCANY,wine,class code P: red wine,Red_375s|Red_Italian
+PRJ,ITALIAN RED - PIEDMONT,wine,class code P: red wine,Red_1500s|Red_375s|Red_Italian
+PRK,ITALIAN RED - MISC DOC,wine,class code P: red wine,Red_1500s|Red_375s|Red_Italian
+PRL,ITALIAN RED - VARIETAL,wine,class code P: red wine,Red_Italian
+PRM,ITALIAN RED - SICILY,wine,class code P: red wine,Red_Italian
+PRN,SPANISH RED - RIOJA,wine,class code P: red wine,Red_Spanish
+PRP,SPANISH RED - MISC,wine,class code P: red wine,Red_Spanish
+PRQ,PORTUGESE RED,wine,class code P: red wine,Red_Spanish
+PRR,GREEK RED,wine,class code P: red wine,Red_Greek
+PRS,SOUTH AFRICAN RED,wine,class code P: red wine,Red_SouthAfrican
+PRT,CHILEAN RED,wine,class code P: red wine,Red_1500s|Red_Chilean|Wine_Bulk
+PRU,ARGENTINE RED - MALBEC,wine,class code P: red wine,Red_Argentine|Wine_Bulk
+PRV,ARGENTINE RED - OTHER,wine,class code P: red wine,Red_Argentine
+PRW,NEW ZEALAND RED,wine,class code P: red wine,Red_NewZealand
+PRY,AUSTRALIAN RED,wine,class code P: red wine,Red_Australian
+PRZ,IMPORTED RED - MISC,wine,class code P: red wine,Red_Misc.
+RCP,FLAVORED MALT BEVERAGES,beer,"class name: flavored malt beverages (malt-based, grouped with beer)",BEER_FMB
+RFP,WHITE SMALL PACKAGE WINE - DSD,wine,class name: white small package wine,Misc_Commercial|Wine_SmallPackage
+RRP,RED SMALL PACKAGE WINE - DSD,wine,class name: red small package wine,Wine_SmallPackage
+RRY,SPECIAL ORDERS - DSD,unclassified,class name: special orders - DSD (beverage not stated),Misc_Commercial
+RWU,PREMIXED - DSD,premixed,class name: premixed (spirit or wine base not stated),PreMixed
+TCA,BEER - GLUTEN FREE/UP TO 20PPM,beer,"class code T: beer, lager and ale",BEER_SMALL (200ml-469ml)
+TCE,BEER - WHEAT & HEFEWEIZEN,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TCJ,BEER - ICE & MALT LIQUOR,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_SMALL (200ml-469ml)
+TCL,BEER - MALT-BASED COOLERS & COCKTAILS,beer,"class code T: beer, lager and ale",BEER_FMB
+TCP,BEER - FRUIT & FLAVORED,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+THE,LAGER - PILSNER,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+THJ,LAGER - OKTOBERFEST,beer,"class code T: beer, lager and ale",BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+THP,LAGER - HEAVY & DARK,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+THU,LAGER - MISC & SEASONAL,beer,"class code T: beer, lager and ale",BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNC,ALE - PALE,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNF,ALE - BITTER & ESB,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNI,ALE - WHITE & BELGIAN STYLE,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNL,"ALE - RED, AMBER, BROWN",beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNP,"ALE - HEAVY, PORTER, STOUT",beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TNU,ALE - MISC & SEASONAL,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TST,BEER - SPECIAL,beer,"class code T: beer, lager and ale",Gift_Packs - Seasonal
+TVB,DOMESTIC BEER,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TVF,IMPORTED BEER - MEXICO,beer,"class code T: beer, lager and ale",BEER_SMALL (200ml-469ml)
+TVH,"IMPORTED BEER - GERMANY, AUSTRIA, SWITZ",beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+TVN,IMPORTED BEER - BELGIUM & HOLLAND,beer,"class code T: beer, lager and ale",BEER_LARGE (501ml-ABOVE)|BEER_MEDIUM (470ml-500ml)|BEER_SMALL (200ml-469ml)
+YGA,GIFT SETS - SPIRITS,spirits,class name: gift sets - spirits,Gift_Packs - Seasonal
+YGC,GIFT SETS - LIQUEURS,spirits,class name: gift sets - liqueurs,Gift_Packs - Seasonal
+YGE,GIFT SETS - WINES,wine,class name: gift sets - wines,Gift_Packs - Seasonal|Misc_Commercial
+YSA,SPECIAL ORDERS - SPIRITS,spirits,class name: special orders - spirits,Gift_Packs - Seasonal
+YSC,SPECIAL ORDERS - LIQUEURS,spirits,class name: special orders - liqueurs,Gift_Packs - Seasonal
+YSE,SPECIAL ORDERS - WINE,wine,class name: special orders - wine,Gift_Packs - Seasonal|Misc_Commercial
+YST,SPECIAL ORDERS - BEER,beer,class name: special orders - beer,Gift_Packs - Seasonal
+ZZZ,SUPPLIES,non_beverage,class name: supplies,Misc_Commercial

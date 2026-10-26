@@ -1,0 +1,15 @@
+name: Analysis concern
+description: A method, comparison, label or claim could mislead.
+labels: [methods]
+body:
+  - type: input
+    id: location
+    attributes: {label: File, table, view or page affected}
+    validations: {required: true}
+  - type: textarea
+    id: concern
+    attributes: {label: The concern, description: "e.g. incompatible comparison, wrong denominator, mislabelled period, overstated claim"}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence or references}

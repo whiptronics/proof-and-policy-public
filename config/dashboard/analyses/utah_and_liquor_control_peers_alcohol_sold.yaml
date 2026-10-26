@@ -1,0 +1,22 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: utah_and_liquor_control_peers_alcohol_sold
+title: "Utah and four liquor-control peers: alcohol sold per adult"
+question: >-
+  How did pure alcohol sold per resident aged 21+, in all and from wine, move in Utah and in four states whose
+  governments also wholesale spirits under current law (Virginia, Pennsylvania, Idaho, Oregon), with who sells
+  spirits shown underneath?
+metrics:
+  - niaaa_ethanol_per_capita_21plus_all@calendar_year
+  - niaaa_ethanol_per_capita_21plus_wine@calendar_year
+geos: ["state:49", "state:51", "state:42", "state:16", "state:41", "nation:us"]
+years: [2000, 2024]
+shown: nominal
+policy_dimension: spirits_off_premise_retail_system
+notes:
+  - "The arrangements differ: Utah sells spirits and wine through state stores and contract package agencies; Virginia through state stores (wine also privately); Pennsylvania through state stores (wine also by restaurant and hotel licensees since 2016); Idaho through state and contract stores (most wine privately); Oregon through stores the commission establishes and agents it appoints (wine privately)."
+  - "Only Utah's arrangement is verified over time (from 2011-07-01 for retail). The peers' arrangements are dated snapshots of current law, shown as markers, not as history."
+  - "Apparent consumption counts alcohol sold or shipped into a state, including what visitors buy; it is not measured drinking."
+cannot_show:
+  - "Any effect of a liquor-control arrangement: the states differ in income, tourism, religion, prices and taxes, and their arrangements changed at times the dataset has not verified."
+  - "How much any group of residents drinks: the figures are per resident aged 21+, not per drinker."

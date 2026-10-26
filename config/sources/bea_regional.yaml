@@ -1,0 +1,46 @@
+source_id: bea_regional
+publisher: U.S. Bureau of Economic Analysis
+title: Regional Economic Accounts, state personal income (SAINC) and personal consumption expenditures (SAPCE)
+landing_url: https://apps.bea.gov/regional/downloadzip.htm
+citation: >-
+  U.S. Bureau of Economic Analysis, State Annual Personal Income and Employment, table SAINC1 (State annual
+  personal income summary), SAINC.zip; Personal Consumption Expenditures by State, table SAPCE3 (PCE by
+  type of product), SAPCE.zip. https://apps.bea.gov/regional/
+update_frequency: Annual comprehensive revision each September, with quarterly updates in between
+source_family: context
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.bea.gov/open-data
+notes: >-
+  Current dollars, calendar years, by state of residence. Each release revises earlier years (the file
+  states which), so a pin holds one vintage and a refresh is reviewed like any other upstream change. Only
+  SAINC1 lines 1 (personal income) and 3 (per capita personal income) are read; the zip's other tables
+  (SAINC4 to SAINC91: components, by industry) are kept in the pinned file but not parsed.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: bea_sainc_zip
+    url: https://apps.bea.gov/regional/zip/SAINC.zip
+    filename: SAINC.zip
+    edition: "SAINC tables, last updated 2026-09-30 (revised statistics for 2009-2025)"
+    source_series: bea_sainc
+    source_vintage: sainc_2026_09_30
+    format: zip
+    parser: bea_sainc1
+    priority: 20
+    redistribute_raw: true
+  - asset_id: bea_sapce_zip
+    url: https://apps.bea.gov/regional/zip/SAPCE.zip
+    filename: SAPCE.zip
+    edition: "SAPCE tables, last updated 2026-09-30 (new statistics for 2025; revised statistics for 2021-2024)"
+    source_series: bea_sapce
+    source_vintage: sapce_2026_09_30
+    format: zip
+    parser: bea_sapce3_alcohol
+    priority: 20
+    redistribute_raw: true
+    notes: >-
+      Imported from the owner's download of 2026-10-09 (same file name as BEA's zip). Only SAPCE3 line 28,
+      "Alcoholic beverages purchased for off-premises consumption" (millions of current dollars, 1997-2025),
+      is read: spending by residents of each state on alcohol bought to take away from any store type
+      (grocery, liquor, convenience and state stores alike). Drinks bought in bars and restaurants are in
+      "food services" and are not separated. BEA's footnotes: (L) less than $50,000; (NM) not meaningful;
+      the U.S. line differs from the sum of states by net expenditures abroad.

@@ -1,0 +1,45 @@
+source_id: tennessee_legislature
+publisher: Tennessee General Assembly; Tennessee Secretary of State
+title: Tennessee legislative records for wine in retail food stores (2014 Public Chapter 554)
+landing_url: https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=HB0610&GA=108
+citation: "Tennessee General Assembly, 108th General Assembly, SB 0837 / HB 0610, Public Chapter No. 554 (2014)."
+update_frequency: Each legislative session
+source_family: policy
+rights_status: government_edict
+notes: >-
+  The enacted public chapter (Secretary of State PDF, 17 scanned pages with an OCR text layer) is the
+  evidence for every Tennessee interval; excerpts were checked against rendered page images. The host
+  refuses automated requests (HTTP 403), so the PDF is imported by hand; the bill-information page gives
+  the signing date.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: tn_hb0610_ga108_billinfo
+    url: "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=HB0610&GA=108"
+    filename: tn_hb0610_ga108_billinfo.html
+    edition: "Bill information page HB0610 / SB0837, 108th General Assembly"
+    options: {normalize: strip_html_request_tokens}
+    notes: The page embeds a per-request anti-forgery token; its value is blanked before hashing.
+    source_series: tn_bill_info
+    source_vintage: retrieved_2026_10
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: tn_public_chapter_2014_554
+    url: https://publications.tnsosfiles.com/acts/108/pub/pc0554.pdf
+    method: manual_import
+    filename: pc0554.pdf
+    edition: "Public Chapter No. 554, Acts of 2014 (108th General Assembly)"
+    source_series: tn_public_acts
+    source_vintage: pc2014_554
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+    expected_status: blocked_access
+    notes: >-
+      Imported by hand on 2026-10-06 from a browser download by the maintainer (SHA-256 pinned in
+      config/builds/preview.pins.json). Anyone rebuilding must download it the same way and run
+      'alcohol-data import-asset tn_public_chapter_2014_554 <file>'; import verifies the bytes against the pin.
+    blockers: HTTP 403 to automated clients; in a browser the file opens as a download rather than a page.
+    next_action: >-
+      Establish status after 2016-07-01 (later public chapters or current Tennessee Code) and local
+      referendum results (which counties and cities authorized food-store wine, and when).

@@ -1,0 +1,22 @@
+name: Policy correction
+description: A coded law, date or value is wrong or incomplete.
+labels: [policy]
+body:
+  - type: input
+    id: policy
+    attributes: {label: policy_id (if it exists), placeholder: ut_grocery_wine_not_permitted}
+  - type: input
+    id: jurisdiction
+    attributes: {label: Jurisdiction, placeholder: "e.g. Tennessee; Davidson County"}
+    validations: {required: true}
+  - type: input
+    id: citation
+    attributes: {label: Enacted source, description: "Session law / public chapter / code section, with URL"}
+    validations: {required: true}
+  - type: textarea
+    id: dates
+    attributes: {label: Effective-date reasoning, description: "Which provision takes effect when, and how you know (enactment vs effective vs implementation)"}
+    validations: {required: true}
+  - type: textarea
+    id: excerpt
+    attributes: {label: Supporting text, description: Short quotation of the relevant statutory text}

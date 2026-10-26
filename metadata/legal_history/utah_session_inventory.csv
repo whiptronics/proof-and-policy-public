@@ -1,0 +1,34 @@
+session,passed_bill_index,index_chaptered_bills,digest_chaptered_bills,in_both,chapter_mismatches,digest_entries_without_chapter,digest_only,index_only,index_only_read_from_enrolled_bill,unresolved_bills,bills_touching_tracked_sections,coverage
+2002S4,ut_passed_bills_2002s4,3,3,3,,,,,,,,complete_for_declared_dependencies
+2002S5,ut_passed_bills_2002s5,22,22,22,,,,,,,,complete_for_declared_dependencies
+2002S6,ut_passed_bills_2002s6,8,8,8,,,,,,,,complete_for_declared_dependencies
+2003GS,ut_passed_bills_2003gs,343,343,343,,,,,,,HB 244 SB 66 SB 153,complete_for_declared_dependencies
+2003S1,ut_passed_bills_2003s1,1,1,1,,,,,,,,complete_for_declared_dependencies
+2003S2,ut_passed_bills_2003s2,7,7,7,,,,,,,,complete_for_declared_dependencies
+2004GS,ut_passed_bills_2004gs,372,372,372,,,,,,,SB 58,complete_for_declared_dependencies
+2004S3,ut_passed_bills_2004s3,1,1,1,,,,,,,,complete_for_declared_dependencies
+2004S4,ut_passed_bills_2004s4,4,4,4,,,,,,,,complete_for_declared_dependencies
+2005GS,ut_passed_bills_2005gs,309,309,309,,,,,,,SB 65,complete_for_declared_dependencies
+2005S1,ut_passed_bills_2005s1,14,14,14,,,,,,,,complete_for_declared_dependencies
+2005S2,ut_passed_bills_2005s2,1,1,1,,,,,,,,complete_for_declared_dependencies
+2006GS,ut_passed_bills_2006gs,367,367,367,,,,,,,SB 58,complete_for_declared_dependencies
+2006S3,ut_passed_bills_2006s3,9,9,9,,,,,,,,complete_for_declared_dependencies
+2006S4,ut_passed_bills_2006s4,2,2,2,,,,,,,,complete_for_declared_dependencies
+2006S5,ut_passed_bills_2006s5,3,3,3,,,,,,,,complete_for_declared_dependencies
+2007GS,ut_passed_bills_2007gs,392,392,392,,,,,,,SB 205,complete_for_declared_dependencies
+2007S1,ut_passed_bills_2007s1,4,4,4,,,,,,,,complete_for_declared_dependencies
+2008GS,ut_passed_bills_2008gs,399,399,399,,SB 245,,,,,HB 157 HB 171 SB 211,complete_for_declared_dependencies
+2008S2,ut_passed_bills_2008s2,9,9,9,,,,,,,,complete_for_declared_dependencies
+2009GS,ut_passed_bills_2009gs,398,398,398,,,,,,,SB 187,complete_for_declared_dependencies
+2009S1,ut_passed_bills_2009s1,7,7,7,,,,,,,,complete_for_declared_dependencies
+2010GS,ut_passed_bills_2010gs,415,415,415,,,,,,,SB 167,complete_for_declared_dependencies
+2010S2,ut_passed_bills_2010s2,0,0,0,,,,,,,,complete_for_declared_dependencies
+2011GS,ut_passed_bills_2011gs,442,442,442,,,,,,,SB 12 SB 314,complete_for_declared_dependencies
+2011S1,ut_passed_bills_2011s1,1,1,1,,,,,,,,complete_for_declared_dependencies
+2011S2,ut_passed_bills_2011s2,5,5,5,,,,,,,SB 2002,complete_for_declared_dependencies
+2011S3,ut_passed_bills_2011s3,9,9,9,,,,,,,,complete_for_declared_dependencies
+2012GS,ut_passed_bills_2012gs,427,428,427,,,HB 237,,,,,complete_for_declared_dependencies
+2012S4,ut_passed_bills_2012s4,4,4,4,,,,,,,,complete_for_declared_dependencies
+2013GS,ut_passed_bills_2013gs,478,478,478,,,,,,,HB 228,complete_for_declared_dependencies
+2013S1,ut_passed_bills_2013s1,5,2,2,,,,HB 1003 HB 1004 SB 1001,HB 1003 HB 1004 SB 1001,,,complete_for_declared_dependencies
+2013S2,ut_passed_bills_2013s2,3,3,3,,,,,,,,complete_for_declared_dependencies

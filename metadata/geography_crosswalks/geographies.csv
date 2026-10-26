@@ -1,0 +1,57 @@
+geo_id,geo_level,official_code,code_system,name,abbreviation,boundary_vintage,valid_from,valid_to,in_default_panel
+nation:us,nation,US,iso3166_alpha2,United States,US,current,,,false
+census_region:1,census_region,1,census_region_code,Northeast,,current,,,false
+census_region:2,census_region,2,census_region_code,Midwest,,current,,,false
+census_region:3,census_region,3,census_region_code,South,,current,,,false
+census_region:4,census_region,4,census_region_code,West,,current,,,false
+state:01,state,01,fips_state,Alabama,AL,current,,,true
+state:02,state,02,fips_state,Alaska,AK,current,,,true
+state:04,state,04,fips_state,Arizona,AZ,current,,,true
+state:05,state,05,fips_state,Arkansas,AR,current,,,true
+state:06,state,06,fips_state,California,CA,current,,,true
+state:08,state,08,fips_state,Colorado,CO,current,,,true
+state:09,state,09,fips_state,Connecticut,CT,current,,,true
+state:10,state,10,fips_state,Delaware,DE,current,,,true
+state:11,state,11,fips_state,District of Columbia,DC,current,,,true
+state:12,state,12,fips_state,Florida,FL,current,,,true
+state:13,state,13,fips_state,Georgia,GA,current,,,true
+state:15,state,15,fips_state,Hawaii,HI,current,,,true
+state:16,state,16,fips_state,Idaho,ID,current,,,true
+state:17,state,17,fips_state,Illinois,IL,current,,,true
+state:18,state,18,fips_state,Indiana,IN,current,,,true
+state:19,state,19,fips_state,Iowa,IA,current,,,true
+state:20,state,20,fips_state,Kansas,KS,current,,,true
+state:21,state,21,fips_state,Kentucky,KY,current,,,true
+state:22,state,22,fips_state,Louisiana,LA,current,,,true
+state:23,state,23,fips_state,Maine,ME,current,,,true
+state:24,state,24,fips_state,Maryland,MD,current,,,true
+state:25,state,25,fips_state,Massachusetts,MA,current,,,true
+state:26,state,26,fips_state,Michigan,MI,current,,,true
+state:27,state,27,fips_state,Minnesota,MN,current,,,true
+state:28,state,28,fips_state,Mississippi,MS,current,,,true
+state:29,state,29,fips_state,Missouri,MO,current,,,true
+state:30,state,30,fips_state,Montana,MT,current,,,true
+state:31,state,31,fips_state,Nebraska,NE,current,,,true
+state:32,state,32,fips_state,Nevada,NV,current,,,true
+state:33,state,33,fips_state,New Hampshire,NH,current,,,true
+state:34,state,34,fips_state,New Jersey,NJ,current,,,true
+state:35,state,35,fips_state,New Mexico,NM,current,,,true
+state:36,state,36,fips_state,New York,NY,current,,,true
+state:37,state,37,fips_state,North Carolina,NC,current,,,true
+state:38,state,38,fips_state,North Dakota,ND,current,,,true
+state:39,state,39,fips_state,Ohio,OH,current,,,true
+state:40,state,40,fips_state,Oklahoma,OK,current,,,true
+state:41,state,41,fips_state,Oregon,OR,current,,,true
+state:42,state,42,fips_state,Pennsylvania,PA,current,,,true
+state:44,state,44,fips_state,Rhode Island,RI,current,,,true
+state:45,state,45,fips_state,South Carolina,SC,current,,,true
+state:46,state,46,fips_state,South Dakota,SD,current,,,true
+state:47,state,47,fips_state,Tennessee,TN,current,,,true
+state:48,state,48,fips_state,Texas,TX,current,,,true
+state:49,state,49,fips_state,Utah,UT,current,,,true
+state:50,state,50,fips_state,Vermont,VT,current,,,true
+state:51,state,51,fips_state,Virginia,VA,current,,,true
+state:53,state,53,fips_state,Washington,WA,current,,,true
+state:54,state,54,fips_state,West Virginia,WV,current,,,true
+state:55,state,55,fips_state,Wisconsin,WI,current,,,true
+state:56,state,56,fips_state,Wyoming,WY,current,,,true

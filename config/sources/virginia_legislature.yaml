@@ -1,0 +1,555 @@
+source_id: virginia_legislature
+publisher: Virginia General Assembly, Division of Legislative Automated Systems (Legislative Information System)
+title: Virginia Acts of Assembly amending Code of Virginia §§ 4.1-209 and 4.1-206.3 (wine and beer retail licenses),
+  1997-2024
+landing_url: https://legacylis.virginia.gov/
+citation: Acts of Assembly of the Commonwealth of Virginia, chapters as published on the Legislative Information
+  System (legacylis.virginia.gov), 1997-2024; Code of Virginia pages, Virginia Law Library (law.lis.virginia.gov).
+update_frequency: Each session; enacted chapters do not change
+source_family: policy
+rights_status: government_edict
+notes: Each chapter reprints the sections it amends, with insertions in italics (<i>) and deletions struck through
+  (<s>). The version ledger (metadata/legal_history/state_section_versions.csv) reads the text before and after
+  each act from that markup (convention va_lis_html_italic_strike). The chapters are the ones named in the history
+  notes of § 4.1-209 (an archived 2017 page and the current page) and of § 4.1-206.3; 2020 chapters 15, 16, 32,
+  34, 400 and 1009, also in § 4.1-206.3's note, amend other sections that the 2020 recodification folded into it
+  and do not print § 4.1-206.3. The 2026 chapters are on the new LIS only, which is a script application; the 2026
+  text comes from the current code page.
+host_min_interval_seconds: 3
+assets:
+- asset_id: va_acts_1997_ch489
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?971+ful+CHAP0489
+  filename: va_acts_1997_ch489.html
+  edition: 1997 Va. Acts ch. 489 (HB 2178), approved March 18, 1997; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 1997_ch489
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2001_ch361
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?011+ful+CHAP0361
+  filename: va_acts_2001_ch361.html
+  edition: 2001 Va. Acts ch. 361 (HB 1704), approved March 19, 2001; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2001_ch361
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2002_ch204
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?021+ful+CHAP0204
+  filename: va_acts_2002_ch204.html
+  edition: 2002 Va. Acts ch. 204 (HB 437), approved March 22, 2002; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2002_ch204
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2003_ch329
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?031+ful+CHAP0329
+  filename: va_acts_2003_ch329.html
+  edition: 2003 Va. Acts ch. 329 (HB 2540), approved March 16, 2003; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2003_ch329
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2003_ch589
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?031+ful+CHAP0589
+  filename: va_acts_2003_ch589.html
+  edition: 2003 Va. Acts ch. 589 (HB 1601), approved March 18, 2003; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2003_ch589
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2003_ch1029
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?031+ful+CHAP1029
+  filename: va_acts_2003_ch1029.html
+  edition: 2003 Va. Acts ch. 1029 (SB 1117), approved April 9, 2003; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2003_ch1029
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2003_ch1030
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?031+ful+CHAP1030
+  filename: va_acts_2003_ch1030.html
+  edition: 2003 Va. Acts ch. 1030 (HB 1652), approved April 9, 2003; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2003_ch1030
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2004_ch487
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?041+ful+CHAP0487
+  filename: va_acts_2004_ch487.html
+  edition: 2004 Va. Acts ch. 487 (HB 1489), approved April 12, 2004; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2004_ch487
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2005_ch652
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?051+ful+CHAP0652
+  filename: va_acts_2005_ch652.html
+  edition: 2005 Va. Acts ch. 652 (HB 2740), approved March 23, 2005; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2005_ch652
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2005_ch784
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?051+ful+CHAP0784
+  filename: va_acts_2005_ch784.html
+  edition: 2005 Va. Acts ch. 784 (HB 1721), approved March 26, 2005; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2005_ch784
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2006_ch94
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?061+ful+CHAP0094
+  filename: va_acts_2006_ch94.html
+  edition: 2006 Va. Acts ch. 94 (HB 321), approved March 23, 2006; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2006_ch94
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2006_ch153
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?061+ful+CHAP0153
+  filename: va_acts_2006_ch153.html
+  edition: 2006 Va. Acts ch. 153 (HB 1448), approved March 23, 2006; emergency clause (in force from passage); LIS
+    chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2006_ch153
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2006_ch256
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?061+ful+CHAP0256
+  filename: va_acts_2006_ch256.html
+  edition: 2006 Va. Acts ch. 256 (HB 512), approved March 30, 2006; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2006_ch256
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2006_ch826
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?061+ful+CHAP0826
+  filename: va_acts_2006_ch826.html
+  edition: 2006 Va. Acts ch. 826 (SB 685), approved April 7, 2006; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2006_ch826
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2006_ch845
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?061+ful+CHAP0845
+  filename: va_acts_2006_ch845.html
+  edition: 2006 Va. Acts ch. 845 (HB 601), approved April 19, 2006; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2006_ch845
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2007_ch813
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?071+ful+CHAP0813
+  filename: va_acts_2007_ch813.html
+  edition: 2007 Va. Acts ch. 813 (HB 2928), approved March 23, 2007; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2007_ch813
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2008_ch179
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?081+ful+CHAP0179
+  filename: va_acts_2008_ch179.html
+  edition: 2008 Va. Acts ch. 179 (HB 694), approved March 3, 2008; emergency clause (in force from passage); LIS
+    chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2008_ch179
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2008_ch186
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?081+ful+CHAP0186
+  filename: va_acts_2008_ch186.html
+  edition: 2008 Va. Acts ch. 186 (HB 1132), approved March 3, 2008; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2008_ch186
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2008_ch192
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?081+ful+CHAP0192
+  filename: va_acts_2008_ch192.html
+  edition: 2008 Va. Acts ch. 192 (HB 1239), approved March 3, 2008; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2008_ch192
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2008_ch875
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?081+ful+CHAP0875
+  filename: va_acts_2008_ch875.html
+  edition: 2008 Va. Acts ch. 875 (SB 584), approved April 23, 2008; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2008_ch875
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2010_ch317
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?101+ful+CHAP0317
+  filename: va_acts_2010_ch317.html
+  edition: 2010 Va. Acts ch. 317 (SB 483), approved April 9, 2010; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2010_ch317
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2010_ch561
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?101+ful+CHAP0561
+  filename: va_acts_2010_ch561.html
+  edition: 2010 Va. Acts ch. 561 (HB 630), approved April 11, 2010; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2010_ch561
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2011_ch626
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?111+ful+CHAP0626
+  filename: va_acts_2011_ch626.html
+  edition: 2011 Va. Acts ch. 626 (HB 2501), approved March 26, 2011; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2011_ch626
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2014_ch125
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?141+ful+CHAP0125
+  filename: va_acts_2014_ch125.html
+  edition: 2014 Va. Acts ch. 125 (HB 284), approved March 5, 2014; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2014_ch125
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2014_ch612
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?141+ful+CHAP0612
+  filename: va_acts_2014_ch612.html
+  edition: 2014 Va. Acts ch. 612 (SB 104), approved April 4, 2014; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2014_ch612
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2015_ch412
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?151+ful+CHAP0412
+  filename: va_acts_2015_ch412.html
+  edition: 2015 Va. Acts ch. 412 (HB 2119), approved March 23, 2015; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2015_ch412
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2016_ch654
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?161+ful+CHAP0654
+  filename: va_acts_2016_ch654.html
+  edition: 2016 Va. Acts ch. 654 (SB 695), approved April 1, 2016; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2016_ch654
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch76
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0076
+  filename: va_acts_2017_ch76.html
+  edition: 2017 Va. Acts ch. 76 (SB 1469), approved February 20, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch76
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch151
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0151
+  filename: va_acts_2017_ch151.html
+  edition: 2017 Va. Acts ch. 151 (HB 1694), approved February 23, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch151
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch152
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0152
+  filename: va_acts_2017_ch152.html
+  edition: 2017 Va. Acts ch. 152 (HB 1743), approved February 23, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch152
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch153
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0153
+  filename: va_acts_2017_ch153.html
+  edition: 2017 Va. Acts ch. 153 (HB 1744), approved February 23, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch153
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch154
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0154
+  filename: va_acts_2017_ch154.html
+  edition: 2017 Va. Acts ch. 154 (HB 1801), approved February 23, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch154
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2017_ch745
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0745
+  filename: va_acts_2017_ch745.html
+  edition: 2017 Va. Acts ch. 745 (SB 1587), approved March 24, 2017; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2017_ch745
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2020_ch1179
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?201+ful+CHAP1179
+  filename: va_acts_2020_ch1179.html
+  edition: 2020 Va. Acts ch. 1179 (SB 1029), approved April 11, 2020; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2020_ch1179
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2020_ch1113
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?201+ful+CHAP1113
+  filename: va_acts_2020_ch1113.html
+  edition: 2020 Va. Acts ch. 1113 (HB 390), approved April 10, 2020; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2020_ch1113
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2020_ch1114
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?201+ful+CHAP1114
+  filename: va_acts_2020_ch1114.html
+  edition: 2020 Va. Acts ch. 1114 (SB 389), approved April 10, 2020; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2020_ch1114
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2020sp1_ch34
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?202+ful+CHAP0034
+  filename: va_acts_2020sp1_ch34.html
+  edition: 2020 Va. Acts, Sp. Sess. I, ch. 34 (SB 5036), approved October 28, 2020; emergency clause (in force from
+    passage); LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2020sp1_ch34
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2021sp1_ch182
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0182
+  filename: va_acts_2021sp1_ch182.html
+  edition: 2021 Va. Acts, Sp. Sess. I, ch. 182 (HB 1973), approved March 18, 2021; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2021sp1_ch182
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2021sp1_ch281
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0281
+  filename: va_acts_2021sp1_ch281.html
+  edition: 2021 Va. Acts, Sp. Sess. I, ch. 281 (HB 1879), approved March 18, 2021; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2021sp1_ch281
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2021sp1_ch282
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0282
+  filename: va_acts_2021sp1_ch282.html
+  edition: 2021 Va. Acts, Sp. Sess. I, ch. 282 (SB 1299), approved March 18, 2021; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2021sp1_ch282
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2021sp1_ch390
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0390
+  filename: va_acts_2021sp1_ch390.html
+  edition: 2021 Va. Acts, Sp. Sess. I, ch. 390 (HB 2266), approved March 25, 2021; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2021sp1_ch390
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2021sp1_ch391
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0391
+  filename: va_acts_2021sp1_ch391.html
+  edition: 2021 Va. Acts, Sp. Sess. I, ch. 391 (SB 1471), approved March 25, 2021; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2021sp1_ch391
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2022_ch78
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?221+ful+CHAP0078
+  filename: va_acts_2022_ch78.html
+  edition: 2022 Va. Acts ch. 78 (SB 254), approved April 5, 2022; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2022_ch78
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2022_ch79
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?221+ful+CHAP0079
+  filename: va_acts_2022_ch79.html
+  edition: 2022 Va. Acts ch. 79 (HB 426), approved April 5, 2022; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2022_ch79
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2022_ch589
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?221+ful+CHAP0589
+  filename: va_acts_2022_ch589.html
+  edition: 2022 Va. Acts ch. 589 (HB 455), approved April 11, 2022; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2022_ch589
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2022_ch590
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?221+ful+CHAP0590
+  filename: va_acts_2022_ch590.html
+  edition: 2022 Va. Acts ch. 590 (SB 519), approved April 11, 2022; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2022_ch590
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2023_ch408
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?231+ful+CHAP0408
+  filename: va_acts_2023_ch408.html
+  edition: 2023 Va. Acts ch. 408 (HB 1753), approved March 23, 2023; emergency clause (in force from passage); LIS
+    chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2023_ch408
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2023_ch409
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?231+ful+CHAP0409
+  filename: va_acts_2023_ch409.html
+  edition: 2023 Va. Acts ch. 409 (SB 1100), approved March 23, 2023; emergency clause (in force from passage); LIS
+    chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2023_ch409
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch105
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0105
+  filename: va_acts_2024_ch105.html
+  edition: 2024 Va. Acts ch. 105 (HB 688), approved March 20, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch105
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch111
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0111
+  filename: va_acts_2024_ch111.html
+  edition: 2024 Va. Acts ch. 111 (HB 1349), approved March 20, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch111
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch159
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0159
+  filename: va_acts_2024_ch159.html
+  edition: 2024 Va. Acts ch. 159 (SB 635), approved March 26, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch159
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch255
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0255
+  filename: va_acts_2024_ch255.html
+  edition: 2024 Va. Acts ch. 255 (SB 657), approved March 28, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch255
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch619
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0619
+  filename: va_acts_2024_ch619.html
+  edition: 2024 Va. Acts ch. 619 (SB 180), approved April 8, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch619
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch622
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0622
+  filename: va_acts_2024_ch622.html
+  edition: 2024 Va. Acts ch. 622 (SB 400), approved April 8, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch622
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: va_acts_2024_ch627
+  url: https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0627
+  filename: va_acts_2024_ch627.html
+  edition: 2024 Va. Acts ch. 627 (SB 724), approved April 8, 2024; LIS chapter text
+  source_series: va_acts_of_assembly
+  source_vintage: 2024_ch627
+  format: html
+  priority: 20
+  redistribute_raw: true
+- asset_id: law_va_4_1_209_current
+  url: https://law.lis.virginia.gov/vacode/title4.1/chapter2/section4.1-209/
+  edition: Code of Virginia § 4.1-209 (Wine and beer license privileges), Virginia Law Library page; read for its
+    history note
+  source_series: va_code_pages
+  source_vintage: retrieved_2026
+  format: html
+  priority: 20
+  redistribute_raw: true
+  options:
+    normalize: strip_lis_page_variants
+  notes: 'Finding aid: its history note lists the 2017 chapters that amended § 4.1-209 (none in 2018 or 2019).'
+- asset_id: law_va_code_updates_2026
+  url: https://law.lis.virginia.gov/vacodeupdates/
+  edition: Code of Virginia, 2026 Updates (table of contents), Virginia Law Library page
+  source_series: va_code_pages
+  source_vintage: retrieved_2026
+  format: html
+  priority: 20
+  redistribute_raw: true
+  options:
+    normalize: strip_lis_page_variants
+  notes: 'States that the listed sections took effect on July 1, 2026, unless otherwise noted.'
+- asset_id: law_va_code_updates_2026_title4_1
+  url: https://law.lis.virginia.gov/vacodeupdates/title4.1/
+  edition: Code of Virginia, Title 4.1, 2026 Updates (sections changed by the 2026 session), Virginia Law Library
+    page
+  source_series: va_code_pages
+  source_vintage: retrieved_2026
+  format: html
+  priority: 20
+  redistribute_raw: true
+  options:
+    normalize: strip_lis_page_variants
+  notes: Lists § 4.1-206.3 among the 2026 updates with no effective-date note; the Updates pages say the listed
+    sections 'took effect on July 1, 2026, unless otherwise noted'.

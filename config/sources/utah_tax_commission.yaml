@@ -1,0 +1,28 @@
+source_id: utah_tax_commission
+publisher: Utah State Tax Commission
+title: Publication 25, Sales and Use Tax General Information
+landing_url: https://tax.utah.gov/
+citation: >-
+  Utah State Tax Commission. Publication 25, Sales and Use Tax General Information, Rev. 9/26 (marked
+  "DRAFT PENDING PUBLIC MEETING"). PDF downloaded by the project owner on 2026-10-09.
+update_frequency: Revised as law changes
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Read by hand for one fact used by the Utah revenue scenario tool: the state sales and use tax rate, the
+  state's own part of the combined rate (page 6, "Chart 2: Taxes in the Combined Rate"). The same page
+  gives a lower state rate for grocery food, and page 3 says grocery food does not include alcoholic
+  beverages. Local option, county and other parts of the combined rate go to local governments and are
+  not used. Every page is marked as a draft pending a public meeting, so the figure is labelled that way
+  wherever it is shown. The exact download URL was not recorded. The PDF is not redistributed.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: utah_tc_pub25_rev_2026_09
+    method: manual_import
+    filename: pub-25.pdf
+    edition: "Publication 25, Rev. 9/26 (draft pending public meeting), 20 pages"
+    source_series: utah_tc_pub25
+    source_vintage: rev_2026_09_draft
+    format: pdf
+    priority: 20
+    redistribute_raw: false

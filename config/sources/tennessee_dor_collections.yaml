@@ -1,0 +1,181 @@
+source_id: tennessee_dor_collections
+publisher: Tennessee Department of Revenue
+title: Summary of Collections (monthly; June editions close each fiscal year)
+landing_url: https://www.tn.gov/revenue/tax-resources/tax-collections-information.html
+citation: >-
+  Tennessee Department of Revenue. Summary of Collections, June editions, fiscal years 2010-2025.
+  https://www.tn.gov/revenue/tax-resources/tax-collections-information.html
+update_frequency: Monthly; the June edition reports the fiscal year (July-June) to date
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Collections by account code, as received (collections basis), before any distribution to local
+  governments. Only the fiscal-year-to-date page of each June edition is read, and only its current-year
+  column, so each fiscal year has one value from the report that closed it. Parsed from the PDF text layer by
+  adapters/tn_dor_collections.py; every ALCOHOLIC BEVERAGES class must add up to its printed TOTAL. Account
+  11002 is printed "Wine Tax" through FY2017 and "Wine Tax & High Alcohol Beer" from FY2018; the two labels
+  are separate measures. No account isolates wine sold by retail food stores. The PDFs are not
+  redistributed; only the extracted figures and page citations are. Added for the research dashboard's
+  worked example on 2026-10-07.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: tn_dor_collections_june_2010
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2010/coll201006.pdf
+    edition: "Summary of Collections, June 2010 (fiscal year 2009-10 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2010_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2010}
+  - asset_id: tn_dor_collections_june_2011
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2011/coll201106.pdf
+    edition: "Summary of Collections, June 2011 (fiscal year 2010-11 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2011_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2011}
+  - asset_id: tn_dor_collections_june_2012
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2012/coll201206.pdf
+    edition: "Summary of Collections, June 2012 (fiscal year 2011-12 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2012_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2012}
+  - asset_id: tn_dor_collections_june_2013
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2013/coll201306.pdf
+    edition: "Summary of Collections, June 2013 (fiscal year 2012-13 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2013_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2013}
+  - asset_id: tn_dor_collections_june_2014
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2014/coll201406.pdf
+    edition: "Summary of Collections, June 2014 (fiscal year 2013-14 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2014_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2014}
+  - asset_id: tn_dor_collections_june_2015
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2015/coll201506.pdf
+    edition: "Summary of Collections, June 2015 (fiscal year 2014-15 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2015_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2015}
+  - asset_id: tn_dor_collections_june_2016
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2016/coll201606.pdf
+    edition: "Summary of Collections, June 2016 (fiscal year 2015-16 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2016_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2016}
+  - asset_id: tn_dor_collections_june_2017
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2017/coll201706.pdf
+    edition: "Summary of Collections, June 2017 (fiscal year 2016-17 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2017_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2017}
+  - asset_id: tn_dor_collections_june_2018
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2018/coll201806.pdf
+    edition: "Summary of Collections, June 2018 (fiscal year 2017-18 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2018_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2018}
+  - asset_id: tn_dor_collections_june_2019
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2019/Coll201906.pdf
+    edition: "Summary of Collections, June 2019 (fiscal year 2018-19 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2019_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2019}
+  - asset_id: tn_dor_collections_june_2020
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2020/Coll202006.pdf
+    edition: "Summary of Collections, June 2020 (fiscal year 2019-20 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2020_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2020}
+  - asset_id: tn_dor_collections_june_2021
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2021/Coll202106.pdf
+    edition: "Summary of Collections, June 2021 (fiscal year 2020-21 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2021_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2021}
+  - asset_id: tn_dor_collections_june_2022
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2022/Coll202206.pdf
+    edition: "Summary of Collections, June 2022 (fiscal year 2021-22 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2022_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2022}
+  - asset_id: tn_dor_collections_june_2023
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2023/Coll202306.pdf
+    edition: "Summary of Collections, June 2023 (fiscal year 2022-23 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2023_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2023}
+  - asset_id: tn_dor_collections_june_2024
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2024/Coll202406.pdf
+    edition: "Summary of Collections, June 2024 (fiscal year 2023-24 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2024_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2024}
+  - asset_id: tn_dor_collections_june_2025
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/pubs/2025/Coll202506.pdf
+    edition: "Summary of Collections, June 2025 (fiscal year 2024-25 to date)"
+    source_series: tn_dor_summary_of_collections_june
+    source_vintage: "fy2025_june_report"
+    format: pdf
+    parser: tn_dor_collections_june
+    priority: 20
+    redistribute_raw: false
+    options: {fiscal_year: 2025}

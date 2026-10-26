@@ -1,0 +1,84 @@
+source_id: utah_acfr
+publisher: State of Utah, Division of Finance
+title: State of Utah Annual Comprehensive Financial Report (ACFR)
+landing_url: https://finance.utah.gov/
+citation: >-
+  State of Utah. Annual Comprehensive Financial Report for the fiscal years ended June 30, 2022, 2023, 2024 and
+  2025. Salt Lake City: Division of Finance.
+update_frequency: Annual (fiscal year ending June 30)
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Audited statements of the State of Utah, including the Alcoholic Beverage Services Fund (the enterprise fund of the
+  Department of Alcoholic Beverage Services). Read by hand for the fund's statement of revenues, expenses and
+  changes in net position, its notes, and the management's discussion. Values are transcribed into
+  data/curated/manual_observations.csv with page citations; the PDFs are not redistributed.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: utah_acfr_fy2025
+    url: https://finance.utah.gov/wp-content/uploads/FY25-ACFR-FINAL-reduced-size.pdf
+    method: manual_import
+    filename: FY25-ACFR-FINAL-reduced-size.pdf
+    edition: "Annual Comprehensive Financial Report, fiscal year ended June 30, 2025 (reduced-size PDF, 286 pages)"
+    source_series: utah_acfr
+    source_vintage: fy2025
+    format: pdf
+    priority: 20
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 through the browser pane of the Claude desktop app on the maintainer's computer (the
+      project's download tools are refused by the host), checked to be the same bytes the site served, and imported
+      with 'alcohol-data import-asset'; the SHA-256 is pinned.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed Alcoholic Beverage Services Fund values against the cited pages.
+  - asset_id: utah_acfr_fy2024
+    url: https://treasurer.utah.gov/wp-content/uploads/FY24-ACFR-Final.pdf
+    method: manual_import
+    filename: FY24-ACFR-Final.pdf
+    edition: "Annual Comprehensive Financial Report, fiscal year ended June 30, 2024 (280 pages)"
+    source_series: utah_acfr
+    source_vintage: fy2024
+    format: pdf
+    priority: 10
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 the same way as the FY2025 report and imported with 'alcohol-data import-asset'; the
+      SHA-256 is pinned.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed Alcoholic Beverage Services Fund values against the cited pages.
+  - asset_id: utah_acfr_fy2023
+    url: https://treasurer.utah.gov/wp-content/uploads/FY23-Annual-Comprehensive-Financial-Rpt.pdf
+    method: manual_import
+    filename: FY23-Annual-Comprehensive-Financial-Rpt.pdf
+    edition: "Annual Comprehensive Financial Report, fiscal year ended June 30, 2023 (267 pages)"
+    source_series: utah_acfr
+    source_vintage: fy2023
+    format: pdf
+    priority: 6
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 (night) the same way as the FY2024 and FY2025 reports (checked to be the bytes the site
+      served) and imported with 'alcohol-data import-asset'; the SHA-256 is pinned. The first printing of the audited
+      FY2023 figures, kept apart from the later editions' restated columns.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed Alcoholic Beverage Services Fund values against the cited pages.
+  - asset_id: utah_acfr_fy2022
+    url: https://treasurer.utah.gov/wp-content/uploads/2022-State-of-Utah-ACFR.pdf
+    method: manual_import
+    filename: 2022-State-of-Utah-ACFR.pdf
+    edition: "Annual Comprehensive Financial Report, fiscal year ended June 30, 2022 (260 pages)"
+    source_series: utah_acfr
+    source_vintage: fy2022
+    format: pdf
+    priority: 4
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 (night) the same way as the FY2024 and FY2025 reports (checked to be the bytes the site
+      served) and imported with 'alcohol-data import-asset'; the SHA-256 is pinned. The first printing of the audited
+      FY2022 figures, kept apart from the later editions' restated columns.
+    blockers: The host refuses the project's scripted downloads; save from a browser and import.
+    next_action: Maintainer reviews the transcribed Alcoholic Beverage Services Fund values against the cited pages.

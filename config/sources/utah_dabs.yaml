@@ -1,0 +1,117 @@
+source_id: utah_dabs_annual_reports
+publisher: Utah Department of Alcoholic Beverage Services (DABS)
+title: DABS Annual Reports (financial statements and five-year financial summary)
+landing_url: https://abs.utah.gov/about-dabs/news/annual-reports/
+citation: "Utah Department of Alcoholic Beverage Services. Annual Report (90th, fiscal year 2025; 89th, fiscal year 2024). https://abs.utah.gov/about-dabs/news/annual-reports/"
+update_frequency: Annual report (fiscal year ending June 30)
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Financial statements are labelled unaudited in the report. Values are transcribed by hand from rendered
+  pages (data/curated/manual_observations.csv) because text extraction scrambles the tables. The PDFs are
+  not redistributed; only the extracted figures and page citations are. abs.utah.gov robots.txt asks for
+  a 10-second crawl delay, which the fetcher honors.
+host_min_interval_seconds: 10
+assets:
+  - asset_id: utah_dabs_annual_report_fy2025
+    url: https://abs.utah.gov/wp-content/uploads/90th_Annual_Report_2025.pdf
+    edition: "90th Annual Report, fiscal year 2025 (July 1, 2024 - June 30, 2025)"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2025_report
+    format: pdf
+    blockers: Text extraction scrambles the tables; values transcribed by hand. Statements are unaudited and not internally consistent for FY2022, FY2024 and FY2025.
+    next_action: Maintainer reviews the transcribed values against pages 30 and 32; obtain audited Liquor Control Fund statements (State Auditor / ACFR) to resolve the inconsistencies.
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_annual_report_fy2024
+    url: https://abs.utah.gov/wp-content/uploads/89th-Annual-Report-2024.pdf
+    edition: "89th Annual Report, fiscal year 2024"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2024_report
+    format: pdf
+    next_action: Maintainer reviews the transcribed values against page 22. Earlier reports (77th-88th) would extend the series back to FY2012.
+    priority: 12
+    redistribute_raw: false
+  - asset_id: utah_dabs_annual_report_fy2016
+    url: https://abs.utah.gov/wp-content/uploads/81st_annual.pdf
+    method: manual_import
+    filename: 81st_annual.pdf
+    edition: "81st Annual Report, fiscal year 2016 (July 1, 2015 - June 30, 2016), Department of Alcoholic Beverage Control"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2016_report
+    format: pdf
+    priority: 4
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 through the browser pane of the Claude desktop app on the maintainer's computer (abs.utah.gov refuses scripted downloads), checked to be the same bytes the site served, and imported with 'alcohol-data import-asset'; the SHA-256 is pinned in config/builds/preview.pins.json. Read for its five-year financial summary and statement of operation (unaudited); values transcribed by hand into data/curated/manual_observations.csv.
+    blockers: abs.utah.gov answers scripted requests with HTTP 403; the file must be saved from a browser and imported.
+    next_action: Maintainer reviews the transcribed values against the cited pages.
+  - asset_id: utah_dabs_annual_report_fy2019
+    url: https://abs.utah.gov/wp-content/uploads/84th_annual.pdf
+    method: manual_import
+    filename: 84th_annual.pdf
+    edition: "84th Annual Report, fiscal year 2019 (July 1, 2018 - June 30, 2019), Department of Alcoholic Beverage Control"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2019_report
+    format: pdf
+    priority: 6
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 through the browser pane of the Claude desktop app on the maintainer's computer (abs.utah.gov refuses scripted downloads), checked to be the same bytes the site served, and imported with 'alcohol-data import-asset'; the SHA-256 is pinned in config/builds/preview.pins.json. Read for its five-year financial summary (unaudited); values transcribed by hand into data/curated/manual_observations.csv.
+    blockers: abs.utah.gov answers scripted requests with HTTP 403; the file must be saved from a browser and imported.
+    next_action: Maintainer reviews the transcribed values against the cited pages.
+  - asset_id: utah_dabs_annual_report_fy2021
+    url: https://abs.utah.gov/wp-content/uploads/86th_annual-1.pdf
+    method: manual_import
+    filename: 86th_annual-1.pdf
+    edition: "86th Annual Report, fiscal year 2021 (July 1, 2020 - June 30, 2021), Department of Alcoholic Beverage Control"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2021_report
+    format: pdf
+    priority: 8
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 through the browser pane of the Claude desktop app on the maintainer's computer (abs.utah.gov refuses scripted downloads), checked to be the same bytes the site served, and imported with 'alcohol-data import-asset'; the SHA-256 is pinned in config/builds/preview.pins.json. Read for its five-year financial summary (unaudited); values transcribed by hand into data/curated/manual_observations.csv.
+    blockers: abs.utah.gov answers scripted requests with HTTP 403; the file must be saved from a browser and imported.
+    next_action: Maintainer reviews the transcribed values against the cited pages.
+  - asset_id: utah_dabs_annual_report_fy2022
+    url: https://abs.utah.gov/wp-content/uploads/87th_Annual_Report.pdf
+    method: manual_import
+    filename: 87th_Annual_Report.pdf
+    edition: "87th Annual Report, fiscal year 2022 (July 1, 2021 - June 30, 2022), Department of Alcoholic Beverage Services"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2022_report
+    format: pdf
+    priority: 9
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 (night) through the browser pane of the Claude desktop app on the maintainer's computer
+      (abs.utah.gov refuses scripted downloads), checked to be the same bytes the site served (SHA-256 computed in the
+      page and again on disk), and imported with 'alcohol-data import-asset'; the SHA-256 is pinned in
+      config/builds/preview.pins.json. The first printing of DABS's figures for FY2022; read for its income statement
+      and five-year summary (unaudited); values transcribed by hand into data/curated/manual_observations.csv.
+    blockers: abs.utah.gov answers scripted requests with HTTP 403; the file must be saved from a browser and imported.
+    next_action: Maintainer reviews the transcribed values against the cited pages.
+  - asset_id: utah_dabs_annual_report_fy2023
+    url: https://abs.utah.gov/wp-content/uploads/88TH-ANNUAL-REPORT-FINAL-V.2.pdf
+    method: manual_import
+    filename: 88TH-ANNUAL-REPORT-FINAL-V.2.pdf
+    edition: "88th Annual Report, fiscal year 2023 (July 1, 2022 - June 30, 2023), Department of Alcoholic Beverage Services"
+    source_series: utah_dabs_annual_report
+    source_vintage: fy2023_report
+    format: pdf
+    priority: 10
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-14 (night) through the browser pane of the Claude desktop app on the maintainer's computer
+      (abs.utah.gov refuses scripted downloads), checked to be the same bytes the site served (SHA-256 computed in the
+      page and again on disk), and imported with 'alcohol-data import-asset'; the SHA-256 is pinned in
+      config/builds/preview.pins.json. The first printing of DABS's figures for FY2023; read for its income statement
+      and five-year summary (unaudited); values transcribed by hand into data/curated/manual_observations.csv.
+    blockers: abs.utah.gov answers scripted requests with HTTP 403; the file must be saved from a browser and imported.
+    next_action: Maintainer reviews the transcribed values against the cited pages.

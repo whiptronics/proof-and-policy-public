@@ -1,0 +1,46 @@
+source_id: census_economic_census
+publisher: U.S. Census Bureau
+title: Economic Census, 2017 basic statistics and 2012-2017 comparative statistics (retail trade, NAICS 445310)
+landing_url: https://www.census.gov/programs-surveys/economic-census.html
+citation: >-
+  U.S. Census Bureau, 2017 Economic Census: EC1700BASIC (All Sectors: Summary Statistics for the U.S.,
+  States and Selected Geographies) and EC1700COMP (comparative statistics, 2012 and 2017), pipe-delimited
+  files downloaded by the project owner on 2026-10-09.
+update_frequency: Every five years (years ending in 2 and 7)
+source_family: context
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  Only NAICS 445310 (beer, wine and liquor stores) is read, for each state as a whole and the United
+  States: establishments, sales (receipts) and paid employees. These are private businesses with payroll;
+  the establishment counts match County Business Patterns (Pennsylvania 1,869 against 1,868 in 2017,
+  Virginia 483 against 485), which excludes government-operated stores, so state-run liquor stores appear
+  not to be counted. Receipts are all sales of these stores (they may include sales to bars and
+  restaurants), not total alcohol sales in the state: grocery, convenience and drug stores, restaurants
+  and state stores sell alcohol outside this measure. A "D" flag means withheld to avoid disclosing a
+  single company; the file prints 0 in those cells, which is stored as missing (suppressed), never zero.
+  The 2022 Economic Census "First Look" files in the same download hold national totals only and were
+  superseded by the 2024 Geographic Area Statistics release (their read_me says so); they are not
+  imported. The exact download URLs were not recorded.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: census_ec2017_basic
+    method: manual_import
+    filename: EC1700BASIC.zip
+    edition: "2017 Economic Census, EC1700BASIC.dat (all sectors, summary statistics; file dated 2021-05-26)"
+    source_series: census_ec2017_basic
+    source_vintage: ec2017_2021_05_26
+    format: zip
+    parser: census_ec2017_basic
+    priority: 20
+    redistribute_raw: true
+  - asset_id: census_ec2017_comp
+    method: manual_import
+    filename: EC1700COMP.zip
+    edition: "2017 Economic Census, EC1700COMP.dat (comparative statistics 2012 and 2017; file dated 2021-08-31)"
+    source_series: census_ec2017_comp
+    source_vintage: ec2017comp_2021_08_31
+    format: zip
+    parser: census_ec2017_comp
+    priority: 10
+    redistribute_raw: true

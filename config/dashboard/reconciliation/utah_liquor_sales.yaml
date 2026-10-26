@@ -1,0 +1,383 @@
+# Utah liquor-sales reconciliation for the dashboard (Utah at a glance). The year-by-year bridge is computed in
+# src/alcohol_data/fiscal_bridge.py; this file holds the findings, their evidence status and their sources, and the
+# Utah-Pennsylvania comparison rows. Statuses: documented, documented_provisional, reconciles_numerically, inferred,
+# unresolved (definitions in fiscal_bridge.STATUSES). Sources: asset:<pinned asset>, figure:<figure in provisional_figures.csv; once checked, it cites the saved record>,
+# rate:<deposit rate row>, url:<address read online>, lead:<lead id>, gap:<gap id>. The export checks every id.
+reconciliation_id: utah_liquor_sales
+title: Why Utah's liquor-sales figures differ
+checked_on: "2026-10-14"
+question: >-
+  DABS reports one liquor-sales figure, Census another (about 11% lower), and the audited state report a third. What
+  separates them, year by year, and how much is still unexplained?
+summary: >-
+  Utah law takes two percentages of DABS's gross liquor revenue before anything else: 10% for school meals (Uniform
+  School Fund) and a smaller share for alcohol enforcement (1%, then 0.875%, then 1.695%). DABS's sales line is before
+  both, and before sales tax (DABS's own Note B). Census's receipts, and the audited fund's sales where printed, equal
+  DABS's sales less those two deposits to within $0.15 million in 12 of the 14 fiscal years from FY2012 to FY2025. The
+  audited statements show where the school-meals money goes: the fund pays it out as "school lunch collections" and
+  the Income Tax Fund books it as revenue, so it is not the fund's sales. FY2023 is $1.1 million off and FY2024 $17.5
+  million off (or $21.9 million on the other FY2024 sales figure DABS prints): in both years the audited fund's revenue
+  is about $16 million below what DABS's own figures imply, and in FY2024 Census follows the audited figure. The cause
+  is not stated in any document read.
+findings:
+  - id: deposits_in_law
+    status: documented
+    text: >-
+      Utah law requires DABS to deposit 10% of "the total gross revenue from sales of liquor" with the Uniform School
+      Fund for school lunch (now school meals), and, after it, a percentage of the same total with the Alcoholic
+      Beverage Control Act Enforcement Fund for the Department of Public Safety. Both sections took effect on
+      2011-07-01 (FY2012), at 10% and 1%.
+    sources: [asset:ut_2010gs_sb0167_enrolled, asset:ut_2011gs_sb0314_enrolled, rate:ut_school_meals_fy2012, rate:ut_enforcement_fy2012]
+  - id: rates_after_2012
+    status: documented_provisional
+    text: >-
+      The 10% stays in every version read: the 2012 amendment, the text 2020 H.B. 16 amended, and the versions in force
+      from 2024-05-01 and 2026-03-13. The enforcement share is shown as 0.875% in the text 2022 S.B. 201 amended and was
+      raised to 1.695% from 2023-07-01 by 2023 H.B. 223. The enforcement share stays 1% in the 2012 and 2013
+      amendments. These texts were read online and are not yet saved. The enforcement rate for FY2015-FY2021 and the
+      act that lowered it to 0.875% were not read (inferred from DABS's amounts).
+    sources: [rate:ut_school_meals_fy2013_fy2020, rate:ut_school_meals_fy2021_fy2026, rate:ut_enforcement_fy2013_fy2014, rate:ut_enforcement_fy2015_fy2020, rate:ut_enforcement_fy2021, rate:ut_enforcement_fy2022_fy2023, rate:ut_enforcement_fy2024_fy2026]
+  - id: dabs_reports_them_after_sales
+    status: documented
+    text: >-
+      DABS's sales line is before the two deposits: its summaries subtract "School Lunch Program" and "Transfer to SBI"
+      further down, on the way to net profit. The FY2012-FY2016 operations summary groups them as "Profit Transfers".
+    sources: [asset:utah_dabs_annual_report_fy2016, asset:utah_dabs_annual_report_fy2025, asset:utah_dabs_annual_report_fy2024]
+  - id: census_equals_sales_less_deposits
+    status: reconciles_numerically
+    text: >-
+      DABS's sales less the two deposits equal Census's receipts within $0.15 million in FY2012-FY2022 (FY2013 to the
+      thousand), and the audited FY2025 fund sales within $0.08 million. In FY2012-FY2013 only the deposits as DABS
+      reported them reconcile (they are 10.5% and 1.05% of sales, as if computed on sales plus the sales-tax line); in
+      FY2022 and FY2025 only the statutory amounts do (DABS's reported deposits differ from the statutory amounts).
+    sources: [asset:utah_dabs_annual_report_fy2016, asset:utah_dabs_annual_report_fy2019, asset:utah_dabs_annual_report_fy2021, asset:utah_acfr_fy2025]
+  - id: census_equals_audited
+    status: reconciles_numerically
+    text: >-
+      Census's figure equals the audited fund's sales exactly in Utah FY2024 ($493,645 thousand) and in Pennsylvania
+      FY2023 and FY2024 (the audited State Stores Fund's "sales net of taxes"). Census's Utah FY2023 receipts ($517,153
+      thousand) do not match the audited fund, whose whole operating revenue that year was $506,492 thousand; they
+      track DABS's own figures instead. Census does not always take the same figure.
+    sources: [figure:acfr25_abs_sales_fy2024, figure:pa24_sales_net_of_taxes_fy2023, figure:pa25_sales_net_of_taxes_fy2024, asset:utah_acfr_fy2025]
+  - id: school_meals_outside_fund_revenue
+    status: documented
+    text: >-
+      The audited statements keep the school-meals deposit out of the fund's sales. The Alcoholic Beverage Services
+      Fund's cash-flow statement pays "Sales Tax and School Lunch Collections" outside its operating revenues and
+      expenses ($55,135 thousand in FY2025, exactly 10% of DABS's $551,346 thousand; $67,575 thousand in FY2024), and the
+      Income Tax Fund books "Liquor Sales Allocated for School Lunch" as its own revenue ($57,887 thousand in FY2024, 10%
+      of DABS's 578,856; $56,898 thousand in FY2025).
+    sources: [asset:utah_acfr_fy2025, asset:utah_acfr_fy2024]
+  - id: enforcement_outside_fund_revenue
+    status: inferred
+    text: >-
+      The enforcement deposit is not in the fund's statements either: neither expenses nor transfers out show it (FY2025
+      transfers out are $105,364 thousand to the General Fund, $1,750 thousand to the Income Tax Fund and $1,018
+      thousand to other funds), and FY2025's audited sales equal DABS's sales less both deposits within $0.08 million.
+      Where the state books it is not stated in the pages read. The cash-flow statements point the same way: the fund's
+      payments of "Sales Tax and School Lunch Collections" equal both statutory deposits together within $6 thousand in
+      FY2022 (60,617 against 60,623) and $122 thousand in FY2024 (67,575 against 67,697), and are $702 thousand above
+      them in FY2023 (63,674 against 62,972); in FY2025 the line is the school-meals deposit alone (55,135). So in
+      FY2022-FY2024 the enforcement deposit appears to pass through the fund as a collection, outside its revenue; no
+      page names it.
+    sources: [asset:utah_acfr_fy2025, asset:utah_acfr_fy2024, asset:utah_acfr_fy2023, asset:utah_acfr_fy2022]
+  - id: audited_revenue_series
+    status: reconciles_numerically
+    text: >-
+      The ACFR's ten-year series of the fund's operating revenue ("Liquor Retail Sales") equals DABS's sales less the two
+      statutory deposits plus DABS's other income within $0.9 million in every year FY2015-FY2021, $1.9 million in
+      FY2022 and $0.002 million in FY2025 (on the lower of DABS's two FY2025 other-income figures). FY2023 as first printed
+      (the FY2023 ACFR: 523,992) is within $1.0 million too; the FY2024 and FY2025 editions restate it to 506,492, $16.5
+      million lower. FY2024 is $15.9 million lower in its own first printing (on the lower FY2024 other-income figure).
+    sources: [asset:utah_acfr_fy2025, asset:utah_acfr_fy2024, asset:utah_acfr_fy2023, asset:utah_acfr_fy2022, asset:utah_dabs_annual_report_fy2019, asset:utah_dabs_annual_report_fy2021]
+  - id: fy2023_fy2024_gap
+    status: unresolved
+    text: >-
+      Why the audited fund's revenue is about $16-17.5 million below what DABS's own reports imply in FY2024, and in
+      FY2023 as the later editions restate it. With the FY2022 and FY2023 ACFRs and DABS's 87th and 88th reports saved
+      (2026-10-14), the first-published FY2023 figures largely agree; the later restatement remains unexplained. The
+      comparison as first published is clarified, but the revised audited amount still needs an explanation. The FY2023
+      ACFR gives the fund FY2023 sales of 517,153 (the
+      figure Census reports) and operating revenue of 523,992, within $1.0 million of DABS's sales less the two deposits
+      plus other income, and DABS's 88th report prints the same FY2023 figures its later reports reprint. The FY2024 and
+      FY2025 editions restate FY2023's liquor revenue to 506,492 (17,500 less) and its expenses to 364,409 (19,380 less,
+      the amount of the cost-of-goods "allocation error"); the FY2024 ACFR's schedule of corrections books that error in
+      the General Fund and shows no DABS line under business-type activities, so neither restatement of the liquor line is
+      explained in the pages read. FY2024 is $15.9 million lower in its own first printing, in cash receipts as well as
+      revenue, so not a timing difference. Unresolved: what the restatement and the FY2024 figure leave out that DABS's
+      sales include. The cost corrections are costs and are not taken as the explanation.
+    sources: [asset:utah_acfr_fy2023, asset:utah_acfr_fy2022, asset:utah_dabs_annual_report_fy2023, asset:utah_dabs_annual_report_fy2022, asset:utah_acfr_fy2024, asset:utah_acfr_fy2025, gap:gap_ut_dabs_sales_basis]
+  - id: t10_fy2018
+    status: unresolved
+    text: >-
+      Census's Utah alcohol-tax series (T10) falls from $50.0 million in FY2017 to $8.0 million in FY2018. The fall is
+      close to the two deposits ($47.0 million in FY2017), which would fit Census counting them as alcohol taxes until
+      FY2017, but T10 less the deposits is not steady before then ($10.1 million in FY2013, $3.0 million in FY2017), and
+      receipts were net of the deposits throughout. An open question for Census.
+    sources: [gap:gap_stc_series_breaks]
+fy2024:
+  status: unresolved
+  text: >-
+    FY2024 does not follow the pattern. With the deposits taken as the law sets them, Census's receipts (equal to the
+    audited fund's sales) are $17.5 million below DABS's sales less the deposits, or $21.9 million on the other sales
+    figure DABS prints. Earlier figures for this gap ($27-32 million, then $7.7-12.7 million) came from other ways of
+    taking the deposits; the table below sets every way side by side with its terms. The saved state reports narrow it
+    down: the audited fund's revenue sits about $16 million below DABS's figures in FY2023 as well, and Census
+    follows the audited figure only in FY2024.
+  facts:
+    - status: documented
+      text: >-
+        DABS prints two FY2024 sales figures, both in its own FY2024 report: 578,856 in the five-year summary (p. 22) and
+        583,836 as "Operating Revenue (Note B)" in the income statement (p. 20, a page image; repeated on p. 30 of the
+        FY2025 report). The note itself is not printed.
+      sources: [asset:utah_dabs_annual_report_fy2024, asset:utah_dabs_annual_report_fy2025]
+    - status: reconciles_numerically
+      text: >-
+        DABS's FY2024 enforcement transfer (9,812) is 1.695% of 578,856, the rate in force from 2023-07-01, and its income
+        statement's one combined transfer for "School Lunch, Uniform School Fund and Public Safety" (67,699) is within $2
+        thousand of 10% plus 1.695% of 578,856 (67,697). The deposits were computed on 578,856.
+      sources: [rate:ut_enforcement_fy2024_fy2026, asset:utah_dabs_annual_report_fy2025]
+    - status: inferred
+      text: >-
+        The five-year summary's "School Lunch/Uniform School Fund" line (67,706) appears to include the enforcement
+        transfer that the next line lists again: it is 11.7% of sales against 9.8-10.0% in FY2020-FY2023, it matches the
+        combined transfer, and the summary's own lines (264,279 less 3,302, 1,750, 78,183, 9,812 and 67,706) fall 9,821
+        short of its printed net profit (113,347), but only 9 short without the separate enforcement line. The same page's
+        operations summary does count the two separately and reaches 113,347, but its salaries and "other expenses"
+        (71,663) are 9,822 below the first table's expenses and Parents Empowered (81,485); in FY2023 the two tables
+        agree. The report is not consistent with itself.
+      sources: [asset:utah_dabs_annual_report_fy2024, asset:utah_dabs_annual_report_fy2025]
+    - status: documented
+      text: >-
+        The FY2024 income statement does not add up either: net operating income (192,737) plus the non-operating total
+        (-71,981) is 120,756, against a printed net liquor profit of 113,347, which equals the five-year summary and the
+        liquor profit transfer in the FY2024 ACFR. The FY2025 column of the same statement adds up.
+      sources: [asset:utah_dabs_annual_report_fy2024, asset:utah_dabs_annual_report_fy2025, figure:acfr24_gf_transfer_fy2024]
+    - status: documented
+      text: >-
+        The audited FY2024 fund (FY2024 ACFR, proprietary funds statement): sales 493,645, total operating revenues
+        499,666, operating expenses 364,271 (purchases for resale 287,363), operating income 135,395. Its cash-flow
+        statement paid 67,575 of "Sales Tax and School Lunch Collections", and the Income Tax Fund booked 57,887 of
+        "Liquor Sales Allocated for School Lunch", 10% of DABS's 578,856: the deposits were paid on DABS's figure, while
+        the fund's own sales are 17,514 lower than that figure less both deposits.
+      sources: [asset:utah_acfr_fy2024]
+    - status: documented
+      text: >-
+        The FY2025 ACFR's note 2 explains its $9.750 million reduction of the fund's beginning net position: inventory
+        overstated by $9.312 million at the end of FY2024, and a $0.438 million error in reporting liquor returns from
+        licensees and stores. It restates FY2024 operating expenses (374.021 against 364.271 million, the same 9.750)
+        and FY2024 government-wide liquor expenses (377,684 against 367,934 thousand). Both corrections are costs, not
+        sales.
+      sources: [asset:utah_acfr_fy2025, figure:acfr25_liquor_expenses_fy2024, figure:acfr24_liquor_expenses_fy2024]
+    - status: documented
+      text: >-
+        The FY2024 ACFR reports that DABS found a $19.380 million FY2023 error "due to a new accounting system failing to
+        properly expense costs of goods sold", which had overstated the profit transferred to the General Fund. The
+        audited fund's operating revenue is about $16 million below DABS's figures in FY2023 and FY2024 alike (see
+        "audited revenue series" above); no note says why.
+      sources: [asset:utah_acfr_fy2024]
+  bases:
+    equation: >-
+      Left over = DABS sales − deposits − Census receipts. Census's FY2024 receipts (493,645, from its Individual Unit
+      File) equal the audited fund's sales in the FY2024 ACFR's proprietary funds statement.
+    statutory:
+      status: reconciles_numerically
+      label: The rates in law (10% and 1.695%)
+      text: >-
+        The basis the bridge uses. On 578,856 these amounts agree with what DABS printed, as one combined transfer, within
+        $2 thousand; on 583,836 they are what the law would give on that figure.
+    combined_transfer:
+      status: documented
+      label: DABS's one combined transfer
+      text: >-
+        As the income statement prints it (FY2024 report p. 20; FY2025 report p. 30). On 578,856 it gives the same left
+        over as the rates in law.
+    printed_lines:
+      status: inferred
+      label: The five-year summary's two lines
+      text: >-
+        67,706 plus 9,812 as printed. If the school line already includes the enforcement transfer (inferred, above),
+        this counts 9,812 twice. This is the "reported" variant in the year-by-year table, the source of the $7.7-12.7
+        million given for FY2024 on 2026-10-14.
+    school_only:
+      status: null
+      label: The school-meals deposit alone
+      text: >-
+        The calculation of 2026-10-13 ($27-32 million). It left out the enforcement deposit (§ 32B-2-305), which the same
+        reports subtract. Kept to show why that figure changed.
+  next: >-
+    Not settled by the documents saved, now including the FY2022 and FY2023 ACFRs and DABS's 87th and 88th reports
+    (saved 2026-10-14): the first-published FY2023 figures largely agree and the later restatement remains unexplained;
+    FY2024 does not agree in its own first printing. A records request asking for both is drafted, not sent
+    (docs/gaps/utah-missing-records.md, draft request C). An account from
+    DABS or the State Auditor of what the FY2024 figures and the FY2023 restatement leave out could settle it. DABS's
+    FY2024 Note B is referred to but not printed.
+year_notes:
+  2012: "DABS's deposits are 10.5% and 1.05% of sales, as if computed on sales plus the sales-tax line; only the reported variant reconciles."
+  2013: "As in FY2012. The report's own summary misses its printed net profit by $0.05 million; the lines used here are unaffected."
+  2014: "The report's own summary misses its printed net profit by $0.05 million; the lines used here are unaffected."
+  2015: "The 81st and 84th reports print the same lines; both summaries miss their printed net profit by about $0.08 million."
+  2016: "Sales from the FY2019 report (405,911 thousand) and the FY2016 report's statement of operation, page 20 (405,911,384); the FY2016 report's page 8 prints 405,991,384, apparently a transposition."
+  2022: "DABS's two reported deposits are both 97.8% of the statutory amounts; only the statutory variant reconciles."
+  2023: "Unresolved: $1.07 million on either variant. Census follows DABS's figures this year; the audited fund's revenue is about $16 million lower (see the audited revenue series)."
+  2024: "Unresolved; see FY2024 below. The printed school line appears to include the enforcement deposit, so the reported variant counts it twice."
+  2025: "Census has not published FY2025, so this year is compared with the audited fund's sales (FY2025 ACFR). DABS's reported deposits (10.32% and 1.741%) differ from the statutory rates; only the statutory variant reconciles."
+sales_tax_basis:
+  - id: annual
+    series: DABS annual sales ("Sales net of Taxes", later "Revenue from Liquor Sales")
+    status: documented
+    text: >-
+      Before sales tax. The reports' own Note B: "Sales are reported at published prices; sales taxes excluded" (FY2016
+      and FY2019 reports) and "sales taxes are liabilities, not revenues, so are therefore excluded" (FY2021 report). The
+      FY2012-FY2019 reports label the line "Sales net of Taxes"; the FY2024-FY2025 reports carry the same series on
+      under "Revenue from Liquor Sales" and cite Note B on their income statement without printing it.
+    sources: [asset:utah_dabs_annual_report_fy2016, asset:utah_dabs_annual_report_fy2019, asset:utah_dabs_annual_report_fy2021, asset:utah_dabs_annual_report_fy2025]
+    scenario_use: The Utah revenue scenarios' DABS-based baseline uses this series; it is before sales tax.
+  - id: monthly
+    series: DABS monthly Sales Analysis Reports ("Gross Sales")
+    status: unresolved
+    text: >-
+      Statewide shelf prices times bottles (checked product by product). The annual reports' Note B says sales are
+      recorded "at published prices; sales taxes excluded", which points to published prices being before tax, but the
+      monthly reports do not define their field, and a note about the annual statements does not settle another
+      report's column. The FY2026 annual figure, when published, can be compared with the twelve monthly sums ($543.7
+      million).
+    sources: [asset:utah_dabs_annual_report_fy2019, gap:gap_ut_dabs_sales_basis, lead:lead_ut_dabs_price_lists]
+    scenario_use: >-
+      The scenarios use only wine's share of these sales, which a tax applied at one rate to every beverage would
+      not change.
+  - id: audited
+    series: Audited fund sales (ACFR) and Census receipts
+    status: documented
+    text: >-
+      Net of sales tax, and outside the fund: the school-meals deposit, which the fund pays out as "school lunch
+      collections" and the Income Tax Fund books as revenue (documented); the enforcement deposit by the arithmetic
+      (inferred).
+    sources: [asset:utah_acfr_fy2025, asset:utah_acfr_fy2024]
+    scenario_use: Not used by the scenarios.
+corrections:
+  - on: "2026-10-14"
+    was: >-
+      2026-10-13: "the gap is the statutory 10% school-meals deposit" plus about the Parents Empowered and underage
+      drinking prevention amounts, with FY2024 leaving $27-32 million after the 10%.
+    now: >-
+      The second component is the statutory enforcement-fund deposit (DABS's "Transfer to SBI"), which earlier
+      extraction had missed; Parents Empowered and underage drinking prevention are fixed amounts and do not belong in
+      the bridge. Exclusion from Census receipts is inferred, not documented. FY2024's residual is $17.5 million after
+      both statutory deposits.
+  - on: "2026-10-14 (later)"
+    was: >-
+      That Census and the auditors leave the deposits out was inferred, and FY2024 looked like a one-year break.
+    now: >-
+      With the state reports saved: the school-meals deposit is documented as outside the fund's sales (paid out as
+      collections, booked by the Income Tax Fund); the enforcement deposit is still inferred. The audited fund's revenue
+      is about $16 million below DABS's figures in FY2023 as well as FY2024; Census follows the audited figure only in
+      FY2024. The tax basis of DABS's annual sales is documented by DABS's own Note B in three saved reports.
+peer:
+  geo_id: "state:42"
+  name: Pennsylvania
+  years: [2023, 2024, 2025]
+  saved_analysis: utah_and_liquor_control_peers_revenue
+  structure: >-
+    Both states wholesale and retail through their own systems. Utah's Department of Alcoholic Beverage Services sells
+    spirits, wine and heavy beer through 51 state stores and contract package agencies; Pennsylvania's Liquor Control
+    Board sells wine and spirits through Fine Wine & Good Spirits stores, online and to licensees. Pennsylvania collects
+    an 18% liquor tax and 6% sales tax on its sales, which its sales figure excludes; Utah has no separate liquor tax,
+    and the statutory deposits sit inside DABS's sales. Utah's figures are DABS's own (unaudited); Pennsylvania's are
+    the Auditor General's audited statements. Both are saved and pinned, transcribed by hand and not yet reviewed by a
+    person.
+  rows:
+    - id: census_receipts
+      label: State liquor-store receipts (Census A90)
+      utah: {measure: census_liquor_stores_revenue}
+      peer: {measure: census_liquor_stores_revenue}
+      comparable: "yes"
+      why: >-
+        The same Census item for both: what the state's liquor enterprise took in, net of taxes collected through it. It
+        equals Pennsylvania's audited sales net of taxes (FY2023-FY2024) and Utah's audited fund sales in FY2024; Utah's
+        FY2023 figure follows DABS's own reports instead. Beverages differ (Utah includes heavy beer). Census has no
+        FY2025 yet.
+    - id: own_sales
+      label: Sales as each system reports them
+      utah: {measure: ut_dabs_liquor_sales_revenue, label: "DABS 'Revenue from Liquor Sales' (unaudited)"}
+      peer: {measure: pa_plcb_ssf_sales_net_of_taxes, label: "PLCB 'Sales net of taxes' (audited)"}
+      comparable: partly
+      why: >-
+        Both exclude sales tax, and Pennsylvania's also its 18% liquor tax. Utah's is before the school-meals and
+        enforcement deposits (about 11-12% of sales), which Utah's audited fund books outside its sales, so the Census
+        row is the like-for-like one.
+    - id: cost_of_goods
+      label: Cost of the products sold
+      utah: {measure: ut_dabs_cost_of_liquor_sold}
+      peer: {measure: pa_plcb_ssf_cost_of_goods_sold}
+      comparable: partly
+      why: >-
+        Both are what each system paid for what it sold. Utah's statute puts inbound shipping into landed case cost;
+        Pennsylvania's definition in the audit notes has not been checked.
+    - id: gross_margin
+      label: Gross margin (gross profit as a share of the system's own sales)
+      utah: {ratio: [{measure: ut_dabs_gross_profit}, {measure: ut_dabs_liquor_sales_revenue}]}
+      peer: {ratio: [{measure: pa_plcb_ssf_gross_profit}, {measure: pa_plcb_ssf_sales_net_of_taxes}]}
+      comparable: "no"
+      why: >-
+        Different by design. Utah's markup carries the statutory deposits and there is no separate liquor tax;
+        Pennsylvania collects 18% liquor tax outside its sales. Part of Utah's higher margin is money Pennsylvania
+        collects as tax. Not a measure of efficiency or of what either state keeps.
+    - id: operating_expenses
+      label: Operating expenses, excluding the cost of products
+      utah: {measure: ut_dabs_total_operating_expenses, label: "DABS income statement (FY2024-FY2025 only)"}
+      peer: {measure: pa_plcb_ssf_operating_expenses}
+      comparable: partly
+      why: >-
+        Both exclude the cost of products. Pennsylvania's include wholesale, e-commerce, regulatory and
+        Commonwealth-provided services lines; how Utah splits operating from non-operating costs is DABS's own. The
+        systems differ greatly in size; compare shares of sales, not totals.
+    - id: operating_expense_share
+      label: Operating expenses as a share of the system's own sales
+      utah: {ratio: [{measure: ut_dabs_total_operating_expenses}, {measure: ut_dabs_liquor_sales_revenue}]}
+      peer: {ratio: [{measure: pa_plcb_ssf_operating_expenses}, {measure: pa_plcb_ssf_sales_net_of_taxes}]}
+      comparable: partly
+      why: >-
+        The denominators differ in what they include (Utah's sales carry the statutory deposits), which lowers Utah's
+        share by about a tenth.
+    - id: general_fund_transfer
+      label: Transfer to the General Fund
+      utah: {measure: ut_dabs_net_profit_general_fund}
+      peer: {measure: pa_plcb_ssf_transfer_general_fund}
+      comparable: partly
+      why: >-
+        Both are cash paid to the state's General Fund. Utah's law transfers the net profit (32B-2-301; limited to
+        cash-supported profit under recent changes, per the ACFR); Pennsylvania's Board fixes the amount with the
+        Governor's approval (Liquor Code section 802(f)). Neither is the state's whole take: deposits, earmarks and
+        taxes are separate.
+    - id: enforcement
+      label: Alcohol enforcement funding from the system
+      utah: {measure: ut_dabs_sbi_transfer, label: "Enforcement-fund deposit ('Transfer to SBI')"}
+      peer: {measure: pa_plcb_ssf_transfer_psp_enforcement, label: "PSP enforcement transfer"}
+      comparable: partly
+      why: >-
+        Both fund state police alcohol enforcement. Utah's is a statutory share of gross revenue (32B-2-305);
+        Pennsylvania's is an annual appropriation from the fund (Liquor Code section 802(e)).
+    - id: school_meals
+      label: School-meals deposit
+      utah: {measure: ut_dabs_school_lunch_transfer}
+      peer: {none: "No equivalent"}
+      comparable: "no"
+      why: >-
+        Pennsylvania has no counterpart. DABS's FY2024 line (67,706) appears to include the enforcement deposit (see
+        FY2024).
+    - id: prevention
+      label: Prevention and treatment programs
+      utah: {measure: ut_dabs_parents_empowered, label: "Parents Empowered (fixed amount)"}
+      peer: {measure: pa_plcb_ssf_transfer_drug_alcohol_programs, label: "Drug and alcohol programs (2% of annual profits, section 802(c))"}
+      comparable: partly
+      why: Both pay for prevention; the amounts are set by different rules and Utah also funds underage drinking prevention separately.
+    - id: operating_income
+      label: Operating income
+      utah: {measure: ut_dabs_net_operating_income, label: "DABS net operating income (before its deposits)"}
+      peer: {measure: pa_plcb_ssf_total_operating_income, label: "PLCB total operating income (includes license fees and fines)"}
+      comparable: "no"
+      why: >-
+        Defined differently: Pennsylvania's includes license fees and fines and is before enforcement and the General
+        Fund transfer; DABS's is before its statutory deposits, and the audited Utah fund's operating income
+        ($111.5 million in FY2025) is after them. Not a profit comparison.

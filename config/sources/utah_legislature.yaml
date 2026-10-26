@@ -1,0 +1,37 @@
+source_id: utah_legislature
+publisher: Utah State Legislature
+title: Utah enrolled bills and other Utah Code sections (alcoholic beverage control)
+landing_url: https://le.utah.gov/
+citation: "Utah State Legislature. 2019 General Session S.B. 132 (Beer Amendments), enrolled; Utah Code Title 32B (Alcoholic Beverage Control Act). https://le.utah.gov/"
+update_frequency: Each legislative session
+source_family: policy
+rights_status: government_edict
+notes: >-
+  Enrolled bills and code sections not tracked version by version. Sections whose history is checked day by day
+  (32B-1-102, 32B-4-401, 32B-4-402, 32B-11-208, 32B-11-608, 59-15-101) are in config/sources/utah_code_history.yaml.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: ut_sb0132_2019_enrolled
+    url: https://le.utah.gov/~2019/bills/sbillenr/SB0132.htm
+    edition: "S.B. 132 Beer Amendments, 2019 General Session, enrolled copy (Laws of Utah 2019, ch. 336)"
+    source_series: utah_enrolled_bills
+    source_vintage: 2019gs
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: ut_sb0132_2019_status
+    url: https://le.utah.gov/~2019/bills/static/SB0132.html
+    edition: "S.B. 132 (2019) bill status page"
+    source_series: utah_bill_status
+    source_vintage: retrieved_2026_10
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: ut_code_32b_7_202_v20260506
+    url: https://le.utah.gov/xcode/Title32B/Chapter7/C32B-7-S202_2026050620260506.html
+    edition: "Utah Code 32B-7-202 General operational requirements for off-premise beer retailer, version effective 2026-05-06"
+    source_series: utah_code
+    source_vintage: v20260506
+    format: html
+    priority: 20
+    redistribute_raw: true

@@ -1,0 +1,202 @@
+source_id: utah_dabs_sales_analysis
+publisher: Utah Department of Alcoholic Beverage Services (DABS)
+title: Sales Analysis Report (monthly; gross sales and 9-liter case sales by product)
+landing_url: https://abs.utah.gov/
+citation: >-
+  Utah Department of Alcoholic Beverage Services. Sales Analysis Report, monthly editions fiscal year 2025
+  period 11 (May 2025) to fiscal year 2027 period 2 (August 2026). Spreadsheets downloaded by the project
+  owner on 2026-10-09. https://abs.utah.gov/
+update_frequency: Monthly (one report per fiscal period; period 1 is July)
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  One row per product with its DABS class code and class name, gross sales in dollars and sales in
+  9-liter case equivalents for the month; every report's rows add up exactly to its printed totals (checked
+  by the adapter). Gross sales are statewide shelf prices times bottles sold: for products with ten or more
+  bottles in a month, 88% divide to a whole number of cents (validation check
+  dabs_monthly_gross_sales_at_shelf_prices; 2026-10-11). Whether the shelf prices include sales tax is not
+  stated by DABS and is unresolved (docs/fiscal-reconciliation.md). Products are grouped into beverage types
+  through metadata/dabs_class_beverage_map.csv,
+  which follows DABS's own class names and department groups. Cider is kept apart (DABS files it with beer;
+  federal law taxes most cider as wine), and so are premixed drinks (spirit or wine base not stated). The
+  reports do not say what share went to licensees (restaurants, bars) rather than shoppers. DABS's annual report line "Revenue from Liquor Sales" (unaudited) is a separate
+  figure and is never added to these. The exact download page was not recorded. The spreadsheets are not
+  redistributed; only the totals by beverage type are.
+host_min_interval_seconds: 10
+assets:
+  - asset_id: utah_dabs_sales_analysis_fy2025_p11
+    method: manual_import
+    filename: Sales-Analysis_FY25_P11_May.xlsx
+    edition: "Sales Analysis Report, FY2025 period 11 (May 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2025_p11
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2025, period: 11, month: "2025-05"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2025_p12
+    method: manual_import
+    filename: Sales-Analysis_FY25_P12_June.xlsx
+    edition: "Sales Analysis Report, FY2025 period 12 (June 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2025_p12
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2025, period: 12, month: "2025-06"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p01
+    method: manual_import
+    filename: Sales-Analysis_FY26_P01_Jul.xlsx
+    edition: "Sales Analysis Report, FY2026 period 1 (July 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p01
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 1, month: "2025-07"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p02
+    method: manual_import
+    filename: Sales-Analysis_FY26_P02_Aug.xlsx
+    edition: "Sales Analysis Report, FY2026 period 2 (August 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p02
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 2, month: "2025-08"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p03
+    method: manual_import
+    filename: Sales-Analysis_FY26_P03_Sep.xlsx
+    edition: "Sales Analysis Report, FY2026 period 3 (September 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p03
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 3, month: "2025-09"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p04
+    method: manual_import
+    filename: Sales-Analysis_FY26_P04_Oct.xlsx
+    edition: "Sales Analysis Report, FY2026 period 4 (October 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p04
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 4, month: "2025-10"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p05
+    method: manual_import
+    filename: Sales-Analysis_FY26_P05_Nov.xlsx
+    edition: "Sales Analysis Report, FY2026 period 5 (November 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p05
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 5, month: "2025-11"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p06
+    method: manual_import
+    filename: Sales-Analysis_FY26_P06_Dec.xlsx
+    edition: "Sales Analysis Report, FY2026 period 6 (December 2025)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p06
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 6, month: "2025-12"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p07
+    method: manual_import
+    filename: Sales-Analysis_FY26_P07_Jan.xlsx
+    edition: "Sales Analysis Report, FY2026 period 7 (January 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p07
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 7, month: "2026-01"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p08
+    method: manual_import
+    filename: Sales-Analysis_FY26_P08_Feb.xlsx
+    edition: "Sales Analysis Report, FY2026 period 8 (February 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p08
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 8, month: "2026-02"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p09
+    method: manual_import
+    filename: Sales-Analysis_FY26_P09_Mar.xlsx
+    edition: "Sales Analysis Report, FY2026 period 9 (March 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p09
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 9, month: "2026-03"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p10
+    method: manual_import
+    filename: Sales-Analysis_FY26_P10_Apr.xlsx
+    edition: "Sales Analysis Report, FY2026 period 10 (April 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p10
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 10, month: "2026-04"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p11
+    method: manual_import
+    filename: Sales-Analysis_FY26_P11_May.xlsx
+    edition: "Sales Analysis Report, FY2026 period 11 (May 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p11
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 11, month: "2026-05"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2026_p12
+    method: manual_import
+    filename: Sales-Analysis_FY26_P12_Jun.xlsx
+    edition: "Sales Analysis Report, FY2026 period 12 (June 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2026_p12
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2026, period: 12, month: "2026-06"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2027_p01
+    method: manual_import
+    filename: Sales-Analysis_FY27_P01_Jul.xlsx
+    edition: "Sales Analysis Report, FY2027 period 1 (July 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2027_p01
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2027, period: 1, month: "2026-07"}
+    priority: 20
+    redistribute_raw: false
+  - asset_id: utah_dabs_sales_analysis_fy2027_p02
+    method: manual_import
+    filename: Sales-Analysis_FY27_P02_Aug.xlsx
+    edition: "Sales Analysis Report, FY2027 period 2 (August 2026)"
+    source_series: utah_dabs_sales_analysis
+    source_vintage: fy2027_p02
+    format: xlsx
+    parser: dabs_sales_analysis
+    options: {fiscal_year: 2027, period: 2, month: "2026-08"}
+    priority: 20
+    redistribute_raw: false

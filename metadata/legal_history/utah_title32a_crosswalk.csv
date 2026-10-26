@@ -1,0 +1,415 @@
+mapping_id,old_title,old_section,old_section_range_end,old_heading,new_title,new_section,general_requirement,relation_type,policy_concept,effective_date,mapping_source_asset,locator,comment,mapping_review_status
+ut32a_0001,32A,32A-1-101,,Short title,32B,32B-1-101,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0002,32A,32A-1-102,,Application of title-Severability,32B,32B-1-104,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0003,32A,32A-1-102,,Application of title-Severability,32B,32B-1-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0004,32A,32A-1-103,,Exercise of police powers,32B,32B-1-104,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0005,32A,32A-1-104,,Policy,32B,32B-1-103,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0006,32A,32A-1-105,,Definitions.*,32B,32B-1-102,,merged,definitions: wine is liquor; liquor excludes beer; off-premise beer retailer; beer strength,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0007,32A,32A-1-106,,Alcoholic Beverage Control Commission-Membership-Oaths and bond-Per diem- Offices-Removal-Meetings,32B,32B-2-201,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Requirement that commissioners post a bond removed,finding_aid_unreviewed
+ut32a_0008,32A,32A-1-107,,Powers and duties of the commission,32B,32B-2-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Liquor merchandise inventory control reference transferred to the powers and duties of department,finding_aid_unreviewed
+ut32a_0009,32A,32A-1-107,,Powers and duties of the commission,32B,32B-2-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Liquor merchandise inventory control reference transferred to the powers and duties of department,finding_aid_unreviewed
+ut32a_0010,32A,32A-1-107,,Powers and duties of the commission,32B,32B-3-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Liquor merchandise inventory control reference transferred to the powers and duties of department,finding_aid_unreviewed
+ut32a_0011,32A,32A-1-107,,Powers and duties of the commission,32B,32B-3-205,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Liquor merchandise inventory control reference transferred to the powers and duties of department,finding_aid_unreviewed
+ut32a_0012,32A,32A-1-107,,Powers and duties of the commission,32B,32B-5-205,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,Liquor merchandise inventory control reference transferred to the powers and duties of department,finding_aid_unreviewed
+ut32a_0013,32A,32A-1-108,,Director of alcoholic beverage control,32B,32B-2-205,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0014,32A,32A-1-109,,Powers and duties of the director,32B,32B-2-206,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0015,32A,32A-1-110,,Department of Alcoholic Beverage Control-Created-Organization,32B,32B-2-203,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0016,32A,32A-1-111,,Department employees-Requirements,32B,32B-1-303,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0017,32A,32A-1-111,,Department employees-Requirements,32B,32B-2-207,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0018,32A,32A-1-112,,Services of State Health Laboratory,32B,32B-2-208,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0019,32A,32A-1-113,,Department expenditures and revenues-Liquor Control Fund-Exempt from Division of Finance-Annual audits,32B,32B-2-301,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0020,32A,32A-1-113,,Department expenditures and revenues-Liquor Control Fund-Exempt from Division of Finance-Annual audits,32B,32B-2-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0021,32A,32A-1-113,,Department expenditures and revenues-Liquor Control Fund-Exempt from Division of Finance-Annual audits,32B,32B-3-206,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0022,32A,32A-1-114,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,.,finding_aid_unreviewed
+ut32a_0023,32A,32A-1-115,,Alcoholic Beverage Enforcement and Treatment Restricted Account-Distribution,32B,"Chapter 2, Part 4",,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0024,32A,32A-1-116,,Purchase of liquor,32B,32B-2-303,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0025,32A,32A-1-117,,Department may sue and be sued,32B,32B-2-204,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0026,32A,32A-1-118,,Liability insurance-Governmental immunity,32B,32B-2-204,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0027,32A,32A-1-119,,Disciplinary proceedings-Procedure,32B,32B-3-102,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0028,32A,32A-1-119,,Disciplinary proceedings-Procedure,32B,32B-3-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0029,32A,32A-1-119,,Disciplinary proceedings-Procedure,32B,32B-3-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0030,32A,32A-1-119,,Disciplinary proceedings-Procedure,32B,32B-3-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0031,32A,32A-1-119,,Disciplinary proceedings-Procedure,32B,32B-3-205,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0032,32A,32A-1-119.5,,Timing of reporting violations,32B,32B-1-102,,split,definitions: wine is liquor; liquor excludes beer; off-premise beer retailer; beer strength,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0033,32A,32A-1-119.5,,Timing of reporting violations,32B,32B-3-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0034,32A,32A-1-120,,Judicial review-Enforcement,32B,32B-3-207,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0035,32A,32A-1-121,,Reports,32B,32B-2-204,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0036,32A,32A-1-122,,Liquor prices-School lunch program,32B,32B-2-304,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0037,32A,32A-1-123,,Licensee compliance with other laws,32B,32B-1-203,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0038,32A,32A-1-124,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,.,finding_aid_unreviewed
+ut32a_0039,32A,32A-1-201,32A-1-205,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,-,finding_aid_unreviewed
+ut32a_0040,32A,32A-1-301,,Unlawful transfer or use of proof of age-False information,32B,32B-1-403,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0041,32A,32A-1-302,,Presentation of proof of age upon request,32B,32B-1-404,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 0,,finding_aid_unreviewed
+ut32a_0042,32A,32A-1-303,,Additional requirements when age is in question,32B,32B-1-405,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0043,32A,32A-1-304,,Acceptance of identification-Evidence,32B,32B-1-406,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0044,32A,32A-1-304,,Acceptance of identification-Evidence,32B,32B-1-408,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0045,32A,32A-1-304.5,,Verification of proof of age by certain club licensees,32B,32B-1-402,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0046,32A,32A-1-304.5,,Verification of proof of age by certain club licensees,32B,32B-1-407,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0047,32A,32A-1-305,,Penalty,32B,32B-1-408,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0048,32A,32A-1-401,,"Alcohol training and education-Revocation, suspension, or nonrenewal of licenses",32B,32B-5-403,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0049,32A,32A-1-501,32A-1-504,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,-,finding_aid_unreviewed
+ut32a_0050,32A,32A-1-601,,Title-Purpose-Application to other laws,32B,32B-1-501,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0051,32A,32A-1-601,,Title-Purpose-Application to other laws,32B,32B-1-502,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0052,32A,32A-1-602,,General restrictions on attire and conduct,32B,32B-1-504,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0053,32A,32A-1-603,,Sexually oriented entertainer,32B,32B-1-505,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0054,32A,32A-1-604,,Compliance-Disciplinary proceeding,32B,32B-1-506,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0055,32A,32A-1-701,,Title,32B,32B-1-301,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0056,32A,32A-1-702,,Requirement for a criminal background check,32B,32B-1-305,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0057,32A,32A-1-703,,Use of information from a criminal background check,32B,32B-1-306,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0058,32A,32A-1-704,,Criminal background check procedure,32B,32B-1-307,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0059,32A,32A-1-801,,Title,32B,32B-1-601,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0060,32A,32A-1-802,,Definitions,32B,32B-1-602,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0061,32A,32A-1-803,,Power of the commission and department to classify flavored malt beverages,32B,32B-1-603,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0062,32A,32A-1-804,,Requirements for labeling and packaging-Authority of the commission and department,32B,32B-1-604,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0063,32A,32A-1-805,,General procedure for approval,32B,32B-1-605,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0064,32A,32A-1-806,,Special procedure for flavored malt beverages,32B,32B-1-606,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0065,32A,32A-1-807,,Rulemaking authority,32B,32B-1-607,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0066,32A,32A-1-808,,Disciplinary proceeding for violation,32B,32B-1-608,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0067,32A,32A-1-809,,Transition protections,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,Old transition language removed,finding_aid_unreviewed
+ut32a_0068,32A,32A-2-101,,Commission's power to establish state stores-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0069,32A,32A-2-101,,Commission's power to establish state stores-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0070,32A,32A-2-101,,Commission's power to establish state stores-Limitations,32B,32B-2-501,,split,retail arrangement: state stores staffed by state employees,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0071,32A,32A-2-102,,State store-Commission and department duties before establishing,32B,32B-2-502,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0072,32A,32A-2-103,,Operational restrictions,32B,32B-2-503,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0073,32A,32A-2-104,,Delivery of liquor to state stores,32B,32B-2-504,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0074,32A,32A-3-101,,Commission's power to establish package agencies-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0075,32A,32A-3-101,,Commission's power to establish package agencies-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0076,32A,32A-3-101,,Commission's power to establish package agencies-Limitations,32B,32B-2-601,,split,special channel: package agency contract authority,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0077,32A,32A-3-101,,Commission's power to establish package agencies-Limitations,32B,32B-2-605,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0078,32A,32A-3-102,,Application requirements,32B,32B-2-602,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0079,32A,32A-3-103,,Qualifications,32B,32B-1-304,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0080,32A,32A-3-104,,Commission and department duties before establishing,32B,32B-2-603,,renumbered,special channel: host business considered for a package agency,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0081,32A,32A-3-105,,Bond,32B,32B-2-604,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0082,32A,32A-3-106,,Operational restrictions,32B,32B-2-605,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0083,32A,32A-3-107,,Delivery of liquor to package agencies,32B,32B-2-606,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 1,,finding_aid_unreviewed
+ut32a_0084,32A,32A-3-108,,Return of inventory,32B,32B-2-607,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0085,32A,32A-4-101,,Commission's power to grant licenses-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0086,32A,32A-4-101,,Commission's power to grant licenses-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0087,32A,32A-4-101,,Commission's power to grant licenses-Limitations,32B,32B-5-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0088,32A,32A-4-101,,Commission's power to grant licenses-Limitations,32B,32B-6-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0089,32A,32A-4-102,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0090,32A,32A-4-102,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0091,32A,32A-4-102,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0092,32A,32A-4-102,,Application and renewal requirements,32B,32B-6-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0093,32A,32A-4-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0094,32A,32A-4-103,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0095,32A,32A-4-104,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0096,32A,32A-4-105,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0097,32A,32A-4-105,,Bond,32B,32B-6-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0098,32A,32A-4-106,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0099,32A,32A-4-106,,Operational restrictions,32B,32B-6-205,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0100,32A,32A-4-106,,Operational restrictions,32B,32B-6-205.1,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0101,32A,32A-4-107,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,.,finding_aid_unreviewed
+ut32a_0102,32A,32A-4-201,,Commission's power to grant licenses-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0103,32A,32A-4-201,,Commission's power to grant licenses-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0104,32A,32A-4-201,,Commission's power to grant licenses-Limitations,32B,32B-6-503,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0105,32A,32A-4-202,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0106,32A,32A-4-202,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0107,32A,32A-4-202,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0108,32A,32A-4-202,,Application and renewal requirements,32B,32B-6-504,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0109,32A,32A-4-203,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0110,32A,32A-4-203,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0111,32A,32A-4-204,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0112,32A,32A-4-205,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0113,32A,32A-4-205,,Bond,32B,32B-6-504,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0114,32A,32A-4-206,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0115,32A,32A-4-206,,Operational restrictions,32B,32B-6-505,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0116,32A,32A-4-207,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,.,finding_aid_unreviewed
+ut32a_0117,32A,32A-4-301,,Definitions,32B,32B-6-302,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0118,32A,32A-4-302,,Commission's power to grant licenses-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0119,32A,32A-4-302,,Commission's power to grant licenses-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0120,32A,32A-4-302,,Commission's power to grant licenses-Limitations,32B,32B-5-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0121,32A,32A-4-302,,Commission's power to grant licenses-Limitations,32B,32B-6-303,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0122,32A,32A-4-303,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0123,32A,32A-4-303,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0124,32A,32A-4-303,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0125,32A,32A-4-303,,Application and renewal requirements,32B,32B-6-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0126,32A,32A-4-304,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0127,32A,32A-4-304,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0128,32A,32A-4-305,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0129,32A,32A-4-306,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0130,32A,32A-4-306,,Bond,32B,32B-6-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0131,32A,32A-4-307,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0132,32A,32A-4-307,,Operational restrictions,32B,32B-6-305,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0133,32A,32A-4-307,,Operational restrictions,32B,32B-6-305.1,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 2,,finding_aid_unreviewed
+ut32a_0134,32A,32A-4-401,,Definitions-Commission's power to grant licenses-Limitations,32B,32B-1-102,,split,definitions: wine is liquor; liquor excludes beer; off-premise beer retailer; beer strength,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0135,32A,32A-4-401,,Definitions-Commission's power to grant licenses-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0136,32A,32A-4-401,,Definitions-Commission's power to grant licenses-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0137,32A,32A-4-401,,Definitions-Commission's power to grant licenses-Limitations,32B,32B-6-603,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0138,32A,32A-4-402,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0139,32A,32A-4-402,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0140,32A,32A-4-402,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0141,32A,32A-4-402,,Application and renewal requirements,32B,32B-6-604,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0142,32A,32A-4-403,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0143,32A,32A-4-403,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0144,32A,32A-4-404,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0145,32A,32A-4-405,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0146,32A,32A-4-405,,Bond,32B,32B-6-604,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0147,32A,32A-4-406,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0148,32A,32A-4-406,,Operational restrictions,32B,32B-6-605,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0149,32A,32A-4-407,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,.,finding_aid_unreviewed
+ut32a_0150,32A,32A-4a-101,,Title,32B,32B-8-101,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0151,32A,32A-4a-102,,Definitions,32B,32B-8-102,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0152,32A,32A-4a-201,,Commission's power to license a resort-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0153,32A,32A-4a-201,,Commission's power to license a resort-Limitations,32B,32B-8-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0154,32A,32A-4a-202,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0155,32A,32A-4a-202,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0156,32A,32A-4a-202,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0157,32A,32A-4a-202,,Application and renewal requirements,32B,32B-8-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0158,32A,32A-4a-203,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0159,32A,32A-4a-203,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0160,32A,32A-4a-203,,Qualifications,32B,32B-8-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0161,32A,32A-4a-204,,Commission and department duties before granting resort license,32B,32B-5-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0162,32A,32A-4a-204,,Commission and department duties before granting resort license,32B,32B-8-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0163,32A,32A-4a-205,,Bond,32B,32B-5-204,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0164,32A,32A-4a-301,,Commission's power to grant resort spa sublicense-Limitations,32B,32B-8-301,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0165,32A,32A-4a-302,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0166,32A,32A-4a-302,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0167,32A,32A-4a-302,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0168,32A,32A-4a-302,,Application and renewal requirements,32B,32B-8-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0169,32A,32A-4a-303,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0170,32A,32A-4a-303,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0171,32A,32A-4a-303,,Qualifications,32B,32B-8-303,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0172,32A,32A-4a-304,,Commission and department duties before granting a resort spa sublicense,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0173,32A,32A-4a-305,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0174,32A,32A-4a-305,,Operational restrictions,32B,32B-8-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0175,32A,32A-4a-401,,Operational restrictions for resort license,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0176,32A,32A-4a-401,,Operational restrictions for resort license,32B,32B-8-401,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0177,32A,32A-4a-402,,Operational restrictions for a sublicense,32B,32B-8-402,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0178,32A,32A-4a-501,,Enforcement of qualifications for a resort license or sublicense,32B,32B-8-501,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0179,32A,32A-4a-502,,Enforcement of operational restrictions for a resort license or sublicense,32B,32B-8-502,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0180,32A,32A-4a-503,,Enforcement of Nuisance Licensee Act,32B,32B-8-503,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 3,,finding_aid_unreviewed
+ut32a_0181,32A,32A-5-101,,Commission's power to license clubs-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0182,32A,32A-5-101,,Commission's power to license clubs-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0183,32A,32A-5-101,,Commission's power to license clubs-Limitations,32B,32B-5-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0184,32A,32A-5-101,,Commission's power to license clubs-Limitations,32B,32B-6-403,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0185,32A,32A-5-101,,Commission's power to license clubs-Limitations,32B,32B-6-404,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0186,32A,32A-5-102,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0187,32A,32A-5-102,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0188,32A,32A-5-102,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0189,32A,32A-5-102,,Application and renewal requirements,32B,32B-6-405,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0190,32A,32A-5-102,,Application and renewal requirements,32B,32B-6-407,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0191,32A,32A-5-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0192,32A,32A-5-103,,Qualifications,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0193,32A,32A-5-104,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0194,32A,32A-5-105,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,.,finding_aid_unreviewed
+ut32a_0195,32A,32A-5-106,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0196,32A,32A-5-106,,Bond,32B,32B-6-405,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0197,32A,32A-5-107,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0198,32A,32A-5-107,,Operational restrictions,32B,32B-6-406,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0199,32A,32A-5-107,,Operational restrictions,32B,32B-6-406.1,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0200,32A,32A-5-107,,Operational restrictions,32B,32B-6-407,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0201,32A,32A-5-108,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,.,finding_aid_unreviewed
+ut32a_0202,32A,32A-5-109,,Transition in types of clubs,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,Old transition language removed,finding_aid_unreviewed
+ut32a_0203,32A,32A-5-110,,Information obtained by investigator,32B,32B-1-102,,split,definitions: wine is liquor; liquor excludes beer; off-premise beer retailer; beer strength,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0204,32A,32A-5-110,,Information obtained by investigator,32B,32B-6-408,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0205,32A,32A-6-101,,Commission's power to issue permits-Limitations,32B,32B-10-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0206,32A,32A-6-101,,Commission's power to issue permits-Limitations,32B,32B-10-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0207,32A,32A-6-102,,Application and renewal requirements,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0208,32A,32A-6-102,,Application and renewal requirements,32B,32B-10-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0209,32A,32A-6-102,,Application and renewal requirements,32B,32B-10-207,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0210,32A,32A-6-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0211,32A,32A-6-103,,Qualifications,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0212,32A,32A-6-104,,Duties of commission and department before issuing permits,32B,32B-10-204,yes,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0213,32A,32A-6-105,,Operational restrictions,32B,32B-10-206,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0214,32A,32A-6-201,,Application and renewal requirements,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0215,32A,32A-6-201,,Application and renewal requirements,32B,32B-10-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0216,32A,32A-6-201,,Application and renewal requirements,32B,32B-10-303,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0217,32A,32A-6-202,,Operational restrictions,32B,32B-10-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0218,32A,32A-6-202,,Operational restrictions,32B,32B-10-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0219,32A,32A-6-301,,Application requirements,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0220,32A,32A-6-301,,Application requirements,32B,32B-10-403,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0221,32A,32A-6-302,,Operational restrictions,32B,32B-10-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0222,32A,32A-6-302,,Operational restrictions,32B,32B-10-404,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0223,32A,32A-6-401,,Application requirements,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0224,32A,32A-6-401,,Application requirements,32B,32B-10-503,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0225,32A,32A-6-501,,Operational restrictions,32B,32B-10-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0226,32A,32A-6-501,,Operational restrictions,32B,32B-10-604,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0227,32A,32A-6-502,,Church or religious organization exemption,32B,32B-10-605,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 4,,finding_aid_unreviewed
+ut32a_0228,32A,32A-6-503,,Application requirements,32B,32B-10-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0229,32A,32A-6-503,,Application requirements,32B,32B-10-603,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0230,32A,32A-6-601,,Licensed health care facility exemption,32B,32B-10-703,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0231,32A,32A-6-602,,Health professions exemption,32B,32B-10-704,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0232,32A,32A-6-603,,Application requirements,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,Permit process not used,finding_aid_unreviewed
+ut32a_0233,32A,32A-7-101,,Commission's power to issue permits-Limitations,32B,32B-9-303,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0234,32A,32A-7-102,,Application requirements,32B,32B-9-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0235,32A,32A-7-102,,Application requirements,32B,32B-9-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0236,32A,32A-7-103,,Qualifications,32B,32B-1-304,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0237,32A,32A-7-104,,Commission and department duties before granting permits,32B,32B-9-202,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0238,32A,32A-7-105,,Bond,32B,32B-9-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0239,32A,32A-7-105,,Bond,32B,32B-9-304,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0240,32A,32A-7-106,,Operational restrictions,32B,32B-9-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,Provisions for setting a maximum price and displaying operational requirements removed,finding_aid_unreviewed
+ut32a_0241,32A,32A-7-106,,Operational restrictions,32B,32B-9-305,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,Provisions for setting a maximum price and displaying operational requirements removed,finding_aid_unreviewed
+ut32a_0242,32A,32A-8-101,,Commission's power to grant licenses-Limitations,32B,32B-11-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0243,32A,32A-8-101,,Commission's power to grant licenses-Limitations,32B,32B-11-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0244,32A,32A-8-102,,Application and renewal requirements,32B,32B-11-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0245,32A,32A-8-102,,Application and renewal requirements,32B,32B-11-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0246,32A,32A-8-102,,Application and renewal requirements,32B,32B-11-209,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0247,32A,32A-8-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0248,32A,32A-8-103,,Qualifications,32B,32B-11-205,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0249,32A,32A-8-104,,Duties of commission and department before issuing licenses,32B,32B-11-206,yes,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0250,32A,32A-8-105,,Bond,32B,32B-11-207,yes,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0251,32A,32A-8-106,,Operational restrictions,32B,32B-11-208,yes,renumbered,corroborating: manufacturers sell liquor only to the department,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0252,32A,32A-8-201,,Authority and operational restrictions,32B,32B-11-303,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0253,32A,32A-8-301,,Distillery license-Specific authority and restrictions,32B,32B-11-403,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0254,32A,32A-8-401,,Authority and operational restrictions,32B,32B-11-503,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0255,32A,32A-8-501,,Commission's power to grant licenses,32B,32B-11-603,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0256,32A,32A-8-502,,Application and renewal requirements,32B,32B-11-604,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0257,32A,32A-8-502,,Application and renewal requirements,32B,32B-11-605,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0258,32A,32A-8-502,,Application and renewal requirements,32B,32B-11-609,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0259,32A,32A-8-503,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0260,32A,32A-8-503,,Qualifications,32B,32B-11-606,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0261,32A,32A-8-504,,"Commission and department duties before granting licenses, and in issuing licenses",32B,32B-11-607,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0262,32A,32A-8-505,,Operational restrictions,32B,32B-11-608,,renumbered,corroborating: industry representatives sell liquor only to the department,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0263,32A,32A-9-101,,Commission's power to issue licenses,32B,32B-12-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0264,32A,32A-9-101,,Commission's power to issue licenses,32B,32B-12-301,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0265,32A,32A-9-102,,Application and renewal requirements,32B,32B-12-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0266,32A,32A-9-102,,Application and renewal requirements,32B,32B-12-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0267,32A,32A-9-102,,Application and renewal requirements,32B,32B-12-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 5,,finding_aid_unreviewed
+ut32a_0268,32A,32A-9-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0269,32A,32A-9-103,,Qualifications,32B,32B-12-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0270,32A,32A-9-104,,Duties of commission and department before issuing licenses,32B,32B-12-205,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0271,32A,32A-9-105,,Bond,32B,32B-12-206,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0272,32A,32A-9-106,,Operational restrictions,32B,32B-12-301,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0273,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-6-703,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0274,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-6-704,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0275,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-6-706,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0276,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-7-201,,split,affirmative authority: local license to sell beer for off-premise consumption,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0277,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-9-404,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0278,32A,32A-10-101,,State and local licensing-Limitations,32B,32B-9-406,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0279,32A,32A-10-102,,General restrictions,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0280,32A,32A-10-102,,General restrictions,32B,32B-6-706,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0281,32A,32A-10-102,,General restrictions,32B,32B-7-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0282,32A,32A-10-103,,Alcohol training and education for off-premise consumption-Requirements on off-premise beer retailer licensees-Penalties related to sales to minors-Hearings-Tracking,32B,32B-7-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0283,32A,32A-10-103,,Alcohol training and education for off-premise consumption-Requirements on off-premise beer retailer licensees-Penalties related to sales to minors-Hearings-Tracking,32B,"Chapter 7, Part 3",,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0284,32A,32A-10-201,,Commission's power to grant licenses-Limitations,32B,32B-1-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0285,32A,32A-10-201,,Commission's power to grant licenses-Limitations,32B,32B-1-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0286,32A,32A-10-201,,Commission's power to grant licenses-Limitations,32B,32B-5-206,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0287,32A,32A-10-201,,Commission's power to grant licenses-Limitations,32B,32B-6-703,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0288,32A,32A-10-202,,Application and renewal requirements,32B,32B-5-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0289,32A,32A-10-202,,Application and renewal requirements,32B,32B-5-202,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0290,32A,32A-10-202,,Application and renewal requirements,32B,32B-5-310,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0291,32A,32A-10-202,,Application and renewal requirements,32B,32B-6-705,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0292,32A,32A-10-203,,Qualifications,32B,32B-1-304,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0293,32A,32A-10-204,,Commission and department duties before granting licenses,32B,32B-5-203,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0294,32A,32A-10-205,,Bond,32B,32B-5-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0295,32A,32A-10-205,,Bond,32B,32B-6-705,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0296,32A,32A-10-206,,Operational restrictions,32B,"Chapter 5, Part 3",yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,References in retail licensing chapters referring to the operational requirements of this part are consolidated into 32B-6-707,finding_aid_unreviewed
+ut32a_0297,32A,32A-10-206,,Operational restrictions,32B,32B-6-706,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,References in retail licensing chapters referring to the operational requirements of this part are consolidated into 32B-6-707,finding_aid_unreviewed
+ut32a_0298,32A,32A-10-206,,Operational restrictions,32B,32B-6-707,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,References in retail licensing chapters referring to the operational requirements of this part are consolidated into 32B-6-707,finding_aid_unreviewed
+ut32a_0299,32A,32A-10-207,,Information gathered by an investigator,32B,32B-1-102,,split,definitions: wine is liquor; liquor excludes beer; off-premise beer retailer; beer strength,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0300,32A,32A-10-207,,Information gathered by an investigator,32B,32B-6-708,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0301,32A,32A-10-301,,Commission's power to grant temporary special event beer permits-Limitations,32B,32B-9-403,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0302,32A,32A-10-302,,Application requirements,32B,32B-9-201,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0303,32A,32A-10-302,,Application requirements,32B,32B-9-405,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0304,32A,32A-10-303,,Qualifications,32B,32B-1-304,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0305,32A,32A-10-304,,Commission and department duties before granting permits,32B,32B-9-202,yes,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0306,32A,32A-10-305,,Bond,32B,32B-9-203,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0307,32A,32A-10-305,,Bond,32B,32B-9-405,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0308,32A,32A-10-306,,Operational restrictions,32B,32B-9-204,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0309,32A,32A-10-306,,Operational restrictions,32B,32B-9-406,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0310,32A,32A-11-101,,Commission's power to issue licenses,32B,32B-13-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0311,32A,32A-11-101,,Commission's power to issue licenses,32B,32B-13-301,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0312,32A,32A-11-102,,Application and renewal requirements,32B,32B-13-202,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,Provisions related to annual renewal fee removed as redundant,finding_aid_unreviewed
+ut32a_0313,32A,32A-11-102,,Application and renewal requirements,32B,32B-13-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,Provisions related to annual renewal fee removed as redundant,finding_aid_unreviewed
+ut32a_0314,32A,32A-11-102,,Application and renewal requirements,32B,32B-13-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,Provisions related to annual renewal fee removed as redundant,finding_aid_unreviewed
+ut32a_0315,32A,32A-11-103,,Qualifications,32B,32B-1-304,yes,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0316,32A,32A-11-103,,Qualifications,32B,32B-13-204,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 6,,finding_aid_unreviewed
+ut32a_0317,32A,32A-11-104,,Commission and department duties before issuing licenses,32B,32B-13-205,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0318,32A,32A-11-105,,Bond,32B,32B-13-206,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0319,32A,32A-11-106,,Operational restrictions,32B,32B-13-301,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0320,32A,32A-11a-101,,Title-Legislative intent,32B,32B-14-101,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0321,32A,32A-11a-102,,Definitions,32B,32B-14-102,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0322,32A,32A-11a-103,,Termination of distributorship agreements,32B,32B-14-201,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0323,32A,32A-11a-104,,Notice of termination,32B,32B-14-202,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0324,32A,32A-11a-105,,Prohibited conduct of supplier,32B,32B-14-302,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0325,32A,32A-11a-106,,Prohibited conduct of wholesaler,32B,32B-14-303,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0326,32A,32A-11a-107,,Sale or transfer of business assets or ownership,32B,32B-14-304,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0327,32A,32A-11a-108,,Reasonable compensation-Arbitration,32B,32B-14-401,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0328,32A,32A-11a-109,,Sale or transfer of supplier's business,32B,32B-14-305,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0329,32A,32A-11a-110,,Judicial remedies,32B,32B-14-402,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0330,32A,32A-11a-111,,Modifying statutory requirements not permitted,32B,32B-14-103,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0331,32A,32A-12-101,,Applicability of Utah Criminal Code,32B,32B-4-301,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0332,32A,32A-12-102,,Special burdens of proof-Inferences and presumptions,32B,32B-4-303,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0333,32A,32A-12-103,,Criminal responsibility for conduct of another,32B,32B-4-302,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0334,32A,32A-12-104,,Violation of title a misdemeanor,32B,32B-4-304,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0335,32A,32A-12-105,,Additional criminal penalties,32B,32B-4-305,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0336,32A,32A-12-201,,Unlawful sale or furnishing,32B,32B-4-401,,renumbered,corroborating: liquor enters the state only through the department,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0337,32A,32A-12-202,,Unauthorized sale or supply,32B,32B-4-402,,renumbered,general rule: sell only as the title authorizes,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0338,32A,32A-12-203,,Unlawful sale or furnishing to minors,32B,32B-4-403,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0339,32A,32A-12-204,,Unlawful sale or furnishing to intoxicated persons,32B,32B-4-404,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0340,32A,32A-12-205,,Unlawful sale or supply to interdicted persons,32B,32B-4-405,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0341,32A,32A-12-206,,Unlawful sale or supply of beer,32B,32B-4-406,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0342,32A,32A-12-207,,Unlawful sale or furnishing during emergency,32B,32B-4-407,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0343,32A,32A-12-208,,Unlawful purchase or acceptance,32B,32B-4-408,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0344,32A,32A-12-209,,"Unlawful purchase, possession, consumption by minors-Measurable amounts in body",32B,32B-4-409,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0345,32A,32A-12-209.5,,Unlawful admittance or attempt to gain admittance by minor,32B,32B-4-410,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0346,32A,32A-12-210,,Unlawful purchase by intoxicated persons,32B,32B-4-412,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0347,32A,32A-12-211,,Unlawful purchase by interdicted persons,32B,32B-4-413,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0348,32A,32A-12-212,,Unlawful possession-Exceptions,32B,32B-4-414,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0349,32A,32A-12-213,,Unlawful bringing onto premises for consumption,32B,32B-4-415,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0350,32A,32A-12-214,,Unlawful possession by licensees or permittees,32B,32B-4-417,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0351,32A,32A-12-215,,Unlawful storage,32B,32B-4-418,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0352,32A,32A-12-216,,Unlawful permitting of intoxication,32B,32B-4-419,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0353,32A,32A-12-217,,Unlawful permitting of consumption by minors,32B,32B-4-416,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0354,32A,32A-12-218,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,.,finding_aid_unreviewed
+ut32a_0355,32A,32A-12-219,,Unlawful adulteration -- Licensing tampering,32B,32B-4-420,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0356,32A,32A-12-220,,Unlawful consumption in public places,32B,32B-4-421,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0357,32A,32A-12-221,,Lawful detention,32B,32B-4-209,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0358,32A,32A-12-222,,Unlawful dispensing,32B,32B-4-422,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 7,,finding_aid_unreviewed
+ut32a_0359,32A,32A-12-223,,Minor's unlawful use of proof of age,32B,32B-4-411,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0360,32A,32A-12-301,,Operating without a license or permit,32B,32B-4-501,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0361,32A,32A-12-302,,Storing or possessing pursuant to federal stamp,32B,32B-4-502,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0362,32A,32A-12-303,,Tampering with records,32B,32B-4-503,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0363,32A,32A-12-304,,Making false statements,32B,32B-4-504,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0364,32A,32A-12-305,,Obstructing an officer making a search or an official proceeding or investigation,32B,32B-4-505,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0365,32A,32A-12-306,,Conflicting interests,32B,32B-4-506,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0366,32A,32A-12-307,,Interfering with suppliers,32B,32B-4-507,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0367,32A,32A-12-308,,Offering or soliciting bribes or gifts,32B,32B-4-508,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0368,32A,32A-12-309,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,.,finding_aid_unreviewed
+ut32a_0369,32A,32A-12-310,,Forgery,32B,32B-4-509,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0370,32A,32A-12-401,,Advertising prohibited-Exceptions,32B,32B-4-510,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,"32A-12-402, 32A-12-403. Repealed. -",finding_aid_unreviewed
+ut32a_0371,32A,32A-12-501,,Disposition of liquor items shipped to the department,32B,32B-4-705,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0372,32A,32A-12-502,,Unlawful removal from conveyance or diversion of shipments,32B,32B-4-601,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0373,32A,32A-12-503,,,32B,,,repealed,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,.,finding_aid_unreviewed
+ut32a_0374,32A,32A-12-504,,Unlawful transportation,32B,32B-4-602,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0375,32A,32A-12-505,,Lawful transportation,32B,32B-4-602,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0376,32A,32A-12-506,,Carriers' records,32B,32B-4-603,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0377,32A,32A-12-601,,Definitions,32B,32B-4-701,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0378,32A,32A-12-602,,Exclusive outlets,32B,32B-4-702,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0379,32A,32A-12-603,,Tied house-Prohibitions,32B,32B-4-703,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,Prohibition on industry member soliciting state store personnel to further the sale of an alcoholic product as against another removed,finding_aid_unreviewed
+ut32a_0380,32A,32A-12-603,,Tied house-Prohibitions,32B,32B-4-704,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,Prohibition on industry member soliciting state store personnel to further the sale of an alcoholic product as against another removed,finding_aid_unreviewed
+ut32a_0381,32A,32A-12-603,,Tied house-Prohibitions,32B,32B-4-705,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,Prohibition on industry member soliciting state store personnel to further the sale of an alcoholic product as against another removed,finding_aid_unreviewed
+ut32a_0382,32A,32A-12-604,,Commercial bribery,32B,32B-4-706,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0383,32A,32A-12-605,,Consignment sales,32B,32B-4-707,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0384,32A,32A-12-606,,Unlawful acts involving consumers,32B,32B-4-708,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0385,32A,32A-13-101,,Utah Code of Criminal Procedure applicable,32B,32B-4-201,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0386,32A,32A-13-102,,Arrests,32B,32B-4-204,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0387,32A,32A-13-103,,"Searches, seizures, and forfeitures",32B,32B-4-206,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0388,32A,32A-13-104,,Prosecutions,32B,32B-4-205,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,References to criminal enforcement of administrative rules removed,finding_aid_unreviewed
+ut32a_0389,32A,32A-13-105,,Fines and forfeitures,32B,32B-4-206,,merged,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0390,32A,32A-13-106,,Nuisances,32B,32B-4-208,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0391,32A,32A-13-107,,Right of appeal,32B,32B-4-207,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0392,32A,32A-13-108,,Duties to enforce this title,32B,32B-4-202,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0393,32A,32A-13-109,,Authority to inspect,32B,32B-4-203,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,"- Dramshop Liability 32A-14-101, 32A-14-102. Previously Renumbered -",finding_aid_unreviewed
+ut32a_0394,32A,32A-13-109,,Authority to inspect,32B,Chapter 14,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,"- Dramshop Liability 32A-14-101, 32A-14-102. Previously Renumbered -",finding_aid_unreviewed
+ut32a_0395,32A,32A-14a-101,,Definitions,32B,32B-15-102,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 8,,finding_aid_unreviewed
+ut32a_0396,32A,32A-14a-102,,Liability for injuries and damage resulting from distribution of alcoholic beverages- Causes of action-Statute of limitations-Employee protections,32B,32B-15-201,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0397,32A,32A-14a-102,,Liability for injuries and damage resulting from distribution of alcoholic beverages- Causes of action-Statute of limitations-Employee protections,32B,32B-15-301,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0398,32A,32A-14a-103,,Employee protected in exercising judgment,32B,32B-15-202,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0399,32A,32A-14a-104,,Governmental immunity,32B,32B-15-203,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0400,32A,32A-14a-105,,Action for contribution by provider of alcoholic beverages,32B,32B-15-302,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0401,32A,32A-14b-101,,Title,32B,32B-16-101,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0402,32A,32A-14b-102,,Definitions,32B,32B-16-102,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0403,32A,32A-14b-201,,Liability related to applicable fine,32B,32B-16-201,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0404,32A,32A-14b-202,,Bringing an action,32B,32B-16-301,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0405,32A,32A-14b-203,,Action for contribution,32B,32B-16-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,- Bureau of Narcotics and Alcoholic Beverage Law Enforcement,finding_aid_unreviewed
+ut32a_0406,32A,32A-14b-203,,Action for contribution,32B,Chapter 15,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,- Bureau of Narcotics and Alcoholic Beverage Law Enforcement,finding_aid_unreviewed
+ut32a_0407,32A,32A-15-101,32A-15-108,Previously Renumbered -,32B,,,unresolved,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0408,32A,32A-15a-101,,Title,32B,32B-3-301,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0409,32A,32A-15a-102,,Definitions,32B,32B-3-302,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0410,32A,32A-15a-102,,Definitions,32B,32B-3-303,,split,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0411,32A,32A-15a-103,,Rulemaking,32B,32B-3-304,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0412,32A,32A-15a-201,,Commission to prohibit nuisance activities by licensees-License not renewed,32B,32B-3-305,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0413,32A,32A-15a-202,,Formal objections to renewal,32B,32B-3-306,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed
+ut32a_0414,32A,32A-15a-203,,Hearing on formal objections to renewal,32B,32B-3-307,,renumbered,,2011-07-01,ut_2010_title32a_recod_table,pdf page_index 9,,finding_aid_unreviewed

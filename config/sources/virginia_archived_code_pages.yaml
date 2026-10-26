@@ -1,0 +1,33 @@
+source_id: virginia_archived_code_pages
+publisher: Virginia General Assembly (Code of Virginia pages as captured by the Internet Archive's Wayback Machine)
+title: Code of Virginia §§ 4.1-209 (2017) and 4.1-206.3 (2024) pages from the Internet Archive
+landing_url: https://web.archive.org/
+citation: Virginia Law Library, Code of Virginia section pages (law.lis.virginia.gov/vacode/), as captured by the
+  Internet Archive Wayback Machine on 2017-03-09 and 2024-08-08. https://web.archive.org/
+update_frequency: Fixed captures
+source_family: policy
+rights_status: government_edict
+notes: The 2017 capture of § 4.1-209 carries its history note through 2016 (the finding aid for the 2001-2016 chapters).
+  The 2024 capture of § 4.1-206.3 is the only official print found of the version in force from 2024-07-01 to 2026-06-30,
+  labelled '(Effective until July 1, 2026)'. Captures are requested in their original form (the 'id_' address),
+  ten seconds apart.
+host_min_interval_seconds: 10
+assets:
+- asset_id: wayback_va_4_1_209_20170309
+  url: https://web.archive.org/web/20170309025024id_/http://law.lis.virginia.gov/vacode/title4.1/chapter2/section4.1-209/
+  filename: va_4_1_209_20170309.html
+  edition: Code of Virginia § 4.1-209 page, captured 2017-03-09
+  source_series: va_archived_code_page
+  source_vintage: '20170309'
+  format: html
+  priority: 15
+  redistribute_raw: true
+- asset_id: wayback_va_4_1_206_3_20240808
+  url: https://web.archive.org/web/20240808103432id_/https://law.lis.virginia.gov/vacode/title4.1/chapter2/section4.1-206.3/
+  filename: va_4_1_206_3_20240808.html
+  edition: Code of Virginia § 4.1-206.3 page, captured 2024-08-08
+  source_series: va_archived_code_page
+  source_vintage: '20240808'
+  format: html
+  priority: 15
+  redistribute_raw: true

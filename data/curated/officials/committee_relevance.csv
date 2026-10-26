@@ -1,0 +1,7 @@
+jurisdiction,chamber,committee_name,subject_relevance,relevance_basis,referral_status,referral_bill,referral_evidence_url,review_status,notes
+ut,upper,Business and Labor,possible,Judged from the committee name only (business regulation and licensing). No bill's referral was checked.,unverified,,,not_reviewed,
+ut,lower,"Business, Labor and Commerce",possible,Judged from the committee name only (business regulation and licensing). No bill's referral was checked.,unverified,,,not_reviewed,
+ut,legislature,Business and Labor Interim,possible,Judged from the committee name only (business regulation and licensing). No bill's referral was checked.,unverified,,,not_reviewed,
+ut,upper,Revenue and Taxation,possible,Judged from the committee name only (taxes). No bill's referral was checked.,unverified,,,not_reviewed,
+ut,lower,Revenue and Taxation,possible,Judged from the committee name only (taxes). No bill's referral was checked.,unverified,,,not_reviewed,
+ut,legislature,Revenue and Taxation Interim,possible,Judged from the committee name only (taxes). No bill's referral was checked.,unverified,,,not_reviewed,

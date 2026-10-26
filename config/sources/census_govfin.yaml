@@ -1,0 +1,282 @@
+source_id: census_govfin
+publisher: U.S. Census Bureau
+title: Annual Survey of State and Local Government Finances and Census of Governments (liquor store items)
+landing_url: https://www.census.gov/programs-surveys/gov-finances.html
+citation: >-
+  U.S. Census Bureau, Annual Survey of State and Local Government Finances and Census of Governments.
+  Historical Finances of Individual Governments, fiscal years 1967 and 1970-2012 (_IndFin_1967-2012.zip,
+  February 2015), the state-by-type-of-government public-use files for fiscal years 2008-2015, and the
+  Individual Unit Files (public use) for fiscal years 2015-2024.
+  https://www2.census.gov/programs-surveys/gov-finances/datasets/
+update_frequency: Annual survey; the historical database is a fixed archive (February 2015)
+source_family: finance
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  Only the liquor store items of state governments are read: revenue (Census code A90) and expenditure
+  (total, current operations E90, capital outlay F90 + G90), in thousands of current dollars. Census
+  defines liquor stores as "alcoholic beverage distribution facilities operated by governments maintaining
+  alcoholic beverage monopoly systems", so a wholesale-only monopoly (Mississippi, Wyoming, Michigan after
+  its stores closed) has liquor store revenue too: a value never says that the state runs retail stores,
+  and a zero never says it does not. Revenue "excludes any taxes collected by the system" (Glossary of
+  Government Finances, 1992, in the IndFin zip); expenditure includes the purchase of liquor for resale.
+  Census publishes no profit or transfer item, and the IndFin readme warns that a difference between
+  revenue and expenditure "does not necessarily indicate a budget surplus or deficit", so none is
+  computed here. Local government liquor stores (municipal and county ABC stores) are not read. The
+  state-by-type files carry no layout document of their own; each line is read as Census state code, type
+  digit (2 = state government), item code, amount in thousands, coefficient of variation and year,
+  because on that reading every state government liquor item for FY2008-FY2012 equals the IndFin record
+  (checked 2026-10-08, and kept as the validation check reconcile_census_liquor_store_files). The Technical
+  Documentation in the FY2015-FY2024 unit zips documents the same layout (level code 2 = "State government
+  total"); from FY2017 its state codes are FIPS codes, not Census codes.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: census_govfin_indfin_1967_2012
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/historical/_IndFin_1967-2012.zip
+    edition: "Historical Finances of Individual Governments, FY1967 and FY1970-FY2012 (readme dated February 2015; server Last-Modified 2018-09-14)"
+    source_series: census_govfin_indfin
+    source_vintage: indfin_1967_2012_feb2015
+    format: zip
+    parser: census_indfin_state_liquor_stores
+    priority: 30
+    redistribute_raw: true
+    notes: >-
+      262 MB zip of comma-delimited text (three files per year, a, b and c). State government records
+      (Type Code 0) exist only for FY1972 and FY1977-FY2012; the User Guide says liquor store data
+      "appear to be missing from source files before fiscal year 1977, except" in census of governments
+      years. The 2005 classification redesign left the liquor store items unchanged (2006 Classification
+      Manual, Appendix 1.6.2).
+  - asset_id: census_govfin_state_type_fy2008
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2008/public-use-datasets/08statetypepu.zip
+    edition: "FY2008 state-by-type public-use file (server Last-Modified 2019-06-20)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2008_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2008}
+  - asset_id: census_govfin_state_type_fy2009
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2009/public-use-datasets/09statetypepu.zip
+    edition: "FY2009 state-by-type public-use file (server Last-Modified 2019-06-18)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2009_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2009}
+  - asset_id: census_govfin_state_type_fy2010
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2010/public-use-datasets/10statetypepu.zip
+    edition: "FY2010 state-by-type public-use file (server Last-Modified 2019-06-17)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2010_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2010}
+  - asset_id: census_govfin_state_type_fy2011
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2011/public-use-datasets/11statetypepu.zip
+    edition: "FY2011 state-by-type public-use file (server Last-Modified 2019-06-18)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2011_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2011}
+  - asset_id: census_govfin_state_type_fy2012
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2012/public-use-datasets/12statetypepu.zip
+    edition: "FY2012 state-by-type public-use file (server Last-Modified 2017-07-17)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2012_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2012}
+  - asset_id: census_govfin_state_type_fy2013
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2013/public-use-datasets/13statetypepu.zip
+    edition: "FY2013 state-by-type public-use file (server Last-Modified 2017-07-17)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2013_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2013}
+  - asset_id: census_govfin_state_type_fy2014
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2014/public-use-datasets/14statetypepu.zip
+    edition: "FY2014 state-by-type public-use file (server Last-Modified 2017-07-17)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2014_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2014}
+  - asset_id: census_govfin_state_type_fy2015
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2015/public-use-datasets/15statetypepu.zip
+    edition: "FY2015 state-by-type public-use file (server Last-Modified 2017-09-14)"
+    source_series: census_govfin_state_type
+    source_vintage: fy2015_state_type_pu
+    format: zip
+    parser: census_state_type_liquor_stores
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2015}
+
+# Individual Unit Files, FY2015-FY2024. Saved by Ethan from a browser into ../Repeal Title 32B Utah and imported
+# with 'alcohol-data import-asset' on 2026-10-12 (the originals stay in that folder; www2.census.gov refuses this
+# environment). Each zip holds the unit file (<year>FinEstDAT_*.txt, every item of every government in the
+# sample), the government directory (Fin_GID_<year>.txt to FY2016, Fin_PID_<year>.txt from FY2017), the
+# state-by-level file (<yy>statetypepu.txt, same layout as the files above) and the Technical Documentation PDF.
+# Parsed by census_unit_liquor_stores 1.0 (2026-10-13): the 50 state government records (type digit 0), each checked
+# against its state's name in the directory, its fiscal-year end and the state-by-level file's level 2 lines. What
+# the files contain, the layout change at FY2017, the FY2015 revisions and the new comparability groups (capital
+# outlay and total expenditure from FY2022; Oregon's current operations and total expenditure) are in
+# docs/fiscal-reconciliation.md ("After FY2015").
+# FY2015 has priority 15, below the FY2015 state-by-type file (20): the zip carries a later Census release of FY2015
+# that changes seven states (Oregon's revenue doubles), so the 2017 release stays preferred and this one is kept
+# as a competing candidate.
+  - asset_id: census_govfin_unit_fy2015
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2015/public-use-datasets/2015-individual-unit-file.zip
+    method: manual_import
+    edition: "FY2015 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2015FinEstDAT_10162019modp_pu.txt; 15statetypepu.txt dated 2020-03-04"
+    source_series: census_govfin_unit
+    source_vintage: fy2015_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 15
+    redistribute_raw: true
+    options: {fiscal_year: 2015}
+    notes: >-
+      Layout of FY2015-FY2016: Census state codes (Alabama 01 ... Wyoming 51), 14-character government IDs,
+      34-character unit records, directory Fin_GID (153 characters).
+  - asset_id: census_govfin_unit_fy2016
+    url: https://www2.census.gov/programs-surveys/gov-finances/datasets/2016/public-use-datasets/2016_Individual_Unit_file.zip
+    method: manual_import
+    edition: "FY2016 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2016FinEstDAT_10162019modp_pu.txt; 16statetypepu.txt dated 2020-03-04"
+    source_series: census_govfin_unit
+    source_vintage: fy2016_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2016}
+    notes: >-
+      Layout of FY2015-FY2016: Census state codes (Alabama 01 ... Wyoming 51), 14-character government IDs,
+      34-character unit records, directory Fin_GID (153 characters).
+  - asset_id: census_govfin_unit_fy2017
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2017/2017_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2017 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2017FinEstDAT_09202024modp_pu.txt; 17statetypepu.txt dated 2024-10-21"
+    source_series: census_govfin_unit
+    source_vintage: fy2017_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2017}
+    notes: >-
+      Layout from FY2017: FIPS state codes, 12-character government IDs, 32-character unit records, directory
+      Fin_PID (146 characters).
+  - asset_id: census_govfin_unit_fy2018
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2018/2018_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2018 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2018FinEstDAT_09202024modp_pu.txt; 18statetypepu.txt dated 2024-10-21"
+    source_series: census_govfin_unit
+    source_vintage: fy2018_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2018}
+    notes: >-
+      Layout from FY2017: FIPS state codes, 12-character government IDs, 32-character unit records, directory
+      Fin_PID (146 characters).
+  - asset_id: census_govfin_unit_fy2019
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2019/2019_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2019 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2019FinEstDAT_09202024modp_pu.txt; 19statetypepu.txt dated 2024-10-21"
+    source_series: census_govfin_unit
+    source_vintage: fy2019_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2019}
+    notes: >-
+      Layout from FY2017: FIPS state codes, 12-character government IDs, 32-character unit records, directory
+      Fin_PID (146 characters).
+  - asset_id: census_govfin_unit_fy2020
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2020/2020_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2020 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2020FinEstDAT_09202024modp_pu.txt; 20statetypepu.txt dated 2024-10-21"
+    source_series: census_govfin_unit
+    source_vintage: fy2020_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2020}
+    notes: >-
+      Layout from FY2017: FIPS state codes, 12-character government IDs, 32-character unit records, directory
+      Fin_PID (146 characters).
+  - asset_id: census_govfin_unit_fy2021
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2021/2021_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2021 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2021FinEstDAT_09202024modp_pu.txt; 21statetypepu.txt dated 2024-10-21"
+    source_series: census_govfin_unit
+    source_vintage: fy2021_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2021}
+    notes: >-
+      Layout from FY2017: FIPS state codes, 12-character government IDs, 32-character unit records, directory
+      Fin_PID (146 characters).
+  - asset_id: census_govfin_unit_fy2022
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2022/2022_Individual_Unit_File.zip
+    method: manual_import
+    edition: "FY2022 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2022FinEstDAT_07152026modp.txt; 22statetypepu.txt dated 2026-07-27"
+    source_series: census_govfin_unit
+    source_vintage: fy2022_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2022}
+    notes: >-
+      Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
+      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.
+  - asset_id: census_govfin_unit_fy2023
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2023/2023_Individual_Unit_Files.zip
+    method: manual_import
+    edition: "FY2023 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2023FinEstDAT_07152026modp.txt; 23statetypepu.txt dated 2026-07-27"
+    source_series: census_govfin_unit
+    source_vintage: fy2023_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2023}
+    notes: >-
+      Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
+      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.
+  - asset_id: census_govfin_unit_fy2024
+    url: https://www2.census.gov/programs-surveys/gov-finances/tables/2024/2024_Individual_Unit_Files.zip
+    method: manual_import
+    edition: "FY2024 Annual Survey of State and Local Government Finances, Individual Unit File (Public Use Files): 2024FinEstDAT_07152026modp.txt; 24statetypepu.txt dated 2026-07-27"
+    source_series: census_govfin_unit
+    source_vintage: fy2024_individual_unit_pu
+    format: zip
+    parser: census_unit_liquor_stores
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2024}
+    notes: >-
+      Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
+      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.

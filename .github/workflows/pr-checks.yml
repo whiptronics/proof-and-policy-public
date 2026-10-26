@@ -1,0 +1,60 @@
+# Pull-request checks: formatting, lint, offline tests on fixtures, fixture build, docs build.
+# Read-only token; no secrets; no network access to data sources.
+name: pr-checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install from hashed lockfile
+        run: |
+          python -m pip install --require-hashes -r requirements/dev.lock
+          python -m pip install --no-deps -e .
+      - name: Format and lint
+        run: |
+          ruff format --check src tests
+          ruff check src tests
+      - name: Tests (offline, fixtures only)
+        run: python -m pytest
+      - name: Data dictionary is current
+        run: |
+          alcohol-data report dictionary
+          git diff --exit-code -- docs/data-dictionary.md
+
+  web:
+    # Research dashboard (web/): unit tests, type check and build. The data export needs a full build, so
+    # it is not run here; the export itself is covered by the Python tests on the fixture build.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build

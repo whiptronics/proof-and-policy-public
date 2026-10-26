@@ -1,0 +1,151 @@
+# Worked example for the research dashboard. Selection and exclusions:
+# docs/research-dashboard/case-study-selection.md.
+#
+# Every number the dashboard shows comes from the exported data. The sentences under `shows` are tied to
+# the machine-checked `claims` below (tests/test_dashboard_export.py), so a data revision that makes a
+# sentence false fails the test suite instead of leaving the sentence on the page.
+case_id: tn_2016_food_store_wine
+title: "Tennessee, 2016: wine sales in retail food stores (local option)"
+status: descriptive_example_incomplete
+question: >-
+  When Tennessee let retail food stores sell wine (licenses from 2016-07-01, where a local referendum had
+  passed), what happened to state alcohol tax receipts, apparent wine consumption and reported drinking,
+  next to neighbouring states? Described only; no effect is estimated.
+treated_geo: "state:47"
+reform_policy_ids:
+  - tn_ordinary_grocery_wine_not_authorized_before_2016
+  - tn_ordinary_grocery_wine_local_option_2016
+concurrent_policy_ids:
+  - tn_unfair_wine_sales_law_2016
+  - tn_package_store_beer_2014
+reform_date: "2016-07-01"
+transition_note: >-
+  Tennessee's fiscal year runs July to June, so FY2017 is the first fiscal year in which food-store wine
+  licenses could exist; when sales actually began, and where, is not established (licenses were issued
+  only in jurisdictions with a passing referendum). For calendar-year and survey-year series, 2016 is a
+  transition year (half before, half after) and is shaded, never prorated. The law is verified in force on
+  2016-07-01 only; later days are unknown in the dataset.
+windows:
+  pre_fiscal: {from: 2012, to: 2016, period_kind: state_fiscal_year, note: "Five fiscal years before the first possible license day."}
+  post_fiscal: {from: 2017, to: 2021, period_kind: state_fiscal_year, note: "Five fiscal years from the first possible license day."}
+  pre_calendar: {from: 2011, to: 2015, period_kind: calendar_year, note: "Five calendar years before the transition year 2016."}
+  post_calendar: {from: 2017, to: 2021, period_kind: calendar_year, note: "Five calendar years after the transition year."}
+  pre_survey: {from: 2011, to: 2015, period_kind: survey_year, note: "BRFSS 2011+ method; five survey years before 2016."}
+  post_survey: {from: 2017, to: 2021, period_kind: survey_year, note: "Five survey years after 2016."}
+comparison_geos:
+  - geo_id: "state:51"
+    reason: "Borders Tennessee. Closest of the eight bordering states to Tennessee in pre-reform alcohol tax receipts per resident (FY2012-FY2016 mean). Its T10 series jumps in FY2015 and drops in FY2017 without an explanation in the dataset. Grocery wine verified as authorized on every day of 2011-2021."
+  - geo_id: "state:13"
+    reason: "Borders Tennessee. Second closest in pre-reform T10 per resident; pre-reform wine consumption per resident 21+ almost equal to Tennessee's. Grocery-wine status not verified on any day of 2011-2021."
+  - geo_id: "state:05"
+    reason: "Borders Tennessee. Third closest in pre-reform T10 per resident. Grocery wine verified on one day of 2011-2021 only (authorized on 2017-10-01); every other day unknown."
+  - geo_id: "state:21"
+    reason: "Borders Tennessee. Fourth closest in pre-reform T10 per resident; pre-reform share of adults drinking (BRFSS) closest to Tennessee's among the four. Grocery wine verified as not authorized on every day of 2011-2021."
+reference_geos:
+  - geo_id: "state:49"
+    reason: "Utah, the state the research question is ultimately about. Shown for reference only: it is not a control. In Utah, ordinary grocery stores may not sell wine; packaged wine reaches the public mainly through state stores and state-contract package agencies, whose profit is outside Census T10; its T10 falls by more than 80% between FY2017 and FY2018 with no explanation in the dataset."
+metrics:
+  - stc_alcoholic_beverages_sales_tax@state_fiscal_year
+  - tn_dor_wine_tax_collections@state_fiscal_year
+  - tn_dor_account_11002_with_high_alcohol_beer@state_fiscal_year
+  - tn_dor_wine_enforcement_tax_collections@state_fiscal_year
+  - niaaa_ethanol_per_capita_21plus_wine@calendar_year
+  - niaaa_ethanol_per_capita_21plus_all@calendar_year
+  - brfss_drank_any_past_30d_pct@survey_year
+  - brfss_binge_5m_4f_pct@survey_year
+panels:
+  - title: "Tennessee wine taxes collected (Department of Revenue), nominal dollars"
+    treated_only: true
+    metrics:
+      - {metric_id: tn_dor_wine_tax_collections@state_fiscal_year}
+      - {metric_id: tn_dor_account_11002_with_high_alcohol_beer@state_fiscal_year}
+      - {metric_id: tn_dor_wine_enforcement_tax_collections@state_fiscal_year}
+    note: "Tennessee only: the comparison states' equivalents are not collected. Account 11002 is printed 'Wine Tax' through FY2017 and 'Wine Tax & High Alcohol Beer' from FY2018, so it is two series that must not be joined. All sales channels; no account isolates food stores."
+  - title: "State alcohol selective sales taxes (Census T10), constant 2024 dollars"
+    metrics: [{metric_id: stc_alcoholic_beverages_sales_tax@state_fiscal_year, conversion: real_cy2024}]
+    note: "All beverages, state only; excludes general sales tax and any state-store profit. Not wine-specific."
+  - title: "Census T10 per resident (nominal dollars)"
+    metrics: [{metric_id: stc_alcoholic_beverages_sales_tax@state_fiscal_year, conversion: per_resident}]
+    note: "Divided by the Census July 1 resident population inside each fiscal year."
+  - title: "Apparent wine consumption (gallons of ethanol from wine per resident 21+)"
+    metrics: [{metric_id: niaaa_ethanol_per_capita_21plus_wine@calendar_year}]
+    note: "Sales and shipments based; includes visitors, cross-border buying and stocking of new retail channels."
+  - title: "Apparent consumption, all beverages (gallons of ethanol per resident 21+)"
+    metrics: [{metric_id: niaaa_ethanol_per_capita_21plus_all@calendar_year}]
+    note: "Wine is a minority of ethanol in every state shown."
+  - title: "Adults who drank any alcohol in the past 30 days (BRFSS)"
+    metrics: [{metric_id: brfss_drank_any_past_30d_pct@survey_year}]
+    note: "Survey estimate with 95% confidence band; adults 18+."
+  - title: "Binge drinking (BRFSS, 5+ drinks men / 4+ women)"
+    metrics: [{metric_id: brfss_binge_5m_4f_pct@survey_year}]
+    note: "Survey estimate with 95% confidence band; adults 18+."
+what_changed:
+  - "2014 Tenn. Pub. Acts ch. 554 (signed 2014-03-20) created retail food store wine licenses. The Alcoholic Beverage Commission begins issuing them on 2016-07-01, and before that date no retail food store may sell wine (Tenn. Code Ann. 57-3-803(a), as enacted)."
+  - "Licenses issue only in a county or municipality that authorized wine in retail food stores by local referendum (57-3-801(a)(1), 57-3-803(a)); no such referendum could be held before the regular November 2014 election (57-3-801(c))."
+  - "Eligible stores are defined by their food sales (57-3-802(1)); wine sold under the license may not exceed 18% alcohol by volume (57-3-803(c))."
+  - "The same act added the Unfair Wine Sales Law from 2016-07-01 (no retail wine sales below cost plus 20%) and let package stores sell beer from 2014-07-01."
+collected:
+  - "The enacted public chapter (scanned PDF, downloaded by hand, pinned by SHA-256) and the General Assembly's bill record; excerpts checked against the page images."
+  - "Census T10 alcohol selective sales taxes for Tennessee and the comparison states, state fiscal years (all five end June 30)."
+  - "Tennessee Department of Revenue June collection reports, FY2010-FY2025, parsed from their text layer (each class checked against its printed total): wine tax (account 11002), winery wine tax, wine enforcement tax and the alcoholic-beverages class total."
+  - "CPI-U fiscal-year averages and Census July 1 populations for the conversions."
+  - "NIAAA apparent consumption by beverage, calendar years through 2024."
+  - "BRFSS prevalence with 95% confidence intervals, survey years 2011-2025."
+missing:
+  - "Any receipt series that isolates wine sold by food stores. Account 11002 covers wine through every channel, and from FY2018 it also covers high-alcohol beer."
+  - "Which localities adopted food-store wine, when, and how many stores were licensed (so the share of the state exposed is unknown)."
+  - "Evidence that the food-store wine law stayed in force after 2016-07-01."
+  - "The first day food stores actually sold wine."
+  - "Grocery-wine history for Georgia (no verified day in 2011-2021) and Arkansas (one verified day), and alcohol-tax law for all four comparison states. Virginia's and Kentucky's grocery-wine status is verified for every day of 2011-2021."
+  - "An explanation for breaks in Census T10 (Tennessee FY2022, Virginia FY2015 and FY2017, Utah FY2018)."
+  - "State price levels and tourism covariates. Income is loaded (BEA per capita personal income, shown in Compare and Explore) but is not in this example's panels."
+shows:
+  - "Tennessee's wine tax collections (account 11002, every sales channel) rose 22% from FY2016 to FY2017, the first fiscal year in which food-store licenses could exist; each year-on-year change from FY2011 to FY2016 was between +1.9% and +9.7%. The wine enforcement tax (account 11018) rose 27% the same year, also above any earlier year's change."
+  - "From FY2018 the account also includes high-alcohol beer, and FY2018 collections under the wider label were about 5% below FY2017's wine-only figure, so the FY2017 level is not shown to have lasted."
+  - "Apparent wine consumption in Tennessee rose by about a fifth between calendar 2015 and 2016, the year food-store licenses could begin, and stayed above the 2015 level in every year from 2017 to 2021. In each comparison state it changed by less than 2% between 2015 and 2016."
+  - "The share of Tennessee adults reporting any drinking in the past 30 days rose by about 5 percentage points between the 2015 and 2016 surveys, and the two years' 95% confidence intervals do not overlap. Each comparison state moved by less than 2.5 points."
+  - "Tennessee's alcohol tax receipts (T10, constant dollars) rose in every fiscal year from FY2011 to FY2019. The FY2017 increase falls within the range of Tennessee's own pre-reform yearly increases, so no separate step is visible at the reform."
+  - "Averaged over the five-year windows, Tennessee's T10 in constant dollars rose more than in any comparison state; but it was already growing faster before the reform than in Georgia, Arkansas and Kentucky (Virginia's pre-reform series is distorted by a one-year jump)."
+claims:
+  - {type: exceeds_prior_range, metric: tn_dor_wine_tax_collections, period_kind: state_fiscal_year, change_to: 2017, prior: [2011, 2016], min_pct: 20, prior_min_pct: 1.9, prior_max_pct: 9.7}
+  - {type: exceeds_prior_range, metric: tn_dor_wine_enforcement_tax_collections, period_kind: state_fiscal_year, change_to: 2017, prior: [2011, 2016], min_pct: 25}
+  - {type: cross_measure_change, from_metric: tn_dor_wine_tax_collections, from_year: 2017, to_metric: tn_dor_account_11002_with_high_alcohol_beer, to_year: 2018, period_kind: state_fiscal_year, min_pct: -7, max_pct: -4}
+  - {type: step, metric: niaaa_ethanol_per_capita_21plus_wine, period_kind: calendar_year, from: 2015, to: 2016, treated_min_pct: 15, comparisons_max_abs_pct: 2}
+  - {type: stays_above, metric: niaaa_ethanol_per_capita_21plus_wine, period_kind: calendar_year, reference_year: 2015, years: [2017, 2021]}
+  - {type: ci_step, metric: brfss_drank_any_past_30d_pct, period_kind: survey_year, from: 2015, to: 2016, treated_min_points: 4, treated_max_points: 6, comparisons_max_abs_points: 2.5}
+  - {type: rises_every_year, metric: stc_alcoholic_beverages_sales_tax_real_cy2024usd, period_kind: state_fiscal_year, years: [2011, 2019]}
+  - {type: within_prior_range, metric: stc_alcoholic_beverages_sales_tax_real_cy2024usd, period_kind: state_fiscal_year, change_to: 2017, prior: [2012, 2016]}
+  - {type: window_change_exceeds_comparisons, metric: stc_alcoholic_beverages_sales_tax_real_cy2024usd, period_kind: state_fiscal_year, pre: [2012, 2016], post: [2017, 2021]}
+  - {type: prior_growth_exceeds, metric: stc_alcoholic_beverages_sales_tax_real_cy2024usd, period_kind: state_fiscal_year, from: 2012, to: 2016, geos: ["state:13", "state:05", "state:21"]}
+  - {type: irregular, metric: stc_alcoholic_beverages_sales_tax_real_cy2024usd, period_kind: state_fiscal_year, geo: "state:51", years: [2015, 2017], min_abs_pct: 15}
+  # The comparison reasons above quote these: verified day runs only, never snapshots.
+  - {type: policy_constant, geo: "state:51", dimension: ordinary_grocery_wine_authorization, value: authorized, from: "2011-01-01", to: "2021-12-31"}
+  - {type: policy_constant, geo: "state:21", dimension: ordinary_grocery_wine_authorization, value: not_authorized, from: "2011-01-01", to: "2021-12-31"}
+  - {type: policy_known_days, geo: "state:13", dimension: ordinary_grocery_wine_authorization, from: "2011-01-01", to: "2021-12-31", days: 0}
+  - {type: policy_known_days, geo: "state:05", dimension: ordinary_grocery_wine_authorization, from: "2011-01-01", to: "2021-12-31", days: 1}
+  - {type: policy_constant, geo: "state:05", dimension: ordinary_grocery_wine_authorization, value: authorized, from: "2017-10-01", to: "2017-10-01"}
+cannot_establish:
+  - "That the reform caused any of these changes. The minimum wine price rule began the same day; the comparison states' alcohol-tax laws are not coded and Georgia's and Arkansas's grocery-wine status is unknown on almost every day; local adoption is unknown; and Tennessee's tax receipts were already rising."
+  - "A revenue effect of food-store wine sales: Census T10 combines beer, wine and spirits taxes, and Tennessee's wine tax account covers every channel (and high-alcohol beer from FY2018)."
+  - "Whether the FY2017 rise in wine tax collections was lasting sales growth or a one-time effect such as stocking thousands of new retail shelves; the FY2018 figure is lower and under a wider label."
+  - "Whether the jump in apparent wine consumption is residents drinking more, stocking of thousands of new retail shelves, visitors, or purchases moved from neighbouring states."
+  - "Anything about Utah. Utah's alcohol money arrives mainly as state-store profit, not as T10, and a grocery change there would move sales away from state stores; Tennessee's numbers do not transfer."
+  - "Whether the 2016 BRFSS rise reflects drinking or a change in the survey's Tennessee sample; survey design changes were not checked."
+would_improve:
+  - "The statutory basis of each Department of Revenue alcohol account, and of account 11002's FY2018 relabelling to include high-alcohol beer."
+  - "Monthly collections around 2016-07-01, to see whether the FY2017 rise came at once (stocking) or built up (sales)."
+  - "The Alcoholic Beverage Commission's list of adopting localities with dates, and license counts by year, to measure exposure."
+  - "Later Tennessee public chapters and a dated code text to verify the law after 2016-07-01."
+  - "Grocery-wine history for Georgia and Arkansas, and alcohol-tax law for all four comparison states, over 2011-2021."
+  - "Census's explanation of the T10 breaks. (Census liquor-store receipts are now loaded through FY2024, but they cannot say who runs a state's retail stores; that needs each state's statutes.)"
+  - "A pre-registered design (analysis/causal/README.md) before any effect is estimated."
+confounders:
+  - {name: "Unfair Wine Sales Law (minimum retail price, cost plus 20%)", status: coded, note: "Same act, same start day (2016-07-01): it could raise wine prices while food-store sales widen access."}
+  - {name: "Package-store beer sales", status: coded, note: "Same act, from 2014-07-01 (inside the pre window)."}
+  - {name: "Local adoption", status: unknown, note: "Licenses only where a referendum passed; which places and when is not in the dataset."}
+  - {name: "COVID-19 pandemic", status: not_coded, note: "Covers FY2020-FY2021 and calendar 2020-2021 of the post windows; on- and off-premise sales shifted everywhere."}
+  - {name: "Tennessee T10 jump in FY2022 (+39% nominal, +30% in constant dollars)", status: unexplained, note: "Just after the post window; not explained in the dataset. Charts show it."}
+  - {name: "Virginia T10 swings (FY2015 +23%, FY2017 -18%, constant dollars)", status: unexplained, note: "Affects the comparison; not explained in the dataset."}
+  - {name: "Other alcohol tax changes in any state shown", status: not_checked, note: "Not coded for 2011-2021 except Utah's beer tax."}
+  - {name: "Tourism and cross-border purchases", status: not_collected, note: "Apparent consumption counts them."}
+selection_doc: docs/research-dashboard/case-study-selection.md

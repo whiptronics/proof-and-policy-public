@@ -1,0 +1,32 @@
+source_id: census_msrs
+publisher: U.S. Census Bureau
+title: Monthly State Retail Sales (MSRS), year-over-year percent changes by state and retail subsector
+landing_url: https://www.census.gov/retail/state_retail_sales.html
+citation: >-
+  U.S. Census Bureau, Monthly State Retail Sales (experimental data product), state_retail_yy.csv, January
+  2019 to June 2026, downloaded by the project owner on 2026-10-09.
+update_frequency: Monthly, with revisions to earlier months
+source_family: context
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  An experimental Census product. The file gives only the percent change from the same month a year
+  earlier, by state, for total retail sales excluding nonstore retailers (code TOTAL) and for eleven
+  three-digit NAICS subsectors; it holds no dollar levels, so nothing can be expressed per resident. Food
+  and beverage stores (NAICS 445) mix supermarkets with beer, wine and liquor stores; no liquor-store
+  detail is published. Values are not seasonally adjusted and not adjusted for trading days, holidays or
+  prices (Census notes). The Census maps flag changes whose 90 percent confidence interval includes zero;
+  this file carries no such flags, so the dashboard cannot show them. The exact download URL was not
+  recorded.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: census_msrs_state_retail_yy_2026_06
+    method: manual_import
+    filename: state_retail_yy.csv
+    edition: "state_retail_yy.csv, year-over-year percent changes January 2019 to June 2026"
+    source_series: census_msrs_yy
+    source_vintage: through_2026_06
+    format: csv
+    parser: census_msrs_yy
+    priority: 20
+    redistribute_raw: true

@@ -1,0 +1,53 @@
+# Review packet: the worked grocery-wine comparison (FY2025)
+
+What this is: the short list of source values and legal readings that the worked comparison in the Utah scenario
+tool rests on ("Worked comparison: three grocery-wine arrangements, FY2025", `?v=scenario&eg=compare_fy2025`,
+method `utah-wine-arrangements@1.1` on `utah-wine-scenario@1.5`). Review these first instead of all 595 hand-entered
+values: they are the only ones this example uses. The audit of these inputs and of the model's equations is
+docs/review/grocery-wine-model-audit.md (Claude's verification, not review).
+
+**Standing (2026-10-15).** Every record below is `extracted_unreviewed` or `machine_assisted_review`. Nothing has been
+reviewed by a person. The "Claude's source check" column records what Claude checked against the saved document; it
+is source verification, not human review, and it does not change any record's status. A reviewer fills the last
+column and, for a manual observation, sets `review_status = reviewed` with `reviewed_by` and `reviewed_on` in
+`data/curated/manual_observations.csv` (CONTRIBUTING.md). Documents are in `data/raw/<asset id>/` on the maintainer's
+computer, pinned in `config/builds/preview.pins.json`.
+
+## 1. Source values
+
+| # | Value used | Units | Document (asset) | Page | Table, row or note | Record (`manual_id` or measure) | Enters the calculation as | Claude's source check | Kind | Human review (name, date, result) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 551,346 | thousands of dollars | DABS 90th annual report, FY2025 (`utah_dabs_annual_report_fy2025`) | 32 | Five Year Financial Summary, Summary Financial Information, "Revenue from Liquor Sales", FY 2025 | `utah_dabs_annual_report_fy2025:five_year_summary_financial_information:ut_dabs_liquor_sales_revenue:FY2025` | DABS liquor sales; times the wine share it gives the baseline wine sales ($184,700,910) | Page rendered and read 2026-10-14: the first row of the table, FY 2025 column. The same figure is printed in the operations summary (p. 32) and the income statement (p. 30). The table's row labels are printed as one block of text, so rows are matched by order. | observation (unaudited) | |
+| 2 | 260,289 | thousands of dollars | same | 32 | Summary Financial Information, "Gross Profit" (second row), FY 2025 | `utah_dabs_annual_report_fy2025:five_year_summary_financial_information:ut_dabs_gross_profit:FY2025` | Gross margin = 260,289 / 551,346 = 47.21%, applied to wine (an assumption: all products) | Same page, second row; equals the operations summary's "Gross Profits". | observation; applied to wine: assumption | |
+| 3 | 81,910 | thousands of dollars | same | 32 | Summary Financial Information, "Less Operating and Non-Operating Expenses" (seventh row), FY 2025 | `utah_dabs_annual_report_fy2025:five_year_summary_financial_information:ut_dabs_operating_nonoperating_expenses:FY2025` | Context only (14.9% of sales): the scale beside the avoidable-cost assumption and the "costs the state keeps paying" row; not in any net change | Same page, seventh row by order. | observation (context) | |
+| 4 | 182,331,954.71 and 543,682,177.59 | dollars | DABS monthly Sales Analysis Reports, July 2025 to June 2026 (`utah_dabs_sales_analysis`, twelve workbooks) | each workbook's total rows | Gross sales, wine and all products, summed over FY2026 | `ut_dabs_fy_gross_sales_wine` and `ut_dabs_fy_gross_sales_total`, FY2026 (parsed, formula `dabs_fy_sum`) | Wine's share 33.536%, entered as 33.5%: baseline wine sales = 33.5% × row 1 | Parsed by the tested adapter, not transcribed; the bottle and case columns agree in every product-month (validation `dabs_monthly_gross_sales_at_shelf_prices`). The share is from FY2026, a year after row 1. | derived (parsed monthly data); a later year | |
+| 5 | 4.85% | percent | Utah State Tax Commission Publication 25, Rev. 9/26 (`utah_tc_pub25_rev_2026_09`) | 6 | Chart 2: Taxes in the Combined Rate, "State Sales and Use" | `utah_tc_pub25_rev_2026_09:chart2:state_sales_tax_rate_state_portion:2026-09` | State sales tax on today's wine and on the grocery shelf price (state portion only) | Text layer of p. 6 read 2026-10-14: "State Sales and Use … 4.85%". The pages are marked draft, and the rate is taken as FY2025's, which the dataset does not establish. | observation; FY2025 applicability: assumption | |
+| 6 | 486,942 | thousands of dollars | State of Utah ACFR, FY2025 (`utah_acfr_fy2025`) | 52 (printed 50) | Statement of Revenues, Expenses and Changes in Fund Net Position, Proprietary Funds, Alcoholic Beverage Services, "Sales and Charges for Services/Premiums" | `utah_acfr_fy2025:proprietary_funds_revenues_expenses:ut_abs_fund_sales_revenue:FY2025` | Cross-check only, never an input: row 1 less both deposits at the rates in law (486,866) differs from it by 76 | Text layer read 2026-10-14 (the value is on the line after the label). | observation (audited); cross-check only | |
+
+Not used by this example, though shown on the page: NIAAA wine gallons (calendar 2024; needed only for an excise),
+the statutory wine markup (88.5%, the margin field's alternative), DABS's own "sales tax" line, Census T10.
+
+## 2. Published values and legal readings
+
+| # | Reading | Source | Where it enters | Standing | Kind | Human review |
+|---|---|---|---|---|---|---|
+| 7 | School-meals deposit: 10% of "the total gross revenue from sales of liquor" | Utah Code § 32B-2-304(5), versions effective 2024-05-01 and 2026-03-13; rate row `ut_school_meals_fy2021_fy2026` in `metadata/legal_history/utah_liquor_deposit_rates.csv` | Today's allocation of the margin on the wine that moves (rows "Today's allocation") and arrangement 3's guarantee | Documented, read online (the code PDFs are not yet saved); a reading by Claude | legal interpretation | |
+| 8 | Enforcement deposit: 1.695% of the same | Utah Code § 32B-2-305(4) as amended by 2023 H.B. 223 (effective 2023-07-01); rate row `ut_enforcement_fy2024_fy2026` | As row 7 | Documented, read online; DABS's FY2025 transfer is 1.741% of its sales, not explained | legal interpretation | |
+| 9 | Both deposits are paid out of the margin, so they are already inside it and are not subtracted again | Rows 7-8 compute them on gross revenue; DABS's five-year summary subtracts them on the way to net profit (p. 32); the ACFR pays the school-meals deposit out of the fund's cash outside its revenue (FY2025 ACFR p. 53, printed 51), and in FY2022 and FY2024 the collections it pays equal both deposits within $0.15 million (FY2022 and FY2024 ACFRs p. 53) | The "of which" rows and arrangement 3; the net change counts all state funds together | Interpretation; the school-meals treatment is documented, the enforcement deposit's is inferred with numerical support | accounting interpretation, supported by the cash-flow statements | |
+| 10 | DABS's annual sales are before sales tax | DABS reports' Note B: "Sales are reported at published prices; sales taxes excluded" (81st report p. 22, 84th p. 22, 86th p. 21; saved) | Why sales tax is added on top of the baseline rather than taken out of it | Documented for the annual series; the monthly series' basis is unresolved and not used | observation (note text) | |
+| 11 | Wine price elasticity −0.46 | Nelson (2013), Health Economics Review 3:17, a meta-analysis: −0.46 after correcting for publication bias (95% CI −0.54 to −0.38) | The price response of the wine that moves, which also enters arrangement 1's break-even tax | Published; applying it to Utah grocery wine is an assumption | transferred estimate | |
+| 12 | None of the three arrangements is current law; each is a proposal the example defines | The worked comparison's "proposal" rows | Everything in section 6 | A policy definition, not a legal reading | policy definition | |
+
+## 3. Added 2026-10-15
+
+Two inputs the corrections of 2026-10-15 brought in (docs/review/grocery-wine-model-audit.md, section 11).
+
+| # | Value used | Units | Document (asset) | Page | Table, row or note | Record (`manual_id` or measure) | Enters the calculation as | Claude's source check | Kind | Human review (name, date, result) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 13 | 82% | percent | DABS 90th annual report, FY2025 (`utah_dabs_annual_report_fy2025`) | 18 | "On-Premise vs. Off-Premise Sales" doughnut chart, segment label "Off-Premise Sales 82%" (on-premise 18%) | `utah_dabs_annual_report_fy2025:on_off_premise_sales:ut_dabs_off_premise_sales_share:FY2025` | The household share of wine sales: only that share can move to grocers (30% of it moves, so 24.6% of wine sales). An all-product figure applied to wine: an assumption, ±15 points in the sensitivity table | Page rendered at 110 dpi and read 2026-10-15; the percentages are printed in the graphic, not in the text layer. The chart says off-premise means state liquor stores and contracted package agencies, and excludes private grocery and convenience stores; it does not say whether the shares are of dollars or volume. No earlier report prints the chart. | observation (unaudited, a chart); applied to wine: assumption | |
+| 14 | 29.5% and 28.0% | percent of sales | Census Annual Wholesale Trade Survey, table 4 (2022 revised: `2022_awts_purchmarg_nomsbo_table4.xlsx`, SHA-256 c2ec5dbc…3bbe), and Annual Retail Trade Survey, gross margin as a percentage of sales (2022 benchmarked: `gmper.xlsx`, SHA-256 e69ca6e3…c67b) | — | AWTS: NAICS 4248, beer, wine and distilled alcoholic beverage merchant wholesalers, 2022r. ARTS: NAICS 4451, grocery stores, 2022r (beer, wine and liquor stores, 4453: 31.1%) | measures `us_wholesale_gross_margin_pct_alcohol_beverages` and `us_retail_gross_margin_pct_grocery_stores`, 2022 (nation:us); cells E73 and C16 | The gross margins the worked example takes private wholesalers and grocers to need, in "Can sellers live with it?" | Read 2026-10-15 in the desktop app's browser (hashes of the bytes served recorded above); the same bytes were saved that day, pinned, and on 2026-10-18 parsed into the dataset by `census_trade_margins.py`, which checks each row's label; a test holds both references to those cells. National, all products, not wine in Utah. | transferred estimate (national, all products); used as an assumption | |
+
+Every other input of the example is a stated assumption (30% of household purchases move; matched consumer prices,
+so the 20% replacement tax is inside today's price; a 20% discount to grocers; 5 cents of avoidable cost per dollar
+moved; $500,000 of new costs; no recapture, no access effect; arrangement 3 guarantees what the wine that moves would
+have paid the two funds, fixed or proportional). They need no source check; they are the proposal.

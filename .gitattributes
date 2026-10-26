@@ -1,2 +1,12 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Normalise text to LF so generated CSVs and checksums match on Windows and Linux.
+* text=auto eol=lf
+# cmd.exe can mis-read labels in LF-only batch files.
+*.bat text eol=crlf
+*.xlsx binary
+*.parquet binary
+*.duckdb binary
+*.pdf binary
+*.zip binary
+# Fixtures are byte-for-byte slices of official files (some use CRLF); their hashes are pinned.
+tests/fixtures/** -text
+tests/fixtures/*.py text eol=lf

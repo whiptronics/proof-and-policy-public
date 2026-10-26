@@ -1,0 +1,426 @@
+{
+ "compatible": [
+  {
+   "name": "same measure, two states",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:47",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": true,
+   "reasons": [],
+   "label": null
+  },
+  {
+   "name": "fiscal tax vs calendar consumption",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "different measures (stc_alcoholic_beverages_sales_tax vs niaaa_ethanol_per_capita_21plus_wine)",
+    "different units (usd_nominal vs us_gallons_ethanol_per_person)",
+    "different age universes (not_applicable vs age_21_plus)",
+    "different beverages (all_alcohol vs wine)",
+    "different period kinds (state_fiscal_year vs calendar_year); fiscal and calendar years are not the same period"
+   ],
+   "label": null
+  },
+  {
+   "name": "consumption vs prevalence",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "different measures (niaaa_ethanol_per_capita_21plus_wine vs brfss_drank_any_past_30d_pct)",
+    "different units (us_gallons_ethanol_per_person vs percent)",
+    "different age universes (age_21_plus vs age_18_plus)",
+    "different beverages (wine vs all_alcohol)",
+    "different period kinds (calendar_year vs survey_year); fiscal and calendar years are not the same period"
+   ],
+   "label": null
+  },
+  {
+   "name": "state vs city, not allowed",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "place:4967000",
+    "geo_level": "place",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "different geography levels (state state:49 vs place place:4967000); a city, county, metro area and state are different populations"
+   ],
+   "label": null
+  },
+  {
+   "name": "state vs city, allowed without label",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "place:4967000",
+    "geo_level": "place",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": true,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "geography-level mismatch allowed only with an explicit label"
+   ],
+   "label": null
+  },
+  {
+   "name": "state vs city, allowed with label",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "place:4967000",
+    "geo_level": "place",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": true,
+    "mismatchLabel": "Utah (state) vs Salt Lake City (place)"
+   },
+   "ok": true,
+   "reasons": [],
+   "label": "Utah (state) vs Salt Lake City (place)"
+  },
+  {
+   "name": "wine vs all beverages",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_all",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "different measures (niaaa_ethanol_per_capita_21plus_wine vs niaaa_ethanol_per_capita_21plus_all)",
+    "different beverages (wine vs all_alcohol)"
+   ],
+   "label": null
+  },
+  {
+   "name": "age 21+ vs 14+",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_14_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "opts": {
+    "allowGeoLevelMismatch": false,
+    "mismatchLabel": null
+   },
+   "ok": false,
+   "reasons": [
+    "different age universes (age_21_plus vs age_14_plus)"
+   ],
+   "label": null
+  }
+ ],
+ "ratio_allowed": [
+  {
+   "name": "consumption per drinker",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "niaaa_ethanol_per_capita_21plus_wine",
+    "unit": "us_gallons_ethanol_per_person",
+    "age_universe": "age_21_plus",
+    "beverage": "wine",
+    "period_kind": "calendar_year",
+    "method_family": "apparent_consumption",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "percent",
+    "age_universe": "age_18_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "ok": false,
+   "reasons": [
+    "dividing per capita consumption by a drinking prevalence does not give consumption per drinker (different sources, age universes and concepts)",
+    "age universes differ (age_21_plus vs age_18_plus)"
+   ]
+  },
+  {
+   "name": "tax per 21+ population",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "brfss_drank_any_past_30d_pct",
+    "unit": "persons",
+    "age_universe": "age_21_plus",
+    "beverage": "all_alcohol",
+    "period_kind": "survey_year",
+    "method_family": "survey_direct",
+    "causal_outcome_eligible": true
+   },
+   "ok": true,
+   "reasons": []
+  },
+  {
+   "name": "different places",
+   "a": {
+    "geo_id": "state:49",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "b": {
+    "geo_id": "state:47",
+    "geo_level": "state",
+    "measure_id": "stc_alcoholic_beverages_sales_tax",
+    "unit": "usd_nominal",
+    "age_universe": "not_applicable",
+    "beverage": "all_alcohol",
+    "period_kind": "state_fiscal_year",
+    "method_family": "administrative_finance",
+    "causal_outcome_eligible": true
+   },
+   "ok": false,
+   "reasons": [
+    "numerator and denominator are different geographies"
+   ]
+  }
+ ],
+ "trend_segments": [
+  {
+   "points": [
+    {
+     "year": 2008,
+     "value": 1.0,
+     "comparability_group": "a"
+    },
+    {
+     "year": 2009,
+     "value": 2.0,
+     "comparability_group": "a"
+    },
+    {
+     "year": 2010,
+     "value": null,
+     "comparability_group": "a"
+    },
+    {
+     "year": 2011,
+     "value": 3.0,
+     "comparability_group": "b"
+    },
+    {
+     "year": 2012,
+     "value": 4.0,
+     "comparability_group": "b"
+    },
+    {
+     "year": 2014,
+     "value": 5.0,
+     "comparability_group": "b"
+    },
+    {
+     "year": 2015,
+     "value": 0.0,
+     "comparability_group": "c"
+    }
+   ],
+   "segments": [
+    [
+     2008,
+     2009
+    ],
+    [
+     2011,
+     2012
+    ],
+    [
+     2014
+    ],
+    [
+     2015
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+source_id: kentucky_legislature
+publisher: Kentucky General Assembly, Legislative Research Commission
+title: Kentucky Acts amending KRS 243.230 (retail license restrictions), 2013-2017
+landing_url: https://apps.legislature.ky.gov/law/acts/
+citation: "Acts of the General Assembly of the Commonwealth of Kentucky, 2013 ch. 121, 2014 ch. 22, 2014 ch. 92 and 2017 ch. 62 (Legislative Research Commission PDF versions)."
+update_frequency: Each legislative session
+source_family: policy
+rights_status: government_edict
+notes: >-
+  Each act reprints the sections it amends, with insertions in bold italic and deletions struck through in
+  square brackets. The version ledger (metadata/legal_history/state_section_versions.csv) reads the text in
+  force after each act from that markup, and the text before the 2013 act by dropping its insertions and
+  restoring its deletions. The current text of KRS 243.230 is asset law_ky_krs_243_230 (source
+  state_alcohol_law).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: ky_acts_2013_ch121
+    url: https://apps.legislature.ky.gov/law/acts/13RS/documents/0121.pdf
+    filename: ky_acts_2013_ch121.pdf
+    edition: "2013 Ky. Acts ch. 121 (HB 13, alcoholic beverage law revisions), LRC PDF version"
+    source_series: ky_acts
+    source_vintage: 2013rs_ch121
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+  - asset_id: ky_acts_2014_ch22
+    url: https://apps.legislature.ky.gov/law/acts/14RS/documents/0022.pdf
+    filename: ky_acts_2014_ch22.pdf
+    edition: "2014 Ky. Acts ch. 22, LRC PDF version"
+    source_series: ky_acts
+    source_vintage: 2014rs_ch22
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+  - asset_id: ky_acts_2014_ch92
+    url: https://apps.legislature.ky.gov/law/acts/14RS/documents/0092.pdf
+    filename: ky_acts_2014_ch92.pdf
+    edition: "2014 Ky. Acts ch. 92 (county and city government; amends KRS 243.230 sec. 298), LRC PDF version"
+    source_series: ky_acts
+    source_vintage: 2014rs_ch92
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+  - asset_id: ky_acts_2017_ch62
+    url: https://apps.legislature.ky.gov/law/acts/17RS/documents/0062.pdf
+    filename: ky_acts_2017_ch62.pdf
+    edition: "2017 Ky. Acts ch. 62 (alcoholic beverages), LRC PDF version"
+    source_series: ky_acts
+    source_vintage: 2017rs_ch62
+    format: pdf
+    priority: 20
+    redistribute_raw: true

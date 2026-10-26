@@ -1,0 +1,306 @@
+# Nationwide policy baseline, batch 4: the South (first part). Each entry is a dated snapshot of what the cited
+# text shows on the day it was read; nothing here covers other days.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+#
+# Not in this batch, and why (see data/curated/research/source_leads.csv):
+#   Texas: statutes.capitol.texas.gov now serves every code page through a script application; a plain request
+#     returns the same 250 KB shell for any chapter.
+#   Delaware: delcode.delaware.gov returned a page with no statute text for title 4, chapter 5.
+#   Oklahoma, Alabama, Mississippi, Maryland: not fetched in this pass (official texts identified as leads;
+#     Mississippi's code is published by a commercial host, and Maryland's rules differ county by county).
+batch: batch_04_south
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ Florida (2026 Florida Statutes)
+  - id: base_fl_grocery_wine
+    geo_id: "state:12"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Beer-and-wine vendor license for off-premises sales; no outlet type is named or excluded.
+    asset:
+      asset_id: law_fl_stat_564_02
+      url: http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0564/Sections/0564.02.html
+      edition: "2026 Florida Statutes § 564.02 (License fees; vendors), Florida Legislature page"
+      filename: fl_stat_564_02.html
+      rights_status: government_edict
+    citation: Fla. Stat. § 564.02(1)(a)
+    locator: subsection (1)(a)
+    find: "Each vendor authorized to sell brewed beverages containing malt, wines, and fortified wines shall pay an annual state license tax, as follows: (a) Vendors operating places of business where beverages are sold only for consumption off the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_fl_grocery_beer
+    geo_id: "state:12"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Malt beverage vendor license for off-premises sales; no outlet type is named or excluded.
+    asset:
+      asset_id: law_fl_stat_563_02
+      url: http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0563/Sections/0563.02.html
+      edition: "2026 Florida Statutes § 563.02 (License fees; vendors), Florida Legislature page"
+      filename: fl_stat_563_02.html
+      rights_status: government_edict
+    citation: Fla. Stat. § 563.02(1)(a)
+    locator: subsection (1)(a)
+    find: "Each vendor of malt beverages containing alcohol of 0.5 percent or more by volume shall pay an annual state license tax as follows: (a) Vendors operating places of business where beverages are sold only for consumption off the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_fl_grocery_spirits
+    geo_id: "state:12"
+    dimension: ordinary_grocery_spirits_authorization
+    value: conditional_or_special_channel
+    detail: Spirits are sold off-premises by package-store vendors whose premises must be devoted exclusively to alcoholic beverages and have no opening into any other building or room, so a grocery can sell spirits only through a separate store.
+    asset:
+      asset_id: law_fl_stat_565_04
+      url: http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0565/Sections/0565.04.html
+      edition: "2026 Florida Statutes § 565.04 (Package store restrictions), Florida Legislature page"
+      filename: fl_stat_565_04.html
+      rights_status: government_edict
+    citation: Fla. Stat. § 565.04(1)
+    locator: subsection (1)
+    find:
+      - "Vendors licensed under s. 565.02 (1)(a) shall not in said place of business sell, offer, or expose for sale any merchandise other than such beverages, and such places of business shall be devoted exclusively to such sales"
+      - "Such places of business shall have no openings permitting direct access to any other building or room, except to a private office or storage room of the place of business from which patrons are excluded."
+    evidence_strength: current_code
+    support: indirect
+    notes: The section restricts package stores; that a grocery therefore sells spirits only through a separate adjoining store is inferred, not stated.
+  - id: base_fl_spirits_retail
+    geo_id: "state:12"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately licensed package-store vendors.
+    asset:
+      asset_id: law_fl_stat_565_02
+      url: http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0565/Sections/0565.02.html
+      edition: "2026 Florida Statutes § 565.02 (License fees; vendors), Florida Legislature page"
+      filename: fl_stat_565_02.html
+      rights_status: government_edict
+    citation: Fla. Stat. § 565.02(1)(a)
+    locator: subsection (1)(a)
+    find: "(a) A vendor operating a place of business where beverages are sold only in sealed containers for consumption off the premises where sold shall pay an amount equal to 75 percent of the amount of the license tax for vendors in the same county"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ North Carolina
+  - id: base_nc_grocery_wine
+    geo_id: "state:37"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises unfortified wine permit, which may be issued for retail businesses.
+    asset:
+      asset_id: law_nc_gs_18b_1001
+      url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_18B/GS_18B-1001.html
+      edition: "North Carolina General Statutes § 18B-1001 (Kinds of ABC permits), General Assembly page"
+      rights_status: government_edict
+    citation: N.C. Gen. Stat. § 18B-1001(4)
+    locator: subdivision (4)
+    find:
+      - "(4) Off-Premises Unfortified Wine Permit. - An off-premises unfortified wine permit authorizes (i) the retail sale of unfortified wine in the manufacturer's original container for consumption off the premises"
+      - "The permit may be issued for retail businesses."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Unfortified wine only; fortified wine and spirits are sold in ABC stores. Wine and malt beverage sales depend on local elections, which are not coded here.
+  - id: base_nc_grocery_beer
+    geo_id: "state:37"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Off-premises malt beverage permit; no outlet type is named or excluded in the excerpt.
+    asset: law_nc_gs_18b_1001
+    citation: N.C. Gen. Stat. § 18B-1001(2)
+    locator: subdivision (2)
+    find: "(2) Off-Premises Malt Beverage Permit. - An off-premises malt beverage permit authorizes (i) the retail sale of malt beverages in the manufacturer's original container for consumption off the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_nc_grocery_spirits
+    geo_id: "state:37"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Spirituous liquor may be sold only in ABC stores operated by local boards.
+    asset:
+      asset_id: law_nc_gs_18b_800
+      url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_18B/GS_18B-800.html
+      edition: "North Carolina General Statutes § 18B-800 (Sale of alcoholic beverages in ABC stores), General Assembly page"
+      rights_status: government_edict
+    citation: N.C. Gen. Stat. § 18B-800(a)
+    locator: subsection (a)
+    find: "(a) Spirituous Liquor. - Except as provided in Articles 10 and 11 of this Chapter, spirituous liquor may be sold only in ABC stores operated by local boards."
+    evidence_strength: current_code
+    notes: The exceptions in Articles 10 and 11 (for example distillery sales) are not coded.
+  - id: base_nc_spirits_retail
+    geo_id: "state:37"
+    dimension: spirits_off_premise_retail_system
+    value: local_government_stores
+    detail: ABC stores operated by local (city and county) ABC boards.
+    asset: law_nc_gs_18b_800
+    citation: N.C. Gen. Stat. § 18B-800(a)
+    locator: subsection (a)
+    find: "(a) Spirituous Liquor. - Except as provided in Articles 10 and 11 of this Chapter, spirituous liquor may be sold only in ABC stores operated by local boards."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ South Carolina
+  - id: base_sc_grocery_wine
+    geo_id: "state:45"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Retail beer and wine permit for any person in the business of selling beer or wine; no outlet type is named or excluded.
+    asset:
+      asset_id: law_sc_code_t61_ch4
+      url: https://www.scstatehouse.gov/code/t61c004.php
+      edition: "South Carolina Code of Laws title 61, chapter 4 (Beer, ale, porter, and wine), Legislature page"
+      rights_status: government_edict
+    citation: S.C. Code § 61-4-500
+    locator: section 61-4-500
+    find: "A person engaging in the business of selling beer, ale, porter, wine, or a beverage which has been declared to be nonalcoholic and nonintoxicating under Section 61-4-10 must apply to the department for a permit to sell these beverages."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_sc_grocery_beer
+    geo_id: "state:45"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same retail beer and wine permit.
+    asset: law_sc_code_t61_ch4
+    citation: S.C. Code § 61-4-500
+    locator: section 61-4-500
+    find: "A person engaging in the business of selling beer, ale, porter, wine, or a beverage which has been declared to be nonalcoholic and nonintoxicating under Section 61-4-10 must apply to the department for a permit to sell these beverages."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_sc_spirits_retail
+    geo_id: "state:45"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retail dealer's licenses (retail liquor stores).
+    asset:
+      asset_id: law_sc_code_t61_ch6
+      url: https://www.scstatehouse.gov/code/t61c006.php
+      edition: "South Carolina Code of Laws title 61, chapter 6 (Alcoholic liquors), Legislature page"
+      rights_status: government_edict
+    citation: S.C. Code § 61-6-100
+    locator: licenses, item (3)
+    find: "(3) retail dealers' licenses which authorize the licensees to purchase alcoholic liquors from wholesalers having licenses issued under this article, and to store, keep, possess, and sell alcoholic liquors at retail"
+    evidence_strength: current_code
+    notes: Whether a grocery may hold a retail dealer's license is not settled by this excerpt, so grocery spirits are not coded for South Carolina.
+  # ------------------------------------------------------------------ West Virginia
+  - id: base_wv_spirits_retail
+    geo_id: "state:54"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Liquor is sold by retail licensees; the state must close its own stores in any market zone where a licensed outlet operates.
+    asset:
+      asset_id: law_wv_code_60_3a_3
+      url: https://code.wvlegislature.gov/60-3A-3/
+      edition: "West Virginia Code § 60-3A-3 (Sale of liquor by retail licensees), Legislature page"
+      filename: wv_code_60_3a_3.html
+      rights_status: government_edict
+    citation: W. Va. Code § 60-3A-3
+    locator: subsections (a) and (b)
+    find:
+      - "(a) Notwithstanding any provision of this code to the contrary, the sale of liquor by retail licensees in accordance with the provisions of this article is lawful."
+      - "(b) Upon the opening of a retail outlet in any market zone, the state shall, as soon as practicable, discontinue operating any and all state liquor stores and agency stores within the market zone so long as a retail outlet is in operation in the market zone."
+    evidence_strength: current_code
+    support: indirect
+    notes: Subsection (c) still lets the commissioner run a state store where a zone has no licensed outlet; that none does today is not stated in the excerpt.
+  # ------------------------------------------------------------------ District of Columbia
+  - id: base_dc_grocery_wine
+    geo_id: "state:11"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises retailer's class B license (beer and wine), which the Code issues to full-service grocery stores among others.
+    asset:
+      asset_id: law_dc_code_25_112
+      url: https://code.dccouncil.gov/us/dc/council/code/sections/25-112
+      edition: "D.C. Code § 25-112 (Off-premises retailer's licenses), Council of the District of Columbia law library"
+      filename: dc_code_25_112.html
+      rights_status: government_edict
+    citation: D.C. Code § 25-112(d)(1)(B) and (a-1)(2)(B)
+    locator: subsections (d)(1)(B) and (a-1)(2)(B)
+    find:
+      - "(B) A retailer's license, class B, shall authorize a licensee to sell beer and wine."
+      - "the Board shall not issue any new full-service grocery store, off-premises retailer's class B licenses"
+    evidence_strength: current_code
+    notes: The second excerpt is a 2013 transitional rule; it is cited only because it names full-service grocery stores as class B licensees.
+  - id: base_dc_grocery_beer
+    geo_id: "state:11"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same class B license.
+    asset: law_dc_code_25_112
+    citation: D.C. Code § 25-112(d)(1)(B)
+    locator: subsection (d)(1)(B)
+    find:
+      - "(B) A retailer's license, class B, shall authorize a licensee to sell beer and wine."
+      - "the Board shall not issue any new full-service grocery store, off-premises retailer's class B licenses"
+    evidence_strength: current_code
+  - id: base_dc_spirits_retail
+    geo_id: "state:11"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held off-premises retailer's class A licenses (spirits, beer and wine).
+    asset: law_dc_code_25_112
+    citation: D.C. Code § 25-112(d)(1)(A)
+    locator: subsection (d)(1)(A)
+    find: "(A) A retailer's license, class A, shall authorize a licensee to sell spirits, beer, and wine."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Louisiana
+  - id: base_la_grocery_wine
+    geo_id: "state:22"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Class B retail liquor permit for package houses (sealed containers off-premises); no outlet type is named or excluded.
+    asset:
+      asset_id: law_la_rs_26_71
+      url: https://www.legis.la.gov/Legis/LawPrint.aspx?d=84789
+      edition: "Louisiana Revised Statutes 26:71 (Permits required; fees), Legislature print page"
+      filename: la_rs_26_71.html
+      rights_status: government_edict
+    citation: La. R.S. 26:71, retailers paragraph (3)(b)
+    locator: paragraph (3)(b) (Retailers)
+    find: "(b) Those operating package houses - one hundred dollars for each place of business in any city in the state and fifty dollars for each place of business in a town, village, or unincorporated place. This permit is known as a Class B Retail Liquor Permit."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Parishes and municipalities may hold local option elections; not coded here. R.S. 26:271.4 (base_la_grocery_spirits_delivery) ties a grocery store's alcohol delivery permit to the package house Class B permit.
+  - id: base_la_grocery_beer
+    geo_id: "state:22"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same Class B package house permit; beer of low alcohol content also has its own permits (R.S. 26:271, not excerpted).
+    asset: law_la_rs_26_71
+    citation: La. R.S. 26:71, retailers paragraph (3)(b)
+    locator: paragraph (3)(b) (Retailers)
+    find: "(b) Those operating package houses - one hundred dollars for each place of business in any city in the state and fifty dollars for each place of business in a town, village, or unincorporated place. This permit is known as a Class B Retail Liquor Permit."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_la_grocery_spirits
+    geo_id: "state:22"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same Class B package house permit, which covers liquor.
+    asset: law_la_rs_26_71
+    citation: La. R.S. 26:71, retailers paragraph (3)(b)
+    locator: paragraph (3)(b) (Retailers)
+    find: "(b) Those operating package houses - one hundred dollars for each place of business in any city in the state and fifty dollars for each place of business in a town, village, or unincorporated place. This permit is known as a Class B Retail Liquor Permit."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_la_grocery_spirits_delivery
+    geo_id: "state:22"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: A package house Class B delivery permit may be issued to a grocery store for delivering alcohol with its own employees.
+    asset:
+      asset_id: law_la_rs_26_271_4
+      url: https://legis.la.gov/Legis/LawPrint.aspx?d=1148780
+      edition: "Louisiana Revised Statutes 26:271.4 (Package house - Class B permit; grocery delivery), Legislature print page"
+      filename: la_rs_26_271_4.html
+      rights_status: government_edict
+    citation: La. R.S. 26:271.4
+    locator: section text
+    find: "a permit may be issued to a grocery store enabling the delivery of alcohol as defined in R.S. 26:2 and 241(1)(a) with its own employees or agents"
+    evidence_strength: current_code
+    support: indirect
+    notes: A delivery permit for grocery stores titled "Package house-Class B permit" implies grocery stores hold Class B permits; it does not say so in words.
+  - id: base_la_spirits_retail
+    geo_id: "state:22"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held Class B retail liquor permits.
+    asset: law_la_rs_26_71
+    citation: La. R.S. 26:71, retailers paragraph (3)(b)
+    locator: paragraph (3)(b) (Retailers)
+    find: "(b) Those operating package houses - one hundred dollars for each place of business in any city in the state and fifty dollars for each place of business in a town, village, or unincorporated place. This permit is known as a Class B Retail Liquor Permit."
+    evidence_strength: current_code

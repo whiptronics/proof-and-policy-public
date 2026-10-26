@@ -1,0 +1,223 @@
+year,locationabbr,locationdesc,class,topic,question,response,break_out,break_out_category,sample_size,data_value,confidence_limit_low,confidence_limit_high,display_order,data_value_unit,data_value_type,data_value_footnote_symbol,data_value_footnote,datasource,classid,topicid,locationid,breakoutid,breakoutcategoryid,questionid,responseid,geolocation
+2011,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1848,34.1,32.7,35.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,72,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(18.220833, -66.590149)"
+2011,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,4658,65.9,64.4,67.4,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,72,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(18.220833, -66.590149)"
+2011,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,693,15.3,14.1,16.5,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,72,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(18.220833, -66.590149)"
+2011,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,5754,84.7,83.5,85.9,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,72,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(18.220833, -66.590149)"
+2011,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),Yes,Overall,Overall,257,5.3,4.6,6.1,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,72,BO1,CAT1,_RFDRHV4,RESP046,"
+,  
+(18.220833, -66.590149)"
+2011,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),No,Overall,Overall,6184,94.7,93.9,95.4,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,72,BO1,CAT1,_RFDRHV4,RESP054,"
+,  
+(18.220833, -66.590149)"
+2011,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1381,37.5,34.7,40.3,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,47,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(35.68094058, -85.774490914)"
+2011,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,4016,62.5,59.7,65.3,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,47,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(35.68094058, -85.774490914)"
+2011,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,300,10.0,8.0,12.0,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,47,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(35.68094058, -85.774490914)"
+2011,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,5061,90.0,88.0,92.0,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,47,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(35.68094058, -85.774490914)"
+2011,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),Yes,Overall,Overall,131,3.4,2.3,4.4,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,47,BO1,CAT1,_RFDRHV4,RESP046,"
+,  
+(35.68094058, -85.774490914)"
+2011,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),No,Overall,Overall,5231,96.7,95.6,97.7,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,47,BO1,CAT1,_RFDRHV4,RESP054,"
+,  
+(35.68094058, -85.774490914)"
+2011,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,3403,29.5,28.4,30.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,49,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(39.360700171, -111.587130635)"
+2011,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,8558,70.5,69.4,71.6,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,49,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(39.360700171, -111.587130635)"
+2011,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,1148,12.0,11.1,12.8,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,49,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(39.360700171, -111.587130635)"
+2011,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,10769,88.0,87.2,88.9,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,49,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(39.360700171, -111.587130635)"
+2011,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),Yes,Overall,Overall,478,4.1,3.6,4.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,49,BO1,CAT1,_RFDRHV4,RESP046,"
+,  
+(39.360700171, -111.587130635)"
+2011,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),No,Overall,Overall,11416,95.9,95.4,96.4,2,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,49,BO1,CAT1,_RFDRHV4,RESP054,"
+,  
+(39.360700171, -111.587130635)"
+2011,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,51,57.1,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,98,BO1,CAT1,DRNKANY5,RESP046,
+2011,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,51,42.9,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic03,98,BO1,CAT1,DRNKANY5,RESP054,
+2011,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,51,18.3,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,98,BO1,CAT1,_RFBING5,RESP046,
+2011,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,51,81.7,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic07,98,BO1,CAT1,_RFBING5,RESP054,
+2011,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),Yes,Overall,Overall,51,6.6,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,98,BO1,CAT1,_RFDRHV4,RESP046,
+2011,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than two drinks per day and adult women having more than one drink per day) (variable calculated from one or more BRFSS questions),No,Overall,Overall,51,93.4,,,,%,Crude Prevalence,,,BRFSS,CLASS01,Topic30,98,BO1,CAT1,_RFDRHV4,RESP054,
+2015,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1282,27.9,26.3,29.4,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(18.220833, -66.590149)"
+2015,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,4013,72.1,70.6,73.7,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(18.220833, -66.590149)"
+2015,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,505,12.7,11.5,13.9,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(18.220833, -66.590149)"
+2015,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,4750,87.3,86.1,88.5,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(18.220833, -66.590149)"
+2015,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,5049,95.4,94.7,96.2,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV5,RESP205,"
+,  
+(18.220833, -66.590149)"
+2015,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,189,4.6,3.8,5.3,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV5,RESP206,"
+,  
+(18.220833, -66.590149)"
+2015,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1929,40.6,38.6,42.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,47,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(35.68094058, -85.774490914)"
+2015,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,3718,59.4,57.4,61.4,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,47,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(35.68094058, -85.774490914)"
+2015,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,397,10.3,8.9,11.7,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,47,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(35.68094058, -85.774490914)"
+2015,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,5213,89.7,88.3,91.1,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,47,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(35.68094058, -85.774490914)"
+2015,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,5393,95.3,94.4,96.3,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,47,BO1,CAT1,_RFDRHV5,RESP205,"
+,  
+(35.68094058, -85.774490914)"
+2015,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,203,4.7,3.7,5.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,47,BO1,CAT1,_RFDRHV5,RESP206,"
+,  
+(35.68094058, -85.774490914)"
+2015,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,3041,30.4,29.3,31.6,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY5,RESP046,"
+,  
+(39.360700171, -111.587130635)"
+2015,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,7918,69.6,68.4,70.7,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY5,RESP054,"
+,  
+(39.360700171, -111.587130635)"
+2015,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,1038,11.6,10.8,12.4,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING5,RESP046,"
+,  
+(39.360700171, -111.587130635)"
+2015,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,9864,88.4,87.6,89.2,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING5,RESP054,"
+,  
+(39.360700171, -111.587130635)"
+2015,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,10511,96.4,95.9,96.8,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV5,RESP205,"
+,  
+(39.360700171, -111.587130635)"
+2015,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,382,3.6,3.2,4.1,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV5,RESP206,"
+,  
+(39.360700171, -111.587130635)"
+2015,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,51,54.0,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY5,RESP046,
+2015,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,51,46.0,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY5,RESP054,
+2015,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,51,16.3,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING5,RESP046,
+2015,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,51,83.7,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING5,RESP054,
+2015,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,51,94.1,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV5,RESP205,
+2015,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,51,5.9,,,1,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV5,RESP206,
+2022,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1775,34.6,32.7,36.4,1169,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY6,RESP046,"
+,  
+(18.220833, -66.590149)"
+2022,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,3589,65.4,63.6,67.3,1170,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY6,RESP054,"
+,  
+(18.220833, -66.590149)"
+2022,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,647,13.4,12.0,14.7,3933,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING6,RESP046,"
+,  
+(18.220833, -66.590149)"
+2022,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,4659,86.6,85.3,88.0,3934,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING6,RESP054,"
+,  
+(18.220833, -66.590149)"
+2022,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,5046,95.4,94.6,96.2,4064,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV8,RESP205,"
+,  
+(18.220833, -66.590149)"
+2022,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,236,4.6,3.8,5.4,4065,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV8,RESP206,"
+,  
+(18.220833, -66.590149)"
+2022,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,2157,48.1,46.2,50.0,1169,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,47,BO1,CAT1,DRNKANY6,RESP046,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,TN,Tennessee,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,2559,51.9,50.0,53.8,1170,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,47,BO1,CAT1,DRNKANY6,RESP054,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,589,15.1,13.7,16.5,3933,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,47,BO1,CAT1,_RFBING6,RESP046,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,TN,Tennessee,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,4079,84.9,83.5,86.3,3934,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,47,BO1,CAT1,_RFBING6,RESP054,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,4408,93.4,92.4,94.4,4064,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,47,BO1,CAT1,_RFDRHV8,RESP205,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,TN,Tennessee,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,263,6.6,5.6,7.6,4065,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,47,BO1,CAT1,_RFDRHV8,RESP206,"
+,  
+(35.68094058000048, -85.77449091399967)"
+2022,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,2714,33.8,32.5,35.1,1169,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY6,RESP046,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,6237,66.2,64.9,67.5,1170,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY6,RESP054,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,933,12.8,11.9,13.8,3933,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING6,RESP046,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,7969,87.2,86.2,88.1,3934,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING6,RESP054,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,8511,95.0,94.3,95.6,4064,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV8,RESP205,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,386,5.0,4.4,5.7,4065,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV8,RESP206,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2022,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,51,53.6,,,1169,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY6,RESP046,
+2022,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,51,46.4,,,1170,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY6,RESP054,
+2022,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,51,17.0,,,3933,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING6,RESP046,
+2022,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,51,83.0,,,3934,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING6,RESP054,
+2022,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,51,93.1,,,4064,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV8,RESP205,
+2022,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,51,6.9,,,4065,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV8,RESP206,
+2024,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,1363,32.83,30.729999999999997,34.93,1169,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY6,RESP046,"
+,  
+(18.220833, -66.590149)"
+2024,PR,Puerto Rico,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,2822,67.17,65.07000000000001,69.27,1170,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,72,BO1,CAT1,DRNKANY6,RESP054,"
+,  
+(18.220833, -66.590149)"
+2024,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,383,9.82,8.57,11.07,3879,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING6,RESP046,"
+,  
+(18.220833, -66.590149)"
+2024,PR,Puerto Rico,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,3771,90.18,88.93,91.43,3880,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,72,BO1,CAT1,_RFBING6,RESP054,"
+,  
+(18.220833, -66.590149)"
+2024,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,3995,96.24000000000001,95.51,96.97000000000001,4010,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV9,RESP205,"
+,  
+(18.220833, -66.590149)"
+2024,PR,Puerto Rico,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,155,3.7600000000000002,3.0300000000000002,4.49,4011,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,72,BO1,CAT1,_RFDRHV9,RESP206,"
+,  
+(18.220833, -66.590149)"
+2024,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,3550,32.35,31.25,33.45,1169,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY6,RESP046,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UT,Utah,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,8458,67.65,66.55000000000001,68.75,1170,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC03,49,BO1,CAT1,DRNKANY6,RESP054,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,1127,11.26,10.48,12.04,3879,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING6,RESP046,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UT,Utah,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,10830,88.74,87.96,89.52,3880,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC07,49,BO1,CAT1,_RFBING6,RESP054,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,11542,96.46000000000001,96.03,96.89000000000001,4010,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV9,RESP205,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UT,Utah,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,404,3.54,3.11,3.97,4011,%,Crude Prevalence,,,BRFSS,CLASS01,TOPIC30,49,BO1,CAT1,_RFDRHV9,RESP206,"
+,  
+(39.360700171000474, -111.58713063499971)"
+2024,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,Yes,Overall,Overall,50,52.1,,,1169,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY6,RESP046,
+2024,UW,All States and DC (median) **,Alcohol Consumption,Alcohol Consumption,Adults who have had at least one drink of alcohol within the past 30 days,No,Overall,Overall,50,47.9,,,1170,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC03,98,BO1,CAT1,DRNKANY6,RESP054,
+2024,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",Yes,Overall,Overall,50,15.5,,,3879,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING6,RESP046,
+2024,UW,All States and DC (median) **,Alcohol Consumption,Binge Drinking,"Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion) (variable calculated from one or more BRFSS questions)",No,Overall,Overall,50,84.5,,,3880,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC07,98,BO1,CAT1,_RFBING6,RESP054,
+2024,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Do not meet criteria for heavy drinking,Overall,Overall,50,93.8,,,4010,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV9,RESP205,
+2024,UW,All States and DC (median) **,Alcohol Consumption,Heavy Drinking,Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) (variable calculated from one or more BRFSS questions),Meet criteria for heavy drinking,Overall,Overall,50,6.2,,,4011,%,Crude Prevalence,**,** Median value reported with no confidence intervals.,BRFSS,CLASS01,TOPIC30,98,BO1,CAT1,_RFDRHV9,RESP206,

@@ -1,0 +1,69 @@
+source_id: census_trade_margins
+publisher: U.S. Census Bureau
+title: Annual Retail Trade Survey and Annual Wholesale Trade Survey, gross margin as a percent of sales
+landing_url: https://www.census.gov/data/tables/2022/econ/arts/2022benchmarked/annual-report.html
+citation: >-
+  U.S. Census Bureau. Annual Retail Trade Survey, 2022 (benchmarked): "Estimated Annual Gross Margin as a Percentage of
+  Sales of U.S. Retail Firms by Kind of Business: 1993-2022" (gmper.xlsx). Annual Wholesale Trade Survey, 2022
+  (revised): "Table 4. Estimated Annual Purchases, Gross Margins, and Gross Margins as a Percent of Sales for U.S.
+  Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: 1992 Through 2022"
+  (2022_awts_purchmarg_nomsbo_table4.xlsx). https://www2.census.gov/programs-surveys/arts/tables/2022benchmarked/ and
+  https://www2.census.gov/programs-surveys/awts/tables/2022revised/
+update_frequency: Annual (each release revises earlier years and is benchmarked to the latest Economic Census)
+source_family: finance
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  National industry averages across every product the businesses sell, as a percent of their sales. Census defines
+  gross margin as sales less cost of goods sold (beginning inventory plus purchases for resale less ending inventory);
+  retail sales exclude sales taxes collected from customers and include excise taxes paid by the manufacturer or
+  wholesaler and passed along (ARTS glossary, read 2026-10-15). A gross margin is not a markup, a net profit or an
+  incremental cost; the project uses these figures only as reference assumptions for what private sellers keep, never
+  as a measured minimum a Utah grocer would need on wine. The rows for the industries the grocery-wine comparison
+  refers to are parsed from the pinned workbooks by src/alcohol_data/adapters/census_trade_margins.py, every year
+  printed, with each cell's reference (nation:us, calendar data years): retail total, food and beverage stores (445),
+  grocery stores (4451), beer, wine and liquor stores (4453), warehouse clubs and supercenters (452311); merchant
+  wholesale total (42), grocery wholesalers (4244), beer, wine and distilled alcoholic beverage wholesalers (4248).
+host_min_interval_seconds: 5
+assets:
+  - asset_id: census_arts_gmper_2022
+    url: https://www2.census.gov/programs-surveys/arts/tables/2022benchmarked/gmper.xlsx
+    method: manual_import
+    filename: gmper.xlsx
+    edition: "Annual Retail Trade Survey 2022 (benchmarked), gross margin as a percentage of sales, 1993-2022; server date 2026-08-31"
+    source_series: census_arts_gmper
+    source_vintage: arts_2022_benchmarked
+    format: xlsx
+    parser: census_arts_gmper
+    priority: 10
+    redistribute_raw: true
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-15 through the browser pane of the Claude desktop app on the maintainer's computer; its SHA-256
+      equals the hash of the bytes the page read from the server earlier that day. Imported with 'alcohol-data
+      import-asset'. One sheet ("Gross Margin as % of Sales"); row 4 holds the years (2022r to 1993), column A the NAICS
+      code (blank on the total rows), column B the kind of business with leader dots. "S": does not meet publication
+      standards.
+    blockers: The host refuses this environment's scripted downloads and its robots.txt bars the web reader; save from a browser and import.
+    next_action: Maintainer spot-checks the parsed cells (each observation names its cell) against the sheet.
+  - asset_id: census_awts_table4_2022
+    url: https://www2.census.gov/programs-surveys/awts/tables/2022revised/2022_awts_purchmarg_nomsbo_table4.xlsx
+    method: manual_import
+    filename: 2022_awts_purchmarg_nomsbo_table4.xlsx
+    edition: "Annual Wholesale Trade Survey 2022 (revised, adjusted to the 2022 Economic Census), table 4, 1992-2022; server date 2026-08-31"
+    source_series: census_awts_table4
+    source_vintage: awts_2022_revised
+    format: xlsx
+    parser: census_awts_table4
+    priority: 10
+    redistribute_raw: true
+    expected_status: blocked_access
+    notes: >-
+      Saved on 2026-10-15 the same way as the retail table (SHA-256 checked against the bytes the page read). The
+      2022revised folder's table is adjusted to the 2022 Economic Census; the 2022 folder's earlier table (adjusted to
+      2017) prints 28.4 instead of 28.3 for NAICS 4248 in 2020 and 27.7 instead of 27.6 in 2018. One sheet ("Sheet1");
+      row 4 holds the years (2022r to 1992); columns A-D the NAICS code, data item (purchases, gross margins, gross
+      margins as a percent of sales), kind of business and type of operation. Legend: "S" does not meet publication
+      standards; "x" not available for lack of prior-year inventories (every 1992 margin); "NA" unavailable.
+    blockers: The host refuses this environment's scripted downloads and its robots.txt bars the web reader; save from a browser and import.
+    next_action: Maintainer spot-checks the parsed cells (each observation names its cell) against the sheet.

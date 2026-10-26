@@ -1,0 +1,103 @@
+# Nationwide policy baseline, batch 9: fourth pass over the leads (Maryland and Oklahoma), from statute text.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+batch: batch_09_leads_pass_4
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-09"
+entries:
+  # ------------------------------------------------------------------ Maryland (statute text; the General Assembly's pages serve it)
+  - id: base_md_grocery_wine
+    geo_id: "state:24"
+    dimension: ordinary_grocery_wine_authorization
+    value: chains_and_supermarkets_barred
+    detail: >-
+      A local licensing board may not issue a Class A (off-sale), B or D beer and wine license for use at a chain
+      store, supermarket or discount house; establishments already licensed and licensees selling at discount
+      prices are exempt. Other grocery stores are not barred by this section.
+    asset:
+      asset_id: law_md_gab_4_205
+      url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gab&section=4-205&enactments=false
+      edition: "Maryland Code, Alcoholic Beverages and Cannabis Article § 4-205, General Assembly statute text page"
+      filename: md_gab_4_205.html
+      rights_status: government_edict
+    citation: Md. Code, Alcoholic Beverages and Cannabis § 4-205
+    locator: subsections (a) and (b)
+    find:
+      - "A local licensing board may not issue a Class A, Class B, or Class D beer license, beer and wine license, or beer, wine, and liquor license for use in conjunction with or on the premises of"
+      - "a chain store; (2) a supermarket; or (3) a discount house"
+      - "an establishment that already holds a Class A, Class B, or Class D beer license, beer and wine license, or beer, wine, and liquor license"
+    evidence_strength: current_code
+    notes: >-
+      The subtitle applies statewide subject to Division II of the Article (§ 4-201), whose county titles were not
+      surveyed, so county rules may differ. "Chain store", "supermarket" and "discount house" were not looked up in
+      the definitions. Bills to add a food-retailer exception (§ 4-205.1; 2024 HB 847 and SB 1139, 2025 HB 1379,
+      2026 HB 1303) were found by search; § 4-205.1 does not exist on the General Assembly's site (checked
+      2026-10-09).
+  - id: base_md_grocery_beer
+    geo_id: "state:24"
+    dimension: ordinary_grocery_beer_authorization
+    value: chains_and_supermarkets_barred
+    detail: The same bar covers Class A beer licenses; establishments already licensed are exempt.
+    asset: law_md_gab_4_205
+    citation: Md. Code, Alcoholic Beverages and Cannabis § 4-205
+    locator: subsections (a) and (b)
+    find:
+      - "A local licensing board may not issue a Class A, Class B, or Class D beer license, beer and wine license, or beer, wine, and liquor license for use in conjunction with or on the premises of"
+      - "a chain store; (2) a supermarket; or (3) a discount house"
+    evidence_strength: current_code
+    notes: Subject to Division II of the Article (§ 4-201); county rules not surveyed.
+  # ------------------------------------------------------------------ Oklahoma (the Legislature's complete-title PDF)
+  - id: base_ok_grocery_wine
+    geo_id: "state:40"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Retail wine license (37A O.S. § 2-109(B)) for off-premises sales of wine up to 15% alcohol by volume; the section names no outlet type.
+    asset:
+      asset_id: law_ok_title37a_complete
+      url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os37A.pdf
+      edition: "Oklahoma Statutes, Title 37A (Alcoholic Beverages), complete title PDF from the Oklahoma Legislature (PDF created 2025-12-30)"
+      filename: ok_title37a.pdf
+      format: pdf
+      rights_status: government_edict
+    citation: 37A O.S. § 2-109
+    locator: subsection B
+    find:
+      - "A retail wine license shall authorize the holder thereof"
+      - "To sell same on the licensed premises in such containers to consumers for off-premises consumption only and not for resale; provided, wine may be sold to charitable organizations"
+      - "no holder of a retail wine license may sell wine with alcohol beverage volume in excess of fifteen percent (15%)"
+    observed_on: "2025-12-30"
+    observed_basis: document_date
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      Dated by the PDF's creation date (its metadata); the file states no currency date, and the section's
+      history note runs to Laws 2024, c. 90. The license dates from Laws 2016, c. 366, effective 2018-10-01 after
+      State Question 792.
+  - id: base_ok_grocery_beer
+    geo_id: "state:40"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Retail beer license (37A O.S. § 2-109(C)) for off-premises sales of beer up to 15% alcohol by volume; the section names no outlet type.
+    asset: law_ok_title37a_complete
+    citation: 37A O.S. § 2-109
+    locator: subsection C
+    find:
+      - "A retail beer license shall authorize the holder thereof"
+      - "no holder of a retail beer license may sell a malt beverage with alcohol beverage volume in excess of fifteen percent (15%)"
+    observed_on: "2025-12-30"
+    observed_basis: document_date
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ok_spirits_retail
+    geo_id: "state:40"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retail spirits licenses (37A O.S. § 2-109(A)); no state stores.
+    asset: law_ok_title37a_complete
+    citation: 37A O.S. § 2-109
+    locator: subsection A
+    find: "A retail spirits license shall authorize the holder thereof"
+    observed_on: "2025-12-30"
+    observed_basis: document_date
+    evidence_strength: current_code
+    support: indirect
+    notes: That the state runs no stores follows from the Act providing retail spirits licenses as the off-premises channel; no sentence states it.

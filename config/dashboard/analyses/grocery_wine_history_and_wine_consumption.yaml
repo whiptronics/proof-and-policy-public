@@ -1,0 +1,21 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: grocery_wine_history_and_wine_consumption
+title: "Grocery-wine law over time and apparent wine consumption"
+question: >-
+  In the states whose grocery-wine law is coded over time, how did apparent wine consumption and
+  all-beverage consumption per resident 21+ move, and on which days is each state's legal status verified?
+metrics:
+  - niaaa_ethanol_per_capita_21plus_wine@calendar_year
+  - niaaa_ethanol_per_capita_21plus_all@calendar_year
+geos: ["state:49", "state:47", "state:21", "state:51", "state:05"]
+years: [1998, 2024]
+shown: nominal
+policy_dimension: ordinary_grocery_wine_authorization
+notes:
+  - "The policy table under the charts says, year by year, how many days of each state's grocery-wine status are verified, and which values."
+  - "Apparent consumption counts sales and shipments, so visitors' purchases, cross-border buying and the stocking of new retail shelves are in it."
+cannot_show:
+  - "Whether grocery-wine law changes consumption. The states differ in many ways besides this law (taxes, who runs the stores, tourism, income), and nothing here holds those apart."
+  - "The status on any day the policy table marks unknown. A dated snapshot is shown only in its own year and says nothing about other days."
+  - "How many stores sold wine, or where: the law's status is legal time, not market exposure."

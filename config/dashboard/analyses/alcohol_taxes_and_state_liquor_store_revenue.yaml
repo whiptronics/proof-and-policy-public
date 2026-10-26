@@ -1,0 +1,20 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: alcohol_taxes_and_state_liquor_store_revenue
+title: "Alcohol taxes and state liquor-store receipts per resident 21+"
+question: >-
+  Per resident aged 21 and over, how large are state alcohol selective sales taxes (Census T10) and state
+  liquor-store receipts (Census A90) in Utah and the worked example's states, and how did they move?
+metrics:
+  - stc_alcoholic_beverages_sales_tax@state_fiscal_year
+  - census_liquor_stores_revenue@state_fiscal_year
+geos: ["state:49", "state:47", "state:51", "state:13", "state:05", "state:21"]
+years: [2000, 2025]
+shown: per_resident_21plus
+notes:
+  - "Each state's own fiscal year; all six end on June 30. Census liquor-store receipts are loaded for FY1972 and FY1977-FY2024 (FY2016 on from the Individual Unit Files)."
+  - "The two measures are different kinds of money and are shown on separate charts; they are never added."
+cannot_show:
+  - "Profit or money transferred to a state's general fund: liquor-store receipts are gross, and Census publishes no profit or transfer item."
+  - "Who runs a state's retail stores. Census counts wholesale-only monopolies as liquor stores, so a revenue value never codes the retail system."
+  - "Total alcohol revenue: T10 excludes license taxes, general sales tax, local taxes and state-store profit."

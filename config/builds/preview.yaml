@@ -1,0 +1,50 @@
+# v0.1 research preview build.
+name: preview
+release_version: 0.2.0-preview
+sources:
+  - census_pep
+  - niaaa_apparent_consumption
+  - cdc_brfss_prevalence
+  - cdc_yrbs
+  - census_stc
+  - census_govfin
+  - bls_cpi
+  - bea_regional
+  - census_cbp
+  - nhtsa_fars
+  - utah_dabs_annual_reports
+  - utah_legislature
+  - utah_code_history
+  - utah_session_laws
+  - utah_code_annotated_historical
+  - utah_archived_code_pages
+  - tennessee_legislature
+  - state_alcohol_law
+  - tennessee_dor_collections
+  - kentucky_legislature
+  - virginia_legislature
+  - virginia_archived_code_pages
+  - arkansas_legislature
+  - cdc_cdi
+  - utah_dabs_sales_analysis
+  - census_msrs
+  - census_economic_census
+  - utah_tax_commission
+  - us_atlas
+  - openstates_people
+  - utah_acfr
+  - pa_auditor_general_plcb
+  - census_trade_margins
+# SHA-256 of every input the build reads. Updated only by 'fetch --update-pins' (reviewed change).
+pins_file: config/builds/preview.pins.json
+policy_events: data/curated/policy_events.csv
+policy_evidence: data/curated/policy_evidence.csv
+policy_snapshots: data/curated/policy_snapshots.csv
+manual_observations: data/curated/manual_observations.csv
+# Last day treated as observed history (calendar day in as_of_timezone). Later days are future.
+as_of_date: 2026-10-06
+as_of_timezone: America/Denver
+claim_dependencies: data/curated/utah/claim_dependencies.csv
+claim_exceptions: data/curated/utah/claim_exceptions.csv
+exposure_years: [1990, 2026]
+derived: true

@@ -1,0 +1,22 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: adult_and_youth_drinking
+title: "Adult and high school drinking, side by side"
+question: >-
+  How did the share of adults who drank in the past 30 days (BRFSS) and the share of high school students
+  who drank in the past 30 days (YRBS) move in the same states, with grocery-wine status shown underneath?
+metrics:
+  - brfss_drank_any_past_30d_pct@survey_year
+  - yrbs_current_alcohol_use_hs_pct@survey_year
+geos: ["state:49", "state:47", "state:21", "state:51", "state:05", "nation:us"]
+years: [2001, 2025]
+shown: nominal
+policy_dimension: ordinary_grocery_wine_authorization
+notes:
+  - "BRFSS changed its method in 2011, so its line breaks there; the two parts are separate comparability groups."
+  - "YRBS runs in odd years: to 2017 from CDC's public-domain YRBS dataset, 2019-2023 from CDC's Chronic Disease Indicators (the line breaks where the source changes); a state appears only in years it reported weighted results."
+  - "BRFSS has no national row in this dataset (the BRFSS median rows are not loaded), so the U.S. line appears only for YRBS."
+cannot_show:
+  - "Whether adults and students drink more or less than each other: different surveys, populations, questions and sampling."
+  - "How much anyone drinks: a prevalence is a share of people, not a quantity."
+  - "Any effect of grocery-wine law: survey shares move for many reasons, and the confidence intervals (in each value's record) often overlap."

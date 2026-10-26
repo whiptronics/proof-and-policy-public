@@ -1,0 +1,66 @@
+source_id: census_pep
+publisher: U.S. Census Bureau, Population Division
+title: Population Estimates Program (PEP) state population estimates
+landing_url: https://www.census.gov/programs-surveys/popest.html
+citation: "U.S. Census Bureau, Population Estimates Program. State population estimates (intercensal 1990-2000, 2000-2010, 2010-2020; Vintage 2025). https://www.census.gov/programs-surveys/popest.html"
+update_frequency: Annual vintages (state age detail usually released in June); intercensal series once per decade
+source_family: population
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  July 1 resident population estimates. Intercensal series are revised to be consistent with the
+  following census and replace the postcensal vintages for their decade. Different series and vintages
+  are stored as separate candidates and never spliced silently; see docs/methods/population.md.
+host_min_interval_seconds: 1
+assets:
+  - &icen90
+    asset_id: census_pep_icen_1990
+    url: https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1990.txt
+    edition: "1990-1999 Intercensal State and County Characteristics Population Estimates (layout dated 2003-06-23)"
+    source_series: census_pep_intercensal_1990_2000
+    source_vintage: intercensal_1990_2000
+    format: text_fixed_width
+    parser: census_pep_icen_1990s
+    priority: 20
+    redistribute_raw: true
+    options: {year: 1990}
+    notes: State totals are sums of county rows. Five-year age groups do not allow 14+/18+/21+ totals.
+  - {<<: *icen90, asset_id: census_pep_icen_1991, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1991.txt", options: {year: 1991}}
+  - {<<: *icen90, asset_id: census_pep_icen_1992, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1992.txt", options: {year: 1992}}
+  - {<<: *icen90, asset_id: census_pep_icen_1993, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1993.txt", options: {year: 1993}}
+  - {<<: *icen90, asset_id: census_pep_icen_1994, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1994.txt", options: {year: 1994}}
+  - {<<: *icen90, asset_id: census_pep_icen_1995, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1995.txt", options: {year: 1995}}
+  - {<<: *icen90, asset_id: census_pep_icen_1996, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1996.txt", options: {year: 1996}}
+  - {<<: *icen90, asset_id: census_pep_icen_1997, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1997.txt", options: {year: 1997}}
+  - {<<: *icen90, asset_id: census_pep_icen_1998, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1998.txt", options: {year: 1998}}
+  - {<<: *icen90, asset_id: census_pep_icen_1999, url: "https://www2.census.gov/programs-surveys/popest/tables/1990-2000/intercensal/st-co/stch-icen1999.txt", options: {year: 1999}}
+  - asset_id: census_pep_icen_2000s_agesex
+    url: https://www2.census.gov/programs-surveys/popest/datasets/2000-2010/intercensal/state/st-est00int-agesex.csv
+    edition: "Intercensal Estimates of the Resident Population by Single Year of Age and Sex for States: 2000-2010"
+    source_series: census_pep_intercensal_2000_2010
+    source_vintage: intercensal_2000_2010
+    format: csv
+    parser: census_pep_st_agesex_2000s
+    priority: 20
+    redistribute_raw: true
+    notes: STATE codes are published without leading zeros ("1" = Alabama); the adapter pads them. AGE 85 = 85 and over; AGE 999 = total.
+  - asset_id: census_pep_icen_2010s_alldata6
+    url: https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/intercensal/state/asrh/sc-est2020int-alldata6.csv
+    edition: "Intercensal Estimates of the Resident Population by Single Year of Age, Sex, Race, and Hispanic Origin for States: 2010-2020 (alldata6)"
+    source_series: census_pep_intercensal_2010_2020
+    source_vintage: intercensal_2010_2020
+    format: csv
+    parser: census_pep_alldata6
+    priority: 30
+    redistribute_raw: true
+    notes: Preferred over the 2000-2010 intercensal file for July 1, 2010 (consistent with the 2020 census).
+  - asset_id: census_pep_v2025_alldata6
+    url: https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/state/asrh/sc-est2025-alldata6.csv
+    edition: "Vintage 2025 Annual State Resident Population Estimates by Single Year of Age, Sex, Race, and Hispanic Origin (alldata6)"
+    source_series: census_pep_vintage_2025
+    source_vintage: vintage_2025
+    format: csv
+    parser: census_pep_alldata6
+    priority: 20
+    redistribute_raw: true
+    notes: Postcensal estimates; will be superseded by later vintages and eventually 2020-2030 intercensal estimates.

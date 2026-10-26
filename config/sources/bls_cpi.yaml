@@ -1,0 +1,36 @@
+source_id: bls_cpi
+publisher: U.S. Bureau of Labor Statistics
+title: Consumer Price Index for All Urban Consumers (CPI-U), U.S. city average, all items, not seasonally adjusted (CUUR0000SA0)
+landing_url: https://www.bls.gov/cpi/data.htm
+citation: "U.S. Bureau of Labor Statistics. Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (CUUR0000SA0), via the BLS Public Data API."
+update_frequency: Monthly
+source_family: context
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.bls.gov/opub/copyright-information.htm
+notes: >-
+  The keyless v1 API returns at most 10 years per request, so the series is requested in four
+  fixed windows. Setting BLS_API_KEY sends the same request to the v2 endpoint. The download.bls.gov
+  bulk files refused this project's automated client (HTTP 403) on 2026-10-06. Responses carry a
+  per-request 'responseTime' field, removed before hashing (normalize: bls_api_json) so the pin
+  identifies the data.
+host_min_interval_seconds: 2
+assets:
+  - &cpi
+    asset_id: bls_cpi_u_1987_1996
+    url: https://api.bls.gov/publicAPI/v1/timeseries/data/
+    method: POST
+    body: {seriesid: [CUUR0000SA0], startyear: "1987", endyear: "1996"}
+    filename: cpi_u_1987_1996.json
+    edition: "BLS API response, CUUR0000SA0, 1987-1996"
+    source_series: bls_cpi_u
+    source_vintage: api_snapshot
+    format: json
+    parser: bls_cpi_api
+    blockers: download.bls.gov bulk files refused automated requests (HTTP 403). Keyless API v1 allows 10 years per request.
+    priority: 20
+    redistribute_raw: true
+    auth: {kind: json_body, param: registrationkey, env: BLS_API_KEY, required: false}
+    options: {bls_api: true, normalize: bls_api_json, bls_v2_url: "https://api.bls.gov/publicAPI/v2/timeseries/data/"}
+  - {<<: *cpi, asset_id: bls_cpi_u_1997_2006, filename: cpi_u_1997_2006.json, edition: "BLS API response, CUUR0000SA0, 1997-2006", body: {seriesid: [CUUR0000SA0], startyear: "1997", endyear: "2006"}}
+  - {<<: *cpi, asset_id: bls_cpi_u_2007_2016, filename: cpi_u_2007_2016.json, edition: "BLS API response, CUUR0000SA0, 2007-2016", body: {seriesid: [CUUR0000SA0], startyear: "2007", endyear: "2016"}}
+  - {<<: *cpi, asset_id: bls_cpi_u_2017_2026, filename: cpi_u_2017_2026.json, edition: "BLS API response, CUUR0000SA0, 2017-2026", body: {seriesid: [CUUR0000SA0], startyear: "2017", endyear: "2026"}}

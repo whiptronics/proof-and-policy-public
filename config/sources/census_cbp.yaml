@@ -1,0 +1,304 @@
+source_id: census_cbp
+publisher: U.S. Census Bureau
+title: County Business Patterns, state files (alcohol retail, drinking places, supermarkets)
+landing_url: https://www.census.gov/programs-surveys/cbp.html
+citation: U.S. Census Bureau, County Business Patterns, state-level files, 2000-2023. https://www.census.gov/programs-surveys/cbp.html
+update_frequency: Annual (about 18 months after the reference year)
+source_family: context
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: 'Private employers only: government establishments, including state-run liquor stores, are out of scope.
+  NAICS 445310 (beer, wine and liquor stores), 722410 (drinking places) and 445110 (supermarkets and other grocery
+  stores) keep their codes across the NAICS 1997-2017 editions these years use; the edition is recorded with each
+  value. Employment is disclosure-protected and its method changes in 2007 (noise added) and 2017 (no more withheld
+  cells); see the adapter''s docstring.'
+host_min_interval_seconds: 1
+assets:
+- asset_id: census_cbp_state_2000
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2000/cbp00st.zip
+  filename: cbp00st.zip
+  edition: County Business Patterns 2000, state file (cbp00st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2000_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2000
+- asset_id: census_cbp_state_2001
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2001/cbp01st.zip
+  filename: cbp01st.zip
+  edition: County Business Patterns 2001, state file (cbp01st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2001_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2001
+- asset_id: census_cbp_state_2002
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2002/cbp02st.zip
+  filename: cbp02st.zip
+  edition: County Business Patterns 2002, state file (cbp02st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2002_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2002
+- asset_id: census_cbp_state_2003
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2003/cbp03st.zip
+  filename: cbp03st.zip
+  edition: County Business Patterns 2003, state file (cbp03st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2003_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2003
+- asset_id: census_cbp_state_2004
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2004/cbp04st.zip
+  filename: cbp04st.zip
+  edition: County Business Patterns 2004, state file (cbp04st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2004_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2004
+- asset_id: census_cbp_state_2005
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2005/cbp05st.zip
+  filename: cbp05st.zip
+  edition: County Business Patterns 2005, state file (cbp05st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2005_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2005
+- asset_id: census_cbp_state_2006
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2006/cbp06st.zip
+  filename: cbp06st.zip
+  edition: County Business Patterns 2006, state file (cbp06st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2006_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2006
+- asset_id: census_cbp_state_2007
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2007/cbp07st.zip
+  filename: cbp07st.zip
+  edition: County Business Patterns 2007, state file (cbp07st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2007_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2007
+- asset_id: census_cbp_state_2008
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2008/cbp08st.zip
+  filename: cbp08st.zip
+  edition: County Business Patterns 2008, state file (cbp08st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2008_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2008
+- asset_id: census_cbp_state_2009
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2009/cbp09st.zip
+  filename: cbp09st.zip
+  edition: County Business Patterns 2009, state file (cbp09st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2009_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2009
+- asset_id: census_cbp_state_2010
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2010/cbp10st.zip
+  filename: cbp10st.zip
+  edition: County Business Patterns 2010, state file (cbp10st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2010_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2010
+- asset_id: census_cbp_state_2011
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2011/cbp11st.zip
+  filename: cbp11st.zip
+  edition: County Business Patterns 2011, state file (cbp11st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2011_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2011
+- asset_id: census_cbp_state_2012
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2012/cbp12st.zip
+  filename: cbp12st.zip
+  edition: County Business Patterns 2012, state file (cbp12st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2012_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2012
+- asset_id: census_cbp_state_2013
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2013/cbp13st.zip
+  filename: cbp13st.zip
+  edition: County Business Patterns 2013, state file (cbp13st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2013_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2013
+- asset_id: census_cbp_state_2014
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2014/cbp14st.zip
+  filename: cbp14st.zip
+  edition: County Business Patterns 2014, state file (cbp14st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2014_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2014
+- asset_id: census_cbp_state_2015
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2015/cbp15st.zip
+  filename: cbp15st.zip
+  edition: County Business Patterns 2015, state file (cbp15st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2015_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2015
+- asset_id: census_cbp_state_2016
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2016/cbp16st.zip
+  filename: cbp16st.zip
+  edition: County Business Patterns 2016, state file (cbp16st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2016_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2016
+- asset_id: census_cbp_state_2017
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2017/cbp17st.zip
+  filename: cbp17st.zip
+  edition: County Business Patterns 2017, state file (cbp17st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2017_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2017
+- asset_id: census_cbp_state_2018
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2018/cbp18st.zip
+  filename: cbp18st.zip
+  edition: County Business Patterns 2018, state file (cbp18st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2018_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2018
+- asset_id: census_cbp_state_2019
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2019/cbp19st.zip
+  filename: cbp19st.zip
+  edition: County Business Patterns 2019, state file (cbp19st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2019_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2019
+- asset_id: census_cbp_state_2020
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2020/cbp20st.zip
+  filename: cbp20st.zip
+  edition: County Business Patterns 2020, state file (cbp20st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2020_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2020
+- asset_id: census_cbp_state_2021
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2021/cbp21st.zip
+  filename: cbp21st.zip
+  edition: County Business Patterns 2021, state file (cbp21st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2021_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2021
+- asset_id: census_cbp_state_2022
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2022/cbp22st.zip
+  filename: cbp22st.zip
+  edition: County Business Patterns 2022, state file (cbp22st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2022_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2022
+- asset_id: census_cbp_state_2023
+  url: https://www2.census.gov/programs-surveys/cbp/datasets/2023/cbp23st.zip
+  filename: cbp23st.zip
+  edition: County Business Patterns 2023, state file (cbp23st.txt)
+  source_series: census_cbp_state
+  source_vintage: cbp2023_state
+  format: zip
+  parser: census_cbp_state
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2023

@@ -1,0 +1,42 @@
+source_id: cdc_cdi
+publisher: Centers for Disease Control and Prevention (CDC)
+title: U.S. Chronic Disease Indicators (CDI), data.cdc.gov dataset hksd-2xuw, alcohol topic
+landing_url: https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw
+citation: >-
+  Centers for Disease Control and Prevention. U.S. Chronic Disease Indicators (CDI). data.cdc.gov dataset
+  hksd-2xuw, full CSV export downloaded by the project owner on 2026-10-09.
+  https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw
+update_frequency: Periodic releases by CDC; the export holds every topic and year current on the download day
+source_family: health
+rights_status: open_license
+rights_evidence_url: https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw
+release_gate: >-
+  The data.cdc.gov metadata for this dataset gives its license as the Open Database License (ODbL),
+  checked 2026-10-09. ODbL asks that a publicly used derived database be offered under ODbL, while this
+  project's releases are CC BY 4.0 and public domain. Until the owner decides, `alcohol-data package`
+  refuses to build a release that contains this source. Local builds and the dashboard are unaffected.
+notes: >-
+  Only the Alcohol topic is read, and only the Overall break-out (the export also has sex, age, grade and
+  race/ethnicity break-outs, not loaded): chronic liver disease mortality (NVSS, age-adjusted rate, crude
+  rate and number of deaths, 2019-2022), high school current alcohol use and binge drinking (YRBSS 2019,
+  2021, 2023), adult binge drinking prevalence (age-adjusted; the crude value repeats the BRFSS source and
+  is used only as a cross-check) and binge frequency and intensity among adults who binge drink (BRFSS
+  medians, 2019-2023). CDI's per capita consumption item (AEDS, ages 14+) repeats NIAAA and is used only as a
+  cross-check. Footnote symbols are kept: "*" no data available, "****" and "~" suppressed (never zero),
+  "##" a reported 0.0%. The same records also came as export.kml and export.kmz (map formats); they are
+  not imported. The exact request URL of the owner's download was not recorded.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: cdc_cdi_export_2026_10_09
+    method: manual_import
+    filename: cdc_cdi_export.csv
+    edition: "Full CSV export of dataset hksd-2xuw (398,793 rows, all topics), downloaded 2026-10-09 as export.csv"
+    source_series: cdc_cdi
+    source_vintage: export_2026_10_09
+    format: csv
+    parser: cdc_cdi_alcohol
+    # Below BRFSS and NIAAA (20): where CDI repeats their series, the original publisher stays preferred.
+    priority: 5
+    redistribute_raw: false
+    expected_status: acquired
+    notes: Imported from the owner's browser download (export.csv, 127 MB). Not redistributed (size and license).

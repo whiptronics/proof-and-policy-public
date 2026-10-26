@@ -1,0 +1,57 @@
+source_id: census_stc
+publisher: U.S. Census Bureau
+title: Annual Survey of State Government Tax Collections (STC)
+landing_url: https://www.census.gov/programs-surveys/stc.html
+citation: "U.S. Census Bureau. Annual Survey of State Government Tax Collections. STC Historical Database (2025 release) and FY2023-FY2025 flat files. https://www.census.gov/programs-surveys/stc.html"
+update_frequency: Annual (April release, revising the two prior years)
+source_family: finance
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  State-government collections only (not state plus local). Thousands of current dollars, state fiscal
+  years. T10 excludes profits of state-operated liquor stores, which Census classifies as liquor store
+  revenue. See docs/fiscal-reconciliation.md.
+host_min_interval_seconds: 1
+assets:
+  - asset_id: census_stc_historical_db_2025
+    url: https://www2.census.gov/programs-surveys/stc/datasets/historical/STC-Historical-DB.xlsx
+    filename: STC-Historical-DB.xlsx
+    edition: "STC_Historical_DB (2025) sheet; server Last-Modified 2026-04-15"
+    source_series: census_stc
+    source_vintage: historical_db_2025
+    format: xlsx
+    parser: census_stc_historical_xlsx
+    priority: 30
+    redistribute_raw: true
+    notes: Contains no District of Columbia rows. Early U.S. rows use -11111 for not available.
+  - asset_id: census_stc_fy2025_flat
+    url: https://www2.census.gov/programs-surveys/stc/datasets/2025/FY2025-Flat-File.txt
+    edition: FY2025 flat file (released April 2026)
+    source_series: census_stc
+    source_vintage: fy2025_flat
+    format: csv
+    parser: census_stc_flat_file
+    priority: 20
+    redistribute_raw: true
+    options: {fiscal_year: 2025}
+    notes: Includes DC. Fiscal-year dates come from metadata/fiscal_years.csv.
+  - asset_id: census_stc_fy2024_flat
+    url: https://www2.census.gov/programs-surveys/stc/datasets/2024/FY2024-Flat-File.txt
+    edition: FY2024 flat file
+    source_series: census_stc
+    source_vintage: fy2024_flat
+    format: csv
+    parser: census_stc_flat_file
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2024}
+  - asset_id: census_stc_fy2023_flat
+    url: https://www2.census.gov/programs-surveys/stc/datasets/2023/FY2023-Flat-File.txt
+    edition: FY2023 flat file
+    source_series: census_stc
+    source_vintage: fy2023_flat
+    format: csv
+    parser: census_stc_flat_file
+    priority: 10
+    redistribute_raw: true
+    options: {fiscal_year: 2023}

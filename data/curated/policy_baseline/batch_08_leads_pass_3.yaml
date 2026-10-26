@@ -1,0 +1,91 @@
+# Nationwide policy baseline, batch 8: third pass over the leads, from agency pages. Agency guidance is weaker
+# than code; each entry says so in evidence_strength.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+batch: batch_08_leads_pass_3
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ New York (agency guidance; nysenate.gov answered 403)
+  - id: base_ny_grocery_beer
+    geo_id: "state:36"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Grocery store beer license (beer, cider and mead off-premises) for stores with at least half their retail space in food, household and personal-care items.
+    asset:
+      asset_id: law_ny_sla_grocery_drug_quick_reference
+      url: https://sla.ny.gov/grocery-storedrug-store-license-quick-reference-0
+      edition: New York State Liquor Authority, Grocery Store/Drug Store License Quick Reference
+      filename: ny_sla_grocery_drug_quick_reference.html
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: New York State Liquor Authority, Grocery Store/Drug Store License Quick Reference (ABC Law § 54)
+    locator: What type of license should I apply for?
+    find: "Grocery Store Beer: Allows a person to sell beer, cider, and mead for off premises consumption from a premises being operated as a grocery store"
+    evidence_strength: agency_guidance
+  - id: base_ny_grocery_wine
+    geo_id: "state:36"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: Grocery licenses cover beer, cider, mead and "wine products" (a defined class of low-alcohol wine-based drinks), not wine.
+    asset: law_ny_sla_grocery_drug_quick_reference
+    citation: New York State Liquor Authority, Grocery Store/Drug Store License Quick Reference (ABC Law § 54)
+    locator: What type of license should I apply for?
+    find:
+      - "Grocery Store Beer: Allows a person to sell beer, cider, and mead for off premises consumption from a premises being operated as a grocery store"
+      - "Grocery Store Beer and Wine Products: Allows a person to sell beer, cider, mead, and wine products for off premises consumption from a premises being operated as a grocery store"
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: >-
+      That wine itself is excluded follows from the list of grocery licenses, none of which covers wine, and from
+      the statutory meaning of "wine product" (ABC Law § 3, not pinned). A 2025 bill (A8205/S7398) to create a
+      grocery wine license was found by search; its status is not recorded here.
+  # ------------------------------------------------------------------ Mississippi (agency guidance)
+  - id: base_ms_grocery_wine
+    geo_id: "state:28"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: Wine over 5% alcohol by weight is an "alcoholic beverage", which cannot be sold in grocery or convenience stores; grocery stores may sell only light wine (5% or less).
+    asset:
+      asset_id: law_ms_dor_abc_faq
+      url: https://www.dor.ms.gov/abc/tobacco-beer-and-alcohol-faqs
+      edition: Mississippi Department of Revenue, Tobacco, Beer and Alcohol FAQs page
+      filename: ms_dor_abc_faq.html
+      rights_status: facts_with_citation
+      redistribute_raw: false
+    citation: Mississippi Department of Revenue, Tobacco, Beer and Alcohol FAQs
+    locator: answer on beer, light wine and alcoholic beverages
+    find: "Likewise, alcoholic beverages cannot be sold in convenience or grocery stores. An alcoholic beverage is either a distilled spirit that contains more than 6% alcohol by weight or a wine product that contains more than 5% alcohol by weight."
+    evidence_strength: agency_guidance
+    notes: Bills to create a grocery wine permit (2024 HB 677; 2026 SB 2916 and HB 674) were found by search and reported dead in committee; their status is not coded.
+  - id: base_ms_grocery_spirits
+    geo_id: "state:28"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same rule; distilled spirits over 6% alcohol by weight cannot be sold in grocery stores.
+    asset: law_ms_dor_abc_faq
+    citation: Mississippi Department of Revenue, Tobacco, Beer and Alcohol FAQs
+    locator: answer on beer, light wine and alcoholic beverages
+    find: "Likewise, alcoholic beverages cannot be sold in convenience or grocery stores. An alcoholic beverage is either a distilled spirit that contains more than 6% alcohol by weight or a wine product that contains more than 5% alcohol by weight."
+    evidence_strength: agency_guidance
+  - id: base_ms_convenience_wine
+    geo_id: "state:28"
+    dimension: ordinary_convenience_wine_authorization
+    value: not_authorized
+    detail: Same rule for convenience stores.
+    asset: law_ms_dor_abc_faq
+    citation: Mississippi Department of Revenue, Tobacco, Beer and Alcohol FAQs
+    locator: answer on beer, light wine and alcoholic beverages
+    find: "Likewise, alcoholic beverages cannot be sold in convenience or grocery stores. An alcoholic beverage is either a distilled spirit that contains more than 6% alcohol by weight or a wine product that contains more than 5% alcohol by weight."
+    evidence_strength: agency_guidance
+  - id: base_ms_grocery_beer
+    geo_id: "state:28"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Beer (up to 8% by weight), light wine and light spirits are kept out of package stores and sold by retail beer permittees such as grocery and convenience stores.
+    asset: law_ms_dor_abc_faq
+    citation: Mississippi Department of Revenue, Tobacco, Beer and Alcohol FAQs
+    locator: answer on beer, light wine and alcoholic beverages
+    find: "Beer, light wine, and light spirits cannot be sold in package stores. Likewise, alcoholic beverages cannot be sold in convenience or grocery stores."
+    evidence_strength: agency_guidance
+    support: indirect
+    notes: That grocery stores sell beer is implied by the contrast ("Likewise") rather than stated.

@@ -1,0 +1,147 @@
+# Nationwide policy baseline, batch 6: first pass over the jurisdictions left by the regional batches, using
+# routes found while working their leads. Each entry is a dated snapshot; nothing here covers other days.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+batch: batch_06_leads_pass_1
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ Delaware
+  # The official title 4 PDF says it includes all acts enacted as of 2026-09-10. It carries several dated
+  # versions of some sections; the first version of each in the file is the one in force on the day it was
+  # read (2026-10-08): § 101 [Effective until Oct. 21, 2026] and § 516 [Effective until Oct. 21, 2026].
+  # Later versions (from 2026-10-21, 2027-01-23 and 2029-07-23) are not coded.
+  - id: base_de_grocery_wine
+    geo_id: "state:10"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: Off-premises licenses go to package stores, and the Code's definition of a package store excludes grocery stores, convenience stores and drug stores.
+    asset:
+      asset_id: law_de_code_title_4
+      url: https://delcode.delaware.gov/title4/title4.pdf
+      edition: "Delaware Code title 4 (Alcoholic Liquors and Marijuana), official PDF including acts enacted as of 2026-09-10"
+      format: pdf
+      rights_status: government_edict
+    citation: 4 Del. C. §§ 101(35) and 516(a)(1)a. (versions effective until 2026-10-21)
+    locator: § 101 paragraph (35); § 516 paragraph (a)(1)a.
+    find:
+      - text: "Any person in charge of a package store whether owner, lessee, or manager, and recognized as such by the Commissioner, may apply to the Commissioner for a license to purchase from an importer and to keep and sell and deliver on the premises only spirits, wine, or beer"
+        after: '§ 516 Consumption off the premises of a package store, hotel, restaurant, club, or taproom [Effective until Oct. 21, 2026]'
+        before: '§ 516 Consumption off the premises'
+      - text: '"Package store" or "store" does not include a grocery store, convenience store, drug store, hotel, restaurant, club, delicatessen, tobacco retailer, or cigar store.'
+        after: '§ 101 Definitions [Effective until Oct. 21, 2026]'
+        before: '§ 101 Definitions [Effective Oct. 21, 2026]'
+    evidence_strength: current_code
+    support: indirect
+    notes: >-
+      Section 516 also keeps some pre-1983 restaurant and taproom off-premises licenses, which are not a grocery
+      route. That a grocery store cannot sell wine follows from the two provisions together. The version of
+      § 101 effective 2026-10-21 still excludes grocery stores from "package store"; the § 516 versions effective
+      later were not compared.
+  - id: base_de_grocery_beer
+    geo_id: "state:10"
+    dimension: ordinary_grocery_beer_authorization
+    value: not_authorized
+    detail: Same package-store rule, which covers beer.
+    asset: law_de_code_title_4
+    citation: 4 Del. C. §§ 101(35) and 516(a)(1)a. (versions effective until 2026-10-21)
+    locator: § 101 paragraph (35); § 516 paragraph (a)(1)a.
+    find:
+      - text: "Any person in charge of a package store whether owner, lessee, or manager, and recognized as such by the Commissioner, may apply to the Commissioner for a license to purchase from an importer and to keep and sell and deliver on the premises only spirits, wine, or beer"
+        after: '§ 516 Consumption off the premises of a package store, hotel, restaurant, club, or taproom [Effective until Oct. 21, 2026]'
+        before: '§ 516 Consumption off the premises'
+      - text: '"Package store" or "store" does not include a grocery store, convenience store, drug store, hotel, restaurant, club, delicatessen, tobacco retailer, or cigar store.'
+        after: '§ 101 Definitions [Effective until Oct. 21, 2026]'
+        before: '§ 101 Definitions [Effective Oct. 21, 2026]'
+    evidence_strength: current_code
+    support: indirect
+  - id: base_de_grocery_spirits
+    geo_id: "state:10"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same package-store rule.
+    asset: law_de_code_title_4
+    citation: 4 Del. C. §§ 101(35) and 516(a)(1)a. (versions effective until 2026-10-21)
+    locator: § 101 paragraph (35); § 516 paragraph (a)(1)a.
+    find:
+      - text: "Any person in charge of a package store whether owner, lessee, or manager, and recognized as such by the Commissioner, may apply to the Commissioner for a license to purchase from an importer and to keep and sell and deliver on the premises only spirits, wine, or beer"
+        after: '§ 516 Consumption off the premises of a package store, hotel, restaurant, club, or taproom [Effective until Oct. 21, 2026]'
+        before: '§ 516 Consumption off the premises'
+      - text: '"Package store" or "store" does not include a grocery store, convenience store, drug store, hotel, restaurant, club, delicatessen, tobacco retailer, or cigar store.'
+        after: '§ 101 Definitions [Effective until Oct. 21, 2026]'
+        before: '§ 101 Definitions [Effective Oct. 21, 2026]'
+    evidence_strength: current_code
+    support: indirect
+  - id: base_de_spirits_retail
+    geo_id: "state:10"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately run package stores licensed by the Commissioner.
+    asset: law_de_code_title_4
+    citation: 4 Del. C. § 516(a)(1)a. (version effective until 2026-10-21)
+    locator: § 516 paragraph (a)(1)a.
+    find:
+      - text: "Any person in charge of a package store whether owner, lessee, or manager, and recognized as such by the Commissioner, may apply to the Commissioner for a license to purchase from an importer and to keep and sell and deliver on the premises only spirits, wine, or beer"
+        after: '§ 516 Consumption off the premises of a package store, hotel, restaurant, club, or taproom [Effective until Oct. 21, 2026]'
+        before: '§ 516 Consumption off the premises'
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Nevada
+  - id: base_nv_grocery_wine
+    geo_id: "state:32"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: State law leaves retail liquor licensing to county liquor boards (and to cities within their limits) and names no outlet type.
+    asset:
+      asset_id: law_nv_nrs_244
+      url: https://www.leg.state.nv.us/NRS/NRS-244.html
+      edition: "Nevada Revised Statutes chapter 244 (Counties: government), Nevada Legislature page"
+      filename: nv_nrs_244.html
+      rights_status: government_edict
+    citation: NRS 244.350
+    locator: subsections 1 and 2
+    find:
+      - "The liquor board may, without further compensation, grant or refuse liquor licenses, and revoke those licenses whenever there is, in the judgment of a majority of the board, sufficient reason for revocation."
+      - "(a) Regulating the sale of intoxicating liquors in their respective counties."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: >-
+      Which outlets may sell is set by county and city ordinances (local implementation, not coded). Subsection 4
+      exempts dealers within incorporated cities from the county license. NRS 369.090 defines a retail liquor
+      store without naming outlet types.
+  - id: base_nv_grocery_beer
+    geo_id: "state:32"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same county and city licensing; no outlet type is named.
+    asset: law_nv_nrs_244
+    citation: NRS 244.350
+    locator: subsections 1 and 2
+    find:
+      - "The liquor board may, without further compensation, grant or refuse liquor licenses, and revoke those licenses whenever there is, in the judgment of a majority of the board, sufficient reason for revocation."
+      - "(a) Regulating the sale of intoxicating liquors in their respective counties."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_nv_grocery_spirits
+    geo_id: "state:32"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same county and city licensing; no outlet type is named.
+    asset: law_nv_nrs_244
+    citation: NRS 244.350
+    locator: subsections 1 and 2
+    find:
+      - "The liquor board may, without further compensation, grant or refuse liquor licenses, and revoke those licenses whenever there is, in the judgment of a majority of the board, sufficient reason for revocation."
+      - "(a) Regulating the sale of intoxicating liquors in their respective counties."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_nv_spirits_retail
+    geo_id: "state:32"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Retail liquor dealers licensed by county liquor boards and cities.
+    asset: law_nv_nrs_244
+    citation: NRS 244.350
+    locator: subsection 1
+    find: "The liquor board may, without further compensation, grant or refuse liquor licenses, and revoke those licenses whenever there is, in the judgment of a majority of the board, sufficient reason for revocation."
+    evidence_strength: current_code
+    support: indirect
+    notes: That retail sale is by licensed private dealers rather than public stores is implied by the licensing scheme, not stated.

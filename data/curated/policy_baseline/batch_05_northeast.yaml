@@ -1,0 +1,285 @@
+# Nationwide policy baseline, batch 5: the Northeast. Each entry is a dated snapshot of what the cited text
+# shows on the day it was read, or on the date or year the source states; nothing here covers other days.
+# support: explicit_text (default) | no_outlet_restriction | indirect (see batch_02_west.yaml).
+#
+# Not in this batch, and why (see data/curated/research/source_leads.csv):
+#   New York: nysenate.gov law pages answered HTTP 403 to an automated request (not worked around).
+#   New Jersey: the Division of Alcoholic Beverage Control licensing page answered HTTP 403.
+#   Pennsylvania: the Liquor Control Board's wine expanded permit page carries no permit text in its bytes;
+#     the Liquor Code itself is needed (lead_pa_act39_2016).
+#   Rhode Island grocery permissions: the Class A rule bars other business in cities and towns of 10,000 or
+#     more but lets bona fide markets in Newport hold one, and the rule for smaller towns was not checked.
+#   Vermont spirits retail system: the agency-store provisions were not located in this pass.
+batch: batch_05_northeast
+extracted_by: Claude (AI assistant); excerpts cut from the pinned bytes by scripts/policy_snapshots.py
+extracted_on: "2026-10-08"
+entries:
+  # ------------------------------------------------------------------ Connecticut (2026 Supplement)
+  - id: base_ct_grocery_beer
+    geo_id: "state:09"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Grocery store beer permit.
+    asset:
+      asset_id: law_ct_cgs_2026_sup_ch545
+      url: https://www.cga.ct.gov/2026/sup/chap_545.htm
+      edition: "Connecticut General Statutes, 2026 Supplement (revised to January 1, 2026), chapter 545 Liquor Control Act, sections amended in 2025"
+      rights_status: government_edict
+    citation: Conn. Gen. Stat. § 30-20(c) (2026 Supp.)
+    locator: section 30-20, subsection (c)
+    find:
+      - "This 2026 Supplement is intended to be used in conjunction with the General Statutes of Connecticut, revised to January 1, 2025."
+      - "(c) A grocery store beer permit may be granted to any grocery store and shall allow the retail sale of beer in standard size containers not to be consumed on the permit premises."
+    observed_on: "2026-01-01"
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    notes: >-
+      Section 30-20 was amended in 2025 (P.A. 25-51), so the main chapter page (revised to January 1, 2025) is
+      not used. Changes from the 2026 session are not reflected.
+  - id: base_ct_grocery_wine
+    geo_id: "state:09"
+    dimension: ordinary_grocery_wine_authorization
+    value: not_authorized
+    detail: The grocery store permit covers beer only, and a package store (which sells wine and spirits) may sell no commodity other than alcoholic liquor and listed exceptions.
+    asset: law_ct_cgs_2026_sup_ch545
+    citation: Conn. Gen. Stat. § 30-20(b)(2) and (c) (2026 Supp.)
+    locator: section 30-20, subsections (b)(2) and (c)
+    find:
+      - "(c) A grocery store beer permit may be granted to any grocery store and shall allow the retail sale of beer in standard size containers not to be consumed on the permit premises."
+      - "(2) No store operating under a package store permit shall sell any commodity other than alcoholic liquor except"
+    observed_on: "2026-01-01"
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: indirect
+    notes: That a grocery store therefore cannot sell wine follows from the two provisions together; neither says so in words.
+  - id: base_ct_grocery_spirits
+    geo_id: "state:09"
+    dimension: ordinary_grocery_spirits_authorization
+    value: not_authorized
+    detail: Same reasoning as wine.
+    asset: law_ct_cgs_2026_sup_ch545
+    citation: Conn. Gen. Stat. § 30-20(b)(2) and (c) (2026 Supp.)
+    locator: section 30-20, subsections (b)(2) and (c)
+    find:
+      - "(c) A grocery store beer permit may be granted to any grocery store and shall allow the retail sale of beer in standard size containers not to be consumed on the permit premises."
+      - "(2) No store operating under a package store permit shall sell any commodity other than alcoholic liquor except"
+    observed_on: "2026-01-01"
+    observed_basis: currency_statement
+    evidence_strength: current_code
+    support: indirect
+  - id: base_ct_spirits_retail
+    geo_id: "state:09"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held package store permits.
+    asset: law_ct_cgs_2026_sup_ch545
+    citation: Conn. Gen. Stat. § 30-20(b)(1) (2026 Supp.)
+    locator: section 30-20, subsection (b)(1)
+    find: "(b) (1) A package store permit shall allow the retail sale of alcoholic liquor in sealed bottles or containers not to be consumed on the permit premises."
+    observed_on: "2026-01-01"
+    observed_basis: currency_statement
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Maine
+  - id: base_me_grocery_wine
+    geo_id: "state:23"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises malt liquor and wine license, available only to a bona fide retail business that sells more than malt liquor or wine; no outlet type is named.
+    asset:
+      asset_id: law_me_28a_1201
+      url: https://legislature.maine.gov/statutes/28-A/title28-Asec1201.html
+      edition: "Maine Revised Statutes title 28-A § 1201 (Issuance of licenses; stock of merchandise), Maine Legislature page"
+      rights_status: government_edict
+    citation: 28-A M.R.S. § 1201(1) and (2)
+    locator: subsections 1 and 2
+    find:
+      - "1. Licenses for sale of malt liquor and wine. The bureau may issue licenses under this section for the sale and distribution of malt liquor or wine to off-premises retail licensees"
+      - "2. Ineligible as licensee. The bureau may not issue a license for the sale of malt liquor or wine to any person who is not engaged in a bona fide retail business other than the sale of malt liquor or wine at retail."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_me_grocery_beer
+    geo_id: "state:23"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same off-premises malt liquor and wine license.
+    asset: law_me_28a_1201
+    citation: 28-A M.R.S. § 1201(1) and (2)
+    locator: subsections 1 and 2
+    find:
+      - "1. Licenses for sale of malt liquor and wine. The bureau may issue licenses under this section for the sale and distribution of malt liquor or wine to off-premises retail licensees"
+      - "2. Ineligible as licensee. The bureau may not issue a license for the sale of malt liquor or wine to any person who is not engaged in a bona fide retail business other than the sale of malt liquor or wine at retail."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_me_grocery_spirits
+    geo_id: "state:23"
+    dimension: ordinary_grocery_spirits_authorization
+    value: conditional_or_special_channel
+    detail: Spirits are sold off-premises by agency liquor stores licensed by the state bureau, which any qualifying business, including a grocery, may operate.
+    asset:
+      asset_id: law_me_28a_453
+      url: https://legislature.maine.gov/statutes/28-A/title28-Asec453.html
+      edition: "Maine Revised Statutes title 28-A § 453 (Location of agency stores), Maine Legislature page"
+      rights_status: government_edict
+    citation: 28-A M.R.S. § 453(1)
+    locator: subsection 1
+    find: "The bureau may license an agency liquor store only when the following requirements are met."
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: Agency stores are capped by municipal population (subsection 1-A) and allowed only where local option permits off-premises spirits sales.
+  - id: base_me_spirits_retail
+    geo_id: "state:23"
+    dimension: spirits_off_premise_retail_system
+    value: state_contract_agencies_only
+    detail: Agency liquor stores licensed by the state bureau.
+    asset: law_me_28a_453
+    citation: 28-A M.R.S. § 453(1)
+    locator: subsection 1
+    find: "The bureau may license an agency liquor store only when the following requirements are met."
+    evidence_strength: current_code
+    support: indirect
+    notes: That the state runs no stores of its own is not stated in this section.
+  # ------------------------------------------------------------------ Massachusetts
+  - id: base_ma_grocery_wine
+    geo_id: "state:25"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Local licensing authorities may grant off-premises licenses (all alcoholic beverages, or wines and malt beverages only) in cities and towns that vote for them; no outlet type is named or excluded.
+    asset:
+      asset_id: law_ma_gl_138_15
+      url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXX/Chapter138/Section15
+      edition: "Massachusetts General Laws chapter 138 § 15, Massachusetts Legislature page"
+      filename: ma_gl_138_15.html
+      rights_status: government_edict
+    citation: M.G.L. c. 138, § 15
+    locator: first paragraph
+    find: "The local licensing authorities in any city or town which votes to authorize the granting of licenses for the sale of all alcoholic beverages, and such authorities in any city or town which votes to authorize the granting of licenses for the sale of wines and malt beverages only, may grant licenses for the sale at retail of such alcoholic beverages or wines and malt beverages, as the case may be, not to be drunk on the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+    notes: The same section caps how many such licenses one person or company may hold (not excerpted); the city or town vote is a general local option.
+  - id: base_ma_grocery_beer
+    geo_id: "state:25"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same off-premises licenses.
+    asset: law_ma_gl_138_15
+    citation: M.G.L. c. 138, § 15
+    locator: first paragraph
+    find: "The local licensing authorities in any city or town which votes to authorize the granting of licenses for the sale of all alcoholic beverages, and such authorities in any city or town which votes to authorize the granting of licenses for the sale of wines and malt beverages only, may grant licenses for the sale at retail of such alcoholic beverages or wines and malt beverages, as the case may be, not to be drunk on the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ma_grocery_spirits
+    geo_id: "state:25"
+    dimension: ordinary_grocery_spirits_authorization
+    value: authorized
+    detail: Same off-premises all-alcoholic-beverages license.
+    asset: law_ma_gl_138_15
+    citation: M.G.L. c. 138, § 15
+    locator: first paragraph
+    find: "The local licensing authorities in any city or town which votes to authorize the granting of licenses for the sale of all alcoholic beverages, and such authorities in any city or town which votes to authorize the granting of licenses for the sale of wines and malt beverages only, may grant licenses for the sale at retail of such alcoholic beverages or wines and malt beverages, as the case may be, not to be drunk on the premises"
+    evidence_strength: current_code
+    support: no_outlet_restriction
+  - id: base_ma_spirits_retail
+    geo_id: "state:25"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held off-premises licenses granted by local licensing authorities.
+    asset: law_ma_gl_138_15
+    citation: M.G.L. c. 138, § 15
+    locator: first paragraph
+    find: "The local licensing authorities in any city or town which votes to authorize the granting of licenses for the sale of all alcoholic beverages, and such authorities in any city or town which votes to authorize the granting of licenses for the sale of wines and malt beverages only, may grant licenses for the sale at retail of such alcoholic beverages or wines and malt beverages, as the case may be, not to be drunk on the premises"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ New Hampshire
+  - id: base_nh_grocery_wine
+    geo_id: "state:33"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Off-premises licenses are issued only for grocery and drug stores, for wine and beverages (beer).
+    asset:
+      asset_id: law_nh_rsa_178
+      url: https://gc.nh.gov/rsa/html/XIII/178/178-mrg.htm
+      edition: "New Hampshire RSA chapter 178 (Liquor licenses and fees), merged chapter page"
+      rights_status: government_edict
+    citation: RSA 178:18, I
+    locator: section 178:18, paragraph I
+    find:
+      - text: "Off-premises licenses shall be issued only for grocery and drug stores. Such licenses shall authorize the licensees to sell fortified wine, table wine, beverages, and specialty beverages for consumption only off the premises designated in the licenses"
+        after: "[Paragraph I effective until January 1, 2027; see also paragraph I set out below.]"
+        before: "[Paragraph I effective January 1, 2027; see also paragraph I set out above.]"
+    evidence_strength: current_code
+    notes: The chapter page carries two versions of paragraph I; the excerpt is cut from the one in force until 2027-01-01.
+  - id: base_nh_grocery_beer
+    geo_id: "state:33"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same off-premises license ("beverages" are beer and similar malt drinks in New Hampshire's definitions).
+    asset: law_nh_rsa_178
+    citation: RSA 178:18, I
+    locator: section 178:18, paragraph I
+    find:
+      - text: "Off-premises licenses shall be issued only for grocery and drug stores. Such licenses shall authorize the licensees to sell fortified wine, table wine, beverages, and specialty beverages for consumption only off the premises designated in the licenses"
+        after: "[Paragraph I effective until January 1, 2027; see also paragraph I set out below.]"
+        before: "[Paragraph I effective January 1, 2027; see also paragraph I set out above.]"
+    evidence_strength: current_code
+    notes: The meaning of "beverage" rests on RSA 175:1, not excerpted here.
+  - id: base_nh_spirits_retail
+    geo_id: "state:33"
+    dimension: spirits_off_premise_retail_system
+    value: state_operated_stores
+    detail: The liquor commission leases, buys and equips state stores for its retail operations.
+    asset:
+      asset_id: law_nh_rsa_177_1
+      url: https://gc.nh.gov/rsa/html/XIII/177/177-1.htm
+      edition: "New Hampshire RSA 177:1 (State stores), General Court page"
+      rights_status: government_edict
+    citation: RSA 177:1
+    locator: section text
+    find: "The commission may lease, purchase, and equip, in the name of the state, such stores, state-owned warehouses, supplies as defined in RSA 21-I:11, II(a), and other materials, goods, and services as are necessary for, incidental to, or related to the operation of the liquor commission retail and wholesale operations."
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Rhode Island
+  - id: base_ri_spirits_retail
+    geo_id: "state:44"
+    dimension: spirits_off_premise_retail_system
+    value: private_licensed
+    detail: Privately held retailer's Class A licenses.
+    asset:
+      asset_id: law_ri_gl_3_7_3
+      url: https://webserver.rilegislature.gov/Statutes/TITLE3/3-7/3-7-3.htm
+      edition: "Rhode Island General Laws § 3-7-3 (Class A license, towns and cities of 10,000 or more), Legislature page"
+      rights_status: government_edict
+    citation: R.I. Gen. Laws § 3-7-3(a)
+    locator: subsection (a)
+    find: "a retailer's Class A license authorizes the holder to keep for sale and to sell, at the place described, beverages at retail and to deliver the beverages in a sealed package or container"
+    evidence_strength: current_code
+  # ------------------------------------------------------------------ Vermont (statutes through the 2025 session)
+  - id: base_vt_grocery_wine_2025
+    geo_id: "state:50"
+    dimension: ordinary_grocery_wine_authorization
+    value: authorized
+    detail: Second-class license to sell malt and vinous beverages (and ready-to-drink spirits beverages) off-premises; no outlet type is named or excluded.
+    asset:
+      asset_id: law_vt_7_vsa_2
+      url: https://legislature.vermont.gov/statutes/section/07/001/00002
+      edition: "Vermont Statutes Online, 7 V.S.A. § 2 (Definitions); includes the actions of the 2025 session; unofficial copy"
+      filename: vt_7_vsa_2.html
+      rights_status: government_edict
+    citation: 7 V.S.A. § 2(36)
+    locator: subdivision (36)
+    find: '(36) "Second-class license" means a license permitting the licensee to export and to sell malt beverages, vinous beverages, or ready-to-drink spirits beverages to the public for consumption off the premises for which the license is granted.'
+    observed_year: 2025
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+    support: no_outlet_restriction
+    notes: The Legislature's site calls its statutes an unofficial copy that includes the 2025 session's actions; 2026 changes are not reflected.
+  - id: base_vt_grocery_beer_2025
+    geo_id: "state:50"
+    dimension: ordinary_grocery_beer_authorization
+    value: authorized
+    detail: Same second-class license.
+    asset: law_vt_7_vsa_2
+    citation: 7 V.S.A. § 2(36)
+    locator: subdivision (36)
+    find: '(36) "Second-class license" means a license permitting the licensee to export and to sell malt beverages, vinous beverages, or ready-to-drink spirits beverages to the public for consumption off the premises for which the license is granted.'
+    observed_year: 2025
+    observed_basis: currency_statement
+    evidence_strength: secondary_compilation
+    support: no_outlet_restriction

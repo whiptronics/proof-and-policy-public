@@ -1,0 +1,28 @@
+source_id: arkansas_legislature
+publisher: Arkansas General Assembly (Bureau of Legislative Research)
+title: Arkansas Acts on wine sales in grocery stores
+landing_url: https://www.arkleg.state.ar.us/Acts/
+citation: >-
+  Acts of Arkansas, Regular Session 2017, Act 508 (SB 284), "An Act to Establish a Retail Off-Premises Permit
+  for the Sale of Wine at Grocery Stores" (Arkansas General Assembly PDF).
+update_frequency: Each legislative session; enacted acts do not change
+source_family: policy
+rights_status: government_edict
+notes: >-
+  Act 508 of 2017 adds Arkansas Code Title 3, Chapter 5, Subchapter 18 (§§ 3-5-1801 to -1803, the grocery
+  store wine permit), effective 2017-10-01 by its section 13(a). Arkansas acts mark insertions by
+  underlining and deletions by striking through; both are drawn on the page, so the PDF's text layer keeps
+  inserted and deleted words alike. Only the new subchapter, which is wholly new text, is read here; the
+  amended sections are not rebuilt. Later acts amending the subchapter are not yet inventoried (the free
+  Arkansas Code is LexisNexis's script application).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: ar_act_2017_508
+    url: https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2017R%2FPublic%2FACT508.pdf
+    filename: ar_act_2017_508.pdf
+    edition: "Act 508 of the 2017 Regular Session (SB 284), as engrossed, approved 2017-03-15; Arkansas General Assembly PDF"
+    source_series: ar_acts
+    source_vintage: 2017r_act508
+    format: pdf
+    priority: 20
+    redistribute_raw: true

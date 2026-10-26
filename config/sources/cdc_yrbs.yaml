@@ -1,0 +1,28 @@
+source_id: cdc_yrbs
+publisher: Centers for Disease Control and Prevention (CDC), Youth Risk Behavior Surveillance System
+title: YRBSS high school estimates (data.cdc.gov), alcohol questions, state and national totals
+landing_url: https://www.cdc.gov/yrbs/
+citation: >-
+  Centers for Disease Control and Prevention. Youth Risk Behavior Surveillance System (YRBSS), High School,
+  1991-2017 (excluding sexual identity), data.cdc.gov dataset svam-8dhg.
+update_frequency: Fixed (the dataset was last updated 2019-03-29; later survey years are not in it)
+source_family: behavior
+rights_status: public_domain_us_federal
+rights_evidence_url: https://data.cdc.gov/api/views/svam-8dhg.json
+notes: >-
+  Published weighted percentages with 95% confidence limits; no microdata. School-based survey of grades
+  9-12. States take part in some years only. The Chronic Disease Indicators dataset (hksd-2xuw) carries
+  2019-2023 YRBS values but is licensed ODbL (share-alike), so it is not used; see the source lead.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: cdc_yrbs_hs_alcohol_totals
+    url: "https://data.cdc.gov/resource/svam-8dhg.csv?$where=questioncode%20in(%27H41%27%2C%27H42%27%2C%27H44%27)%20AND%20sex%3D%27Total%27%20AND%20race%3D%27Total%27%20AND%20grade%3D%27Total%27%20AND%20stratificationtype%20in(%27State%27%2C%27National%27)&$order=year%2Clocationid%2Cquestioncode&$limit=50000"
+    filename: yrbs_hs_alcohol_totals.csv
+    edition: "YRBSS High School - Excluding Sexual Identity, dataset svam-8dhg (rows updated 2019-03-29), questions H41, H42 and H44, total population"
+    source_series: cdc_yrbs_high_school
+    source_vintage: svam-8dhg_2019_03_29
+    format: csv
+    parser: cdc_yrbs_high_school
+    priority: 20
+    redistribute_raw: true
+    notes: data.cdc.gov license field for this dataset is "Public Domain".

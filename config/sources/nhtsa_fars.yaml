@@ -1,0 +1,317 @@
+source_id: nhtsa_fars
+publisher: National Highway Traffic Safety Administration (NHTSA), National Center for Statistics and Analysis
+title: Fatality Analysis Reporting System (FARS) national files, and NHTSA's state alcohol-impaired-driving estimates
+landing_url: https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars
+citation: 'National Highway Traffic Safety Administration, Fatality Analysis Reporting System (FARS), national CSV
+  files 2000-2023; NHTSA, State Alcohol-Impaired-Driving Estimates: 2022 Data (DOT HS 813 579).'
+update_frequency: Annual; a year's annual report file is later replaced by a final file
+source_family: safety
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.nhtsa.gov/about-nhtsa/website-policies
+notes: Census of fatal motor vehicle crashes on public roads. Deaths are counted in the state where the crash happened.
+  Alcohol-impaired-driving fatalities follow NHTSA's definition (a driver with BAC .08 g/dL or more) using NHTSA's
+  ten multiple imputations of unreported BACs (MIDRVACC.CSV), averaged. The published report's values are kept as
+  separate measures and compared in validation.
+host_min_interval_seconds: 2
+assets:
+- asset_id: fars_national_2000
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2000/National/FARS2000NationalCSV.zip
+  filename: FARS2000NationalCSV.zip
+  edition: FARS 2000 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2000_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2000
+- asset_id: fars_national_2001
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2001/National/FARS2001NationalCSV.zip
+  filename: FARS2001NationalCSV.zip
+  edition: FARS 2001 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2001_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2001
+- asset_id: fars_national_2002
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2002/National/FARS2002NationalCSV.zip
+  filename: FARS2002NationalCSV.zip
+  edition: FARS 2002 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2002_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2002
+- asset_id: fars_national_2003
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2003/National/FARS2003NationalCSV.zip
+  filename: FARS2003NationalCSV.zip
+  edition: FARS 2003 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2003_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2003
+- asset_id: fars_national_2004
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2004/National/FARS2004NationalCSV.zip
+  filename: FARS2004NationalCSV.zip
+  edition: FARS 2004 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2004_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2004
+- asset_id: fars_national_2005
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2005/National/FARS2005NationalCSV.zip
+  filename: FARS2005NationalCSV.zip
+  edition: FARS 2005 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2005_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2005
+- asset_id: fars_national_2006
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2006/National/FARS2006NationalCSV.zip
+  filename: FARS2006NationalCSV.zip
+  edition: FARS 2006 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2006_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2006
+- asset_id: fars_national_2007
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2007/National/FARS2007NationalCSV.zip
+  filename: FARS2007NationalCSV.zip
+  edition: FARS 2007 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2007_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2007
+- asset_id: fars_national_2008
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2008/National/FARS2008NationalCSV.zip
+  filename: FARS2008NationalCSV.zip
+  edition: FARS 2008 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2008_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2008
+- asset_id: fars_national_2009
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2009/National/FARS2009NationalCSV.zip
+  filename: FARS2009NationalCSV.zip
+  edition: FARS 2009 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2009_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2009
+- asset_id: fars_national_2010
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2010/National/FARS2010NationalCSV.zip
+  filename: FARS2010NationalCSV.zip
+  edition: FARS 2010 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2010_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2010
+- asset_id: fars_national_2011
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2011/National/FARS2011NationalCSV.zip
+  filename: FARS2011NationalCSV.zip
+  edition: FARS 2011 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2011_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2011
+- asset_id: fars_national_2012
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2012/National/FARS2012NationalCSV.zip
+  filename: FARS2012NationalCSV.zip
+  edition: FARS 2012 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2012_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2012
+- asset_id: fars_national_2013
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2013/National/FARS2013NationalCSV.zip
+  filename: FARS2013NationalCSV.zip
+  edition: FARS 2013 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2013_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2013
+- asset_id: fars_national_2014
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2014/National/FARS2014NationalCSV.zip
+  filename: FARS2014NationalCSV.zip
+  edition: FARS 2014 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2014_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2014
+- asset_id: fars_national_2015
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2015/National/FARS2015NationalCSV.zip
+  filename: FARS2015NationalCSV.zip
+  edition: FARS 2015 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2015_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2015
+- asset_id: fars_national_2016
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2016/National/FARS2016NationalCSV.zip
+  filename: FARS2016NationalCSV.zip
+  edition: FARS 2016 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2016_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2016
+- asset_id: fars_national_2017
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2017/National/FARS2017NationalCSV.zip
+  filename: FARS2017NationalCSV.zip
+  edition: FARS 2017 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2017_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2017
+- asset_id: fars_national_2018
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2018/National/FARS2018NationalCSV.zip
+  filename: FARS2018NationalCSV.zip
+  edition: FARS 2018 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2018_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2018
+- asset_id: fars_national_2019
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2019/National/FARS2019NationalCSV.zip
+  filename: FARS2019NationalCSV.zip
+  edition: FARS 2019 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2019_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2019
+- asset_id: fars_national_2020
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2020/National/FARS2020NationalCSV.zip
+  filename: FARS2020NationalCSV.zip
+  edition: FARS 2020 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2020_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2020
+- asset_id: fars_national_2021
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2021/National/FARS2021NationalCSV.zip
+  filename: FARS2021NationalCSV.zip
+  edition: FARS 2021 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2021_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2021
+- asset_id: fars_national_2022
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2022/National/FARS2022NationalCSV.zip
+  filename: FARS2022NationalCSV.zip
+  edition: FARS 2022 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2022_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2022
+- asset_id: fars_national_2023
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2023/National/FARS2023NationalCSV.zip
+  filename: FARS2023NationalCSV.zip
+  edition: FARS 2023 national CSV files (version as downloaded; NHTSA replaces annual report files with final files)
+  source_series: nhtsa_fars
+  source_vintage: fars2023_national_csv
+  format: zip
+  parser: fars_national_csv
+  priority: 20
+  redistribute_raw: true
+  options:
+    year: 2023
+- asset_id: nhtsa_state_ai_estimates_2022
+  url: https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813579
+  filename: nhtsa_813579_state_ai_estimates_2022.pdf
+  edition: 'State Alcohol-Impaired-Driving Estimates: 2022 Data (DOT HS 813 579, May 2024); tables for 2013 (FARS
+    2013 Final File) and 2022 (FARS 2022 ARF)'
+  source_series: nhtsa_state_ai_report
+  source_vintage: dot_hs_813579
+  format: pdf
+  parser: nhtsa_state_ai_report
+  priority: 10
+  redistribute_raw: true
+  options:
+    normalize: unwrap_multipart_pdf

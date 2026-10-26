@@ -1,0 +1,35 @@
+source_id: openstates_people
+publisher: Open States (Plural Policy), community-maintained YAML files
+title: Open States People, officials-only copy (state legislators, governors, some mayors, former officeholders and committees)
+landing_url: https://github.com/openstates/people
+citation: >-
+  Open States People (dataset), by James Turk, Ben Fossen, Rylie Johnson, Chris Nardi, Chris Yamas, Joe Arasin
+  and Harry Mattison, https://github.com/openstates/people, CC0 1.0 (authors and license as given in the
+  archive's CITATION.cff and LICENSE). Snapshot dated 2026-10-08; the officials-only copy was made by the
+  project owner on 2026-10-11 (people-main-officials-only.zip, see its SANITIZATION.md).
+update_frequency: Continuously edited upstream; this project uses one fixed snapshot (2026-10-08)
+source_family: context
+rights_status: open_license
+rights_evidence_url: https://github.com/openstates/people/blob/main/LICENSE
+notes: >-
+  Reference data about who holds or held public office and which committees they sit on; it holds no
+  observations and feeds no estimate. The archive is a whitelist-cleaned copy: personal details (birth and death
+  dates, gender, photos, biographies, home and district addresses, personal phones and e-mails, staff, personal
+  social-media accounts) and links to profile or encyclopedia sites were removed before it reached this
+  project, and the original archive was deleted (SANITIZATION.md in the archive lists what was kept and
+  removed, with counts). The upstream folder names say which people the maintainers consider current
+  (legislature, executive, municipalities) and which are retired; that is the only basis for "current in this
+  source". The snapshot date comes from SANITIZATION.md; the retained files carry no upstream commit hash.
+  Committee membership is a single undated snapshot, not a history. License: CC0 1.0 Universal (LICENSE in
+  the archive); the project keeps CITATION.cff's authors as the requested citation.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: openstates_people_officials_2026_10_08
+    method: manual_import
+    filename: people-main-officials-only.zip
+    edition: "people-main-officials-only.zip, Open States People snapshot of 2026-10-08, officials-only copy of 2026-10-11"
+    source_series: openstates_people
+    source_vintage: snapshot_2026_10_08
+    format: zip
+    priority: 0
+    redistribute_raw: true

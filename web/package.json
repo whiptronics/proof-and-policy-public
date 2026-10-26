@@ -1,0 +1,36 @@
+{
+  "name": "alcohol-policy-research-dashboard",
+  "private": true,
+  "version": "0.3.0",
+  "type": "module",
+  "description": "Local, read-only research dashboard for the alcohol policy and revenue dataset. It reads the files written by `alcohol-data dashboard export` and never edits research values.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run",
+    "export:grocery-wine": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/groceryWine.js",
+    "export:tennessee": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/tennessee.js"
+  },
+  "dependencies": {
+    "fflate": "0.8.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-is": "19.3.0",
+    "recharts": "3.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.0",
+    "vitest": "5.0.1"
+  }
+}

@@ -1,0 +1,22 @@
+# Saved analysis for the Explore view. It is a selection, not a finding: the export checks every id against
+# the build, and refuses a `shows` list (findings belong in a worked example, tied to checked claims).
+analysis_id: utah_and_liquor_control_peers_revenue
+title: "Utah and four liquor-control peers: alcohol taxes and state-store receipts per adult"
+question: >-
+  How did state alcohol taxes (Census T10) and state liquor-store receipts (Census, to FY2024) per resident
+  aged 21+ move in Utah and in Virginia, Pennsylvania, Idaho and Oregon?
+metrics:
+  - stc_alcoholic_beverages_sales_tax@state_fiscal_year
+  - census_liquor_stores_revenue@state_fiscal_year
+geos: ["state:49", "state:51", "state:42", "state:16", "state:41"]
+years: [2000, 2025]
+shown: per_resident_21plus
+policy_dimension: spirits_wholesale_system
+notes:
+  - "Taxes and store receipts are different kinds of money and are never added: receipts are what customers paid the stores, before the cost of the liquor and of running them."
+  - "Census liquor-store receipts run to FY2024; FY2016-FY2024 come from the Individual Unit Files. Oregon's current operations from those files are a separate comparability group (receipts are not), and FY2015 keeps the 2017 release, under which Oregon's receipts are half the 2020 release's."
+  - "Census T10 for Utah falls 84% in FY2018, a break in what Census counts rather than a fall in tax collected; the chart flags one-year changes of 50% or more."
+  - "Per-resident values divide by the Census July 1 population aged 21 and over; the national line is not shown because conversions are computed for states only."
+cannot_show:
+  - "Total alcohol revenue or profit in any state: profit transfers are held only for Utah, and general sales tax on alcohol is separated in no state."
+  - "Any effect of state control on revenue: the arrangements, tax rates and markups differ in ways not coded here."

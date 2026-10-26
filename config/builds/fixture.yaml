@@ -1,0 +1,62 @@
+# Offline test build: real but tiny slices of the preview sources (tests/fixtures).
+# Used by the test suite and the pull-request workflow; needs no network and no secrets.
+name: fixture
+release_version: 0.0.0-fixture
+sources:
+  - census_pep
+  - niaaa_apparent_consumption
+  - cdc_brfss_prevalence
+  - census_stc
+  - bls_cpi
+  - utah_legislature
+  - utah_code_history
+  - utah_session_laws
+  - utah_archived_code_pages
+  - utah_code_annotated_historical
+  - tennessee_legislature
+  - state_alcohol_law
+  - kentucky_legislature
+  - virginia_legislature
+  - virginia_archived_code_pages
+  - arkansas_legislature
+pins_file: tests/fixtures/fixture.pins.json
+local_assets:
+  census_pep_icen_1995: tests/fixtures/census_icen1995_two_utah_counties.txt
+  census_pep_icen_2000s_agesex: tests/fixtures/census_st_agesex_2000s_subset.csv
+  census_pep_v2025_alldata6: tests/fixtures/census_alldata6_v2025_utah.csv
+  niaaa_pcyr_sr124: tests/fixtures/niaaa_pcyr_subset.txt
+  cdc_brfss_2011_present_alcohol_overall: tests/fixtures/brfss_2011_present_subset.csv
+  cdc_brfss_1995_2010_alcohol_overall: tests/fixtures/brfss_1995_2010_subset.csv
+  census_stc_historical_db_2025: tests/fixtures/stc_historical_subset.xlsx
+  census_stc_fy2025_flat: tests/fixtures/stc_fy2025_flat.txt
+  bls_cpi_u_2017_2026: tests/fixtures/bls_cpi_2023_2025.json
+skip_assets:
+  - census_pep_icen_1990
+  - census_pep_icen_1991
+  - census_pep_icen_1992
+  - census_pep_icen_1993
+  - census_pep_icen_1994
+  - census_pep_icen_1996
+  - census_pep_icen_1997
+  - census_pep_icen_1998
+  - census_pep_icen_1999
+  - census_pep_icen_2010s_alldata6
+  - niaaa_pcyr_sr122
+  - census_stc_fy2024_flat
+  - census_stc_fy2023_flat
+  - bls_cpi_u_1987_1996
+  - bls_cpi_u_1997_2006
+  - bls_cpi_u_2007_2016
+# Policy evidence documents are recorded (not fetched) so the policy tables still build offline.
+missing_assets: record
+policy_events: data/curated/policy_events.csv
+policy_evidence: data/curated/policy_evidence.csv
+policy_snapshots: data/curated/policy_snapshots.csv
+manual_observations:
+# Last day treated as observed history (calendar day in as_of_timezone). Later days are future.
+as_of_date: 2026-10-06
+as_of_timezone: America/Denver
+claim_dependencies: data/curated/utah/claim_dependencies.csv
+claim_exceptions: data/curated/utah/claim_exceptions.csv
+exposure_years: [2014, 2026]
+derived: true

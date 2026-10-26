@@ -1,0 +1,22 @@
+name: Source suggestion
+description: Suggest an official source the dataset should use.
+labels: [source]
+body:
+  - type: input
+    id: url
+    attributes: {label: Official URL of the data or document, description: Landing page and exact file if possible}
+    validations: {required: true}
+  - type: input
+    id: publisher
+    attributes: {label: Publisher}
+    validations: {required: true}
+  - type: input
+    id: coverage
+    attributes: {label: Geography and period covered, placeholder: "e.g. all states, FY2010-FY2025"}
+    validations: {required: true}
+  - type: textarea
+    id: measures
+    attributes: {label: What it measures, description: Units, denominators, beverage, and any method changes you know of}
+  - type: textarea
+    id: terms
+    attributes: {label: Terms of use or redistribution, description: Link to the terms if you know them}

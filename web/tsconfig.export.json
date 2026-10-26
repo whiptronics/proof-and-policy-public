@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "CommonJS",
+    "moduleResolution": "Bundler",
+    "outDir": "../data/processed/export-build",
+    "rootDir": "src",
+    "types": ["node"],
+    "noUnusedLocals": false,
+    "sourceMap": false,
+    "declaration": false
+  },
+  "include": ["src/export/*.ts"]
+}

@@ -1,0 +1,35 @@
+source_id: utah_code_annotated_historical
+publisher: The Michie Company (Utah Code Annotated); scans hosted by the S.J. Quinney College of Law, University of Utah
+title: Historical Utah Code Annotated volumes (University of Utah digital collection)
+landing_url: https://dc.law.utah.edu/uca/
+citation: "Utah Code Annotated Title 59-15 to 21 (Michie, 1992). University of Utah S.J. Quinney College of Law, Utah Code Annotated collection. https://dc.law.utah.edu/uca/283/"
+update_frequency: Fixed historical volumes
+source_family: policy
+rights_status: rights_unresolved
+notes: >-
+  Historical annotated-code volumes for Utah law before the session laws pinned in utah_session_laws.yaml.
+  Statutory text is a government edict, but the annotations, notes and arrangement are the publisher's, so
+  the scans are not redistributed. 2003 S.B. 66 cites Utah Code 59-15-101 "as last amended by Chapters 30
+  and 66, Laws of Utah 1992"; this volume should show that text and its history note.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: uca_1992_title59_ch15_21
+    url: https://dc.law.utah.edu/cgi/viewcontent.cgi?article=1311&context=uca
+    method: manual_import
+    filename: uca_1992_title59_ch15_21.pdf
+    edition: "Utah Code Annotated, Title 59 Chapters 15-21 (Beer Tax to Mineral Lease Funds), Michie 1992"
+    source_series: utah_code_annotated
+    source_vintage: "1992"
+    format: pdf
+    priority: 10
+    redistribute_raw: false
+    expected_status: blocked_access
+    notes: >-
+      The item page (https://dc.law.utah.edu/uca/283/) answers normally; its Download link answered an
+      automated request on 2026-10-07 with HTTP 403 and a Cloudflare challenge. Not bypassed. To use it,
+      download the PDF in a browser from the item page and run
+      'alcohol-data import-asset uca_1992_title59_ch15_21 <file>'.
+    blockers: HTTP 403 (Cloudflare challenge) to automated clients.
+    next_action: >-
+      Manual download by the maintainer; then read 59-15-101, its history note and the volume's currency
+      date (and any pocket part) to date the $11 rate.

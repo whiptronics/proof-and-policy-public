@@ -1,0 +1,20 @@
+name: Extraction error
+description: A value in the dataset does not match its source.
+labels: [data-error]
+body:
+  - type: input
+    id: observation
+    attributes: {label: observation_id (or measure_id + geo_id + period), placeholder: obs_...}
+    validations: {required: true}
+  - type: input
+    id: field
+    attributes: {label: Affected field, placeholder: value / period / unit / ...}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Source URL and page/row/cell where the correct value appears}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence, description: The value as published and the value in the dataset. A screenshot of the official page helps.}
+    validations: {required: true}
