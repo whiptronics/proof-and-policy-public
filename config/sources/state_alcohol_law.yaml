@@ -2,7 +2,7 @@
 source_id: state_alcohol_law
 publisher: State legislatures and state alcohol beverage control agencies
 title: Current state alcohol statutes, rules and agency license pages (nationwide policy baseline)
-landing_url: https://www.ttb.gov/wine/state-alcohol-beverage-control-agencies
+landing_url: https://www.ttb.gov/business-central/alcohol-beverage-authorities-in-united-states-canada-and-puerto-rico
 citation: Statutes, administrative rules and license pages of each state, as cited per snapshot (data/curated/policy_snapshots.csv).
 update_frequency: Changes with each legislative session; pages are dated by retrieval
 source_family: policy

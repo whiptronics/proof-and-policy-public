@@ -102,7 +102,7 @@ as revenue.
 
 | | Today | 1. Private wholesale + grocery, 20% replacement tax | 2. DABS wholesales to grocers at a 20% discount |
 |---|---:|---:|---:|
-| **State revenue, net change** | — | **−$12.1M** | **−$7.3M** |
+| **Net change for the state (revenue, plus store costs avoided, less new costs)** | — | **−$12.1M** | **−$7.3M** |
 | State margin given up on wine that moves | — | −$21.5M | −$21.5M |
 | What the state collects instead | — | +$7.6M (tax) | +$12.4M (DABS's remaining margin) |
 | Store costs avoided / new costs | — | +$2.3M / −$0.5M | +$2.3M / −$0.5M |

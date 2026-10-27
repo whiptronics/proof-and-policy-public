@@ -145,6 +145,15 @@ describe("inputs are requested, never invented", () => {
     expect(check({ ...BASE, priceRatio: 0 }).invalid).toEqual(["The grocery price must be above zero"]);
     expect(check({ ...BASE, revenueMode: "excise", excise: 1, wineGallons: 0 }).invalid).toEqual(["Wine gallons must be above zero"]);
   });
+  it("rejects a fall in purchases larger than a channel sells", () => {
+    // 20% moves; a 30% fall bought entirely at grocers would leave grocers selling -10%.
+    const b = { ...BASE, extra: true, growth: -0.3, extraGrocery: 1 };
+    expect(check(b).invalid).toEqual(["The fall in purchases is larger than what one channel sells: with this share bought in grocery stores, grocery or state-store purchases would be below zero"]);
+    expect(check({ ...b, growth: -0.2 }).invalid).toEqual([]);
+    expect(check({ ...b, growth: -0.5, extraGrocery: 0.2 }).invalid).toEqual([]);
+    expect(check({ ...b, growth: -1, extraGrocery: 0.2 }).invalid).toEqual([]);
+    expect(check({ ...b, growth: -0.3, recapture: 0.1 }).invalid).toEqual([]);
+  });
 });
 
 describe("sensitivity", () => {

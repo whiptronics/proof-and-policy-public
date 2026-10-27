@@ -13,6 +13,31 @@ export function MethodsView() {
   if (!cov.data || !idx.data || !pol.data) return <Loading what="definitions" />;
   return (
     <div className="grid-2">
+      <section className="panel" id="ai-disclosure">
+        <h2>How this was made (AI disclosure)</h2>
+        <p className="small">
+          This project was compiled with the assistance of an AI agent (Claude, made by Anthropic), working at the direction of the
+          maintainer. The agent located and downloaded most sources, transcribed values from documents, coded the laws, wrote the data
+          pipeline, the models and this dashboard, ran the calculations and checks, and drafted most of the explanatory text, including the
+          Utah grocery-wine pages.
+        </p>
+        <p className="small">
+          <strong>What has been checked.</strong> Automated tests and separately written scripts recompute the calculations and compare the
+          data with their sources' own totals. That catches arithmetic and consistency errors; it does not show that a document was read
+          correctly, that a law was coded correctly or that an assumption is reasonable. <span className="mono">machine_assisted_review</span>{" "}
+          means code and the AI agent checked a record; it is not a human review. As of this release no transcribed value and no legal coding
+          is marked as reviewed by a person. The maintainer chose the questions and made or approved key modelling choices, but has not
+          checked every figure.
+        </p>
+        <p className="small">
+          <strong>What it is not.</strong> Nothing here has been peer-reviewed, reviewed by a legal or subject-matter expert, or reviewed or
+          endorsed by any government agency, legislature or campaign, and no figure here is a fiscal note.
+        </p>
+        <p className="small">
+          AI-generated material can contain errors. Modeled results depend on the stated assumptions and should be evaluated alongside the
+          cited sources and this methodology. Corrections are welcome at github.com/whiptronics/proof-and-policy-public/issues.
+        </p>
+      </section>
       <section className="panel">
         <h2>Coverage states</h2>
         <p className="small">Every coverage cell carries one state, shown with a symbol and words as well as a color.</p>
@@ -99,7 +124,10 @@ export function MethodsView() {
             Fiscal components overlap (net profit is after the listed transfers; gross profit is part of sales), so no
             total is computed. Wine-only and all-alcohol amounts are never joined into one series.
           </li>
-          <li>Comparison states are chosen by the reader or from a documented shortlist. No similarity score is computed.</li>
+          <li>
+            Comparison states are chosen by the reader, from a documented shortlist, or from the comparison finder's similarity score (a distance on
+            the characteristics the reader picks). A low score means similar on those measures only; it does not make a state a valid control.
+          </li>
           <li>Nothing here estimates a causal effect; there is no effect calculator.</li>
         </ul>
         <p className="small">The rules are a port of src/alcohol_data/compare.py and are tested against vectors generated from it.</p>

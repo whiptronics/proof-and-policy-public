@@ -125,7 +125,7 @@ export function StartView() {
             <h3>Where does a measure stand, state by state?</h3>
             <p className="small">
               A map of the United States with every state's value, a ranked list of the same numbers and a table. Pick drinking, alcohol sold, taxes,
-              spending, retail sales or liver-disease deaths; click a state for its trend and sources. Utah is outlined.
+              spending, retail sales or alcohol-impaired-driving deaths; click a state for its trend and sources. Utah is outlined.
             </p>
             <div className="row-actions">
               <Go to={{ v: "map", mm: "alcohol_per_adult", bv: "wine" }} reset className="button primary-link">

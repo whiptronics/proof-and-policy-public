@@ -204,7 +204,7 @@ export function CaseView() {
                             </th>
                             <td className="num">{a.mean === undefined ? `— missing ${a.missing.join(", ")}` : formatValue(a.mean, u)}</td>
                             <td className="num">{b.mean === undefined ? `— missing ${b.missing.join(", ")}` : formatValue(b.mean, u)}</td>
-                            <td className="num">{pc === undefined ? "undefined" : `${pc >= 0 ? "+" : ""}${pc.toFixed(1)}%`}</td>
+                            <td className="num">{pc === undefined ? "— not computed (a window is incomplete)" : `${pc >= 0 ? "+" : ""}${pc.toFixed(1)}%`}</td>
                           </tr>
                         );
                       })}

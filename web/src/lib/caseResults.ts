@@ -92,7 +92,7 @@ export const TN_2016_RESULTS: CaseResultsSpec = {
     { id: "B3", label: "Spirits", metric: "niaaa_ethanol_per_capita_21plus_spirits@calendar_year", shown: "nominal", group: "beverage", note: "Gallons of ethanol from spirits per resident 21+." },
     { id: "B4", label: "All beverages", metric: "niaaa_ethanol_per_capita_21plus_all@calendar_year", shown: "nominal", group: "beverage", note: "Gallons of ethanol from all beverages per resident 21+: total alcohol in one unit." },
     { id: "R1", label: "State alcohol taxes (Census T10)", metric: "stc_alcoholic_beverages_sales_tax@state_fiscal_year", shown: "real_cy2024", group: "revenue", note: "State alcoholic-beverage selective sales taxes, all beverages, constant 2024 dollars (CPI-U fiscal-year averages)." },
-    { id: "R2", label: "Tennessee wine tax (account 11002, 'Wine Tax')", metric: "tn_dor_wine_tax_collections@state_fiscal_year", shown: "real_cy2024", group: "revenue", treatedOnly: true, note: "All channels; FY2010-FY2017 only, because from FY2018 the account also covers high-alcohol beer and is a separate series." },
+    { id: "R2", label: "Tennessee wine tax (account 11002, 'Wine Tax')", metric: "tn_dor_wine_tax_collections@state_fiscal_year", shown: "real_cy2024", group: "revenue", treatedOnly: true, note: "All channels; constant 2024 dollars; FY2010-FY2017 only, because from FY2018 the account also covers high-alcohol beer and is a separate series." },
     { id: "R3", label: "Tennessee wine enforcement tax (account 11018)", metric: "tn_dor_wine_enforcement_tax_collections@state_fiscal_year", shown: "real_cy2024", group: "revenue", treatedOnly: true, note: "All channels; constant 2024 dollars." },
   ],
   main: { before: 5, after: { calendar_year: 3, state_fiscal_year: 3 } },

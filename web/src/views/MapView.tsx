@@ -110,8 +110,9 @@ export function MapView() {
   }, [meta, file.data, mfile.data, idx.data, shown, stateIds.join()]);
   if (err) return <ErrorNote error={err} />;
   if (!idx.data || !geos.data || !pol.data || !man.data || !shapes.data || !monthlyIdx.data || !srcData.data) return <Loading what="the map" />;
-  if (!rows) return <Loading what="the map's data" />;
+  // Checked before waiting for rows: a measure missing from this build never loads, so the page would wait forever.
   if (metricId && !meta) return <ErrorNote error={new Error(`Measure ${metricId} is not in this build.`)} />;
+  if (!rows) return <Loading what="the map's data" />;
 
   const G = geos.data;
   const name = (g: string) => geoName(g, G);
@@ -226,7 +227,9 @@ export function MapView() {
     : undefined;
   const set = (patch: Record<string, string | number | null>) => navigate(patch, { replace: false });
   const selectState = (g: string) => set({ sel: g === selected ? null : g });
-  const byTopic = Object.entries(MAP_TOPICS).map(([k, label]) => [label, MAP_MEASURES.filter((m) => m.topic === k)] as const).filter(([, ms]) => ms.length);
+  // Only measures this build holds (a public build leaves some sources out).
+  const inBuild = (m: MapMeasure) => !m.metric || idx.data!.metrics.some((x) => x.metric_id === m.metric);
+  const byTopic = Object.entries(MAP_TOPICS).map(([k, label]) => [label, MAP_MEASURES.filter((m) => m.topic === k && inBuild(m))] as const).filter(([, ms]) => ms.length);
 
   const csv = () => {
     type R = RankedCell & { name: string };

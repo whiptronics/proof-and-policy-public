@@ -285,7 +285,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
           or grocery stores.
         </li>
         <li>
-          Tennessee's wine-tax account (all channels) averaged {money(summarize(res.main.find((r) => r.outcome.id === "R2")!).tnBefore)} in
+          Tennessee's wine-tax account (all channels, constant 2024 dollars) averaged {money(summarize(res.main.find((r) => r.outcome.id === "R2")!).tnBefore)} in
           FY2012–FY2016 and {money(summarize(res.main.find((r) => r.outcome.id === "R2")!).tnAfter)} in FY2017, its only year before the
           account also took in high-alcohol beer. It had already risen in FY2016, before any grocery license. The wine enforcement tax
           rose {pct(summarize(res.main.find((r) => r.outcome.id === "R3")!).tnPct)} on the same windows. Neither has a comparison-state

@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.3.1: corrections from the public-release audit (2026-10-27)
+
+An AI-assisted audit of the live site and both repositories (report: docs/review/public-release-audit-2026-10-27.md).
+No model, input or headline figure changed: the worked example is still −$12,105,858 (private, 20% tax) and
+−$7,315,464 (DABS, 20% discount) a year, recomputed by hand from the DABS FY2025 report and the statutes. Prepared by
+Claude; not reviewed by a person.
+
+- **AI disclosure** (`web/src/lib/disclosure.ts`): on Definitions & methods (fuller), on printed pages, in every
+  download's README, in the website footer and in this README.
+- **Map hung on measures missing from the build.** Choosing either CDC Chronic Disease Indicators measure (left out of
+  the public build) left the map on "Loading" for good. The map now checks the build first and lists only measures
+  the build holds; Utah at a glance does the same; Start here no longer advertises liver-disease deaths.
+- **Grocery-wine page.** The worked example's last row is "Net change for the state (revenue change, plus store
+  costs avoided, less new costs)": it was labelled a change in revenue while the revenue row above it falls by more
+  ($13.9M and $9.1M) because the net adds the assumed avoided costs. The findings say "leave the state worse off" for
+  the same reason. Three references to the unpublished graph package now point to this page or the public export.
+- **Tennessee worked example.** The wine-tax account's averages in "Revenue" are constant 2024 dollars and now say so
+  (the panel above shows the same window in nominal dollars, $12.6M against $16.9M). An incomplete window prints "not
+  computed" instead of "undefined".
+- **Wording that contradicted other pages.** Definitions & methods said no similarity score is computed (the
+  comparison finder computes one). Utah at a glance called its finder run "default settings" while leaving no state
+  out for its grocery-wine law (the finder's default does, which is why the finder ranks 48 states and Utah at a glance
+  50). Ranks are "among states and DC". The Sources table counted the U.S. total and Census regions as jurisdictions
+  ("52 jurisdictions"); it now says "50 states and DC, the U.S. total".
+- **Scenario tool.** A fall in purchases larger than a channel sells (negative grocery or state-store purchases) is
+  rejected; a DABS discount above the gross margin (selling below cost) is computed but flagged.
+- **Dead link.** TTB moved its list of state alcohol authorities; the `state_alcohol_law` landing page is updated.
+- README: Utah at a glance shows 11 measures in the public build (13 with CDC CDI); review status worded plainly.
+
 ## 0.3.0: first public release as Proof & Policy (2026-10-26)
 
 The project is published under the name **Proof & Policy**: this repository (code, curated data, documentation and

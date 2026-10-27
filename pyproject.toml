@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "alcohol-policy-revenue-data"
-version = "0.3.0"
+version = "0.3.1"
 description = "Reproducible, source-traceable U.S. alcohol policy, consumption, behavior, and public-revenue data."
 readme = "README.md"
 requires-python = ">=3.11"

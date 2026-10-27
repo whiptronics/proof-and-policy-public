@@ -4,7 +4,7 @@ message: >-
   original sources listed in metadata/source_registry.csv.
 type: dataset
 title: "Proof & Policy: Alcohol Policy and Revenue Open Data"
-version: 0.3.0
+version: 0.3.1
 repository-code: "https://github.com/whiptronics/proof-and-policy-public"
 url: "https://proofandpolicy.us"
 authors:

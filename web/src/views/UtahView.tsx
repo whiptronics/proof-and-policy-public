@@ -212,7 +212,7 @@ export function UtahView() {
                   Utah
                 </th>
                 <th scope="col">Year</th>
-                <th scope="col">Rank among states</th>
+                <th scope="col">Rank among states and DC</th>
                 <th scope="col" className="num">
                   United States
                 </th>
@@ -280,7 +280,8 @@ export function UtahView() {
         <h3 id="ut-c">States to compare with Utah: candidates</h3>
         <p className="small">
           The five states most like Utah in {BASE_FROM}–{BASE_TO} on {used.map((x) => x.c.label.toLowerCase()).join(", ")}, scored by the comparison
-          finder (method {FINDER_METHOD}, default settings), and four states whose governments also wholesale spirits under current law. They are
+          finder (method {FINDER_METHOD}, its default characteristics and weights, with no state left out for its grocery-wine law, so a state
+          whose law changed in these years can appear; the finder's own default leaves such states out), and four states whose governments also wholesale spirits under current law. They are
           candidates for a comparison, not matched controls: each differs from Utah in ways listed here and in many not measured.
         </p>
         <div className="table-wrap">
@@ -345,7 +346,7 @@ export function UtahView() {
         <label className="no-print">
           Measure{" "}
           <select value={chartMeasure.id} onChange={(e) => navigate({ gm: e.target.value }, { replace: true })}>
-            {MEASURES.map((m) => (
+            {MEASURES.filter((m) => metaOf(m.metric)).map((m) => (
               <option key={m.id} value={m.id}>
                 {m.full ?? m.label}
               </option>

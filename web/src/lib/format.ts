@@ -114,6 +114,17 @@ export function geoName(geoId: string, geos: { geo_id: string; name: string }[])
   return geos.find((g) => g.geo_id === geoId)?.name ?? geoId;
 }
 
+/** What a list of geo_ids covers, in words: states and DC are counted apart from the U.S. total and Census regions,
+ * which are not jurisdictions. */
+export function areaCount(ids: string[]): string {
+  const st = ids.filter((j) => j.startsWith("state:"));
+  const parts = [st.includes("state:11") ? `${st.length - 1} states and DC` : `${st.length} states`];
+  if (ids.includes("nation:us")) parts.push("the U.S. total");
+  const regions = ids.filter((j) => j.startsWith("census_region:")).length;
+  if (regions) parts.push(`${regions} Census regions`);
+  return parts.join(", ");
+}
+
 export function bytes(n: number | null | undefined): string {
   if (n === null || n === undefined) return "—";
   if (n < 1024) return `${n} B`;

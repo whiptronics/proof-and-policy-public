@@ -1,6 +1,7 @@
 // Filtered downloads: observations plus the measure and source tables needed to read them, a README
 // explaining the joins, and the filter state and release that produced them.
 import { saveFile, toCsv, zip, type Column } from "./csv";
+import { AI_DISCLOSURE } from "./disclosure";
 import { FORMULA_VERSION } from "./formulas";
 import type { Asset, ConversionKind, Geography, Manifest, MetricMeta, Obs, SourcesData } from "./types";
 
@@ -139,6 +140,9 @@ export function readme(man: Manifest, title: string, filters: Record<string, str
     "  coverage_state: S sourced, D derived, U transcribed and unreviewed, R reviewed, 0 observed zero, C conflict, M missing, N not applicable.",
     "  Fiscal years are the state's own (period_start/period_end); they are not calendar years.",
     "  These are descriptive data. Nothing here estimates the effect of a policy.",
+    "",
+    "How this was made",
+    `  ${AI_DISCLOSURE}`,
     "",
     "CSV convention",
     "  UTF-8, comma-separated, CRLF line ends, RFC 4180 quoting. Text fields that begin with = + - @ TAB or CR are prefixed with an",

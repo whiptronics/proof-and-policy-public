@@ -8,10 +8,10 @@ revenue scenarios, and a local research dashboard. The same data and models powe
 **[proofandpolicy.us](https://proofandpolicy.us)**; this repository runs on its own and needs nothing from the
 website.
 
-**Status: research preview, release 0.3.0.** Coverage is partial and declared series by series in
+**Status: research preview, release 0.3.1.** Coverage is partial and declared series by series in
 [docs/coverage-report.md](docs/coverage-report.md). Nothing here establishes a causal effect of any
 policy. Hand-entered values and policy codings are labelled with who extracted them; none has yet been
-reviewed by a person other than its extractor (an AI assistant did the extraction and checks), and they stay
+reviewed by a person (an AI assistant did the extraction and checks; see the AI disclosure below), and they stay
 labelled that way until a named reviewer records a check.
 
 **Quick start without downloading the sources** (about five minutes): see
@@ -62,7 +62,7 @@ independently; `npm --prefix web run export:grocery-wine` writes the purchase-fl
 `python scripts/grocery_wine_flows_check.py` then recomputes with separately written closed forms.
 
 The full release tables (CSV, Parquet and DuckDB, with checksums and release notes) are attached to each
-[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.3.0.
+[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.3.1.
 They can always be rebuilt from the sources below.
 
 ## Why this exists, and what it does not claim
@@ -170,8 +170,9 @@ assumptions mean for Utah's wine revenue (**Utah revenue scenarios**). Each tool
 change and reports what its result can and cannot show. Below the questions, **Utah at a glance** and the
 nationwide views are one click away.
 
-Utah at a glance (`?v=utah`) is the shortest way in: how Utah sells alcohol, Utah's latest value on 13
-measures with its rank among the states that have a value for the same year and definition, and nine
+Utah at a glance (`?v=utah`) is the shortest way in: how Utah sells alcohol, Utah's latest value on 11
+measures (13 in a preview build, which adds two CDC Chronic Disease Indicators series) with its rank among the states
+and DC that have a value for the same year and definition, and nine
 candidate comparison states with why each was chosen, how it differs and what is not yet known.
 
 The Map, Revenue by state and the comparison finder can also compare **liquor-control arrangements**
@@ -269,10 +270,20 @@ Code: MIT ([LICENSE](LICENSE)). Data: per source; see [DATA_LICENSE.md](DATA_LIC
 
 ## Authorship and affiliation
 
-Proof & Policy is an independent project by Ethan Whipple, built with substantial help from an AI assistant
-(Claude), which did most extraction, coding and checking; every value says how it was produced and whether a
-person has reviewed it. It is not affiliated with, endorsed by, or reviewed by any government agency,
-legislature, university, candidate or campaign.
+Proof & Policy is an independent project by Ethan Whipple. Every value says how it was produced and whether a
+person has reviewed it; as of this release none has. It is not affiliated with, endorsed by, or reviewed by any
+government agency, legislature, university, candidate or campaign.
+
+**AI disclosure.** This project was compiled with the assistance of an AI agent (Claude, by Anthropic), working at
+the maintainer's direction. The agent located and downloaded most sources, transcribed values from documents,
+coded the laws, wrote the data pipeline, models and dashboard, ran the calculations and checks, and drafted most of
+the documentation and explanatory text. Automated tests and separately written scripts check the arithmetic and
+internal consistency; they do not show that a source was read correctly or that an assumption is reasonable.
+`machine_assisted_review` means code and the AI agent checked a record, not a person. Nothing here has been
+peer-reviewed, reviewed by a legal or subject-matter expert, or endorsed by any government. AI-generated material
+can contain errors. Modeled results depend on the stated assumptions and should be evaluated alongside the cited
+sources and methodology. The same disclosure is on the website footer, its Definitions & methods page, printed
+pages and every download's README (`web/src/lib/disclosure.ts`).
 
 ## Contributing
 

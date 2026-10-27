@@ -1456,6 +1456,12 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
             {money(x.newCosts)} of new costs.
           </li>
           <FundsNote x={x} rates={rates} fy={f.fy} proposal={Boolean(proposal)} />
+          {x.revenueMode === "wholesale" && (x.discount ?? 0) > (x.grossMargin ?? 1) && (
+            <li className="warn">
+              The discount to grocers ({((x.discount ?? 0) * 100).toFixed(1)}%) is larger than the gross margin ({((x.grossMargin ?? 0) * 100).toFixed(1)}%): DABS
+              would sell wine to grocers for less than it paid for it. The result below is arithmetic on that input, not a workable arrangement.
+            </li>
+          )}
           {res.breakEvenDiscount.value !== null && (
             <li>
               Break-even discount: {res.breakEvenDiscount.value < 0 ? res.breakEvenDiscount.note : `${(res.breakEvenDiscount.value * 100).toFixed(1)}% — ${res.breakEvenDiscount.note}`}

@@ -878,7 +878,16 @@ a.button.primary-link {
   border-radius: 2px;
 }
 
+/* Printed pages carry the AI disclosure (App.tsx); on screen it is in Definitions & methods and the site footer. */
+.print-only {
+  display: none;
+}
+
 @media print {
+  .print-only {
+    display: block;
+    margin: 12px 16px 0;
+  }
   header.app,
   .no-print,
   .skip,

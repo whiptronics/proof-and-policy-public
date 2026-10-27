@@ -113,7 +113,7 @@ export function InitiativeView() {
         <h3 id="in-find">What the analysis finds</h3>
         <ul className="findings">
           <li>
-            <strong>In the brief's two reference cases both structures lower state revenue:</strong> {millions(P.lines?.net)} a year with
+            <strong>In the brief's two reference cases both structures leave the state worse off:</strong> {millions(P.lines?.net)} a year (revenue lost, net of the assumed store costs avoided and new costs) with
             private wholesalers and a 20% replacement tax, {millions(Wh.lines?.net)} with DABS as wholesaler at a 20% discount, against{" "}
             {amount(f.baseline)} the state collects on wine today. These are conditional on those levers and assumptions, with only existing wine
             purchases moving. Other arrangements keep state revenue whole at fixed volume (<a href="#in-alt">policy alternatives</a>), by
@@ -129,7 +129,7 @@ export function InitiativeView() {
           <li>
             <strong>With the 20% tax or 20% discount held fixed, the loss holds across every input range tested.</strong> No single input
             moved within its tested range, and no combination of the documented bounds, brings either to break even; a smaller discount
-            or a larger tax does (see the alternatives in the graph package, wine-alternatives@1.0). It would take sellers keeping about{" "}
+            or a larger tax does (<a href="#in-alt">policy alternatives</a>, wine-alternatives@1.0). It would take sellers keeping about{" "}
             {cents(f.robustness.keepAtBreakEven)} a dollar, grocery wine priced {pct((Wh.viability?.shift.shelf ?? NaN) - 1, 0)} (DABS supply)
             to {pct((P.viability?.shift.shelf ?? NaN) - 1, 0)} (private) above state stores, or an untested switch from beer (
             <a href="#in-be">what would have to be true</a>).
@@ -165,7 +165,7 @@ export function InitiativeView() {
             </thead>
             <tbody>
               <tr>
-                <th scope="row">State revenue from wine</th>
+                <th scope="row">State revenue from wine (store margin and state sales tax)</th>
                 <td className="num">{money(f.baseline)}</td>
                 <td className="num">{money(P.lines?.proposedRevenue)}</td>
                 <td className="num">{money(Wh.lines?.proposedRevenue)}</td>
@@ -189,7 +189,7 @@ export function InitiativeView() {
                 <td className="num">{money((Wh.lines?.costsAvoided ?? 0) - (Wh.lines?.newCosts ?? 0))}</td>
               </tr>
               <tr className="total">
-                <th scope="row">Net change in state revenue</th>
+                <th scope="row">Net change for the state (revenue change, plus store costs avoided, less new costs)</th>
                 <td className="num">—</td>
                 <td className="num">
                   <strong>{money(P.lines?.net)}</strong>
@@ -658,7 +658,7 @@ function AlternativesSection() {
       </p>
       <p className="small muted">
         Fixed volume unless a column says otherwise: the same {money(rep.movedDollars)} of household wine moves to grocers in every row. All
-        state funds together; school-meal and enforcement deposits are allocations inside the DABS margin, shown in the graph package and
+        state funds together; school-meal and enforcement deposits are allocations inside the DABS margin and are
         not added again. Gross margin is the seller's price less what it pays, before its own costs: it is not profit, and the 28% grocery
         figure is a national reference, not a known minimum for grocery wine. A row that leaves a seller 0% or 1¢ is arithmetic, not a claim
         that any business would accept it. Method {WINE_ALTERNATIVES_METHOD}.

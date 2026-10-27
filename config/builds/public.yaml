@@ -1,7 +1,7 @@
 # Public release build (Proof & Policy): the preview build without sources whose release is gated
 # (cdc_cdi, ODbL: see DATA_LICENSE.md). This is the build the website and published packages use.
 name: public
-release_version: 0.3.0
+release_version: 0.3.1
 sources:
   - census_pep
   - niaaa_apparent_consumption

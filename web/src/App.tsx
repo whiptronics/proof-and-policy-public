@@ -3,6 +3,7 @@ import { ErrorNote, Loading } from "./components/common";
 import { Drawer } from "./components/Drawer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { useData } from "./lib/data";
+import { AI_DISCLOSURE } from "./lib/disclosure";
 import type { Manifest } from "./lib/types";
 import { navigate, pickOne, useParams, VIEWS, type View } from "./lib/url";
 import { CoverageView } from "./views/CoverageView";
@@ -175,6 +176,7 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
           </ErrorBoundary>
         )}
       </main>
+      <p className="print-only small">{AI_DISCLOSURE}</p>
       {footer}
       {man.data && params.get("rec") && (
         <ErrorBoundary resetKey={params.get("rec")!}>

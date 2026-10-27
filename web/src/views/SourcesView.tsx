@@ -3,7 +3,7 @@
 import { ErrorNote, Loading, RecordLink } from "../components/common";
 import { saveFile, toCsv } from "../lib/csv";
 import { useData } from "../lib/data";
-import { bytes, geoName, words } from "../lib/format";
+import { areaCount, bytes, geoName, words } from "../lib/format";
 import type { Asset, Geography, Lead, SourcesData } from "../lib/types";
 import { navigate, pickInt, pickOne, useParams } from "../lib/url";
 
@@ -202,7 +202,7 @@ export function SourcesView() {
                         <div className="small muted">{a.edition}</div>
                       </td>
                       <td className="small">{srcOf.get(a.source_id)?.publisher}</td>
-                      <td className="small">{a.jurisdictions.length > 3 ? `${a.jurisdictions.length} jurisdictions` : a.jurisdictions.map((j) => geoName(j, geos.data!)).join(", ") || "—"}</td>
+                      <td className="small">{a.jurisdictions.length > 3 ? areaCount(a.jurisdictions) : a.jurisdictions.map((j) => geoName(j, geos.data!)).join(", ") || "—"}</td>
                       <td className="small">{ys ? (ys[0] === ys[1] ? ys[0] : `${ys[0]}–${ys[1]}`) : "—"}</td>
                       <td className="small">{USE_LABELS[useOf(a)]}</td>
                       <td className="small">

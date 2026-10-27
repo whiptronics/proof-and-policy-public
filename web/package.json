@@ -1,7 +1,7 @@
 {
   "name": "alcohol-policy-research-dashboard",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "Local, read-only research dashboard for the alcohol policy and revenue dataset. It reads the files written by `alcohol-data dashboard export` and never edits research values.",
   "license": "MIT",

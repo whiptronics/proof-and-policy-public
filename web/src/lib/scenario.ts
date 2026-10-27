@@ -242,7 +242,11 @@ export function check(x: ScenarioInputs): { missing: string[]; invalid: string[]
   if (!x.matchPrice && x.priceRatio !== null && x.priceRatio <= 0) invalid.push("The grocery price must be above zero");
   if (x.matchPrice && x.revenueMode === "excise" && excisePerDollar(x) >= 1) invalid.push("At the state-store price the excise would take the whole price");
   if (x.growth !== null && x.extra && x.growth < -1) invalid.push("Purchases cannot fall by more than 100%");
-  if (gallonsNeeded && x.wineGallons === 0) invalid.push("Wine gallons must be above zero");
+  // A fall in purchases is split between the channels like extra wine; neither channel can end up selling less than nothing.
+  const fall = -((x.growth ?? 0) + (x.recapture ?? 0));
+  const q = x.extraGrocery;
+  if (x.extra && fall > 0 && x.growth! >= -1 && typeof q === "number" && q >= 0 && q <= 1 && (q * fall > movedShare(x) + 1e-12 || (1 - q) * fall > 1 - movedShare(x) + 1e-12))
+    invalid.push("The fall in purchases is larger than what one channel sells: with this share bought in grocery stores, grocery or state-store purchases would be below zero");  if (gallonsNeeded && x.wineGallons === 0) invalid.push("Wine gallons must be above zero");
   if (typeof x.elasticity === "number" && x.elasticity > 0) invalid.push("The price elasticity of demand must be zero or negative");
   if (typeof x.elasticity === "number" && x.elasticity < -5) invalid.push("The price elasticity of demand cannot be below -5");
   if (typeof x.passThrough === "number" && (x.passThrough < 0 || x.passThrough > 2)) invalid.push("Pass-through must be between 0% and 200%");

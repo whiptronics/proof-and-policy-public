@@ -496,7 +496,8 @@ export function PriceShareSection() {
         <li>
           Gross margin is a seller's price less what it pays, before its own costs: not profit. Private supply assumes a wholesaler keeping{" "}
           {pct(WHOLESALER_MARGIN)} of its own price (U13); the grocer's share follows, and what wholesaler and grocer keep together does not depend on
-          that split. Method {PRICE_SHARE_METHOD}; data in the graph package (<code>price_share_*.csv</code>).
+          that split. Method {PRICE_SHARE_METHOD}; the public repository's <code>npm --prefix web run export:grocery-wine</code> writes these tables
+          (<code>price_share_*.csv</code>).
         </li>
       </ul>
 
