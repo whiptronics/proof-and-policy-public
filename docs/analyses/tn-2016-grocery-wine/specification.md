@@ -82,7 +82,7 @@ Revenue outcomes, state fiscal years:
 | Id | Outcome | Metric and conversion | Scope |
 |---|---|---|---|
 | R1 | State alcohol selective sales taxes (Census T10), constant 2024 dollars | `stc_alcoholic_beverages_sales_tax@state_fiscal_year`, `real_cy2024` (CPI-U fiscal-year averages) | All beverages, state government only; excludes general sales tax, license taxes and any state-store profit |
-| R2 | Tennessee wine tax, account 11002 printed "Wine Tax" | `tn_dor_wine_tax_collections@state_fiscal_year`, constant 2024 dollars | Tennessee only; all channels; FY2010-FY2017 only (the FY2018 relabelling makes a separate series that is not joined) |
+| R2 | Tennessee wine tax, account 11002 printed "Wine Tax" | `tn_dor_wine_tax_collections@state_fiscal_year`, constant 2024 dollars | Tennessee only; all channels; FY2010-FY2017 only (the FY2018 relabeling makes a separate series that is not joined) |
 | R3 | Tennessee wine enforcement tax, account 11018 | `tn_dor_wine_enforcement_tax_collections@state_fiscal_year`, constant 2024 dollars | Tennessee only; all channels |
 
 R2 and R3 have no comparison-state equivalent in the dataset, so they get Tennessee's own before-and-after only.
@@ -104,7 +104,7 @@ change (its series ends there).
 ## 6. Comparison states
 
 **Eligibility rule.** The eight states bordering Tennessee (Alabama, Arkansas, Georgia, Kentucky, Mississippi,
-Missouri, North Carolina, Virginia). Neighbours share regional trends and most of Tennessee's cross-border trade.
+Missouri, North Carolina, Virginia). Neighbors share regional trends and most of Tennessee's cross-border trade.
 Exclusion rule: a state is excluded if the dataset verifies a change in its ordinary grocery-wine authorization
 during 2011-2019. None is verified, so none is excluded.
 
@@ -125,8 +125,8 @@ during 2011-2019. None is verified, so none is excluded.
 | P3 | Virginia, Georgia, Arkansas, Kentucky | Sensitivity: the worked example's shortlist (chosen 2026-10-07 on pre-reform T10 per resident) |
 | P4 | The four bordering states the comparison finder ranks closest to Tennessee | Sensitivity: finder defaults (population, income per person, adults who drink, wine and all-alcohol consumption), baseline 2011-2015, scaled across all states, Mahalanobis distance, full coverage required |
 
-Cross-border spillover is a known weakness of neighbours: if Tennessee grocers drew buyers from across the border,
-neighbours' apparent consumption would fall and Tennessee's would rise for that reason alone. It cannot be measured
+Cross-border spillover is a known weakness of neighbors: if Tennessee grocers drew buyers from across the border,
+neighbors' apparent consumption would fall and Tennessee's would rise for that reason alone. It cannot be measured
 with these data. Utah is not a comparison state.
 
 ## 7. Calculations and what each uncertainty measure covers

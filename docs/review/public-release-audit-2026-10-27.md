@@ -31,11 +31,11 @@ wrong calculations, misleading conclusions, unsupported claims, contradictions a
 | # | Severity | Where | Issue | Correction |
 |---|---|---|---|---|
 | 1 | High (broken public feature) | Map | Choosing either CDC CDI measure left the page on "Loading the map's data" forever: the "not in this build" check came after the loading return | Check first; list only measures in the build (also Utah at a glance); Start here no longer offers liver-disease deaths |
-| 2 | Medium (misleading label) | Grocery-wine worked example | "Net change in state revenue" (−$12.1M/−$7.3M) includes $1.77M of assumed avoided costs, while the revenue row above falls by $13.9M/$9.1M | Relabelled "Net change for the state (revenue change, plus store costs avoided, less new costs)"; finding reworded; appendix table likewise |
+| 2 | Medium (misleading label) | Grocery-wine worked example | "Net change in state revenue" (−$12.1M/−$7.3M) includes $1.77M of assumed avoided costs, while the revenue row above falls by $13.9M/$9.1M | Relabeled "Net change for the state (revenue change, plus store costs avoided, less new costs)"; finding reworded; appendix table likewise |
 | 3 | Medium (overstated review) | Site footer | "most have not yet been reviewed": no value or legal coding is reviewed by a person | "as of this release none has", plus the AI disclosure |
 | 4 | Medium (contradiction) | Definitions & methods | "No similarity score is computed" while the comparison finder computes one | Rewritten |
 | 5 | Medium (contradiction) | Utah at a glance vs finder | "default settings" but no policy exclusions, so Arkansas ranks 3rd of 50 there and is left out of the finder's default 48 | States exactly what is run |
-| 6 | Medium (unit unstated) | Tennessee worked example | Wine-tax averages $16.9M/$22.1M are constant 2024 dollars, unlabelled; the panel above shows $12.6M nominal for the same window | Unit stated in the text and the panel note |
+| 6 | Medium (unit unstated) | Tennessee worked example | Wine-tax averages $16.9M/$22.1M are constant 2024 dollars, unlabeled; the panel above shows $12.6M nominal for the same window | Unit stated in the text and the panel note |
 | 7 | Medium (unpublished reference) | Grocery-wine page | Three pointers to the "graph package", which is not public | Pointed to the page's own sections and the public export command |
 | 8 | Low-medium (validation) | Scenario tool | A fall in purchases larger than a channel sells gave negative purchases silently | Rejected with a reason (test added) |
 | 9 | Low-medium (validation) | Scenario tool | A DABS discount above its gross margin (selling below cost) was computed silently | Flagged in the results; still computed, because the sensitivity searches scan discounts and an invalid input would read as a break-even |
@@ -47,7 +47,7 @@ wrong calculations, misleading conclusions, unsupported claims, contradictions a
 ## Checked and left as it is
 
 - The two beer-switching break-evens on the grocery-wine page (14% more wine; 6.1% of households' beer) differ because
-  they use different savings (5¢ illustrative, 2.28¢ documented) and bases (all wine, households' beer); both are labelled.
+  they use different savings (5¢ illustrative, 2.28¢ documented) and bases (all wine, households' beer); both are labeled.
 - Utah's Census T10 series breaks in FY2018 (−84%, then +75-78%); every page that shows it flags the break, and the
   Tennessee page's Utah window change (−59.7%) spans it. Not explained by any source read.
 - DABS's FY2025 "sales tax" line ($32.4M) is described in the same report as local governments' share, which looks too

@@ -60,7 +60,7 @@ export interface SameMonth {
 
 /** Each month that also has a value exactly twelve months earlier, with the change from it.
  * Months are "YYYY-MM"; a month without its year-earlier partner is left out, never compared with a
- * neighbour. */
+ * neighbor. */
 export function sameMonthChanges(values: Map<string, number | null>): SameMonth[] {
   const out: SameMonth[] = [];
   for (const [month, now] of [...values.entries()].sort()) {

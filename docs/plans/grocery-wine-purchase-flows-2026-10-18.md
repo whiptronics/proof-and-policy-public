@@ -17,9 +17,9 @@ channel choice and price response consistent, and regenerate every graph and dat
   a state store instead. That is how preserved-collection designs showed −$2.0M to −$2.6M.
 - **Beer substitution:** `lib/substitution.ts` (beer threshold, U8) holds pure alcohol constant. Beer price $12/gal is a
   placeholder. The beer excise $13.35/barrel is the FY2025 statutory rate (Utah Code 59-15-101, dataset policy event
-  `ut_beer_tax_1335`; first noted here as unsourced, corrected 2026-10-19). Heavy beer and spirits are not modelled.
+  `ut_beer_tax_1335`; first noted here as unsourced, corrected 2026-10-19). Heavy beer and spirits are not modeled.
 - **Evidence already in the dataset:**
-  - DABS FY2026 sales and 9-litre cases by category (spirits, wine, heavy beer).
+  - DABS FY2026 sales and 9-liter cases by category (spirits, wine, heavy beer).
   - NIAAA 2024 Utah gallons and ABV for beer, wine and spirits.
   - Statutory markups (wine and spirits 88.5%, heavy beer 66.5%).
   - Census margins (now parsed).
@@ -31,7 +31,7 @@ channel choice and price response consistent, and regenerate every graph and dat
 ## Plan
 
 1. **Model:** new `web/src/lib/wineFlows.ts` (`wine-purchase-flows@1.0`).
-   - **Totals and identity:** before and after totals by beverage and channel, in litres, litres of pure alcohol and
+   - **Totals and identity:** before and after totals by beverage and channel, in liters, liters of pure alcohol and
      dollars. Change = after − before. The flow decomposition by origin reconciles to the change.
    - **Arrangement terms:** read from the existing alternatives' price stacks, so the per-bottle collection is not
      re-derived.

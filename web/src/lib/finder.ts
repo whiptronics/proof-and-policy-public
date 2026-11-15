@@ -21,7 +21,7 @@
 //   the percent change per year), so states can be matched on where they were heading, not only where they
 //   stood. They need at least three baseline years.
 // * Warnings are about the match, not the states: even the closest state may be far (in absolute terms and
-//   compared with how close states usually are to their own nearest neighbour), and the target may sit
+//   compared with how close states usually are to their own nearest neighbor), and the target may sit
 //   outside the range of the other states, where any comparison is an extrapolation.
 // * Missing data never helps: candidates are ranked first by how many selected characteristics they lack,
 //   then by score. A candidate below the minimum coverage is listed as not scored.
@@ -163,7 +163,7 @@ export const CHARACTERISTICS: Characteristic[] = [
   {
     id: "wine_trend",
     label: "Wine consumption trend",
-    help: "Average yearly change in wine consumption per resident 21+ over the baseline years. Matching on it favours states that were heading the same way before; it does not show they would have kept moving together. Needs three baseline years.",
+    help: "Average yearly change in wine consumption per resident 21+ over the baseline years. Matching on it favors states that were heading the same way before; it does not show they would have kept moving together. Needs three baseline years.",
     metric: "niaaa_ethanol_per_capita_21plus_wine@calendar_year",
     shown: "nominal",
     scale: "linear",
@@ -501,7 +501,7 @@ export function rankCandidates(
 
 /** The closest state is not a good match when its score is at least this many standard deviations... */
 export const FAR_SCORE = 1;
-/** ...or worse than this share of states are from their own nearest neighbour. */
+/** ...or worse than this share of states are from their own nearest neighbor. */
 export const FAR_PERCENTILE = 0.9;
 /** The target is extreme on a characteristic when it is this many standard deviations from the state average. */
 export const EXTREME_Z = 2;
@@ -535,7 +535,7 @@ export function finderWarnings(r: RankResult, target: string, name: (g: string) 
       text: `${name(target)} is unusual among states on ${extremes.join(", ")}. Few states resemble it there, so any comparison leans on states that differ from it, and an average of them can only approximate it by extrapolation.`,
     });
   }
-  // Even the closest state is far: in absolute terms, or compared with how close states usually are to their nearest neighbour.
+  // Even the closest state is far: in absolute terms, or compared with how close states usually are to their nearest neighbor.
   const best = eligible[0];
   if (best && best.score !== null) {
     const states = r.used.length ? [...r.used[0].values.keys()] : [];
@@ -551,7 +551,7 @@ export function finderWarnings(r: RankResult, target: string, name: (g: string) 
       out.push({
         id: "far_match",
         text: `Even the closest state, ${name(best.item)}, scores ${best.score.toFixed(2)}${absolute ? `, an average difference of ${FAR_SCORE} SD or more` : ""}${
-          relative ? `${absolute ? " and" : ","} farther than ${Math.round(FAR_PERCENTILE * 100)}% of states are from their own nearest neighbour (${p90!.toFixed(2)} or less)` : ""
+          relative ? `${absolute ? " and" : ","} farther than ${Math.round(FAR_PERCENTILE * 100)}% of states are from their own nearest neighbor (${p90!.toFixed(2)} or less)` : ""
         }. None of these states closely matches ${name(target)} on the chosen characteristics; treat each as a loose analogy.`,
       });
     }

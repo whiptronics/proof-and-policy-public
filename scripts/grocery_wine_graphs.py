@@ -440,11 +440,11 @@ def u1_waterfall(d, out, titles):
         ax.axhline(0, color=INK, lw=1)
         ax.set_xticks(range(len(steps) + 1), [s[0] for s in steps] + ["Net\nchange"], fontsize=8)
         ax.grid(axis="x", visible=False)
-        ax.set_title({"R1": "Reference 1: private supply, 20% tax", "R2": "Reference 2: DABS supply, 20% discount"}[aid], fontsize=9.5)
+        ax.set_title({"R1": "Reference 1: private supply, 20% tax", "R2": "Reference 2: DABS supply at 80% of shelf price"}[aid], fontsize=9.5)
         ax.yaxis.set_major_formatter(m_fmt)
     axes[0].set_ylabel("Change from today, $ a year")
     axes[0].set_ylim(-25e6, 11e6)
-    head(fig, *titles["U1"], NOTE_U + " 'DABS margin' in Reference 2 is the 20% discount given up; DABS keeps the rest of its margin.", below_in=0.75)
+    head(fig, *titles["U1"], NOTE_U + " 'DABS margin' in Reference 2 is the 20 points DABS gives up by selling at 80% of its shelf price; DABS keeps the rest of its margin.", below_in=0.75)
     save(fig, out, "U1_references_change_from_today.png")
 
 
@@ -596,11 +596,11 @@ def u4_discount(d, out, titles):
         x, y = sweep_xy(rows, "retailerShare")
         axes[2].plot(x, y * 100, color=col)
     be_m, be_t = ct.crossing(sm), ct.crossing(st)
-    axes[0].annotate(f"break-even {be_m * 100:.1f}% (today's prices)", (be_m * 100, 0), (6, 3.4e6), fontsize=8.5, color=INK, va="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8, relpos=(0, 0.5)))
-    axes[0].annotate(f"break-even {be_t * 100:.1f}% (grocer prices for 28%)", (be_t * 100, 0), (6, 1.3e6), fontsize=8.5, color=INK, va="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8, relpos=(0, 0.5)))
+    axes[0].annotate(f"break-even at {100 - be_m * 100:.1f}% (today's prices)", (be_m * 100, 0), (6, 3.4e6), fontsize=8.5, color=INK, va="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8, relpos=(0, 0.5)))
+    axes[0].annotate(f"break-even at {100 - be_t * 100:.1f}% (grocer prices for 28%)", (be_t * 100, 0), (6, 1.3e6), fontsize=8.5, color=INK, va="center", arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8, relpos=(0, 0.5)))
     r2 = ct.alt(d, "B20_matched")["ledger_fixed"]["net"]
     axes[0].plot([20], [r2], "s", color=BLUE, ms=6, mec=SURFACE)
-    axes[0].text(21.5, r2 + 2.6e6, f"20% at today's prices: {ct.money(r2)}", fontsize=8.5, color=INK)
+    axes[0].text(21.5, r2 + 2.6e6, f"80% at today's prices: {ct.money(r2)}", fontsize=8.5, color=INK)
     axes[0].axhline(0, color=INK, lw=1)
     axes[0].yaxis.set_major_formatter(m_fmt)
     axes[0].set_ylim(-24e6, 6e6)
@@ -611,9 +611,10 @@ def u4_discount(d, out, titles):
     axes[2].set_title("Grocer's gross margin (% of its selling price)", fontsize=9.5)
     axes[2].axhline(28, color=INK2, lw=1, ls="--")
     axes[2].text(50.5, 28, "28% reference", va="center", fontsize=8, color=INK2)
-    axes[2].set_xlabel("DABS's discount to grocers (% of today's shelf price)")
+    axes[2].set_xlabel("DABS's price to grocers (% of today's shelf price)")
+    axes[2].xaxis.set_major_formatter(lambda v, _: f"{100 - v:.0f}")  # swept as the share below the shelf price
     axes[2].set_xlim(0, 50)
-    head(fig, *titles["U4"], NOTE_U + " Short-run savings 2.28¢ per $; Reference 2's 5¢ gives a 3.9% break-even at today's prices.")
+    head(fig, *titles["U4"], NOTE_U + " Short-run savings 2.28¢ per $; Reference 2's 5¢ gives a break-even at 96.1% at today's prices.")
     save(fig, out, "U4_dabs_discount_sweep.png")
 
 
@@ -787,7 +788,7 @@ def t1(tn, out, titles):
     ax.set_xticks(range(2005, 2026, 5))
     ax.set_xlim(2004.5, 2026.8)
     ax.set_ylabel("Index, FY2012–15 average = 100")
-    ax.set_xlabel("State fiscal year (dashed: grocery-wine licences from July 2016, the start of Tennessee's FY2017)")
+    ax.set_xlabel("State fiscal year (dashed: grocery-wine licenses from July 2016, the start of Tennessee's FY2017)")
     ax.text(idx[TN][0][-1] + 0.3, idx[TN][1][-1], f"TN {idx[TN][1][-1]:.0f}", va="center", fontsize=8.5)
     ax.annotate("FY2022 jump: not explained,\noutside the comparison windows", (2022, float(idx[TN][1][idx[TN][0] == 2022][0])), (2016.2, 158), ha="right", fontsize=8, color=INK2, arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8))
     ax.text(xs[-1] + 0.3, avg[-1], f"avg {avg[-1]:.0f}", va="center", fontsize=8.5)
@@ -820,7 +821,7 @@ def t2(tn, out, titles):
     ax.set_xlim(2004.5, 2025.8)
     year_ticks(ax, 2005, 2025)
     ax.set_ylabel("Alcohol tax receipts (T10), constant 2024 $")
-    ax.set_xlabel("Tennessee fiscal year (dashed vertical: grocery-wine licences from July 2016)")
+    ax.set_xlabel("Tennessee fiscal year (dashed vertical: grocery-wine licenses from July 2016)")
     ax.legend(loc="upper left")
     head(fig, *titles["T2"], NOTE_T)
     save(fig, out, "T2_tennessee_receipts_vs_earlier_trend.png")
@@ -834,7 +835,7 @@ def t3(tn, out, titles):
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.5, 5.6))
     fig.subplots_adjust(left=0.08, right=0.98, wspace=0.25)
     a1.plot(x1, w1, color=BLUE, marker="o", ms=5, label="'Wine Tax' (to FY2017)")
-    a1.plot(x2, w2, color=BLUE, ls=":", marker="o", ms=5, mfc=SURFACE, label="Relabelled 'Wine Tax &\nHigh Alcohol Beer'")
+    a1.plot(x2, w2, color=BLUE, ls=":", marker="o", ms=5, mfc=SURFACE, label="Relabeled 'Wine Tax &\nHigh Alcohol Beer'")
     pre = w1[(x1 >= 2012) & (x1 <= 2016)].mean()
     a1.hlines(pre, 2011.6, 2016.4, color=INK2, lw=1)
     a1.text(2011.6, pre + 0.35e6, f"FY2012–16\naverage {ct.money(pre)[1:]}", fontsize=8, color=INK2, va="bottom")
@@ -852,7 +853,7 @@ def t3(tn, out, titles):
     a2.yaxis.set_major_formatter(lambda v, _: f"${v / 1e6:,.2f}M")
     a2.set_title("Wine enforcement tax (account 11018)", fontsize=9.5)
     for a in (a1, a2):
-        a.set_xlabel("Tennessee fiscal year (dashed: licences from July 2016)")
+        a.set_xlabel("Tennessee fiscal year (dashed: licenses from July 2016)")
     a1.set_ylabel("Constant 2024 $")
     head(fig, *titles["T3"], NOTE_T)
     save(fig, out, "T3_tennessee_wine_tax_accounts.png")
@@ -876,7 +877,7 @@ def t4(tn, out, titles):
         shade(ax, (2011, 2015), (2017, 2019), 2016)
         own = ct.tn_value(tn, "main", oid, "tn_pct_change")
         rel = ct.tn_value(tn, "main", oid, "diff_log_points")
-        ax.set_title(minus(f"{names[oid]}: TN {own:+.1f}%; {rel:+.1f} log pts vs neighbours' average"), fontsize=9)
+        ax.set_title(minus(f"{names[oid]}: TN {own:+.1f}%; {rel:+.1f} log pts vs neighbors' average"), fontsize=9)
         ax.set_xlim(2002.5, 2024.8)
         year_ticks(ax, 2005, 2020)
     for ax in axes[:, 0]:
@@ -910,7 +911,7 @@ def t5(tn, out, titles):
         ax.set_xlim(-span, span)
         if oid == "R1":
             ax.xaxis.set_major_formatter(m_fmt)
-            ax.set_xlabel("Tennessee's change minus the neighbours' average change (constant 2024 $)", fontsize=8)
+            ax.set_xlabel("Tennessee's change minus the neighbors' average change (constant 2024 $)", fontsize=8)
         else:
             ax.set_xlabel("Difference in changes, gallons of ethanol per resident 21+", fontsize=8)
         ax.text(1.02, 0.5, f"{k} of {len(p)} earlier\ndates as large", transform=ax.transAxes, va="center", fontsize=8.5)
@@ -930,7 +931,7 @@ def t6(tn, out, titles):
         main = next(r for r in rows if r["specification"] == "main")
         others = np.array([float(r["diff_log_points"]) for r in rows if r["specification"] != "main"])
         ax.plot(others, np.full_like(others, yi), "o", color=MUTED, ms=7, alpha=0.8, mec=SURFACE, label="Other specifications" if yi == 0 else None)
-        ax.hlines(yi, float(main["leave_one_out_low_log_points"]), float(main["leave_one_out_high_log_points"]), color=BLUE, lw=3, label="Main: leave one neighbour out" if yi == 0 else None)
+        ax.hlines(yi, float(main["leave_one_out_low_log_points"]), float(main["leave_one_out_high_log_points"]), color=BLUE, lw=3, label="Main: leave one neighbor out" if yi == 0 else None)
         ax.plot([float(main["diff_log_points"])], [yi], "D", color=BLUE, ms=9, mec=SURFACE, label="Main specification" if yi == 0 else None)
         allv = [float(r["diff_log_points"]) for r in rows]
         lo1, hi1 = float(main["leave_one_out_low_log_points"]), float(main["leave_one_out_high_log_points"])
@@ -939,7 +940,7 @@ def t6(tn, out, titles):
     ax.set_yticks(range(len(order)), [lab[o] for o in order])
     ax.grid(axis="y", visible=False)
     ax.set_xlim(-6, 35)
-    ax.set_xlabel("Tennessee's change minus the neighbours' average change (log points, about %)")
+    ax.set_xlabel("Tennessee's change minus the neighbors' average change (log points, about %)")
     ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=3, fontsize=8.5)
     head(fig, *titles["T6"], NOTE_T, legend_in=0.3)
     save(fig, out, "T6_tennessee_sensitivity_ranges.png")
@@ -961,7 +962,7 @@ def s0(d, tn, trend, out, titles):
     a1.grid(axis="y", visible=False)
     a1.set_title("Observed: Tennessee, private licensees (2016)", fontsize=9.5)
     a1.set_xlabel("Change a year, constant 2024 $ (descriptive)")
-    ids = ["R1", "R2", "B20_target", "A_target", "C_take", "C_break_even"]
+    ids = ["A_target", "C_take", "C_break_even", "B20_target", "R2", "R1"]  # designs that keep revenue whole on top
     y = np.arange(len(ids))[::-1]
     for yi, aid in zip(y, ids, strict=True):
         a = ct.alt(d, aid)
@@ -1037,7 +1038,7 @@ def ps_grid(ps, out, titles, savings: str, key: str, name: str) -> None:
             for i, pp in enumerate(P):
                 z = Z[j, i]
                 fill = LOSS_GAIN(norm(z))
-                # A box in the cell's own colour masks any line behind the number, so a minus sign never merges into a line running flat through the row.
+                # A box in the cell's own color masks any line behind the number, so a minus sign never merges into a line running flat through the row.
                 ax.text(pp * 100, ss * 100, ps_fmt(z), ha="center", va="center", fontsize=7.4, color=ink_on(fill), zorder=9, bbox=dict(boxstyle="square,pad=0.12", fc=fill, ec="none"))
         mk = next(m for m in ps["markers"] if m["arrangement"] == a["id"])
         if mk["grocerCost"] is not None and mk["grocerCost"] > 1e-9:
@@ -1109,7 +1110,7 @@ def ps_margins(ps, out, titles) -> None:
         Line2D([], [], color=INK2, marker="o", mfc=SURFACE, ls="none", label="Hollow: grocer below acquisition cost")
     ]
     ax.legend(handles=handles, loc="upper left", fontsize=8)
-    head(fig, *titles["U11"], NOTE_PS + " DABS supply: the grocer pays DABS today's shelf price less the discount. Private supply: the charge is taken off the shelf price first; the wholesaler's 29.5% (U13) is an assumed split, and what wholesaler and grocer keep together does not depend on it.")
+    head(fig, *titles["U11"], NOTE_PS + " DABS supply: the grocer pays DABS today's shelf price or 80% of it. Private supply: the charge is taken off the shelf price first; the wholesaler's 29.5% (U13) is an assumed split, and what wholesaler and grocer keep together does not depend on it.")
     save(fig, out, "U11_price_share_grocer_margin.png")
 
 
@@ -1209,7 +1210,7 @@ def ps_funds(ps, out, titles) -> None:
     ax.yaxis.set_major_formatter(m_fmt)
     ax.set_xlabel("Covered household wine purchases moving to grocers")
     ax.set_ylabel("Change for the two funds together, $ a year")
-    head(fig, *titles["U13"], NOTE_PS + " Deposits: 10% (school meals) and 1.695% (enforcement) of total gross revenue from liquor sales (U06); the statewide totals already include them. Lines that coincide are drawn once and labelled with every case they cover (grey: more than one arrangement). Guarantees to the funds are not modelled here.")
+    head(fig, *titles["U13"], NOTE_PS + " Deposits: 10% (school meals) and 1.695% (enforcement) of total gross revenue from liquor sales (U06); the statewide totals already include them. Lines that coincide are drawn once and labeled with every case they cover (gray: more than one arrangement). Guarantees to the funds are not modeled here.")
     save(fig, out, "U13_price_share_protected_funds.png")
 
 
@@ -1300,116 +1301,116 @@ CHART_SOURCES = {
         "U1_references_change_from_today",
         ALT,
         "wine-alternatives@1.0",
-        "observed inputs, modelled result",
+        "observed inputs, modeled result",
     ),
-    "U2": ("U2_change_by_component", ALT, "wine-alternatives@1.0", "modelled"),
+    "U2": ("U2_change_by_component", ALT, "wine-alternatives@1.0", "modeled"),
     "U3": (
         "U3_alternatives_price_revenue_margin_funds",
         (*ALT, "alternatives_price_stack.csv", "demand_sensitivity.csv"),
         "wine-alternatives@1.0",
-        "modelled",
+        "modeled",
     ),
     "U4": (
         "U4_dabs_discount_sweep",
         (*ALT, "sweep_discount_matched.csv", "sweep_discount_retailer_target.csv"),
         "wine-alternatives@1.0",
-        "modelled",
+        "modeled",
     ),
     "U5": (
         "U5_private_charge_sweep",
         (*ALT, "sweep_charge_matched.csv", "sweep_charge_sellers_margins.csv"),
         "wine-alternatives@1.0",
-        "modelled",
+        "modeled",
     ),
     "U6": (
         "U6_demand_sensitivity",
         (*ALT, "demand_sensitivity.csv"),
         "wine-alternatives@1.0",
-        "modelled, exploratory (old price treatment)",
+        "modeled, exploratory (old price treatment)",
     ),
-    "U7": ("U7_cost_cases", (*ALT, "cost_cases.csv"), "wine-alternatives@1.0", "modelled"),
-    "U8": ("U8_beer_to_wine_threshold", ALT, "wine-alternatives@1.0 (substitution threshold)", "modelled"),
-    "U9": ("U9_price_share_fiscal_grid", PS, "wine-price-share@1.0", "modelled, conditional grid"),
+    "U7": ("U7_cost_cases", (*ALT, "cost_cases.csv"), "wine-alternatives@1.0", "modeled"),
+    "U8": ("U8_beer_to_wine_threshold", ALT, "wine-alternatives@1.0 (substitution threshold)", "modeled"),
+    "U9": ("U9_price_share_fiscal_grid", PS, "wine-price-share@1.0", "modeled, conditional grid"),
     "U10": (
         "U10_price_share_fiscal_grid_no_savings",
         PS,
         "wine-price-share@1.0",
-        "modelled, conditional grid",
+        "modeled, conditional grid",
     ),
     "U11": (
         "U11_price_share_grocer_margin",
         (*PS, "price_share_markers.csv"),
         "wine-price-share@1.0",
-        "modelled",
+        "modeled",
     ),
     "U12": (
         "U12_price_share_price_response",
         PS,
         "wine-price-share@1.0",
-        "modelled, exploratory (old price treatment)",
+        "modeled, exploratory (old price treatment)",
     ),
-    "U13": ("U13_price_share_protected_funds", PS, "wine-price-share@1.0", "modelled"),
+    "U13": ("U13_price_share_protected_funds", PS, "wine-price-share@1.0", "modeled"),
     "F1": (
         "F1_grocery_wine_by_source",
         (*FLW, "flows_origins.csv", "flows_scenarios.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative shares",
+        "modeled, illustrative shares",
     ),
     "F2": (
         "F2_collections_and_costs_by_design",
         (*FLW, "flows_components.csv"),
         "wine-purchase-flows@1.0",
-        "modelled",
+        "modeled",
     ),
     "F3": (
         "F3_revenue_gained_vs_displaced",
         (*FLW, "flows_lines.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative shares",
+        "modeled, illustrative shares",
     ),
     "F4": (
         "F4_beverage_litres_and_pure_alcohol",
         (*FLW, "flows_beverages.csv", "flows_conversions.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative shares",
+        "modeled, illustrative shares",
     ),
     "F5": (
         "F5_price_and_channel_choice",
         (*FLW, "flows_migration_price_grid.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative channel choice",
+        "modeled, illustrative channel choice",
     ),
     "F6": (
         "F6_break_even_by_source",
         (*FLW, "flows_break_even.csv"),
         "wine-purchase-flows@1.0",
-        "modelled thresholds",
+        "modeled thresholds",
     ),
     "F7": (
         "F7_break_even_frontiers",
         (*FLW, "flows_break_even_frontier.csv"),
         "wine-purchase-flows@1.0",
-        "modelled thresholds",
+        "modeled thresholds",
     ),
     "F8": (
         "F8_sensitivity",
         (*FLW, "flows_sensitivity.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, tested ranges",
+        "modeled, tested ranges",
     ),
     "F9": (
         "F9_all_named_scenarios",
         (*FLW, "flows_scenarios.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative and exploratory scenarios",
+        "modeled, illustrative and exploratory scenarios",
     ),
     "F10": (
         "F10_substitution_grid",
         (*FLW, "flows_substitution_grid.csv"),
         "wine-purchase-flows@1.0",
-        "modelled, illustrative shares",
+        "modeled, illustrative shares",
     ),
-    "F11": ("F11_share_moving", (*FLW, "flows_migration_grid.csv"), "wine-purchase-flows@1.0", "modelled"),
+    "F11": ("F11_share_moving", (*FLW, "flows_migration_grid.csv"), "wine-purchase-flows@1.0", "modeled"),
     "T1": (
         "T1_tennessee_alcohol_tax_receipts_vs_neighbours",
         TNF,
@@ -1435,7 +1436,7 @@ CHART_SOURCES = {
         "00_summary",
         (*ALT, *TNF),
         "wine-alternatives@1.0 and before-after@1.2",
-        "observed and modelled side by side",
+        "observed and modeled side by side",
     ),
 }
 EXPORT_COMMAND = {
@@ -1586,7 +1587,7 @@ def main() -> int:
     (out / "logs" / "independent_check.txt").write_text(
         f"hand examples OK; {len(d['alternatives'])} alternatives and {cells} price-and-share cells recomputed independently and agree with the export (commit {d['project_commit']})\n"
         f"purchase flows ({fl['method']}): hand examples OK; {what} recomputed independently and agree with the export (commit {fl['project_commit']})\n"
-        "These checks verify arithmetic only: they say nothing about whether any behavioural assumption is right.\n",
+        "These checks verify arithmetic only: they say nothing about whether any behavioral assumption is right.\n",
         encoding="utf-8",
     )
     manifest = chart_manifest(titles, graphs, data_out)

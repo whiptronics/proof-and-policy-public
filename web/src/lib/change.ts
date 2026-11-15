@@ -607,7 +607,7 @@ function summarizePlacebo(geo: string, actual: number | null, values: number[]):
  * earlier) whose whole window ends before the real change and uses at least as many years as the real
  * comparison did. If the real "difference in changes" is no larger
  * than the gaps found on those dates, nothing in this comparison separates the change from ordinary
- * movement. Neighbouring placebo windows overlap, so the dates are not independent draws; read the share as
+ * movement. Neighboring placebo windows overlap, so the dates are not independent draws; read the share as
  * a rough guide. With few years of comparable history there are few or no usable dates, and that is
  * reported rather than hidden. */
 export function placeboInTime(

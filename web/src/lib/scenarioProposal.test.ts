@@ -47,8 +47,8 @@ describe("wholesale arrangement by hand", () => {
     expect(compute({ ...W, priceRatio: 0.9 }).netA).toBeCloseTo(-55_000 + 0.05 * -0.1 * 300_000, 6);
   });
   it("needs the discount, and keeps it a share", () => {
-    expect(compute({ ...W, discount: null }).missing).toContain("discount DABS gives grocers");
-    expect(compute({ ...W, discount: 1.2 }).invalid.join(" ")).toMatch(/Discount DABS gives grocers/);
+    expect(compute({ ...W, discount: null }).missing).toContain("DABS's price to grocers");
+    expect(compute({ ...W, discount: 1.2 }).invalid.join(" ")).toMatch(/DABS's price to grocers/);
   });
 });
 

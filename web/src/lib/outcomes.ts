@@ -19,7 +19,7 @@ export const TOPICS: Topic[] = [
       { id: "stc_alcoholic_beverages_sales_tax@state_fiscal_year", help: "All alcohol taxes the state collects (beer, wine, spirits). Excludes state liquor-store profit." },
       { id: "stc_alcoholic_beverages_license_tax@state_fiscal_year", help: "State alcohol license fees and taxes." },
       { id: "census_liquor_stores_revenue@state_fiscal_year", help: "State liquor-store receipts: what a state liquor monopoly (wholesale or retail) took in, FY1972 and FY1977-FY2024. Not profit, and not total alcohol sales." },
-      { id: "tn_dor_wine_tax_collections@state_fiscal_year", help: "Tennessee only: wine tax account 11002, through FY2017 (relabelled after)." },
+      { id: "tn_dor_wine_tax_collections@state_fiscal_year", help: "Tennessee only: wine tax account 11002, through FY2017 (relabeled after)." },
       { id: "tn_dor_wine_enforcement_tax_collections@state_fiscal_year", help: "Tennessee only: wine enforcement tax account 11018." },
     ],
   },

@@ -1,4 +1,4 @@
-# Normalise text to LF so generated CSVs and checksums match on Windows and Linux.
+# Normalize text to LF so generated CSVs and checksums match on Windows and Linux.
 * text=auto eol=lf
 # cmd.exe can mis-read labels in LF-only batch files.
 *.bat text eol=crlf

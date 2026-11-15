@@ -17,7 +17,7 @@
 // change). Each mechanism the reader has entered in scenario B (price response, cross-border recapture, easier access)
 // is then added on its own and all together; the model is additive in them, so the parts add up to the whole, and the
 // volume reconciliation says where every dollar of wine is bought. Beer substitution is left out of the comparison.
-// State government only on both sides; local sales tax is not modelled. Not a forecast.
+// State government only on both sides; local sales tax is not modeled. Not a forecast.
 //
 // 1.1. Only household purchases move (the scenario's household share, an uncertain input). Prices have a reference
 // case, matched consumer prices: the grocery shelf price equals today's state-store price, so any replacement tax comes
@@ -55,10 +55,10 @@ export interface ArrangementSettings {
   taxKind: TaxKind;
   /** Share of the grocery price before the tax (percent) or $ per gallon (excise). */
   taxRate: number | null;
-  /** Share of the replacement tax that reaches the shelf price (0-1). Null: all of it (labelled as an assumption). */
+  /** Share of the replacement tax that reaches the shelf price (0-1). Null: all of it (labeled as an assumption). */
   taxToPrice: number | null;
   /** Arrangement 1 only: avoidable state cost per $ moved for the wholesaling the state also stops, on top of the
-   * avoidable retail cost (0-1). Null: none (labelled: no source measures it). */
+   * avoidable retail cost (0-1). Null: none (labeled: no source measures it). */
   wholesaleCost: number | null;
   /** Arrangement 2: the discount off the state-store price at which DABS sells to grocers (0-1). */
   discount: number | null;
@@ -251,7 +251,7 @@ export interface MechanismPart {
 export interface Volume {
   /** Measured: today's wine sales at state-store prices (all through state stores and agencies). */
   baseline: number;
-  /** Modelled, at state-store prices: bought from state stores and agencies, and from grocers. */
+  /** Modeled, at state-store prices: bought from state stores and agencies, and from grocers. */
   state: number;
   grocery: number;
   total: number;
@@ -484,9 +484,9 @@ function breakEvenOf(id: "private" | "wholesale", x: ScenarioInputs, basis: "shi
     const s = solveLever(f, range[0], range[1]);
     if (!Number.isFinite(s.atLow)) return { lever, basis, range, status: "unavailable", value: null, best: null, note: "Not computable with these inputs." };
     if (s.atLow < 0)
-      return { lever, basis, range, status: "none_in_range", value: null, best: s.best, note: "No discount works: even selling to grocers at the full state-store price, the state would collect less than today." };
-    if (s.root === null) return { lever, basis, range, status: "found", value: range[1], best: null, note: "Any discount up to the whole gross margin keeps state revenue at or above today's." };
-    return { lever, basis, range, status: "found", value: s.root, best: null, note: "The largest discount DABS could give grocers with state revenue unchanged." };
+      return { lever, basis, range, status: "none_in_range", value: null, best: s.best, note: "No price to grocers works: even at the full state-store price, the state would collect less than today." };
+    if (s.root === null) return { lever, basis, range, status: "found", value: range[1], best: null, note: "Any price to grocers down to the wine's cost keeps state revenue at or above today's." };
+    return { lever, basis, range, status: "found", value: s.root, best: null, note: "The lowest price DABS could charge grocers with state revenue unchanged." };
   }
   const excise = x.revenueMode === "excise";
   const G = x.wineGallons ?? 0;
@@ -537,10 +537,10 @@ function viabilityCase(id: "private" | "wholesale", x: ScenarioInputs, basis: "s
   const xd = (d: number): ScenarioInputs => ({ ...x, matchPrice: false, priceRatio: (1 - d) / (1 - g), passThrough: null, discount: d });
   const s = solveLever((d) => netOf(xd(d), basis), 0, Math.max(0, m));
   if (!Number.isFinite(s.atLow)) return { status: "unavailable", lever: null, ownPrice: null, shelf: null, demandFactor: null, note: "Not computable with these inputs." };
-  if (s.atLow < 0) return { status: "none_in_range", lever: null, ownPrice: 1 / (1 - g), shelf: 1 / (1 - g), demandFactor: null, note: "No discount works: even with no discount, and the grocer pricing for its margin, the state collects less than today." };
+  if (s.atLow < 0) return { status: "none_in_range", lever: null, ownPrice: 1 / (1 - g), shelf: 1 / (1 - g), demandFactor: null, note: "No price to grocers works: even at the full shelf price, and the grocer pricing for its margin, the state collects less than today." };
   const d = s.root ?? m;
   const p = at(xd(d));
-  return { status: "found", lever: d, ownPrice: (1 - d) / (1 - g), shelf: p.shelf, demandFactor: p.factor, note: "The largest discount at which state revenue is unchanged when the grocer prices to earn the margin entered." };
+  return { status: "found", lever: d, ownPrice: (1 - d) / (1 - g), shelf: p.shelf, demandFactor: p.factor, note: "The lowest price to grocers at which state revenue is unchanged when the grocer prices to earn the margin entered." };
 }
 
 function arrangement(id: "private" | "wholesale", base: ScenarioInputs, set: ArrangementSettings, opexShare: number | null): ArrangementResult {
@@ -713,7 +713,7 @@ function earmark(set: ArrangementSettings, rates: DepositRates | null, base: Arr
     const sol = solveLever(f, 0, hi);
     if (whole) {
       coverLever = sol.atLow < 0 ? null : { lever: "discount", value: sol.root ?? hi };
-      coverNote = sol.atLow < 0 ? "No discount covers it: the allocation is larger than DABS's whole margin on the wine it sells to grocers." : "The largest discount at which DABS's margin on its sales to grocers still covers the allocation.";
+      coverNote = sol.atLow < 0 ? "No price to grocers covers it: the allocation is larger than DABS's whole margin on the wine it sells to grocers." : "The lowest price to grocers at which DABS's margin on its sales to grocers still covers the allocation.";
     } else {
       coverLever = sol.atLow >= 0 ? { lever: "taxRate", value: 0 } : sol.root === null ? null : { lever: "taxRate", value: sol.root };
       coverNote = coverLever ? "The replacement tax at which its proceeds just cover the allocation." : "No replacement tax in the supported range raises enough to cover the allocation.";
@@ -745,7 +745,7 @@ export function checkSettings(set: ArrangementSettings, rates: DepositRates | nu
   const invalid: string[] = [];
   if (set.taxRate === null) missing.push(set.taxKind === "excise" ? "replacement excise per gallon (arrangement 1)" : "replacement tax rate (arrangement 1)");
   else if (set.taxRate < 0) invalid.push("The replacement tax cannot be negative");
-  if (set.discount === null) missing.push("discount DABS gives grocers (arrangement 2)");
+  if (set.discount === null) missing.push("DABS's price to grocers (arrangement 2)");
   if (typeof set.taxToPrice === "number" && (set.taxToPrice < 0 || set.taxToPrice > 1)) invalid.push("The share of the tax in the shelf price must be between 0% and 100%");
   if ((set.earmarkRule === "amount" || set.earmarkRule === "share") && set.earmarkValue === null) missing.push(set.earmarkRule === "amount" ? "amount allocated each year (arrangement 3)" : "share of the proceeds allocated (arrangement 3)");
   if (set.earmarkRule === "share" && typeof set.earmarkValue === "number" && (set.earmarkValue < 0 || set.earmarkValue > 1)) invalid.push("The share allocated must be between 0% and 100%");
@@ -767,7 +767,7 @@ export function compare(base: ScenarioInputs, set: ArrangementSettings, rates: D
   const whole = arrangement("wholesale", base, set, opexShare);
   const uniq = (xs: string[]) => [...new Set(xs)];
   // The lever inputs are reported by checkSettings in the comparison's own words; drop the scenario's wording of them.
-  const dropLever = (xs: string[]) => xs.filter((m) => !["excise per gallon", "tax on the grocery shelf price", "discount DABS gives grocers"].includes(m));
+  const dropLever = (xs: string[]) => xs.filter((m) => !["excise per gallon", "tax on the grocery shelf price", "DABS's price to grocers"].includes(m));
   const missing = uniq([...own.missing, ...dropLever(priv.missing), ...dropLever(whole.missing)]);
   const invalid = uniq([...own.invalid, ...priv.invalid, ...whole.invalid]);
   const baseFor = set.earmarkBase === "wholesale" ? whole : priv;
@@ -815,7 +815,7 @@ export const SWEEPS: Record<SweepKey, { label: string; from: number; to: number;
   grossMargin: { label: "Gross margin on wine", from: 0.3, to: 0.6, format: "percent", note: "30% to 60%; DABS's all-product margin and wine's statutory floor are both about 47%." },
   elasticity: { label: "Price elasticity of wine demand", from: -1.5, to: 0, format: "plain", note: "-1.5 to 0; Nelson (2013) puts wine at about -0.46." },
   taxRate: { label: "Replacement tax (arrangement 1's lever; arrangement 2 does not use it)", from: 0, to: 1, format: "percent", note: "0% to 100% of the grocery price before tax, or an excise up to the state-store price per gallon." },
-  discount: { label: "Discount DABS gives grocers (arrangement 2's lever; arrangement 1 does not use it)", from: 0, to: 0.5, format: "percent", note: "0% to 50% off the state-store price." },
+  discount: { label: "DABS's price to grocers (% of the state-store price; arrangement 2's lever, arrangement 1 does not use it)", from: 0, to: 0.5, format: "percent", note: "50% to 100% of the state-store price." },
 };
 
 export interface SweepPoint {
@@ -871,7 +871,7 @@ export function zerosOf(points: SweepPoint[], id: "private" | "wholesale"): numb
 export interface PriceLine {
   id: string;
   label: string;
-  /** Per $1 of today's state-store shelf price (before sales tax), at the channel shift's prices. Null: not modelled. */
+  /** Per $1 of today's state-store shelf price (before sales tax), at the channel shift's prices. Null: not modeled. */
   today: number | null;
   private: number | null;
   wholesale: number | null;
@@ -903,7 +903,7 @@ export function priceBuildUp(c: Comparison): PriceLine[] {
   const shelfW = Wh.price.shelf;
   return [
     { id: "cost", label: "Cost of the wine to the first buyer (landed cost)", today: cost, private: cost, wholesale: cost, kind: "price", note: "1 − DABS's all-product gross margin; for arrangement 1 an assumption that private wholesalers pay suppliers what DABS pays." },
-    { id: "state_margin", label: "State margin (DABS's markup earnings)", today: m, private: 0, wholesale: m - d, kind: "price", note: "Arrangement 2: DABS's charge to grocers (1 − discount) less the cost of the wine." },
+    { id: "state_margin", label: "State margin (DABS's markup earnings)", today: m, private: 0, wholesale: m - d, kind: "price", note: "Arrangement 2: DABS's price to grocers less the cost of the wine." },
     { id: "private_margin", label: "Private wholesale and retail margin", today: 0, private: privMargin, wholesale: shelfW - (1 - d), kind: "price", note: `Arrangement 1: wholesalers and grocers together, after any part of the tax they absorb${w === null ? " (split between them only when a wholesaler's margin is entered: no Utah data)" : ""}. Arrangement 2: the grocer's margin over what it pays DABS. Their own costs come out of it.` },
     ...(w !== null
       ? [
@@ -925,7 +925,7 @@ export function priceBuildUp(c: Comparison): PriceLine[] {
           : `A retail-level tax of ${(100 * (P.x.adValorem ?? 0)).toFixed(1)}% on the grocery price before the tax and before sales tax (its base), ${(100 * (P.x.taxToPrice ?? 1)).toFixed(0)}% of it added to the shelf price.`,
     },
     { id: "shelf", label: "Shelf price before sales tax", today: 1, private: shelfP, wholesale: shelfW, kind: "subtotal", note: "The sales-tax base." },
-    { id: "sales_tax", label: "State sales tax", today: t, private: t * shelfP, wholesale: t * shelfW, kind: "tax", note: "State portion only, on the shelf price including any replacement tax in it. Local sales tax is not modelled." },
+    { id: "sales_tax", label: "State sales tax", today: t, private: t * shelfP, wholesale: t * shelfW, kind: "tax", note: "State portion only, on the shelf price including any replacement tax in it. Local sales tax is not modeled." },
     { id: "consumer", label: "Consumer price with state sales tax", today: 1 + t, private: shelfP * (1 + t), wholesale: shelfW * (1 + t), kind: "total", note: "" },
     { id: "state_markup", label: "State markup on the cost of the wine", today: m / cost, private: null, wholesale: (m - d) / cost, kind: "ratio", note: "A markup is on cost; DABS's 88.5% statutory minimum is on landed case cost. Not added." },
     { id: "private_markup", label: "Private markup on the cost of the wine", today: null, private: privMargin / cost, wholesale: (shelfW - (1 - d)) / (1 - d), kind: "ratio", note: "Arrangement 1: wholesalers and grocers together on the cost of the wine. Arrangement 2: the grocer's markup on what it pays DABS. Not added." },
@@ -959,7 +959,7 @@ export interface JointRow {
   wholesale: { net: number | null; breakEven: number | null; status: BreakEven["status"] };
 }
 
-/** A handful of joint scenarios that move several assumptions together, each labelled by what supports it. The policy
+/** A handful of joint scenarios that move several assumptions together, each labeled by what supports it. The policy
  * levers (the replacement tax and the discount) stay as entered, so each row also reports the lever value at which it
  * would break even. These are not probabilities. */
 export function jointScenarios(base: ScenarioInputs, set: ArrangementSettings, rates: DepositRates | null, b: Bounds): JointRow[] {
@@ -976,7 +976,7 @@ export function jointScenarios(base: ScenarioInputs, set: ArrangementSettings, r
   push("entered", "As entered", "as entered", "Every input as entered above.", base, set);
   push(
     "favourable",
-    "Costs and margin at the state-favourable ends of the documented bounds",
+    "Costs and margin at the state-favorable ends of the documented bounds",
     "documented bounds",
     `Avoidable store cost ${pctT(b.avoidHigh)} (card fees, agency contracts, bags and every salary); arrangement 1 also stops delivery (${pctT(b.delivery)}); gross margin ${pctT(b.marginLow)}, the lowest DABS reported. Upper accounting bounds, not measured savings.`,
     { ...base, avoidableCost: b.avoidHigh, grossMargin: b.marginLow },
@@ -984,7 +984,7 @@ export function jointScenarios(base: ScenarioInputs, set: ArrangementSettings, r
   );
   push(
     "unfavourable",
-    "Costs and margin at the state-unfavourable ends of the documented bounds",
+    "Costs and margin at the state-unfavorable ends of the documented bounds",
     "documented bounds",
     `Avoidable store cost ${pctT(b.avoidLow)} (only the lines that move with sales); no wholesaling cost stops; gross margin ${pctT(b.marginHigh)}, the highest DABS reported.`,
     { ...base, avoidableCost: b.avoidLow, grossMargin: b.marginHigh },
@@ -992,9 +992,9 @@ export function jointScenarios(base: ScenarioInputs, set: ArrangementSettings, r
   );
   push(
     "favourable_more",
-    "The favourable bounds, half of household wine purchases moving and half the new costs",
+    "The favorable bounds, half of household wine purchases moving and half the new costs",
     "exploratory",
-    `As the favourable row, with 50% of household purchases moving and new costs halved. Neither has a source.`,
+    `As the favorable row, with 50% of household purchases moving and new costs halved. Neither has a source.`,
     { ...base, avoidableCost: b.avoidHigh, grossMargin: b.marginLow, shift: 0.5, newCosts: (base.newCosts ?? 0) / 2 },
     { ...set, wholesaleCost: b.delivery },
   );

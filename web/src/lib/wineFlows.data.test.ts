@@ -18,7 +18,7 @@ function at(file: string, label: string | number): number | undefined {
 
 describe.skipIf(!have)("the purchase-flow model's copied values against the exported dataset", () => {
   const f = FLOW_DATA.dabsFy2026;
-  it("matches DABS's FY2026 sales and 9-litre cases by beverage", () => {
+  it("matches DABS's FY2026 sales and 9-liter cases by beverage", () => {
     const fy = (m: string) => at(`${m}.state_fiscal_year`, "FY2026");
     expect(fy("ut_dabs_fy_gross_sales_total")).toBeCloseTo(f.salesTotal, 2);
     expect(fy("ut_dabs_fy_gross_sales_wine")).toBeCloseTo(f.salesWine, 2);

@@ -201,7 +201,7 @@ export function check(x: ScenarioInputs): { missing: string[]; invalid: string[]
   if (x.revenueMode === "keep" || x.revenueMode === "combo") needs.push(["retained", "share of grocery sales the state keeps"]);
   if (x.revenueMode === "excise" || x.revenueMode === "combo") needs.push(["excise", "excise per gallon"]);
   if (x.revenueMode === "percent" || x.revenueMode === "combo") needs.push(["adValorem", "tax on the grocery shelf price"]);
-  if (x.revenueMode === "wholesale") needs.push(["discount", "discount DABS gives grocers"]);
+  if (x.revenueMode === "wholesale") needs.push(["discount", "DABS's price to grocers"]);
   const gallonsNeeded = usesGallons(x);
   if (gallonsNeeded) needs.push(["wineGallons", "wine gallons sold"]);
   if (x.extra) {
@@ -225,7 +225,7 @@ export function check(x: ScenarioInputs): { missing: string[]; invalid: string[]
   share("eligible", "Household share of wine sales");
   share("retained", "Share the state keeps");
   share("adValorem", "Tax on the shelf price");
-  share("discount", "Discount DABS gives grocers");
+  share("discount", "DABS's price to grocers");
   share("extraGrocery", "Share of extra wine bought in grocery stores");
   share("replaces", "Share of extra wine replacing beer");
   for (const [k, label] of [
@@ -326,7 +326,7 @@ export function compute(x: ScenarioInputs): ScenarioResult {
     ...(keep ? [{ id: "retained", label: "State share of grocery wine sales (e.g. wholesale margin)", value: rho * grocerySales, kind: "revenue" as const }] : []),
     ...(exc ? [{ id: "excise", label: "Excise on grocery wine", value: e * G * s, kind: "revenue" as const }] : []),
     ...(pct ? [{ id: "ad_valorem", label: "Tax on the grocery shelf price", value: a * r0 * shifted, kind: "revenue" as const }] : []),
-    ...(whole ? [{ id: "wholesale", label: "State margin on wine DABS sells to grocers (gross margin less the discount)", value: (m - dsc) * shifted, kind: "revenue" as const }] : []),
+    ...(whole ? [{ id: "wholesale", label: "State margin on wine DABS sells to grocers (its price to grocers less the wine's cost)", value: (m - dsc) * shifted, kind: "revenue" as const }] : []),
     { id: "sales_tax", label: "State sales tax on all wine", value: t * (W - shifted + groceryTaxBase), kind: "revenue" },
   ];
   const aRevenue = aParts.reduce((sum, c) => sum + c.value, 0);
@@ -345,7 +345,7 @@ export function compute(x: ScenarioInputs): ScenarioResult {
   // Break-even: the share of grocery sales the state would need to keep for scenario A to change nothing.
   let breakEven: ScenarioResult["breakEvenRetained"];
   if (s === 0) breakEven = { value: null, note: "No wine moves, so there is nothing to break even." };
-  else if (whole) breakEven = { value: null, note: "In the wholesale arrangement the state keeps its margin less the discount; see the break-even discount." };
+  else if (whole) breakEven = { value: null, note: "In the wholesale arrangement the state keeps DABS's price to grocers less the wine's cost; see the break-even price to grocers." };
   else if (W === 0) breakEven = { value: null, note: "Baseline wine sales are zero." };
   else {
     const need = (m - t * (r - 1) - v - a * r0 - (e * G) / W + added / shifted) / r;
@@ -371,8 +371,8 @@ export function compute(x: ScenarioInputs): ScenarioResult {
             value: need,
             note:
               need < 0
-                ? "Not reachable with a discount: even selling to grocers at the full shelf price, the state would collect less than today."
-                : "Largest discount DABS could give grocers for state revenue to stay unchanged (other inputs as entered).",
+                ? "Not reachable with a lower price to grocers: even at the full shelf price, the state would collect less than today."
+                : "Lowest price DABS could charge grocers for state revenue to stay unchanged (other inputs as entered).",
           };
         })();
   // Net A rises by G x s for each extra dollar of excise per gallon, and by t x tau x G x s more through the sales tax
@@ -469,7 +469,7 @@ export function compute(x: ScenarioInputs): ScenarioResult {
   return { missing, invalid, baseline, baselineTotal, a: a2, aRevenue, netA, perShiftedDollar, breakEvenRetained: breakEven, breakEvenDiscount, breakEvenShift, breakEvenExcise, b, netB, beer, priceRatioUsed: r, priceBeforeTax: r0, demandFactor, extraStreams };
 }
 
-/** Worked examples for the calculator. The values are round illustrations, labelled as such wherever they
+/** Worked examples for the calculator. The values are round illustrations, labeled as such wherever they
  * appear; they are not estimates for Utah. Keys are the calculator's address fields. */
 export const SCENARIO_EXAMPLES: { id: string; label: string; values: Record<string, string> }[] = [
   {
@@ -547,7 +547,7 @@ function pctText(v: number): string {
 function replacedFormula(x: ScenarioInputs): string {
   switch (x.revenueMode) {
     case "wholesale":
-      return "(gross margin − discount) × sales that move";
+      return "(DABS's price to grocers − the wine's cost) × sales that move";
     case "keep":
       return "share kept × grocery sales";
     case "excise":
@@ -606,7 +606,7 @@ export const WORKED_PROPOSALS: WorkedProposal[] = [
     values: { fy: "2025", wr: "share", ws: "33.5", st: "4.85", vc: "5", nc: "500000", s: "30", hh: "82", r: "100", rm: "wholesale", dc: "20" },
     proposal: [
       { item: "What changes", basis: "policy", text: "Licensed grocery stores may sell wine to take home. State stores and package agencies keep selling everything, wine included." },
-      { item: "Who supplies the wine", basis: "policy", text: "DABS stays the only wine wholesaler. It sells to grocers at its own shelf price less a 20% retailer discount, so on each dollar of wine that moves the state keeps its gross margin less 20 points. That needs a change to Utah Code § 32B-2-304(2): at DABS's all-product margin, a discount above about 0.5% takes the markup on that wine below the 88.5% minimum." },
+      { item: "Who supplies the wine", basis: "policy", text: "DABS stays the only wine wholesaler. It sells to grocers at 80% of its own shelf price, so on each dollar of wine that moves the state keeps its gross margin less 20 points. That needs a change to Utah Code § 32B-2-304(2): at DABS's all-product margin, a price to grocers below about 99.5% of its shelf price takes the markup on that wine below the 88.5% minimum." },
       { item: "Prices", basis: "assumption", text: "Grocers charge the state-store price; shelf prices, and so sales tax per bottle, do not change, and no price response follows." },
       { item: "Which purchases move", basis: "assumption", text: "30% of the wine households now buy from state stores and package agencies (by value at state-store prices) is bought in grocery stores instead; licensees (bars, restaurants, clubs) keep buying from DABS. Households are taken to buy 82% of wine sales, DABS's off-premise share of all its sales in FY2025 (its annual report, p. 18, read from a chart): an all-product figure applied to wine, so 24.6% of wine sales move. Total wine bought does not change (scenario A). No source measures either share for wine." },
       { item: "Costs", basis: "assumption", text: "The state stores avoid 5 cents of operating cost for each dollar of sales that leaves them; licensing and enforcing grocery sales costs the state $500,000 a year. The exploratory cost regression is shown beside the input and not used." },
@@ -615,12 +615,12 @@ export const WORKED_PROPOSALS: WorkedProposal[] = [
       { item: "Sales tax", basis: "assumption", text: "4.85%, the state portion in Publication 25 (Rev. 9/26), taken as FY2025's rate, which the dataset does not establish. With prices unchanged, the rate changes today's revenue but not the net change." },
     ],
     demonstrates: [
-      "How the state's revenue changes when retail moves but DABS keeps the wholesale margin: per dollar that moves, the state gives up the retailer discount and saves the operating cost it avoids; the gross margin itself cancels out.",
-      "The largest discount at which state revenue stays unchanged, and which assumptions could turn the result positive.",
+      "How the state's revenue changes when retail moves but DABS keeps the wholesale margin: per dollar that moves, the state gives up the gap between its shelf price and its price to grocers and saves the operating cost it avoids; the gross margin itself cancels out.",
+      "The lowest price to grocers at which state revenue stays unchanged, and which assumptions could turn the result positive.",
       "That the school-meals and enforcement amounts are part of the margin already counted, so the total is unchanged by how they are allocated; only who receives the money depends on the law.",
     ],
     cannotEstablish: [
-      "How much wine would move, what share of wine households buy, what discount grocers would accept, or how much store cost would really fall: all are assumptions.",
+      "How much wine would move, what share of wine households buy, what price grocers would pay DABS, or how much store cost would really fall: all are assumptions.",
       "Whether people would buy more wine, or less beer, and any effect on drinking, health or safety.",
       "Local sales tax, grocers' profits, one-time costs, or how the legislature would fund the school-meals and enforcement allocations.",
       "A forecast: DABS's FY2025 figures are unaudited and unreviewed, and the wine share is from a later year's monthly reports.",
@@ -633,9 +633,9 @@ export const WORKED_PROPOSALS: WorkedProposal[] = [
     proposal: [
       { item: "What changes", basis: "policy", text: "Licensed grocery stores may sell wine to take home; state stores and package agencies keep selling everything. Three ways for the state to collect on that wine are set side by side. None is current law, and none is a bill." },
       { item: "Arrangement 1", basis: "policy", text: "Grocers buy from private wholesalers. The state levies a retail-level replacement tax of 20% of the grocery price before the tax and before sales tax (its base); ordinary state sales tax then applies to the shelf price with the tax in it. The state stops both retailing and wholesaling that wine, so it gives up its whole gross margin on it." },
-      { item: "Arrangement 2", basis: "policy", text: "DABS stays the only wine wholesaler and sells to grocers at its shelf price less 20%. The grocer keeps the difference between its shelf price and what it pays DABS; the state keeps its gross margin less the discount. That needs a change to Utah Code § 32B-2-304(2): at DABS's all-product margin, a discount above about 0.5% takes the markup on that wine below the 88.5% minimum." },
+      { item: "Arrangement 2", basis: "policy", text: "DABS stays the only wine wholesaler and sells to grocers at 80% of its shelf price. The grocer keeps the difference between its shelf price and what it pays DABS; the state keeps its gross margin less those 20 points. That needs a change to Utah Code § 32B-2-304(2): at DABS's all-product margin, a price to grocers below about 99.5% of its shelf price takes the markup on that wine below the 88.5% minimum." },
       { item: "Arrangement 3", basis: "policy", text: "Arrangement 1, with the school-meals and enforcement funds guaranteed what the wine that moves would have paid them: 10% and 1.695% (the base year's statutory deposit rates) of its value at state-store prices, about $5.3 million, paid from the replacement tax. Two versions are different proposals and both are shown: a fixed guarantee set once from this scenario, or a proportional one that pays those rates on the state-store sales actually lost each year. Either is the proposal's term, not current law; it moves money between state funds, adds none, and leaves the whole loss with the General Fund and other funds." },
-      { item: "Prices", basis: "assumption", text: "The reference case is matched consumer prices: grocers charge what a state store charges for the same bottle. In arrangement 1 the 20% replacement tax is then inside that price, so private wholesalers and grocers sell at 83.3% of today's price before the tax and bear it; in arrangement 2 the grocer keeps the 20% discount. Prices do not change, so no price response follows. The alternative, grocers charging today's price before the tax and adding all of it (20% more than a state store), is a row of the joint scenarios, with the price response read as less wine bought; reading it as buyers going back to state stores is exploratory. No source measures what grocers would charge." },
+      { item: "Prices", basis: "assumption", text: "The reference case is matched consumer prices: grocers charge what a state store charges for the same bottle. In arrangement 1 the 20% replacement tax is then inside that price, so private wholesalers and grocers sell at 83.3% of today's price before the tax and bear it; in arrangement 2 the grocer keeps the 20% between DABS's price and the shelf price. Prices do not change, so no price response follows. The alternative, grocers charging today's price before the tax and adding all of it (20% more than a state store), is a row of the joint scenarios, with the price response read as less wine bought; reading it as buyers going back to state stores is exploratory. No source measures what grocers would charge." },
       { item: "Which purchases move", basis: "assumption", text: "30% of the wine households now buy from state stores and agencies, by value at state-store prices, moves to grocers; licensees (bars, restaurants, clubs) keep buying from DABS. Households are taken to buy 82% of wine sales, DABS's off-premise share of all its sales in FY2025 (its annual report, p. 18, read from a chart; whole percents, all products): wine's own split is not published, so 24.6% of wine sales moving rests on two unmeasured shares. A records request for the split is drafted, not sent." },
       { item: "Purchases", basis: "assumption", text: "The share moving does not depend on price. When prices change (the alternative case), the moved wine responds with an elasticity of −0.46 (Nelson 2013, a published meta-analysis of market-level studies; applying it to one channel's price in Utah is the assumption). No recapture, access effect or beer substitution is entered: no source measures them for Utah." },
       { item: "Sellers", basis: "assumption", text: "To ask whether sellers could live with each arrangement, the gross margins sellers need are taken as Census's 2022 national averages as a percent of sales: 29.5% for beer, wine and spirits merchant wholesalers (Annual Wholesale Trade Survey, table 4, 2022 revised) and 28.0% for grocery stores (Annual Retail Trade Survey, 2022 benchmarked). All products, all states, not wine in Utah. Both workbooks are saved, pinned and parsed into the dataset (us_wholesale_gross_margin_pct_alcohol_beverages and us_retail_gross_margin_pct_grocery_stores, 2022)." },
@@ -644,11 +644,11 @@ export const WORKED_PROPOSALS: WorkedProposal[] = [
       { item: "Sales tax and deposits", basis: "assumption", text: "4.85%, the state portion in Publication 25 (Rev. 9/26), taken as FY2025's rate. The school-meals (10%) and enforcement (1.695%) deposit rates are the law as read online, not reviewed." },
     ],
     demonstrates: [
-      "How much of the state's margin each arrangement gives up and what replaces it: the whole gross margin against a replacement tax in arrangement 1, only the discount in arrangement 2.",
+      "How much of the state's margin each arrangement gives up and what replaces it: the whole gross margin against a replacement tax in arrangement 1, only the gap between its shelf price and its price to grocers in arrangement 2.",
       "That at matched prices the state and the sellers divide the same margin: the state breaks even only if sellers keep no more than the operating cost it avoids less the new costs (3.9 cents a dollar here), far below the margins sellers are assumed to need; and the shelf price at which both would hold.",
-      "The replacement tax at which arrangement 1 would leave state revenue unchanged, with the price response included and without it, and the largest discount arrangement 2 could give.",
+      "The replacement tax at which arrangement 1 would leave state revenue unchanged, with the price response included and without it, and the lowest price to grocers arrangement 2 could set.",
       "That an allocation to school meals and enforcement changes which funds bear the result, not its size: keeping those funds whole puts the whole loss on the General Fund and other funds, in both cases shown.",
-      "Which assumptions reverse the sign, and where, in the chart and the sensitivity notes. The result is kept as it falls, unfavourable or not.",
+      "Which assumptions reverse the sign, and where, in the chart and the sensitivity notes. The result is kept as it falls, unfavorable or not.",
     ],
     cannotEstablish: [
       "How much wine would move, what share of wine households buy, what grocers would charge, what margin they would accept, or how much state cost would really stop: all are assumptions.",

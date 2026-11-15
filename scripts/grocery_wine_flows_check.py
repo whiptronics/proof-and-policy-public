@@ -14,7 +14,7 @@ as the TypeScript does. It then checks:
 * the sensitivity rows that change only stated inputs or the base year.
 
 It also checks the closed forms on small examples worked by hand. A passing check verifies the arithmetic only: it
-says nothing about whether any behavioural assumption is right.
+says nothing about whether any behavioral assumption is right.
 
 Run:  python3 -B scripts/grocery_wine_flows_check.py [path/to/flows.json]
 Exit 1 on any mismatch.
@@ -235,8 +235,8 @@ def hand_examples() -> list[str]:
     want("net", r["net"], -0.6)
     want("deposits (counting)", r["deposits"]["countsGrocerSales"], 0.0)
     want("deposits (not counting)", r["deposits"]["excludesGrocerSales"], -1.0)
-    # Beer replaced: 10% of 100 litres at 5% = 0.5 litres of pure alcohol = 5 litres of wine = $50 at state-store
-    # prices. Gained 50 x (0.5 + 0.05 x 1.4) = 28.5; lost 10 litres x (0.1 + 0.05 x 2) = 2. Net -0.6 + 26.5 = 25.9.
+    # Beer replaced: 10% of 100 liters at 5% = 0.5 liters of pure alcohol = 5 liters of wine = $50 at state-store
+    # prices. Gained 50 x (0.5 + 0.05 x 1.4) = 28.5; lost 10 liters x (0.1 + 0.05 x 2) = 2. Net -0.6 + 26.5 = 25.9.
     xb = set_lever(x, "beer", 0.1)
     r = changes(base, a, xb)
     want("beer net", r["net"], 25.9)

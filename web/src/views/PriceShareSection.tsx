@@ -2,6 +2,8 @@
 // PRICE_SHARE_METHOD). Every number on it comes from priceShareReport(), the same report the graph export writes, so
 // the page, the CSVs and the charts cannot disagree.
 import { useMemo, useState } from "react";
+import { ChartDownloads, type Row } from "../components/ChartFigure";
+import type { Column } from "../lib/csv";
 import { colorFor, gradientStops, inkFor, type Domain } from "../lib/mapdata";
 import { COST_LINES, ELASTICITY, RETAILER_TARGET, WHOLESALER_MARGIN } from "../lib/wineAlternatives";
 import {
@@ -86,7 +88,7 @@ const SHARE_STEP = SHARES[1] - SHARES[0];
 const xOf = (p: number) => L + (p / STEP + 0.5) * CW;
 const yOf = (s: number) => T + PLOT_H - (s / SHARE_STEP + 0.5) * RH;
 const clampX = (x: number) => Math.min(L + PLOT_W, Math.max(L, x));
-/** Lines drawn over the cells, and their outline: fixed in both themes because the cell colours are. */
+/** Lines drawn over the cells, and their outline: fixed in both themes because the cell colors are. */
 const CELL_INK = "#111111";
 const CELL_HALO = "#ffffff";
 
@@ -110,8 +112,8 @@ function GridChart({ rep, a, domain, refs }: { rep: PriceShareReport; a: GridArr
   const cost = mk.grocerCost !== null && mk.grocerCost > 1e-9 ? clampX(xOf(mk.grocerCost)) : null;
   const ref = mk.reference !== null && mk.reference >= -STEP / 2 && mk.reference <= PREMIUMS[PREMIUMS.length - 1] + STEP / 2 ? xOf(mk.reference) : null;
   const pid = `ps-hatch-${a.id}`;
-  // The cell colours are the same in both themes (light near zero), so the lines over them use a fixed dark ink with a
-  // white outline, never the page's text colour, which is light in dark mode and vanished on pale cells.
+  // The cell colors are the same in both themes (light near zero), so the lines over them use a fixed dark ink with a
+  // white outline, never the page's text color, which is light in dark mode and vanished on pale cells.
   return (
     <svg className="ps-chart" viewBox={`0 0 ${VB_W} ${VB_H}`} role="img" aria-labelledby={`ps-ct-${a.id}`}>
       <title id={`ps-ct-${a.id}`}>
@@ -159,7 +161,7 @@ function GridChart({ rep, a, domain, refs }: { rep: PriceShareReport; a: GridArr
           <polyline points={seg.map((c) => `${c.x},${c.y}`).join(" ")} fill="none" stroke={CELL_INK} strokeWidth="2.5" strokeLinejoin="round" />
         </g>
       ))}
-      {/* Values over the lines, each on a box of its own cell's colour: a line never strikes a number out, and a minus
+      {/* Values over the lines, each on a box of its own cell's color: a line never strikes a number out, and a minus
           sign can never merge into a line that runs flat through the row. */}
       {PREMIUMS.map((p, i) =>
         SHARES.map((s, j) => {
@@ -194,11 +196,21 @@ function GridChart({ rep, a, domain, refs }: { rep: PriceShareReport; a: GridArr
           {pct(p, 0)}
         </text>
       ))}
-      {SHARES.map((s) => (
-        <text key={s} x={L - 6} y={yOf(s) + 3.5} textAnchor="end" fontSize="10" fill="var(--text-2)">
-          {pct(s, 0)}
-        </text>
-      ))}
+      {/* The worked example's share is the reference row: its label is bold and says so. */}
+      {SHARES.map((s) =>
+        s === WORKED_SHARE ? (
+          <text key={s} x={L - 6} y={yOf(s) - 1} textAnchor="end" fontSize="10" fontWeight="700" fill="var(--text)">
+            {pct(s, 0)}
+            <tspan x={L - 6} dy="11" fontSize="9" fontWeight="400">
+              worked
+            </tspan>
+          </text>
+        ) : (
+          <text key={s} x={L - 6} y={yOf(s) + 3.5} textAnchor="end" fontSize="10" fill="var(--text-2)">
+            {pct(s, 0)}
+          </text>
+        ),
+      )}
       <text x={L + PLOT_W / 2} y={T + PLOT_H + 32} textAnchor="middle" fontSize="10.5" fill="var(--text)">
         Grocery price premium over the state store (consumer price, state sales tax included)
       </text>
@@ -394,6 +406,36 @@ function GridTable({ rep, a }: { rep: PriceShareReport; a: GridArrangement }) {
   );
 }
 
+// ----- the downloads -----------------------------------------------------------------------------------------------------
+
+const GRID_SOURCE =
+  "DABS FY2025 annual report (sales, gross profit, expense lines); Utah Code §§ 32B-2-304, 32B-2-305; Utah State Tax Commission Publication 25; assumptions U07, U10, U11, U13 as listed with the chart";
+
+/** Every cell of one arrangement's grid, both savings cases, at fixed volume: the plotted numbers and the table's. */
+function gridCsv(rep: PriceShareReport, a: GridArrangement): { columns: Column<Row>[]; rows: Row[] } {
+  const rows: Row[] = PREMIUMS.flatMap((p) =>
+    SHARES.map((s) => {
+      const pt = priceAt(rep, a, p);
+      return {
+        arrangement: a.label,
+        premium: p,
+        share_moving: s,
+        worked_example_share: s === WORKED_SHARE,
+        state_change_usd_source_based_savings: find(rep, a, p, s, "source_based", "fixed_volume").net,
+        state_change_usd_no_avoidable_savings: find(rep, a, p, s, "none", "fixed_volume").net,
+        grocer_gross_margin: pt.grocerMargin,
+        seller_position: pt.position,
+      };
+    }),
+  );
+  const columns: Column<Row>[] = Object.keys(rows[0]).map((key) => ({
+    key,
+    kind: typeof rows[0][key] === "number" ? "number" : typeof rows[0][key] === "boolean" ? "bool" : "text",
+    get: (r: Row) => r[key],
+  }));
+  return { columns, rows };
+}
+
 // ----- the section -------------------------------------------------------------------------------------------------------
 
 export function PriceShareSection() {
@@ -423,7 +465,7 @@ export function PriceShareSection() {
       <h3 id="in-ps">Grocery price and grocery share: what the state and sellers get</h3>
       <p>
         How do the state's annual fiscal change and what sellers keep vary with the grocery price premium and with the share of household wine purchases
-        that moves to grocers? Each cell below is the scenario engine's result for one combination, with the policy's discount or charge held fixed. This
+        that moves to grocers? Each cell below is the scenario engine's result for one combination, with the policy's price to grocers or charge held fixed. This
         is a <strong>conditional sensitivity analysis</strong>: not a forecast, the combinations carry no probabilities, and nothing here says shoppers
         would pay a premium or that any share would move at one.
       </p>
@@ -433,7 +475,7 @@ export function PriceShareSection() {
           licensing and enforcement cost (U10, an illustration) is paid whatever moves.
         </li>
         <li>
-          <strong>With DABS supplying at a fixed discount, a higher grocery price goes to the grocer.</strong> The state gains only the state sales tax on
+          <strong>With DABS's price to grocers fixed, a higher grocery price goes to the grocer.</strong> The state gains only the state sales tax on
           the premium: {money(perTen("dabs_0"))} a year per 10 points at {pct(WORKED_SHARE, 0)}. With a charge on the grocery price the state's take rises
           with the price: {money(perTen("private_20"))} ({at("private_20").short}) and {money(perTen("private_take"))} ({at("private_take").short}) per 10
           points.
@@ -455,7 +497,7 @@ export function PriceShareSection() {
 
       <h4>What is chosen, what is assumed and what follows</h4>
       <p className="small">
-        Price, the grocer's margin, DABS's discount and the state charge cannot all be chosen. Here the policy fixes the discount or the charge, the
+        Price, the grocer's margin, DABS's price to grocers and the state charge cannot all be chosen. Here the policy fixes DABS's price or the charge, the
         grid chooses the price and the share, and the margins and the state's change follow. The {pct(RETAILER_TARGET, 0)} grocery margin is
         therefore a reference line, not a constraint on the grid.
       </p>
@@ -515,20 +557,21 @@ export function PriceShareSection() {
         const mk = markersOf(rep, a);
         return (
           <div key={a.id} className={`ps-arr${a.id === sel ? "" : " ps-off"}`}>
-            <figure className="ps-figure">
+            <figure className="ps-figure" id={`ps-fig-${a.id}`}>
               <figcaption>
                 <strong>{a.label}.</strong> <span className="small">The policy fixes {a.lever.words}. {a.marginRule}</span>
               </figcaption>
-              <div className="ps-chart-wrap">
+              {/* Scrolls sideways on a phone rather than shrinking the cell values; focusable so a keyboard can scroll it. */}
+              <div className="ps-chart-wrap" tabIndex={0} role="region" aria-label={`${a.short}: state annual change by premium and share (scrolls sideways)`}>
                 <GridChart rep={rep} a={a} domain={domain} refs={refs} />
               </div>
               <p className="small ps-subhead">The grocer's gross margin at each premium (the same for every share):</p>
-              <div className="ps-chart-wrap">
+              <div className="ps-chart-wrap" tabIndex={0} role="region" aria-label={`${a.short}: grocer's gross margin by premium (scrolls sideways)`}>
                 <MarginChart rep={rep} a={a} />
               </div>
               <Legend domain={domain} />
               <p className="small">
-                State annual change at fixed volume with the source-based savings; one colour scale for all four arrangements.{" "}
+                State annual change at fixed volume with the source-based savings; one color scale for all four arrangements.{" "}
                 {mk.grocerCost !== null && mk.grocerCost > 0
                   ? `Below a ${pct(mk.grocerCost)} premium the grocer would sell below its acquisition cost if the wholesaler kept ${pct(WHOLESALER_MARGIN)}. `
                   : mk.grocerCost !== null && Math.abs(mk.grocerCost) < 1e-9
@@ -537,6 +580,19 @@ export function PriceShareSection() {
                 {mk.reference !== null ? `The grocer's margin reaches ${pct(RETAILER_TARGET, 0)} at a ${pct(mk.reference)} premium. ` : ""}
                 Existing alternatives on this grid: {refs.length ? refs.map((r) => r.label).join("; ") : "none"}.
               </p>
+              <ChartDownloads
+                title={`Utah grocery wine, ${a.label}: state annual change by grocery price premium and share moving`}
+                subtitle={`$ millions a year, all state funds, FY2025 base; fixed volume; source-based savings of ${cents(COST_LINES.shortRun)} per $1 (CSV adds the no-savings case). The policy fixes ${a.lever.words}.`}
+                notes={[
+                  `Each cell is the scenario engine's result for one premium and one share of covered household purchases moving to grocers. The line marks where the state breaks even; the bold ${pct(WORKED_SHARE, 0)} row is the worked example.`,
+                  "A conditional sensitivity analysis, not a forecast: the combinations carry no probabilities, and nothing here says shoppers would pay a premium or that any share would move.",
+                ]}
+                source={GRID_SOURCE}
+                methods={PRICE_SHARE_METHOD}
+                filename={`utah_grocery_wine_price_share_${a.id}`}
+                csv={gridCsv(rep, a)}
+                svg={() => document.querySelector<SVGSVGElement>(`#ps-fig-${a.id} svg.ps-chart`)}
+              />
             </figure>
             <GridTable rep={rep} a={a} />
           </div>

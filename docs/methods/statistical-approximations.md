@@ -34,7 +34,7 @@ Used by Before & after, Compare, Utah at a glance, the map's rank ranges and the
 Two kinds of uncertainty are kept apart and stored separately (`extra.count_se`, `extra.imputation_se`).
 They serve two different statistical targets, and each target gets its own interval.
 
-- **Count noise: modelled variability in underlying crash risk.** FARS lists every fatal crash, so the deaths
+- **Count noise: modeled variability in underlying crash risk.** FARS lists every fatal crash, so the deaths
   in a final year are a fact, not a sample. Comparing years or states needs the underlying expected number
   that the year's crashes are one draw of. Crashes are treated as Poisson events and the deaths in each crash
   as given, so the deaths are compound Poisson with variance equal to the sum over crashes of the squared
@@ -98,7 +98,7 @@ They serve two different statistical targets, and each target gets its own inter
   dates whose whole window ends before the real change and uses as many years as the real one. The share is
   (1 + placebo gaps at least as large) / (1 + placebo dates), quoted only with five or more dates. The dates
   are chosen without regard to any law, which makes the check a diagnostic: other laws, prices and the economy
-  moved in those years too, neighbouring windows overlap, and the comparison states are the same in every run.
+  moved in those years too, neighboring windows overlap, and the comparison states are the same in every run.
   A real gap no larger than the placebo gaps does not stand out; a larger one is unusual for these states and
   years, which is not the same as caused by the change.
 
@@ -106,7 +106,7 @@ They serve two different statistical targets, and each target gets its own inter
 
 2,000 seeded redraws, each state's value drawn independently from a normal distribution with the error of
 section 1; the range is the 5th to 95th percentile of the state's rank. A state without a published interval
-is held at its value and the range says it leaves out that state's own error. The redraws are centred on the
+is held at its value and the range says it leaves out that state's own error. The redraws are centered on the
 published values, so the range describes how precisely the ranking is known given those values, not bias. It
 is a range for one state at a time, not a joint statement about all ranks.
 
@@ -117,7 +117,7 @@ numeric characteristics with their correlation matrix shrunk toward independence
 weight at least 5%), and a plain root-mean-square distance remains as an option. Trend characteristics are
 least-squares slopes of log values over three or more baseline years, treated as exact although a slope from
 a few years is noisy. Warnings flag a best match at 1 SD or more, a best match farther than 90% of states are
-from their own nearest neighbour, and a target 2 SD or more from the state average. A lower score under either
+from their own nearest neighbor, and a target 2 SD or more from the state average. A lower score under either
 distance means closer on the chosen characteristics and nothing more: it does not check outcome trends,
 unmeasured differences, spillovers or later law changes, and it does not make a state a valid control.
 
@@ -145,7 +145,7 @@ unmeasured differences, spillovers or later law changes, and it does not make a 
   has a published source: Nelson (2013, Health Economics Review 3:17) reports wine at -0.46 after correcting
   for publication bias (95% CI -0.54 to -0.38; the abstract rounds it to -0.45) and an uncorrected
   random-effects mean of -0.58. The +/-0.15 width around the entered value is a convention. Every other range
-  is a convention and is labelled as one. An option replaces two of them with bounds the dataset gives: the
+  is a convention and is labeled as one. An option replaces two of them with bounds the dataset gives: the
   lowest and highest all-product margin DABS reported across years, and avoidable cost from none to all of
   DABS's operating expenses, an accounting ceiling rather than a savings estimate.
 - **Where the sign changes (1.2).** For each varied input, the value at which the net change reaches zero with

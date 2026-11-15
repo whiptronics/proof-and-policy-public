@@ -4,6 +4,7 @@
 // prints as a brief.
 import { useMemo } from "react";
 import { Go } from "../components/common";
+import { AssumptionRegister } from "../components/Evidence";
 import { ARRANGEMENTS_METHOD, type BreakEven } from "../lib/arrangements";
 import { INITIATIVES, INITIATIVE_METHOD, ROBUSTNESS_METHOD, initiativeById, initiativeFigures, type Initiative, type InitiativeFigures, type SizeRow } from "../lib/initiatives";
 import { SUBSTITUTION_METHOD } from "../lib/substitution";
@@ -19,7 +20,7 @@ const amount = (v: number | null | undefined) => (v === null || v === undefined 
 const cents = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(1)}¢`);
 
 function breakEvenText(b: BreakEven, kind: "tax" | "discount"): string {
-  if (b.status === "found" && b.value !== null) return kind === "tax" ? `a ${pct(b.value)} tax on the sellers' price` : `a discount of at most ${pct(b.value)}`;
+  if (b.status === "found" && b.value !== null) return kind === "tax" ? `a ${pct(b.value)} tax on the sellers' price` : `a price to grocers of at least ${pct(1 - b.value)} of today's shelf price`;
   if (b.status === "not_needed") return "none needed";
   if (b.status === "none_in_range") return "none in the supported range";
   return "not computable";
@@ -28,7 +29,7 @@ function breakEvenText(b: BreakEven, kind: "tax" | "discount"): string {
 /** A tested range's ends, in the row's own units. */
 function rangeText(r: SizeRow): string {
   if (r.format === "money") return `${money(r.low)} to ${money(r.high)}`;
-  if (r.format === "scale") return `${pct(r.low)} to ${pct(r.high)} of the modelled wine`;
+  if (r.format === "scale") return `${pct(r.low)} to ${pct(r.high)} of the modeled wine`;
   return `${pct(r.low)} to ${pct(r.high)}`;
 }
 
@@ -114,7 +115,7 @@ export function InitiativeView() {
         <ul className="findings">
           <li>
             <strong>In the brief's two reference cases both structures leave the state worse off:</strong> {millions(P.lines?.net)} a year (revenue lost, net of the assumed store costs avoided and new costs) with
-            private wholesalers and a 20% replacement tax, {millions(Wh.lines?.net)} with DABS as wholesaler at a 20% discount, against{" "}
+            private wholesalers and a 20% replacement tax, {millions(Wh.lines?.net)} with DABS as wholesaler selling to grocers at 80% of the shelf price, against{" "}
             {amount(f.baseline)} the state collects on wine today. These are conditional on those levers and assumptions, with only existing wine
             purchases moving. Other arrangements keep state revenue whole at fixed volume (<a href="#in-alt">policy alternatives</a>), by
             changing who pays the grocer, and the result also turns on where grocery wine comes from (<a href="#in-flows">purchase flows</a>).
@@ -127,8 +128,8 @@ export function InitiativeView() {
             {Math.round((f.settings.wholesalerMargin ?? NaN) * 100)} cents of theirs.
           </li>
           <li>
-            <strong>With the 20% tax or 20% discount held fixed, the loss holds across every input range tested.</strong> No single input
-            moved within its tested range, and no combination of the documented bounds, brings either to break even; a smaller discount
+            <strong>With the 20% tax or DABS's 80% price to grocers held fixed, the loss holds across every input range tested.</strong> No single input
+            moved within its tested range, and no combination of the documented bounds, brings either to break even; a higher price to grocers
             or a larger tax does (<a href="#in-alt">policy alternatives</a>, wine-alternatives@1.0). It would take sellers keeping about{" "}
             {cents(f.robustness.keepAtBreakEven)} a dollar, grocery wine priced {pct((Wh.viability?.shift.shelf ?? NaN) - 1, 0)} (DABS supply)
             to {pct((P.viability?.shift.shelf ?? NaN) - 1, 0)} (private) above state stores, or an untested switch from beer (
@@ -160,7 +161,7 @@ export function InitiativeView() {
                 <th scope="col">Per year</th>
                 <th scope="col" className="num">Today</th>
                 <th scope="col" className="num">Private wholesale, 20% replacement tax</th>
-                <th scope="col" className="num">DABS wholesale, 20% discount to grocers</th>
+                <th scope="col" className="num">DABS wholesale, grocers buy at 80% of the shelf price</th>
               </tr>
             </thead>
             <tbody>
@@ -215,7 +216,7 @@ export function InitiativeView() {
               <tr>
                 <th scope="row">Local sales tax</th>
                 <td className="num" colSpan={3}>
-                  Not modelled
+                  Not modeled
                 </td>
               </tr>
             </tbody>
@@ -309,33 +310,14 @@ export function InitiativeView() {
         </div>
         <p className="small muted">
           After full retail privatization elsewhere, sales of the privatized drink rose by a median 44% and sales of other drinks fell by a
-          median 2% (Hahn et al. 2012, as summarised in the project's model audit). Ending state retail sales is a bigger change than
+          median 2% (Hahn et al. 2012, as summarized in the project's model audit). Ending state retail sales is a bigger change than
           licensing grocers beside state stores, so these studies do not show how large a Utah effect would be.
         </p>
       </section>
 
       <section className="panel" aria-labelledby="in-assume">
         <h3 id="in-assume">Assumptions in the worked example</h3>
-        <div className="table-wrap">
-          <table className="data">
-            <thead>
-              <tr>
-                <th scope="col">Input</th>
-                <th scope="col">Value</th>
-                <th scope="col">Standing</th>
-              </tr>
-            </thead>
-            <tbody>
-              {init.worked.assumptions.map((a) => (
-                <tr key={a.item}>
-                  <th scope="row">{a.item}</th>
-                  <td>{a.value}</td>
-                  <td>{a.basis === "source" ? "From a source (not yet reviewed)" : a.basis === "policy" ? "A policy choice" : "Assumption"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <AssumptionRegister init={init} f={f} />
       </section>
 
       <div className="initiative-split">
@@ -396,7 +378,7 @@ export function InitiativeView() {
 }
 
 /** "What would have to be true for this to break even?": one assumption at a time, then the documented bounds together,
- * each labelled by what kind of result it is (initiative-robustness@1.0). */
+ * each labeled by what kind of result it is (initiative-robustness@1.0). */
 function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures }) {
   const r = f.robustness;
   const P = f.comparison.private;
@@ -453,13 +435,13 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
               </td>
             </tr>
             <tr>
-              <th scope="row">DABS discount to grocers, a policy choice ({pct(set.discount, 0)})</th>
+              <th scope="row">DABS's price to grocers, a policy choice ({pct(1 - (set.discount ?? NaN), 0)} of the shelf price)</th>
               <td data-label="Private supply" className="num">not used</td>
-              <td data-label="DABS supply" className="num">at most {pct(Wh.breakEven.value)}</td>
+              <td data-label="DABS supply" className="num">at least {pct(1 - (Wh.breakEven.value ?? NaN))}</td>
               <td data-label="Result">
                 Arithmetic only. The grocer's gross margin would be {pct(Wh.sellersAtBreakEven?.margin)}, against about {pct(set.grocerMargin, 0)}{" "}
-                for grocery stores nationally (a reference, not a minimum). Current law's 88.5% minimum wine markup leaves room for a discount of at most{" "}
-                {pct(r.lawfulDiscount)} at this margin (a legal reading, not reviewed), so even this needs the statute changed.
+                for grocery stores nationally (a reference, not a minimum). Current law's 88.5% minimum wine markup keeps DABS's price to grocers at or above{" "}
+                {pct(1 - r.lawfulDiscount)} of the shelf price at this margin (a legal reading, not reviewed), so even this needs the statute changed.
               </td>
             </tr>
             <tr>
@@ -486,7 +468,7 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
                 {pct(pv?.shift.shelf)} of today's price, with a {pct(pv?.shift.lever)} tax
               </td>
               <td data-label="DABS supply" className="num">
-                {pct(wv?.shift.shelf)}, with a discount of at most {pct(wv?.shift.lever)}
+                {pct(wv?.shift.shelf)}, with DABS's price to grocers at least {pct(1 - (wv?.shift.lever ?? NaN))} of today's shelf price
               </td>
               <td data-label="Result">
                 Conditional. It assumes the same {pct(x.shift, 0)} of household purchases still moves to grocers charging that much more than
@@ -621,7 +603,7 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
 const GROUP_WORDS: Record<AltResult["def"]["group"], string> = {
   reference: "Reference cases (the brief's original examples, 5¢ illustrative savings)",
   A: "A. DABS keeps supplying and keeps its per-bottle take",
-  B: "B. DABS supplies grocers at a discount",
+  B: "B. DABS sells to grocers at 80% of today's price",
   C: "C. Private supply with an explicit state charge",
 };
 
@@ -731,7 +713,7 @@ function AlternativesSection() {
           law): {legal.map((l) => `${l.item} (${l.status})`).join("; ")}.
         </li>
         <li>
-          <strong>Not modelled:</strong> {MISSING_CAPABILITIES.join(" ")}
+          <strong>Not modeled:</strong> {MISSING_CAPABILITIES.join(" ")}
         </li>
       </ul>
     </section>

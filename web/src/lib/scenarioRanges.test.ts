@@ -159,7 +159,7 @@ describe("combined sensitivity scenarios (shown instead of the simulation)", () 
 });
 
 describe("monte carlo draws", () => {
-  it("reproduces the documented range as its 10th to 90th percentile, centred on the entered value", () => {
+  it("reproduces the documented range as its 10th to 90th percentile, centered on the entered value", () => {
     const { draws } = simulateInputs({ ...BASE, shift: 0.4 }, { runs: 20000, seed: 7 });
     const shift = draws.map((d) => d.shift!);
     expect(pct(shift, 0.1)).toBeCloseTo(0.3, 2);
@@ -226,7 +226,7 @@ describe("monte carlo results", () => {
     const up = monteCarlo({ ...BASE, retained: 0.95 }, { runs: 2000 })!; // every moved dollar gains, whatever the draw
     expect(up.a.shareUp).toBe(1);
     expect(up.a.shareUpSe).toBe(0);
-    const even = monteCarlo({ ...BASE, retained: 0.4 }, { runs: 4000 })!; // centred on break-even
+    const even = monteCarlo({ ...BASE, retained: 0.4 }, { runs: 4000 })!; // centered on break-even
     expect(even.a.shareUp).toBeGreaterThan(0.3);
     expect(even.a.shareUp).toBeLessThan(0.7);
     expect(even.a.shareUpSe).toBeCloseTo(Math.sqrt((even.a.shareUp * (1 - even.a.shareUp)) / 4000), 12);

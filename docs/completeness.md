@@ -44,7 +44,7 @@ rows are in the CSV.
 | pop_total_resident | 2000 | comparability group change | census_pep\|census_pep_intercensal_1990_2000 | census_pep\|census_pep_intercensal_2000_2010 | all in series |  |
 | pop_total_resident | 2010 | comparability group change | census_pep\|census_pep_intercensal_2000_2010 | census_pep\|census_pep_intercensal_2010_2020 | all in series |  |
 | pop_total_resident | 2020 | comparability group change | census_pep\|census_pep_intercensal_2010_2020 | census_pep\|census_pep_vintage_2025 | all in series |  |
-| tn_dor_account_11002 | 2018 | definition change | tn_dor_wine_tax_collections (FY2010-FY2017: printed 'Wine Tax', to 2017) | tn_dor_account_11002_with_high_alcohol_beer (FY2018 on: printed 'Wine Tax & High Alcohol Beer') | all in series | Not wine-only; the statutory reason for the relabelling is not recorded yet. |
+| tn_dor_account_11002 | 2018 | definition change | tn_dor_wine_tax_collections (FY2010-FY2017: printed 'Wine Tax', to 2017) | tn_dor_account_11002_with_high_alcohol_beer (FY2018 on: printed 'Wine Tax & High Alcohol Beer') | all in series | Not wine-only; the statutory reason for the relabeling is not recorded yet. |
 | tn_dor_winery_wine_tax_collections | 2018 | comparability group change | tn_dor_collections\|tn_dor_winery_wine_tax_collections\|Wine Tax | tn_dor_collections\|tn_dor_winery_wine_tax_collections\|Wine Tax (Winery) | all in series |  |
 | ut_dabs_gross_profit | 2020 | comparability group change | utah_dabs_annual_report:five_year_summary_financial_information\|ut_dabs_gross_profit | utah_dabs_annual_report:five_year_operations_summary\|ut_dabs_gross_profit | all in series | preferred value comes from a different table of the same report |
 | ut_dabs_gross_profit | 2021 | comparability group change | utah_dabs_annual_report:five_year_operations_summary\|ut_dabs_gross_profit | utah_dabs_annual_report:five_year_summary_financial_information\|ut_dabs_gross_profit | all in series | preferred value comes from a different table of the same report |
@@ -1141,7 +1141,7 @@ Gaps inside the span (state level):
 ### Tennessee Department of Revenue account 11002
 
 - `tn_dor_wine_tax_collections`: FY2010-FY2017: printed 'Wine Tax'.
-- `tn_dor_account_11002_with_high_alcohol_beer`: FY2018 on: printed 'Wine Tax & High Alcohol Beer'. Not wine-only; the statutory reason for the relabelling is not recorded yet.
+- `tn_dor_account_11002_with_high_alcohol_beer`: FY2018 on: printed 'Wine Tax & High Alcohol Beer'. Not wine-only; the statutory reason for the relabeling is not recorded yet.
 
 | Measure | Period | Span | States in series | Complete states | Partial states | Not in series | Value-years / possible | Missing (reasons) | Absent |
 |---|---|---|---|---|---|---|---|---|---|

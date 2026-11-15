@@ -45,7 +45,7 @@ usual address (`/session/<year>/pdfdoc/Digest<year>.pdf` answers 404 for 1990-19
 >    effective-date provision.
 > 4. Utah Code Annotated, Title 32A, as in force on January 1, 1990 (the 1990 volume or the 1989
 >    replacement volume and supplement): sections 32A-1-105 and the provisions of Chapter 10 on beer
->    retailer licences.
+>    retailer licenses.
 > 5. Utah Code sections 32A-12-202 (unauthorized sale or supply) and 32A-3-104 (duties before
 >    establishing a package agency) as printed in any edition or supplement between 2003 and 2010, with
 >    the edition's currency date.

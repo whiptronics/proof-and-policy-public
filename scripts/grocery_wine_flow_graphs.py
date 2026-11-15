@@ -2,7 +2,7 @@
 does to the state's collections (web/src/lib/wineFlows.ts, wine-purchase-flows@1.0).
 
 Draws only what data/processed/grocery-wine/flows.json and its flows_*.csv tables contain; computes no results. Called
-by scripts/grocery_wine_graphs.py, which passes itself in as ``g`` for the shared colours, layout and saving (so the
+by scripts/grocery_wine_graphs.py, which passes itself in as ``g`` for the shared colors, layout and saving (so the
 text-layout log and the plotted-data files are kept in one place). Titles come from grocery_wine_chart_text.flow_titles.
 """
 
@@ -48,7 +48,7 @@ SCEN_SHORT = {
     "migrant_response": "Exploratory: old price response",
     "beer_2": "Beer 2% replaced (same alcohol)",
     "beer_5": "Beer 5% replaced (same alcohol)",
-    "beer_5_volume": "Beer 5%, litre for litre",
+    "beer_5_volume": "Beer 5%, liter for liter",
     "beer_5_spending": "Beer 5%, dollar for dollar",
     "beer_5_split": "Beer 5%, half the wine at DABS",
     "spirits_2": "Spirits 2% replaced (same alcohol)",
@@ -102,7 +102,7 @@ def f1_sources(fl, out, titles, g):
         fig,
         *titles["F1"],
         note(fl)
-        + " Under the DABS-supplied preserved design; identical under the others for these rows (checked).",
+        + " Under DABS at full price (grocer 28%); identical under the others for these rows (checked).",
     )
     g.save(fig, out, "F1_grocery_wine_by_source.png")
 
@@ -231,8 +231,8 @@ def f4_quantities(fl, out, titles, g):
     fig.subplots_adjust(left=0.07, right=0.99, wspace=0.22)
     w = 0.2
     for ax, field, scale, unit in (
-        (axes[0], "litres_change", 1e6, "Change in litres of beverage a year (millions)"),
-        (axes[1], "pure_alcohol_litres_change", 1e3, "Change in litres of pure alcohol a year (thousands)"),
+        (axes[0], "litres_change", 1e6, "Change in liters of beverage a year (millions)"),
+        (axes[1], "pure_alcohol_litres_change", 1e3, "Change in liters of pure alcohol a year (thousands)"),
     ):
         groups = bev + ([("total", "All three")] if field.startswith("pure") else [])
         x = np.arange(len(groups))
@@ -255,7 +255,7 @@ def f4_quantities(fl, out, titles, g):
         fig,
         *titles["F4"],
         note(fl)
-        + " DABS-supplied preserved design; quantities do not depend on the design in these scenarios. Heavy beer is not replaced here. Pure alcohol = litres x ABV (beer 4.8%, wine 11.8%, spirits 34.9%; NIAAA 2024).",
+        + " DABS at full price (grocer 28%); quantities do not depend on the design in these scenarios. Heavy beer is not replaced here. Pure alcohol = liters x ABV (beer 4.8%, wine 11.8%, spirits 34.9%; NIAAA 2024).",
     )
     g.save(fig, out, "F4_beverage_litres_and_pure_alcohol.png")
 
@@ -439,19 +439,20 @@ def f7_frontiers(fl, out, titles, g):
             mec=g.SURFACE,
             label=lev_lab[lv],
         )
-    axes[0].set_xlabel("DABS discount to grocers (the state's markup falls by the same amount)", fontsize=8.5)
-    axes[1].set_xlabel("Share of household DABS wine moving to grocers (20% discount)", fontsize=8.5)
+    axes[0].set_xlabel("DABS's price to grocers, % of today's shelf price (each point lower comes off the state's markup)", fontsize=8.5)
+    axes[1].set_xlabel("Share of household DABS wine moving to grocers (DABS at 80% of the shelf price)", fontsize=8.5)
     for ax in axes:
         ax.set_ylabel("Break-even share", fontsize=8.5)
         ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
         ax.xaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
         ax.set_ylim(0, 100)
+    axes[0].xaxis.set_major_formatter(lambda v, _: f"{100 - v:.0f}%")  # swept as the share below the shelf price
     axes[0].legend(loc="upper left", fontsize=8.5)
     g.head(
         fig,
         *titles["F7"],
         note(fl)
-        + " Gaps: no break-even within 100%. At no discount the grocer gets nothing at today's price (diagnostic).",
+        + " Gaps: no break-even within 100%. At 100% of the shelf price the grocer gets nothing at today's price (diagnostic).",
     )
     g.save(fig, out, "F7_break_even_frontiers.png")
 
@@ -598,7 +599,7 @@ def f10_substitution(fl, out, titles, g):
         fig,
         *titles["F10"],
         note(fl)
-        + " Equal litres or equal spending give other lines (flows_substitution_grid.csv, conversion_basis).",
+        + " Equal liters or equal spending give other lines (flows_substitution_grid.csv, conversion_basis).",
     )
     g.save(fig, out, "F10_substitution_grid.png")
 

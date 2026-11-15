@@ -17,7 +17,7 @@ export interface MapMeasure {
   metric?: string;
   variants?: MapVariant[];
   monthly?: string;
-  /** Published values are changes (centred on zero). */
+  /** Published values are changes (centered on zero). */
   diverging?: boolean;
   defaultShown?: "nominal" | "per_resident" | "per_resident_21plus" | "real_cy2024";
 }

@@ -4,6 +4,7 @@
 import { useMemo, useRef } from "react";
 import { ErrorNote, Go, Loading, RecordLink, SourceNote, SourceRef } from "../components/common";
 import { ControlBadge, ControlSelect, ControlSummary, assessAll } from "../components/ControlFilter";
+import { saveBlob, wrap } from "../lib/chartExport";
 import { criterionById, verdictSymbol, verdictText } from "../lib/control";
 import { metricSourceIds, monthlySourceIds, sourceLine, sourcesById } from "../lib/sources";
 import { MapLegend, USMap, fillFor } from "../components/USMap";
@@ -800,21 +801,6 @@ function CoveragePanel({ rows, periods, stateIds, name, period, metricId }: { ro
 }
 
 /** Save the map (and its legend) as a PNG: colors are copied from the page, so the image matches it. */
-/** Split text into lines that fit `width` pixels in the context's current font. */
-function wrap(ctx: CanvasRenderingContext2D, text: string, width: number): string[] {
-  const lines: string[] = [];
-  let line = "";
-  for (const word of text.split(/\s+/).filter(Boolean)) {
-    const next = line ? `${line} ${word}` : word;
-    if (ctx.measureText(next).width > width && line) {
-      lines.push(line);
-      line = word;
-    } else line = next;
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
 export interface PngLegend {
   stops: { offset: number; color: string }[];
   ends: string[];
@@ -898,15 +884,5 @@ async function downloadPng(container: HTMLElement, title: string, filename: stri
   footLines.forEach((l, i) => ctx.fillText(l, 16, y + 16 + (i + 1) * LINE - 5));
   URL.revokeObjectURL(url);
   canvas.toBlob((b) => b && saveBlob(b, filename), "image/png");
-}
-
-function saveBlob(blob: Blob, filename: string) {
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 

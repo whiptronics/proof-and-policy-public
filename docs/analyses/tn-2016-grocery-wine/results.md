@@ -17,15 +17,15 @@
 
 ## Short answer
 
-1. **Wine purchases rose clearly more in Tennessee than in its neighbours.** Gallons of ethanol from wine per resident
+1. **Wine purchases rose clearly more in Tennessee than in its neighbors.** Gallons of ethanol from wine per resident
    21+ rose 26% between 2011-2015 and 2017-2019, against −0.4% to +13.9% in the bordering states: 16.3 log points more than
-   their average, outside every neighbour's change, and larger than the gap at any of 17 earlier placebo dates. Most of
+   their average, outside every neighbor's change, and larger than the gap at any of 17 earlier placebo dates. Most of
    it arrived as a step in 2016, the year licenses began, and the level then held through 2024. Every sensitivity check
    gives 16 to 19 log points.
-2. **Beer fell, by about as much as in the neighbours.** Tennessee's beer fell 8.2%; the neighbours' average fell about
-   as much. The difference (−1.1 log points, −0.009 gallons) is inside the neighbours' range and smaller than the
+2. **Beer fell, by about as much as in the neighbors.** Tennessee's beer fell 8.2%; the neighbors' average fell about
+   as much. The difference (−1.1 log points, −0.009 gallons) is inside the neighbors' range and smaller than the
    typical placebo gap, and stays between −2.4 and +1.6 log points in every sensitivity check.
-3. **Total ethanol rose relative to the neighbours, not fell** (+0.104 gallons per adult, 4.5 log points; 2.3 to 7.5
+3. **Total ethanol rose relative to the neighbors, not fell** (+0.104 gallons per adult, 4.5 log points; 2.3 to 7.5
    across the checks), by about as much as wine and spirits together. A gap that size is ordinary for these states: 5
    of 17 earlier placebo dates show one as large, and Tennessee's spirits were already rising faster before 2016.
 4. **Substitution.** Wine rose and beer declined, but the comparison does not establish that grocery wine caused people
@@ -33,7 +33,7 @@
    beer or spirits (corrected wording, 2026-10-17: "the pattern of added purchases" overstated what this shows). It is an aggregate pattern of
    purchases in one state and does not establish what any person did or that grocery wine caused it.
 5. **Revenue.** Tennessee's all-beverage T10 rose 31.6% in constant dollars (22.6 log points more than the
-   neighbours), but it was already rising by about $9.2 million a year before 2016; extending that trend arithmetically covers
+   neighbors), but it was already rising by about $9.2 million a year before 2016; extending that trend arithmetically covers
    roughly two-thirds of the gap against the four states where the comparison can tell. Tennessee's wine-tax account
    (all channels) was 31% above its FY2012-FY2016 average in FY2017, its only comparable year, after rising 9% already
    in FY2016.
@@ -42,10 +42,10 @@
 
 ## 1. Raw trends
 
-Gallons of ethanol per resident 21+ (NIAAA). Neighbours' average = the simple average of the eight bordering states.
+Gallons of ethanol per resident 21+ (NIAAA). Neighbors' average = the simple average of the eight bordering states.
 2016 is the transition year (licenses from July 1).
 
-| Year | Wine: Tennessee | Wine: neighbours' average | Beer: Tennessee | Beer: neighbours' average | Spirits: Tennessee | Spirits: neighbours' average | All: Tennessee | All: neighbours' average |
+| Year | Wine: Tennessee | Wine: neighbors' average | Beer: Tennessee | Beer: neighbors' average | Spirits: Tennessee | Spirits: neighbors' average | All: Tennessee | All: neighbors' average |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 2008 | 0.231 | 0.287 | 1.243 | 1.352 | 0.644 | 0.723 | 2.118 | 2.361 |
 | 2009 | 0.234 | 0.289 | 1.193 | 1.319 | 0.643 | 0.731 | 2.070 | 2.339 |
@@ -91,11 +91,11 @@ High Alcohol Beer" from FY2018; the two are separate series and are not joined.
 
 Before 2011-2015 (FY2012-FY2015 for T10: Alabama's FY2016 straddles the date, so FY2016 is dropped for every state);
 transition 2016 left out; after 2017-2019 (FY2017-FY2019). Main pool: all eight bordering states, equal weights.
-"Inside?" asks whether Tennessee's change lies within the range of the eight neighbours' changes.
+"Inside?" asks whether Tennessee's change lies within the range of the eight neighbors' changes.
 
-| Outcome | Tennessee before → after | Tennessee change | Neighbours' average change | Difference | Difference, log points (leave one out) | Inside? | Placebo: typical gap; earlier dates as large |
+| Outcome | Tennessee before → after | Tennessee change | Neighbors' average change | Difference | Difference, log points (leave one out) | Inside? | Placebo: typical gap; earlier dates as large |
 |---|---:|---:|---:|---:|---:|---|---|
-| Wine | 0.285 → 0.359 | +0.074 (+26.0%) | +0.023 | **+0.052** | **+16.3** (15.2 to 17.2) | No (neighbours −0.001 to +0.055) | 0.009; none of 17 |
+| Wine | 0.285 → 0.359 | +0.074 (+26.0%) | +0.023 | **+0.052** | **+16.3** (15.2 to 17.2) | No (neighbors −0.001 to +0.055) | 0.009; none of 17 |
 | Beer | 1.198 → 1.099 | −0.098 (−8.2%) | −0.090 | **−0.009** | **−1.1** (−1.5 to −0.3) | Yes (−0.148 to −0.017) | 0.043; 16 of 17 |
 | Spirits | 0.791 → 0.942 | +0.150 (+19.0%) | +0.090 | **+0.061** | **+6.6** (5.6 to 7.6) | Yes (+0.027 to +0.160) | 0.010; 3 of 17 |
 | All beverages | 2.274 → 2.400 | +0.126 (+5.6%) | +0.023 | **+0.104** | **+4.5** (3.9 to 5.1) | No (−0.072 to +0.120) | 0.063; 5 of 17 |
@@ -106,13 +106,13 @@ transition 2016 left out; after 2017-2019 (FY2017-FY2019). Main pool: all eight 
 Beverage changes in gallons of ethanol per resident 21+. Per-state detail is in the page's state tables. Points worth
 knowing:
 
-- **Wine:** Tennessee minus each neighbour is positive in all eight (+0.019 against North Carolina to +0.075 against
+- **Wine:** Tennessee minus each neighbor is positive in all eight (+0.019 against North Carolina to +0.075 against
   Georgia). Before-period trends do not explain it: the "if trends had continued" figure is near zero or negative
   except against Georgia (+0.031).
 - **Beer:** Tennessee's own 2011 value (1.280) is its highest of 2008-2016 and raises its before average, which makes
   its decline look larger; even so no relative decline appears.
-- **Spirits:** Tennessee's before-period trend (+0.026 a year) is steeper than most neighbours'. Against the five
-  neighbours where the "trends only" figure can be told from zero, trends alone give 60% to 120% of the observed gap.
+- **Spirits:** Tennessee's before-period trend (+0.026 a year) is steeper than most neighbors'. Against the five
+  neighbors where the "trends only" figure can be told from zero, trends alone give 60% to 120% of the observed gap.
 - **T10:** Tennessee's before-period trend is +$9.2M a year. Against Arkansas, Georgia, Mississippi and Missouri, where
   the "trends only" figure's interval excludes zero, a straight-line extension of earlier trends covers $37-45M of the $57-66M differences (arithmetic, not a cause). The placebo check is
   in dollars, and Tennessee's earlier windows had smaller dollar growth, so it overstates how unusual the gap is.
@@ -146,7 +146,7 @@ Difference in log points between Tennessee's change and the pool's average chang
 The hypothesis is that grocery wine would move existing drinkers from beer to wine without more drinking. In
 Tennessee's aggregate purchases:
 
-| Main specification, gallons of ethanol per resident 21+ | Tennessee | Neighbours' average | Difference |
+| Main specification, gallons of ethanol per resident 21+ | Tennessee | Neighbors' average | Difference |
 |---|---:|---:|---:|
 | Wine | +0.074 | +0.023 | +0.052 |
 | Beer | −0.098 | −0.090 | −0.009 |
@@ -156,17 +156,17 @@ Tennessee's aggregate purchases:
 - The relative fall in beer (0.009 gallons) is about a sixth of the relative rise in wine (0.052) and smaller than an
   ordinary year's gap. Under the rule fixed in the specification this is not the substitution pattern; the comparison does
   not show whether people switched beverages.
-- Total ethanol did not fall relative to the neighbours. It rose, though by an amount ordinary years also produce.
+- Total ethanol did not fall relative to the neighbors. It rose, though by an amount ordinary years also produce.
 - **What this cannot show:** whether the same people switched, whether drinking changed (these are purchases), or that
   grocery wine caused any of it. Cross-border buying into Tennessee, stocking of the new channel, the minimum-price law
-  that began the same day and a possible reclassification of strong beer (account 11002's FY2018 relabelling) could
+  that began the same day and a possible reclassification of strong beer (account 11002's FY2018 relabeling) could
   each move these series. Total ethanol is immune to the last of these.
 
 ## 5. What this cannot establish about Utah
 
 - Tennessee's reform was a local option in a state whose spirits and wine are sold by private licensees. Utah sells
   both through state stores and agencies, so its revenue arrives as store profit, which T10 does not measure.
-- This describes purchases relative to neighbours; it is not an effect estimate. It is therefore not carried into the
+- This describes purchases relative to neighbors; it is not an effect estimate. It is therefore not carried into the
   Utah fiscal scenario, and it does not say what Utah households would buy or whether switching would offset a revenue
   loss there. The Utah brief already treats beer-to-wine switching as unverified; this result is consistent with that
   caution, and the brief is not changed.
@@ -175,9 +175,9 @@ Tennessee's aggregate purchases:
 
 1. Which Tennessee localities adopted grocery wine, when, and how many stores were licensed: without it, every figure
    averages exposed and unexposed places and understates any local change.
-2. The statutory basis of account 11002's FY2018 relabelling, and whether NIAAA's Tennessee beer and wine series
+2. The statutory basis of account 11002's FY2018 relabeling, and whether NIAAA's Tennessee beer and wine series
    changed classification.
-3. Grocery-wine and alcohol-tax histories for six of the eight neighbours (only Kentucky and Virginia are verified).
+3. Grocery-wine and alcohol-tax histories for six of the eight neighbors (only Kentucky and Virginia are verified).
 4. Monthly sales around July 2016, to separate stocking from sustained purchases, and any measure of cross-border
    buying.
 5. Household purchase panels or surveys that follow the same people: the only data that could show switching.
@@ -185,7 +185,7 @@ Tennessee's aggregate purchases:
 ## 7. What the uncertainty measures cover
 
 None of these series has a published sampling interval, so no confidence interval is reported and none is invented.
-The leave-one-out ranges show how much the pooled result depends on one neighbour. The neighbours' range shows how much
+The leave-one-out ranges show how much the pooled result depends on one neighbor. The neighbors' range shows how much
 states' changes differ. The placebo dates show how large a difference in changes is at earlier dates chosen without
 regard to any law; their windows overlap, so the share is a rough guide. None is a probability interval. None covers the
 comparison states' own policy changes, the unknown local exposure, cross-border buying, reclassification between

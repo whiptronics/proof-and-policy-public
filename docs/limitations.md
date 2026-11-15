@@ -110,7 +110,7 @@ This is a research preview. Read this before using any number.
 - FARS deaths carry a 95% interval (uncertainty@1.2) with two parts kept apart. Count noise: crashes are
   treated as Poisson events and the deaths in each crash as given, so the variance is the sum of squared
   deaths per crash (compound Poisson, a scaled Garwood interval). It describes the underlying expected number
-  a year's crashes are a draw from, a modelling choice and not a measured error: FARS is a census of fatal
+  a year's crashes are a draw from, a modeling choice and not a measured error: FARS is a census of fatal
   crashes, so the deaths that actually occurred carry no count noise. Imputation noise (alcohol-impaired
   deaths only): the spread between NHTSA's ten imputations of unreported driver BACs, by Rubin's rules
   (W + (1 + 1/m)B, Student's t on Rubin's degrees of freedom). The interval shown combines both and is the
@@ -217,7 +217,7 @@ This is a research preview. Read this before using any number.
   changes other than the published price response (recapture, easier access) are assumptions with no source,
   and beer substitution is left out. The break-even values hold the other inputs as entered. The share moving is held
   fixed as grocery prices change, so a grocery price above the state store's for the same wine is a strong assumption
-  (the page also shows the reading in which buyers return to state stores, labelled exploratory: the market-wide
+  (the page also shows the reading in which buyers return to state stores, labeled exploratory: the market-wide
   elasticity used to size it does not measure switching between two channels). Arrangement 3's guarantee is shown
   as two proposals, fixed and proportional; how a bill would write it, and whether the two deposits stop on wine
   DABS no longer sells, are legal readings not reviewed. The elasticity is a market-level estimate

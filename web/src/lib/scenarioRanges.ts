@@ -46,7 +46,8 @@ export type RangeKey =
   | "wineAbv"
   | "beerAbv";
 
-export type RangeFormat = "percent" | "money" | "money2" | "gallons" | "plain";
+/** "complement": a share shown as 1 − v (DABS's price to grocers, stored as the share below its shelf price). */
+export type RangeFormat = "percent" | "complement" | "money" | "money2" | "gallons" | "plain";
 export type Evidence = "published" | "data" | "convention";
 
 export interface RangeSpec {
@@ -79,7 +80,7 @@ export const SENSITIVITY_RANGES: Record<RangeKey, RangeSpec> = {
   salesTax: { label: "State sales tax rate", kind: "abs", half: 0.01, ...SHARE, evidence: CONV, basis: "±1 point, a convention sized to a rate of a few percent (a ±10 point range would put a 5% rate at 15%). The rate is an input, not a measurement; this shows what an adjacent rate would do." },
   avoidableCost: { label: "Avoidable operating cost", kind: "abs", half: 0.05, ...SHARE, evidence: CONV, basis: "±5 points of sales, a convention: stores, systems and staff do not all shrink with sales. Replace it with a measured interval when one is available." },
   retained: { label: "Share of grocery sales the state keeps", kind: "abs", half: 0.1, ...SHARE, evidence: CONV, basis: "±10 points, a convention: the share is a policy choice the reader states." },
-  discount: { label: "Discount DABS gives grocers", kind: "abs", half: 0.05, ...SHARE, evidence: CONV, basis: "±5 points, a convention: the discount is a term of the policy the reader states." },
+  discount: { label: "DABS's price to grocers", kind: "abs", half: 0.05, ...SHARE, format: "complement", evidence: CONV, basis: "±5 points, a convention: DABS's price to grocers is a term of the policy the reader states." },
   adValorem: { label: "Tax on the grocery shelf price", kind: "abs", half: 0.02, ...SHARE, evidence: CONV, basis: "±2 points, a convention sized to a tax of a few percent." },
   extraGrocery: { label: "Share of extra wine bought in grocery stores", kind: "abs", half: 0.1, ...SHARE, evidence: CONV, basis: "±10 points, a convention." },
   replaces: { label: "Share of extra wine replacing beer", kind: "abs", half: 0.1, ...SHARE, evidence: CONV, basis: "±10 points, a convention: nothing in the dataset measures substitution between wine and beer." },

@@ -55,7 +55,7 @@ describe("color scales", () => {
     expect(colorFor(2, d)).toBe("#eff3ff");
     expect(colorFor(6, d)).toBe("#08306b");
   });
-  it("centres changes on zero, symmetric, like the Census retail map", () => {
+  it("centers changes on zero, symmetric, like the Census retail map", () => {
     const d = domainOf([-7.6, 11.3, 0.2], true)!;
     expect(d).toEqual({ min: -11.3, max: 11.3, diverging: true });
     expect(colorFor(0, d)).toBe("#f7f7f7");

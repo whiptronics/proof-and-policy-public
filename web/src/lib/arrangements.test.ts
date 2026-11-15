@@ -79,7 +79,7 @@ describe("each arrangement by hand (channel shift only)", () => {
   });
 });
 
-describe("zero-change behaviour", () => {
+describe("zero-change behavior", () => {
   it("nothing moves and nothing is added: no change in either arrangement", () => {
     const c = compare({ ...BASE, shift: 0, newCosts: 0 }, SET, RATES);
     expect(c.private.lines!.net).toBeCloseTo(0, 9);
@@ -178,7 +178,7 @@ describe("arrangement 3: allocating the proceeds", () => {
   it("needs the deposit rates and the value its rule uses", () => {
     expect(compare(BASE, SET, null).missing.join(" ")).toMatch(/deposit rates/);
     expect(compare(BASE, { ...SET, earmarkRule: "amount" }, RATES).missing.join(" ")).toMatch(/amount allocated/);
-    expect(compare(BASE, { ...SET, taxRate: null, discount: null }, RATES).missing).toEqual(["replacement tax rate (arrangement 1)", "discount DABS gives grocers (arrangement 2)"]);
+    expect(compare(BASE, { ...SET, taxRate: null, discount: null }, RATES).missing).toEqual(["replacement tax rate (arrangement 1)", "DABS's price to grocers (arrangement 2)"]);
   });
 });
 
@@ -462,7 +462,7 @@ describe("joint scenarios", () => {
     expect(at("entered").wholesale.net).toBeCloseTo(-55_000, 6);
   });
   it("moves the documented assumptions together", () => {
-    // Favourable: v = 10% for both, plus 1% wholesaling for arrangement 1; margin 45%.
+    // Favorable: v = 10% for both, plus 1% wholesaling for arrangement 1; margin 45%.
     expect(at("favourable").wholesale.net).toBeCloseTo((-0.2 + 0.1) * 300_000 - 10_000, 6);
     expect(at("favourable").private.net).toBeCloseTo(300_000 * (-0.45 + 0.2 + 0.05 * 0.2 + 0.11) - 10_000, 6);
     expect(at("unfavourable").wholesale.net).toBeCloseTo((-0.2 + 0.02) * 300_000 - 10_000, 6);

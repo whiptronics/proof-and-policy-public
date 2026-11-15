@@ -7,11 +7,11 @@ verification, not human review**: no record changes status because of it, and th
 empty for Ethan.
 
 **Corrected again on 2026-10-15** (section 11): only household purchases move, matched consumer prices are the
-reference case with what sellers keep shown beside it, the return-to-state-stores reading is labelled exploratory, and
+reference case with what sellers keep shown beside it, the return-to-state-stores reading is labeled exploratory, and
 the guarantee is defined as two different proposals. The worked figures in sections 2 to 7 are those of 2026-10-14;
 section 11 gives the current ones.
 
-The aim is a defensible analysis, not an argument for grocery wine. Unfavourable results are kept as they fall, and a
+The aim is a defensible analysis, not an argument for grocery wine. Unfavorable results are kept as they fall, and a
 negative result for one assumed arrangement is not a verdict on every grocery-wine policy.
 
 ## 1. What was wrong, and what was only unclear
@@ -40,14 +40,14 @@ Utah's fiscal year (July to June). "All products" means spirits, wine and heavy 
 | 4 | Wine's share, 33.5% (33.536% computed) | derived from parsed monthly reports | share, **FY2026** | gross sales at shelf prices, all customers | ratio: one tax basis on both sides | wine over all products | A later year than rows 1-2; the monthly tax basis is unresolved but cancels in the ratio. |
 | 5 | Baseline wine sales, $184,700,910 | derived (row 4 × row 1) | $, FY2025 | **includes restaurants' and bars' purchases** | before sales tax | wine | The share moving is applied to all of it, so 30% of it is more than 30% of retail purchases. No dataset splits DABS's wine sales by customer. |
 | 6 | Audited fund sales, 486,942 | observation (audited) | thousands of $, FY2025 | fund's sales after both deposits | before tax | all products | Cross-check only; never an input. |
-| 7 | State sales tax rate, 4.85% | observation applied to FY2025 (**assumption on applicability**) | percent | state portion only | — | — | Publication 25 pages are marked draft; local tax is not modelled on either side. |
+| 7 | State sales tax rate, 4.85% | observation applied to FY2025 (**assumption on applicability**) | percent | state portion only | — | — | Publication 25 pages are marked draft; local tax is not modeled on either side. |
 | 8 | School-meals deposit, 10% of gross liquor revenue | legal interpretation | percent, FY2025 | all liquor sales | — | all products | Read online (§ 32B-2-304(5)), not reviewed. |
 | 9 | Enforcement deposit, 1.695% | legal interpretation | percent, FY2025 | all liquor sales | — | all products | Read online (§ 32B-2-305(4), 2023 H.B. 223); DABS's FY2025 transfer is 1.741% of sales (not explained). |
 | 10 | Deposits are inside the margin, never subtracted again | interpretation, supported by the accounts | — | — | — | — | School meals documented (paid out as a collection; the Income Tax Fund books it); enforcement: the collections paid equal both deposits within $6 thousand (FY2022) and $122 thousand (FY2024), $702 thousand off in FY2023; FY2025's line is school meals alone. |
 | 11 | Price elasticity −0.46 | **transferred estimate** | — | market-level, many countries, 1954-2004 | — | wine overall | Nelson (2013), Table 4: −0.46 corrected for publication bias, 95% CI −0.38 to −0.54 (abstract −0.45; trimmed random-effects mean −0.58). No cross-price, no short- or long-run split. Applied here to one channel's price: see finding 2. |
 | 12 | The arrangements are proposals | policy definition | — | — | — | — | None describes current law. |
 
-Scenario assumptions that carry the result (no source; each is labelled on the page):
+Scenario assumptions that carry the result (no source; each is labeled on the page):
 
 | Assumption | Value in the example | What it implies | Evidence or bound |
 |---|---|---|---|
@@ -61,7 +61,7 @@ Scenario assumptions that carry the result (no source; each is labelled on the p
 | New licensing and enforcement costs | $500,000 a year | — | none |
 | Guarantee (arrangement 3) | today's deposits on the wine that moves | $6.48 million | a proposed term |
 
-Allocations from aggregate figures to wine, all labelled as assumptions: the gross margin (row 2), the avoidable cost
+Allocations from aggregate figures to wine, all labeled as assumptions: the gross margin (row 2), the avoidable cost
 (all-product expense lines), and the share moving applied to all DABS wine customers (row 5).
 
 ## 3. The equations, traced with the worked FY2025 figures
@@ -130,17 +130,17 @@ tax, channel-shift prices):
 
 Markups are on cost and margins on the selling price: DABS's 47.2% margin is an 89.4% markup; the statute's 88.5%
 minimum is a markup on landed case cost. The state's margin is counted once in each arrangement. State costs are in
-the finance table; private wholesalers' and grocers' costs come out of their margins and are not modelled.
+the finance table; private wholesalers' and grocers' costs come out of their margins and are not modeled.
 
 Is the equal-pre-tax-price case plausible? It needs private wholesalers and grocers together to keep the state's
 whole markup and then add the tax, so grocery wine costs 20% more than in a state store, and still 30% of purchases
-move. That is internally consistent arithmetic but a strong assumption about behaviour; it is kept, labelled. Two
+move. That is internally consistent arithmetic but a strong assumption about behavior; it is kept, labeled. Two
 alternatives are shown, both exploratory: price parity (the private chain absorbs the tax: a pre-tax price of 83.3%,
 a 58% combined markup; net −$14.7 million, break-even tax 57.6% with the response) and buyers returning to state stores
 (net −$11.3 million). Private retail is not assumed to be cheaper: no Utah figure says what private margins would be.
 
 The model's replacement tax is a retail-level ad valorem tax (or a per-gallon excise, if chosen). A tax on the
-wholesale price is not modelled.
+wholesale price is not modeled.
 
 ## 6. Demand
 
@@ -161,9 +161,9 @@ entered):
 | Scenario | Standing | Arrangement 1 | Break-even tax | Arrangement 2 | Break-even discount |
 |---|---|---:|---:|---:|---:|
 | As entered | — | −13,419,951 | 50.6% | −8,811,541 | 4.1% |
-| Costs and margin at the favourable ends (avoidable 9.8%, delivery 1.0%, margin 45.5%) | documented bounds | −9,219,040 | 40.4% | −6,156,160 | 8.9% |
-| At the unfavourable ends (avoidable 2.3%, margin 47.2%) | documented bounds | −14,928,486 | 54.4% | −10,320,076 | 1.4% |
-| Favourable bounds, 50% moving, half the new costs | exploratory | −14,781,734 | 39.6% | −9,676,934 | 9.5% |
+| Costs and margin at the favorable ends (avoidable 9.8%, delivery 1.0%, margin 45.5%) | documented bounds | −9,219,040 | 40.4% | −6,156,160 | 8.9% |
+| At the unfavorable ends (avoidable 2.3%, margin 47.2%) | documented bounds | −14,928,486 | 54.4% | −10,320,076 | 1.4% |
+| Favorable bounds, 50% moving, half the new costs | exploratory | −14,781,734 | 39.6% | −9,676,934 | 9.5% |
 | Arrangement 1 priced to match the state store | exploratory | −14,653,485 | 57.6% | −8,811,541 | 4.1% |
 | Access effect +4.5% (privatization studies' lower quartile) | exploratory | −11,273,911 | 40.9% | −6,146,883 | 10.4% |
 | Every operating expense avoidable (14.9%), lowest margin, no new costs | mathematical only | −6,492,563 | 34.1% | −2,850,100 | 14.9% |
@@ -199,7 +199,7 @@ Evidence, by mechanism:
   Fitzgerald, with ARIMA models, found the long-term change not significant after a three-year spike, partly over
   whether wine coolers were counted. These are quasi-experimental time-series designs (causal claims with the usual
   limits of comparison-state and interrupted-series designs), about states leaving retail entirely, mostly decades ago.
-  Utah's question is grocery licences beside state stores, a smaller change. A preliminary working paper on Washington's
+  Utah's question is grocery licenses beside state stores, a smaller change. A preliminary working paper on Washington's
   2012 spirits privatization (Illanes and Moshary, marked not for citation) reports more spirits bought and no break in
   beer purchases; it is not used as evidence here.
 - **Grocery wine specifically.** An FMI-released study of Tennessee after 2016 (Caputo, Michigan State University; a
@@ -251,9 +251,9 @@ Ethan's review of the 2026-10-14 results raised five points. What was done about
 
 | # | Point | Kind | What changed |
 |---|---|---|---|
-| 1 | The 30% that moves was applied to all DABS wine sales, including restaurants' and bars' purchases, which would keep buying from DABS. | Incorrect base (finding 2's row 5, now acted on) | A household share is an input (`hh`; `eligible` in the model): only that share of wine sales can move, and the share moving applies to it. DABS's FY2025 report (p. 18, a chart) puts off-premise sales at 82% of all its sales; that all-product figure is the default and the worked value, labelled as an assumption for wine, with a ±15-point convention in the sensitivity table and a sweep from 50% to 100%. Transcribed as `ut_dabs_off_premise_sales_share` and `ut_dabs_on_premise_sales_share` (FY2025, unreviewed). A records request for wine by customer type is drafted (docs/gaps/utah-missing-records.md, request C, not sent). |
+| 1 | The 30% that moves was applied to all DABS wine sales, including restaurants' and bars' purchases, which would keep buying from DABS. | Incorrect base (finding 2's row 5, now acted on) | A household share is an input (`hh`; `eligible` in the model): only that share of wine sales can move, and the share moving applies to it. DABS's FY2025 report (p. 18, a chart) puts off-premise sales at 82% of all its sales; that all-product figure is the default and the worked value, labeled as an assumption for wine, with a ±15-point convention in the sensitivity table and a sweep from 50% to 100%. Transcribed as `ut_dabs_off_premise_sales_share` and `ut_dabs_on_premise_sales_share` (FY2025, unreviewed). A records request for wine by customer type is drafted (docs/gaps/utah-missing-records.md, request C, not sent). |
 | 2 | A price consumers accept is not automatically a price a grocer can sustain. | Missing analysis | Matched consumer prices are the reference case (`pc=matched`): the shelf price is today's, so in arrangement 1 the replacement tax is inside it and sellers bear it. A new table, "Can sellers live with it?", shows what sellers keep after the wine and the tax, at the entered lever and at the state's break-even, and, given the gross margins sellers are assumed to need, the shelf price at which the state breaks even *and* they earn them. The entered grocery price (the old main case) is the alternative, shown in the joint scenarios. |
-| 3 | Reading the price response as buyers returning to state stores rests on an elasticity that cannot measure channel switching. | Overstated reading | Labelled exploratory wherever it appears (finance table, arrangement 3, CSV, saved results), with the reason; it arises only when the grocery price differs from the state store's. |
+| 3 | Reading the price response as buyers returning to state stores rests on an elasticity that cannot measure channel switching. | Overstated reading | Labeled exploratory wherever it appears (finance table, arrangement 3, CSV, saved results), with the reason; it arises only when the grocery price differs from the state store's. |
 | 4 | Is the $6.5 million guarantee fixed, or does it move with the sales actually displaced? | Unclear definition | Two proposals, both shown in every case: **fixed** (today's deposit rates on the sales the scenario moves, set once) and **proportional** (the same rates on the state-store sales actually lost each year). They agree while the state loses the sales the scenario moves, and part when fewer buyers move (the exploratory return case): the fixed one then overpays the two funds at the other funds' expense. Arrangement 3 now shows the return case too. Older addresses' `er=today` reads as fixed. |
 | 5 | "FY2023 now reconciles" overstated the finding. | Overstated wording | Now "first-published figures largely agree; later restatement remains unexplained" in the reconciliation notes, the dashboard's reconciliation text, the checklist and the progress log. |
 

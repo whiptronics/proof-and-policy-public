@@ -157,7 +157,7 @@ export function flowFiles(commit: string, baseYear: string): Record<string, stri
     for (const c of COLLECTION_KEYS) row("collection", c, COLLECTION_WORDS[c], r.baseline.collections[c], r.proposed.collections[c], true);
     row("total", "gross_collections", "Gross state collections (sum of the collections)", r.baseline.gross, r.proposed.gross, true);
     for (const c of COST_KEYS) row("cost", c, COST_WORDS[c], r.baseline.costs[c], r.proposed.costs[c], true);
-    row("total", "state_costs", "State costs modelled (sum of the costs)", r.baseline.costTotal, r.proposed.costTotal, true);
+    row("total", "state_costs", "State costs modeled (sum of the costs)", r.baseline.costTotal, r.proposed.costTotal, true);
     row("total", "net_fiscal_contribution", "Net fiscal contribution: gross collections less costs", r.baseline.net, r.proposed.net, true);
     for (const [reading, key] of [["counting DABS's sales to grocers", "countsGrocerSales"], ["not counting them", "excludesGrocerSales"]] as const) {
       const b = r.baseline.deposits[key];
@@ -264,24 +264,24 @@ export function flowFiles(commit: string, baseYear: string): Record<string, stri
   const paPerBottle = CONTAINER_L.wine * B.wine.abv;
   const conversionRows: Cell[][] = [
     ["quantity", "value", "unit", "source"],
-    ["litres per US gallon", L_PER_GALLON, "litres", "definition"],
-    ["litres per 9-litre case", 9, "litres", "definition"],
-    ["wine bottle", CONTAINER_L.wine, "litres", "standard 750 ml"],
-    ["beer can", CONTAINER_L.beer, "litres", "12 US fluid ounces"],
+    ["liters per US gallon", L_PER_GALLON, "liters", "definition"],
+    ["liters per 9-liter case", 9, "liters", "definition"],
+    ["wine bottle", CONTAINER_L.wine, "liters", "standard 750 ml"],
+    ["beer can", CONTAINER_L.beer, "liters", "12 US fluid ounces"],
     ["wine ABV", B.wine.abv, "share", "NIAAA 2024, Utah"],
     ["beer ABV", B.beer.abv, "share", "NIAAA 2024, Utah"],
     ["spirits ABV", B.spirits.abv, "share", "NIAAA 2024, Utah"],
     ["heavy beer ABV", B.heavyBeer.abv, "share", "placeholder (F12)"],
-    ["wine price at a state store", B.wine.price, "$ per litre before sales tax", "DABS FY2026 monthly reports (F02)"],
-    ["spirits price at a state store", B.spirits.price, "$ per litre before sales tax", "DABS FY2026 monthly reports (F05)"],
-    ["heavy beer price at a state store", B.heavyBeer.price, "$ per litre before sales tax", "DABS FY2026 monthly reports (F06)"],
-    ["grocery beer price", B.beer.price, "$ per litre before sales tax", "placeholder (F09)"],
-    ["beer excise", B.beer.excisePerLitre, "$ per litre", "placeholder (F10)"],
-    ["pure alcohol in one bottle of wine", paPerBottle, "litres", "750 ml x wine ABV"],
+    ["wine price at a state store", B.wine.price, "$ per liter before sales tax", "DABS FY2026 monthly reports (F02)"],
+    ["spirits price at a state store", B.spirits.price, "$ per liter before sales tax", "DABS FY2026 monthly reports (F05)"],
+    ["heavy beer price at a state store", B.heavyBeer.price, "$ per liter before sales tax", "DABS FY2026 monthly reports (F06)"],
+    ["grocery beer price", B.beer.price, "$ per liter before sales tax", "placeholder (F09)"],
+    ["beer excise", B.beer.excisePerLitre, "$ per liter", "placeholder (F10)"],
+    ["pure alcohol in one bottle of wine", paPerBottle, "liters", "750 ml x wine ABV"],
     ["beer cans with the same pure alcohol as one bottle of wine", paPerBottle / (CONTAINER_L.beer * B.beer.abv), "cans", "derived"],
     ["spirits bottles with the same pure alcohol as one bottle of wine", paPerBottle / (CONTAINER_L.spirits * B.spirits.abv), "bottles", "derived"],
-    ["wine litres per litre of beer at constant pure alcohol", B.beer.abv / B.wine.abv, "litres", "derived"],
-    ["wine litres per litre of spirits at constant pure alcohol", B.spirits.abv / B.wine.abv, "litres", "derived"],
+    ["wine liters per liter of beer at constant pure alcohol", B.beer.abv / B.wine.abv, "liters", "derived"],
+    ["wine liters per liter of spirits at constant pure alcohol", B.spirits.abv / B.wine.abv, "liters", "derived"],
   ];
 
   const json = {
@@ -292,18 +292,18 @@ export function flowFiles(commit: string, baseYear: string): Record<string, stri
     question:
       "Where would wine sold in Utah grocery stores come from (wine households now buy at DABS, beer, spirits, purchases made outside Utah, additional purchases), and what does each source do to the state's collections, costs and net fiscal contribution?",
     standing:
-      "Arithmetic on stated inputs. The shares of switching, recapture and additional buying have no Utah source: the scenarios and grids are illustrative ranges, not forecasts or confidence intervals. The arithmetic being checked does not validate any behavioural assumption.",
+      "Arithmetic on stated inputs. The shares of switching, recapture and additional buying have no Utah source: the scenarios and grids are illustrative ranges, not forecasts or confidence intervals. The arithmetic being checked does not validate any behavioral assumption.",
     units: {
       money: "US dollars a year, nominal FY2025",
       wine_at_state_store_prices: "dollars of wine valued at today's state-store shelf price before sales tax (the alternatives' unit)",
       spending: "consumer spending before sales tax at the price actually paid",
-      litres: "litres of beverage a year",
-      pure_alcohol: "litres of pure (ethanol) alcohol a year: litres x ABV",
+      litres: "liters of beverage a year",
+      pure_alcohol: "liters of pure (ethanol) alcohol a year: liters x ABV",
       per_dollar: "per $1 of today's state-store shelf price before sales tax",
       shares: "percent in CSV files; fractions in this JSON",
     },
     sign_convention: "change = proposed - baseline; positive means more for the state",
-    government_scope: "State of Utah only. Local sales tax and local licensing are not modelled.",
+    government_scope: "State of Utah only. Local sales tax and local licensing are not modeled.",
     data: FLOW_DATA,
     placeholders: FLOW_PLACEHOLDERS,
     base: FLOW_BASE,

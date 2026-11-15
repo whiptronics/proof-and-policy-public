@@ -30,7 +30,7 @@ const states = geos.filter((g) => g.geo_level === "state").map((g) => g.geo_id);
 const res = computeCaseResults(TN_2016_RESULTS, { idx, files, states, name });
 const S = TN_2016_RESULTS;
 
-// Raw series as each outcome is shown, Tennessee and its eight neighbours.
+// Raw series as each outcome is shown, Tennessee and its eight neighbors.
 const raw: Cell[][] = [["outcome_id", "outcome", "metric_id", "shown_as", "unit", "period_kind", "geo_id", "state", "year", "value"]];
 const extra = [{ id: "R2b", label: "Tennessee account 11002 'Wine Tax & High Alcohol Beer' (constant 2024 $)", metric: "tn_dor_account_11002_with_high_alcohol_beer@state_fiscal_year", shown: "real_cy2024", treatedOnly: true }];
 const outs = [...S.outcomes.map((o) => ({ id: o.id, label: o.label, metric: o.metric, shown: o.shown, treatedOnly: !!o.treatedOnly })), ...extra];

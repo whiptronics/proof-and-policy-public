@@ -1,5 +1,7 @@
 // Definitions and methods. Vocabularies come from the export; the prose explains how the pages use them.
 import { ErrorNote, Loading, StateBadge } from "../components/common";
+import { EvidenceKey } from "../components/Evidence";
+import { REVIEW_STATUS } from "../lib/evidence";
 import { useData } from "../lib/data";
 import { FORMULA_VERSION } from "../lib/formulas";
 import { words } from "../lib/format";
@@ -26,8 +28,14 @@ export function MethodsView() {
           data with their sources' own totals. That catches arithmetic and consistency errors; it does not show that a document was read
           correctly, that a law was coded correctly or that an assumption is reasonable. <span className="mono">machine_assisted_review</span>{" "}
           means code and the AI agent checked a record; it is not a human review. As of this release no transcribed value and no legal coding
-          is marked as reviewed by a person. The maintainer chose the questions and made or approved key modelling choices, but has not
+          is marked as reviewed by a person. The maintainer chose the questions and made or approved key modeling choices, but has not
           checked every figure.
+        </p>
+        <p className="small">
+          <strong>Which sources were checked, and by whom.</strong> Every value names the document it came from (see Sources). The AI agent
+          compared transcribed values with those documents, and scripts compare the data with each source's own totals on every build. No person
+          has yet compared any value with its source. A label such as "Published source" says where a value came from, not that anyone
+          reviewed it.
         </p>
         <p className="small">
           <strong>What it is not.</strong> Nothing here has been peer-reviewed, reviewed by a legal or subject-matter expert, or reviewed or
@@ -37,6 +45,14 @@ export function MethodsView() {
           AI-generated material can contain errors. Modeled results depend on the stated assumptions and should be evaluated alongside the
           cited sources and this methodology. Corrections are welcome at github.com/whiptronics/proof-and-policy-public/issues.
         </p>
+      </section>
+      <section className="panel" id="evidence-classes">
+        <h2>What each input rests on</h2>
+        <p className="small">
+          The Utah scenario pages label every input with where it comes from. Where a value comes from and whether a person has reviewed it are
+          kept apart: {REVIEW_STATUS}
+        </p>
+        <EvidenceKey />
       </section>
       <section className="panel">
         <h2>Coverage states</h2>
@@ -98,7 +114,7 @@ export function MethodsView() {
           items, not seasonally adjusted) averaged over that fiscal year's own 12 months, rebased to the calendar-2024
           average; if any month is missing (October 2025 was not published) the converted value is missing. Per-person
           values divide by the Census July 1 estimate falling inside the fiscal year, all ages or ages 21+ (21+ exists from
-          2000). Fiscal years are never relabelled as calendar years; NIAAA's calendar-year denominators are never used for
+          2000). Fiscal years are never relabeled as calendar years; NIAAA's calendar-year denominators are never used for
           fiscal amounts.
         </p>
         <p className="small">

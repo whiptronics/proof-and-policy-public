@@ -17,8 +17,8 @@
 // * Substitution (B, C) is participation (share of eligible buyers who change) x intensity (share of their purchases of
 //   the original beverage they replace) x a purchase weight (participants' purchases relative to the average eligible
 //   buyer's), applied to household purchases of that beverage. The wine bought for what was replaced is set on a stated
-//   basis: equal pure alcohol (default, the constant-alcohol scenario), equal litres, or equal spending.
-// * Every quantity is kept in litres of beverage, litres of pure alcohol and dollars; wine is also counted in dollars
+//   basis: equal pure alcohol (default, the constant-alcohol scenario), equal liters, or equal spending.
+// * Every quantity is kept in liters of beverage, liters of pure alcohol and dollars; wine is also counted in dollars
 //   at today's state-store price ("state-store-equivalent dollars"), the unit the alternatives use. No two units are
 //   added together.
 // * State receipts are computed for the baseline and the proposal from quantities, prices and the collection on each
@@ -26,7 +26,7 @@
 //   and must add back to it. School-meals and enforcement deposits are allocations of DABS's gross revenue, reported
 //   under both readings of the law and never added to the totals.
 // * Licensees (bars, restaurants, clubs) keep buying from DABS and are outside every flow. Local sales tax is not
-//   modelled. Health and safety are outside the calculation.
+//   modeled. Health and safety are outside the calculation.
 //
 // Arithmetic on stated inputs. Shares of switching, recapture and additional buying have no Utah source: they are
 // illustrative and varied in the exported grids, never estimated here.
@@ -81,9 +81,9 @@ const X0 = proposalInputs(WORKED_PROPOSALS.find((p) => p.id === INIT.worked.prop
 export interface BeverageBase {
   /** Dollars a year at the baseline shelf price before sales tax. */
   value: number;
-  /** Litres of beverage a year. */
+  /** Liters of beverage a year. */
   litres: number;
-  /** Shelf price before sales tax, $ per litre. */
+  /** Shelf price before sales tax, $ per liter. */
   price: number;
   abv: number;
   /** Share bought by households (the only purchases that can move or switch). */
@@ -131,7 +131,7 @@ function base(): FlowBase {
   };
 }
 
-/** The base year the flows use (FY2025 dollars; prices per litre from DABS's FY2026 monthly reports). */
+/** The base year the flows use (FY2025 dollars; prices per liter from DABS's FY2026 monthly reports). */
 export const FLOW_BASE: FlowBase = base();
 
 export interface BaseChanges {
@@ -141,12 +141,12 @@ export interface BaseChanges {
   beerHousehold?: number;
   beerPricePerGallon?: number;
   beerExcisePerBarrel?: number;
-  /** Wine price per litre at a state store (dollars stay fixed; litres follow). */
+  /** Wine price per liter at a state store (dollars stay fixed; liters follow). */
   winePricePerLitre?: number;
 }
 
 /** The base year with some stated values changed, for the sensitivity table. Dollar totals stay fixed except beer's,
- * which is litres (measured) x the price (a placeholder). */
+ * which is liters (measured) x the price (a placeholder). */
 export function flowBaseWith(c: BaseChanges, b: FlowBase = FLOW_BASE): FlowBase {
   const h = c.household ?? b.wine.household;
   const wp = c.winePricePerLitre ?? b.wine.price;
@@ -207,29 +207,29 @@ const ARR_DEFS: { id: Exclude<FlowArrangementId, "baseline">; altId: string; lab
   {
     id: "preserved_dabs",
     altId: "A_target",
-    label: "Preserved collection, DABS as wholesaler: DABS sells to grocers at today's shelf price; the grocer adds its own margin (28%)",
-    short: "Preserved, DABS wholesale",
+    label: "State keeps its take, DABS as wholesaler: DABS sells to grocers at today's shelf price; the grocer adds its own margin (28%)",
+    short: "DABS full price, grocer 28%",
     note: "Proposed design, not current law. The state keeps its full markup on every bottle. The grocer is paid by a higher grocery price: the price is a result, not an assumption.",
   },
   {
     id: "preserved_private",
     altId: "C_gallon",
-    label: "Preserved collection, private supply: a per-gallon charge collected from the licensed wholesaler, equal to DABS's average markup per gallon",
-    short: "Preserved, private + charge",
+    label: "State keeps its take, private supply: a per-gallon charge collected from the licensed wholesaler, equal to DABS's average markup per gallon",
+    short: "Private + charge",
     note: "Proposed design, not current law (no wine excise exists). Same dollars to the state per gallon as DABS's markup today. The private wholesaler (29.5%) and the grocer (28% of its price before the charge, which it passes on at cost: 19.3% of its full shelf price) are paid by a higher price.",
   },
   {
     id: "preserved_dabs_matched",
     altId: "A_matched",
-    label: "Preserved collection at today's consumer price: DABS keeps its markup and grocers charge the state-store price",
-    short: "Preserved, today's price",
+    label: "State keeps its take at today's consumer price: DABS keeps its markup and grocers charge the state-store price",
+    short: "DABS full price, grocer 0%",
     note: "Diagnostic: with both the state's markup and the consumer price held, nothing is left to pay the grocer (a 0% margin). Shows why preserving the collection does not also preserve the price.",
   },
   {
     id: "dabs_discount_20",
     altId: "B20_matched",
-    label: "DABS sells to grocers at 20% off its shelf price; grocers charge the state-store price",
-    short: "DABS 20% discount",
+    label: "DABS sells to grocers at 80% of its shelf price; grocers charge the state-store price",
+    short: "DABS sells at 80%",
     note: "The grocer's margin (20%) comes out of DABS's markup. Needs a change to the statutory minimum markup.",
   },
   {
@@ -294,7 +294,7 @@ export const FLOW_ARRANGEMENTS: FlowArrangementId[] = ["preserved_dabs", "preser
 export type ConversionBasis = "pure_alcohol" | "volume" | "spending";
 
 export interface SubstitutionFlow {
-  /** Share of eligible household buyers of the original beverage who change behaviour because wine is on the same shelf. */
+  /** Share of eligible household buyers of the original beverage who change behavior because wine is on the same shelf. */
   participation: number;
   /** Share of those buyers' purchases of the original beverage that they replace with wine. */
   intensity: number;
@@ -430,7 +430,7 @@ export interface Totals {
   gross: number;
   costs: Costs;
   costTotal: number;
-  /** Gross collections less the state costs modelled: the state's net fiscal contribution from these beverages. */
+  /** Gross collections less the state costs modeled: the state's net fiscal contribution from these beverages. */
   net: number;
   cells: ChannelCell[];
   /** DABS gross revenue from liquor sales on these beverages, and the two deposits on it, under each reading. */
@@ -464,7 +464,7 @@ export interface FlowLine {
 export interface Origin {
   id: "A" | "B" | "C" | "D" | "E";
   label: string;
-  /** Wine bought at grocers from this origin: dollars at today's state-store price, litres, pure-alcohol litres. */
+  /** Wine bought at grocers from this origin: dollars at today's state-store price, liters, pure-alcohol liters. */
   grocery: { storeEquivalent: number; litres: number; pureAlcoholLitres: number; spending: number };
   /** Wine from this origin bought at DABS instead (new DABS purchases). */
   dabs: { storeEquivalent: number; litres: number; pureAlcoholLitres: number };
@@ -484,7 +484,7 @@ export interface FlowResult {
   lines: FlowLine[];
   origins: Origin[];
   displaced: { beerLitres: number; heavyBeerLitres: number; spiritsLitres: number; beerPureAlcohol: number; spiritsPureAlcohol: number; declinedToBeerLitres: number };
-  /** Litres of pure alcohol bought by Utah households in Utah and outside it: change against the baseline. */
+  /** Liters of pure alcohol bought by Utah households in Utah and outside it: change against the baseline. */
   alcohol: { inUtah: number; outsideUtah: number; total: number };
   spending: { inUtah: number; outsideUtah: number };
   /** The decomposition adds back to the change in the totals, and origins add up to the grocery total. */
@@ -586,8 +586,8 @@ export function computeFlows(a: ArrangementTerms, x: FlowInputs, b: FlowBase = F
   const unitStore = w.margin + t - c.variable; // per $ of DABS store wine
   const unitGrocery = a.stateCollection + t * a.salesTaxBase - (a.supply === "dabs" ? c.handling : 0); // per $ of grocery wine
   const unitWine = (g: number) => g * unitGrocery + (1 - g) * unitStore;
-  const beerUnit = b.beer.excisePerLitre + t * b.beer.price; // per litre of grocery beer
-  const heavyUnit = (b.heavyBeer.margin + t - c.variable) * b.heavyBeer.price + b.beer.excisePerLitre; // per litre, excise included
+  const beerUnit = b.beer.excisePerLitre + t * b.beer.price; // per liter of grocery beer
+  const heavyUnit = (b.heavyBeer.margin + t - c.variable) * b.heavyBeer.price + b.beer.excisePerLitre; // per liter, excise included
   const spiritsUnit = (b.spirits.margin + t - c.variable) * b.spirits.price;
   const line = (id: FlowLineId, label: string, gained: number, lost: number): FlowLine => ({ id, label, value: gained - lost, wineGained: gained, displacedLost: lost });
   const lostStore = Math.max(0, w.value + b.spirits.value + b.heavyBeer.value - (storeWine + spiritsAfter + heavyAfter));
@@ -731,18 +731,18 @@ const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
 
 export const FLOW_ASSUMPTIONS: FlowAssumption[] = [
   { id: "F01", label: "DABS wine sales, FY2025, at state-store prices before sales tax", value: fmt$(FLOW_BASE.wine.value), evidence: "derived", source: "DABS FY2025 annual report (liquor sales) x wine's 33.5% share of the FY2026 monthly reports' gross sales", range: "-", note: "Includes licensee purchases; only the household share can move." },
-  { id: "F02", label: "Wine price per litre at a state store", value: `$${FLOW_BASE.wine.price.toFixed(2)}`, evidence: "derived", source: "DABS FY2026 monthly reports: wine gross sales / (9-litre cases x 9)", range: "$14.80 (NIAAA gallons)", note: "Converts dollars to litres. The alternatives' U16 uses NIAAA gallons ($14.80); the monthly reports' own cases are used here so dollars and litres share one source." },
+  { id: "F02", label: "Wine price per liter at a state store", value: `$${FLOW_BASE.wine.price.toFixed(2)}`, evidence: "derived", source: "DABS FY2026 monthly reports: wine gross sales / (9-liter cases x 9)", range: "$14.80 (NIAAA gallons)", note: "Converts dollars to liters. The alternatives' U16 uses NIAAA gallons ($14.80); the monthly reports' own cases are used here so dollars and liters share one source." },
   { id: "F03", label: "Households' share of DABS wine and spirits purchases", value: pct(FLOW_BASE.wine.household, 0), evidence: "proxy", source: "DABS FY2025 annual report p. 18: off-premise 82% of all its sales (a chart; all products)", range: "67%-97%", note: "Not measured for wine or spirits." },
   { id: "F04", label: "DABS markup as a margin on its price (wine and spirits)", value: pct(FLOW_BASE.wine.margin, 2), evidence: "proxy", source: "DABS FY2025 gross profit / sales, all products", range: "46.95% (the 88.5% statutory floor)", note: "Gross margin, before DABS's operating costs: not profit. Markup on landed cost = margin / (1 - margin)." },
-  { id: "F05", label: "DABS spirits sales, FY2025, and price per litre", value: `${fmt$(FLOW_BASE.spirits.value)}; $${FLOW_BASE.spirits.price.toFixed(2)}/L`, evidence: "derived", source: "FY2025 sales x spirits' share of the FY2026 monthly reports; price from the monthly reports' cases", range: "-", note: "Spirits are sold only by DABS." },
-  { id: "F06", label: "Heavy beer at DABS (above 5% ABV): sales, price per litre, margin", value: `${fmt$(FLOW_BASE.heavyBeer.value)}; $${FLOW_BASE.heavyBeer.price.toFixed(2)}/L; ${pct(FLOW_BASE.heavyBeer.margin)}`, evidence: "statute", source: "FY2026 monthly reports; margin at the 66.5% statutory minimum markup", range: "-", note: "Used only when some of the beer replaced is heavy beer (sensitivity)." },
-  { id: "F07", label: "Beer sold outside DABS (grocery, convenience, licensees)", value: `${(FLOW_BASE.beer.litres / 1e6).toFixed(1)}M litres`, evidence: "derived", source: "NIAAA 2024 Utah beer gallons less DABS heavy beer (FY2026 cases)", range: "-", note: "Calendar 2024 volume against fiscal-year DABS cases." },
+  { id: "F05", label: "DABS spirits sales, FY2025, and price per liter", value: `${fmt$(FLOW_BASE.spirits.value)}; $${FLOW_BASE.spirits.price.toFixed(2)}/L`, evidence: "derived", source: "FY2025 sales x spirits' share of the FY2026 monthly reports; price from the monthly reports' cases", range: "-", note: "Spirits are sold only by DABS." },
+  { id: "F06", label: "Heavy beer at DABS (above 5% ABV): sales, price per liter, margin", value: `${fmt$(FLOW_BASE.heavyBeer.value)}; $${FLOW_BASE.heavyBeer.price.toFixed(2)}/L; ${pct(FLOW_BASE.heavyBeer.margin)}`, evidence: "statute", source: "FY2026 monthly reports; margin at the 66.5% statutory minimum markup", range: "-", note: "Used only when some of the beer replaced is heavy beer (sensitivity)." },
+  { id: "F07", label: "Beer sold outside DABS (grocery, convenience, licensees)", value: `${(FLOW_BASE.beer.litres / 1e6).toFixed(1)}M liters`, evidence: "derived", source: "NIAAA 2024 Utah beer gallons less DABS heavy beer (FY2026 cases)", range: "-", note: "Calendar 2024 volume against fiscal-year DABS cases." },
   { id: "F08", label: "Households' share of that beer", value: pct(FLOW_BASE.beer.household, 0), evidence: "proxy", source: "DABS's all-product off-premise share, reused for beer", range: "70%-90%", note: "No Utah split of beer by premise." },
   { id: "F09", label: "Grocery beer shelf price", value: `$${FLOW_PLACEHOLDERS.beerPricePerGallon}/gallon ($${FLOW_BASE.beer.price.toFixed(2)}/L)`, evidence: "placeholder", source: "none in the dataset", range: "$8-$20 a gallon", note: "Enters through sales tax on beer, and through the equal-spending basis." },
   { id: "F10", label: "Utah beer excise (beer and heavy beer)", value: `$${FLOW_PLACEHOLDERS.beerExcisePerBarrel}/barrel`, evidence: "statute", source: "Utah Code 59-15-101(2)(b)(ii), version effective 2024-05-01: $13.35 a 31-gallon barrel from 2024-07-01 to 2025-06-30 (dataset policy event ut_beer_tax_1335)", range: "$13.10-$13.85 (the statute's FY2020-FY2027 rates)", note: "Since the 2024-05-01 version the tax also applies to heavy beer; it rises $0.25 each July 1 to $13.85." },
   { id: "F11", label: "Alcohol by volume: beer, wine, spirits", value: `${pct(FLOW_BASE.beer.abv)}, ${pct(FLOW_BASE.wine.abv)}, ${pct(FLOW_BASE.spirits.abv)}`, evidence: "measured", source: "NIAAA 2024 time-varying ABV, Utah", range: "-", note: `One 750 ml bottle of wine holds ${(0.75 * FLOW_BASE.wine.abv * 1000).toFixed(1)} ml of pure alcohol, as much as ${((0.75 * FLOW_BASE.wine.abv) / (CONTAINER_L.beer * FLOW_BASE.beer.abv)).toFixed(1)} 12-ounce cans of beer or ${((0.75 * FLOW_BASE.wine.abv) / (0.75 * FLOW_BASE.spirits.abv)).toFixed(2)} bottles of spirits.` },
   { id: "F12", label: "Heavy beer ABV", value: pct(FLOW_PLACEHOLDERS.heavyBeerAbv), evidence: "placeholder", source: "none", range: "6%-9%", note: "Only with a heavy-beer share above zero." },
-  { id: "F13", label: "State sales tax", value: pct(FLOW_BASE.salesTax, 2), evidence: "measured", source: "Publication 25, state portion", range: "-", note: "Local sales tax is not modelled." },
+  { id: "F13", label: "State sales tax", value: pct(FLOW_BASE.salesTax, 2), evidence: "measured", source: "Publication 25, state portion", range: "-", note: "Local sales tax is not modeled." },
   { id: "F14", label: "DABS store costs that move with sales", value: `${(COST_LINES.shortRun * 100).toFixed(2)}¢ per $`, evidence: "estimate", source: "DABS FY2025 card fees, package-agency contracts and bags / all-product sales", range: "0¢-5¢", note: "Variable lines only: a 30% fall in wine sales does not cut 30% of operating costs. Wages and delivery are a separate restructuring scenario." },
   { id: "F15", label: "Longer-run restructuring", value: "0 in the main cases", evidence: "illustrative", source: "DABS FY2025 wages 7.51¢ and delivery 1.05¢ per $", range: "0¢-8.56¢", note: "Only if staffing and delivery are cut in proportion." },
   { id: "F16", label: "New licensing and enforcement; license receipts", value: "$500,000 a year; $0", evidence: "placeholder", source: "no estimate exists", range: "$250,000-$1,000,000; $0-$500,000", note: "A license fee could offset part of the cost." },

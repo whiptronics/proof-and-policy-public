@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 
 export const VIEWS = [
   "start",
+  "briefing",
   "initiative",
   "utah",
   "change",

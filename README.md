@@ -8,11 +8,11 @@ revenue scenarios, and a local research dashboard. The same data and models powe
 **[proofandpolicy.us](https://proofandpolicy.us)**; this repository runs on its own and needs nothing from the
 website.
 
-**Status: research preview, release 0.3.1.** Coverage is partial and declared series by series in
+**Status: research preview, release 0.4.0.** Coverage is partial and declared series by series in
 [docs/coverage-report.md](docs/coverage-report.md). Nothing here establishes a causal effect of any
-policy. Hand-entered values and policy codings are labelled with who extracted them; none has yet been
+policy. Hand-entered values and policy codings are labeled with who extracted them; none has yet been
 reviewed by a person (an AI assistant did the extraction and checks; see the AI disclosure below), and they stay
-labelled that way until a named reviewer records a check.
+labeled that way until a named reviewer records a check.
 
 **Quick start without downloading the sources** (about five minutes): see
 [Run the example](#run-the-example-no-downloads) below.
@@ -42,7 +42,7 @@ maintainer's private working log and is not published; the CHANGELOG records the
 
 The test fixtures are real but tiny slices of the public sources, redistributable and bundled here
 (`tests/fixtures`, `config/builds/fixture.yaml`). They build a small example database and run the dashboard on it.
-Labelled **example data**: a few states and years only; use a full build for any real comparison.
+Labeled **example data**: a few states and years only; use a full build for any real comparison.
 
 ```bash
 python -m venv .venv
@@ -62,7 +62,7 @@ independently; `npm --prefix web run export:grocery-wine` writes the purchase-fl
 `python scripts/grocery_wine_flows_check.py` then recomputes with separately written closed forms.
 
 The full release tables (CSV, Parquet and DuckDB, with checksums and release notes) are attached to each
-[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.3.1.
+[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.4.0.
 They can always be rebuilt from the sources below.
 
 ## Why this exists, and what it does not claim
@@ -77,7 +77,7 @@ area. The data are built to support findings in either direction:
 - Contradictions between sources, including inside one source, are published, not smoothed over.
 
 It is an independent project. It is not affiliated with, endorsed by, or reviewed by any government
-agency, legislature, or research institution. Values extracted by hand and policy codings are labelled
+agency, legislature, or research institution. Values extracted by hand and policy codings are labeled
 with who extracted them and whether a maintainer has reviewed them.
 
 ## What is in the preview
@@ -235,7 +235,7 @@ website at proofandpolicy.us is a hosted copy of the same dashboard. See [docs/r
   these apart, and a current-law snapshot says nothing about earlier years.
 - **Salt Lake City, Salt Lake County, the Salt Lake metro area and Utah are different places.** This
   preview has state-level data only. The comparison rules in `src/alcohol_data/compare.py` refuse
-  cross-level comparisons unless they are explicitly labelled.
+  cross-level comparisons unless they are explicitly labeled.
 
 ## Repository layout
 

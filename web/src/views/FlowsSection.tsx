@@ -53,7 +53,7 @@ export function FlowsSection() {
         scenarios below differ on.
       </p>
       <p className="small muted">
-        "Preserved" designs keep the state's markup on every grocery bottle, through DABS as wholesaler or a per-gallon charge on private
+        The designs that keep the state's take collect its markup on every grocery bottle, through DABS as wholesaler or a per-gallon charge on private
         supply. That is a proposed design, not current law, and it does not keep the price: paying a grocer 28% puts grocery wine{" "}
         {pct(terms[0].consumerRatio - 1, 0)} (DABS) or {pct(terms[1].consumerRatio - 1, 0)} (private) above the state store. Substitution holds
         pure alcohol constant. Every share of switching, recapture or additional buying is illustrative: no Utah evidence gives any of them.
@@ -90,12 +90,12 @@ export function FlowsSection() {
       <ul className="small source-list">
         <li>
           <strong>Break-even at 30% moving, one source at a time.</strong>{" "}
-          {presAbove ? "The preserved designs need none: they are already at or above today's receipts. " : ""}DABS 20% discount:{" "}
+          {presAbove ? "The preserved designs need none: they are already at or above today's receipts. " : ""}DABS selling to grocers at 80%:{" "}
           {beWords("dabs_discount_20")}. Private 20% tax: {beWords("private_tax_20")}.
         </li>
         <li>
           <strong>More wine sold is not more alcohol.</strong> Replacing 5% of households' beer at the same alcohol means about{" "}
-          {(wineL / 1e6).toFixed(1)} million more litres of wine a year and less beer, with the same pure alcohol. Equal litres of wine for
+          {(wineL / 1e6).toFixed(1)} million more liters of wine a year and less beer, with the same pure alcohol. Equal liters of wine for
           beer, or additional wine, would add alcohol.
         </li>
         <li>
@@ -111,7 +111,7 @@ export function FlowsSection() {
         </li>
         <li>
           <strong>What is verified.</strong> An independent script recomputes every scenario, grid point and break-even with separate closed
-          forms. That verifies the arithmetic, not any behavioural assumption. Tennessee's receipts rose after grocery wine, but there wine and
+          forms. That verifies the arithmetic, not any behavioral assumption. Tennessee's receipts rose after grocery wine, but there wine and
           spirits were already sold by private licensees, so it does not show how much of Utah's grocery wine would be switching, recapture or
           new purchases.
         </li>

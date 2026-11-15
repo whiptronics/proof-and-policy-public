@@ -125,7 +125,7 @@ re-checked against the database by `tests/test_dashboard_export.py`.
 
 1. The Tennessee Alcoholic Beverage Commission's list of adopting localities, with dates, and license counts.
    This gives the exposure share.
-2. The statutory basis of Department of Revenue account 11002's FY2018 relabelling, and monthly collections
+2. The statutory basis of Department of Revenue account 11002's FY2018 relabeling, and monthly collections
    around July 2016 (stocking versus sales).
 3. Primary-law coding of grocery-wine and alcohol-tax status for Virginia, Georgia, Arkansas and Kentucky,
    2011-2021.

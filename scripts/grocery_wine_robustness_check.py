@@ -11,7 +11,7 @@ value the TypeScript model gives.
 At matched consumer prices, per dollar of state-store sales that moves to grocers, before the fixed new costs N:
     private supply with a replacement tax a on the sellers' price   -m + a/(1+a) + v
     DABS supply at a discount d to grocers                          v - d
-where m is DABS's gross margin and v the store cost avoided. The sales tax rate drops out of both. Ranges are labelled
+where m is DABS's gross margin and v the store cost avoided. The sales tax rate drops out of both. Ranges are labeled
 by what supports them: evidence, a statute reference point, or illustrative (no evidence; shown only to see how far
 the result moves). No probabilities: nothing here says how likely a value is.
 """
@@ -108,7 +108,7 @@ def tax_at(k: float) -> float:
 
 
 joint = {
-    # favourable: every salary avoidable; private supply also stops delivery; the lowest reported margin
+    # favorable: every salary avoidable; private supply also stops delivery; the lowest reported margin
     "favourable": (
         net1(m_=MARGIN_FY2021, v_=avoid_high + delivery),
         net2(v_=avoid_high),

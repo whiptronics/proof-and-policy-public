@@ -13,7 +13,7 @@ Two kinds of noise are kept apart and then combined:
   is the sum over crashes of the squared deaths per crash (``sum_sq``), larger than the count itself whenever a
   crash kills more than one person. The interval is the exact Garwood interval of a scaled Poisson with that
   variance: ``phi * Garwood(count / phi)`` with ``phi = sum_sq / count``, which keeps the Garwood interval's
-  good behaviour for the small counts of small states (a plus-or-minus-1.96-square-roots interval does not).
+  good behavior for the small counts of small states (a plus-or-minus-1.96-square-roots interval does not).
   Without ``sum_sq`` (``phi = 1``) it is the plain Poisson interval.
 * **Imputation noise.** Where a crash's driver BAC was not reported, NHTSA supplies ten imputed values, so
   "alcohol-impaired-driving deaths" comes in ten versions, one per imputation. Their spread is real

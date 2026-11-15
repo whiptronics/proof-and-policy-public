@@ -10,7 +10,7 @@ status: descriptive_example_incomplete
 question: >-
   When Tennessee let retail food stores sell wine (licenses from 2016-07-01, where a local referendum had
   passed), what happened to state alcohol tax receipts, apparent wine consumption and reported drinking,
-  next to neighbouring states? Described only; no effect is estimated.
+  next to neighboring states? Described only; no effect is estimated.
 treated_geo: "state:47"
 reform_policy_ids:
   - tn_ordinary_grocery_wine_not_authorized_before_2016
@@ -128,11 +128,11 @@ cannot_establish:
   - "That the reform caused any of these changes. The minimum wine price rule began the same day; the comparison states' alcohol-tax laws are not coded and Georgia's and Arkansas's grocery-wine status is unknown on almost every day; local adoption is unknown; and Tennessee's tax receipts were already rising."
   - "A revenue effect of food-store wine sales: Census T10 combines beer, wine and spirits taxes, and Tennessee's wine tax account covers every channel (and high-alcohol beer from FY2018)."
   - "Whether the FY2017 rise in wine tax collections was lasting sales growth or a one-time effect such as stocking thousands of new retail shelves; the FY2018 figure is lower and under a wider label."
-  - "Whether the jump in apparent wine consumption is residents drinking more, stocking of thousands of new retail shelves, visitors, or purchases moved from neighbouring states."
+  - "Whether the jump in apparent wine consumption is residents drinking more, stocking of thousands of new retail shelves, visitors, or purchases moved from neighboring states."
   - "Anything about Utah. Utah's alcohol money arrives mainly as state-store profit, not as T10, and a grocery change there would move sales away from state stores; Tennessee's numbers do not transfer."
   - "Whether the 2016 BRFSS rise reflects drinking or a change in the survey's Tennessee sample; survey design changes were not checked."
 would_improve:
-  - "The statutory basis of each Department of Revenue alcohol account, and of account 11002's FY2018 relabelling to include high-alcohol beer."
+  - "The statutory basis of each Department of Revenue alcohol account, and of account 11002's FY2018 relabeling to include high-alcohol beer."
   - "Monthly collections around 2016-07-01, to see whether the FY2017 rise came at once (stocking) or built up (sales)."
   - "The Alcoholic Beverage Commission's list of adopting localities with dates, and license counts by year, to measure exposure."
   - "Later Tennessee public chapters and a dated code text to verify the law after 2016-07-01."

@@ -9,9 +9,9 @@ question you want to answer and opens one of the analysis tools with inputs fill
 |---|---|---|---|
 | **Start here** | `?v=start` (the default) | Four questions: what changed after a state allowed grocery-store wine; which states compare with Utah; how revenue and consumption compare across states (a short form that opens Explore); what assumptions mean for Utah's wine revenue. Below them, "The whole country at a glance" opens Utah at a glance, the Map, Beer, wine & spirits and Revenue by state. Lists analyses saved in this browser. | none |
 | **Utah at a glance** | `?v=utah` | One page: how Utah sells alcohol (its verified liquor-control arrangement, with dates and sources); Utah's latest value on 13 measures with the comparison year, its rank among the states with a value for that year, definition and form, the U.S. value and Utah's first and latest values with a small trend line; nine candidate comparison states (the finder's top five at its default settings, plus Virginia, Pennsylvania, Idaho and Oregon, whose governments also wholesale spirits), each with why it was chosen, how it differs and what the dataset cannot yet say; a chart of Utah and the top candidates; "Why Utah's liquor-sales figures differ", a year-by-year bridge from DABS's sales to Census's receipts and the audited fund's sales (statutory deposits, residual, evidence status per statement, sources, a residual chart, FY2024 on its own, the sales-tax basis by series, the deposit rates by fiscal year, and Utah beside Pennsylvania's audited State Stores Fund for FY2023-FY2025); links into the detailed tools and two saved starting points. Prints as a report. | `web/src/lib/glance.ts` for ranks; the bridge `utah-liquor-bridge@1.0` (`src/alcohol_data/fiscal_bridge.py`, `web/src/lib/reconcile.ts`); with rank ranges (`rank-intervals@1.0`, `web/src/lib/ranks.ts`); candidates from `rankCandidates` in `web/src/lib/finder.ts` (`comparison-finder@1.1`) |
-| **Before & after** | `?v=change` | Window averages before and after a change date for a state and up to five comparison states, the change and percent change, a descriptive difference in changes, pre-period trends and what those trends alone would give, an annual chart marking the change, an optional event-time chart, and every value considered with why it was or was not used. Verified dates are offered from the coded law; a typed date is labelled an assumption. First example: Tennessee, 2016-07-01. | `before-after@1.2`, `web/src/lib/change.ts`; standard errors from published intervals, `stats-helpers@1.1` |
+| **Before & after** | `?v=change` | Window averages before and after a change date for a state and up to five comparison states, the change and percent change, a descriptive difference in changes, pre-period trends and what those trends alone would give, an annual chart marking the change, an optional event-time chart, and every value considered with why it was or was not used. Verified dates are offered from the coded law; a typed date is labeled an assumption. First example: Tennessee, 2016-07-01. | `before-after@1.2`, `web/src/lib/change.ts`; standard errors from published intervals, `stats-helpers@1.1` |
 | **Find comparison states** | `?v=finder` | Ranks states by similarity to a target state in baseline years, on characteristics the reader picks (population, income, drinking, binge drinking, wine and all-alcohol consumption, alcohol taxes per adult, state liquor-store receipts), with weights, minimum coverage and policy exclusions. Every score shows the values behind it. With a change date, the baseline must end before it. Optionally compares liquor-control arrangements over the baseline (section 4): mark each candidate, leave out those verified to differ, or rank only those verified to match and list the ones that cannot be assessed. Candidates can be sent to Before & after, Explore or Compare. | `comparison-finder@1.1`, `web/src/lib/finder.ts`; liquor control `web/src/lib/control.ts` |
-| **Utah revenue scenarios** | `?v=scenario` | State revenue from wine today and if some purchases moved to grocery stores (scenario A), optionally with extra purchases and beer substitution (scenario B). Sourced and derived inputs (DABS sales, gross margin, expenses; NIAAA gallons and alcohol content; Utah's coded beer excise) are labelled; everything else is the reader's assumption and is requested, never filled. Ways for the state to collect on grocery wine include DABS staying the wholesaler at a discount (1.2). Scenario A step by step, with the school-meals and enforcement deposits shown as today's allocation of the margin that moves; break-even values (scenario B's including any price response); sensitivity with the value at which each assumption would reverse the sign; CSV and print. One worked proposal (grocery wine with DABS as wholesaler) opens from the page with every assumption stated. Section 6 (2026-10-14) compares three arrangements on the same inputs, with a worked comparison for FY2025 (below, "Comparing arrangements"). | `utah-wine-scenario@1.4`, `web/src/lib/scenario.ts`; arrangements `utah-wine-arrangements@1.0`, `web/src/lib/arrangements.ts`; ranges `scenario-ranges@1.2`; statutory wine margin `wine-margin@1.0`; exploratory cost evidence `store-cost@1.0` (`cost_model.json`) |
+| **Utah revenue scenarios** | `?v=scenario` | State revenue from wine today and if some purchases moved to grocery stores (scenario A), optionally with extra purchases and beer substitution (scenario B). Sourced and derived inputs (DABS sales, gross margin, expenses; NIAAA gallons and alcohol content; Utah's coded beer excise) are labeled; everything else is the reader's assumption and is requested, never filled. Ways for the state to collect on grocery wine include DABS staying the wholesaler at a discount (1.2). Scenario A step by step, with the school-meals and enforcement deposits shown as today's allocation of the margin that moves; break-even values (scenario B's including any price response); sensitivity with the value at which each assumption would reverse the sign; CSV and print. One worked proposal (grocery wine with DABS as wholesaler) opens from the page with every assumption stated. Section 6 (2026-10-14) compares three arrangements on the same inputs, with a worked comparison for FY2025 (below, "Comparing arrangements"). | `utah-wine-scenario@1.4`, `web/src/lib/scenario.ts`; arrangements `utah-wine-arrangements@1.0`, `web/src/lib/arrangements.ts`; ranges `scenario-ranges@1.2`; statutory wine margin `wine-margin@1.0`; exploratory cost evidence `store-cost@1.0` (`cost_model.json`) |
 
 Rules the tools keep:
 - **Before & after.** Each value is placed by its own period dates (before, after, or straddling the date),
@@ -53,7 +53,7 @@ Rules the tools keep:
   depends on how the law would treat the new arrangement, which the scenario does not decide. Scenario A
   moves existing purchases; scenario B adds only extra purchases; beer replaced by extra wine takes its
   excise and sales tax with it, holding spending, volume or pure alcohol constant as chosen. No health outcome is inferred. Example values are
-  labelled as illustrations wherever they appear.
+  labeled as illustrations wherever they appear.
 - **Uncertainty (2026-10-12).** Intervals, rank ranges, placebo checks and scenario ranges follow
   docs/methods/statistical-approximations.md: an interval covers only what the published intervals cover
   (sampling error for surveys, chance variation in the count for FARS), years and states are treated as
@@ -81,7 +81,7 @@ all its sales (82%, FY2025 report p. 18), so an analysis saved before 1.5 restor
 smaller result; entering 100 reproduces the earlier figures. The arrangement comparison became
 `utah-wine-arrangements@1.1`: a price case (`pc=matched` or `pc=entered`; addresses without it keep the entered price),
 what sellers keep and the price at which the state and sellers both hold (`gw=`, `gg=`, the gross margins a private
-wholesaler and a grocer need, assumptions), the exploratory return-to-state-stores case labelled as such, and two
+wholesaler and a grocer need, assumptions), the exploratory return-to-state-stores case labeled as such, and two
 guarantee proposals (`er=fixed` or `er=proportional`; the older `er=today` reads as fixed).
 
 | Input | Treatment | Source, year, units, basis | Why |
@@ -95,7 +95,7 @@ guarantee proposals (`er=fixed` or `er=proportional`; the older `er=today` reads
 | State sales tax rate (`st`) | entered; one click offers the pinned state rate | Utah State Tax Commission Publication 25 (pages marked draft), percent | The state portion only; which state-store sales bear sales tax, and at what combined rate, is not established in this dataset. |
 | Avoidable operating cost (`vc`) | the reader's assumption; the exploratory cost regression is shown beside it, never filled in | none | Total operating expenses and the exploratory regression do not identify marginal savings. Pennsylvania's audited operating expenses describe a different system and are not used. |
 | Household share of wine sales (`hh`, 2026-10-15) | sourced default for all products, applied to wine as an assumption | DABS annual report FY2025, p. 18, "On-Premise vs. Off-Premise Sales": off-premise 82% (whole percents, all products; dollars or volume not stated) | Only purchases for home could move; licensees keep buying from DABS. No wine split is published (records request C drafted, not sent). |
-| New state costs, share moving, grocery price, pass-through, how the state keeps revenue, extra purchases, elasticity, recapture, beer substitution and beer price | the reader's assumptions | none (the elasticity help cites Nelson 2013 without filling it) | Behavioural or policy choices that no reconciled fiscal source settles. |
+| New state costs, share moving, grocery price, pass-through, how the state keeps revenue, extra purchases, elasticity, recapture, beer substitution and beer price | the reader's assumptions | none (the elasticity help cites Nelson 2013 without filling it) | Behavioral or policy choices that no reconciled fiscal source settles. |
 
 Sensitivity scenarios stay free of probability statements; Monte Carlo stays hidden.
 
@@ -117,7 +117,7 @@ The three arrangements are proposals, not current law:
 Rules it keeps:
 - **One baseline, one scope.** Every column uses the same base year, wine sales, margin, sales tax, costs, share moving
   and grocery price. Both sides count state government revenue only (the gross margin, the state's sales tax, the
-  replacement tax or wholesale margin); local sales tax is not modelled, so local and combined revenue are not shown.
+  replacement tax or wholesale margin); local sales tax is not modeled, so local and combined revenue are not shown.
 - **The baseline and its standing.** A table gives each figure's source, year, units, coverage and standing: DABS's
   liquor sales (before sales tax by Note B; all customers, licensees included), the wine share (FY2026 monthly
   reports), the derived wine sales, the all-product margin (applying it to wine is an assumption), the operating
@@ -128,7 +128,7 @@ Rules it keeps:
 - **Purchases.** The comparison starts from the channel shift (scenario A: total wine bought unchanged), then adds each
   purchase change entered in section 5 on its own (price response, cross-border recapture, easier access) and all
   together. The model is additive in them, so the parts add up to the whole (tested), and a volume table reconciles
-  today's purchases, the shift and each change to the modelled total by channel. Beer substitution is left out of the
+  today's purchases, the shift and each change to the modeled total by channel. Beer substitution is left out of the
   comparison and its two bases (spending, pure alcohol) are described instead.
 - **Prices.** In arrangement 1 the tax can reach the shelf price (method 1.3 of the scenario model: `taxToPrice`; the
   tax on the price is levied on the price before it); with an elasticity, a higher price lowers what is bought.
@@ -216,7 +216,7 @@ There is also a worked grocery-wine example, a definitions page and downloads.
 - A change map is percent change between two years of one state's own series, undefined from a zero or
   negative base and blank across a definition change. A state whose series moves 50% or more in one year
   inside the span is marked †, with the years, because such a move often reflects what the source counts.
-- Small Northeastern states are labelled to the side with leader lines; every state is a focusable control
+- Small Northeastern states are labeled to the side with leader lines; every state is a focusable control
   with its value in its name, and a live region repeats the value of the state pointed at or focused.
 - Bar lengths fit the period shown; colors follow the map's scale.
 
@@ -264,7 +264,7 @@ README.
 
 **Two routes exist only on the development and preview servers. They are never part of the build output.**
 - `/local-raw/<asset_id>` opens the cached copy of a source file. It works only for files whose rights
-  allow redistribution: federal public domain, government edicts or open licences.
+  allow redistribution: federal public domain, government edicts or open licenses.
 - `/release/<file>` serves the locally packaged release from `dist/<version>/`.
 
 Restricted files are never served or copied. That covers the 1992 annotated-code volume, the DABS

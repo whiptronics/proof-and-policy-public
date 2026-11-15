@@ -251,7 +251,7 @@ assets:
     options: {fiscal_year: 2022}
     notes: >-
       Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
-      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.
+      list no G (other capital outlay) items at all; F90 is still labeled 'Liquor Stores-Construction'.
   - asset_id: census_govfin_unit_fy2023
     url: https://www2.census.gov/programs-surveys/gov-finances/tables/2023/2023_Individual_Unit_Files.zip
     method: manual_import
@@ -265,7 +265,7 @@ assets:
     options: {fiscal_year: 2023}
     notes: >-
       Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
-      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.
+      list no G (other capital outlay) items at all; F90 is still labeled 'Liquor Stores-Construction'.
   - asset_id: census_govfin_unit_fy2024
     url: https://www2.census.gov/programs-surveys/gov-finances/tables/2024/2024_Individual_Unit_Files.zip
     method: manual_import
@@ -279,4 +279,4 @@ assets:
     options: {fiscal_year: 2024}
     notes: >-
       Layout from FY2017 (FIPS codes, 12-character IDs, 32-character records, Fin_PID). From FY2022 the files
-      list no G (other capital outlay) items at all; F90 is still labelled 'Liquor Stores-Construction'.
+      list no G (other capital outlay) items at all; F90 is still labeled 'Liquor Stores-Construction'.

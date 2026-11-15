@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { jointScenarios } from "./arrangements";
 import { INITIATIVES, initiativeById, initiativeFigures, jointNets, proposalInputs, workedBounds } from "./initiatives";
 import { WORKED_PROPOSALS } from "./scenario";
+import { EVIDENCE_ORDER } from "./evidence";
 
 // The Utah brief's figures (docs/briefings/utah-grocery-wine/brief.md), which scripts/grocery_wine_briefing_example.py
 // recomputes by hand. The page computes them from the models; these pin them so the page, the brief and the script agree.
@@ -95,7 +96,8 @@ describe("the Utah grocery-wine initiative page", () => {
   it("keeps the advocate's goal apart from the findings and labels every assumption", () => {
     for (const i of INITIATIVES) {
       expect(i.advocacy.goal.length).toBeGreaterThan(0);
-      for (const a of i.worked.assumptions) expect(["source", "assumption", "policy"]).toContain(a.basis);
+      // Every input carries one of the evidence classes (lib/evidence.ts); evidence.test.ts checks the rest.
+      for (const a of i.worked.assumptions) expect(EVIDENCE_ORDER).toContain(a.basis);
     }
   });
 });

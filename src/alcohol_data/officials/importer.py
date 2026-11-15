@@ -191,12 +191,12 @@ def parse_jurisdiction(ocd: str) -> dict:
         or parts[-1] != "government"
         or parts[1] != "country:us"
     ):
-        raise ArchiveError(f"unrecognised jurisdiction id {ocd!r}")
+        raise ArchiveError(f"unrecognized jurisdiction id {ocd!r}")
     kv = []
     for p in parts[2:-1]:
         k, _, v = p.partition(":")
         if not v:
-            raise ArchiveError(f"unrecognised jurisdiction id {ocd!r}")
+            raise ArchiveError(f"unrecognized jurisdiction id {ocd!r}")
         kv.append((k, v))
     out = {"jurisdiction": ocd, "scope": "federal", "state": "us", "place": None}
     for k, v in kv:
@@ -205,7 +205,7 @@ def parse_jurisdiction(ocd: str) -> dict:
         elif k in ("county", "place"):
             out["scope"], out["place"] = k, v
         else:
-            raise ArchiveError(f"unrecognised jurisdiction id {ocd!r}")
+            raise ArchiveError(f"unrecognized jurisdiction id {ocd!r}")
     return out
 
 

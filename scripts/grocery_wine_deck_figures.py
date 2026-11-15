@@ -48,12 +48,13 @@ plt.rcParams.update(
     }
 )
 
-# The four options the deck explains, in its order: (alternative id, label for the chart)
+# The four options the deck explains, drawn top to bottom with the two that keep state revenue whole first:
+# (alternative id, label for the chart). OPTIONS[2:] are the two that lower it.
 OPTIONS = [
-    ("B20_matched", "DABS sells to grocers at 20% off;\nsame price as a state store"),
-    ("C20_matched", "Private wholesalers, 20% state tax;\nsame price as a state store"),
     ("A_target", "DABS keeps its full markup;\nthe grocer adds its own"),
     ("C_gallon", "Private wholesalers; a state charge\nper gallon equal to DABS's markup"),
+    ("B20_matched", "DABS sells to grocers at 80%;\nsame price as a state store"),
+    ("C20_matched", "Private wholesalers, 20% state tax;\nsame price as a state store"),
 ]
 # The purchase-flow design that uses each option's per-bottle terms (web/src/lib/wineFlows.ts).
 FLOW_ID = {
@@ -217,7 +218,7 @@ def main() -> int:
     ]
     fig, ax = plt.subplots(figsize=(11.5, 5.4))
     w = 0.26
-    opts = OPTIONS[:2]
+    opts = OPTIONS[2:]  # only the designs that lower revenue need a break-even
     for i, (aid, _lab) in enumerate(opts):
         y = len(opts) - 1 - i
         for k, (lever, _slab, c) in enumerate(sources):
@@ -240,7 +241,7 @@ def main() -> int:
                     fontsize=12,
                     color=INK2,
                 )
-    for aid in (a for a, _ in OPTIONS[2:]):
+    for aid in (a for a, _ in OPTIONS[:2]):
         for lever, _s, _c in sources:
             r = be[(FLOW_ID[aid], lever)]
             nums.setdefault("break_even", {})[f"{aid}:{lever}"] = {
@@ -311,7 +312,7 @@ def main() -> int:
     )
     save(fig, out, "fig5_sources_of_grocery_wine")
 
-    # 4. Tennessee after grocery wine (July 2016): Tennessee against its eight neighbouring states
+    # 4. Tennessee after grocery wine (July 2016): Tennessee against its eight neighboring states
     main = {r["outcome_id"]: r for r in rows(TN / "tennessee_results_main_and_sensitivity.csv") if r["specification"] == "main"}
     by = rows(TN / "tennessee_main_by_state.csv")
     groups = [("B1", "Wine bought per adult (21+)\n2011–15 to 2017–19"), ("R1", "State alcohol tax receipts, after inflation\nFY2012–15 to FY2017–19")]
@@ -335,7 +336,7 @@ def main() -> int:
     ax.set_yticklabels(["−10%", "0%", "+10%", "+20%", "+30%", "+40%"])
     ax.set_ylabel("Change, before to after")
     ax.spines["bottom"].set_visible(False)
-    ax.legend(handles=[Patch(color=TNC, label="Tennessee"), Patch(color=NBC, label="Its 8 neighbouring states (bar: average; line: lowest to highest)")], loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=12)
+    ax.legend(handles=[Patch(color=TNC, label="Tennessee"), Patch(color=NBC, label="Its 8 neighboring states (bar: average; line: lowest to highest)")], loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=2, frameon=False, fontsize=12)
     save(fig, out, "fig4_tennessee")
 
     (out / "numbers.json").write_text(json.dumps(nums, indent=1), encoding="utf-8")

@@ -3,7 +3,7 @@
 This project's download tools cannot reach the sites below (the cloud workspace and the linked computer's
 shell are both refused by their hosts or by the network allowlist; nothing was bypassed, and the refused addresses
 were not retried on 2026-10-14). Each file was found and, where marked, read through a web reader, which is enough to
-know what it holds and to keep provisional notes (`data/curated/research/provisional_figures.csv`, labelled "read
+know what it holds and to keep provisional notes (`data/curated/research/provisional_figures.csv`, labeled "read
 online"), but not to cite it as a saved, checksummed source. Save each file from a browser into
 `../Repeal Title 32B Utah` (next to this repository's folder), keeping the name the site gives it. The next session
 matches each file to its lead by contents, registers it in `config/sources/`, imports it with
@@ -23,7 +23,7 @@ One list, in order of what each file settles for the simulator (docs/plans/natio
 
 | # | File | Address | Read? | Unlocks | Lead |
 |---|---|---|---|---|---|
-| 1 | State of Utah ACFR, FY2025 | https://finance.utah.gov/wp-content/uploads/FY25-ACFR-FINAL-reduced-size.pdf | **saved 2026-10-14, pinned as `utah_acfr_fy2025`** | the Alcoholic Beverage Services Fund statements (about p. 50) and notes: how the fund recognises sales and the two deposits, the $9.750 million adjustment, and so FY2024's $17.5 million residual; pins 10 provisional figures | `lead_ut_audited_lcf` |
+| 1 | State of Utah ACFR, FY2025 | https://finance.utah.gov/wp-content/uploads/FY25-ACFR-FINAL-reduced-size.pdf | **saved 2026-10-14, pinned as `utah_acfr_fy2025`** | the Alcoholic Beverage Services Fund statements (about p. 50) and notes: how the fund recognizes sales and the two deposits, the $9.750 million adjustment, and so FY2024's $17.5 million residual; pins 10 provisional figures | `lead_ut_audited_lcf` |
 | 2 | State of Utah ACFR, FY2024 | https://treasurer.utah.gov/wp-content/uploads/FY24-ACFR-Final.pdf | **saved 2026-10-14, pinned as `utah_acfr_fy2024`** | the FY2024 fund statement as first published (before the FY2025 adjustment) with FY2023 beside it: FY2023's $1.07 million residual and FY2024 | `lead_ut_audited_lcf` |
 | 3 | DABC 81st annual report (FY2016) | https://abs.utah.gov/wp-content/uploads/81st_annual.pdf | **saved 2026-10-14, pinned as `utah_dabs_annual_report_fy2016`** | pins 54 provisional figures (FY2012-FY2016), the "Sales net of Taxes" label and the bridge for FY2012-FY2014 | `lead_ut_dabs_reports_fy2012_2019` |
 | 4 | DABC 84th annual report (FY2019) | https://abs.utah.gov/wp-content/uploads/84th_annual.pdf | **saved 2026-10-14, pinned as `utah_dabs_annual_report_fy2019`** | pins 54 provisional figures (FY2015-FY2019) | `lead_ut_dabs_reports_fy2012_2019` |

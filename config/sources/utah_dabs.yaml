@@ -7,7 +7,7 @@ update_frequency: Annual report (fiscal year ending June 30)
 source_family: finance
 rights_status: facts_with_citation
 notes: >-
-  Financial statements are labelled unaudited in the report. Values are transcribed by hand from rendered
+  Financial statements are labeled unaudited in the report. Values are transcribed by hand from rendered
   pages (data/curated/manual_observations.csv) because text extraction scrambles the tables. The PDFs are
   not redistributed; only the extracted figures and page citations are. abs.utah.gov robots.txt asks for
   a 10-second crawl delay, which the fetcher honors.

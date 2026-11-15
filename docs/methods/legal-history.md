@@ -125,12 +125,12 @@ Only five bills changed a tracked Title 32B section:
 The plan's other leads were inventoried and touch no tracked section:
 
 - 2012 S.B. 66 (ch. 365, effective 2012-07-01) amends 32B-2-201 to -209, 32B-2-302, 32B-2-605 and others.
-- 2012 S4 S.B. 4001 (ch. 1, effective 2012-06-25) amends 32B-2-305 and Chapter 6 licence sections.
+- 2012 S4 S.B. 4001 (ch. 1, effective 2012-06-25) amends 32B-2-305 and Chapter 6 license sections.
 
 **Reconstruction**, per section:
 
 1. *Effective dates.* Each bill's effective-date clause is read for the section. A clause that names the
-   section in a form the parser does not recognise leaves the date unresolved; it is never guessed. The
+   section in a form the parser does not recognize leaves the date unresolved; it is never guessed. The
    digest date is used only when the bill has no general date of its own (for example "takes effect upon
    approval").
 2. *Amendments before commencement.* S.B. 12 and S.B. 314 amended the not-yet-operative Title 32B, so the
@@ -192,7 +192,7 @@ Before 2011-07-01 the alcohol law was Title 32A, which 2010 S.B. 167 repealed on
 **Crosswalk.** The Office of Legislative Research and General Counsel's summary table for S.B. 167 lists, for
 every Title 32A section in effect on 2009-07-01, the Title 32B sections into which "a significant portion"
 of it went. It says it is "not a comprehensive analysis". It is pinned and parsed into
-`utah_title32a_crosswalk.csv` (414 mappings for 271 sections). Each mapping is labelled with the plan's
+`utah_title32a_crosswalk.csv` (414 mappings for 271 sections). Each mapping is labeled with the plan's
 relation types: renumbered, split, merged, repealed or unresolved. All are `finding_aid_unreviewed`: a
 mapping says where to look, not that the old and new texts mean the same.
 
@@ -252,7 +252,7 @@ verified under whichever set has its texts in force, and the two titles never ov
   ("beer", "alcoholic beverage", "alcoholic product") in different words, and none of the three 2008 bills
   has a coordination clause. For 2008-07-01 onward, the operative text is taken from the Legislature's
   next print of the section (2009 S.B. 187's text before amendment, "as last amended by ... 2008, Chapters
-  317, 322, and 391"). It is labelled `reconstructed`, not reconciled. For 2008-05-05 to 2008-06-30 no
+  317, 322, and 391"). It is labeled `reconstructed`, not reconciled. For 2008-05-05 to 2008-06-30 no
   print shows the text. Those days carry check results only because the session-start text, each bill's
   text and the print all give the same results.
 - *Split effective dates.* 2009 S.B. 187 took effect 2009-05-12, except that subsections (12), (23), (35)

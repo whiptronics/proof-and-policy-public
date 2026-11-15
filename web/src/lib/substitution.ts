@@ -18,7 +18,7 @@
 //   or DABS's margin on its sales to grocers, and sales tax.
 // * The beer given up is taken to be beer bought at grocers and convenience stores (up to 5% ABV since 2019-11-01):
 //   the state loses its beer excise and sales tax on it, nothing more. Heavy beer from state stores, which carries a
-//   markup, is not modelled; displacing it would cost the state more per gallon than is shown here.
+//   markup, is not modeled; displacing it would cost the state more per gallon than is shown here.
 // * The beer price is the reader's: no source in the dataset gives Utah's average beer price per gallon.
 import { arrangementInputs, solveLever, withMechanisms, type ArrangementSettings } from "./arrangements";
 import { compute, type DepositRates, type ScenarioInputs, type ScenarioResult } from "./scenario";

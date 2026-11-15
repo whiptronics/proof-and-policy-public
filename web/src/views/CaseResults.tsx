@@ -117,10 +117,10 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
               <th>Outcome</th>
               <th className="num">Tennessee, before → after</th>
               <th className="num">Tennessee change</th>
-              <th className="num">Neighbours' average change (log points)</th>
+              <th className="num">Neighbors' average change (log points)</th>
               <th className="num">Difference (log points)</th>
               <th className="num">Leave one state out</th>
-              <th>Tennessee inside the neighbours' range of changes?</th>
+              <th>Tennessee inside the neighbors' range of changes?</th>
               <th>Placebo dates: typical gap; share as large</th>
             </tr>
           </thead>
@@ -147,7 +147,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
                     <strong>{r.outcome.treatedOnly ? "—" : pts(x.diffLog)}</strong>
                   </td>
                   <td className="num">{x.looLogRange ? `${pts(x.looLogRange[0])} to ${pts(x.looLogRange[1])}` : "—"}</td>
-                  <td className="small">{x.spread ? (x.spread.targetInside ? "Yes" : "No: outside every neighbour's change") : "—"}</td>
+                  <td className="small">{x.spread ? (x.spread.targetInside ? "Yes" : "No: outside every neighbor's change") : "—"}</td>
                   <td className="small">
                     {p && p.enough
                       ? `${r.outcome.group === "revenue" ? money(p.typical) : num(p.typical)} (actual ${r.outcome.group === "revenue" ? money(p.actual) : num(p.actual)}); ${Math.round((p.share ?? 0) * 100)}% of ${p.n} earlier dates`
@@ -230,7 +230,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
             <tr>
               <th>Beverage</th>
               <th className="num">Tennessee change</th>
-              <th className="num">Neighbours' average change</th>
+              <th className="num">Neighbors' average change</th>
               <th className="num">Difference</th>
             </tr>
           </thead>
@@ -251,17 +251,17 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
       <ul className="small source-list">
         <li>
           Wine purchases rose more in Tennessee than in every bordering state ({signed(wine.diffChange)} gallons of ethanol per adult
-          against the neighbours' average, {pts(wine.diffLog)} log points), and no earlier placebo date shows a gap that large. Most of
+          against the neighbors' average, {pts(wine.diffLog)} log points), and no earlier placebo date shows a gap that large. Most of
           the rise came as a step in 2016, the year grocery licenses began, and the level then held.
         </li>
         <li>
-          Tennessee's beer purchases fell, but about as much as the neighbours' ({signed(beer.diffChange)} gallons against their average;
+          Tennessee's beer purchases fell, but about as much as the neighbors' ({signed(beer.diffChange)} gallons against their average;
           typical placebo gap {num(beerPlacebo?.typical ?? null)}). Wine rose and beer declined; the comparison does not establish that
           grocery wine caused people to switch beverages, and under the reading rule fixed in the specification the wine increase was
           not matched by a relative fall in beer or spirits.
         </li>
         <li>
-          Total ethanol rose relative to the neighbours ({signed(all.diffChange)} gallons, {pts(all.diffLog)} log points), by about as
+          Total ethanol rose relative to the neighbors ({signed(all.diffChange)} gallons, {pts(all.diffLog)} log points), by about as
           much as wine and spirits together. That gap is not unusual for these states: earlier placebo
           dates give a typical gap of {num(allPlacebo?.typical ?? null)} and {Math.round((allPlacebo?.share ?? 0) * 100)}% of them are as
           large, and Tennessee's spirits were already rising faster before 2016.
@@ -269,7 +269,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
         <li>
           These are aggregate purchases in a state. They cannot show whether the same people switched beverages, whether drinking (as
           opposed to purchases) changed, or that grocery wine caused any of it: cross-border buying, stocking of the new channel, the
-          minimum-price law that began the same day and a possible reclassification of strong beer (account 11002's FY2018 relabelling)
+          minimum-price law that began the same day and a possible reclassification of strong beer (account 11002's FY2018 relabeling)
           could each move these series.
         </li>
       </ul>
@@ -278,7 +278,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
       <ul className="small source-list">
         <li>
           Census T10 (all beverages, constant 2024 dollars) rose {pct(t10s.tnPct)} in Tennessee between FY2012–FY2015 and FY2017–FY2019,{" "}
-          {pts(t10s.diffLog)} log points more than the neighbours. But Tennessee's T10 was already rising by about{" "}
+          {pts(t10s.diffLog)} log points more than the neighbors. But Tennessee's T10 was already rising by about{" "}
           {money(t10.result?.states[0].slope ?? null)} a year before the change. Extending that trend in a straight line covers most of
           the gap against the four states where the "trends only" figure's interval excludes zero (per-state table above); this is
           arithmetic, not a measure of what the change caused. T10 cannot isolate wine
@@ -300,7 +300,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
           through state stores and agencies, so its revenue arrives as store profit, which T10 does not measure.
         </li>
         <li>
-          It is a description of purchases relative to neighbours, not an effect estimate, so it is not carried into the Utah fiscal
+          It is a description of purchases relative to neighbors, not an effect estimate, so it is not carried into the Utah fiscal
           scenario's demand assumptions. It does not show what Utah households would buy, or whether beer-to-wine switching would offset
           any revenue loss there.
         </li>
@@ -310,8 +310,8 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
       <h4>Missing evidence that most limits the reading</h4>
       <ol className="small source-list">
         <li>Which Tennessee localities adopted grocery wine, when, and how many stores were licensed (the share of the state exposed).</li>
-        <li>The statutory basis of account 11002's FY2018 relabelling and whether NIAAA's Tennessee beer and wine series changed classification.</li>
-        <li>Grocery-wine and alcohol-tax histories for six of the eight neighbours (only Kentucky and Virginia are verified).</li>
+        <li>The statutory basis of account 11002's FY2018 relabeling and whether NIAAA's Tennessee beer and wine series changed classification.</li>
+        <li>Grocery-wine and alcohol-tax histories for six of the eight neighbors (only Kentucky and Virginia are verified).</li>
         <li>Monthly sales around July 2016, to separate stocking from sustained purchases, and any measure of cross-border buying.</li>
         <li>Household purchase panels or surveys that follow the same people, the only data that could show switching between beverages.</li>
       </ol>

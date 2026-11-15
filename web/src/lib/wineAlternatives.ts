@@ -74,7 +74,7 @@ export const ASSUMPTIONS: Assumption[] = [
   { id: "U02", label: "Gross margin on wine (DABS trading margin as a share of its selling price)", value: pctS(M, 2), standing: "assumption", note: "DABS's FY2025 all-product gross profit over sales, applied to wine. The 88.5% minimum markup on landed cost implies 46.95%." },
   { id: "U03", label: "Households' share of wine purchases", value: pctS(X0.eligible ?? 1, 0), standing: "assumption", note: "DABS's FY2025 all-product off-premise share, applied to wine; licensees keep buying from DABS." },
   { id: "U04", label: "Household wine purchases that move to grocers", value: pctS(X0.shift ?? 0, 0), standing: "illustrative", note: "No source. Not price-dependent in the engine: the same share moves whatever the grocery price." },
-  { id: "U05", label: "State sales tax", value: pctS(X0.salesTax ?? 0, 2), standing: "source", note: "State portion only (Publication 25). Local sales tax is not modelled: whether state-store sales carry it as grocery sales would is unresolved." },
+  { id: "U05", label: "State sales tax", value: pctS(X0.salesTax ?? 0, 2), standing: "source", note: "State portion only (Publication 25). Local sales tax is not modeled: whether state-store sales carry it as grocery sales would is unresolved." },
   { id: "U06", label: "School-meals and enforcement deposits", value: "10% and 1.695% of total gross revenue from liquor sales", standing: "statute", note: "Utah Code §§ 32B-2-304(5), 32B-2-305(4). Whether DABS's sales to grocers count is unresolved; both readings are shown." },
   { id: "U07", label: "Short-run avoidable store cost per $ that leaves (stores stay open): a source-based assumption", value: cS(COST_LINES.shortRun), standing: "assumption", note: "FY2025 card fees, package-agency contracts and bags divided by all-product sales: an allocation of accounting expense categories, not a measured marginal cost or demonstrated saving. Every alternative is also shown with no avoidable cost. Costs that remain while the stores stay open and DABS keeps supplying wine: store rent and occupancy, staff unless cut, systems, purchasing, warehouse and delivery, depreciation and interest." },
   { id: "U08", label: "Conditional longer-run reductions", value: `wages ${cS(COST_LINES.wages)}; delivery ${cS(COST_LINES.delivery)} (private supply only)`, standing: "assumption", note: "Only if staffing, or DABS's delivery runs, fall in proportion to the sales that leave. Not in the main cases." },
@@ -86,7 +86,7 @@ export const ASSUMPTIONS: Assumption[] = [
   { id: "U14", label: "Private sellers' acquisition cost", value: pctS(1 - M, 2) + " of today's price", standing: "assumption", note: "Private wholesalers pay suppliers what DABS pays (its landed cost)." },
   { id: "U15", label: "Price elasticity of wine demand", value: String(ELASTICITY), standing: "source", note: "Nelson (2013), a meta-analysis of market-level studies. Applying it to one channel's price is the assumption." },
   { id: "U16", label: "Wine gallons and average price per gallon", value: `${(G / 1e6).toFixed(2)}M gallons; $${(W / G).toFixed(2)} a gallon`, standing: "derived", note: "NIAAA 2024 Utah wine gallons; wine sales over gallons (both include licensees)." },
-  { id: "U17", label: "Historical reference cases", value: "5¢ avoided cost; 20% replacement tax; 20% discount; matched prices", standing: "reference", note: "The brief's worked example of 2026-10-17, kept unchanged for comparison." },
+  { id: "U17", label: "Historical reference cases", value: "5¢ avoided cost; 20% replacement tax; DABS at 80% of the shelf price; matched prices", standing: "reference", note: "The brief's worked example of 2026-10-17, kept unchanged for comparison." },
   { id: "U18", label: "Recapture and access in the demand sensitivity", value: `recapture ${pctS(RECAPTURE_ILLUSTRATIVE, 0)}; access +${pctS(ACCESS_EXPLORATORY, 1)}`, standing: "illustrative", note: "Recapture has no source. Access is the lower quartile after full retail privatization elsewhere, not grocery licensing in Utah. Neither is a probability." },
 ];
 
@@ -121,12 +121,12 @@ export interface AltDef {
 
 export const ALTERNATIVES: AltDef[] = [
   { id: "R1", group: "reference", label: "Reference 1 (brief): private supply, 20% replacement tax, matched prices, 5¢ avoided", short: "Ref. 1: private, 20% tax", supply: "private", pricing: "matched", charge: { kind: "on_price", collectedAt: "retailer", inSalesTaxBase: true, size: { rate: 0.2 } }, savings: "reference", preserves: "nothing", defines: "The brief's arrangement A, unchanged." },
-  { id: "R2", group: "reference", label: "Reference 2 (brief): DABS supply, 20% discount, matched prices, 5¢ avoided", short: "Ref. 2: DABS, 20% discount", supply: "dabs", pricing: "matched", discount: 0.2, savings: "reference", preserves: "nothing", defines: "The brief's arrangement B, unchanged." },
+  { id: "R2", group: "reference", label: "Reference 2 (brief): DABS supply at 80% of the shelf price, matched prices, 5¢ avoided", short: "Ref. 2: DABS at 80%", supply: "dabs", pricing: "matched", discount: 0.2, savings: "reference", preserves: "nothing", defines: "The brief's arrangement B, unchanged." },
   { id: "A_target", group: "A", label: "A. DABS supplies at today's price (keeps its trading margin); grocers price for a 28% margin", short: "A: DABS keeps margin, grocer 28%", supply: "dabs", pricing: "margin_target", discount: 0, savings: "short_run", preserves: "gross_trading_margin", defines: "DABS sells to grocers at today's shelf price, so it keeps its gross trading margin (47.2¢ per $1 of today's price) on every bottle. The grocer's margin is paid by a higher grocery price." },
   { id: "A_matched", group: "A", label: "A. DABS supplies at today's price; grocers charge today's price", short: "A: DABS keeps margin, matched price", supply: "dabs", pricing: "matched", discount: 0, savings: "short_run", preserves: "gross_trading_margin", defines: "As A, but grocers charge what a state store charges: their gross margin is zero (diagnostic case)." },
-  { id: "A_net", group: "A", label: "A. DABS keeps its net fiscal contribution: the largest discount at which the state breaks even; grocers price for 28%", short: "A: net contribution kept, grocer 28%", supply: "dabs", pricing: "margin_target", discount: "break_even", savings: "short_run", preserves: "net_fiscal_contribution", defines: "The discount at which the statewide change is zero at fixed volume: DABS gives grocers only what it saves, less the new costs, plus the extra sales tax a higher price brings." },
-  { id: "B20_matched", group: "B", label: "B. DABS supplies at a 20% discount; grocers charge today's price", short: "B: 20% discount, matched", supply: "dabs", pricing: "matched", discount: 0.2, savings: "short_run", preserves: "nothing", defines: "Reference 2's structure with the documented short-run savings: the grocer's margin is the 20% discount." },
-  { id: "B20_target", group: "B", label: "B. DABS supplies at a 20% discount; grocers price for a 28% margin", short: "B: 20% discount, grocer 28%", supply: "dabs", pricing: "margin_target", discount: 0.2, savings: "short_run", preserves: "nothing", defines: "The grocer pays DABS 80% of today's price and prices to keep 28% of its own price." },
+  { id: "A_net", group: "A", label: "A. DABS keeps its net fiscal contribution: the lowest price to grocers at which the state breaks even; grocers price for 28%", short: "A: net contribution kept, grocer 28%", supply: "dabs", pricing: "margin_target", discount: "break_even", savings: "short_run", preserves: "net_fiscal_contribution", defines: "The price to grocers at which the statewide change is zero at fixed volume: DABS lowers its price to grocers only by what it saves, less the new costs, plus the extra sales tax a higher price brings." },
+  { id: "B20_matched", group: "B", label: "B. DABS supplies at 80% of today's price; grocers charge today's price", short: "B: DABS at 80%, matched", supply: "dabs", pricing: "matched", discount: 0.2, savings: "short_run", preserves: "nothing", defines: "Reference 2's structure with the documented short-run savings: the grocer's margin is the 20% between what it pays DABS and today's price." },
+  { id: "B20_target", group: "B", label: "B. DABS supplies at 80% of today's price; grocers price for a 28% margin", short: "B: DABS at 80%, grocer 28%", supply: "dabs", pricing: "margin_target", discount: 0.2, savings: "short_run", preserves: "nothing", defines: "The grocer pays DABS 80% of today's price and prices to keep 28% of its own price." },
   { id: "C_take", group: "C", label: "C. Private supply; a charge on the grocery price equal to DABS's margin per bottle; sellers price for national margins", short: "C: charge = DABS margin, sellers' margins", supply: "private", pricing: "margin_target", charge: { kind: "on_price", collectedAt: "retailer", inSalesTaxBase: true, size: "gross_take" }, savings: "short_run", preserves: "gross_take_as_charge", defines: "A retail-level charge, collected from the grocer on its price before the charge, sized so the state collects 47.2¢ per $1 of today's price, as DABS's margin does now. Wholesaler 29.5% and grocer 28% of their own prices." },
   { id: "C_gallon", group: "C", label: "C. Private supply; a per-gallon charge at the wholesaler equal to DABS's margin per gallon; passed on at cost", short: "C: per-gallon charge at wholesaler", supply: "private", pricing: "margin_target", charge: { kind: "per_gallon", collectedAt: "wholesaler", inSalesTaxBase: true, size: "gross_take" }, savings: "short_run", preserves: "gross_take_as_charge", defines: "A charge per gallon collected from the licensed wholesaler at its first sale, equal to DABS's average margin per gallon; sellers add it to their prices without a margin on it." },
   { id: "C_take_outside", group: "C", label: "C. As 'charge = DABS margin', with the charge outside the sales-tax base", short: "C: charge outside sales-tax base", supply: "private", pricing: "margin_target", charge: { kind: "on_price", collectedAt: "retailer", inSalesTaxBase: false, size: "gross_take" }, savings: "short_run", preserves: "gross_take_as_charge", defines: "Sales tax on the grocery price before the charge." },
@@ -289,7 +289,7 @@ export interface AltResult {
 export interface Reconciliation {
   /** DABS trading-margin change (before operating expenses). */
   tradingMargin: number;
-  /** State tax change: the explicit charge and the state sales tax (checkout tax). Local sales tax is not modelled. */
+  /** State tax change: the explicit charge and the state sales tax (checkout tax). Local sales tax is not modeled. */
   taxes: { charge: number; salesTax: number; total: number };
   /** Avoidable operating costs (positive: the state stops paying them). */
   avoidableCosts: number;
@@ -372,8 +372,8 @@ const MARKUP_CITE = "Utah Code § 32B-2-304(2)(b)";
 
 function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
   const common: LegalNote[] = [
-    { item: "Grocery retail of wine", status: "change needed", text: "Wine is liquor under Title 32B, and an off-premise beer retailer's licence gives no authority to sell liquor; a new grocery licence or authority is needed.", cite: "Utah Code 32B-1-102(68), (143); 32B-7-201, 32B-7-202" },
-    { item: "Local sales tax", status: "unresolved", text: "Whether state-store sales carry local sales tax as grocery sales would. Not modelled.", cite: "Tax Commission (question for staff)" },
+    { item: "Grocery retail of wine", status: "change needed", text: "Wine is liquor under Title 32B, and an off-premise beer retailer's license gives no authority to sell liquor; a new grocery license or authority is needed.", cite: "Utah Code 32B-1-102(68), (143); 32B-7-201, 32B-7-202" },
+    { item: "Local sales tax", status: "unresolved", text: "Whether state-store sales carry local sales tax as grocery sales would. Not modeled.", cite: "Tax Commission (question for staff)" },
   ];
   if (def.supply === "dabs") {
     const lawful = Math.max(0, 1 - (1 + STATUTORY_MARKUP.wine) * (1 - M));
@@ -382,7 +382,7 @@ function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
       {
         item: "DABS price to grocers",
         status: lever.discount <= lawful + 1e-9 ? "consistent with current law" : "change needed",
-        text: `DABS must mark wine up at least 88.5% over landed case cost. At the 47.2% all-product margin a discount of at most ${pctS(lawful, 2)} keeps the floor; ${pctS(lever.discount, 1)} ${lever.discount <= lawful + 1e-9 ? "does" : "does not"}.`,
+        text: `DABS must mark wine up at least 88.5% over landed case cost. At the 47.2% all-product margin a price to grocers of at least ${pctS(1 - lawful, 2)} of today's shelf price keeps the floor; ${pctS(1 - lever.discount, 1)} ${lever.discount <= lawful + 1e-9 ? "does" : "does not"}.`,
         cite: MARKUP_CITE,
       },
       { item: "Deposits on DABS's sales to grocers", status: "unresolved", text: "Whether \"total gross revenue from sales of liquor\" includes DABS's sales to grocers. Both readings are shown.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
@@ -390,7 +390,7 @@ function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
   }
   return [
     ...common,
-    { item: "Private supply of wine", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; private wholesale of wine needs new authority and a licence.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" },
+    { item: "Private supply of wine", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; private wholesale of wine needs new authority and a license.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" },
     { item: "The state charge", status: "change needed", text: "Utah collects on wine through the department's markup; no wine excise was found in the saved sources (Title 59 has a beer tax). A charge needs new taxing authority: its base, rate, collection point and administrator are the bill's choices.", cite: "Utah Code 59-15-101 (beer only); saved sources" },
     { item: "Sales-tax base", status: "unresolved", text: "Whether the charge is part of the price subject to sales tax depends on Title 59, Chapter 12 definitions, which are not in the saved sources; both treatments are shown.", cite: "not saved" },
     { item: "Deposits", status: "unresolved", text: "Wine DABS no longer sells carries no deposit; keeping the funds whole needs an explicit allocation of the charge, which moves money between funds.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
@@ -557,7 +557,7 @@ export const MISSING_CAPABILITIES = [
   "Channel choice: here the share of purchases that moves does not respond to a grocery price premium, so a 30% shift at a 39-51% premium is an input, not a prediction (the purchase-flow model, wine-purchase-flows@1.0, adds an illustrative straight-line channel choice).",
   "Spirits substitution: this engine can offset beer only (and only for added wine); the purchase-flow model adds wine replacing spirits and beer for any grocery wine.",
   "Margins applied on a per-gallon charge: the engine passes a charge on at cost; percentage margins applied to it would raise the shelf price further.",
-  "Local sales tax, one-time transition costs and timing are not modelled.",
+  "Local sales tax, one-time transition costs and timing are not modeled.",
 ];
 
 let cached: AlternativesReport | null = null;

@@ -32,13 +32,13 @@ preserve the state's collection. Its main changes:
   then needs grocery prices 39% to 51% higher.
 - The −$2.0M to −$2.6M "price response" results for those designs came from applying a market-wide elasticity to one
   channel's price. They are now exploratory.
-- With a 20% DABS discount, the state breaks even if wine replaces 6.1% of households' beer at the same alcohol, or
+- With DABS selling to grocers at 80% of the shelf price, the state breaks even if wine replaces 6.1% of households' beer at the same alcohol, or
   with 17.6% more wine. Under a 20% private tax the figures are 15.3% and 40.9%; replacing spirits lowers receipts
   there. Nothing measures any of these shares for Utah.
 
 1. **Under the brief's reference assumptions, both reference arrangements lower state revenue.** The loss is $12.1 million a
-   year with private wholesalers and a 20% replacement tax, and $7.3 million with DABS as the wholesaler and a 20% discount
-   to grocers. That is 13% and 8% of the state's $96.2 million from wine today.
+   year with private wholesalers and a 20% replacement tax, and $7.3 million with DABS as the wholesaler selling to grocers
+   at 80% of the shelf price. That is 13% and 8% of the state's $96.2 million from wine today.
 2. **The cause is structural.** When grocers charge what a state store charges, the state and the private sellers split
    the same margin. The state breaks even only if sellers keep no more than **3.9 cents per dollar** of today's shelf
    price, a gross margin of 3.9% to 6.9% on their own price. Nationally, grocery stores keep about 28 cents of each
@@ -56,7 +56,7 @@ preserve the state's collection. Its main changes:
    million of liquor money and over $322 million of federal money went to school meals, so liquor was about 13% of the
    two combined. A 2026 fiscal note says the state's own school-meal funding comes from liquor sales, so liquor money
    appears to be nearly all of the *state's* share, not half of the total.
-6. **With the 20% tax or discount held fixed, the loss persists across every input range tested.** Moving each input
+6. **With the 20% tax or DABS's 80% price to grocers held fixed, the loss persists across every input range tested.** Moving each input
    across its tested range, and DABS's documented cost and margin bounds together, never brings either reference
    structure to break even; other levers and arrangements do (item 7). Store savings cannot close
    it, and the wine margin would have to fall below what even the small-winery markup implies. What remains is sellers
@@ -72,7 +72,7 @@ preserve the state's collection. Its main changes:
 | Item | Value | Standing |
 |---|---:|---|
 | DABS liquor sales, all products | $551.3 million | DABS 90th annual report, p. 32, "Revenue from Liquor Sales", FY2025 (unaudited). Sales tax ($32.4M) is a separate row. The FY2025 report has no notes; DABS's FY2016, FY2019 and FY2021 reports (Note B) say sales taxes are excluded from sales |
-| Wine's share of sales | 33.5% → **$184.7 million** | Summed by product class from DABS's monthly Sales Analysis Reports, FY2026 (a later year): wine $182,331,954.71 of $543,682,177.59. It counts sake, fortified wine and special-order wine, not wine coolers. The FY2025 report's p. 19 chart gives wines $184.10 (labelled "in thousands" but plainly millions), 33% |
+| Wine's share of sales | 33.5% → **$184.7 million** | Summed by product class from DABS's monthly Sales Analysis Reports, FY2026 (a later year): wine $182,331,954.71 of $543,682,177.59. It counts sake, fortified wine and special-order wine, not wine coolers. The FY2025 report's p. 19 chart gives wines $184.10 (labeled "in thousands" but plainly millions), 33% |
 | Gross margin (sales less the cost of the goods) | **47.2%** | **Measured for all products** (gross profit $260.3M ÷ sales); applied to wine as an assumption |
 | Wine's statutory minimum markup | 88.5% on landed case cost = **46.95% margin** | Utah Code § 32B-2-304(2)(b) (versions effective 2024-05-01 and 2026-03-13); a floor for standard wine, not an observed wine margin. Small-manufacturer wine is marked up a fixed 49% (§ 32B-2-304(3)(c)) and sales to military installations at least 17% ((3)(a)) |
 | Operating expenses | 14.9% of sales | Same report, p. 30: total operating expenses $81.9M, fifteen lines that sum to it, none of them depreciation or interest (those are listed separately as non-operating, $17.5M and $0.6M). The p. 32 summary labels the $81.9M "Operating and Non-Operating Expenses". The audited ACFR gives different depreciation and interest for the same fund (see "Which DABS costs could fall when wine moves"). Gross margin is not profit |
@@ -100,7 +100,7 @@ enforcement cost. Figures
 are per year, for state government only, with all state funds together, so transfers between funds are never counted
 as revenue.
 
-| | Today | 1. Private wholesale + grocery, 20% replacement tax | 2. DABS wholesales to grocers at a 20% discount |
+| | Today | 1. Private wholesale + grocery, 20% replacement tax | 2. DABS wholesales to grocers at 80% of the shelf price |
 |---|---:|---:|---:|
 | **Net change for the state (revenue, plus store costs avoided, less new costs)** | — | **−$12.1M** | **−$7.3M** |
 | State margin given up on wine that moves | — | −$21.5M | −$21.5M |
@@ -108,14 +108,14 @@ as revenue.
 | Store costs avoided / new costs | — | +$2.3M / −$0.5M | +$2.3M / −$0.5M |
 | School-meals fund, no guarantee | — | −$4.5M | −$0.9M if DABS's sales to grocers carry the deposit; −$4.5M if not |
 | What sellers keep per $1 (their gross margin) | — | 30.5¢ shared by wholesaler and grocer; grocer ~8.5¢ after a 29.5% wholesaler | grocer 20¢ |
-| Local sales tax | not modelled | not modelled | not modelled |
+| Local sales tax | not modeled | not modeled | not modeled |
 
 If grocers instead add the tax on top of today's price, arrangement 1 loses $10.2 million, or $11.1 million once fewer
 bottles are bought at the higher price (elasticity −0.46).
 
 **Arrangement 2 needs a statute change either way.** § 32B-2-304(2)(b) requires wine "sold by the department within the
-state" to be marked up not less than 88.5% above landed case cost, and its only discount authority is for
-discontinued items ((7)(a)). A 20% discount to grocers would leave a markup of about 51%. The same bill could say
+state" to be marked up not less than 88.5% above landed case cost, and its only authority to sell below that is for
+discontinued items ((7)(a)). Selling to grocers at 80% of the shelf price would leave a markup of about 51%. The same bill could say
 whether those sales carry the school-meals and enforcement deposits. Today's wording, "total gross revenue from sales
 of liquor", is not limited to retail sales, and DABS already sells to licensees and military installations under it.
 Private wholesale and grocer sales are not DABS revenue, so arrangement 1 loses the deposits unless the bill adds a
@@ -126,7 +126,7 @@ levy like the one on manufacturer package agencies in § 32B-2-304(6)(a).
 **Preserving total state revenue** (break-even):
 
 - At matched prices, sellers may keep at most 3.9¢ per dollar. That means a 76% replacement tax in arrangement 1, or a
-  DABS discount of no more than 3.9% in arrangement 2. Sellers who need national-average margins could not operate at
+  DABS price to grocers of at least 96.1% of its shelf price in arrangement 2. Sellers who need national-average margins could not operate at
   either.
 - If sellers earn those averages and the state still breaks even, grocery wine would have to cost **45% more** (private)
   or **31% more** (DABS wholesale) than the same bottle at a state store. With the exploratory price response (the old
@@ -140,7 +140,7 @@ levy like the one on manufacturer package agencies in § 32B-2-304(6)(a).
 - The two funds get about $5.3 million a year from the wine that moves: $4.54M for school meals, $0.77M for enforcement.
 - In arrangement 1, the $7.6M replacement tax covers the guarantee and leaves $2.3M for the General Fund. The tax must
   be at least 13.2% of the sellers' price to cover it. The General Fund and other funds bear the full −$12.1 million.
-- In arrangement 2, DABS's remaining margin ($12.4M) covers the guarantee at any discount up to 35.5%. The other funds
+- In arrangement 2, DABS's remaining margin ($12.4M) covers the guarantee at any price to grocers down to 64.5% of its shelf price. The other funds
   bear the full −$7.3 million.
 - **Who pays when receipts fall short.** A fixed guarantee is owed even if fewer sales move or the tax raises less. The
   shortfall is then a draw on the General Fund or other state money. A proportional guarantee pays today's rates on
@@ -207,7 +207,7 @@ have no evidence behind them.
 
 **Why the sign is hard to change.** At matched prices each dollar of wine that moves changes state revenue by
 −m + a/(1+a) + v with private supply and by v − d with DABS supply, before the fixed new costs (m the gross margin,
-a the replacement tax on the sellers' price, d the discount, v the store cost avoided). In the example that is
+a the replacement tax on the sellers' price, d the share below its shelf price at which DABS sells to grocers, v the store cost avoided). In the example that is
 −25.5¢ and −15.0¢. How much wine moves only multiplies this, so the share that moves, the household share, the wine
 share and the scope of "wine" change the size of the loss, never its sign. The sales tax rate drops out. Only the
 margin, the avoided cost, the two levers and prices can change the sign.
@@ -220,11 +220,11 @@ margin, the avoided cost, the two levers and prices can change the sign.
 | Gross margin on wine | 47.2% | Derived: all-product margin applied to wine | 32.9% to 47.2% (small-winery markup to the FY2025 margin) |
 | Wine's share of DABS sales | 33.5% | Derived: FY2026 monthly reports applied to FY2025 | 33% to 34% (FY2025 report; tax-basis bias) |
 | Households' share of wine purchases | 82% | Derived: all-product off-premise share applied to wine | 67% to 97% (illustrative, ±15 points) |
-| Which wines a bill covers | all DABS wine classes | Policy choice | 77.9% to 102.1% of the modelled wine (class mix) |
+| Which wines a bill covers | all DABS wine classes | Policy choice | 77.9% to 102.1% of the modeled wine (class mix) |
 | Household purchases that move | 30% | Chosen | 20% to 40% (illustrative, ±10 points) |
 | Store cost avoided per dollar | 5¢ | Chosen | 2.3¢ to 9.8¢ (DABS expense lines; accounting bounds) |
 | New licensing and enforcement cost | $500,000 | Chosen | $0 to $1M (illustrative) |
-| Replacement tax; DABS discount | 20%; 20% | Policy choices | solved for break-even |
+| Replacement tax; DABS's price to grocers | 20%; 80% of the shelf price | Policy choices | solved for break-even |
 | Sellers' margins (retailer check) | 29.5% and 28.0% | Chosen benchmark: Census, national, all products | used only to judge feasibility |
 | State sales tax | 4.85% | Observed rate; treatment of licensee sales assumed | treatment tested below |
 
@@ -257,10 +257,10 @@ scope at the cider end and the new costs barely matter.
 | Lever | Private | DABS | What kind of result |
 |---|---:|---:|---|
 | Replacement tax | ≥ 76.4% (43.3% of the price including it) | — | Algebraic. Wholesaler and grocer together would keep 3.9¢ of today's dollar, a 6.9% gross margin on their own price, against about 49% at national averages (a reference, not a minimum). Any tax needs the bill. |
-| DABS discount | — | ≤ 3.9% | Algebraic. The grocer's margin would be 3.9% against about 28%. Current law's 88.5% minimum wine markup allows a discount of at most about 0.5% at a 47.2% margin, and none if wine sits at the floor (a legal reading, not reviewed). |
+| DABS's price to grocers | — | ≥ 96.1% of the shelf price | Algebraic. The grocer's margin would be 3.9% against about 28%. Current law's 88.5% minimum wine markup keeps it at or above about 99.5% at a 47.2% margin, and at the full shelf price if wine sits at the floor (a legal reading, not reviewed). |
 | Store cost avoided | ≥ 31.6¢ | ≥ 21.1¢ | Outside the tested range and beyond all of DABS's operating expenses (14.9¢ per dollar of sales), the most store savings could reach. Even counting non-cash depreciation and interest (16.3¢ or 18.1¢, depending on the statement) falls short. Not achievable from store savings. |
 | Wine margin | ≤ 20.6% | no effect | Outside the tested range: below the 32.9% that even the 49% small-winery markup implies; the standard floor implies 46.95%. Only sales to military installations carry a lower markup (at least 17%). |
-| Grocery shelf price, sellers at national margins | 145.1% of today's (39.5% tax) | 131.4% (discount ≤ 5.4%) | Conditional: assumes the same 30% of household purchases still moves at the higher price. With the −0.46 price response, 155.5% (private) and no break-even with DABS supply. |
+| Grocery shelf price, sellers at national margins | 145.1% of today's (39.5% tax) | 131.4% (DABS's price to grocers ≥ 94.6%) | Conditional: assumes the same 30% of household purchases still moves at the higher price. With the −0.46 price response, 155.5% (private) and no break-even with DABS supply. |
 | Wine bought instead of beer | 38% more wine | 14% more wine | Conditional on equal total alcohol and untested; no study measures it. |
 
 "Algebraic" means the model's arithmetic reaches zero there. The commercial comparison sets what sellers would keep
@@ -283,7 +283,7 @@ would accept that is not established here. "Under current law" is a reading of U
    it only scales the loss.
 3. **The FY2026 wine share applied to FY2025 sales.** The FY2025 report's p. 19 chart ("Sales by Type", "As of June
    30, 2025") gives five categories: distilled spirits $330.80, wines $184.10, heavy beer $28.53, flavored malt
-   beverages $3.89 and cider $3.60, labelled "in thousands" but plainly millions (read from the chart image, not
+   beverages $3.89 and cider $3.60, labeled "in thousands" but plainly millions (read from the chart image, not
    reviewed). They sum to $550.92M, so wine is 33.4%; the chart prints no total. Pages 30 and 32 give $551.346M of
    sales ("Operating Revenue" and "Revenue from Liquor Sales"). The chart calls its categories shares of "DABS total
    retail sales", a term the report does not define, and nothing in the saved report explains the $0.43M (0.08%)
@@ -298,17 +298,17 @@ would accept that is not established here. "Under current law" is a reading of U
    1 when no tax is embedded, when every sale carries the same rate, or when h_w = h; otherwise it is not. At an
    illustrative k of 10% and h_w from 67% to 97%, the share is off by up to ±1.4% (about half a point), up to $0.16M
    on the nets. The ambiguity does not cancel by itself, but it is too small to change the conclusion.
-5. **Whether the modelled wine matches what a bill would permit.** The model's "wine" is every DABS class mapped to
+5. **Whether the modeled wine matches what a bill would permit.** The model's "wine" is every DABS class mapped to
    wine (FY2026 monthly reports; `python scripts/dabs_wine_class_mix.py`): still table wine 77.9% of wine sales (red
    40.1%, white 32.0%, rosé and blush 5.0%, small packages 0.8%), sparkling 13.2%, gift sets and special orders 4.8%,
    fruit wine, sangria and sake 2.6%, fortified and aromatized 1.4%, allocated items 0.2%. Hard cider, which Utah
    Code § 32B-1-102(143) counts as wine (saved copy, version effective 2026-05-06; not reviewed), is kept out of the
-   model's wine and equals 2.1% of it. A bill limited to still table wine would cover about 78% of the modelled
+   model's wine and equals 2.1% of it. A bill limited to still table wine would cover about 78% of the modeled
    wine; one adding cider about 102%. Either only scales the loss.
-6. **Retailer margins, avoidable costs and the wholesale discount.** See the thresholds table. The Census averages are
+6. **Retailer margins, avoidable costs and DABS's price to grocers.** See the thresholds table. The Census averages are
    a benchmark, not a requirement. Avoidable costs are bounded by DABS's own expense lines; even all of them fall
-   short of the 21.1¢ to 31.6¢ needed. The 20% discount is a policy choice; at the break-even 3.9% the grocer keeps
-   3.9%.
+   short of the 21.1¢ to 31.6¢ needed. The 80% price to grocers is a policy choice; at the break-even 96.1% the grocer
+   keeps 3.9%.
 7. **Sales tax.** At matched prices the 4.85% state sales tax is collected on the same shelf price before and after,
    so the rate drops out of the net change. That holds because the model puts the replacement tax inside the price
    that sales tax applies to, a design choice. If a bill kept the replacement tax outside the sales-tax base while
@@ -424,12 +424,12 @@ total).
 | Arrangement | Price | DABS margin | State taxes | Avoidable costs | New costs | Total | No savings | Fewer bottles | Buyers return to DABS | Grocer's gross margin (wholesaler and grocer together, per $1) | Funds |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Ref. 1: private, 20% tax | 0% | −$21.5M | +$7.6M | +$2.3M | −$0.5M | **−$12.1M** | −$14.4M | — | — | 10.1% (together 30.5¢) | −$5.3M |
-| Ref. 2: DABS, 20% discount | 0% | −$9.1M | $0.0M | +$2.3M | −$0.5M | **−$7.3M** | −$9.6M | — | — | 20.0% (together 20.0¢) | −$1.1M / −$5.3M |
+| Ref. 2: DABS at 80% | 0% | −$9.1M | $0.0M | +$2.3M | −$0.5M | **−$7.3M** | −$9.6M | — | — | 20.0% (together 20.0¢) | −$1.1M / −$5.3M |
 | A: DABS keeps margin, grocer 28% | +38.9% | $0.0M | +$0.9M | +$1.0M | −$0.5M | **+$1.4M** | +$0.4M | −$2.0M | +$1.1M | 28.0% (together 38.9¢) | $0.0M / −$5.3M |
 | A: DABS keeps margin, matched price | 0% | $0.0M | $0.0M | +$1.0M | −$0.5M | **+$0.5M** | −$0.5M | — | — | 0.0% (together 0.0¢) | $0.0M / −$5.3M |
 | A: net contribution kept, grocer 28% | +34.9% | −$1.3M | +$0.8M | +$1.0M | −$0.5M | **$0.0M** | −$1.0M | −$3.0M | −$0.1M | 28.0% (together 37.8¢) | −$0.2M / −$5.3M |
-| B: 20% discount, matched | 0% | −$9.1M | $0.0M | +$1.0M | −$0.5M | **−$8.6M** | −$9.6M | — | — | 20.0% (together 20.0¢) | −$1.1M / −$5.3M |
-| B: 20% discount, grocer 28% | +11.1% | −$9.1M | +$0.2M | +$1.0M | −$0.5M | **−$8.3M** | −$9.3M | −$9.0M | −$7.9M | 28.0% (together 31.1¢) | −$1.1M / −$5.3M |
+| B: DABS at 80%, matched | 0% | −$9.1M | $0.0M | +$1.0M | −$0.5M | **−$8.6M** | −$9.6M | — | — | 20.0% (together 20.0¢) | −$1.1M / −$5.3M |
+| B: DABS at 80%, grocer 28% | +11.1% | −$9.1M | +$0.2M | +$1.0M | −$0.5M | **−$8.3M** | −$9.3M | −$9.0M | −$7.9M | 28.0% (together 31.1¢) | −$1.1M / −$5.3M |
 | C: charge = DABS margin, sellers' margins | +51.2% | −$21.5M | +$22.6M | +$1.0M | −$0.5M | **+$1.7M** | +$0.6M | −$2.6M | +$1.3M | 28.0% (together 51.2¢) | −$5.3M |
 | C: per-gallon charge at wholesaler | +51.2% | −$21.5M | +$22.6M | +$1.0M | −$0.5M | **+$1.7M** | +$0.6M | −$2.6M | +$1.3M | 19.3% (together 51.2¢) | −$5.3M |
 | C: charge outside sales-tax base | +49.0% | −$21.5M | +$21.5M | +$1.0M | −$0.5M | **+$0.6M** | −$0.4M | −$3.5M | +$0.4M | 28.0% (together 51.2¢) | −$5.3M |
@@ -463,19 +463,19 @@ total).
 - **Margins are not profit.** A gross margin is the seller's price less what it pays, before its own costs. The 28% grocery
   figure is a national, all-product reference (Census 2022), not a known minimum for grocery wine; a row leaving a seller
   0% or 1.2¢ is an arithmetic result, not a claim that a business would accept it.
-- **Legal and funding (unresolved).** New grocery licence authority (wine is liquor; 32B-1-102, 32B-7-201/-202); private
+- **Legal and funding (unresolved).** New grocery license authority (wine is liquor; 32B-1-102, 32B-7-201/-202); private
   supply needs new wholesale authority (32B-11-208, 32B-4-401(2)) and new taxing authority for a charge (no wine excise
-  was found in the saved sources); a DABS discount above about 0.5% needs the 88.5% markup floor changed (32B-2-304(2)(b));
+  was found in the saved sources); a DABS price to grocers below about 99.5% of its shelf price needs the 88.5% markup floor changed (32B-2-304(2)(b));
   whether DABS's sales to grocers carry the deposits is unresolved; whether a charge enters the sales-tax base depends
   on Title 59 definitions not saved. A guarantee or allocation of a charge to the funds would be the bill's choice, not
   current law.
 - **Still uncertain in every row:** the wine-specific margin (47.2% is all products), the household share (82% is all
-  products), local sales tax (not modelled), and how many purchases would move at a premium.
+  products), local sales tax (not modeled), and how many purchases would move at a premium.
 
 ## Grocery price and grocery share (added 2026-10-18)
 
 The alternatives above each fix one grocery price and one share moving. This section varies both, with the policy's
-discount or charge held fixed, to show where the state's receipts and the grocer's margin stand across the range. It is
+price to grocers or charge held fixed, to show where the state's receipts and the grocer's margin stand across the range. It is
 a **conditional sensitivity analysis**: no combination is predicted or given a probability. Every figure is computed by
 `web/src/lib/winePriceShare.ts` (`wine-price-share@1.0`) through the same engine, exported to `price_share.json` and
 `price_share_*.csv` by `npm --prefix web run export:grocery-wine`, and recomputed independently, cell by cell, by
@@ -485,8 +485,8 @@ package draw it.
 **The grid** (1,248 cells). Grocery price premium over the same bottle at a state store, consumer price with the 4.85%
 state sales tax on both sides: 0% to 60% in steps of 5. Share moving: 0% to 50% of **covered household purchases**,
 $151,454,746 a year (FY2025 DABS wine sales, $184,700,910, times the 82% household share); purchases by bars,
-restaurants and other licensees are not in the base. Four arrangements: DABS supplies grocers at today's price; DABS at a
-20% discount; private supply with a 20% state charge; private supply with a 45.4% charge (the rate that collects DABS's
+restaurants and other licensees are not in the base. Four arrangements: DABS supplies grocers at today's price; DABS at
+80% of today's price; private supply with a 20% state charge; private supply with a 45.4% charge (the rate that collects DABS's
 margin per bottle when sellers price for their reference margins). Two savings cases (2.28¢ source-based, or none) and
 two volume bases (fixed volume, or the price response with the share assigned first and lost purchases leaving the
 market). Administration costs $0.5M a year whatever moves, so every 0% row is −$0.5M; handling for DABS supply is the
@@ -497,7 +497,7 @@ zero placeholder. The grid reproduces the six named alternatives that lie on it 
 | Arrangement | Fixed volume, 2.28¢ savings | Fixed volume, no savings | Price response, 2.28¢ savings | Price response, no savings |
 |---|---|---|---|---|
 | DABS, today's price | every premium from 0%; the grocer is at cost (0%) at 0% and reaches 28% at 38.9% | from 22.7% (grocer 18.5%) | 0% to 6.5% only (grocer 0% to 6.1%) | nowhere |
-| DABS, 20% discount | nowhere | nowhere | nowhere | nowhere |
+| DABS at 80% of today's price | nowhere | nowhere | nowhere | nowhere |
 | Private, 20% charge | nowhere | nowhere | nowhere | nowhere |
 | Private, 45.4% charge | from 41.1% (grocer 22.8%) | from 47.4% (grocer 26.1%) | from 89.1% (grocer 42.4%), beyond the drawn grid | nowhere |
 
@@ -509,12 +509,12 @@ zero placeholder. The grid reproduces the six named alternatives that lie on it 
   at today's price goes from +$1.9M to −$3.0M a year and the 45.4% charge from +$3.1M to −$2.0M. It counts purchases
   not made at grocers as leaving Utah, though DABS still sells the same bottles. The share does not respond to the
   premium in this grid; the purchase-flow section adds channel choice, in which declined purchases stay at DABS.
-- **The 20% discount and the 20% charge lose everywhere shown:** about −$3M to −$5M a year at 10% moving and −$12M to
+- **DABS at 80% and the 20% charge lose everywhere shown:** about −$3M to −$5M a year at 10% moving and −$12M to
   −$24M at 50%, with or without savings.
 - **Protected funds** depend on the share moving and the legal reading, not the price. At 30% moving: $0 for DABS at
-  today's price if its sales to grocers carry the deposits; −$1.1M for the 20% discount on that reading; −$5.3M on the
+  today's price if its sales to grocers carry the deposits; −$1.1M for DABS at 80% on that reading; −$5.3M on the
   other reading and under private supply.
-- **Not modelled:** a channel-choice response, substitution or cross-border recapture in the grid, guarantees to the
+- **Not modeled:** a channel-choice response, substitution or cross-border recapture in the grid, guarantees to the
   funds, and local sales tax.
 
 ## Purchase flows: where grocery wine would come from (added 2026-10-19)
@@ -532,9 +532,9 @@ model is `web/src/lib/wineFlows.ts` (`wine-purchase-flows@1.0`). Its scenarios, 
   (a channel split each). The sources add up to the grocery total, and the lines explaining the state's change add up to
   it (both checked).
 - **Before-and-after totals.** Receipts are computed for today and for the proposal from quantities by beverage and
-  channel, in litres, litres of pure alcohol and dollars. The change is the difference. School-meals and enforcement
+  channel, in liters, liters of pure alcohol and dollars. The change is the difference. School-meals and enforcement
   deposits are reported as allocations under both legal readings and never added to the totals.
-- **Preserved collection is an explicit, proposed design.** In the "preserved" designs the state collects today's
+- **Keeping the state's take is an explicit, proposed design.** In the designs that keep the state's take, it collects today's
   markup on every grocery bottle: through DABS as wholesaler, or through a per-gallon charge equal to DABS's average
   markup. That is not current law. It does not preserve the consumer price: paying a grocer 28% takes the grocery price
   39% (DABS supply) or 51% (private supply) above the state store's. A third version holds both the markup and today's
@@ -549,26 +549,26 @@ model is `web/src/lib/wineFlows.ts` (`wine-purchase-flows@1.0`). Its scenarios, 
   wine. It loses the beer excise ($13.35 a barrel in FY2025, Utah Code 59-15-101; it also covers heavy beer since 2024)
   and the sales tax on the beer. Wine replacing spirits loses DABS's markup on the spirits. Substitution is participation
   (share of buyers who change) × intensity (share of their purchases replaced) × a purchase weight. It is held at
-  constant pure alcohol by default, with equal-litre and equal-spending versions as checks. One 750 ml bottle of wine
+  constant pure alcohol by default, with equal-liter and equal-spending versions as checks. One 750 ml bottle of wine
   holds 88.5 ml of pure alcohol, as much as 5.2 twelve-ounce cans of beer or a third of a bottle of spirits.
 
 **30% of household wine moving at any price, nothing else changing** (FY2025, $ a year):
 
 | Design | State collects per $ of wine | Grocery price | Change |
 |---|---:|---:|---:|
-| Preserved, DABS wholesale (grocer 28%) | 47.2¢ | +39% | **+$1.4M** |
-| Preserved, private supply and per-gallon charge | 47.2¢ | +51% | **+$1.7M** |
-| Preserved at today's price (grocer 0%, diagnostic) | 47.2¢ | 0% | **+$0.5M** |
-| DABS sells at a 20% discount (Reference 2) | 27.2¢ | 0% | **−$8.6M** |
+| DABS at full price (grocer 28%) | 47.2¢ | +39% | **+$1.4M** |
+| Private supply and per-gallon charge | 47.2¢ | +51% | **+$1.7M** |
+| DABS at full price, grocers at today's price (grocer 0%, diagnostic) | 47.2¢ | 0% | **+$0.5M** |
+| DABS sells at 80% of the shelf price (Reference 2) | 27.2¢ | 0% | **−$8.6M** |
 | Private supply, 20% tax (Reference 1, with documented savings) | 16.7¢ | 0% | **−$13.3M** |
 
-With the collection preserved, moving a bottle costs the state nothing in markup. The gains are sales tax on the higher
+When the state keeps its take, moving a bottle costs the state nothing in markup. The gains are sales tax on the higher
 price and DABS store costs that fall with sales (2.28¢ a dollar, an estimate), less $0.5M of new administration (a
 placeholder). The 20% designs reproduce the alternatives above exactly.
 
 **Named scenarios** (every share below is illustrative; no Utah evidence gives any of them):
 
-| Scenario | Preserved, DABS | Preserved, private | DABS 20% | Private 20% |
+| Scenario | DABS at full price | Private + charge | DABS at 80% | Private 20% tax |
 |---|---:|---:|---:|---:|
 | Channel choice, none move at a 60% premium | +$0.2M | −$0.2M | −$8.6M | −$13.3M |
 | Channel choice, none move at a 30% premium | −$0.5M | −$0.5M | −$8.6M | −$13.3M |
@@ -586,7 +586,7 @@ scenarios, with every input and component, are in `flows_scenarios.csv`. Chart F
 
 **Break-even at 30% moving, one source at a time:**
 
-| Source | Preserved designs | DABS 20% discount | Private 20% tax |
+| Source | Designs that keep the state's take | DABS sells to grocers at 80% | Private 20% tax |
 |---|---|---:|---:|
 | Beer replaced (same alcohol), share of households' beer | not needed | 6.1% | 15.3% |
 | Spirits replaced (same alcohol), share of households' spirits | not needed | 29.2% | none: lowers receipts |
@@ -595,13 +595,13 @@ scenarios, with every input and component, are in `flows_scenarios.csv`. Chart F
 
 Under channel choice with a 30% limit, nobody moves at the preserved designs' prices. The state is then out only the
 $0.5M administration cost, and 0.2% of households' beer, or 0.6% more wine, would cover it. The break-even rises
-steeply as the state's collection per bottle falls (chart F7). At today's price with a DABS discount, beer must replace
-0.8% of households' beer at a 5% discount, 6.1% at 20% and 23.7% at 35%. Replacing spirits gives no break-even beyond a
-22.5% discount.
+steeply as the state's collection per bottle falls (chart F7). At today's price with a lower DABS price to grocers, beer must replace
+0.8% of households' beer with DABS at 95% of its shelf price, 6.1% at 80% and 23.7% at 65%. Replacing spirits gives no
+break-even below 77.5% of the shelf price.
 
 **How large these shares are.** Wine replacing 5% of households' beer at the same alcohol means 1.6 million more
-litres of wine a year (3.9 million fewer litres of beer). That is about 17% more than households buy at DABS today.
-Replacing 5% of their spirits means 1.5 million litres. These are large changes in the wine market. Nothing measures
+liters of wine a year (3.9 million fewer liters of beer). That is about 17% more than households buy at DABS today.
+Replacing 5% of their spirits means 1.5 million liters. These are large changes in the wine market. Nothing measures
 whether they would happen.
 
 **What the evidence on switching says.** The only survey at hand (Wine Opinions, *Wine Behaviors of Age 21-39 Beverage
@@ -613,17 +613,17 @@ availability and not a share of beer sales. It is not used as a parameter. Curre
 **What these results do and do not show.**
 
 - **More wine sold is not more alcohol.** At constant pure alcohol, wine sales rise and beer or spirits sales fall by
-  the same alcohol. Equal litres of wine for beer, or additional wine, do add alcohol (chart F4).
+  the same alcohol. Equal liters of wine for beer, or additional wine, do add alcohol (chart F4).
 - **Whether grocery wine raises or lowers state receipts depends on two things.** One is how much the state collects
   per grocery bottle. The other is where the wine comes from. Moving existing purchases does not cost the state money in
   itself: it does so only when the arrangement collects less per bottle than DABS's markup. An arrangement does not need
-  new drinking to pay for itself. It can keep receipts with a preserved collection, or offset a reduced one through
+  new drinking to pay for itself. It can keep receipts by keeping the state's take, or offset a smaller take through
   substitution or recapture. But no evidence says how much of either would happen.
-- **Price and receipts.** Preserving both the state's collection and today's consumer price leaves no margin for the
+- **Price and receipts.** Keeping both the state's take and today's consumer price leaves no margin for the
   grocer. Within these assumptions, every design that pays grocers a national-average margin either raises the grocery
   price or collects less per bottle.
-- **The arithmetic is verified; the behaviour is not.** The independent check recomputes every scenario, grid point and
-  break-even with separate closed forms. That shows the numbers follow from the inputs, not that any behavioural input
+- **The arithmetic is verified; the behavior is not.** The independent check recomputes every scenario, grid point and
+  break-even with separate closed forms. That shows the numbers follow from the inputs, not that any behavioral input
   is right.
 - **Tennessee is not a direct comparison.** Its receipts rose after grocery wine. But wine and spirits there were
   already sold by private licensees, grocery wine was a local option, and its wine-tax account covers every seller. The

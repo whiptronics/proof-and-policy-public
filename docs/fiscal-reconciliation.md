@@ -415,7 +415,7 @@ FY2024) into `../Repeal Title 32B Utah`, and they were matched by contents and i
   FY2016 and a unit number from FY2017 (Alabama `010000226085`). The level 2 lines of the state-by-level file
   equal the state government's unit records item for item, every year.
 - *Items.* A90, E90, F90 and G90 are listed FY2015-FY2021. From FY2022 the item list and the files have no G
-  (other capital outlay) item at all, and F90 is still labelled "Liquor Stores-Construction". Virginia's F90
+  (other capital outlay) item at all, and F90 is still labeled "Liquor Stores-Construction". Virginia's F90
   is 2,389 to 4,255 thousand in FY2022-FY2024 against 10 to 357 before, which suggests F90 now carries other
   capital outlay too, but nothing documents it: capital outlay and total expenditure from FY2022 are a new
   comparability group, not a continuation.
@@ -797,7 +797,7 @@ What exists now (2026-10-14): the Utah revenue scenarios (`?v=scenario`) and, in
 arrangements on one baseline (`utah-wine-arrangements@1.0`; docs/research-dashboard/README.md, "Comparing
 arrangements"). The baseline is FY2025: DABS's sales (before sales tax by its Note B), checked against the audited fund
 after the two deposits, never replaced by it. Everything that no source measures (the share moving, prices, avoidable
-costs, the access and recapture effects, the replacement tax and the discount) is the reader's assumption, labelled.
+costs, the access and recapture effects, the replacement tax and the discount) is the reader's assumption, labeled.
 One-time implementation costs, grocers' and private wholesalers' profits and local sales tax are still outside it.
 These are arithmetic on stated assumptions, not estimates.
 
@@ -821,6 +821,6 @@ sales channel, so none of them is food-store revenue. How they map into Census T
 
 **What is not known yet:**
 - the statutory basis of each account;
-- why account 11002 was relabelled in FY2018.
+- why account 11002 was relabeled in FY2018.
 
 Draft data request 2 (not sent) still asks for food-store wine taxes and fees.

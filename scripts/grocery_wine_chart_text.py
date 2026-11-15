@@ -37,7 +37,8 @@ FORBIDDEN = [
     "no option that preserves",
     "always loses",
 ]
-MAIN = ["R1", "R2", "C20_matched", "B20_matched", "B20_target", "A_matched", "A_target", "A_net", "C_take", "C_gallon", "C_take_outside", "C_break_even", "C_matched_be"]
+# The designs that keep state revenue whole first, the October references last (charts draw index 0 at the top).
+MAIN = ["A_target", "C_take", "C_gallon", "C_take_outside", "A_net", "C_break_even", "A_matched", "C_matched_be", "B20_target", "B20_matched", "C20_matched", "R2", "R1"]
 
 
 def money(x: float, digits: int = 1) -> str:
@@ -107,6 +108,7 @@ def price_share_titles(ps: dict) -> dict[str, tuple[str, str]]:
         ]
 
     src, none = whole_somewhere("source_based"), whole_somewhere("none")
+    names = lambda xs: f" ({'; '.join(xs)})" if xs else ""  # noqa: E731
     zero_share = {round(c["net"]) for c in ps["cells"] if c["share"] == 0}
     if len(zero_share) != 1:
         raise ValueError("the zero-share cells differ: the titles' administration-cost claim does not hold")
@@ -134,15 +136,15 @@ def price_share_titles(ps: dict) -> dict[str, tuple[str, str]]:
     )
     t = {
         "U9": (
-            f"Model, grocery price x grocery share at fixed volume, source-based savings: {len(src)} of {n_arr} arrangements keep state receipts whole somewhere on the grid",
+            f"Model, every grocery price and share moving, fixed volume, assumed store savings: {len(src)} of {n_arr} designs keep state receipts whole somewhere{names(src)}",
             common + " Savings: 2.28¢ of store cost avoided per $1 that leaves (U07, an assumption).",
         ),
         "U10": (
-            f"Model, the same grid with no avoidable store savings: {len(none)} of {n_arr} arrangements keep state receipts whole somewhere on it",
+            f"Model, the same grid with no store savings: {len(none)} of {n_arr} designs keep state receipts whole somewhere{names(none)}",
             common + " No store cost is avoided.",
         ),
         "U11": (
-            "Model: the grocer's gross margin at each grocery price, with the discount or charge held fixed",
+            "Model: the grocer's gross margin at each grocery price, with DABS's price to grocers or the charge held fixed",
             "Gross margin: the grocer's selling price less what it pays, as a share of its own price, before its own costs (not profit). It does not depend on the share that moves. "
             f"Private supply: after a wholesaler assumed to keep {pct(ps['wholesaler_margin'])} of its price. 28% is a national grocery reference, not a minimum.",
         ),
@@ -193,13 +195,21 @@ def utah_titles(data: dict) -> dict[str, tuple[str, str]]:
     at = alt(data, "A_target")
     at_pc = next(d for d in at["demand"] if d["id"] == "price_constant")["net"]
     losing = [a for a in main if a["ledger_fixed"]["net"] < -0.5]
+    at_net, ct_net = at["ledger_fixed"]["net"], alt(data, "C_take")["ledger_fixed"]["net"]
+    at_rts = next(d for d in at["demand"] if d["id"] == "return_to_stores")["net"]
+    # The state's take per bottle: DABS's trading margin plus any charge, against today.
+    take = {a["id"]: sum(x["value"] or 0 for x in a["ledger_fixed"]["lines"] if x["kind"] in ("trading_margin", "charge")) for a in main}
+    if not all(take[a["id"]] < -0.5 for a in losing):
+        raise ValueError("U2: a design that lowers revenue keeps the state's take; reword the title")
+    if verb(n1) != verb(n2) or not (at_net > 0.5 and ct_net > 0.5):
+        raise ValueError("U1, U4, U6 or S0: the results no longer support the titles' words")
     t = {
         "U1": (
-            f"Model, historical references at fixed volume: Reference 1 {verb(n1)} state revenue by {money(n1)[1:]} a year, Reference 2 by {money(n2)[1:]}",
-            f"Change from today. Both keep the {money(sales_tax_on_moved)[1:]} of state sales tax on the wine that moves; the change is the DABS margin given up, the tax or margin collected instead, and costs.",
+            f"Model, the two October examples, where grocers must match state-store prices: Reference 2 {verb(n2)} state revenue by {money(n2)[1:]} a year, Reference 1 by {money(n1)[1:]}",
+            f"Change from today. Both keep the {money(sales_tax_on_moved)[1:]} of state sales tax on the wine that moves; the loss is the DABS margin the state gives up so the grocer can be paid at today's price, less the tax or margin collected instead, and costs.",
         ),
         "U2": (
-            f"Model, fixed volume: {len(losing)} of {len(main)} alternatives lower state revenue; the result depends on who pays the grocer's margin",
+            f"Model, fixed volume: {len(whole)} of {len(main)} designs keep state revenue at or above today's; the {len(losing)} that lower it all give up part of the state's take on each bottle",
             "Change from today by component, $ a year. Filled diamond: the sum; hollow diamond: the same with no avoidable cost. The 2.28¢ avoidable cost is a source-based assumption (allocated FY2025 expense lines), not a measured saving.",
         ),
         "U3": (
@@ -207,19 +217,19 @@ def utah_titles(data: dict) -> dict[str, tuple[str, str]]:
             "Gross margin (before the grocer's own costs; not profit) as a share of its selling price; 28% is a national reference, not a minimum. Revenue: bar with the assumed 2.28¢ savings, x with none, o with the exploratory price response (the old treatment; see F5). Fund ranges: two readings of current law.",
         ),
         "U4": (
-            f"Model, DABS supply: the state's fixed-volume change is positive below a {pct(be_m, 1)} discount at today's prices, or {pct(be_t, 1)} when grocers price for 28%",
-            "Discount off today's shelf price at which DABS sells to grocers. At today's prices the grocer's margin is the discount; with a 28% target, the price carries it.",
+            f"Model, DABS supply: selling to grocers at today's full price keeps the state ahead ({money(at_net)} a year when grocers set their own price); it stays ahead while DABS charges grocers more than {pct(1 - be_t, 1)} of its shelf price, or {pct(1 - be_m, 1)} if grocers must charge today's price",
+            "DABS's price to grocers as a share of today's shelf price. At today's prices the grocer's margin is the gap to the shelf price; with a 28% target, the price carries it.",
         ),
         "U5": (
             (
-                f"Model, private supply: a {pct(ch_t, 1)} charge on the sellers' price keeps state revenue whole when they price for national margins; the {pct(ch_m, 0)} break-even at today's price would put the grocer below its acquisition cost"
+                f"Model, private supply: a state charge of {pct(ch_t, 1)} on the sellers' price keeps state revenue whole when sellers set their own prices; making them charge today's price would need {pct(ch_m, 0)}, which puts the grocer below its cost"
                 if alt(data, "C_matched_be")["retailer"]["arithmeticOnly"]
                 else f"Model, private supply: the charge that keeps state revenue whole is {pct(ch_m, 0)} of the sellers' price at today's prices ({pct(ch_m / (1 + ch_m), 1)} of the price including it), or {pct(ch_t, 1)} with sellers' margins"
             ),
             "A charge on the grocery price before the charge (its base), inside the sales-tax base. A rate on that base is a smaller share of the price that includes it: rate / (1 + rate).",
         ),
         "U6": (
-            f"Model, exploratory demand cases (the old treatment; F5 and F9 replace it): if a market-wide elasticity is applied to the grocery price and lost bottles leave Utah, keeping DABS's margin per bottle {verb(at_pc)} state revenue ({money(at_pc)} a year)",
+            f"Model, exploratory demand cases (the old treatment; F5 and F9 replace it): DABS at full price comes out {money(at_net)} a year at fixed volume and {money(at_rts)} if shoppers go back to state stores; {money(at_pc)} only if bottles not bought at grocers leave Utah",
             "Kept for comparison only: it treats a higher grocery price as if every wine price had risen, though DABS still sells at today's price; squares read the same bottles as bought at DABS instead. Recapture and access values are illustrative.",
         ),
         "U7": (
@@ -227,13 +237,13 @@ def utah_titles(data: dict) -> dict[str, tuple[str, str]]:
             "One change at a time from each alternative as defined. Proportional cases are arithmetic bounds: the stores stay open in every case.",
         ),
         "U8": (
-            "Model, beer-to-wine threshold: extra wine replacing beer needed to offset each loss at fixed volume",
+            f"Model, beer-to-wine threshold: the {len(losing)} designs that lower state revenue would need this much extra wine bought instead of beer to make up the loss; the other {len(whole)} need none",
             "Share of 2024 Utah wine gallons, holding total alcohol constant. A threshold, not a forecast: no study measures this switching. F6 and F10 restate it with beer and spirits separated.",
         ),
         "S0": (
-            "Tennessee's alcohol tax receipts rose after grocery wine; in Utah's model, keeping revenue whole when only existing wine purchases move needs higher grocery prices or very thin grocer margins",
+            "Observed: Tennessee's alcohol tax receipts rose after grocery wine. Model: Utah keeps its revenue whole when the state keeps its take on each bottle and grocers set their own price",
             (
-                f"Utah alternatives that keep revenue at or above today's at fixed volume raise the grocery price {pct(min(priced), 0)}–{pct(max(priced), 0)}, or keep today's price and leave the grocer {pct(max(flat), 0)} of its price or less (the break-even charge would need sales below cost). If some grocery wine replaced beer or came back from other states, less is needed (F6)."
+                f"Utah designs that keep revenue at or above today's at fixed volume raise the grocery price {pct(min(priced), 0)}–{pct(max(priced), 0)}, or keep today's price and leave the grocer {pct(max(flat), 0)} of its price or less (the break-even charge would need sales below cost). Red: designs that cut the state's take on each bottle; wine bought instead of beer would close part of their gap (F6)."
                 if priced and flat
                 else "See U2."
             ),
@@ -258,7 +268,7 @@ def tn_titles(tn: dict, trend_above: float | None = None) -> dict[str, tuple[str
     beer_word = "fell" if beer_pct < 0 else "rose"
     t = {
         "T1": (
-            f"Observed: Tennessee's alcohol tax receipts rose {pct(t10)} after inflation, {t10_rel:.1f} log points more than its neighbours' average",
+            f"Observed: Tennessee's alcohol tax receipts rose {pct(t10)} after inflation, {t10_rel:.1f} log points more than its neighbors' average",
             "Census T10, constant 2024 dollars, FY2012–15 to FY2017–19. A before-and-after comparison, not an effect estimate.",
         ),
         "T2": (
@@ -272,7 +282,7 @@ def tn_titles(tn: dict, trend_above: float | None = None) -> dict[str, tuple[str
         ),
         "T4": (
             f"Observed: Tennessee's wine purchases rose {pct(wine_pct, 0)} and its beer purchases {beer_word} {pct(abs(beer_pct), 0)} (2011–15 to 2017–19); the comparison does not show that people switched",
-            f"Relative to the neighbours' average: wine {wine_rel:+.1f} log points, beer {beer_rel:+.1f}. Purchases (sales and shipments), not drinking.".replace("-", "−"),
+            f"Relative to the neighbors' average: wine {wine_rel:+.1f} log points, beer {beer_rel:+.1f}. Purchases (sales and shipments), not drinking.".replace("-", "−"),
         ),
         "T5": (
             "Observed, descriptive diagnostic: the July 2016 gap beside the same comparison at earlier dates when no law changed",
@@ -280,7 +290,7 @@ def tn_titles(tn: dict, trend_above: float | None = None) -> dict[str, tuple[str
         ),
         "T6": (
             "Observed: sensitivity ranges across the pre-registered specifications (not confidence intervals)",
-            "Each grey dot is another window, data choice or comparison pool fixed before the results were computed.",
+            "Each gray dot is another window, data choice or comparison pool fixed before the results were computed.",
         ),
     }
     return t
@@ -481,27 +491,27 @@ def flow_titles(fl: dict) -> dict[str, tuple[str, str]]:
             "B to E are illustrative shares (no Utah evidence gives them); 30% of household DABS wine moves in every row. The sources do not depend on the design in these rows.",
         ),
         "F2": (
-            f"Model, 30% moving at any price and nothing else changing: designs that preserve the state's collection change receipts by {money_range(pres)} a year; "
-            f"the 20% DABS discount by {money(flow_net(fl, 'dabs_discount_20', 'accounting_30'))}, the 20% tax by {money(flow_net(fl, 'private_tax_20', 'accounting_30'))}",
-            "Change in each state collection and cost, FY2025 $ a year; diamond: the net. Preserving the collection is a proposed design, not current law; "
+            f"Model, 30% moving at any price and nothing else changing: designs that keep the state's take per bottle come out {money_range(pres)} a year; "
+            f"DABS at 80% comes out {money(flow_net(fl, 'dabs_discount_20', 'accounting_30'))}, the 20% tax {money(flow_net(fl, 'private_tax_20', 'accounting_30'))}",
+            "Change in each state collection and cost, FY2025 $ a year; diamond: the net. Keeping the state's take is a proposed design, not current law; "
             f"paying grocers then needs grocery prices {pct(min(paid), 0)}–{pct(max(paid), 0)} above the state store's. At today's price it leaves the grocer nothing (diagnostic).",
         ),
         "F3": (
-            f"Model, per source: wine replacing beer at the same alcohol brings the state more than the beer it replaces under {len(beer_up)} of {len(every)} designs; "
-            f"wine replacing spirits, under {len(spirits_up)} of {len(every)}",
+            f"Model, per source: wine bought instead of beer, at the same alcohol, brings the state more than the beer it replaces under {len(beer_up)} of {len(every)} designs; "
+            f"wine bought instead of spirits, under {len(spirits_up)} of {len(every)}",
             "Collections gained on the wine and lost on what it replaces, $ a year: 5% of households' beer or spirits replaced (same pure alcohol); "
             "wine equal to 2% of household DABS wine brought back from other states or added. Illustrative shares, not estimates.",
         ),
         "F4": (
-            f"Model: more wine sold is not more alcohol; with 5% of households' beer replaced at the same alcohol, wine rises {wine_l / 1e6:.1f}M litres a year, "
-            f"beer falls {beer_l / 1e6:.1f}M litres and pure alcohol does not change",
-            "Change in litres of beverage and of pure alcohol bought by Utah households, by beverage, under four illustrative scenarios. "
-            "Equal litres of wine for beer, or additional wine, do add alcohol.",
+            f"Model: more wine sold is not more alcohol; with 5% of households' beer replaced at the same alcohol, wine rises {wine_l / 1e6:.1f}M liters a year, "
+            f"beer falls {beer_l / 1e6:.1f}M liters and pure alcohol does not change",
+            "Change in liters of beverage and of pure alcohol bought by Utah households, by beverage, under four illustrative scenarios. "
+            "Equal liters of wine for beer, or additional wine, do add alcohol.",
         ),
         "F5": (
-            "Model, channel choice (illustrative straight lines): with the collection preserved the state gains while shoppers still move at the grocery price"
+            "Model, if shoppers choose where to buy (illustrative straight lines): designs that keep the state's take gain while shoppers still move at the grocery price"
             + (
-                f"; once none do, it is out only the {money(admin)[1:]} administration cost"
+                f"; once none do, the state is out only the {money(admin)[1:]} administration cost"
                 if pres_gain
                 else ""
             ),
@@ -510,23 +520,23 @@ def flow_titles(fl: dict) -> dict[str, tuple[str, str]]:
         ),
         "F6": (
             "Model, break-even at 30% moving: "
-            + ("designs that preserve the collection need no change in purchases; " if pres_above else "")
-            + f"the 20% DABS discount breaks even with {be_words('dabs_discount_20')}; the 20% tax with {be_words('private_tax_20')}",
+            + ("designs that keep the state's take need no change in what people buy; " if pres_above else "")
+            + f"DABS at 80% breaks even with {be_words('dabs_discount_20')}; the 20% tax with {be_words('private_tax_20')}",
             "Each lever alone, others at the accounting case. Beer and spirits replaced at the same pure alcohol (no more alcohol); recapture moves purchases into Utah; "
             "additional wine adds alcohol. Break-evens are thresholds, not forecasts.",
         ),
         "F7": (
             "Model: the less the state collects per bottle, and the more wine moves, the more substitution or new buying is needed to break even",
-            "Break-even share, each lever alone. Left: DABS sells to grocers at a discount and grocers charge today's price (no discount keeps the full markup; the grocer's margin is the discount). "
-            "Right: the 20% DABS discount with more or less moving.",
+            "Break-even share, each lever alone. Left: DABS's price to grocers varies and grocers charge today's price (at 100% DABS keeps its full markup; the grocer's margin is the gap to the shelf price). "
+            "Right: DABS at 80% of the shelf price with more or less moving.",
         ),
         "F8": (
-            f"Model, sensitivity at 30% moving: for the preserved designs the result moves most with {lower_first(top_pres['parameter'])} (up to {money(top_pres['swing_usd'])[1:]}); "
-            f"for the 20% designs with {lower_first(top_red['parameter'])} (up to {money(top_red['swing_usd'])[1:]})",
+            f"Model, sensitivity at 30% moving: for designs that keep the state's take, the result moves most with {lower_first(top_pres['parameter'])} (up to {money(top_pres['swing_usd'])[1:]}); "
+            f"for DABS at 80% and the 20% tax, with {lower_first(top_red['parameter'])} (up to {money(top_red['swing_usd'])[1:]})",
             "One stated input at a time at its low and high tested values (ranges, not confidence intervals); others at the accounting case. Inputs that do not apply to a design are left out.",
         ),
         "F9": (
-            f"Model, every named scenario: the DABS-supplied preserved design raises receipts in {up['preserved_dabs']} of {n_sc}, the 20% DABS discount in {up['dabs_discount_20']}, the 20% tax in {up['private_tax_20']}",
+            f"Model, every named scenario: DABS at full price (grocer 28%) raises receipts in {up['preserved_dabs']} of {n_sc}; DABS at 80% in {up['dabs_discount_20']}, the 20% tax in {up['private_tax_20']}",
             f"State's annual change. Filled marks: households buy the same total alcohol ({len(unchanged_everywhere)} scenarios, whatever the design); hollow: alcohol changes. "
             "Exploratory rows keep the old treatment (a market-wide elasticity on one channel; declined purchases not made) only to show its effect.",
         ),
@@ -536,8 +546,8 @@ def flow_titles(fl: dict) -> dict[str, tuple[str, str]]:
             "Utah's rate of switching is not known: the lines show what each rate would mean.",
         ),
         "F11": (
-            f"Model, the 30% share is not a forecast: each further 10 points moving changes receipts by {money_range([p10[a] for a in PRESERVED])} under preserved designs "
-            f"and {money_range([p10[a] for a in REDUCED])} under the 20% designs",
+            f"Model, the 30% share is not a forecast: each further 10 points moving changes receipts by {money_range([p10[a] for a in PRESERVED])} under designs that keep the state's take "
+            f"and {money_range([p10[a] for a in REDUCED])} under DABS at 80% and the 20% tax",
             "Accounting case (nothing else changes) at every share moving; band: households' share of DABS purchases from 67% to 97% (82% assumed).",
         ),
     }

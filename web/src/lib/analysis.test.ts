@@ -33,14 +33,14 @@ const seg = (geo: string, start: string, end: string, state: string, ids = "-"):
   policy_ids: ids,
   derivation_version: "test",
 });
-// Modelled on Tennessee: verified not authorized 2014-03-20 to 2016-06-30, local option on 2016-07-01 only.
+// Modeled on Tennessee: verified not authorized 2014-03-20 to 2016-06-30, local option on 2016-07-01 only.
 const TN = [
   seg("state:47", "1990-01-01", "2014-03-19", "unknown"),
   seg("state:47", "2014-03-20", "2016-06-30", "not_authorized", "tn_before"),
   seg("state:47", "2016-07-01", "2016-07-01", "authorized_local_option", "tn_2016"),
   seg("state:47", "2016-07-02", AS_OF, "unknown"),
 ];
-// Modelled on Virginia: the same value on two legal bases.
+// Modeled on Virginia: the same value on two legal bases.
 const VA = [
   seg("state:51", "1990-01-01", "1997-06-30", "unknown"),
   seg("state:51", "1997-07-01", "2021-06-30", "authorized", "va_general"),
@@ -102,7 +102,7 @@ describe("policy status by calendar year comes from verified days only", () => {
     expect(at(2026)).toMatchObject({ kind: "unknown", days: 279 });
     expect(at(2027)).toMatchObject({ kind: "after_as_of", days: 0 });
   });
-  it("never fills a year from a neighbour or from a snapshot", () => {
+  it("never fills a year from a neighbor or from a snapshot", () => {
     // Georgia-like: a snapshot exists, but no day run, so every year is "not coded".
     const ga = yearStatuses(SEGS, "state:13", "grocery_wine", 2020, 2026, AS_OF);
     expect(ga.every((s) => s.kind === "not_coded" && s.knownDays === 0)).toBe(true);

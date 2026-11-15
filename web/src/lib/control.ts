@@ -1,6 +1,6 @@
 // Liquor-control arrangements, compared across states. Four separate dimensions (spirits and wine; wholesale
 // and retail) are read from verified day runs only. A dated current-law snapshot is reported beside the
-// verdict, labelled as such, and never decides it: a snapshot says nothing about any other day.
+// verdict, labeled as such, and never decides it: a snapshot says nothing about any other day.
 import type { Segment, Snapshot } from "./types";
 
 export interface ControlDim {

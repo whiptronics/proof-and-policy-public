@@ -173,12 +173,12 @@ EXPLICIT: dict[str, tuple[str, str]] = {
     "high": ("text", "High tested value"),
     "component_id": ("id", "Collection, cost, total or allocation component"),
     "component": ("text", "Component, in words"),
-    "government": ("text", "Level of government (state; local sales tax is not modelled)"),
+    "government": ("text", "Level of government (state; local sales tax is not modeled)"),
     "quantity": ("text", "Conversion quantity"),
     "unit": ("text", "Unit of the conversion value"),
     "conversion_basis": (
         "text",
-        "Wine bought for what is replaced: pure_alcohol (same alcohol), volume (same litres), spending (same dollars)",
+        "Wine bought for what is replaced: pure_alcohol (same alcohol), volume (same liters), spending (same dollars)",
     ),
     "beer_basis": ("text", "Conversion basis for beer replaced"),
     "spirits_basis": ("text", "Conversion basis for spirits replaced"),
@@ -225,7 +225,7 @@ EXPLICIT: dict[str, tuple[str, str]] = {
     "placebo_dates": ("count", "Number of placebo dates"),
     "placebo_typical_gap": ("log points", "Typical gap at placebo dates"),
     "placebo_share_as_large": ("share", "Share of placebo dates with a gap as large"),
-    "tn_change_within_neighbours_range": ("boolean", "Tennessee's change lies within the neighbours' range"),
+    "tn_change_within_neighbours_range": ("boolean", "Tennessee's change lies within the neighbors' range"),
     "change": ("units of the series", "After mean less before mean"),
     "before_mean": ("units of the series", "Mean over the before window"),
     "after_mean": ("units of the series", "Mean over the after window"),
@@ -234,8 +234,8 @@ EXPLICIT: dict[str, tuple[str, str]] = {
     "tn_change": ("units of the series", "Tennessee, change"),
     "pool_avg_change": ("units of the series", "Comparison pool's average change"),
     "diff_change": ("units of the series", "Tennessee's change less the pool's"),
-    "neighbours_change_min": ("units of the series", "Lowest neighbour change"),
-    "neighbours_change_max": ("units of the series", "Highest neighbour change"),
+    "neighbours_change_min": ("units of the series", "Lowest neighbor change"),
+    "neighbours_change_max": ("units of the series", "Highest neighbor change"),
     "tn_minus_state": ("units of the series", "Tennessee's change less this state's"),
     "pre_trend_slope_per_year": ("units of the series a year", "Slope of the before-window trend"),
     "pre_trend_slope_se": ("units of the series a year", "Standard error of that slope (descriptive)"),
@@ -265,9 +265,9 @@ RULES: list[tuple[str, str, str]] = [
         "per $1 of today's state-store shelf price before sales tax",
         "Per-dollar amount",
     ),
-    (r"pure_alcohol", "litres of pure (ethanol) alcohol a year", "Pure alcohol: litres of beverage x ABV"),
-    (r"litres", "litres of beverage a year", "Litres"),
-    (r"bottles_750ml$", "750 ml bottles a year", "Litres / 0.75"),
+    (r"pure_alcohol", "liters of pure (ethanol) alcohol a year", "Pure alcohol: liters of beverage x ABV"),
+    (r"litres", "liters of beverage a year", "Liters"),
+    (r"bottles_750ml$", "750 ml bottles a year", "Liters / 0.75"),
     (r"containers_change$", "containers a year", "Change in containers (see container)"),
     (r"log_points", "log points (100 x natural-log difference)", "Log-point comparison"),
     (r"_share$|_factor$", "share", "Share or factor (1 = unchanged)"),
@@ -281,7 +281,8 @@ def describe(col: str) -> tuple[str, str, str]:
         return u, d, "explicit"
     for pat, unit, what in RULES:
         if re.search(pat, col):
-            words = col.replace("_", " ")
+            # Column names keep "litres"; the description that repeats them is American.
+            words = col.replace("_", " ").replace("litres", "liters")
             return unit, f"{what}: {words}", "naming rule"
     return "", "", ""
 
@@ -398,7 +399,7 @@ def main() -> int:
         ),
         (
             "SRC-DABS-MSR",
-            "DABS monthly Sales Analysis Reports, July 2025-June 2026 (sales and 9-litre cases by category)",
+            "DABS monthly Sales Analysis Reports, July 2025-June 2026 (sales and 9-liter cases by category)",
             "pinned (utah_dabs_sales_analysis); dataset ut_dabs_fy_*",
         ),
         (

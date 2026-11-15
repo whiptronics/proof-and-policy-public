@@ -8,7 +8,7 @@ body:
     validations: {required: true}
   - type: textarea
     id: concern
-    attributes: {label: The concern, description: "e.g. incompatible comparison, wrong denominator, mislabelled period, overstated claim"}
+    attributes: {label: The concern, description: "e.g. incompatible comparison, wrong denominator, mislabeled period, overstated claim"}
     validations: {required: true}
   - type: textarea
     id: evidence

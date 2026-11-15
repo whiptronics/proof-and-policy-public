@@ -4,6 +4,7 @@ import { Drawer } from "./components/Drawer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { useData } from "./lib/data";
 import { AI_DISCLOSURE } from "./lib/disclosure";
+import { DESCRIPTIONS, NAV_GROUPS, TITLES, groupOf } from "./lib/nav";
 import type { Manifest } from "./lib/types";
 import { navigate, pickOne, useParams, VIEWS, type View } from "./lib/url";
 import { CoverageView } from "./views/CoverageView";
@@ -22,40 +23,13 @@ const ExploreView = lazy(() => import("./views/ExploreView").then((m) => ({ defa
 const MapView = lazy(() => import("./views/MapView").then((m) => ({ default: m.MapView })));
 const BeveragesView = lazy(() => import("./views/BeveragesView").then((m) => ({ default: m.BeveragesView })));
 const FiscalView = lazy(() => import("./views/FiscalView").then((m) => ({ default: m.FiscalView })));
+const BriefingView = lazy(() => import("./views/BriefingView").then((m) => ({ default: m.BriefingView })));
 const InitiativeView = lazy(() => import("./views/InitiativeView").then((m) => ({ default: m.InitiativeView })));
 const UtahView = lazy(() => import("./views/UtahView").then((m) => ({ default: m.UtahView })));
 const FinderView = lazy(() => import("./views/FinderView").then((m) => ({ default: m.FinderView })));
 const RevenueView = lazy(() => import("./views/RevenueView").then((m) => ({ default: m.RevenueView })));
 const OfficialsView = lazy(() => import("./views/OfficialsView").then((m) => ({ default: m.OfficialsView })));
 const ScenarioView = lazy(() => import("./views/ScenarioView").then((m) => ({ default: m.ScenarioView })));
-
-const TOOLS: [View, string][] = [
-  ["start", "Start here"],
-  ["initiative", "Utah grocery wine"],
-  ["utah", "Utah at a glance"],
-  ["change", "Before & after"],
-  ["finder", "Find comparison states"],
-  ["scenario", "Utah revenue scenarios"],
-];
-const DATA: [View, string][] = [
-  ["map", "Map"],
-  ["beverages", "Beer, wine & spirits"],
-  ["fiscal", "Revenue by state"],
-  ["explore", "Explore"],
-  ["compare", "Compare"],
-  ["revenue", "Revenue over time"],
-  ["coverage", "Coverage"],
-  ["timeline", "Policy timeline"],
-  ["matrix", "Policy matrix"],
-  ["sources", "Sources"],
-  ["officials", "Officials & committees"],
-];
-const SECONDARY: [View, string][] = [
-  ["case", "Worked example"],
-  ["methods", "Definitions & methods"],
-  ["downloads", "Downloads"],
-];
-const TITLES: Record<View, string> = Object.fromEntries([...TOOLS, ...DATA, ...SECONDARY]) as Record<View, string>;
 
 /** Optional framing for hosts that embed the dashboard (the defaults are the local research dashboard). */
 export interface AppProps {
@@ -69,14 +43,15 @@ export interface AppProps {
   footer?: ReactNode;
 }
 
-function NavLink({ view, current, children }: { view: View; current: View; children: ReactNode }) {
+/** A link to a view. `group` marks a section link whose section holds the current page. */
+function NavLink({ view, current, group, children }: { view: View; current: View; group?: boolean; children: ReactNode }) {
   const go = (e: MouseEvent) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     navigate({ v: view }, { reset: true });
   };
   return (
-    <a href={`?v=${view}`} onClick={go} aria-current={view === current ? "page" : undefined}>
+    <a href={`?v=${view}`} onClick={go} aria-current={group === undefined ? (view === current ? "page" : undefined) : group ? "true" : undefined}>
       {children}
     </a>
   );
@@ -84,7 +59,6 @@ function NavLink({ view, current, children }: { view: View; current: View; child
 
 export function App({ title = "Proof & Policy research dashboard", intro, hide = [], footer }: AppProps = {}) {
   const params = useParams();
-  const shown = (list: [View, string][]) => list.filter(([v]) => !hide.includes(v));
   const view = pickOne(
     params.get("v"),
     VIEWS.filter((v) => !hide.includes(v)),
@@ -94,7 +68,10 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
 
   useEffect(() => {
     document.title = `${TITLES[view]} · ${title}`;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", DESCRIPTIONS[view]);
   }, [view, title]);
+  const groups = NAV_GROUPS.map((g) => ({ ...g, views: g.views.filter(([v]) => !hide.includes(v)) })).filter((g) => g.views.length);
+  const group = groups.find((g) => g.id === groupOf(view).id) ?? groups[0];
 
   return (
     <>
@@ -120,29 +97,28 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
             shows what your own assumptions imply; it is not a forecast.
           </p>
         )}
-        <div className="navs">
-          <nav className="main tools" aria-label="Analysis tools">
-            {shown(TOOLS).map(([v, label]) => (
-              <NavLink key={v} view={v} current={view}>
-                {label}
-              </NavLink>
+        <nav className="site-nav" aria-label="Sections">
+          <ul className="nav-groups">
+            {groups.map((g) => (
+              <li key={g.id}>
+                <NavLink view={g.views[0][0]} current={view} group={g.id === group.id}>
+                  {g.label}
+                </NavLink>
+              </li>
             ))}
-          </nav>
-          <nav className="main" aria-label="Browse the data">
-            {shown(DATA).map(([v, label]) => (
-              <NavLink key={v} view={v} current={view}>
-                {label}
-              </NavLink>
+          </ul>
+        </nav>
+        <nav className="page-nav" aria-label={`${group.label}: pages`}>
+          <ul>
+            {group.views.map(([v, label]) => (
+              <li key={v}>
+                <NavLink view={v} current={view}>
+                  {label}
+                </NavLink>
+              </li>
             ))}
-          </nav>
-          <nav className="secondary" aria-label="More">
-            {shown(SECONDARY).map(([v, label]) => (
-              <NavLink key={v} view={v} current={view}>
-                {label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+          </ul>
+        </nav>
       </header>
       <main id="content" tabIndex={-1}>
         {man.error ? (
@@ -153,6 +129,7 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
           <ErrorBoundary resetKey={view}>
             <Suspense fallback={<Loading what="this view" />}>
               {view === "start" && <StartView />}
+              {view === "briefing" && <BriefingView />}
               {view === "initiative" && <InitiativeView />}
               {view === "utah" && <UtahView />}
               {view === "change" && <ChangeView />}

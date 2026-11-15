@@ -1,7 +1,7 @@
 // Rank intervals: how much a state's rank could move if every state's value is redrawn within its own sampling
 // error. A rank from survey estimates (BRFSS, YRBS) looks exact but is not: two states a point apart with
 // margins of error of three points can swap places. The interval is the 5th to 95th percentile of a state's rank
-// across simulated redraws, each state's value drawn independently from a normal distribution centred on its
+// across simulated redraws, each state's value drawn independently from a normal distribution centered on its
 // published value with the standard error implied by its published 95% interval (lib/stats.ts seFromInterval).
 //
 // * States are independent samples, so independent draws are the right model for survey estimates by state.

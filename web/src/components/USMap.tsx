@@ -1,6 +1,6 @@
 // A U.S. state map (Albers USA outlines from the export). Every state is a keyboard-focusable control; its
 // label gives the value, and missing, suppressed and zero each have their own fill so none can pass for
-// another. Small Northeastern states are labelled to the side with leader lines, as on Census maps.
+// another. Small Northeastern states are labeled to the side with leader lines, as on Census maps.
 import { useState, type KeyboardEvent, type ReactNode } from "react";
 import { colorFor, inkFor, type Domain, type RankedCell } from "../lib/mapdata";
 import type { MapShapes } from "../lib/types";
@@ -132,7 +132,7 @@ export function USMap({
             </path>
           );
         })}
-        {/* Draw Utah's and the selected state's outline on top so neither is hidden by neighbours. */}
+        {/* Draw Utah's and the selected state's outline on top so neither is hidden by neighbors. */}
         {outlineUtah && shapes.states["state:49"] && <path d={shapes.states["state:49"].path} className="map-utah-outline" aria-hidden="true" />}
         {selected && shapes.states[selected] && <path d={shapes.states[selected].path} className="map-selected-outline" aria-hidden="true" />}
         {geos.map(label)}

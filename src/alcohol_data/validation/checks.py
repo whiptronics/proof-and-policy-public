@@ -300,14 +300,14 @@ def c_age(con):
 
 @check("wine_measures_not_all_alcohol", "error")
 def c_wine(con):
-    # A measure labelled wine must be defined on wine; all-alcohol finance must never be relabelled as wine.
+    # A measure labeled wine must be defined on wine; all-alcohol finance must never be relabeled as wine.
     rows = _rows(
         con,
         """SELECT measure_id FROM measures
         WHERE (lower(measure_id) LIKE '%wine%' AND beverage <> 'wine')
            OR (fiscal_component IS NOT NULL AND beverage = 'wine' AND lower(definition) NOT LIKE '%wine%')""",
     )
-    return [r[0] for r in rows], f"{len(rows)} wine/all-alcohol labelling mismatches"
+    return [r[0] for r in rows], f"{len(rows)} wine/all-alcohol labeling mismatches"
 
 
 # ------------------------------------------------------------------ policy

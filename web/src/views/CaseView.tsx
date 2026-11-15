@@ -280,7 +280,7 @@ export function CaseView() {
         <h3 id="s6">7. Reproduce this example</h3>
         <p className="small">
           Configuration: <span className="mono">{c.config_file}</span>; dataset {man.data.dataset.release_label}; conversions per
-          panel as labelled; window means and changes use the page formulas. The download includes every value charted
+          panel as labeled; window means and changes use the page formulas. The download includes every value charted
           above with its source and inputs.
         </p>
         <div className="row-actions">

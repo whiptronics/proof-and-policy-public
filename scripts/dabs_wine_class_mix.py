@@ -58,7 +58,7 @@ def month_totals(path: str) -> tuple[Counter, Counter, float]:
             if row and "Class Code" in row:
                 col = {}
                 for j, v in enumerate(row):
-                    if v and v not in col:  # the first "Total" is gross sales; the second is 9-litre cases
+                    if v and v not in col:  # the first "Total" is gross sales; the second is 9-liter cases
                         col[v] = j
             continue
         cc, item, total = row[col["Class Code"]], row[col["Item Code"]], row[col["Total"]]

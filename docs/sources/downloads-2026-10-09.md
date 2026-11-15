@@ -2,7 +2,7 @@
 
 Ethan downloaded 115 files into `../Repeal Title 32B Utah` (outside the repository; the originals were not
 changed). Every file is listed, with its size, SHA-256 and what the dataset did with it, in
-[`downloads-2026-10-09.csv`](downloads-2026-10-09.csv). This page summarises that list and records how
+[`downloads-2026-10-09.csv`](downloads-2026-10-09.csv). This page summarizes that list and records how
 each new file was compared with what the dataset already held.
 
 | Status | Files | Meaning |
@@ -98,8 +98,8 @@ rounding in every year (`reconcile_bea_alcohol_spending_states_sum_to_us`).
 
 ## Waiting on a decision
 
-- **CDI licence.** data.cdc.gov gives the Chronic Disease Indicators' licence as the Open Database License
+- **CDI license.** data.cdc.gov gives the Chronic Disease Indicators' license as the Open Database License
   (checked 2026-10-09). The source carries a `release_gate`, so `alcohol-data package` refuses to build a
   release containing it until Ethan decides; local builds and the dashboard are unaffected.
 - **Publication 25 is marked "draft pending public meeting"** on every page. The 4.85% figure is flagged
-  `draft_publication` and labelled as a draft wherever it is shown.
+  `draft_publication` and labeled as a draft wherever it is shown.

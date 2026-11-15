@@ -9,7 +9,7 @@
 //  * DABS trading margin: DABS's selling price less the acquisition cost, before operating expenses. Not profit.
 //  * private wholesale margin and retailer (grocer) gross margin: each seller's selling price less what it pays.
 //  * explicit state charge: a replacement charge collected on the wine (per gallon, or a tax on the grocery price).
-//  * shelf price before checkout taxes; state sales tax on its base; local sales tax (not modelled); consumer price.
+//  * shelf price before checkout taxes; state sales tax on its base; local sales tax (not modeled); consumer price.
 // A margin is a share of the seller's own selling price; a markup is on the seller's acquisition cost:
 // margin = markup / (1 + markup). A charge's rate is quoted on its legal base and as a share of the price that includes
 // it: rate / (1 + rate).
@@ -43,7 +43,7 @@ export interface StackColumn {
   shelf: number;
   salesTaxBase: number;
   stateSalesTax: number;
-  /** Not modelled: whether state-store sales carry local sales tax as grocery sales would is unresolved. */
+  /** Not modeled: whether state-store sales carry local sales tax as grocery sales would is unresolved. */
   localSalesTax: null;
   /** Shelf price plus state sales tax (local sales tax not included). */
   consumer: number;
@@ -89,7 +89,7 @@ export interface LedgerLine {
   id: string;
   label: string;
   kind: LedgerKind;
-  /** Change against today, $ a year (positive: more for the state). Null: not modelled. */
+  /** Change against today, $ a year (positive: more for the state). Null: not modeled. */
   value: number | null;
 }
 
@@ -234,7 +234,7 @@ export function ledger(x: ScenarioInputs, r: ScenarioResult, o: AccountingOption
     { id: "dabs_trading_margin", label: "DABS trading margin (before operating expenses)", kind: "trading_margin", value: tradingMargin },
     { id: "state_charge", label: "Explicit state charge on grocery wine", kind: "charge", value: charge },
     { id: "state_sales_tax", label: "State sales tax", kind: "sales_tax", value: salesTax },
-    { id: "local_sales_tax", label: "Local sales tax (not modelled)", kind: "sales_tax", value: null },
+    { id: "local_sales_tax", label: "Local sales tax (not modeled)", kind: "sales_tax", value: null },
     { id: "savings_short_run", label: "Store costs that fall in the short run (stores stay open)", kind: "saving", value: saved * share(o.savings.shortRun) },
     { id: "savings_conditional", label: "Conditional longer-run cost reductions", kind: "saving", value: saved * share(o.savings.conditional) },
     ...(basis === "with_demand" ? [{ id: "extra_operating_cost", label: "Operating cost of extra state-store sales", kind: "new_cost" as const, value: -extraCost }] : []),

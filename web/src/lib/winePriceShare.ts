@@ -58,7 +58,7 @@ export const AXES = {
     values: PREMIUMS,
     unit: "share of the state-store consumer price (0.35 = 35%)",
     definition:
-      "The consumer price of a bottle at a grocer against the same bottle at a state store today, state sales tax (4.85%) included on both; local sales tax is not modelled.",
+      "The consumer price of a bottle at a grocer against the same bottle at a state store today, state sales tax (4.85%) included on both; local sales tax is not modeled.",
     rationale:
       "Illustrative. 0% is the state-store price. The 35% to 51% band holds the existing alternatives that price for sellers' reference margins (34.9%, 38.9%, 47.7%, 49.0%, 51.2%); 60% is one step beyond them. No source says what premium shoppers would pay.",
   },
@@ -93,9 +93,9 @@ export const GRID_ARRANGEMENTS: GridArrangement[] = [
     id: "dabs_0",
     alt: "A_matched",
     supply: "dabs",
-    lever: { kind: "discount", value: 0, words: "DABS sells to grocers at today's shelf price (no discount)" },
-    label: "DABS supplies grocers at today's price, no discount",
-    short: "DABS, no discount",
+    lever: { kind: "discount", value: 0, words: "DABS's price to grocers at today's shelf price" },
+    label: "DABS supplies grocers at today's price",
+    short: "DABS at today's price",
     marginRule: "The grocer pays DABS today's shelf price; its gross margin is the premium over that price, as a share of its own price.",
     references: ["A_matched", "A_target"],
   },
@@ -103,9 +103,9 @@ export const GRID_ARRANGEMENTS: GridArrangement[] = [
     id: "dabs_20",
     alt: "B20_matched",
     supply: "dabs",
-    lever: { kind: "discount", value: 0.2, words: "DABS sells to grocers at 20% off today's shelf price" },
-    label: "DABS supplies grocers at a 20% discount",
-    short: "DABS, 20% discount",
+    lever: { kind: "discount", value: 0.2, words: "DABS's price to grocers at 80% of today's shelf price" },
+    label: "DABS supplies grocers at 80% of today's price",
+    short: "DABS at 80% of today's price",
     marginRule: "The grocer pays DABS 80% of today's shelf price; its gross margin is the rest of its own price.",
     references: ["B20_matched", "B20_target"],
   },
@@ -137,7 +137,7 @@ export const GRID_ARRANGEMENTS: GridArrangement[] = [
 
 /** What each quantity is in these grids: chosen, held fixed, assumed or derived. */
 export const ROLES: { quantity: string; role: "policy lever (held fixed)" | "chosen on an axis" | "assumption" | "derived"; note: string }[] = [
-  { quantity: "DABS's discount to grocers (DABS supply) or the state charge's rate (private supply)", role: "policy lever (held fixed)", note: "One value per grid; see each arrangement." },
+  { quantity: "DABS's price to grocers (DABS supply) or the state charge's rate (private supply)", role: "policy lever (held fixed)", note: "One value per grid; see each arrangement." },
   { quantity: "Grocery price premium over the state store", role: "chosen on an axis", note: "Illustrative range; not a prediction of what grocers would charge or shoppers pay." },
   { quantity: "Share of covered household wine purchases that moves", role: "chosen on an axis", note: "Illustrative range; the engine does not make it respond to the price (no channel-choice model)." },
   { quantity: "Private wholesaler's gross margin", role: "assumption", note: `${pctS(WHOLESALER_MARGIN)} of its own price (U13), so the grocer's share of the private sellers' margin follows; the sellers' combined margin does not depend on this split.` },
@@ -457,7 +457,7 @@ export interface PriceShareReport {
   preserved: PremiumRanges[];
   markers: MarginMarkers[];
   references: GridReference[];
-  /** A symmetric colour domain shared by every fixed-volume grid, $ a year. */
+  /** A symmetric color domain shared by every fixed-volume grid, $ a year. */
   colourLimit: number;
 }
 

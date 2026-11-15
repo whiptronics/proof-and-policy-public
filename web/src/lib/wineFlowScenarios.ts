@@ -2,7 +2,7 @@
 // shared by the export (src/export/groceryWineFlows.ts) and the tests.
 //
 // Every share of switching, recapture or additional buying here is illustrative: chosen to span a range, never
-// estimated, and labelled so. Ranges are tested ranges, not confidence intervals. "Exploratory" marks the treatments the
+// estimated, and labeled so. Ranges are tested ranges, not confidence intervals. "Exploratory" marks the treatments the
 // brief of 2026-10-18 asked to keep only as exploration (a market-wide elasticity applied to one channel's price, and
 // purchases that leave the market because one channel's price rose).
 import { COST_LINES, ELASTICITY } from "./wineAlternatives";
@@ -83,7 +83,7 @@ export const NAMED_SCENARIOS: NamedScenario[] = [
   },
   { id: "beer_2", label: "Illustrative: wine replaces 2% of households' beer, same alcohol (10% of buyers replace 20% of their beer); bought at grocers", standing: "illustrative", inputs: subst(D0, "beer", 0.1, 0.2), note: "Plus the 30% accounting move. Total alcohol unchanged." },
   { id: "beer_5", label: "Illustrative: wine replaces 5% of households' beer, same alcohol (20% of buyers replace 25%); bought at grocers", standing: "illustrative", inputs: subst(D0, "beer", 0.2, 0.25), note: "Plus the 30% accounting move. Total alcohol unchanged." },
-  { id: "beer_5_volume", label: "Illustrative: as beer 5%, but a litre of wine for each litre of beer", standing: "illustrative", inputs: subst(D0, "beer", 0.2, 0.25, { basis: "volume" }), note: "Wine is about 2.5 times as strong as beer: total alcohol rises." },
+  { id: "beer_5_volume", label: "Illustrative: as beer 5%, but a liter of wine for each liter of beer", standing: "illustrative", inputs: subst(D0, "beer", 0.2, 0.25, { basis: "volume" }), note: "Wine is about 2.5 times as strong as beer: total alcohol rises." },
   { id: "beer_5_spending", label: "Illustrative: as beer 5%, but the same dollars on wine as were spent on beer", standing: "illustrative", inputs: subst(D0, "beer", 0.2, 0.25, { basis: "spending" }), note: "Uses the placeholder beer price (F09): total alcohol falls." },
   { id: "beer_5_split", label: "Illustrative: as beer 5%, with half the wine bought at DABS", standing: "illustrative", inputs: subst(D0, "beer", 0.2, 0.25, { grocery: 0.5 }), note: "A shopper switching from beer may buy the wine at a state store." },
   { id: "spirits_2", label: "Illustrative: wine replaces 2% of households' spirits, same alcohol; bought at grocers", standing: "illustrative", inputs: subst(D0, "spirits", 0.1, 0.2), note: "Spirits carry DABS's markup today: the state loses that markup." },
@@ -105,7 +105,7 @@ export const NAMED_SCENARIOS: NamedScenario[] = [
     label: "Exploratory combination: channel choice (30% limit); of purchases that do not move, half leave Utah or are not bought; movers buy less; administration $1M",
     standing: "exploratory",
     inputs: withFlows(C30, { declined: { dabs: 0.5, outOfState: 0.25, none: 0.25 }, migrantResponse: ELASTICITY, costs: { admin: 1_000_000 } }),
-    note: "One unfavourable combination among many; not a forecast.",
+    note: "One unfavorable combination among many; not a forecast.",
   },
 ];
 
@@ -115,7 +115,7 @@ export const scenarioById = (id: string) => {
   return s;
 };
 
-/** Pure-alcohol change below this many litres a year counts as unchanged (rounding). */
+/** Pure-alcohol change below this many liters a year counts as unchanged (rounding). */
 export const ALCOHOL_TOLERANCE_L = 1;
 
 export interface ScenarioRun {
@@ -419,7 +419,7 @@ export const SENSITIVITY: SensitivityParam[] = [
   { id: "beer_household", label: "Households' share of beer", assumption: "F08", low: "70%", high: "90%", run: (id, x, s) => withBase({ beerHousehold: s === "low" ? 0.7 : 0.9 })(id, x) },
   {
     id: "wine_price",
-    label: "Wine price per litre at a state store",
+    label: "Wine price per liter at a state store",
     assumption: "F02",
     low: "$14.80 (NIAAA gallons)",
     high: `$${FLOW_BASE.wine.price.toFixed(2)} (base)`,

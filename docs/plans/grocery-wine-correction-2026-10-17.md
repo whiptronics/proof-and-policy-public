@@ -2,7 +2,7 @@
 
 Tracked plan for the correction requested by Ethan on 2026-10-17. Scope: the Utah grocery-wine model's policy
 assumptions, the conclusions drawn from it, the Tennessee wording, and the graph package in
-`../../graphs and data`. Valid calculations and unfavourable findings are kept; nothing is tuned to favour reform.
+`../../graphs and data`. Valid calculations and unfavorable findings are kept; nothing is tuned to favor reform.
 Census margin-table work (uncommitted) and every human-review status stay as they are.
 
 ## What produced the exported results (recovered 2026-10-17)
@@ -20,9 +20,9 @@ Census margin-table work (uncommitted) and every human-review status stay as the
 | Finding | Kind |
 |---|---|
 | "Every tested design loses" (graph README, page, brief): false for the discount sweep, which gains below 3.9% | wording / conclusion |
-| d = 0 gives +$1.77M (5¢ savings) or −$0.5M (no savings): engine correct; the claim ignored it | conditional, mislabelled |
+| d = 0 gives +$1.77M (5¢ savings) or −$0.5M (no savings): engine correct; the claim ignored it | conditional, mislabeled |
 | Sales tax (~$2.20M on the moved wine) is retained in every reference case: never a loss | wording check |
-| 20% and 76.4% replacement taxes are on the sellers' price: 16.7% and 43.3% of the tax-inclusive price | denominator labelling |
+| 20% and 76.4% replacement taxes are on the sellers' price: 16.7% and 43.3% of the tax-inclusive price | denominator labeling |
 | 5¢ avoidable cost is illustrative and above the 2.3¢ of lines that move with sales while stores stay open | policy assumption |
 | DABS supply keeps its wholesale costs; the ledger did not show them as retained | presentation |
 | Matched prices give grocers whatever the state leaves; a margin target needs a higher price: two modes, not one | policy design |
@@ -37,7 +37,7 @@ Census margin-table work (uncommitted) and every human-review status stay as the
 
 1. Accounting layer `web/src/lib/wineAccounting.ts` on top of `compute()` (no second engine): price stack per $1 of
    today's pre-tax state-store price; incremental ledger (DABS trading margin, state charge, state sales tax, local
-   sales tax not modelled, short-run savings, conditional savings, new administration and handling costs); unaffected
+   sales tax not modeled, short-run savings, conditional savings, new administration and handling costs); unaffected
    DABS business shown as unchanged; allocations and remaining state resources; reconciliation check.
 2. Small engine extensions in `scenario.ts` (1.6), defaults unchanged: `handlingCost` (DABS supply) and
    `chargeInSalesTax` (whether a replacement charge enters the sales-tax base).

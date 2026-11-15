@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.4.0: the Utah briefing, and grocery-wine pages that lead with the designs that keep revenue whole (2026-11-15)
+
+Presentation, wording and labels only. No model, input or result changed: the engine files (`wineAccounting.ts`,
+`wineAlternatives.ts`, `wineFlows.ts`) differ from 0.3.1 in wording alone, and the worked example is still
+−$12,105,858 (private supply, 20% replacement tax) and −$7,315,464 (DABS sells to grocers at 80% of its shelf price) a
+year on a $96,154,809 FY2025 wine base. Prepared by Claude under the maintainer's direction; not reviewed by a person.
+
+- **What the grocery-wine pages lead with (changed emphasis, same results).** In 0.3.1 the start page and the
+  grocery-wine pages led with the matched-price worked example, in which the state loses revenue. They now lead with
+  the two designs the same model already reported that keep state revenue whole: DABS as wholesaler at today's price
+  (+$1.4M a year) and private supply with a state charge equal to DABS's markup per bottle (+$1.7M a year), with
+  grocery wine about 39% and 51% above state-store prices and state stores unchanged. The losing designs are still
+  shown, as the designs to avoid (DABS at 80% with matched prices −$8.6M; a 20% replacement tax with matched prices
+  −$13.3M; the October worked example −$7.3M and −$12.1M), and so are the cases where the two designs fall short (the
+  exploratory buy-less readings, about $2.0M to $4.2M a year). Both designs and every one of these figures were in
+  0.3.1's model and export; `web/src/lib/briefing.test.ts` pins each, so a model change fails the test before it
+  reaches a page.
+- **Utah briefing** (`?v=briefing`, method utah-briefing@2.0): a two-minute page with three charts computed from the
+  alternatives report: where the money from a $100 bottle goes under each design, how the state comes out ahead step
+  by step, and the state's result in eight cases (ahead in 6 of 8 for both designs; short only in the two buy-less
+  readings). Every chart frame carries its title, units, how to read it, what it cannot show, sources, release and
+  method versions, the numbers as a table, and PNG/SVG/CSV downloads.
+- **Navigation and start page:** grouped navigation (Overview, Utah research, Compare states, Explore data, Methods &
+  data), per-view titles and search descriptions, and a start page whose featured findings are computed live.
+- **Evidence labels (relabeled; none upgraded):** the worked example's assumption table uses six evidence classes
+  (published source, calculated, proxy, illustrative, policy choice, unmeasured) instead of source/assumption/policy,
+  with review status kept separate. Wine's share of sales moved from "source" to "calculated" (it is summed from the
+  monthly reports); gross margin, households' share and sellers' margins from "assumption" to "proxy"; the 30% move,
+  matched prices, 5¢ avoided cost and $500,000 new cost to "illustrative".
+- **"Discount" is now DABS's price to grocers** wherever a reader sees it: "a 20% discount" is "DABS sells to grocers
+  at 80% of its shelf price", and break-evens are written as the lowest price to grocers (at least 96.1% of today's
+  shelf price, for a discount of at most 3.9%). The scenario tool's lever is entered as that price but stored as
+  before, so saved scenarios and old addresses load unchanged. The `discount` field, ids, export column names and file
+  names are unchanged.
+- **Chart package** (`scripts/grocery_wine_*.py`): titles say what each chart shows in plain words, each claim still
+  computed from the export and checked; the designs that keep revenue whole come first, the October references last.
+- **American spelling** in the words readers see (modeled, license, neighbor, liter, labeled and others). Data keys,
+  column names, CSV headers and file names keep their spelling (`litres`, `neighbours_avg_pct`).
+- **Version string:** `alcohol_data.__version__` said 0.1.0 in the 0.3.0 and 0.3.1 builds (it is written into each
+  manifest as `code_version`); it now matches, and `tests/test_versions.py` fails if the five places disagree.
+
 ## 0.3.1: corrections from the public-release audit (2026-10-27)
 
 An AI-assisted audit of the live site and both repositories (report: docs/review/public-release-audit-2026-10-27.md).
@@ -13,7 +54,7 @@ Claude; not reviewed by a person.
   the public build) left the map on "Loading" for good. The map now checks the build first and lists only measures
   the build holds; Utah at a glance does the same; Start here no longer advertises liver-disease deaths.
 - **Grocery-wine page.** The worked example's last row is "Net change for the state (revenue change, plus store
-  costs avoided, less new costs)": it was labelled a change in revenue while the revenue row above it falls by more
+  costs avoided, less new costs)": it was labeled a change in revenue while the revenue row above it falls by more
   ($13.9M and $9.1M) because the net adds the assumed avoided costs. The findings say "leave the state worse off" for
   the same reason. Three references to the unpublished graph package now point to this page or the public export.
 - **Tennessee worked example.** The wine-tax account's averages in "Revenue" are constant 2024 dollars and now say so
@@ -37,7 +78,7 @@ proofandpolicy.us. Everything in the nationwide-expansion entry below is include
 by a person.
 
 - **Public build** `config/builds/public.yaml`: the preview build without CDC Chronic Disease Indicators, whose ODbL
-  licence gate is still open (DATA_LICENSE.md). Chronic liver disease mortality is therefore absent from the release
+  license gate is still open (DATA_LICENSE.md). Chronic liver disease mortality is therefore absent from the release
   and the website; local builds with `preview.yaml` still have it.
 - **Dashboard framing** (`web/src/App.tsx`): optional title, introduction, hidden views and footer, so a host can
   embed the dashboard without changing its views. The defaults are the local dashboard as before, renamed
@@ -58,10 +99,10 @@ example. Not published.
   - `web/src/lib/wineFlows.ts` (`wine-purchase-flows@1.0`):
     - **Five sources of grocery wine**, kept apart: wine households already buy at DABS, beer, spirits, wine now bought
       outside Utah, and additional wine. Each of the last four has a channel split, so it can also be bought at DABS.
-    - **Before-and-after totals** by beverage and channel, in dollars, litres and pure alcohol. A decomposition by
+    - **Before-and-after totals** by beverage and channel, in dollars, liters and pure alcohol. A decomposition by
       source must add back to the change. School and enforcement deposits are allocations under two readings, never
       added.
-    - **Preserved-collection designs**, labelled as proposed designs. Their per-bottle terms are read from the
+    - **Preserved-collection designs**, labeled as proposed designs. Their per-bottle terms are read from the
       alternatives' price stacks.
     - **Channel choice:** fewer shoppers move as the grocery premium rises (a straight line). Declined purchases stay
       at DABS unless a scenario says otherwise.
@@ -84,11 +125,11 @@ example. Not published.
     - The package gets `manifest.json`/`.csv`; `scripts/grocery_wine_bundle_docs.py` writes the data dictionary, the
       source and assumption register, and the regenerated-dataset list.
   - **Wording:**
-    - U3, U6 and U12 are labelled exploratory. The S0 and U8 subtitles are qualified.
+    - U3, U6 and U12 are labeled exploratory. The S0 and U8 subtitles are qualified.
     - Universal claims are forbidden by `check_titles` ("necessarily costs", "only pays for itself", "no option that
       preserves").
     - `brief.md`, the technical appendix, the dashboard (`?v=initiative`: new section "Where grocery wine would come
-      from"; the price response relabelled) and the deck are revised.
+      from"; the price response relabeled) and the deck are revised.
   - **Evidence:**
     - The beer excise ($13.35 a barrel) was described as unsourced. It is the FY2025 rate in Utah Code 59-15-101 (policy
       event `ut_beer_tax_1335`), which also covers heavy beer.
@@ -133,7 +174,7 @@ example. Not published.
     only up to a 6.5% premium and the 45.4% charge only from 89.1%.
   - Checks: 22 tests in winePriceShare.test.ts; 11 code mutations (10 caught; the 11th is equivalent: below cost
     together always implies the grocer below cost) and 8 corrupted export copies (all caught by the independent check);
-    the page at 1300 and 375 px in both colour schemes and in print (headless Edge on the PC).
+    the page at 1300 and 375 px in both color schemes and in print (headless Edge on the PC).
   - `scripts/verify.bat` and `verify.sh` write one log per run plus a latest-run copy, and run both exports and the
     independent check (20 steps).
 
@@ -147,7 +188,7 @@ example. Not published.
     it?" shows what wholesalers and grocers keep after the wine and the tax, at the entered lever and at the state's
     break-even, and the shelf price at which the state breaks even and sellers earn the margins entered (`gw=`, `gg=`;
     the worked example assumes Census's 2022 national averages, 29.5% and 28.0%, read online and not saved). The
-    entered grocery price is the alternative; the return-to-state-stores reading is labelled exploratory.
+    entered grocery price is the alternative; the return-to-state-stores reading is labeled exploratory.
   - Arrangement 3's guarantee is two proposals, fixed (set once) and proportional (on sales actually lost), both shown in
     every case including the exploratory return case; `er=today` reads as fixed.
   - Wording: "FY2023 settled" became "first-published figures largely agree; later restatement remains unexplained".
@@ -268,7 +309,7 @@ example. Not published.
     (`data/curated/research/provisional_figures.csv`): provisional notes with page and line, not pinned and not in the
     database; the printed subtotals are checked and every known printing difference is listed in the tests.
   - Utah at a glance: "Why Utah's liquor-sales figures differ" (`reconciliation.json`): the bridge table and residual
-    chart, statements labelled documented, documented read online, reconciles numerically, inferred or unresolved (no
+    chart, statements labeled documented, documented read online, reconciles numerically, inferred or unresolved (no
     scores), FY2024, the sales-tax basis by series, the deposit rates, and Utah beside Pennsylvania's State Stores Fund
     for FY2023-FY2025 with each measure marked comparable, partly or not (no single "profit" column).
   - Validation check `compare_utah_census_receipts_vs_dabs_sales` now uses the bridge on pinned years only and says
@@ -286,7 +327,7 @@ example. Not published.
     Code § 32B-2-304(5)) plus about the Parents Empowered and underage drinking amounts; FY2024 leaves $27-32 million
     unexplained. Census's FY2024 figure equals the audited ACFR's fund sales to the thousand.
   - Read through a web reader, not pinned, and recorded in docs/fiscal-reconciliation.md: DABC's FY2016, FY2019 and
-    FY2021 annual reports (the annual sales series is labelled "Sales net of Taxes", and Census's receipts are 0.884-0.890
+    FY2021 annual reports (the annual sales series is labeled "Sales net of Taxes", and Census's receipts are 0.884-0.890
     of it in FY2012-FY2019); the Pennsylvania Auditor General's audit of the State Stores Fund (FY2024 sales net of
     taxes equal Census's Pennsylvania receipts); the Idaho State Liquor Division's FY2024-FY2025 reports (Census's
     receipts are 0.79 of total sales, unexplained); the introduction of Virginia ABC's FY2025 ACFR. A lead for the
@@ -320,7 +361,7 @@ example. Not published.
     shown interval. Written to `cost_model.json` as `extension_check` and summarized under the scenario's cost
     evidence; not used as the estimate.
   - Dashboard: "through FY2015" texts replaced, the map no longer says "zero where the state runs no liquor
-    stores" (true only of FY1972-FY2012), the measure is labelled "State liquor-store receipts (Census A90)"
+    stores" (true only of FY1972-FY2012), the measure is labeled "State liquor-store receipts (Census A90)"
     everywhere, and Compare says when the Census files cover a year but list no item for a state (no value, not
     a zero). Research gap `gap_census_liquor_store_revenue` closed; lead updated.
 - **Census Individual Unit Files acquired; handoff** (2026-10-13; by Claude, not reviewed by a person).
@@ -454,7 +495,7 @@ example. Not published.
     changes for a state and comparison states over the same years, a descriptive difference in changes,
     pre-period trends and the difference those trends alone would give, annual and event-time charts,
     and every value considered with the reason it was or was not used. Verified dates come from the coded
-    law; typed dates are labelled assumptions. Tennessee 2016 is the first example; its averages match the
+    law; typed dates are labeled assumptions. Tennessee 2016 is the first example; its averages match the
     database recomputed independently.
   - **Find comparison states** (`?v=finder`, method `comparison-finder@1.0`): transparent similarity on
     chosen baseline characteristics with weights, minimum coverage and policy exclusions; missing data is
@@ -526,7 +567,7 @@ example. Not published.
     every state's T10 "limited" because "the dataset holds state liquor-store accounts", California's
     included. It now reads the year's Census value: revenue reported, none reported, or not in the
     dataset. Compare also shows Census liquor store revenue in its fiscal panel.
-  - **Fixed:** point-in-time measures were labelled "July 1 estimate", wrong for CBP employment (pay period
+  - **Fixed:** point-in-time measures were labeled "July 1 estimate", wrong for CBP employment (pay period
     including March 12). Two pages scrolled sideways at 200% text on a phone (the worked example and
     Definitions); both wrap now, and every view was swept at 375 px with normal and doubled text.
 

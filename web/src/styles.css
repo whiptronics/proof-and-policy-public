@@ -52,6 +52,19 @@
   --st-F: #dcdcd6;
   --st-ink-dark: #ffffff;
   --st-ink-light: #1d1f22;
+  /* Charts: money gained and lost by the state, running totals, and who receives each part of a purchase. Gains and
+     losses are blue and orange (safe for the common color-vision differences) and always carry a sign in words. */
+  --gain: #1f5d99;
+  --loss: #b4531a;
+  --total: #6b6e72;
+  --bar-ink: #ffffff;
+  --c-supplier: #c9cbcd;
+  --c-supplier-ink: #1d1f22;
+  --c-state: #1f5d99;
+  --c-tax: #3f78b3;
+  --c-wholesaler: #b4531a;
+  --c-grocer: #e3a066;
+  --c-grocer-ink: #1d1f22;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -108,6 +121,17 @@
     --st-F: #34383d;
     --st-ink-dark: #0f1418;
     --st-ink-light: #e8e8e6;
+    --gain: #7fb2e5;
+    --loss: #f0a066;
+    --total: #9aa0a6;
+    --bar-ink: #0f1418;
+    --c-supplier: #50555c;
+    --c-supplier-ink: #e8e8e6;
+    --c-state: #7fb2e5;
+    --c-tax: #a9cbef;
+    --c-wholesaler: #f0a066;
+    --c-grocer: #f6c99f;
+    --c-grocer-ink: #0f1418;
   }
 }
 
@@ -138,16 +162,22 @@ h4 {
   margin: 0 0 0.5rem;
 }
 h1 {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
 }
 h2 {
-  font-size: 1.2rem;
+  font-size: 1.32rem;
+  letter-spacing: -0.005em;
 }
 h3 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }
 h4 {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+}
+.num,
+td.num {
+  font-variant-numeric: tabular-nums;
 }
 p {
   margin: 0 0 0.75rem;
@@ -191,35 +221,63 @@ header.app {
   max-width: 70rem;
 }
 
-nav.main,
-nav.secondary {
+/* Navigation: five sections, then the pages of the section that holds the current page. Plain links, so every page
+   is one click from any section and works without script. */
+.site-nav ul,
+.page-nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px;
+  gap: 2px 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-nav.main a,
-nav.secondary a {
-  padding: 8px 12px;
+.site-nav {
+  margin-top: 6px;
+}
+.site-nav a {
+  display: inline-block;
+  padding: 9px 14px 8px;
   text-decoration: none;
   color: var(--text-2);
+  font-weight: 600;
   border-bottom: 3px solid transparent;
-  font-weight: 500;
 }
-nav.secondary a {
-  font-size: 0.88rem;
-  font-weight: 400;
-}
-nav.main a[aria-current="page"],
-nav.secondary a[aria-current="page"] {
+.site-nav a[aria-current="true"] {
   color: var(--text);
   border-bottom-color: var(--accent);
 }
-.navs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 4px 24px;
+.page-nav {
+  border-top: 1px solid var(--line);
+  padding: 6px 0 8px;
+}
+.page-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-2);
+  font-size: 0.92rem;
+}
+.page-nav a:hover,
+.site-nav a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.page-nav a[aria-current="page"] {
+  background: var(--note-bg);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+@media (max-width: 760px) {
+  .site-nav a {
+    padding: 8px 10px 7px;
+    font-size: 0.95rem;
+  }
+  .page-nav a {
+    padding: 6px 10px;
+  }
 }
 
 main {
@@ -1418,7 +1476,8 @@ table.initiative-table tr.total td {
 .ps-chart {
   display: block;
   width: 100%;
-  min-width: 560px;
+  /* At the viewBox's own width the cell values stay at 10px; narrower screens scroll the frame instead. */
+  min-width: 640px;
   max-width: 760px;
   height: auto;
 }
@@ -1523,4 +1582,393 @@ table.ps-table td.ps-pos-below_cost {
   table.ps-table thead th[scope="row"] {
     min-width: 5.5rem;
   }
+}
+
+/* ----- Charts with a frame (components/ChartFigure.tsx, BriefCharts.tsx) ----------------------------------------------
+   Drawn at the frame's width in CSS pixels, so these sizes are the sizes on screen at any width. */
+.chart-figure {
+  margin: 14px 0 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+.chart-figure figcaption {
+  margin-bottom: 8px;
+}
+.chart-title {
+  font-size: 1.05rem;
+  margin: 0 0 2px;
+}
+.chart-sub {
+  font-size: 0.86rem;
+  color: var(--text-2);
+  margin: 0;
+}
+.chart-body {
+  width: 100%;
+  min-width: 0;
+}
+svg.chart {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+svg.chart .row-label,
+svg.chart .row-note {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+svg.chart .row-label {
+  font-size: 13px;
+  fill: var(--text);
+}
+svg.chart .row-label.strong,
+svg.chart .bar-value.strong {
+  font-weight: 700;
+}
+svg.chart .row-note {
+  font-size: 11.5px;
+  fill: var(--text);
+}
+svg.chart .row-note.muted,
+svg.chart .tick,
+svg.chart .ref-label {
+  fill: var(--text-2);
+}
+svg.chart .tick,
+svg.chart .ref-label {
+  font-size: 11.5px;
+}
+svg.chart .bar-value {
+  font-size: 12.5px;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+svg.chart .bar-value.inside {
+  fill: var(--bar-ink);
+  stroke: none;
+}
+svg.chart .grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+svg.chart .axis-zero {
+  stroke: var(--text);
+  stroke-width: 1.5;
+}
+svg.chart .ref-line {
+  stroke: var(--text-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+svg.chart .connector {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+svg.chart .hatch-line {
+  stroke: var(--surface);
+  stroke-opacity: 0.55;
+}
+.b-gain {
+  fill: var(--gain);
+}
+.b-loss {
+  fill: var(--loss);
+}
+.b-total {
+  fill: var(--total);
+}
+.s-supplier {
+  fill: var(--c-supplier);
+}
+.s-state {
+  fill: var(--c-state);
+}
+.s-tax {
+  fill: var(--c-tax);
+}
+.s-wholesaler {
+  fill: var(--c-wholesaler);
+}
+.s-grocer {
+  fill: var(--c-grocer);
+}
+svg.chart .seg-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  fill: var(--bar-ink);
+}
+svg.chart .seg-label.s-supplier {
+  fill: var(--c-supplier-ink);
+}
+svg.chart .seg-label.s-grocer {
+  fill: var(--c-grocer-ink);
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.swatch-box {
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  flex: none;
+}
+.swatch-box.b-gain {
+  background: var(--gain);
+}
+.swatch-box.b-loss {
+  background: var(--loss);
+}
+.swatch-box.b-total {
+  background: var(--total);
+}
+.swatch-box.s-supplier {
+  background: var(--c-supplier);
+}
+.swatch-box.s-state {
+  background: var(--c-state);
+}
+.swatch-box.s-tax {
+  background: var(--c-tax);
+}
+.swatch-box.s-wholesaler {
+  background: var(--c-wholesaler);
+}
+.swatch-box.s-grocer {
+  background: var(--c-grocer);
+}
+.swatch-box.hatched {
+  background-image: repeating-linear-gradient(45deg, transparent 0 3px, color-mix(in srgb, var(--surface) 55%, transparent) 3px 5px);
+}
+.chart-notes {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  max-width: 75ch;
+}
+.chart-notes p {
+  margin: 0 0 6px;
+}
+.chart-release {
+  overflow-wrap: anywhere;
+}
+.chart-data {
+  margin: 6px 0;
+}
+.chart-data > summary {
+  font-size: 0.9rem;
+}
+.chart-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+.chart-tools button {
+  font-size: 0.85rem;
+  min-height: 32px;
+}
+
+/* ----- Evidence classes (components/Evidence.tsx): symbol and word, never color alone ---------------------------- */
+.ev {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.ev-sym {
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+}
+.ev-source .ev-sym,
+.ev-calculated .ev-sym {
+  border-color: var(--accent);
+}
+.ev-illustrative .ev-sym,
+.ev-unmeasured .ev-sym {
+  border-style: dashed;
+  border-color: var(--warn-line);
+  background: var(--warn-bg);
+}
+.ev-policy .ev-sym {
+  border-color: var(--focus);
+}
+.ev-key {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  gap: 6px 18px;
+  margin: 10px 0 0;
+}
+.ev-key > div {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.ev-key dt {
+  flex: none;
+}
+.ev-key dd {
+  margin: 0;
+  color: var(--text-2);
+}
+table.register th[scope="row"] {
+  min-width: 10rem;
+  font-weight: 500;
+}
+
+/* ----- The Utah briefing (views/BriefingView.tsx) -------------------------------------------------------------- */
+.briefing .panel > p,
+.briefing .findings {
+  max-width: 75ch;
+}
+.kicker {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.lede {
+  font-size: 1.08rem;
+  max-width: 68ch;
+}
+.briefing-head h2 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+.finding {
+  font-size: 1.05rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+.briefing .findings {
+  padding-left: 1.1rem;
+}
+.briefing .findings li {
+  margin: 0 0 10px;
+}
+.structure-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 10px 0 0;
+}
+.structure-pick label.check {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 28px;
+}
+table.scope-table th[scope="row"] {
+  width: 38%;
+  font-weight: 500;
+}
+.more-links {
+  padding-left: 1.1rem;
+}
+.more-links li {
+  margin-bottom: 6px;
+}
+@media print {
+  .chart-figure {
+    border: 0;
+    padding: 0;
+    break-inside: avoid;
+  }
+  .chart-data[open] > summary,
+  .chart-tools {
+    display: none;
+  }
+}
+
+/* ----- The start page (views/StartView.tsx, views/FeaturedFindings.tsx) ------------------------------------------ */
+.hero h2 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  max-width: 30ch;
+}
+.hero-actions {
+  margin-top: 14px;
+}
+.hero-actions .button {
+  font-size: 1rem;
+  padding: 8px 16px;
+}
+.finding-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.finding-cards > li {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.finding-cards h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.finding-cards p {
+  margin: 0;
+}
+.finding-cards > li > a {
+  margin-top: auto;
+}
+.finding-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.area-cards .row-actions {
+  margin-top: auto;
+}
+.card-form > summary {
+  font-weight: 600;
+}
+.transparency {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 4px 24px;
+}
+.transparency h3 {
+  margin: 8px 0 4px;
 }

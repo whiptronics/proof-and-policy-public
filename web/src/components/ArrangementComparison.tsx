@@ -21,7 +21,7 @@ const money = (v: number | null | undefined) => (v === null || v === undefined |
 const millions = (v: number) => `${v < 0 ? "−" : ""}$${(Math.abs(v) / 1e6).toFixed(1)} million`;
 const pct = (v: number, digits = 1) => `${(v * 100).toFixed(digits)}%`;
 const fmt = (v: number, f: RangeFormat | "percent" | "plain" | "money2") =>
-  f === "percent" ? pct(v) : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
+  f === "complement" ? pct(1 - v) : f === "percent" ? pct(v) : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
 
 const cents = (v: number) => `${v < 0 ? "−" : ""}${Math.abs(v * 100).toFixed(1)}¢`;
 const spct = (v: number) => `${v < 0 ? "−" : ""}${pct(Math.abs(v))}`;
@@ -64,7 +64,7 @@ function keepText(k: Keep | null, privateArr: boolean): ReactNode {
 }
 
 function leverValue(be: BreakEven, x: ScenarioInputs, v: number): string {
-  if (be.lever === "discount") return `${pct(v)} off the state-store price`;
+  if (be.lever === "discount") return `${pct(1 - v)} of the state-store price`;
   return x.revenueMode === "excise" ? `$${v.toFixed(2)} a gallon` : `${pct(v)} of the grocery price before tax`;
 }
 
@@ -95,7 +95,7 @@ function breakEvenText(a: ArrangementResult, shiftOnly: ArrangementResult | null
       : "";
   return (
     <>
-      {be.lever === "discount" ? "At most " : ""}
+      {be.lever === "discount" ? "At least " : ""}
       <strong>{leverValue(be, a.x, be.value!)}</strong>, {what}
       {other}. {be.note}
       {linText}
@@ -194,11 +194,11 @@ export function ArrangementComparison({
           <ul className="small source-list">
             <li>
               <strong>Same scope on both sides.</strong> Today and every arrangement count state government revenue only: the state stores' gross margin, the state's share of sales tax, and any
-              replacement tax or wholesale margin. Local sales tax is not modelled (the dataset holds the state rate only, and whether state-store sales carry local tax is unresolved), so local
+              replacement tax or wholesale margin. Local sales tax is not modeled (the dataset holds the state rate only, and whether state-store sales carry local tax is unresolved), so local
               and combined government revenue are not shown.
             </li>
             <li>
-              <strong>Measured and modelled.</strong> The baseline figures above are observations (transcribed, not yet reviewed by a person) or derived from them; every other number in this section is
+              <strong>Measured and modeled.</strong> The baseline figures above are observations (transcribed, not yet reviewed by a person) or derived from them; every other number in this section is
               arithmetic on stated assumptions.
             </li>
             <li>
@@ -355,7 +355,7 @@ function FinanceTable({ c, base3, shiftOnly, rateStatus }: { c: Comparison; base
   return (
     <div className="table-wrap">
       <table className="data cmp-table">
-        <caption className="small">State finances from wine, $ a year. Arrangement 3 has the total of arrangement {n3} (grey) and adds who receives it.</caption>
+        <caption className="small">State finances from wine, $ a year. Arrangement 3 has the total of arrangement {n3} (gray) and adds who receives it.</caption>
         <thead>
           <tr>
             <th scope="col"> </th>
@@ -385,7 +385,7 @@ function FinanceTable({ c, base3, shiftOnly, rateStatus }: { c: Comparison; base
               { same3: true },
             )}
           {row("State revenue from wine today: gross margin plus state sales tax", money(lp.baselineRevenue), money(lw.baselineRevenue), money(l3.baselineRevenue), { same3: true })}
-          {head("Modelled: existing purchases change channel (total wine bought unchanged)")}
+          {head("Modeled: existing purchases change channel (total wine bought unchanged)")}
           {row("Gross margin the state stores no longer earn on the wine that moves", money(lp.marginDisplaced), money(lw.marginDisplaced), money(l3.marginDisplaced), { same3: true })}
           {row(
             <>
@@ -442,7 +442,7 @@ function FinanceTable({ c, base3, shiftOnly, rateStatus }: { c: Comparison; base
             <span className="muted">not decided by the arrangement</span>,
             <span>{ruleWords(e.rule)} (the next table, in every case)</span>,
           )}
-          {head("Consumer price and purchases (modelled)")}
+          {head("Consumer price and purchases (modeled)")}
           {row("Grocery shelf price, % of today's state-store price, before sales tax", pct(P.price!.shelf), pct(Wh.price!.shelf), pct(base3.price!.shelf), { same3: true })}
           {row("The same with state sales tax", pct(P.price!.withSalesTax), pct(Wh.price!.withSalesTax), pct(base3.price!.withSalesTax), { same3: true })}
           {row(
@@ -497,14 +497,14 @@ function VolumeTable({ c }: { c: Comparison }) {
         (a) => (id === "price" ? [0, part(a, id).dollars] : [(1 - q) * (part(a, id).dollars ?? 0), q * (part(a, id).dollars ?? 0)]),
         false,
       ]),
-    ["Modelled", (a) => [(a.volumeAll ?? a.volumeShift)!.state, (a.volumeAll ?? a.volumeShift)!.grocery], true],
+    ["Modeled", (a) => [(a.volumeAll ?? a.volumeShift)!.state, (a.volumeAll ?? a.volumeShift)!.grocery], true],
   ];
   return (
     <div className="table-wrap">
       <table className="data cmp-table">
         <caption className="small">
           Where the wine is bought, $ a year at state-store prices (so channels and arrangements add up). The channel shift moves wine without adding any; each purchase change is its own row;
-          the modelled row is the sum of the rows above it.
+          the modeled row is the sum of the rows above it.
         </caption>
         <thead>
           <tr>
@@ -574,7 +574,7 @@ function EarmarkTable({ c, rateStatus }: { c: Comparison; rateStatus: string }) 
       : e.coverLever === null
         ? "none in the supported range"
         : e.coverLever.lever === "discount"
-          ? `a discount of at most ${pct(e.coverLever.value)}`
+          ? `a price to grocers of at least ${pct(1 - e.coverLever.value)}`
           : x.revenueMode === "excise"
             ? `an excise of $${e.coverLever.value.toFixed(2)} a gallon`
             : `a tax of ${pct(e.coverLever.value)} of the grocery price before tax`;
@@ -652,7 +652,7 @@ function EarmarkTable({ c, rateStatus }: { c: Comparison; rateStatus: string }) 
         {!caseIds.includes("return")
           ? baseArr.priceMoves
             ? "The return-to-state-stores reading needs a price response, and none is entered."
-            : "No return-to-state-stores case here: the grocery shelf price equals the state store's, so no price gap sends buyers back. It arises in the entered-price alternative (choose it in section 6), where it is shown and labelled exploratory."
+            : "No return-to-state-stores case here: the grocery shelf price equals the state store's, so no price gap sends buyers back. It arises in the entered-price alternative (choose it in section 6), where it is shown and labeled exploratory."
           : ""}
       </p>
     </div>
@@ -694,7 +694,7 @@ function viaText(v: ViabilityCase | null, kind: "tax" | "discount", excise: bool
         <strong>None</strong> in the supported range. {v.note}
       </span>
     );
-  const lv = kind === "discount" ? `a discount of at most ${pct(v.lever)}` : excise ? `an excise of $${v.lever.toFixed(2)} a gallon` : `a tax of ${pct(v.lever)}`;
+  const lv = kind === "discount" ? `a price to grocers of at least ${pct(1 - v.lever)}` : excise ? `an excise of $${v.lever.toFixed(2)} a gallon` : `a tax of ${pct(v.lever)}`;
   return (
     <span>
       <strong>{pct(v.shelf)}</strong> of the state-store price ({v.shelf >= 1 ? "+" : "−"}
@@ -821,7 +821,7 @@ function PriceTable({ c }: { c: Comparison }) {
       </table>
       <p className="small">
         The state's existing margin is counted once: it stays with the state stores, goes to the replacement tax and private sellers (arrangement 1), or is split between DABS and the grocer
-        (arrangement 2). State costs (avoided store costs, new licensing costs) are in the finance table; private wholesalers' and grocers' own costs come out of their margin and are not modelled.
+        (arrangement 2). State costs (avoided store costs, new licensing costs) are in the finance table; private wholesalers' and grocers' own costs come out of their margin and are not modeled.
         {c.private.price!.shelf > 1.0001
           ? ` In arrangement 1 the grocery shelf price is ${pct(c.private.price!.shelf)} of the state store's for the same wine, while the state stores keep selling it: holding the share that moves fixed is then a strong assumption (the exploratory channel-return row above, and the matched-price row of the joint scenarios, show the alternatives).`
           : c.priceCase === "matched"
@@ -837,13 +837,13 @@ function JointTable({ x, get, rates, bounds }: { x: ScenarioInputs; get: (k: str
   const set = settingsFromFields(get);
   const rows: JointRow[] = jointScenarios(x, set, rates, bounds);
   const lv = (v: number | null, status: string, kind: "tax" | "discount") =>
-    v === null ? (status === "none_in_range" ? "none in range" : "—") : kind === "discount" ? `≤ ${pct(v)}` : set.taxKind === "excise" ? `≥ $${v.toFixed(2)}/gal` : `≥ ${pct(v)}`;
+    v === null ? (status === "none_in_range" ? "none in range" : "—") : kind === "discount" ? `≥ ${pct(1 - v)}` : set.taxKind === "excise" ? `≥ $${v.toFixed(2)}/gal` : `≥ ${pct(v)}`;
   const reach = rows.filter((r) => (r.private.net ?? -1) >= 0 || (r.wholesale.net ?? -1) >= 0);
   return (
     <div className="table-wrap">
       <table className="data cmp-table">
         <caption className="small">
-          Joint scenarios: several assumptions moved together, each labelled by what supports it. The replacement tax and the discount stay as entered; the break-even columns give the lever
+          Joint scenarios: several assumptions moved together, each labeled by what supports it. The replacement tax and DABS's price to grocers stay as entered; the break-even columns give the lever
           each row would need. Not probabilities.
         </caption>
         <thead>
@@ -859,7 +859,7 @@ function JointTable({ x, get, rates, bounds }: { x: ScenarioInputs; get: (k: str
               2: net change
             </th>
             <th scope="col" className="num">
-              2: break-even discount
+              2: break-even price to grocers
             </th>
           </tr>
         </thead>
@@ -880,8 +880,8 @@ function JointTable({ x, get, rates, bounds }: { x: ScenarioInputs; get: (k: str
       </table>
       <p className="small">
         {reach.length
-          ? `At the entered tax and discount, these rows reach break-even or better: ${reach.map((r) => r.label.toLowerCase()).join("; ")}.`
-          : "At the entered tax and discount, none of these joint scenarios reaches break-even, including the one that is only arithmetically possible."}{" "}
+          ? `At the entered tax and price to grocers, these rows reach break-even or better: ${reach.map((r) => r.label.toLowerCase()).join("; ")}.`
+          : "At the entered tax and price to grocers, none of these joint scenarios reaches break-even, including the one that is only arithmetically possible."}{" "}
         Documented bounds come from DABS's own accounts for the base year (all products: card fees, agency contracts, bags and salaries as shares of sales; the range of its reported margins).
         They bound an accounting category, not the cost that would actually stop if some wine left the stores. Exploratory rows change assumptions no source measures.
       </p>
@@ -916,12 +916,12 @@ function MechanismTable({ x, c }: { x: ScenarioInputs; c: Comparison }) {
     [
       "Access and convenience",
       "Represented only as an entered percentage (scenario B), and as one exploratory joint scenario.",
-      "Full retail privatization raised per-capita sales of the privatized beverage by a median 44.4% (interquartile 4.5% to 122.5%; Hahn et al. 2012, Community Guide). Those were state exits from retail, mostly decades ago; adding grocery licences beside Utah's stores is a different change, so the size does not transfer.",
+      "Full retail privatization raised per-capita sales of the privatized beverage by a median 44.4% (interquartile 4.5% to 122.5%; Hahn et al. 2012, Community Guide). Those were state exits from retail, mostly decades ago; adding grocery licenses beside Utah's stores is a different change, so the size does not transfer.",
     ],
     [
       "Purchases shifting across state borders",
       "Represented only as an entered recapture percentage.",
-      "No Utah data. In Iowa, 2% of consumers reported buying more liquor in neighbouring states after privatization (Fitzgerald and Mulford, cited in Hahn et al. 2012); not transferable.",
+      "No Utah data. In Iowa, 2% of consumers reported buying more liquor in neighboring states after privatization (Fitzgerald and Mulford, cited in Hahn et al. 2012); not transferable.",
     ],
   ];
   return (
@@ -963,7 +963,8 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
   const key = keys.includes(sweepKey) ? sweepKey : "avoidableCost";
   const sw = sweep(x, set, key);
   const spec = SWEEPS[key];
-  const fmtX = (v: number) => (key === "taxRate" && set.taxKind === "excise" ? `$${v.toFixed(0)}` : spec.format === "percent" ? `${Math.round(v * 100)}%` : v.toFixed(2));
+  // DABS's price to grocers is swept as the share below the shelf price and shown as 1 − v, on a reversed axis.
+  const fmtX = (v: number) => (key === "taxRate" && set.taxKind === "excise" ? `$${v.toFixed(0)}` : key === "discount" ? `${Math.round((1 - v) * 100)}%` : spec.format === "percent" ? `${Math.round(v * 100)}%` : v.toFixed(2));
   const data = sw.points.map((p) => ({ v: p.v, private: p.private === null ? null : p.private / 1e6, wholesale: p.wholesale === null ? null : p.wholesale / 1e6 }));
   const entered = key === "taxRate" ? set.taxRate : key === "discount" ? set.discount : key === "avoidableCost" ? x.avoidableCost : key === "shift" ? x.shift : key === "eligible" ? (x.eligible ?? null) : key === "priceRatio" ? x.priceRatio : key === "grossMargin" ? x.grossMargin : (x.elasticity ?? null);
   const span = sw.to - sw.from;
@@ -971,7 +972,7 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
   const ticks = Array.from({ length: Math.floor(span / step + 1e-9) + 1 }, (_, i) => Number((Math.ceil(sw.from / step - 1e-9) * step + i * step).toFixed(6))).filter((t) => t >= sw.from - 1e-9 && t <= sw.to + 1e-9);
   const zp = zerosOf(sw.points, "private");
   const zw = zerosOf(sw.points, "wholesale");
-  const fmtZ = (v: number) => (key === "taxRate" && set.taxKind === "excise" ? `$${v.toFixed(2)} a gallon` : spec.format === "percent" ? pct(v) : v.toFixed(2));
+  const fmtZ = (v: number) => (key === "taxRate" && set.taxKind === "excise" ? `$${v.toFixed(2)} a gallon` : key === "discount" ? pct(1 - v) : spec.format === "percent" ? pct(v) : v.toFixed(2));
   const zText = (id: string, zs: number[], applies: boolean) =>
     !applies ? `${id} does not use this assumption` : zs.length ? `${id} crosses zero at ${zs.map(fmtZ).join(" and ")}` : `${id} does not cross zero between ${fmtX(sw.from)} and ${fmtX(sw.to)}`;
   return (
@@ -997,7 +998,7 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
       <ResponsiveContainer width="100%" height={260}>
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 4, left: 0 }}>
           <CartesianGrid stroke="var(--line)" strokeDasharray="2 3" />
-          <XAxis dataKey="v" type="number" domain={[sw.from, sw.to]} ticks={ticks} tickFormatter={fmtX} tick={{ fontSize: 11, fill: "var(--text-2)" }} stroke="var(--line-strong)" />
+          <XAxis dataKey="v" type="number" reversed={key === "discount"} domain={[sw.from, sw.to]} ticks={ticks} tickFormatter={fmtX} tick={{ fontSize: 11, fill: "var(--text-2)" }} stroke="var(--line-strong)" />
           <YAxis tick={{ fontSize: 11, fill: "var(--text-2)" }} stroke="var(--line-strong)" width={48} tickFormatter={(v: number) => `${v}`} />
           <ReferenceLine y={0} stroke="var(--line-strong)" />
           {entered !== null && entered !== undefined && <ReferenceLine x={entered} stroke="var(--text-2)" strokeDasharray="4 3" />}

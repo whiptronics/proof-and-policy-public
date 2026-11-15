@@ -53,7 +53,7 @@ The build expands intervals into `policy_exposure` for calendar years and state 
 | `enacted_text` | The enacted bill or public chapter text |
 | `current_code` | A dated version of the codified statute |
 | `legislative_record_summary` | Bill status pages, captions, summaries |
-| `inference` | A conclusion drawn from other evidence; must be labelled and reviewed |
+| `inference` | A conclusion drawn from other evidence; must be labeled and reviewed |
 
 ## Policy catalog
 
@@ -175,7 +175,7 @@ The rules are strict:
   day. A gap or an overlap fails `tests/test_version_ledger.py`.
 - **Cross-checks.** `anchor` rows are independent checks: the next act's print of the earlier text, and the
   current code's history note, which dates every version. They do not count toward coverage.
-- **Mutation tests.** The tests go red if a version is removed or if insertions are not recognised.
+- **Mutation tests.** The tests go red if a version is removed or if insertions are not recognized.
 
 **Kentucky, the first case.** The bar on liquor and wine package licenses at grocery premises is verified
 in every version of KRS 243.230 in force since 1998-07-15:

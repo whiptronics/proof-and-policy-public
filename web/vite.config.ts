@@ -4,7 +4,7 @@
 // Two development-only routes let the owner open files already held on this machine. They are never
 // part of `vite build` output:
 //   /local-raw/<asset_id>  the cached source file, only for assets the export marks servable
-//                          (redistributable public-domain, government-edict or open-licence files)
+//                          (redistributable public-domain, government-edict or open-license files)
 //   /release/<file>        a file of the locally packaged release in ../dist/<release_version>/
 import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";

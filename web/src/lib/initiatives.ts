@@ -18,6 +18,7 @@ import {
   type Comparison,
   type JointRow,
 } from "./arrangements";
+import type { EvidenceClass } from "./evidence";
 import { compute, WORKED_PROPOSALS, type DepositRates, type ScenarioInputs } from "./scenario";
 import { substitution, type SubstitutionInputs, type SubstitutionResult } from "./substitution";
 import { marginOfMarkup, STATUTORY_MARKUP } from "./wineMargin";
@@ -48,7 +49,7 @@ export interface Initiative {
     data: WorkedData;
     rates: DepositRates;
     swap: SubstitutionInputs;
-    assumptions: { item: string; value: string; basis: "source" | "assumption" | "policy" }[];
+    assumptions: { item: string; value: string; basis: EvidenceClass; /** The robustness row that tests it (SizeRow.id). */ range?: string }[];
   };
   choices: { question: string; options: string }[];
   questions: { who: string; ask: string }[];
@@ -98,7 +99,7 @@ export const INITIATIVES: Initiative[] = [
     },
     proposal: [
       "Licensed grocery stores that meet set standards could sell sealed wine to take home. State liquor stores and package agencies would keep selling everything they sell now.",
-      "The bill would have to choose who supplies the wine to grocers and how the state collects on it. The two structures the model compares are private wholesalers with a state replacement tax, and DABS as the only wholesaler selling to grocers at a discount. DABS supply would also need a change to the 88.5% minimum wine markup in Utah Code § 32B-2-304(2).",
+      "The bill would have to choose who supplies the wine to grocers and how the state collects on it. The two structures the model compares are private wholesalers with a state replacement tax, and DABS as the only wholesaler selling to grocers at 80% of its shelf price. DABS supply would also need a change to the 88.5% minimum wine markup in Utah Code § 32B-2-304(2).",
       "Beer, spirits, restaurants and bars are unchanged.",
     ],
     worked: {
@@ -117,17 +118,17 @@ export const INITIATIVES: Initiative[] = [
       swap: { swap: 0, grocery: 1, beerPrice: 12, beerTax: 13.35, wineAbv: 0.118, beerAbv: 0.048, beerGallons: 26_660_000 },
       assumptions: [
         { item: "DABS liquor sales, FY2025", value: "$551.3 million, listed separately from sales tax (annual report, p. 32)", basis: "source" },
-        { item: "Gross margin", value: "47.2%: DABS's all-product gross profit over sales, applied to wine", basis: "assumption" },
-        { item: "Wine's share of sales", value: "33.5%, summed by product class from the FY2026 monthly reports; the FY2025 report shows 33% ($184.1 million)", basis: "source" },
-        { item: "Households' share of wine purchases", value: "82%, DABS's FY2025 all-product off-premise share (annual report, p. 18)", basis: "assumption" },
-        { item: "Household purchases that move to grocers", value: "30%", basis: "assumption" },
-        { item: "Grocery prices", value: "the same as state-store prices (matched)", basis: "assumption" },
+        { item: "Gross margin", value: "47.2%: DABS's all-product gross profit over sales, applied to wine", basis: "proxy", range: "margin" },
+        { item: "Wine's share of sales", value: "33.5%, summed by product class from the FY2026 monthly reports; the FY2025 report shows 33% ($184.1 million)", basis: "calculated", range: "share" },
+        { item: "Households' share of wine purchases", value: "82%, DABS's FY2025 all-product off-premise share (annual report, p. 18)", basis: "proxy", range: "eligible" },
+        { item: "Household purchases that move to grocers", value: "30%", basis: "illustrative", range: "shift" },
+        { item: "Grocery prices", value: "the same as state-store prices (matched)", basis: "illustrative" },
         { item: "Replacement tax (private structure)", value: "20% of the sellers' price", basis: "policy" },
-        { item: "DABS discount to grocers (wholesale structure)", value: "20% off the shelf price", basis: "policy" },
-        { item: "Store cost avoided", value: "5 cents per dollar that moves", basis: "assumption" },
-        { item: "New licensing and enforcement cost", value: "$500,000 a year", basis: "assumption" },
+        { item: "DABS's price to grocers (wholesale structure)", value: "80% of the shelf price; the other 20% is the grocer's margin", basis: "policy" },
+        { item: "Store cost avoided", value: "5 cents per dollar that moves", basis: "illustrative", range: "avoidable" },
+        { item: "New licensing and enforcement cost", value: "$500,000 a year", basis: "illustrative", range: "newCosts" },
         { item: "School-meals and enforcement deposits", value: "10% and 1.695% of total gross revenue from liquor sales (Utah Code §§ 32B-2-304(5), 32B-2-305(4))", basis: "source" },
-        { item: "Sellers' average margins", value: "28.0% for grocers and 29.5% for alcohol wholesalers, of their own sales (Census, 2022, national, all products)", basis: "assumption" },
+        { item: "Sellers' average margins", value: "28.0% for grocers and 29.5% for alcohol wholesalers, of their own sales (Census, 2022, national, all products)", basis: "proxy" },
       ],
     },
     choices: [
@@ -279,7 +280,7 @@ export function initiativeFigures(init: Initiative): InitiativeFigures {
 //
 // One input moved at a time, the others as in the worked example; then the comparison's own joint scenarios on the
 // documented bounds. Every value comes from the scenario tool's model (lib/scenario compute through the comparison's
-// arrangement inputs, lib/arrangements compare and jointScenarios). Ranges are labelled by what supports them:
+// arrangement inputs, lib/arrangements compare and jointScenarios). Ranges are labeled by what supports them:
 // "evidence" (saved sources or the dataset), "statute" (a legal reference point, not a measured value) or
 // "illustrative" (no evidence; the scenario tool's convention or a stated policy span, shown to see how far the
 // result moves). No probabilities: nothing here says how likely a value is.
@@ -353,7 +354,7 @@ function nets(x: ScenarioInputs, set: ArrangementSettings): Pair {
   return { private: one("private"), wholesale: one("wholesale") };
 }
 
-/** The favourable, unfavourable and ceiling rows of jointScenarios (same inputs; initiatives.test.ts checks they agree). */
+/** The favorable, unfavorable and ceiling rows of jointScenarios (same inputs; initiatives.test.ts checks they agree). */
 export function jointNets(x: ScenarioInputs, set: ArrangementSettings, b: Bounds): JointNet[] {
   const one = (id: JointNet["id"], standing: JointNet["standing"], bx: ScenarioInputs, sx: ArrangementSettings): JointNet => ({
     id,
@@ -402,7 +403,7 @@ function robustness(init: Initiative, x: ScenarioInputs, set: ArrangementSetting
       [0.001, 1],
     ),
     row(
-      { id: "scope", label: "Which wines the bill covers (scale of the modelled wine)", standing: "policy", entered: 1, low: data.wineMix.stillTable, high: 1 + data.wineMix.ciderOverWine, basis: "evidence", why: "From still table wine only to DABS wine plus hard cider, which Utah law counts as wine (FY2026 monthly reports by class; § 32B-1-102(143)).", format: "scale" },
+      { id: "scope", label: "Which wines the bill covers (scale of the modeled wine)", standing: "policy", entered: 1, low: data.wineMix.stillTable, high: 1 + data.wineMix.ciderOverWine, basis: "evidence", why: "From still table wine only to DABS wine plus hard cider, which Utah law counts as wine (FY2026 monthly reports by class; § 32B-1-102(143)).", format: "scale" },
       (v) => ({ ...x, wineSales: W * v }),
       [0.001, 3],
     ),

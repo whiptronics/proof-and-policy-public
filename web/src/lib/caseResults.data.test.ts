@@ -61,11 +61,11 @@ describe.skipIf(!have)("the Tennessee 2016 planned comparison on the exported da
   });
 
   it("supports the section's statements about ranges and placebo dates", () => {
-    // Wine: outside every neighbour's change; no earlier placebo date as large (share counts the real one).
+    // Wine: outside every neighbor's change; no earlier placebo date as large (share counts the real one).
     expect(sum("B1").spread!.targetInside).toBe(false);
     expect(main("B1").placebo!.pooled!.n).toBe(17);
     expect(main("B1").placebo!.pooled!.share!).toBeCloseTo(1 / 18, 12);
-    // Beer: inside the neighbours' range, and smaller than the typical placebo gap.
+    // Beer: inside the neighbors' range, and smaller than the typical placebo gap.
     expect(sum("B2").spread!.targetInside).toBe(true);
     expect(Math.abs(sum("B2").diffChange!)).toBeLessThan(main("B2").placebo!.pooled!.typical!);
     // Total ethanol: about wine plus spirits, and a gap that earlier dates often match.

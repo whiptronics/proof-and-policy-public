@@ -12,7 +12,7 @@ export interface DecodedMetric {
 
 const decoded = new WeakMap<MetricFile, DecodedMetric>();
 
-/** Turn the compact row arrays of a metric file into objects (memoised per file). */
+/** Turn the compact row arrays of a metric file into objects (memoized per file). */
 export function decodeMetric(file: MetricFile): DecodedMetric {
   const hit = decoded.get(file);
   if (hit) return hit;

@@ -911,7 +911,7 @@ function FinderResults({ f, cd, geos, pol, man, returnTo }: { f: FinderInputs; c
             Candidates are ranked first by how many characteristics they lack, then by score, so missing data never makes a state look closer.
           </li>
           <li>Trend characteristics are the slope of the log of a state's yearly values over the baseline years, shown as a percent change per year. They need at least three baseline years, so states can be matched on where they were heading, not only where they stood. A slope from a few years is noisy, and the score treats it as exact.</li>
-          <li>The cautions above compare the best match with how close states usually are to their own nearest neighbour (the 90th percentile), with an average difference of 1 SD, and with the spread of the states on each characteristic (2 SD).</li>
+          <li>The cautions above compare the best match with how close states usually are to their own nearest neighbor (the 90th percentile), with an average difference of 1 SD, and with the spread of the states on each characteristic (2 SD).</li>
           <li>Only baseline values are used. No outcome after a change enters the ranking.</li>
           <li>Similar here means similar on these numbers. A lower score, under either distance, means closer on the chosen characteristics and nothing more. It does not make a state a valid control: unmeasured differences, later law changes and data problems remain. Use the candidates as a starting point and check the policy column.</li>
           <li>{policyLabel} status is verified for few states. For most, the baseline status is unknown; a current-law snapshot describes one recent day only.</li>

@@ -208,7 +208,7 @@ def _auth(asset: AssetConfig) -> tuple[dict, dict]:
 
 
 NORMALIZERS_DOC = {
-    "bls_api_json": "BLS API JSON with the volatile 'responseTime' field removed, re-serialised with sorted keys",
+    "bls_api_json": "BLS API JSON with the volatile 'responseTime' field removed, re-serialized with sorted keys",
     "strip_html_request_tokens": "HTML with the per-request anti-forgery token values (__RequestVerificationToken) blanked",
     "strip_passed_bills_timestamp": "Utah passed-bill index HTML with the request time in 'Bills Passed as of <time>' blanked",
     "strip_lis_page_variants": (

@@ -6,7 +6,7 @@ converted here equals the canonical derived T10 value (a test checks this):
 
 * Deflator: CPI-U (U.S. city average, all items, not seasonally adjusted) averaged over the 12 months
   of the observation's own fiscal year, rebased to the calendar-2024 average. A fiscal year is never
-  relabelled as a calendar year. If any of the 12 months is missing, the converted value is missing.
+  relabeled as a calendar year. If any of the 12 months is missing, the converted value is missing.
 * Denominator: the Census July 1 resident estimate whose date falls inside the fiscal year (all ages, or
   ages 21+). Never a NIAAA calendar-year denominator, never a different age universe.
 

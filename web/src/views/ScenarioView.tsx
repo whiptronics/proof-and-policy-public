@@ -1,5 +1,5 @@
 // Utah wine revenue scenarios. The reader states the assumptions the dataset cannot supply; sourced and
-// derived values are labelled as such; the model (lib/scenario.ts, SCENARIO_METHOD) keeps margins, taxes
+// derived values are labeled as such; the model (lib/scenario.ts, SCENARIO_METHOD) keeps margins, taxes
 // and costs apart and never counts shifted sales as new demand. Not a forecast.
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { ErrorNote, Go, Loading, RecordLink } from "../components/common";
@@ -279,7 +279,7 @@ function toInputs(d: Draft, f: Facts): { x: ScenarioInputs; rows: InputRow[] } {
   if (mode === "excise" || mode === "combo") push("Excise on grocery wine", exc, "$ per gallon");
   if (mode === "percent" || mode === "combo") push("Tax on the grocery shelf price", av, "share");
   const dc = pctIn(d.dc);
-  if (mode === "wholesale") push("Discount DABS gives grocers off its shelf price", dc, "share");
+  if (mode === "wholesale") push("DABS's price to grocers, share of its shelf price", dc === null ? null : 1 - dc, "share");
   const extra = d.b === "1";
   const sub = extra && d.sub === "1";
   const g = pctIn(d.g);
@@ -597,6 +597,37 @@ function NumField({
   );
 }
 
+/** DABS's price to grocers, entered as a share of its shelf price. It is stored as `dc`, the share below that price,
+ * so addresses, presets and saved scenarios keep working. */
+function PriceToGrocersField({ label, draft, set, help }: { label: string; draft: Draft; set: (p: Partial<Draft>) => void; help: ReactNode }) {
+  const flip = (s: string) => {
+    const v = num(s);
+    return v === null ? s : String(Number((100 - v).toFixed(6)));
+  };
+  const [text, setText] = useState(() => flip(draft.dc));
+  // Follow a change made elsewhere (a preset, the address) without rewriting what is being typed.
+  useEffect(() => {
+    setText((t) => {
+      const back = flip(t);
+      return back === draft.dc || (num(back) !== null && num(back) === num(draft.dc)) ? t : flip(draft.dc);
+    });
+  }, [draft.dc]);
+  return (
+    <NumField
+      label={label}
+      name="dc"
+      draft={{ ...draft, dc: text }}
+      set={(p) => {
+        if (p.dc === undefined) return set(p);
+        setText(p.dc);
+        set({ ...p, dc: flip(p.dc) });
+      }}
+      unit="% of its shelf price"
+      help={help}
+    />
+  );
+}
+
 function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
   const [draft, setDraft] = useState(applied);
   const key = JSON.stringify(applied);
@@ -665,7 +696,7 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
                 <td className="small">Sales minus the cost of the products: {p(margin)} of sales. Not profit: costs and transfers come out of it.</td>
               </tr>
               <tr>
-                <th scope="row">DABS operating expenses (labelled operating and non-operating in its five-year summary)</th>
+                <th scope="row">DABS operating expenses (labeled operating and non-operating in its five-year summary)</th>
                 <td className="num">{money(f.opex?.value)}</td>
                 <td className="small">{p(opexShare)} of sales, all products, fixed and variable together.</td>
               </tr>
@@ -816,7 +847,7 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
               ["excise", "An excise tax per gallon"],
               ["percent", "An extra tax on the shelf price"],
               ["combo", "A combination of these"],
-              ["wholesale", "DABS stays the wholesaler and sells to grocers at its shelf price less a discount"],
+              ["wholesale", "DABS stays the wholesaler and sells to grocers at a set share of its shelf price"],
             ] as [string, string][]
           ).map(([v, label]) => (
             <label className="check" key={v}>
@@ -832,13 +863,11 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
           {(draft.rm === "excise" || draft.rm === "combo") && <NumField label="Excise" name="exc" draft={draft} set={set} unit="$ per gallon" help="On wine sold by grocery stores." />}
           {(draft.rm === "percent" || draft.rm === "combo") && <NumField label="Tax on the shelf price" name="av" draft={draft} set={set} unit="%" help="On top of sales tax." />}
           {draft.rm === "wholesale" && (
-            <NumField
-              label="Discount DABS gives grocers"
-              name="dc"
+            <PriceToGrocersField
+              label="DABS's price to grocers"
               draft={draft}
               set={set}
-              unit="% off its shelf price"
-              help="DABS sells the wine to grocers at its shelf price less this discount, keeping its gross margin less the discount on each dollar that moves."
+              help="DABS sells the wine to grocers at this share of its shelf price, keeping that price less the wine's cost on each dollar that moves."
             />
           )}
         </div>
@@ -1020,13 +1049,11 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
               />
             </div>
             <div className="controls">
-              <NumField
-                label="2. State wholesale: discount DABS gives grocers"
-                name="dc"
+              <PriceToGrocersField
+                label="2. State wholesale: DABS's price to grocers"
                 draft={draft}
                 set={set}
-                unit="% off its shelf price"
-                help="DABS stays the only wholesaler and sells to grocers at its shelf price less this discount. The grocer keeps the difference between its shelf price (section 4) and what it pays DABS."
+                help="DABS stays the only wholesaler and sells to grocers at this share of its shelf price. The grocer keeps the difference between its shelf price (section 4) and what it pays DABS."
               />
             </div>
             <fieldset className="radios">
@@ -1096,12 +1123,12 @@ function missingLabel(m: string, route: string): string {
     return route === "share" ? "wine's share of DABS liquor sales (section 2)" : route === "gallons" ? "average state-store price per gallon (section 2)" : "baseline wine sales (section 2)";
   if (m === "wine gallons sold") return "wine gallons (section 2)";
   if (["gross margin on wine", "avoidable operating cost", "state sales tax rate", "new state costs of licensing and enforcement"].includes(m)) return `${m} (section 3)`;
-  if (["share of wine moving to grocery stores", "grocery price compared with the state store", "share of grocery sales the state keeps", "excise per gallon", "tax on the grocery shelf price", "discount DABS gives grocers"].includes(m)) return `${m} (section 4)`;
+  if (["share of wine moving to grocery stores", "grocery price compared with the state store", "share of grocery sales the state keeps", "excise per gallon", "tax on the grocery shelf price", "DABS's price to grocers"].includes(m)) return `${m} (section 4)`;
   return `${m} (section 5)`;
 }
 
 const fmtSetting = (v: number, f: RangeFormat) =>
-  f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
+  f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
 
 /** Every assumption at once at the end of its range that lowers, then raises, the net change: sensitivity scenarios,
  * not a probability interval (lib/scenarioRanges combinedScenarios). */
@@ -1212,7 +1239,7 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
       out.push({ row_type: st.part === "of" ? "scenario_a_step_of_which (not added)" : `scenario_a_step_${st.part}`, item: `${st.label} [${st.formula}]`, baseline: null, scenario_a: st.value, scenario_b: null, unit: "$ per year", basis: "calculated" });
     out.push({ row_type: "net_change", item: "Net change in state revenue from wine (after avoided and new costs)", baseline: null, scenario_a: res.netA, scenario_b: res.netB, unit: "$ per year", basis: "calculated" });
     for (const s of [...sensA.map((z) => ({ ...z, sc: "A" })), ...sensB.map((z) => ({ ...z, sc: "B" }))])
-      out.push({ row_type: `sensitivity_${s.sc}`, item: `${s.label}: ${s.low} to ${s.high} [range: ${s.evidence}]`, baseline: null, scenario_a: s.sc === "A" ? s.netLow : null, scenario_b: s.sc === "B" ? s.netLow : null, unit: `net at low; at high ${Math.round(s.netHigh)}`, basis: "calculated" });
+      out.push({ row_type: `sensitivity_${s.sc}`, item: `${s.label}: ${s.format === "complement" ? `${1 - s.low} to ${1 - s.high}` : `${s.low} to ${s.high}`} [range: ${s.evidence}]`, baseline: null, scenario_a: s.sc === "A" ? s.netLow : null, scenario_b: s.sc === "B" ? s.netLow : null, unit: `net at low; at high ${Math.round(s.netHigh)}`, basis: "calculated" });
     for (const [sc, cb] of [["a", combinedScenarios(x, "A", ranges)], ["b", x.extra ? combinedScenarios(x, "B", ranges) : null]] as const) {
       if (!cb) continue;
       for (const [item, v] of [
@@ -1233,7 +1260,7 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
           ["net change", l.net],
         ] as [string, number][])
           out.push({ row_type: `comparison_${a.id}`, item: `${a.label}: ${item} (channel shift only; ${ARRANGEMENTS_METHOD})`, baseline: null, scenario_a: v, scenario_b: item === "net change" ? a.netAll : null, unit: "$ per year", basis: "calculated" });
-        out.push({ row_type: `comparison_${a.id}`, item: `${a.label}: break-even ${a.breakEven.lever} (${a.breakEven.basis}; ${a.breakEven.status})`, baseline: null, scenario_a: a.breakEven.value, scenario_b: null, unit: a.breakEven.lever === "discount" || a.x.revenueMode === "percent" ? "share" : "$ per gallon", basis: "calculated" });
+        out.push({ row_type: `comparison_${a.id}`, item: `${a.label}: break-even ${a.breakEven.lever === "discount" ? "price to grocers, share of the state-store price" : a.breakEven.lever} (${a.breakEven.basis}; ${a.breakEven.status})`, baseline: null, scenario_a: a.breakEven.lever === "discount" && a.breakEven.value !== null ? 1 - a.breakEven.value : a.breakEven.value, scenario_b: null, unit: a.breakEven.lever === "discount" || a.x.revenueMode === "percent" ? "share" : "$ per gallon", basis: "calculated" });
         for (const [item, k] of [
           ["sellers keep per $ of state-store price, at the lever entered", a.sellers],
           ["sellers keep per $ of state-store price, at the state's break-even lever", a.sellersAtBreakEven],
@@ -1288,7 +1315,7 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
     </tr>
   );
   const fmtRange = (v: number, f: RangeFormat) =>
-    f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
+    f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
   const evidenceText = { published: "published", data: "from data", convention: "convention" } as const;
   const sensTable = (s: typeof sensA, which: string) => (
     <div className="table-wrap">
@@ -1325,10 +1352,11 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
                   <strong>{evidenceText[z.evidence]}.</strong> {z.basis}
                 </div>
               </th>
-              <td className="num">{fmtRange(z.low, z.format)}</td>
-              <td className="num">{money(z.netLow)}</td>
-              <td className="num">{fmtRange(z.high, z.format)}</td>
-              <td className="num">{money(z.netHigh)}</td>
+              {/* A complement is shown as 1 - v, so its high end is the lower value. */}
+              <td className="num">{fmtRange(z.format === "complement" ? z.high : z.low, z.format)}</td>
+              <td className="num">{money(z.format === "complement" ? z.netHigh : z.netLow)}</td>
+              <td className="num">{fmtRange(z.format === "complement" ? z.low : z.high, z.format)}</td>
+              <td className="num">{money(z.format === "complement" ? z.netLow : z.netHigh)}</td>
               <td className="num">{z.zero === null ? "—" : z.zero.inRange ? <strong>{fmtRange(z.zero.value, z.format)}</strong> : `${fmtRange(z.zero.value, z.format)} (outside the range)`}</td>
             </tr>
           ))}
@@ -1458,13 +1486,13 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
           <FundsNote x={x} rates={rates} fy={f.fy} proposal={Boolean(proposal)} />
           {x.revenueMode === "wholesale" && (x.discount ?? 0) > (x.grossMargin ?? 1) && (
             <li className="warn">
-              The discount to grocers ({((x.discount ?? 0) * 100).toFixed(1)}%) is larger than the gross margin ({((x.grossMargin ?? 0) * 100).toFixed(1)}%): DABS
+              DABS's price to grocers ({((1 - (x.discount ?? 0)) * 100).toFixed(1)}% of its shelf price) is below what the wine cost it ({((1 - (x.grossMargin ?? 0)) * 100).toFixed(1)}%): DABS
               would sell wine to grocers for less than it paid for it. The result below is arithmetic on that input, not a workable arrangement.
             </li>
           )}
           {res.breakEvenDiscount.value !== null && (
             <li>
-              Break-even discount: {res.breakEvenDiscount.value < 0 ? res.breakEvenDiscount.note : `${(res.breakEvenDiscount.value * 100).toFixed(1)}% — ${res.breakEvenDiscount.note}`}
+              Break-even price to grocers: {res.breakEvenDiscount.value < 0 ? res.breakEvenDiscount.note : `${((1 - res.breakEvenDiscount.value) * 100).toFixed(1)}% of its shelf price — ${res.breakEvenDiscount.note}`}
             </li>
           )}
           <li hidden={x.revenueMode === "wholesale"}>
@@ -1553,8 +1581,9 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
           </li>
           <li>Scenario B: scenario A plus the margin, share, taxes and costs on the extra wine only, minus the beer excise and sales tax on any beer it replaces.</li>
           <li>
-            Wholesale arrangement: DABS sells the wine to grocers at its shelf price less the discount, so the state keeps the gross margin less the discount on each dollar that
-            moves, whatever the grocer charges. With an unchanged shelf price the margin cancels: per dollar that moves the state gives up the discount and saves the avoidable cost.
+            Wholesale arrangement: DABS sells the wine to grocers at a share of its shelf price, so the state keeps that price less the wine's cost on each dollar that
+            moves, whatever the grocer charges. With an unchanged shelf price the margin cancels: per dollar that moves the state gives up the gap between its shelf price and
+            its price to grocers, and saves the avoidable cost.
           </li>
           <li>
             Gross margin (markup earnings) is not net profit: operating costs, earmarked transfers and capital costs come out of it. DABS's net profit to the General Fund is shown above for
@@ -1583,7 +1612,7 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
             the elasticity has a published source; the access effect and recapture are assumptions no dataset here measures.
           </li>
           <li>
-            Every range in the tables is a low and a high value around your entered value. Only the elasticity range has a published basis; the others are conventions, labelled as such. The
+            Every range in the tables is a low and a high value around your entered value. Only the elasticity range has a published basis; the others are conventions, labeled as such. The
             results are sensitivity scenarios: one assumption at a time, then all of them leaning the same way. No probability is given, because the ranges do not rest on evidence that would
             support one.
           </li>
@@ -1764,7 +1793,7 @@ function baselineRows(f: Facts, x: ScenarioInputs, d: Draft, rates: RatesNow | n
       value: pct(x.salesTax, 2),
       units: "% of the shelf price",
       source: "Entered; the tool offers Utah State Tax Commission Publication 25 (pages marked draft)",
-      coverage: "The state's portion only; local sales tax is not modelled",
+      coverage: "The state's portion only; local sales tax is not modeled",
       status: `The reader's assumption: the dataset does not establish the rate for FY${f.fy}`,
     },
     {
@@ -1871,13 +1900,13 @@ function FundsNote({ x, rates, fy, proposal }: { x: ScenarioInputs; rates: Rates
 
 const LEVER_LABEL: Record<Lever, string> = {
   retained: "a share kept of",
-  discount: "a discount to grocers of",
+  discount: "a price to grocers of",
   excise: "an excise of",
   adValorem: "an extra tax on the shelf price of",
 };
 
 function leverText(lever: Lever, v: number): string {
-  return `${LEVER_LABEL[lever]} ${lever === "excise" ? `$${v.toFixed(2)} a gallon` : `${(v * 100).toFixed(1)}%`}`;
+  return `${LEVER_LABEL[lever]} ${lever === "excise" ? `$${v.toFixed(2)} a gallon` : lever === "discount" ? `${((1 - v) * 100).toFixed(1)}% of its shelf price` : `${(v * 100).toFixed(1)}%`}`;
 }
 
 /** Whether the sign of scenario A's result could reverse, and what it would take. */

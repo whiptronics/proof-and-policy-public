@@ -1,6 +1,6 @@
 // Start here: the guided entry point. A newcomer picks a question; each question opens a tool with
 // sensible, editable inputs, or (for the cross-state question) a short form that opens Explore.
-import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import { lazy, Suspense, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { ErrorNote, Go, Loading } from "../components/common";
 import { browserStorage } from "../lib/analysis";
 import { useData } from "../lib/data";
@@ -10,6 +10,8 @@ import { SCENARIO_EXAMPLES } from "../lib/scenario";
 import { parseRecordFile, readSaved, restoreSearch, writeSaved, type SavedRecord } from "../lib/saved";
 import type { Geography, Manifest, MetricsIndex, PolicyData } from "../lib/types";
 import { VIEWS, navigate } from "../lib/url";
+
+const FeaturedFindings = lazy(() => import("./FeaturedFindings"));
 
 const TOOL_NAMES: Record<string, string> = {
   change: "Before & after",
@@ -49,15 +51,109 @@ export function StartView() {
   const verifiedStates = geos.data.filter(
     (g) => g.geo_level === "state" && pol.data!.segments.some((s) => s.geo_id === g.geo_id && s.policy_dimension === "ordinary_grocery_wine_authorization" && s.state !== "unknown"),
   );
+  const verified = verifiedStates.map((g) => g.name);
   return (
     <>
-      <section className="panel" aria-labelledby="st-h">
-        <h2 id="st-h">Start here</h2>
-        <p>
-          How does letting grocery stores sell wine relate to government revenue, what people buy and drink, and public health, and what could
-          that tell us about Utah? Pick a question. Each opens a tool with inputs filled in that you can change, and every result says what it
-          can and cannot show, including results that cut against the idea.
+      <section className="panel hero" aria-labelledby="st-h">
+        <p className="kicker">Independent public-policy research</p>
+        <h2 id="st-h">Evidence on alcohol policy, with its sources and its limits</h2>
+        <p className="lede">
+          State alcohol laws, tax and liquor-store revenue, purchases and public-health measures, kept as separate, sourced data, and what they
+          say about letting Utah grocery stores sell wine: which designs keep state revenue whole and what each means for prices. Every value
+          links to its source, and every result says what it rests on.
         </p>
+        <div className="row-actions hero-actions">
+          <Go to={{ v: "briefing" }} reset className="button primary-link">
+            Explore the research
+          </Go>
+          <Go to={{ v: "methods" }} reset className="button">
+            Methods &amp; data
+          </Go>
+        </div>
+      </section>
+
+      <section className="panel" aria-labelledby="st-find">
+        <h2 id="st-find">Featured findings</h2>
+        <Suspense fallback={<Loading what="the findings" />}>
+          <FeaturedFindings verified={verified} />
+        </Suspense>
+      </section>
+
+      <section className="panel" aria-labelledby="st-areas">
+        <h2 id="st-areas">Research areas</h2>
+        <ul className="question-cards area-cards">
+          <li>
+            <h3>Utah grocery wine and state revenue</h3>
+            <p className="small">
+              How grocery-store wine could be designed to keep Utah's revenue whole, what each design means for prices, and which designs would
+              cost the state.
+            </p>
+            <div className="row-actions">
+              <Go to={{ v: "briefing" }} reset className="button primary-link">
+                Utah briefing
+              </Go>
+              <Go to={{ v: "initiative" }} reset>
+                Full analysis
+              </Go>
+              <Go to={{ v: "utah" }} reset>
+                Utah at a glance
+              </Go>
+            </div>
+          </li>
+          <li>
+            <h3>States that changed their laws</h3>
+            <p className="small">
+              Before-and-after comparisons where a state's grocery-wine law is verified over time, candidate comparison states for Utah, and when each
+              law changed.
+            </p>
+            <div className="row-actions">
+              <Go to={{ v: "change" }} reset className="button primary-link">
+                Before &amp; after
+              </Go>
+              <Go to={{ v: "case" }} reset>
+                Tennessee worked example
+              </Go>
+              <Go to={{ v: "timeline" }} reset>
+                Policy timeline
+              </Go>
+            </div>
+          </li>
+          <li>
+            <h3>Purchases, drinking and public health</h3>
+            <p className="small">Beer, wine and spirits sold per adult, survey measures of drinking and alcohol-related deaths, state by state and over time.</p>
+            <div className="row-actions">
+              <Go to={{ v: "map", mm: "alcohol_per_adult", bv: "wine" }} reset className="button primary-link">
+                Wine sold per adult
+              </Go>
+              <Go to={{ v: "map", mm: "adults_binge" }} reset>
+                Adults who binge drank
+              </Go>
+              <Go to={{ v: "beverages" }} reset>
+                Beer, wine &amp; spirits
+              </Go>
+            </div>
+          </li>
+          <li>
+            <h3>Alcohol revenue across states</h3>
+            <p className="small">
+              Taxes, license fees and state-store receipts side by side and never added together, with why states without liquor stores still collect
+              alcohol revenue.
+            </p>
+            <div className="row-actions">
+              <Go to={{ v: "fiscal" }} reset className="button primary-link">
+                Revenue by state
+              </Go>
+              <Go to={{ v: "map", mm: "retail_change" }} reset>
+                Retail sales, change from a year earlier
+              </Go>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section className="panel" aria-labelledby="st-q">
+        <h2 id="st-q">Start with a question</h2>
+        <p className="small muted">Each question opens a tool with inputs filled in that you can change, and every result says what it can and cannot show.</p>
         <ul className="question-cards">
           <li>
             <h3>What changed after a state allowed grocery-store wine?</h3>
@@ -84,15 +180,10 @@ export function StartView() {
             </div>
           </li>
           <li>
-            <h3>How do revenue and consumption compare across states?</h3>
-            <p className="small">Trends for the states you pick, with each state's verified grocery-wine status shown underneath.</p>
-            <CrossStateForm idx={idx.data} geos={geos.data} />
-          </li>
-          <li>
             <h3>What would different assumptions mean for Utah's wine revenue?</h3>
             <p className="small">
               A calculator for state revenue if some wine purchases moved to grocery stores, with optional extra purchases and beer substitution. You
-              supply what the data cannot; every input is labelled as data or assumption.
+              supply what the data cannot; every input is labeled as data or assumption.
             </p>
             <div className="row-actions">
               <Go to={{ v: "scenario" }} reset className="button primary-link">
@@ -103,87 +194,57 @@ export function StartView() {
               </Go>
             </div>
           </li>
+          <li>
+            <h3>How do revenue and consumption compare across states?</h3>
+            <p className="small">Trends for the states you pick, with each state's verified grocery-wine status shown underneath.</p>
+            <details className="card-form">
+              <summary>Choose states and a topic</summary>
+              <CrossStateForm idx={idx.data} geos={geos.data} />
+            </details>
+          </li>
         </ul>
       </section>
 
-      <section className="panel" aria-labelledby="st-glance">
-        <h2 id="st-glance">The whole country at a glance</h2>
-        <ul className="question-cards">
-          <li>
-            <h3>Where does Utah stand, and which states compare?</h3>
+      <section className="panel" aria-labelledby="st-know">
+        <h2 id="st-know">Research transparency</h2>
+        <div className="transparency">
+          <div>
+            <h3>Where the data come from</h3>
             <p className="small">
-              Utah's latest value on each measure and its rank among states with a value for the same year, how Utah sells alcohol under verified
-              law, and a few comparison candidates with why they were chosen, how they differ and what is not yet known.
+              Government reports, statutes and federal datasets, each kept as its own source with its license and retrieval date. Dataset{" "}
+              {man.data.dataset.release_label}; law as of {man.data.dataset.law_as_of_date}. <Go to={{ v: "sources" }}>Sources</Go> ·{" "}
+              <Go to={{ v: "coverage" }}>Coverage and missing data</Go>
             </p>
-            <div className="row-actions">
-              <Go to={{ v: "utah" }} reset className="button primary-link">
-                Utah at a glance
-              </Go>
-            </div>
-          </li>
-          <li>
-            <h3>Where does a measure stand, state by state?</h3>
+          </div>
+          <div>
+            <h3>Assumptions and limits</h3>
+            <ul className="small source-list">
+              <li>
+                Everything here is descriptive. A change after a law took effect is not proof the law caused it; prices, taxes, the economy, tourism and
+                the pandemic move too.
+              </li>
+              <li>Utah sells wine through state stores, so most of its alcohol money is store income, not tax. Tax figures from other states do not translate directly.</li>
+              <li>The Utah scenarios show what stated assumptions imply; each input is labeled as published, proxy, illustrative or a policy choice.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Review status and AI assistance</h3>
             <p className="small">
-              A map of the United States with every state's value, a ranked list of the same numbers and a table. Pick drinking, alcohol sold, taxes,
-              spending, retail sales or alcohol-impaired-driving deaths; click a state for its trend and sources. Utah is outlined.
+              Policy records and Utah's state-store figures are machine-assisted or hand-transcribed and have not been reviewed by a person. An AI
+              assistant did much of the collection, coding and writing; scripts recompute the arithmetic. <Go to={{ v: "methods" }}>How this was made</Go>
             </p>
-            <div className="row-actions">
-              <Go to={{ v: "map", mm: "alcohol_per_adult", bv: "wine" }} reset className="button primary-link">
-                Wine sold per adult
-              </Go>
-              <Go to={{ v: "map", mm: "retail_change" }} reset>
-                Retail sales, change from a year earlier
-              </Go>
-              <Go to={{ v: "map", mm: "adults_binge" }} reset>
-                Adults who binge drank
-              </Go>
-            </div>
-          </li>
-          <li>
-            <h3>Is wine rising while beer falls?</h3>
+          </div>
+          <div>
+            <h3>Reproduce it</h3>
             <p className="small">
-              Beer, wine and spirits side by side for any state and the nation, on one scale, with each one's share of the pure alcohol; and what
-              Utah's state liquor stores sell, month by month.
+              The whole dataset with its manifest and checksums can be downloaded, and every chart's plotted numbers come with it as CSV. The code and
+              the data build are public. <Go to={{ v: "downloads" }}>Downloads</Go>
             </p>
-            <div className="row-actions">
-              <Go to={{ v: "beverages" }} reset className="button primary-link">
-                Beer, wine and spirits
-              </Go>
-            </div>
-          </li>
-          <li>
-            <h3>Where does each state's alcohol money come from?</h3>
-            <p className="small">
-              Taxes, license fees, state-store receipts and profit, side by side for every state and never added together, with why states without
-              liquor stores still collect alcohol revenue.
-            </p>
-            <div className="row-actions">
-              <Go to={{ v: "fiscal" }} reset className="button primary-link">
-                Revenue by state
-              </Go>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </section>
 
       <SavedList />
-
-      <section className="panel" aria-labelledby="st-know">
-        <h2 id="st-know">Before drawing conclusions</h2>
-        <ul className="small source-list">
-          <li>Everything here is descriptive. A change after a law took effect is not proof the law caused it; prices, taxes, the economy, tourism and the pandemic move too.</li>
-          <li>
-            Grocery-wine law is verified over time for only {verifiedStates.length} states ({verifiedStates.map((g) => g.name).join(", ")}). For the rest the dataset has, at most, a
-            recent snapshot of current law, which says nothing about earlier years.
-          </li>
-          <li>Utah sells wine through state stores, so most of its alcohol money is store profit, not tax. Tax figures from other states do not translate directly.</li>
-          <li>Policy records and Utah's state-store figures are machine-assisted or hand-transcribed and have not been reviewed by a person.</li>
-          <li>
-            The data views (Map, Beer, wine & spirits, Revenue by state, Explore, Compare, Coverage, Policy timeline, Policy matrix, Sources) show everything the tools use, with a link from every value to its
-            source. Dataset {man.data.dataset.release_label}; law as of {man.data.dataset.law_as_of_date}.
-          </li>
-        </ul>
-      </section>
     </>
   );
 }

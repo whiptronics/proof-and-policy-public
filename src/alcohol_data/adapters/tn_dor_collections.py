@@ -34,7 +34,7 @@ LINE = re.compile(r"^\s*(\d{5})\s+(.*?)\s+(?=\(?-?[\d,]+\.\d)")
 AMOUNT = re.compile(r"\(?-?\d{1,3}(?:,\d{3})*\.\d{2}\)?")
 CLASS_HEADING = re.compile(r"^[A-Z][A-Z ,.&()/'-]+$")
 
-# (account code, label as printed) -> measure. Unknown labels for these codes are rejected, so a relabelling
+# (account code, label as printed) -> measure. Unknown labels for these codes are rejected, so a relabeling
 # is noticed instead of being folded into an existing series.
 MEASURES = {
     ("11002", "Wine Tax"): "tn_dor_wine_tax_collections",

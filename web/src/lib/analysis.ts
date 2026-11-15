@@ -174,7 +174,7 @@ export interface YearStatus {
 }
 
 /** Status by calendar year: how many days are verified and with which values. Days after the build's
- * as-of date are not counted; a year with no verified day is unknown, never filled from a neighbour. */
+ * as-of date are not counted; a year with no verified day is unknown, never filled from a neighbor. */
 export function yearStatuses(segments: Segment[], geo: string, dim: string, from: number, to: number, asOf: string): YearStatus[] {
   const segs = lane(segments, geo, dim);
   const end = ms(asOf);

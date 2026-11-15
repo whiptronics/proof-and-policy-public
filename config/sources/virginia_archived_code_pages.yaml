@@ -9,7 +9,7 @@ source_family: policy
 rights_status: government_edict
 notes: The 2017 capture of § 4.1-209 carries its history note through 2016 (the finding aid for the 2001-2016 chapters).
   The 2024 capture of § 4.1-206.3 is the only official print found of the version in force from 2024-07-01 to 2026-06-30,
-  labelled '(Effective until July 1, 2026)'. Captures are requested in their original form (the 'id_' address),
+  labeled '(Effective until July 1, 2026)'. Captures are requested in their original form (the 'id_' address),
   ten seconds apart.
 host_min_interval_seconds: 10
 assets:
