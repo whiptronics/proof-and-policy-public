@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.1: one label on the bottle chart (2026-11-15)
+
+Wording only; no model, input or result changed. The bottle chart's table wrote DABS's lower price to grocers as a
+"discount", the word 0.4.0 retired; its basis column now says DABS sells to grocers at 80% of its shelf price, as the
+rest of the site does. Found in the website check of 0.5.0, after its tag was pushed and before its release files were
+attached or the website deployed, so 0.5.0 was never released with files or shown on the website; 0.5.1 is 0.5.0 with
+this label changed. Prepared by Claude under the maintainer's direction; not reviewed by a person.
+
 ## 0.5.0: one bottle, DABS's accounts, producer-direct supply, and a start page on wine in Utah grocery stores (2026-11-15)
 
 Additions only; no published result changed. The 13 alternatives, the price-and-share grid and the purchase flows

@@ -1,6 +1,7 @@
 # Implementation report: November 2026 audit and improvement plan
 
-Done by Claude (AI assistant) on 2026-11-15, after release 0.4.0, and released as 0.5.0 the same day at the maintainer's go. **Not reviewed by a person.** The
+Done by Claude (AI assistant) on 2026-11-15, after release 0.4.0, and released the same day at the maintainer's go, as 0.5.1 (0.5.0 was tagged, then superseded before its files
+were attached or the site deployed; CHANGELOG). **Not reviewed by a person.** The
 phase 1 audit is
 [website-audit-2026-11-15.md](website-audit-2026-11-15.md).
 

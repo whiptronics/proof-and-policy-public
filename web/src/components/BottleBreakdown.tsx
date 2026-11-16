@@ -26,9 +26,9 @@ function basisOf(seg: string, r: AltResult | null): string {
     case "supplier":
       return "Your input: the landed cost";
     case "dabs_margin":
-      if (!r) return "Observed: DABS's FY2025 margin, all products, applied to wine; less any discount to grocers";
+      if (!r) return "Observed: DABS's FY2025 margin, all products, applied to wine; smaller where DABS sells to grocers below its shelf price";
       return typeof r.def.discount === "number" && r.def.discount > 0
-        ? `Policy choice: DABS's observed margin less a ${Math.round(r.def.discount * 100)}% discount to grocers`
+        ? `Policy choice: DABS's observed margin, with DABS selling to grocers at ${Math.round((1 - r.def.discount) * 100)}% of its shelf price`
         : "Observed: DABS's FY2025 margin, all products, applied to wine";
     case "state_charge":
       return "Policy choice: sized to DABS's markup per bottle";
