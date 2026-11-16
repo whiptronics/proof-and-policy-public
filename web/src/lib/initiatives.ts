@@ -81,6 +81,12 @@ export interface WorkedData {
    * gross sales (scripts/dabs_wine_class_mix.py): red, white, rosé and small-package still wine; and hard cider, which
    * the model keeps out of wine but Utah Code § 32B-1-102(143) counts as wine. */
   wineMix: { stillTable: number; ciderOverWine: number };
+  /** The FY2025 income statement (annual report p. 30, unaudited), which reconciles line by line: sales − cost of
+   * liquor sold = gross profit; + other income − operating expenses = net operating income; + non-operating revenue
+   * and expenses (the school-meals and program transfers, depreciation and interest, net) = net profit to the General
+   * Fund. The five-year summary (p. 32) prints other income as `otherIncomeSummary` and does not reproduce the printed
+   * net profit; the dataset keeps both and resolves neither (docs/fiscal-reconciliation.md). */
+  statement: { cost: number; otherIncome: number; netOperatingIncome: number; nonOperatingNet: number; netProfit: number; otherIncomeSummary: number };
 }
 
 const FY2025_SALES = 551_346_000;
@@ -113,6 +119,7 @@ export const INITIATIVES: Initiative[] = [
         expenses: { card: 8_403_000, agency: 3_474_000, bags: 680_000, wages: 41_432_000, delivery: 5_767_000, total: 81_910_000, nonOperating: 17_469_000 + 602_000 },
         marginRange: { low: 235_239_000 / 517_390_000, high: FY2025_GROSS_PROFIT / FY2025_SALES, lowYear: 2021, highYear: 2025 },
         wineMix: { stillTable: 141_949_120.54 / 182_331_954.71, ciderOverWine: 3_875_021.12 / 182_331_954.71 },
+        statement: { cost: 291_057_000, otherIncome: 8_237_000, netOperatingIncome: 186_616_000, nonOperatingNet: -86_151_000, netProfit: 100_465_000, otherIncomeSummary: 6_569_000 },
       },
       rates: { school: 0.1, enforcement: 0.01695 },
       swap: { swap: 0, grocery: 1, beerPrice: 12, beerTax: 13.35, wineAbv: 0.118, beerAbv: 0.048, beerGallons: 26_660_000 },

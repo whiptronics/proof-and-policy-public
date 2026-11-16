@@ -1,4 +1,5 @@
-// Start here: the guided entry point. A newcomer picks a question; each question opens a tool with
+// Start here: the guided entry point. Utah grocery wine first (four questions, then the proposal, economics, evidence and
+// tradeoffs, in views/UtahOverview.tsx), then the research areas and questions; each question opens a tool with
 // sensible, editable inputs, or (for the cross-state question) a short form that opens Explore.
 import { lazy, Suspense, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { ErrorNote, Go, Loading } from "../components/common";
@@ -11,7 +12,7 @@ import { parseRecordFile, readSaved, restoreSearch, writeSaved, type SavedRecord
 import type { Geography, Manifest, MetricsIndex, PolicyData } from "../lib/types";
 import { VIEWS, navigate } from "../lib/url";
 
-const FeaturedFindings = lazy(() => import("./FeaturedFindings"));
+const UtahOverview = lazy(() => import("./UtahOverview"));
 
 const TOOL_NAMES: Record<string, string> = {
   change: "Before & after",
@@ -56,15 +57,16 @@ export function StartView() {
     <>
       <section className="panel hero" aria-labelledby="st-h">
         <p className="kicker">Independent public-policy research</p>
-        <h2 id="st-h">Evidence on alcohol policy, with its sources and its limits</h2>
+        <h2 id="st-h">Wine in Utah Grocery Stores</h2>
+        <p className="hero-sub">An evidence-based examination of retail access, consumer prices, state revenue, and implementation.</p>
         <p className="lede">
-          State alcohol laws, tax and liquor-store revenue, purchases and public-health measures, kept as separate, sourced data, and what they
-          say about letting Utah grocery stores sell wine: which designs keep state revenue whole and what each means for prices. Every value
-          links to its source, and every result says what it rests on.
+          Utah sells wine to take home only through state liquor stores and package agencies. This research asks whether grocery stores could
+          sell it too while keeping public revenue and regulation, and what each way of doing it would mean. Every value links to its source,
+          and every result says what it rests on.
         </p>
         <div className="row-actions hero-actions">
           <Go to={{ v: "briefing" }} reset className="button primary-link">
-            Explore the research
+            Read the two-minute briefing
           </Go>
           <Go to={{ v: "methods" }} reset className="button">
             Methods &amp; data
@@ -72,15 +74,19 @@ export function StartView() {
         </div>
       </section>
 
-      <section className="panel" aria-labelledby="st-find">
-        <h2 id="st-find">Featured findings</h2>
-        <Suspense fallback={<Loading what="the findings" />}>
-          <FeaturedFindings verified={verified} />
-        </Suspense>
-      </section>
+      <Suspense
+        fallback={
+          <section className="panel">
+            <Loading what="the overview" />
+          </section>
+        }
+      >
+        <UtahOverview verified={verified} />
+      </Suspense>
 
       <section className="panel" aria-labelledby="st-areas">
-        <h2 id="st-areas">Research areas</h2>
+        <h2 id="st-areas">Explore the research</h2>
+        <p className="small muted">The full interactive analysis, the national data behind it, and every dataset to download.</p>
         <ul className="question-cards area-cards">
           <li>
             <h3>Utah grocery wine and state revenue</h3>

@@ -21,11 +21,13 @@ import {
   WINE_ALTERNATIVES_METHOD,
   alternativeById,
   alternativesReport,
+  distributorMargin,
   costCases,
   sweepLever,
   type AltResult,
   type SweepRow,
 } from "../lib/wineAlternatives";
+import { PRODUCER_DIRECT_METHOD, directReport } from "../lib/producerDirect";
 import { PRICE_SHARE_METHOD, POSITION_WORDS, priceShareReport, type GridArrangement, type GridCell } from "../lib/winePriceShare";
 import { csvText, writeAll, type Cell } from "./csv";
 import { flowFiles, flowProblems } from "./groceryWineFlows";
@@ -65,13 +67,39 @@ const inputsOf = (a: AltResult) => {
     charge_rate_on_price: x.revenueMode === "percent" ? (x.adValorem ?? 0) : null,
     charge_per_gallon: x.revenueMode === "excise" ? (x.excise ?? 0) : null,
     charge_in_sales_tax_base: x.chargeInSalesTax !== false,
-    wholesaler_margin: a.def.supply === "private" ? WHOLESALER_MARGIN : null,
+    wholesaler_margin: distributorMargin(a.def),
     retailer_margin_target: RETAILER_TARGET,
     deposit_rates: { school: 0.1, enforcement: 0.01695 },
   };
 };
 
 const ledgerJson = (l: Ledger) => ({ basis: l.basis, lines: l.lines, net: l.net, engine_net: l.engineNet, reconciles: l.reconciles, unaffected: l.unaffected, allocations: l.allocations, volume: l.volume });
+
+const altJson = (a: AltResult) => ({
+  id: a.def.id,
+  group: a.def.group,
+  label: a.def.label,
+  short: a.def.short,
+  supply: a.def.supply,
+  pricing: a.def.pricing,
+  preserves: a.def.preserves,
+  defines: a.def.defines,
+  savings_case: a.def.savings,
+  lever: a.lever,
+  inputs: inputsOf(a),
+  price_stack: a.fixed.stack,
+  ledger_fixed: ledgerJson(a.fixed.ledger),
+  ledger_fixed_no_deposits_on_grocer_sales: a.fixed.ledgerOtherReading ? ledgerJson(a.fixed.ledgerOtherReading) : null,
+  retailer: a.retailer,
+  demand: a.demand.map((d) => ({ id: d.id, label: d.label, kind: d.kind, net: d.net, delta: d.delta, grocery_factor: d.groceryFactor, note: d.note, lines: d.ledger?.lines ?? null, reconciles: d.ledger ? d.ledger.reconciles : true })),
+  demand_additive: a.demandAdditive,
+  beer_threshold: a.beer.threshold,
+  beer_per_gallon: a.beer.perGallon,
+  legal: a.legal,
+  zero_savings_net: a.zeroSavings.net,
+  reconciliation: a.reconciliation,
+  headline: a.headline,
+});
 
 const json = {
   generated_at: new Date().toISOString(),
@@ -91,31 +119,7 @@ const json = {
       return [id, { published: OLD[id], now: a.fixed.ledger.net, unchanged: Math.abs(a.fixed.ledger.net - OLD[id]) < 0.01 }];
     }),
   ),
-  alternatives: rep.results.map((a) => ({
-    id: a.def.id,
-    group: a.def.group,
-    label: a.def.label,
-    short: a.def.short,
-    supply: a.def.supply,
-    pricing: a.def.pricing,
-    preserves: a.def.preserves,
-    defines: a.def.defines,
-    savings_case: a.def.savings,
-    lever: a.lever,
-    inputs: inputsOf(a),
-    price_stack: a.fixed.stack,
-    ledger_fixed: ledgerJson(a.fixed.ledger),
-    ledger_fixed_no_deposits_on_grocer_sales: a.fixed.ledgerOtherReading ? ledgerJson(a.fixed.ledgerOtherReading) : null,
-    retailer: a.retailer,
-    demand: a.demand.map((d) => ({ id: d.id, label: d.label, kind: d.kind, net: d.net, delta: d.delta, grocery_factor: d.groceryFactor, note: d.note, lines: d.ledger?.lines ?? null, reconciles: d.ledger ? d.ledger.reconciles : true })),
-    demand_additive: a.demandAdditive,
-    beer_threshold: a.beer.threshold,
-    beer_per_gallon: a.beer.perGallon,
-    legal: a.legal,
-    zero_savings_net: a.zeroSavings.net,
-    reconciliation: a.reconciliation,
-    headline: a.headline,
-  })),
+  alternatives: rep.results.map((a) => altJson(a)),
   sweeps: {
     discount_matched: sweepLever(alternativeById("B20_matched"), "discount", 0, 0.5, 100),
     discount_target: sweepLever(alternativeById("B20_target"), "discount", 0, 0.5, 100),
@@ -295,10 +299,47 @@ const files: Record<string, string> = {
 };
 // The list of files this run wrote, so that a reader of the folder (scripts/grocery_wine_graphs.py) can tell them
 // from files an older version left behind.
+// Producer-direct supply (scenario D): its own file, in the alternatives' shape, so the independent check recomputes it
+// the same way; the 13 alternatives above are unchanged by it.
+const dr = directReport();
+files["producer_direct.json"] = JSON.stringify(
+  {
+    generated_at: new Date().toISOString(),
+    project_commit: commit,
+    base_year: BASE_YEAR,
+    units: json.units,
+    methods: { producer_direct: PRODUCER_DIRECT_METHOD, ...json.methods },
+    assumptions: dr.assumptions,
+    elasticity: ELASTICITY,
+    reference_check: {},
+    alternatives: [dr.main, ...dr.grid.map((c) => c.result)].map((a) => ({ ...altJson(a), direct: a.def.direct })),
+  },
+  null,
+  1,
+);
+files["producer_direct_grid.csv"] = csvText([
+  ["producer_cost_share_pct_of_its_price", "producer_premium_pct_over_dabs_cost", "combined_margin_pct_of_grocer_cost", "consumer_price_change_pct_vs_state_store", "grocer_margin_pct_of_its_price", "state_change_fixed_volume_usd", "state_charge_usd", "state_sales_tax_change_usd", "main_case"],
+  ...dr.grid.map((c): Cell[] => [
+    pct(c.costShare),
+    pct(c.producerPremium),
+    pct(c.margin),
+    pct(c.result.fixed.stack.consumerChange),
+    pct(c.result.retailer.marginShare),
+    c.result.fixed.ledger.net,
+    line(c.result, "state_charge"),
+    line(c.result, "state_sales_tax"),
+    c.result.def.id === dr.main.def.id,
+  ]),
+]);
 files["export_files.json"] = JSON.stringify({ generated_at: new Date().toISOString(), project_commit: commit, files: Object.keys(files).sort() }, null, 1);
 writeAll(OUT, files);
 const bad = rep.results.filter((a) => !a.fixed.ledger.reconciles || !a.demandAdditive || a.demand.some((d) => d.ledger && !d.ledger.reconciles));
 console.log(`grocery-wine export: ${rep.results.length} alternatives, commit ${commit}, written to ${OUT.join(" and ")}`);
+console.log(`producer-direct supply: main case and ${dr.grid.length} grid cells (${PRODUCER_DIRECT_METHOD})`);
+if ([dr.main, ...dr.grid.map((c) => c.result)].some((a) => !a.fixed.ledger.reconciles)) {
+  console.error("producer-direct supply: a ledger does not reconcile");
+  process.exit(1);
+}
 if (bad.length) {
   console.error(`ledger does not reconcile for: ${bad.map((a) => a.def.id).join(", ")}`);
   process.exit(1);

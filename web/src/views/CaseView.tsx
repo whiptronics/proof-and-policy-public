@@ -56,7 +56,9 @@ export function CaseView() {
         <div className="note small">
           Descriptive before-and-after view. It does not estimate the reform's effect: the comparison states are not shown
           to be unchanged, Tennessee's reform applied only where localities opted in, and other changes happened on the
-          same day. Selection and exclusions: <span className="mono">{c.selection_doc}</span>.
+          same day. Grocery-wine licensing is not privatization: this change added food stores as wine sellers where voters approved
+          it, and the Utah designs keep the state stores open; studies of full retail privatization describe a bigger change.
+          Selection and exclusions: <span className="mono">{c.selection_doc}</span>.
         </div>
       </section>
       <section className="panel" aria-labelledby="s1">

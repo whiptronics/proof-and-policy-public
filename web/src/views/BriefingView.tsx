@@ -3,13 +3,17 @@
 // computed from the policy alternatives report and initiativeFigures (the worked example), as the full page computes
 // them, and lib/briefing.ts lays them out (checked by briefing.test.ts).
 import { useMemo } from "react";
+import { BottleBreakdown } from "../components/BottleBreakdown";
 import { BridgeChart, SplitChart, SplitLegend, millions } from "../components/BriefCharts";
 import { ChartFigure, type Row } from "../components/ChartFigure";
 import { Go } from "../components/common";
 import { AssumptionRegister } from "../components/Evidence";
+import { BOTTLE_METHOD, dabsAccountsBridge } from "../lib/bottle";
 import { BRIEFING_METHOD, designBridge, designSplit, whatIf } from "../lib/briefing";
 import { INITIATIVES, initiativeFigures } from "../lib/initiatives";
 import { WINE_ALTERNATIVES_METHOD, alternativesReport } from "../lib/wineAlternatives";
+import { useData } from "../lib/data";
+import type { Manifest } from "../lib/types";
 import { navigate, pickOne, useParams } from "../lib/url";
 
 const pct = (v: number | null | undefined, d = 0) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(d)}%`);
@@ -51,7 +55,7 @@ export function BriefingView() {
     [
       { id: "dabs", label: "Grocery wine, DABS design: DABS sells to grocers at today's price", law: "Needs a grocery wine license; the markup law stays as it is", stack: keepA.fixed.stack },
       { id: "private", label: "Grocery wine, private design: a state charge equal to DABS's markup", law: "Needs a grocery wine license, private wholesale and the new charge", stack: keepC.fixed.stack },
-      { id: "avoid", label: "To avoid: DABS sells to grocers at 80% and grocers must match state-store prices", law: "Needs a grocery wine license and a markup below the legal minimum", stack: trapB.fixed.stack },
+      { id: "matched_80", label: "Lowers state revenue: DABS sells to grocers at 80% and grocers must match state-store prices", law: "Needs a grocery wine license and a markup below the legal minimum", stack: trapB.fixed.stack },
     ],
     { label: "Today: state liquor store", law: "Current law" },
   );
@@ -61,6 +65,7 @@ export function BriefingView() {
   const fundsNeed = -keepC.fixed.ledger.allocations.funds;
   const methods = `${BRIEFING_METHOD}; ${WINE_ALTERNATIVES_METHOD}`;
   const fy = init.worked.data.fy;
+  const man = useData<Manifest>("manifest.json");
 
   // Two copies (one per chart), each its own radio group: a shared name would let the browser uncheck one copy.
   const pick = (name: string) => (
@@ -77,20 +82,22 @@ export function BriefingView() {
   const bridgeRows: Row[] = steps.map((s) => ({ step: s.label, kind: s.kind, change_usd_per_year: s.value, running_total_usd_per_year: s.to, design: DESIGN_WORDS[des] }));
   const splitRows: Row[] = split.flatMap((k) => k.segments.map((s) => ({ arrangement: k.label, law: k.law, recipient: s.to, item: s.label, kind: s.kind, usd_per_100_today: s.amount })));
   const whatIfRows: Row[] = bars.map((b) => ({ design: DESIGN_WORDS[des], case: b.label, basis: b.basis, net_usd_per_year: b.value }));
+  const accounts = dabsAccountsBridge(init.worked.data);
+  const accountRows: Row[] = accounts.map((s) => ({ step: s.label, kind: s.kind, usd: s.value, running_total_usd: s.to, note: s.note }));
 
   return (
     <article className="briefing" aria-labelledby="br-h">
       <header className="panel briefing-head">
         <p className="kicker">Utah research briefing · about two minutes</p>
-        <h2 id="br-h">Grocery-store wine in Utah: keeping the state's revenue whole</h2>
+        <h2 id="br-h">Grocery-store wine in Utah: which designs keep the state's revenue whole</h2>
         <p className="lede">
-          Utah can let grocery stores sell wine and still come out ahead, if the law is written the right way. Here is how, what it means for
-          prices, which design to avoid, and what nobody has measured yet.
+          On the model's figures, two designs let grocery stores sell wine while state revenue stays above today's, and designs that make
+          grocers match state-store prices lower it. Here is how each works, what it means for prices, and what nobody has measured yet.
         </p>
         <p className="small muted">
           Draft. Every figure here is computed by the project's models on FY{fy} figures. No person has reviewed the source values, and nothing here
-          is a fiscal note. The maintainer supports grocery-store wine; the model shows which designs keep the state ahead, which to avoid, and
-          what could change the numbers.{" "}
+          is a fiscal note. The maintainer supports grocery-store wine; the figures are the model's, favorable and unfavorable alike: which designs
+          keep the state ahead, which lower its revenue, and what could change the numbers.{" "}
           <Go to={{ v: "initiative" }} reset>
             Full analysis
           </Go>{" "}
@@ -134,7 +141,7 @@ export function BriefingView() {
             savings at all, {amount(keepA.zeroSavings.net)} and {amount(keepC.zeroSavings.net)} ahead.
           </li>
           <li>
-            <strong>One trap to avoid.</strong> Making grocers match state-store prices pays the grocer's margin out of the state's share. Those
+            <strong>Matching state-store prices lowers state revenue.</strong> It pays the grocer's margin out of the state's share. Those
             designs cost the state {amount(trapB.fixed.ledger.net)} to {amount(trapC.fixed.ledger.net)} a year.
           </li>
         </ul>
@@ -160,8 +167,8 @@ export function BriefingView() {
           reading={
             <>
               Each bar adds up to what the shopper pays. Blue is the state: solid for DABS's markup income, hatched for the state charge and sales
-              tax. In both designs the state's part is at least as large as today, and the grocer's margin is added on top. The last bar is the
-              trap: the price stays the same, so the grocer's margin comes out of the state's part.
+              tax. In both designs the state's part is at least as large as today, and the grocer's margin is added on top. The last bar is a design
+              that lowers state revenue: the price stays the same, so the grocer's margin comes out of the state's part.
             </>
           }
           readingText="Each bar adds up to what the shopper pays. Solid blue is DABS's markup income (before its store costs, not profit); hatched blue is the state charge and sales tax; orange shades are the sellers' gross margins; gray is the cost of the wine. In both designs the state's part is at least today's; in the last bar it shrinks."
@@ -176,6 +183,11 @@ export function BriefingView() {
           source={SOURCE}
           methods={methods}
           filename="utah_grocery_wine_split_per_100"
+          explore={
+            <>
+              Price one bottle yourself in the next section, or see <Go to={{ v: "initiative" }}>every design's price split in the full analysis</Go>.
+            </>
+          }
           legend={<SplitLegend />}
           csv={{
             columns: [
@@ -221,8 +233,18 @@ export function BriefingView() {
             </div>
           }
         >
-          {(w) => <SplitChart cols={split} width={w} label="Where the money from a $100 bottle goes today, under the two designs, and under the design to avoid" />}
+          {(w) => <SplitChart cols={split} width={w} label="Where the money from a $100 bottle goes today, under the two designs, and under a design that lowers state revenue" />}
         </ChartFigure>
+      </section>
+
+      <section className="panel" aria-labelledby="br-bottle">
+        <h3 id="br-bottle">One bottle, from what DABS pays to what the shopper pays</h3>
+        <p>
+          Enter what a bottle costs DABS to land and see the statute's minimum markup, the price DABS's actual margin gives, who receives each
+          part under each design, and where DABS's markup went last year. Each part says what it rests on: your input, an observed figure, a
+          statutory rate, an assumption or a policy choice.
+        </p>
+        <BottleBreakdown />
       </section>
 
       <section className="panel" aria-labelledby="br-finds">
@@ -254,6 +276,11 @@ export function BriefingView() {
           source={SOURCE}
           methods={methods}
           filename={`utah_grocery_wine_bridge_${des}`}
+          explore={
+            <Go to={{ v: "scenario", ...f.values, eg: init.worked.proposalId }} reset>
+              Change the assumptions in the revenue calculator
+            </Go>
+          }
           csv={{
             columns: [
               { key: "design", kind: "text", get: (r) => r.design },
@@ -293,10 +320,85 @@ export function BriefingView() {
         >
           {(w) => <BridgeChart steps={steps} width={w} label={`Annual change in state revenue and costs under ${DESIGN_MID[des]}: net ${millions(net)}`} />}
         </ChartFigure>
+
+        <h4>The accounts these changes are measured against</h4>
+        <p>
+          The chart above is a change against DABS's accounts today. Those accounts run from{" "}
+          {amount(init.worked.data.sales)} of sales to {amount(init.worked.data.statement.netProfit)} of net profit: gross collections are not
+          net revenue.
+        </p>
+        <ChartFigure
+          id="br-accounts"
+          title={`DABS's FY${fy} accounts, from sales to net profit`}
+          subtitle={`$ millions, all products (not wine alone); FY${fy} income statement, unaudited`}
+          reading={
+            <>
+              Read from the top. Solid bars bring money in; hatched bars are costs and transfers; gray bars are totals as DABS prints them. Gross
+              profit is what the markup brings in; DABS's own costs and the statutory transfers come out of it before net profit reaches the
+              General Fund.
+            </>
+          }
+          readingText="Read from the top. Solid bars bring money in; hatched bars are costs and transfers; gray bars are totals as DABS prints them. DABS's costs and the statutory transfers come out of gross profit before net profit reaches the General Fund."
+          limits={
+            <>
+              All products together, from the unaudited annual report (p. 30); it is not an accounting of wine. The report's five-year summary
+              (p. 32) prints other income as {amount(init.worked.data.statement.otherIncomeSummary)} instead of{" "}
+              {amount(init.worked.data.statement.otherIncome)} and does not reproduce this net profit; the dataset keeps both and resolves
+              neither.
+            </>
+          }
+          limitsText="All products together, from the unaudited annual report (p. 30), not an accounting of wine. The five-year summary (p. 32) prints a different other-income figure and does not reproduce the net profit; the dataset keeps both and resolves neither."
+          source={`DABS FY${fy} annual report, income statement (p. 30) and five-year summary (p. 32)`}
+          methods={`${BOTTLE_METHOD}; ${BRIEFING_METHOD}`}
+          filename={`utah_dabs_accounts_fy${fy}`}
+          explore={
+            <>
+              <Go to={{ v: "sources" }}>Sources</Go> lists the annual report; docs/fiscal-reconciliation.md in the public research repository
+              records every printed total that does not add up.
+            </>
+          }
+          csv={{
+            columns: [
+              { key: "step", kind: "text", get: (r) => r.step },
+              { key: "kind", kind: "text", get: (r) => r.kind },
+              { key: "usd", kind: "number", get: (r) => r.usd },
+              { key: "running_total_usd", kind: "number", get: (r) => r.running_total_usd },
+              { key: "note", kind: "text", get: (r) => r.note },
+            ],
+            rows: accountRows,
+          }}
+          table={
+            <div className="table-wrap">
+              <table className="data">
+                <caption className="visually-hidden">DABS's accounts from sales to net profit, dollars</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Line</th>
+                    <th scope="col" className="num">
+                      $
+                    </th>
+                    <th scope="col">Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {accounts.map((s) => (
+                    <tr key={s.id}>
+                      <th scope="row">{s.label}</th>
+                      <td className="num">{usd(s.value)}</td>
+                      <td className="small">{s.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
+        >
+          {(w) => <BridgeChart steps={accounts} width={w} label={`DABS's FY${fy} accounts from ${amount(init.worked.data.sales)} of sales to ${amount(init.worked.data.statement.netProfit)} of net profit`} />}
+        </ChartFigure>
       </section>
 
       <section className="panel" aria-labelledby="br-trap">
-        <h3 id="br-trap">The trap to avoid: making grocers match state-store prices</h3>
+        <h3 id="br-trap">Designs that lower state revenue: grocers matching state-store prices</h3>
         <p>
           If the law makes grocers charge the state-store price, the grocer's margin has to come out of the state's share. DABS selling to grocers
           at 80% of its shelf price then costs the state <strong>{amount(trapB.fixed.ledger.net)} a year</strong>, and private supply with a 20%
@@ -312,26 +414,36 @@ export function BriefingView() {
       </section>
 
       <section className="panel" aria-labelledby="br-work">
-        <h3 id="br-work">What the bill needs</h3>
+        <h3 id="br-work">What each design requires</h3>
         <ul className="findings">
           <li>
-            <strong>Keep the state's share of each bottle.</strong> DABS selling to grocers at today's price, or a private-supply charge equal to
+            <strong>The state's share of each bottle is kept.</strong> DABS selling to grocers at today's price, or a private-supply charge equal to
             DABS's markup. Whether grocers would stock wine at the price that implies, and how many shoppers would buy it there, is not yet
             measured.
           </li>
           <li>
-            <strong>Let grocers set their own price.</strong> State stores keep today's prices, so no shopper has to pay more for the same bottle.
+            <strong>Grocers set their own price.</strong> State stores keep today's prices, so the same bottle stays available at today's price.
           </li>
           <li>
-            <strong>Keep school meals funded.</strong> In the DABS design, say that DABS's sales to grocers count toward the school-meals and
-            enforcement deposits; then those funds do not change. In the private design, send {amount(fundsNeed)} a year of the{" "}
-            {amount(keepC.reconciliation.taxes.charge)} charge to them; the state as a whole is still {amount(keepC.fixed.ledger.net)} ahead.
+            <strong>School-meals funding.</strong> In the DABS design, if DABS's sales to grocers count toward the school-meals and
+            enforcement deposits, those funds do not change. In the private design, they stay whole if {amount(fundsNeed)} a year of the{" "}
+            {amount(keepC.reconciliation.taxes.charge)} charge goes to them; the state as a whole is still {amount(keepC.fixed.ledger.net)} ahead.
           </li>
           <li>
-            <strong>Create a grocery wine license.</strong> Today a beer license gives a grocer no authority to sell wine. The private design also
+            <strong>A grocery wine license.</strong> Today a beer license gives a grocer no authority to sell wine. The private design also
             needs new authority for private wine wholesale and for the charge.
           </li>
         </ul>
+        <p className="small">
+          A third route, producers selling to grocers directly with the same charge, comes out like the private design: the charge keeps the
+          state's share of each bottle, and cheaper direct delivery would lower the grocery price, and the sales tax on it, rather than raise the
+          state's take. It needs new authority
+          for producers to sell to grocers, and its federal questions are unresolved.{" "}
+          <Go to={{ v: "initiative" }} reset>
+            Producer-direct supply in the full analysis
+          </Go>
+          .
+        </p>
       </section>
 
       <section className="panel" aria-labelledby="br-unc">
@@ -362,6 +474,11 @@ export function BriefingView() {
           source={SOURCE}
           methods={methods}
           filename={`utah_grocery_wine_cases_${des}`}
+          explore={
+            <>
+              Every case for every design, with its ledger, is in <Go to={{ v: "initiative" }}>the full analysis</Go>.
+            </>
+          }
           csv={{
             columns: [
               { key: "design", kind: "text", get: (r) => r.design },
@@ -470,6 +587,20 @@ export function BriefingView() {
           the full analysis. A published source can still have been transcribed wrongly: none of these values has yet been checked by a person.
         </p>
         <AssumptionRegister init={init} f={f} />
+        <h4>How current the figures are</h4>
+        <ul className="small source-list">
+          <li>
+            DABS's accounts: the FY{fy} annual report (the year to June 30, {fy}; unaudited). The FY{fy + 1} annual report is not in the dataset
+            yet.
+          </li>
+          <li>Wine's share of DABS's sales: the monthly Sales Analysis Reports, July {fy} to June {fy + 1}.</li>
+          <li>Utah law: the statutes as read on {man.data?.dataset.law_as_of_date ?? "the dataset's law date"}; a later session can change them.</li>
+          <li>Wine gallons: NIAAA, 2024. National wholesaler and grocery margins: Census trade surveys, 2022.</li>
+          <li>
+            Data release {man.data?.dataset.release_version ?? "—"}, build {man.data?.dataset.build_id ?? "—"}.{" "}
+            <Go to={{ v: "coverage" }}>Coverage and missing data</Go> gives every dataset's period.
+          </li>
+        </ul>
       </section>
 
       <section className="panel" aria-labelledby="br-more">

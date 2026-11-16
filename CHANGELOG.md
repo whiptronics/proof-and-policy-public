@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.5.0: one bottle, DABS's accounts, producer-direct supply, and a start page on wine in Utah grocery stores (2026-11-15)
+
+Additions only; no published result changed. The 13 alternatives, the price-and-share grid and the purchase flows
+export byte-identical to 0.4.0 apart from the commit stamp, and "8 of 13 designs" still holds. Prepared by Claude
+under the maintainer's direction; not reviewed by a person. Details: docs/review/implementation-report-2026-11-15.md.
+
+- **Start page** "Wine in Utah Grocery Stores": four questions, then the proposal, the economics, the evidence and the
+  tradeoffs, each figure computed by the briefing's own functions; the nationwide research follows.
+- **One bottle** (bottle@1.0): landed cost to shelf price, the statute's floor, who receives each part today and under
+  three designs, each part labeled by basis; where DABS's FY2025 markup went.
+- **DABS's FY2025 accounts** from sales to net profit as a waterfall; the statement's identities are checked in code.
+- **Producer-direct supply** (scenario D, producer-direct@1.0): a private design with a state charge equal to DABS's
+  markup, where the producer's delivery cost and any premium replace the wholesaler's margin. Main case +$1.7M a year
+  at fixed volume; +$1.0M to +$2.1M across its grid. Needs new state authority; federal questions not researched.
+- **Chart notes** read "What this shows", "What it does not establish" and "Explore further".
+- **How current the figures are**, on the briefing; grocery-wine licensing is not privatization, on the Tennessee page.
+- The evidence key no longer pushes the page sideways at phone width with doubled text.
+
 ## 0.4.0: the Utah briefing, and grocery-wine pages that lead with the designs that keep revenue whole (2026-11-15)
 
 Presentation, wording and labels only. No model, input or result changed: the engine files (`wineAccounting.ts`,

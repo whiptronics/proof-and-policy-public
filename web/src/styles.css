@@ -1830,7 +1830,8 @@ svg.chart .seg-label.s-grocer {
 }
 .ev-key > div {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 2px 8px;
   align-items: baseline;
 }
 .ev-key dt {
@@ -1838,6 +1839,8 @@ svg.chart .seg-label.s-grocer {
 }
 .ev-key dd {
   margin: 0;
+  min-width: 0;
+  flex: 1 1 12rem;
   color: var(--text-2);
 }
 table.register th[scope="row"] {
@@ -1911,11 +1914,24 @@ table.scope-table th[scope="row"] {
   }
 }
 
-/* ----- The start page (views/StartView.tsx, views/FeaturedFindings.tsx) ------------------------------------------ */
+/* ----- The start page (views/StartView.tsx, views/UtahOverview.tsx) ---------------------------------------------- */
 .hero h2 {
   font-size: 1.7rem;
   line-height: 1.2;
   max-width: 30ch;
+}
+.hero-sub {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  color: var(--text-2);
+  max-width: 60ch;
+}
+.panel > details {
+  margin: 10px 0 4px;
+}
+.panel > details > h3 {
+  font-size: 1rem;
+  margin: 12px 0 4px;
 }
 .hero-actions {
   margin-top: 14px;

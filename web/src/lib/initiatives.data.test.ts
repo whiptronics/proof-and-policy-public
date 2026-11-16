@@ -33,6 +33,15 @@ describe.skipIf(!have)("the initiative's copied values against the exported data
     expect(at("ut_dabs_operating_nonoperating_expenses.state_fiscal_year", fy)).toBe(d.expenses.total);
   });
 
+  it("matches the income statement lines, and leaves other income as the dataset leaves it (unresolved)", () => {
+    expect(at("ut_dabs_cost_of_liquor_sold.state_fiscal_year", fy)).toBe(d.statement.cost);
+    expect(at("ut_dabs_net_operating_income.state_fiscal_year", fy)).toBe(d.statement.netOperatingIncome);
+    expect(at("ut_dabs_total_nonoperating_net.state_fiscal_year", fy)).toBe(d.statement.nonOperatingNet);
+    expect(at("ut_dabs_net_profit_general_fund.state_fiscal_year", fy)).toBe(d.statement.netProfit);
+    // Two tables print different other income for FY2025, so the preferred value is missing (unresolved conflict).
+    expect(at("ut_dabs_other_income.state_fiscal_year", fy)).toBeUndefined();
+  });
+
   it("matches the margin range and the wine gallons the tool uses", () => {
     const sales = metric("ut_dabs_liquor_sales_revenue.state_fiscal_year");
     const gp = metric("ut_dabs_gross_profit.state_fiscal_year");

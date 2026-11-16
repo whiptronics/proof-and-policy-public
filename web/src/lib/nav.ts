@@ -60,7 +60,7 @@ export const TITLES = Object.fromEntries(NAV_GROUPS.flatMap((g) => g.views)) as 
 export const groupOf = (v: View): NavGroup => NAV_GROUPS.find((g) => g.views.some(([x]) => x === v)) ?? NAV_GROUPS[0];
 
 export const DESCRIPTIONS: Record<View, string> = {
-  start: "Open, sourced data on alcohol laws, revenue and public health, with tools that test what Utah's grocery-wine question would mean for state revenue.",
+  start: "Wine in Utah grocery stores: an evidence-based examination of retail access, consumer prices, state revenue and implementation, with open, sourced data on alcohol laws, revenue and public health.",
   briefing: "A two-minute briefing on how Utah could allow grocery-store wine without losing state revenue, what each design means for prices, and what is not yet measured.",
   initiative: "The full Utah grocery-wine analysis: arrangements, policy alternatives, purchase flows, sensitivity ranges and open questions, computed from the scenario model.",
   scenario: "A calculator for Utah state revenue if some wine purchases moved to grocery stores, with every input labeled as data or assumption.",

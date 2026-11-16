@@ -331,11 +331,26 @@ def main() -> int:
     else:
         errs += check_grid(grid_path, path)
         cells = len(json.loads(grid_path.read_text(encoding="utf-8"))["cells"])
+    # Producer-direct supply (scenario D, producer-direct@1.0): the same closed form, with the producer's delivery cost and
+    # price premium combined in the wholesaler margin's place, which is all the closed form needs.
+    direct_path = path.parent / "producer_direct.json"
+    if not direct_path.exists():
+        errs.append(f"{direct_path} not found: run `npm --prefix web run export:grocery-wine`")
+        direct = 0
+    else:
+        errs += check(direct_path)
+        cases = json.loads(direct_path.read_text(encoding="utf-8"))["alternatives"]
+        direct = len(cases)
+        for a in cases:
+            d = a["direct"]
+            want_w = 1 - (1 - d["costShare"]) / (1 + d["producerPremium"])
+            if abs(a["inputs"]["wholesaler_margin"] - want_w) > 1e-12:
+                errs.append(f"{a['id']}: margin {a['inputs']['wholesaler_margin']} is not the producer cost and premium combined ({want_w})")
     if errs:
         print("\n".join(errs))
         print(f"FAILED: {len(errs)} mismatches")
         return 1
-    print(f"hand examples OK; {n} alternatives and {cells} price-and-share cells recomputed independently and agree with the export ({data['methods']['alternatives']}, commit {data['project_commit']})")
+    print(f"hand examples OK; {n} alternatives, {cells} price-and-share cells and {direct} producer-direct cases recomputed independently and agree with the export ({data['methods']['alternatives']}, commit {data['project_commit']})")
     return 0
 
 

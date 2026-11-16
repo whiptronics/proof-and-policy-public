@@ -106,7 +106,7 @@ export interface ChargeDef {
 
 export interface AltDef {
   id: string;
-  group: "reference" | "A" | "B" | "C";
+  group: "reference" | "A" | "B" | "C" | "D";
   label: string;
   short: string;
   supply: "dabs" | "private";
@@ -114,6 +114,10 @@ export interface AltDef {
   /** DABS supply: the discount off today's shelf price at which DABS sells to grocers, or the break-even one. */
   discount?: number | "break_even";
   charge?: ChargeDef;
+  /** Producer-direct supply (private supply with no wholesaler; lib/producerDirect.ts): what delivering to grocers,
+   * taking orders and administration cost the producer, as a share of its price to the grocer, and what producers
+   * charge grocers over what DABS pays. Together they take the private wholesaler margin's place in the price. */
+  direct?: { costShare: number; producerPremium: number };
   savings: "reference" | "short_run";
   preserves: Preserves;
   defines: string;
@@ -163,16 +167,27 @@ function savingsOf(def: AltDef, o: Overrides): { shortRun: number; conditional: 
   return { shortRun: COST_LINES.shortRun, conditional: 0 };
 }
 
+/** Private supply: the margin between what DABS pays for the wine and what the grocer pays, as a share of the grocer's
+ * cost. A private wholesaler's reference margin, or for producer-direct supply the producer's delivery cost and price
+ * premium combined: c(1 + premium) / (1 - cost share) = c / (1 - margin). Null for DABS supply. */
+export function distributorMargin(def: AltDef): number | null {
+  if (def.supply !== "private") return null;
+  if (!def.direct) return WHOLESALER_MARGIN;
+  const { costShare, producerPremium } = def.direct;
+  if (!(costShare >= 0 && costShare < 1) || !(producerPremium >= 0)) throw new Error(`${def.id}: producer cost share must be in [0, 1) and the premium at least 0`);
+  return 1 - (1 - costShare) / (1 + producerPremium);
+}
+
 /** The sellers' price before any charge, per $1 of today's price, when they price for the reference margins. */
-export function sellersOwnPrice(supply: "dabs" | "private", discount = 0): number {
-  return supply === "dabs" ? (1 - discount) / (1 - RETAILER_TARGET) : (1 - M) / ((1 - WHOLESALER_MARGIN) * (1 - RETAILER_TARGET));
+export function sellersOwnPrice(supply: "dabs" | "private", discount = 0, wholesalerMargin = WHOLESALER_MARGIN): number {
+  return supply === "dabs" ? (1 - discount) / (1 - RETAILER_TARGET) : (1 - M) / ((1 - wholesalerMargin) * (1 - RETAILER_TARGET));
 }
 
 function inputsAt(def: AltDef, o: Overrides, discount: number, charge: number): Built {
   const sv = savingsOf(def, o);
   const id = def.supply === "dabs" ? "wholesale" : "private";
   const entered = o.priceRatio !== undefined;
-  const priceRatio = entered ? o.priceRatio! : def.pricing === "matched" ? 1 : sellersOwnPrice(def.supply, discount);
+  const priceRatio = entered ? o.priceRatio! : def.pricing === "matched" ? 1 : sellersOwnPrice(def.supply, discount, distributorMargin(def) ?? WHOLESALER_MARGIN);
   const base: ScenarioInputs = {
     ...X0,
     extra: false,
@@ -192,6 +207,7 @@ function inputsAt(def: AltDef, o: Overrides, discount: number, charge: number): 
     taxToPrice: 1,
     wholesaleCost: 0,
     discount,
+    ...(def.direct ? { wholesalerMargin: distributorMargin(def) } : {}),
   };
   const x = withMechanisms(arrangementInputs(base, set, id), {});
   return { id, base, set, x };
@@ -218,7 +234,7 @@ export function leverOf(def: AltDef, o: Overrides = {}): { discount: number; cha
   if (c.size === "gross_take") {
     if (c.kind === "per_gallon") return { discount: 0, charge: (M * W) / G };
     // On-price: rate x the sellers' price before the charge = DABS's margin per $1 of today's price.
-    const own = def.pricing === "matched" ? null : sellersOwnPrice("private");
+    const own = def.pricing === "matched" ? null : sellersOwnPrice("private", 0, distributorMargin(def) ?? WHOLESALER_MARGIN);
     return { discount: 0, charge: own === null ? M / (1 - M) : M / own };
   }
   const hi = c.kind === "per_gallon" ? (2 * W) / G : 3;
@@ -305,7 +321,7 @@ export function optionsFor(def: AltDef, o: Overrides = {}, depositsOnGrocerSales
     supply: def.supply,
     rates: RATES,
     savings: savingsOf(def, o),
-    wholesalerMargin: def.supply === "private" ? WHOLESALER_MARGIN : null,
+    wholesalerMargin: distributorMargin(def),
     chargePoint: def.charge?.collectedAt,
     depositsOnGrocerSales,
   };
@@ -388,9 +404,15 @@ function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
       { item: "Deposits on DABS's sales to grocers", status: "unresolved", text: "Whether \"total gross revenue from sales of liquor\" includes DABS's sales to grocers. Both readings are shown.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
     ];
   }
+  const supplyNotes: LegalNote[] = def.direct
+    ? [
+        { item: "Producers selling to grocers", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; producers selling to grocery stores need new authority, and a license or registration for each producer.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" },
+        { item: "Federal permits and trade-practice rules", status: "unresolved", text: "Whether federal rules on who may sell wine to retailers, and on producers' dealings with retailers, limit producers selling to grocers directly is not in the saved sources and was not read.", cite: "not saved" },
+      ]
+    : [{ item: "Private supply of wine", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; private wholesale of wine needs new authority and a license.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" }];
   return [
     ...common,
-    { item: "Private supply of wine", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; private wholesale of wine needs new authority and a license.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" },
+    ...supplyNotes,
     { item: "The state charge", status: "change needed", text: "Utah collects on wine through the department's markup; no wine excise was found in the saved sources (Title 59 has a beer tax). A charge needs new taxing authority: its base, rate, collection point and administrator are the bill's choices.", cite: "Utah Code 59-15-101 (beer only); saved sources" },
     { item: "Sales-tax base", status: "unresolved", text: "Whether the charge is part of the price subject to sales tax depends on Title 59, Chapter 12 definitions, which are not in the saved sources; both treatments are shown.", cite: "not saved" },
     { item: "Deposits", status: "unresolved", text: "Wine DABS no longer sells carries no deposit; keeping the funds whole needs an explicit allocation of the charge, which moves money between funds.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
@@ -404,9 +426,11 @@ const money = (v: number) => `${v < 0 ? "−" : "+"}$${(Math.abs(v) / 1e6).toFix
 function retailerNote(def: AltDef, st: PriceStack): string {
   const tog = `${(st.sellersTogether * 100).toFixed(1)}¢ per $1 of today's price${st.sellersTogetherShare === null ? "" : ` (${pctS(st.sellersTogetherShare, 1)} of their price before any charge)`}`;
   if (st.belowCost.sellersTogether) return `Arithmetic only: the sellers together would sell below acquisition cost (${tog}).`;
+  const w = distributorMargin(def) ?? WHOLESALER_MARGIN;
+  const who = def.direct ? "the producer's delivery and price premium" : "a wholesaler";
   if (st.belowCost.grocer)
-    return `Arithmetic only: if the wholesaler keeps its assumed ${pctS(WHOLESALER_MARGIN, 1)}, the grocer's gross margin is ${pctS(st.retailerMarginShare ?? NaN, 1)}, selling below its acquisition cost. Wholesaler and grocer together keep ${tog}; any split of that is possible only if the wholesaler takes far less.`;
-  if (def.supply === "private") return `Grocer's gross margin ${pctS(st.retailerMarginShare ?? NaN, 1)} after a wholesaler keeping ${pctS(WHOLESALER_MARGIN, 1)}; together ${tog}.`;
+    return `Arithmetic only: if ${def.direct ? "the producer's delivery and price premium take their" : "the wholesaler keeps its"} assumed ${pctS(w, 1)}, the grocer's gross margin is ${pctS(st.retailerMarginShare ?? NaN, 1)}, selling below its acquisition cost. Wholesaler and grocer together keep ${tog}; any split of that is possible only if the wholesaler takes far less.`;
+  if (def.supply === "private") return `Grocer's gross margin ${pctS(st.retailerMarginShare ?? NaN, 1)} after ${who} keeping ${pctS(w, 1)}; together ${tog}.`;
   return Math.abs(st.after.retailerMargin) < 1e-9 ? "The grocer sells at its acquisition cost (zero gross margin): arithmetic, not an arrangement a grocer is shown to accept." : `Grocer's gross margin ${pctS(st.retailerMarginShare ?? NaN, 1)} of its selling price, before its own costs.`;
 }
 

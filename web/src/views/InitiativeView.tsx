@@ -12,6 +12,7 @@ import { ASSUMPTIONS, MISSING_CAPABILITIES, WINE_ALTERNATIVES_METHOD, alternativ
 import { useParams } from "../lib/url";
 import { FlowsSection } from "./FlowsSection";
 import { PriceShareSection } from "./PriceShareSection";
+import { ProducerDirectSection } from "./ProducerDirectSection";
 
 const money = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : ""}$${Math.round(Math.abs(v)).toLocaleString("en-US")}`);
 const millions = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : v > 0 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(1)}M`);
@@ -225,6 +226,7 @@ export function InitiativeView() {
       </section>
 
       <AlternativesSection />
+      <ProducerDirectSection />
       <FlowsSection />
 
       <PriceShareSection />
@@ -605,6 +607,7 @@ const GROUP_WORDS: Record<AltResult["def"]["group"], string> = {
   A: "A. DABS keeps supplying and keeps its per-bottle take",
   B: "B. DABS sells to grocers at 80% of today's price",
   C: "C. Private supply with an explicit state charge",
+  D: "D. Producer-direct supply with an explicit state charge",
 };
 
 /** The policy alternatives (lib/wineAlternatives.ts), computed here by the same code the graph export runs. */
