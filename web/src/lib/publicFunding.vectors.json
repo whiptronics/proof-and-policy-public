@@ -1,0 +1,48 @@
+{
+  "about": "SYNTHETIC ARITHMETIC FIXTURES ONLY — NOT UTAH OR REAL FINANCIAL DATA",
+  "examples": [
+    {
+      "id": "markup",
+      "landed_cost_usd": 10,
+      "markup_on_cost": 0.885,
+      "expected_pre_tax_price_usd": 18.85,
+      "expected_gross_margin": 0.4694960212201591
+    },
+    {
+      "id": "gross_margin",
+      "retail_acquisition_usd": 15,
+      "retailer_gross_margin": 0.25,
+      "expected_pre_tax_price_usd": 20
+    },
+    {
+      "id": "markup_cost",
+      "retail_acquisition_usd": 15,
+      "retailer_markup_on_cost": 0.25,
+      "expected_pre_tax_price_usd": 18.75
+    },
+    {
+      "id": "net_revenue_loss",
+      "baseline_net_receipts_usd": 100,
+      "new_net_receipts_usd": 99,
+      "expected_revenue_neutral": false
+    },
+    {
+      "id": "price_increase",
+      "baseline_price_usd": 20,
+      "new_price_usd": 22,
+      "expected_price_neutral": false
+    },
+    {
+      "id": "consolidated_transfer",
+      "external_receipt_usd": 50,
+      "state_internal_transfer_usd": 50,
+      "expected_consolidated_external_receipt_usd": 50
+    },
+    {
+      "id": "undetermined",
+      "baseline_net_receipts_usd": 100,
+      "new_net_receipts_usd": null,
+      "expected_status": "undetermined"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+source_id: census_school_finances
+publisher: U.S. Census Bureau
+title: Annual Survey of School System Finances, fiscal year 2024
+landing_url: https://www.census.gov/data/tables/2024/econ/school-finances/secondary-education-finance.html
+citation: >-
+  U.S. Census Bureau, 2024 Annual Survey of School System Finances (released May 7, 2026): summary tables
+  (elsec24_sumtables.xlsx) and the individual unit file (elsec24.xlsx).
+  https://www.census.gov/data/tables/2024/econ/school-finances/secondary-education-finance.html
+update_frequency: Annual (fiscal year data released about two years later)
+source_family: finance
+rights_status: public_domain_us_federal
+rights_evidence_url: https://www.census.gov/about/policies/open-gov/open-data.html
+notes: >-
+  Public elementary-secondary school systems' revenue, spending and fall enrollment by state and by school system.
+  The funding page uses current spending per pupil (current operation spending, excluding capital outlay and debt
+  service, over fall enrollment), not total expenditure. Amounts are nominal and not adjusted for cost differences
+  between states. A spending measure, not a measure of school quality or student results.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: census_elsec_fy2024_sumtables
+    url: https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24_sumtables.xlsx
+    filename: elsec24_sumtables.xlsx
+    edition: "2024 Annual Survey of School System Finances, summary tables (released 2026-05-07)"
+    source_series: census_school_finances
+    source_vintage: fy2024
+    format: xlsx
+    priority: 18
+    redistribute_raw: true
+  - asset_id: census_elsec_fy2024_units
+    url: https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24.xlsx
+    filename: elsec24.xlsx
+    edition: "2024 Annual Survey of School System Finances, individual unit file (released 2026-05-07)"
+    source_series: census_school_finances
+    source_vintage: fy2024
+    format: xlsx
+    priority: 12
+    redistribute_raw: false
+    notes: Read for Utah's school systems only (12.6 MB; not redistributed, the extracted Utah rows are).

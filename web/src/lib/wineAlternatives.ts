@@ -407,7 +407,7 @@ function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
   const supplyNotes: LegalNote[] = def.direct
     ? [
         { item: "Producers selling to grocers", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; producers selling to grocery stores need new authority, and a license or registration for each producer.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" },
-        { item: "Federal permits and trade-practice rules", status: "unresolved", text: "Whether federal rules on who may sell wine to retailers, and on producers' dealings with retailers, limit producers selling to grocers directly is not in the saved sources and was not read.", cite: "not saved" },
+        { item: "Federal permits and trade-practice rules", status: "unresolved", text: "Federal law requires basic permits of importers, producers and wholesale buyers, and bars producers' tied-house inducements to retailers (things of value, paying for display, extended credit); the text read does not require three tiers. Whether a producer selling to grocers needs a wholesaler's permit (27 CFR part 1) was not read.", cite: "27 U.S.C. 203, 205 (read 2026-11-19); 27 CFR part 1 not read" },
       ]
     : [{ item: "Private supply of wine", status: "change needed", text: "Manufacturers may sell liquor in Utah only to the department or military installations, and out-of-state sellers may ship liquor into Utah only to the department; private wholesale of wine needs new authority and a license.", cite: "Utah Code 32B-11-208; 32B-4-401(2)" }];
   return [

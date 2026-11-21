@@ -43,7 +43,7 @@ describe("reader-facing words say DABS's price to grocers, not a discount", () =
     expect(words.filter((w) => WORD.test(w))).toEqual([]);
   });
 
-  for (const f of ["views/InitiativeView", "views/PriceShareSection", "views/FlowsSection", "views/ScenarioView", "components/ArrangementComparison", "lib/scenario", "lib/arrangements", "views/BriefingView", "lib/briefing", "components/BriefCharts"]) {
+  for (const f of ["views/InitiativeView", "views/PriceShareSection", "views/FlowsSection", "views/ScenarioView", "components/ArrangementComparison", "lib/scenario", "lib/arrangements", "views/BriefingView", "lib/briefing", "components/BriefCharts", "views/SamePriceView", "views/UtahOverview", "views/StartView", "views/DesignsView", "views/FundingView", "lib/publicFunding", "lib/statutes", "lib/framework", "views/PolicyPages", "lib/legislativeBrief", "lib/frameworkDocs", "lib/policyDesigns", "lib/samePrice"]) {
     it(`in ${f}`, () => {
       const file = join(__dirname, "..", `${f}${f.startsWith("lib/") ? ".ts" : ".tsx"}`);
       const src = readFileSync(file, "utf8").replace(CODE, "");

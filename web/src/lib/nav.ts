@@ -9,11 +9,22 @@ export interface NavGroup {
 }
 
 export const NAV_GROUPS: NavGroup[] = [
-  { id: "overview", label: "Overview", views: [["start", "Start here"], ["briefing", "Utah briefing"]] },
   {
-    id: "utah",
-    label: "Utah research",
+    id: "proposal",
+    label: "The Proposal",
     views: [
+      ["framework", "Proposed framework"],
+      ["briefing", "Two-minute case"],
+      ["questions", "Hard questions"],
+      ["start", "Start here"],
+    ],
+  },
+  {
+    id: "economics",
+    label: "Economics",
+    views: [
+      ["sameprice", "Same shelf price"],
+      ["designs", "Five designs compared"],
       ["initiative", "Utah grocery wine: full analysis"],
       ["scenario", "Utah revenue scenarios"],
       ["utah", "Utah at a glance"],
@@ -21,17 +32,24 @@ export const NAV_GROUPS: NavGroup[] = [
   },
   {
     id: "states",
-    label: "Compare states",
+    label: "Other States",
     views: [
+      ["states", "What happened elsewhere"],
       ["change", "Before & after"],
       ["finder", "Find comparison states"],
       ["case", "Worked example"],
     ],
   },
+  { id: "funding", label: "Public Funding", views: [["funding", "Where the Money Goes"]] },
+  { id: "safeguards", label: "Safeguards", views: [["safeguards", "Public health & safeguards"]] },
   {
     id: "data",
-    label: "Explore data",
+    label: "Research & Data",
     views: [
+      ["methods", "Definitions & methods"],
+      ["sources", "Sources"],
+      ["downloads", "Downloads"],
+      ["coverage", "Coverage"],
       ["map", "Map"],
       ["beverages", "Beer, wine & spirits"],
       ["fiscal", "Revenue by state"],
@@ -43,16 +61,6 @@ export const NAV_GROUPS: NavGroup[] = [
       ["officials", "Officials & committees"],
     ],
   },
-  {
-    id: "methods",
-    label: "Methods & data",
-    views: [
-      ["methods", "Definitions & methods"],
-      ["sources", "Sources"],
-      ["coverage", "Coverage"],
-      ["downloads", "Downloads"],
-    ],
-  },
 ];
 
 export const TITLES = Object.fromEntries(NAV_GROUPS.flatMap((g) => g.views)) as Record<View, string>;
@@ -60,8 +68,8 @@ export const TITLES = Object.fromEntries(NAV_GROUPS.flatMap((g) => g.views)) as 
 export const groupOf = (v: View): NavGroup => NAV_GROUPS.find((g) => g.views.some(([x]) => x === v)) ?? NAV_GROUPS[0];
 
 export const DESCRIPTIONS: Record<View, string> = {
-  start: "Wine in Utah grocery stores: an evidence-based examination of retail access, consumer prices, state revenue and implementation, with open, sourced data on alcohol laws, revenue and public health.",
-  briefing: "A two-minute briefing on how Utah could allow grocery-store wine without losing state revenue, what each design means for prices, and what is not yet measured.",
+  start: "Why can't Utahns buy wine with their groceries? An independent examination of prices, state revenue, safeguards and the law, with open, sourced data.",
+  briefing: "Grocery-store wine in Utah in two minutes: what each design does to prices and state revenue, the risks, and what is not yet measured.",
   initiative: "The full Utah grocery-wine analysis: arrangements, policy alternatives, purchase flows, sensitivity ranges and open questions, computed from the scenario model.",
   scenario: "A calculator for Utah state revenue if some wine purchases moved to grocery stores, with every input labeled as data or assumption.",
   utah: "Utah's latest value on each measure, its rank among states, how Utah sells alcohol under verified law, and candidate comparison states.",
@@ -81,4 +89,11 @@ export const DESCRIPTIONS: Record<View, string> = {
   sources: "Every source in the dataset: who published it, what it covers, its license and when it was retrieved.",
   coverage: "What the dataset holds by jurisdiction and year, which values are missing, and why.",
   downloads: "Download the whole dataset (CSV, Parquet, DuckDB) with its manifest, checksums and release notes.",
+  funding: "What a bottle of wine funds in Utah: where DABS's money goes, school spending and results, and whether a grocery design keeps each program whole.",
+  sameprice: "Wine at the grocery store for what it costs at a state store today: who covers the grocer's margin, how much closer Utahns live to a grocery store, and the Utah and Pennsylvania precedents.",
+  designs: "Five ways Utah could supply and tax grocery wine, compared on state revenue, prices, grocer margins and law, with no store savings assumed.",
+  states: "What happened when Tennessee, Colorado and Pennsylvania let stores sell wine, with each finding labeled by the strength of its evidence.",
+  safeguards: "Outlet density, underage sales and enforcement: what Utah law already requires for beer, what wine would add, and how to monitor it.",
+  framework: "A 14-point framework for grocery wine in Utah and the statutory change matrix behind it. A proposal for expert review, not law or legal advice.",
+  questions: "Twenty hard questions about grocery wine in Utah, answered directly from the model and the sources, including what would undermine the case.",
 };

@@ -1,0 +1,26 @@
+source_id: usbe_school_finance
+publisher: Utah State Board of Education, Financial Operations
+title: Superintendent's Annual Report, FY2024 financial statistics (current expenditures per pupil by district and charter school)
+landing_url: https://www.schools.utah.gov/superintendentannualreport
+citation: >-
+  Utah State Board of Education, Superintendent's Annual Report, Financial Operations, "Total Current Expenditures per
+  Pupil in Fall Enrollment, Fiscal Year 2020-2024."
+update_frequency: Annual
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Utah school fiscal years run July to June: FY2024 is July 1, 2023 to June 30, 2024. That is the same year Census's
+  FY2024 Annual Survey of School System Finances covers for Utah, and it is not a federal fiscal year (October to
+  September). USBE's per-pupil figure divides by fall enrollment under its own definition of current expenditures,
+  so it is a second measure beside Census's, not the same number.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: usbe_current_expenditure_per_pupil_fy2024
+    url: https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/2024%20Total%20Current%20Expenditures%20%20per%20Pupil%20in%20Fall%20Enrollment%20Fiscal%20Year%202020-2024.pdf
+    filename: usbe-2024-current-expenditures-per-pupil-fy2020-2024.pdf
+    edition: Superintendent's Annual Report FY2024, current expenditures per pupil in fall enrollment, FY2020-2024
+    source_series: usbe_school_finance
+    source_vintage: FY2024
+    format: pdf
+    priority: 20
+    redistribute_raw: false

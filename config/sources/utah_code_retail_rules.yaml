@@ -1,0 +1,34 @@
+source_id: utah_code_retail_rules
+publisher: Utah State Legislature (Office of Legislative Research and General Counsel)
+title: Utah Code sections on how state stores and package agencies sell (price and days of sale)
+landing_url: https://le.utah.gov/xcode/Title32B/Chapter2/32B-2.html
+citation: >-
+  Utah Code §§ 32B-2-503 (Operational requirements for a state store) and 32B-2-605 (Operational requirements for
+  package agency), current versions on le.utah.gov.
+update_frequency: Changes with each legislative session; pages are dated by retrieval
+source_family: policy
+rights_status: government_edict
+notes: >-
+  Cited by the same-shelf-price page: a state store (§ 32B-2-503(2)) and a package agency (§ 32B-2-605(7)) may sell
+  liquor only at a price fixed by the commission, and neither may sell on Sunday or a state or federal legal holiday
+  (§ 32B-2-503(5)(a); § 32B-2-605(13)), subject to the exceptions those subsections state.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: law_ut_32b_2_503_current
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S503_1800010118000101.html
+    filename: C32B-2-S503_1800010118000101.html
+    edition: Utah Code 32B-2-503 (Operational requirements for a state store); version file named current by the section page on retrieval
+    source_series: utah_code_retail_rules
+    source_vintage: retrieved_2026
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_605_current
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S605_1800010118000101.html
+    filename: C32B-2-S605_1800010118000101.html
+    edition: Utah Code 32B-2-605 (Operational requirements for package agency); version file named current by the section page on retrieval
+    source_series: utah_code_retail_rules
+    source_vintage: retrieved_2026
+    format: html
+    priority: 20
+    redistribute_raw: true

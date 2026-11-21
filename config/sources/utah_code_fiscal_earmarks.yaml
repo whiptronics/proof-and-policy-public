@@ -1,0 +1,75 @@
+source_id: utah_code_fiscal_earmarks
+publisher: Utah State Legislature (Office of Legislative Research and General Counsel)
+title: Utah Code sections that send liquor revenue to public accounts (Title 32B, Chapter 2, Part 3)
+landing_url: https://le.utah.gov/xcode/Title32B/Chapter2/32B-2-P3.html
+citation: >-
+  Utah Code sections 32B-2-301 (version effective 2025-05-07), 32B-2-304 (effective 2026-03-13), 32B-2-305 (effective
+  2024-05-01) and 32B-2-306 (effective 2026-05-06), le.utah.gov version files.
+update_frequency: Changes with each legislative session; each version file is dated by its effective date
+source_family: policy
+rights_status: government_edict
+notes: >-
+  The funding page's law ledger. 32B-2-304(5): 10% of the total gross revenue from sales of liquor to the Uniform
+  School Fund for school meals; 304(6)(a): package agencies at a manufacturing facility remit 12.295% of their monthly
+  revenue (10% school meals, 1.695% enforcement, 0.60% underage drinking prevention); 304(8): an appropriation equal to
+  a 0.5% markup on spirituous liquor for substance use disorder treatment. 32B-2-305(4): 1.695% to the Alcoholic
+  Beverage Control Act Enforcement Fund. 32B-2-306(3): 0.6% of the total gross revenue from liquor two fiscal years
+  earlier to the Underage Drinking Prevention Media and Education Campaign Restricted Account. 32B-2-301(6): the
+  annual transfer of net profit from the Liquor Control Fund to the General Fund. Read 2026-11-20; not reviewed by a
+  lawyer or other person.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: law_ut_32b_2_301_v20250507
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S301_2025050720250507.html
+    filename: C32B-2-S301_2025050720250507.html
+    edition: Utah Code 32B-2-301, version effective 2025-05-07 (current when read 2026-11-20)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20250507"
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_304_v20260313
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S304_2026031320260313.html
+    filename: C32B-2-S304_2026031320260313.html
+    edition: Utah Code 32B-2-304, version effective 2026-03-13 (current when read 2026-11-20)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20260313"
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_305_v20240501
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S305_2024050120240501.html
+    filename: C32B-2-S305_2024050120240501.html
+    edition: Utah Code 32B-2-305, version effective 2024-05-01 (current when read 2026-11-20)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20240501"
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_306_v20260506
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S306_2026050620260506.html
+    filename: C32B-2-S306_2026050620260506.html
+    edition: Utah Code 32B-2-306, version effective 2026-05-06 (current when read 2026-11-20)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20260506"
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_304_v20240501
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S304_2024050120240501.html
+    filename: C32B-2-S304_2024050120240501.html
+    edition: Utah Code 32B-2-304, version effective 2024-05-01, superseded 2026-03-13 (in force throughout FY2025)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20240501"
+    format: html
+    priority: 20
+    redistribute_raw: true
+  - asset_id: law_ut_32b_2_306_v20240501
+    url: https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S306_2024050120240501.html
+    filename: C32B-2-S306_2024050120240501.html
+    edition: Utah Code 32B-2-306, version effective 2024-05-01, superseded 2026-05-06 (in force throughout FY2025)
+    source_series: utah_code_fiscal_earmarks
+    source_vintage: "20240501"
+    format: html
+    priority: 20
+    redistribute_raw: true

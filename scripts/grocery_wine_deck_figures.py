@@ -48,7 +48,8 @@ plt.rcParams.update(
     }
 )
 
-# The four options the deck explains, drawn top to bottom with the two that keep state revenue whole first:
+# The four options the deck explains, drawn top to bottom with the two that keep state revenue whole (with or without
+# the assumed store savings) first:
 # (alternative id, label for the chart). OPTIONS[2:] are the two that lower it.
 OPTIONS = [
     ("A_target", "DABS keeps its full markup;\nthe grocer adds its own"),
@@ -192,7 +193,7 @@ def main() -> int:
     ax.set_xticks([-15, -10, -5, 0, 5])
     ax.set_xticklabels(["−$15M", "−$10M", "−$5M", "$0", "+$5M"])
     ax.text(5.6, len(OPTIONS) - 0.42, "Grocery price\nvs state store", fontsize=11, color=INK2, va="bottom")
-    ax.set_xlabel("Change in state revenue, $ a year")
+    ax.set_xlabel("Change in state revenue, $ a year, with the assumed 2.28¢ store savings")  # one $: two start mathtext
     ax.grid(axis="x", color=GRID, lw=0.8)
     ax.set_axisbelow(True)
     ax.legend(

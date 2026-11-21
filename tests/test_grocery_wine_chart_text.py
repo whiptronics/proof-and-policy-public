@@ -5,6 +5,7 @@ Every title is written from the exported numbers. These tests need the exports
 """
 
 import importlib.util
+import re
 import sys
 from pathlib import Path
 
@@ -56,3 +57,32 @@ def test_old_price_response_titles_are_labelled_exploratory():
     assert ct.check_titles(t) == []
     for k in ("U6", "U12"):
         assert "exploratory" in t[k][0].lower()
+
+
+@pytest.mark.skipif(not (ct.UTAH.exists() and ct.FLOWS.exists()), reason="no export")
+def test_headline_titles_lead_with_no_store_savings():
+    d, fl = ct.load_utah(), ct.load_flows()
+    u, f = ct.utah_titles(d), ct.flow_titles(fl)
+    # The flows' no-savings figures in the accounting case equal the alternatives model's own zero-savings nets.
+    for flow_id, alt_id in (
+        ("preserved_dabs", "A_target"),
+        ("preserved_private", "C_take"),
+        ("preserved_dabs_matched", "A_matched"),
+    ):
+        zero = ct.alt(d, alt_id)["zero_savings_net"]
+        saved = (
+            fl["cost_lines_per_dollar"]["shortRun"]
+            * ct.flow_result(fl, flow_id, "accounting_30")["origins"][0]["grocery"]["storeEquivalent"]
+        )
+        assert abs(ct.flow_net(fl, flow_id, "accounting_30") - saved - zero) < 1
+    zeros = [ct.alt(d, a)["zero_savings_net"] for a in ("A_target", "C_take", "A_matched")]
+    assert ct.money_range(zeros) in f["F2"][0]
+    # The first dollar figure in each headline title is the one with no store savings.
+    first = {
+        k: re.search(r"\$[\d.,]+M", t[0]).group(0) for k, t in {**u, **f}.items() if k in ("U1", "U4", "F2")
+    }
+    assert first["U1"] == ct.money(ct.alt(d, "R2")["zero_savings_net"])[1:]
+    assert first["U4"] == ct.money(ct.alt(d, "A_target")["zero_savings_net"])[1:]
+    assert first["F2"] == ct.money(min(zeros))[1:]
+    for k in ("U2", "S0"):
+        assert "no store savings" in {**u, **f}[k][0]

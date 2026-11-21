@@ -147,14 +147,24 @@ bash scripts/verify.sh      (Linux or macOS: uses alcohol-data, python and ruff 
                              override with ALCOHOL_DATA=..., PYTHON=..., RUFF=...)
 ```
 
-Both run the same 21 steps in this order and keep going after a failure: `build`; `validate --profile release`;
+Both run the same 22 steps in this order and keep going after a failure: `build`; `validate --profile release`;
 `officials check`; `sources audit`; `report coverage`, `completeness`, `policy-coverage`, `descriptive` and
 `dictionary`; `legal review-packet-utah`; `export`; `dashboard export`; `python -m pytest`;
 `ruff format --check src tests`; `ruff check .`; `npm test` and `npm run build` in `web/` (the build runs the type
 check first); `npm run export:grocery-wine` and `npm run export:tennessee`; and
 `scripts/grocery_wine_alternatives_check.py`, which recomputes every alternative and every price-and-share cell
 independently; and `scripts/grocery_wine_flows_check.py`, which recomputes every purchase-flow scenario, grid point,
-break-even and sensitivity row (`wine-purchase-flows@1.0`) from `flows.json` with its own closed forms.
+break-even and sensitivity row (`wine-purchase-flows@1.0`) from `flows.json` with its own closed forms; and
+`scripts/policy_designs_check.py`, which recomputes every figure of the five-design comparison (`policy-designs@1.0`)
+from `policy_designs.json`.
+
+The policy documents are generated from the same model and checked in `npm test`: `npm run docs:framework` (in
+`web/`) writes the derivations (`docs/methods/policy-designs.md`), the input register (`docs/methods/financial-inputs.md`),
+the change matrix, framework, safeguards, stakeholder and hard-question pages under `docs/briefings/utah-grocery-wine/`
+and `docs/analyses/interstate-evidence.md`; `npm run brief:legislative` writes `legislative-briefing.html` there and
+prints `legislative-briefing.pdf` with headless Microsoft Edge (`EDGE_PATH` overrides its location; local and free).
+A test fails when a committed copy differs from what the model renders. The PDF itself is not byte-reproducible
+(Edge stamps the time); its HTML is.
 
 Each run writes its own log, never overwritten: `data/processed/verify/verify-windows-<yyyyMMdd-HHmmss>-<random>.log`
 (`verify-posix-<YYYYmmdd-HHMMSS>-<pid>.log` on Linux or macOS). It records the revision, the working tree at the start

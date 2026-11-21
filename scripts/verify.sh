@@ -81,6 +81,7 @@ run "export grocery-wine" npm --prefix web run export:grocery-wine
 run "export tennessee" npm --prefix web run export:tennessee
 run "grocery-wine independent check" "$PY" scripts/grocery_wine_alternatives_check.py
 run "grocery-wine purchase-flow check" "$PY" scripts/grocery_wine_flows_check.py
+run "policy-design check" "$PY" scripts/policy_designs_check.py
 
 { echo "=== working tree at end: git status --short"; git status --short; echo "=== done $(date -Iseconds)"; } >>"$LOG" 2>&1
 code=0

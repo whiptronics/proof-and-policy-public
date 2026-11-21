@@ -1,5 +1,6 @@
-// The Utah grocery-wine briefing: the initiative page's central result in about two minutes, with three charts on the
-// two designs that keep state revenue whole. A presentation of the same models, not a second analysis: every figure is
+// The Utah grocery-wine briefing: the initiative page's central result in about two minutes. It leads with the same-shelf-
+// price design (lib/samePrice.ts: shoppers pay today's price), then charts the two designs where grocers set their own
+// prices and the state keeps its share of each bottle (headline with no store savings). A presentation of the same models, not a second analysis: every figure is
 // computed from the policy alternatives report and initiativeFigures (the worked example), as the full page computes
 // them, and lib/briefing.ts lays them out (checked by briefing.test.ts).
 import { useMemo } from "react";
@@ -10,15 +11,19 @@ import { Go } from "../components/common";
 import { AssumptionRegister } from "../components/Evidence";
 import { BOTTLE_METHOD, dabsAccountsBridge } from "../lib/bottle";
 import { BRIEFING_METHOD, designBridge, designSplit, whatIf } from "../lib/briefing";
+import { headline } from "../lib/framework";
 import { INITIATIVES, initiativeFigures } from "../lib/initiatives";
+import { CONSUMER_ACCESS as A } from "../lib/consumerAccess.generated";
+import { defaultDesignsReport } from "../lib/policyDesigns";
+import { defaultSamePriceReport } from "../lib/samePrice";
 import { WINE_ALTERNATIVES_METHOD, alternativesReport } from "../lib/wineAlternatives";
 import { useData } from "../lib/data";
 import type { Manifest } from "../lib/types";
 import { navigate, pickOne, useParams } from "../lib/url";
 
 const pct = (v: number | null | undefined, d = 0) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(d)}%`);
-const cents = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(1)}¢`);
 const amount = (v: number) => `$${(Math.abs(v) / 1e6).toFixed(1)}M`;
+const signed = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 const usd = (v: number) => `${v < 0 ? "−" : ""}$${Math.round(Math.abs(v)).toLocaleString("en-US")}`;
 
 const DESIGNS = ["dabs", "private"] as const;
@@ -44,7 +49,6 @@ export function BriefingView() {
   const keepA = get("A_target");
   const keepC = get("C_take");
   const trapB = get("B20_matched");
-  const trapC = get("C20_matched");
   const R = get(DESIGN_IDS[des]);
   const c = f.comparison;
   const demand = (r: typeof keepA, id: string) => r.demand.find((d) => d.id === id)!.net;
@@ -55,7 +59,7 @@ export function BriefingView() {
     [
       { id: "dabs", label: "Grocery wine, DABS design: DABS sells to grocers at today's price", law: "Needs a grocery wine license; the markup law stays as it is", stack: keepA.fixed.stack },
       { id: "private", label: "Grocery wine, private design: a state charge equal to DABS's markup", law: "Needs a grocery wine license, private wholesale and the new charge", stack: keepC.fixed.stack },
-      { id: "matched_80", label: "Lowers state revenue: DABS sells to grocers at 80% and grocers must match state-store prices", law: "Needs a grocery wine license and a markup below the legal minimum", stack: trapB.fixed.stack },
+      { id: "matched_80", label: "Same shelf price: DABS sells to grocers at 80% and grocers charge today's price", law: "Needs a grocery wine license and a grocer price below the markup floor", stack: trapB.fixed.stack },
     ],
     { label: "Today: state liquor store", law: "Current law" },
   );
@@ -65,6 +69,8 @@ export function BriefingView() {
   const fundsNeed = -keepC.fixed.ledger.allocations.funds;
   const methods = `${BRIEFING_METHOD}; ${WINE_ALTERNATIVES_METHOD}`;
   const fy = init.worked.data.fy;
+  const hd = useMemo(() => headline(defaultDesignsReport()), []);
+  const sp = defaultSamePriceReport();
   const man = useData<Manifest>("manifest.json");
 
   // Two copies (one per chart), each its own radio group: a shared name would let the browser uncheck one copy.
@@ -89,15 +95,16 @@ export function BriefingView() {
     <article className="briefing" aria-labelledby="br-h">
       <header className="panel briefing-head">
         <p className="kicker">Utah research briefing · about two minutes</p>
-        <h2 id="br-h">Grocery-store wine in Utah: which designs keep the state's revenue whole</h2>
+        <h2 id="br-h">Grocery-store wine in Utah: the same price, closer to home</h2>
         <p className="lede">
-          On the model's figures, two designs let grocery stores sell wine while state revenue stays above today's, and designs that make
-          grocers match state-store prices lower it. Here is how each works, what it means for prices, and what nobody has measured yet.
+          Wine could be sold in grocery stores at exactly today's state-store price: DABS stays the wholesaler and sells to grocers below its shelf price,
+          as Pennsylvania does, and most Utahns live far closer to a grocery store than to a state store. The state's cost is the grocer's margin,
+          less what DABS stops spending. Here is how it works, what it costs, what covers it, and what nobody has measured yet.
         </p>
         <p className="small muted">
           Draft. Every figure here is computed by the project's models on FY{fy} figures. No person has reviewed the source values, and nothing here
-          is a fiscal note. The maintainer supports grocery-store wine; the figures are the model's, favorable and unfavorable alike: which designs
-          keep the state ahead, which lower its revenue, and what could change the numbers.{" "}
+          is a fiscal note. The maintainer supports grocery-store wine; the figures are the model's, favorable and unfavorable alike: what the same
+          price costs the state, which designs keep the state ahead, and what could change the numbers.{" "}
           <Go to={{ v: "initiative" }} reset>
             Full analysis
           </Go>{" "}
@@ -117,58 +124,84 @@ export function BriefingView() {
         <p>
           A bill would also decide <strong>who supplies the grocers and how the state is paid</strong>: DABS (Utah's Department of Alcoholic
           Beverage Services) as the wholesaler, or private wholesalers paying the state a charge. That choice, more than the sale itself, decides
-          what happens to state revenue.
+          what happens to state revenue. Under the framework, DABS supplies grocers below its shelf price and grocers charge the state-store price, so a
+          bottle costs the same in either store.
         </p>
       </section>
 
       <section className="panel" aria-labelledby="br-short">
         <h3 id="br-short">What the research shows</h3>
         <p className="finding">
-          <strong>Utah can allow grocery-store wine without losing state revenue</strong> if the law keeps the state's share of each bottle. With
-          DABS as the wholesaler, selling to grocers at today's price, the model has the state about <strong>{amount(keepA.fixed.ledger.net)} a
-          year</strong> ahead. With private wholesalers paying a state charge equal to DABS's markup, about{" "}
-          <strong>{amount(keepC.fixed.ledger.net)}</strong> ahead.
+          <strong>Shoppers need not pay more.</strong> If DABS sells to grocers below its shelf price and grocers charge the state-store price, a bottle
+          costs the same in either store, as Utah already requires of its state stores and package agencies. The state's cost is the grocer's
+          margin, less what DABS stops spending: at a {pct(sp.margin)} margin, from {amount(sp.cover.longer_run.stateShare)} to{" "}
+          <strong>{amount(sp.cover.none.stateShare)} a year</strong>, with license fees covering the new administration.
         </p>
         <ul className="findings">
           <li>
-            <strong>State stores stay the low-price option.</strong> In these designs grocery wine is priced for convenience, about{" "}
-            {pct(keepA.fixed.stack.consumerChange)} and {pct(keepC.fixed.stack.consumerChange)} above the state store, and state stores keep
-            today's prices.
+            <strong>Closer to home.</strong> Half of Utahns live within {A.distance.grocery.median.toFixed(2)} miles of a grocery store and{" "}
+            {A.distance.stateStore.median.toFixed(2)} miles of a state store; {pct(A.groceryCloserThanDabs)} live closer to a grocery store than
+            to any DABS outlet. By law no state store may sell on a Sunday.
           </li>
           <li>
-            <strong>The gain holds if shoppers go back to state stores.</strong> If the higher grocery price sends some buyers back, the state is
-            still about {amount(demand(keepA, "return_to_stores"))} and {amount(demand(keepC, "return_to_stores"))} ahead; with no store
-            savings at all, {amount(keepA.zeroSavings.net)} and {amount(keepC.zeroSavings.net)} ahead.
+            <strong>The margin is the bill's choice.</strong> Pennsylvania's state stores sell to licensees at 10% below retail. A smaller margin
+            costs the state less; if DABS's wages fall with its sales, the state breaks even at a margin of about{" "}
+            {pct(sp.breakEvenMargin.longer_run.fees, 1)}.
           </li>
           <li>
-            <strong>Matching state-store prices lowers state revenue.</strong> It pays the grocer's margin out of the state's share. Those
-            designs cost the state {amount(trapB.fixed.ledger.net)} to {amount(trapC.fixed.ledger.net)} a year.
+            <strong>What closes the rest is not measured.</strong> Household wine purchases {pct(sp.needed.none.additional.value, 1)} higher in
+            Utah, new or brought back from other states, would cover the case where DABS saves nothing.
+          </li>
+          <li>
+            <strong>If grocers set their own prices instead,</strong> the state keeps its whole share of each bottle and is about{" "}
+            {signed(hd.bFixed)} a year ahead with DABS as the wholesaler if 30% of household purchases move ({signed(hd.cFixed)} with private
+            wholesale), but grocery wine then costs more than at a state store, and if few shoppers switch the state is {signed(hd.b30)}.
           </li>
         </ul>
         <p className="small muted">
-          At fixed volume with the source-based store savings of 2.3¢ per dollar; conditional results, not forecasts. In one exploratory case,
-          where the higher grocery price means Utahns buy less wine in total rather than going back to state stores, these designs come out about{" "}
+          Headline figures count no store savings; the charts below include the allocated savings and say so. Conditional results, not
+          forecasts. For the designs where grocers set their own prices, in one exploratory case with the allocated savings,
+          where the higher grocery price means Utahns buy less wine in total rather than going back to state stores, they come out about{" "}
           {amount(Math.max(...fewer))} to {amount(Math.min(...fewer))} a year short instead. Method {WINE_ALTERNATIVES_METHOD};{" "}
           <Go to={{ v: "initiative" }}>every design, with its grocer margin and price, is in the full analysis</Go>.
         </p>
       </section>
 
-      <section className="panel" aria-labelledby="br-why">
-        <h3 id="br-why">Why the state comes out ahead</h3>
+      <section className="panel" aria-labelledby="br-same">
+        <h3 id="br-same">Same shelf price: what the state gives up, and what covers it</h3>
         <p>
-          Utah does not mainly <em>tax</em> wine; it <em>sells</em> it. On a bottle sold in a state store the state keeps DABS's markup income as
+          At today's price the grocer's margin comes out of the state's share of the bottle, less what DABS stops spending. At a {pct(sp.margin)}{" "}
+          margin, with license fees covering the new administration, the state gives up <strong>{amount(sp.cover.none.stateShare)} a year</strong> if
+          DABS saves nothing, {amount(sp.cover.allocated.stateShare)} if its card fees and agency contracts fall with sales, and{" "}
+          {amount(sp.cover.longer_run.stateShare)} if its wages fall too. Household wine purchases {pct(sp.needed.none.additional.value, 1)} higher
+          would cover the first; none of these is measured.
+        </p>
+        <p>
+          For shoppers the gain is access: {pct(A.distance.grocery.within[0])} of Utahns live within a mile of a grocery store, against{" "}
+          {pct(A.distance.stateStore.within[0])} for a state store.{" "}
+          <Go to={{ v: "sameprice" }} reset>
+            The same-shelf-price design in full
+          </Go>
+        </p>
+      </section>
+
+      <section className="panel" aria-labelledby="br-why">
+        <h3 id="br-why">The alternative: grocers set their own prices</h3>
+        <p>
+          If the bill let grocers set their own prices instead, the state could keep its whole share of every bottle. Utah does not mainly{" "}
+          <em>tax</em> wine; it <em>sells</em> it. On a bottle sold in a state store the state keeps DABS's markup income as
           well as sales tax. In both designs the state keeps that share of every bottle, and the grocer's margin is added on top of it instead of
           being taken out of it.
         </p>
         <ChartFigure
           id="br-split"
-          title="The state keeps its share of every bottle in both designs"
+          title="If grocers set their own prices, the state keeps its share of every bottle"
           subtitle={`Dollars of a bottle that costs $100 at a state store today, before sales tax; at the grocery price each design implies; FY${fy}`}
           reading={
             <>
               Each bar adds up to what the shopper pays. Blue is the state: solid for DABS's markup income, hatched for the state charge and sales
-              tax. In both designs the state's part is at least as large as today, and the grocer's margin is added on top. The last bar is a design
-              that lowers state revenue: the price stays the same, so the grocer's margin comes out of the state's part.
+              tax. In both designs the state's part is at least as large as today, and the grocer's margin is added on top. The last bar is the
+              same-shelf-price design at a 20% margin: the price stays the same, so the grocer's margin comes out of the state's part.
             </>
           }
           readingText="Each bar adds up to what the shopper pays. Solid blue is DABS's markup income (before its store costs, not profit); hatched blue is the state charge and sales tax; orange shades are the sellers' gross margins; gray is the cost of the wine. In both designs the state's part is at least today's; in the last bar it shrinks."
@@ -397,22 +430,6 @@ export function BriefingView() {
         </ChartFigure>
       </section>
 
-      <section className="panel" aria-labelledby="br-trap">
-        <h3 id="br-trap">Designs that lower state revenue: grocers matching state-store prices</h3>
-        <p>
-          If the law makes grocers charge the state-store price, the grocer's margin has to come out of the state's share. DABS selling to grocers
-          at 80% of its shelf price then costs the state <strong>{amount(trapB.fixed.ledger.net)} a year</strong>, and private supply with a 20%
-          tax <strong>{amount(trapC.fixed.ledger.net)}</strong>. These are the October worked example's designs; with its illustrative 5¢ of
-          store savings they cost {amount(c.wholesale.lines!.net)} and {amount(c.private.lines!.net)}, against {amount(f.baseline)} the state
-          collects on wine today.
-        </p>
-        <p>
-          On the worked example's figures, matching state-store prices breaks even only if grocers and wholesalers keep about{" "}
-          {cents(f.robustness.keepAtBreakEven)} of each dollar. Nationally, grocery stores keep about {pct(c.settings.grocerMargin)} of their sales
-          and alcohol wholesalers about {pct(c.settings.wholesalerMargin, 1)} (gross margins, a reference rather than a minimum).
-        </p>
-      </section>
-
       <section className="panel" aria-labelledby="br-work">
         <h3 id="br-work">What each design requires</h3>
         <ul className="findings">
@@ -422,7 +439,8 @@ export function BriefingView() {
             measured.
           </li>
           <li>
-            <strong>Grocers set their own price.</strong> State stores keep today's prices, so the same bottle stays available at today's price.
+            <strong>Prices.</strong> In these two designs grocers set their own prices and state stores keep today's. Under the same-shelf-price
+            design grocers charge the state-store price, which needs a grocer price below the markup floor.
           </li>
           <li>
             <strong>School-meals funding.</strong> In the DABS design, if DABS's sales to grocers count toward the school-meals and

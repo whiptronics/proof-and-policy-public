@@ -1,0 +1,25 @@
+source_id: usda_school_meal_rates
+publisher: U.S. Department of Agriculture, Food and Nutrition Service
+title: National School Lunch, Special Milk, and School Breakfast Programs; national average payments and maximum reimbursement rates, July 1, 2024 - June 30, 2025
+landing_url: https://www.federalregister.gov/d/2024-15175
+citation: >-
+  Food and Nutrition Service, "National School Lunch, Special Milk, and School Breakfast Programs, National Average
+  Payments/Maximum Reimbursement Rates," 89 FR 56720 (July 10, 2024), Doc. 2024-15175.
+update_frequency: Annual notice each July for the school year starting July 1
+source_family: context
+rights_status: public_domain_us_federal
+notes: >-
+  A federal reimbursement rate per meal served, paid to school food authorities for school year 2024-25 (July 1, 2024
+  to June 30, 2025, which is also Utah's state fiscal year 2025). It is what the federal government pays per meal,
+  not what a meal costs to make, and not a federal fiscal year (October to September).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: usda_nslp_rates_sy2024_25
+    url: https://www.govinfo.gov/content/pkg/FR-2024-07-10/html/2024-15175.htm
+    filename: FR-2024-07-10-2024-15175.htm
+    edition: 89 FR 56720 (2024-07-10), rates for July 1, 2024 - June 30, 2025
+    source_series: usda_school_meal_rates
+    source_vintage: SY2024-25
+    format: html
+    priority: 20
+    redistribute_raw: true

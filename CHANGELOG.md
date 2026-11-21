@@ -1,5 +1,104 @@
 # Changelog
 
+## 0.6.0: the same shelf price, five designs compared, where the money goes, and the policy pages (2026-11-20)
+
+Development plan of 2026-11-19. Prepared by Claude under the maintainer's direction; not reviewed by a person. Audit:
+docs/review/devplan-2026-11-19-audit.md; checks: docs/review/verification-report-2026-11-19.md.
+
+- **Public Funding: "Where the Money Goes"** (`?v=funding`, `lib/publicFunding.ts`, `public-funding@1.0`), from the
+  maintainer's Public Funding devplan (additive; no existing model changed). Eight chapters at first (two more below): what DABS reported for
+  FY2025 ($551.35M liquor sales; six listed destinations summing to $204.5M, including $56.9M for school meals, with
+  the page 30 income statement reconciled and its $19.6M unitemized remainder left unassigned); Utah's FY2024 current
+  spending per pupil ($11,347, 49th of 50 states; 50th of 51 with D.C., Census) beside NAEP 2024, where Utah is
+  significantly higher than the national public average on all four assessments by NCES's tests; a revenue lab that
+  adds a per-program ledger (school meals, enforcement, the underage drinking campaign) to the design engine, with a
+  one-bottle receipt, a price and revenue map, a stress test, documented-inputs-only mode, share links, print and
+  CSV/JSON downloads; the deposit sections of Utah Code 32B-2 as read 2026-11-20, S.B. 180 (2026, not passed) and a
+  bill completeness checklist; a public-value scale; Census district finances; and the evidence vault. At today's
+  shelf price with DABS as wholesaler the lab shows the same −$4.54M a year as `?v=sameprice` and each program's
+  share of it. New pinned sources: Utah Code 32B-2-301, -304, -305, -306; the legislature's school meals brief and
+  S.B. 180 text and fiscal note; Census's FY2024 school finance tables and unit file; NAEP 2024 (8 files). Methods and
+  reconciliation: docs/public-funding/methods.md.
+- **Public Funding, gap-closing pass** (same day, at the maintainer's direction). A "What cuts the other way?" chapter:
+  the Task Force's finding against further privatization (a 44.4% median rise in per capita sales of the privatized
+  beverage), Washington's 2012 spirits price rise (15.5% for 750 ml), lottery earmarks reaching schools at 50 to 70
+  cents on the dollar, and Washington's 2025 bill to restore local liquor shares, each with what it cuts against and
+  how it differs from these designs, plus the searches that found nothing. The law ledger now checks each quote
+  against the Utah Code version in force during FY2025 (32B-2-301 before 2025-05-07 not found, and said so) and warns
+  once its reading is six months old. The map marks a 0% grocer margin "×" and a margin below the grocery average "?".
+  New comparators: the federal reimbursement for one free lunch in SY2024-25 ($4.43, labeled a reimbursement rate, not
+  a cost) and USBE's own FY2024 per-pupil figure beside Census's for every district. Accessibility: chart text was
+  black in dark mode (now the text color; map symbols at least 5.00:1 against their composited cells), the map's
+  symbols now draw at phone widths, table captions and a live summary of the four conditions were added. Evidence:
+  docs/public-funding/qa/.
+- **Public Funding, Tennessee and Colorado (PPF-407)** (same night, at the maintainer's request). A chapter "What
+  happened in Tennessee and Colorado?" sets Utah beside the two states on who sells wine, how each state takes its
+  share (Utah's markup; $1.21 a gallon; 7.33 cents a liter), what that is on one bottle, where the money goes
+  (Colorado: 85% to the old age pension fund; Tennessee: not read) and wine bought per adult (NIAAA). Tennessee's
+  wine-tax account FY2012-FY2025 under its two printed labels; Colorado's NIAAA figures beside the national ones; a list
+  of what the comparisons cannot show. Context only: nothing enters the model. One new pinned source (Tennessee's
+  Alcohol Tax Manual, June 2025).
+- **Same shelf price leads** (`?v=sameprice`, `lib/samePrice.ts`), at the maintainer's direction: DABS stays the
+  wholesaler and sells to licensed grocers below its shelf price, and grocers charge today's state-store price, so a
+  bottle costs the same in either store. Charts start at today's price and show who covers the grocer's margin; a
+  grocery premium is shown only as the alternative design, not the headline. At a 10% margin with license fees
+  covering the new administration the state gives up $4.54M a year if DABS saves nothing, $3.51M with the allocated
+  savings and $0.09M if its wages also fall with sales; household wine purchases 7.1% higher ($10.80M) would cover the
+  first, which is not measured. The two-minute case, start page, Utah overview, framework, hard questions and
+  legislative briefing lead with it. "Better for everyone" is not stated as a finding.
+- **Consumer access** (`scripts/consumer_access.py`, `consumerAccess.generated.ts`): distance from each Utah 2020
+  Census block group's population center to the nearest state store (52), package agency (36) and SNAP-authorized
+  grocery store (459), from DABS's store locator and USDA's retailer locator read 2026-11. Half of Utahns live within
+  0.77 miles of a grocery store and 2.03 miles of a state store; 88.8% live closer to a grocery store than to any DABS
+  outlet. No state store opens on Sunday (Utah Code 32B-2-503, read 2026-11-20). Straight-line distance, not driving.
+- **Package agencies** (`scripts/dabs_package_agency_grid.py`, `lib/packageAgency.ts`): DABS's FY2027 compensation grid
+  (Rev. 07-2026, 15 steps by classes A-G), read from its PDF. Utah already pays private package agencies, which must
+  sell at the commission's price (32B-2-605(7)), a fixed amount by bottles sold; a typical grocery store's share of
+  the wine that moves (about 6,826 bottles) would earn about 25% of its wine sales on that grid. The grid covers all
+  products; applying it to wine alone is this page's assumption.
+- Pennsylvania's licensee price (state stores sell to licensees at retail less 10%) is cited from a press report and
+  labeled with a new evidence strength, `press_report`.
+
+- **Headline change: no store savings in any headline.** The design comparison counts no DABS cost as saved; the
+  allocated 2.28 cents a dollar (card fees, agency contracts, bags) is shown beside it as illustrative. DABS wholesale
+  at today's shelf price is now +$0.36M a year at the fixed 30% share (was +$1.4M with the allocation), and private
+  wholesale with a charge equal to DABS's margin +$0.63M (was +$1.7M). The start page and the two-minute case follow.
+  The earlier sections of the technical appendix keep their dated figures, with a pointer. The local graph package's
+  titles (`scripts/grocery_wine_chart_text.py`) lead with no store savings where the export has that figure (U1, U2,
+  U4, S0, F2; the summary chart's bars count none) and name the assumed 2.28 cents wherever a figure includes it; the
+  purchase-flow model counts it in every case.
+- **Five designs compared** (`?v=designs`, `policy-designs@1.0`): today, DABS wholesale to licensed grocers, licensed
+  private wholesale with a state charge, authorized direct supply and a hybrid, on the alternatives' own ledger. The
+  share that moves can fall with the grocery premium (convenience limits 60%, 30% and 15%, illustrative), where B
+  comes out −$0.20M to −$0.50M. Break-evens, a revenue-neutrality frontier, five charts, a what-if panel and a criteria
+  table with no single score. `scripts/policy_designs_check.py` recomputes every figure in Python (verify step 22).
+- **Policy pages:** the proposed framework (14 points, phasing) with a statutory change matrix (`statute-matrix@1.0`,
+  17 provisions, Utah Code read 2026-11-19); other states with evidence strength; safeguards and indicators; hard
+  questions. Navigation regrouped: The Proposal, Economics, Other States, Safeguards, Research & Data. A "How we know"
+  panel opens the inputs, assumptions, calculation, limits and reproduction of each major figure.
+- **Generated documents:** derivations (`docs/methods/policy-designs.md`), the input register with provenance classes
+  (`docs/methods/financial-inputs.md`), the policy pages' review copies, and a two-page legislative briefing printed to
+  PDF with local headless Edge (`npm run docs:framework`, `npm run brief:legislative`). Tests fail when a committed copy
+  differs from what the model renders.
+- The federal legal note says what 27 U.S.C. 203 and 205 require and that 27 CFR part 1 was not read.
+- No page scrolls sideways at 320 or 375 px with doubled text, whether the page's own text size or the browser's font
+  setting is doubled: Utah's status chips wrap in their legend and lists, label-and-value lists put each label above
+  its value when narrow, long ids in lists wrap, file pickers and text fields fit the screen, and the Downloads counts
+  table scrolls within its box. Layout only; nothing changes at desktop widths.
+- The source panel's "Local copy (development server)" link now appears only on the development server. On the
+  website it pointed to `/local-raw/`, a route only the development server has, and Google's crawler logged about 420
+  of them as not found (Search Console, November 2-4).
+- The public build (`config/builds/public.yaml`) again lists every preview source except the license-gated CDC
+  Chronic Disease Indicators: the 12 sources added for these pages (DABS's store locator and package agency grid,
+  USDA's retailer locator and meal rates, Census population centers and school finances, NAEP 2024, Utah Code retail
+  and earmark sections, the school-meal brief, USBE finance and Tennessee's tax manual) had been left out, so the
+  release manifest did not pin them. `tests/test_build_configs.py` now fails if the two lists drift apart.
+- The statutory change matrix still said "discount" and, in row M04, only that DABS's markup floor needs no change at
+  today's shelf price. M03 and M04 now say "DABS's price to grocers" and add that the framework's same shelf price,
+  with that price below the shelf price, needs the bill to set it apart from the floor (as framework point 5 already
+  said). Pennsylvania's licensee price reads "the retail price less 10%". Which designs need each row is unchanged.
+  The wording test now also reads the matrix, the framework and the policy pages.
+
 ## 0.5.1: one label on the bottle chart (2026-11-15)
 
 Wording only; no model, input or result changed. The bottle chart's table wrote DABS's lower price to grocers as a

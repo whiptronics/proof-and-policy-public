@@ -6,7 +6,7 @@ import { DIRECT_COST_SHARES, PRODUCER_DIRECT_METHOD, PRODUCER_PREMIUMS, directRe
 import { WINE_ALTERNATIVES_METHOD } from "../lib/wineAlternatives";
 
 const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
-const money = (v: number) => `${v < 0 ? "−" : "+"}$${(Math.abs(v) / 1e6).toFixed(1)}M`;
+const money = (v: number) => `${v < 0 ? "−" : "+"}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 
 export function ProducerDirectSection() {
   const rep = useMemo(() => directReport(), []);
@@ -14,7 +14,7 @@ export function ProducerDirectSection() {
   const cell = (c: number, p: number) => grid.find((g) => g.costShare === c && g.producerPremium === p)!;
   const cheapest = cell(0, 0).result;
   const demand = (id: string) => main.demand.find((d) => d.id === id)!.net;
-  const nets = grid.map((g) => g.result.fixed.ledger.net);
+  const nets = grid.map((g) => g.result.zeroSavings.net);
   return (
     <section className="panel" aria-labelledby="in-direct">
       <h3 id="in-direct">Producer-direct supply (scenario D): no wholesaler and no DABS</h3>
@@ -26,8 +26,8 @@ export function ProducerDirectSection() {
       </p>
       <p className="finding">
         <strong>The charge keeps the state's share of each bottle; the supply chain moves the grocery price, and sales tax with it.</strong>{" "}
-        In the main case the state comes out about {money(main.fixed.ledger.net)} a year, the same as private wholesale (
-        {money(wholesale.fixed.ledger.net)}). If direct delivery cost producers nothing, grocery wine would be about{" "}
+        With no store costs counted as saved, the main case leaves the state about {money(main.zeroSavings.net)} a year, the same as private
+        wholesale ({money(wholesale.zeroSavings.net)}). If direct delivery cost producers nothing, grocery wine would be about{" "}
         {pct(cheapest.fixed.stack.consumerChange)} above the state store instead of {pct(main.fixed.stack.consumerChange)}, and the state would
         collect less sales tax on the lower price: across the table it comes out {money(Math.min(...nets))} to {money(Math.max(...nets))} a
         year{nets.every((n) => n > 0) ? ", ahead in every case" : ""}.
@@ -60,7 +60,7 @@ export function ProducerDirectSection() {
                     <td key={c} className="num" data-label={`Delivery costs ${pct(c, 1)}`}>
                       {isMain ? <strong>+{pct(r.fixed.stack.consumerChange)} price</strong> : <>+{pct(r.fixed.stack.consumerChange)} price</>}
                       <br />
-                      <span className="small">state {money(r.fixed.ledger.net)}</span>
+                      <span className="small">state {money(r.zeroSavings.net)}</span>
                       {isMain && <span className="small muted"> (main case)</span>}
                     </td>
                   );
@@ -72,8 +72,10 @@ export function ProducerDirectSection() {
       </div>
       <p className="small muted">
         Delivery cost is a share of the producer's price to the grocer; the grocer prices for the 28% reference margin. Fixed volume, 30% of
-        household wine purchases moving, FY2025 figures: conditional, not a forecast. If the higher grocery price sends some shoppers back to
-        state stores, the main case is {money(demand("return_to_stores"))}; in the exploratory case where Utahns buy less wine in total, it is{" "}
+        household wine purchases moving, FY2025 figures, no store costs counted as saved: conditional, not a forecast. The allocated store
+        savings (card fees, agency contracts and bags, an allocation, not a measured saving) would make the main case{" "}
+        {money(main.fixed.ledger.net)}; with them, if the higher grocery price sends some shoppers back to state stores, it is{" "}
+        {money(demand("return_to_stores"))}, and in the exploratory case where Utahns buy less wine in total,{" "}
         {money(demand("price_constant"))}. Methods {PRODUCER_DIRECT_METHOD} on {WINE_ALTERNATIVES_METHOD}; the independent check recomputes every
         cell.
       </p>

@@ -24,6 +24,13 @@ export const VIEWS = [
   "case",
   "methods",
   "downloads",
+  "designs",
+  "sameprice",
+  "funding",
+  "states",
+  "safeguards",
+  "framework",
+  "questions",
 ] as const;
 export type View = (typeof VIEWS)[number];
 

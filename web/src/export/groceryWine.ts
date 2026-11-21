@@ -28,6 +28,7 @@ import {
   type SweepRow,
 } from "../lib/wineAlternatives";
 import { PRODUCER_DIRECT_METHOD, directReport } from "../lib/producerDirect";
+import { BASKET, CONVENIENCE_LIMITS, HYBRID_DABS_SHARE, HYBRID_EXTRA_ADMIN_SHARE, POLICY_DESIGNS_METHOD, SAVINGS_CASES, UTAH_GROCERY_ESTABLISHMENTS, defaultDesignsReport, type DesignResult } from "../lib/policyDesigns";
 import { PRICE_SHARE_METHOD, POSITION_WORDS, priceShareReport, type GridArrangement, type GridCell } from "../lib/winePriceShare";
 import { csvText, writeAll, type Cell } from "./csv";
 import { flowFiles, flowProblems } from "./groceryWineFlows";
@@ -331,8 +332,73 @@ files["producer_direct_grid.csv"] = csvText([
     c.result.def.id === dr.main.def.id,
   ]),
 ]);
+// Policy design comparison (the five arrangements A-E): read from the alternatives above, never a second engine. The
+// independent check (scripts/policy_designs_check.py) recomputes its closed forms from this file's terms.
+const pd = defaultDesignsReport();
+const pdNet = (r: DesignResult, s: string, l: number | null) => r.cases.find((c) => c.savings === s && c.limit === l)!.net;
+files["policy_designs.json"] = JSON.stringify(
+  {
+    generated_at: new Date().toISOString(),
+    project_commit: commit,
+    base_year: BASE_YEAR,
+    methods: { policy_designs: POLICY_DESIGNS_METHOD, producer_direct: PRODUCER_DIRECT_METHOD, ...json.methods },
+    units: "$ a year at FY2025 prices; prices and margins per $1 of today's state-store shelf price before sales tax; premiums against a state store, sales tax included on both",
+    savings_cases: SAVINGS_CASES,
+    convenience_limits: CONVENIENCE_LIMITS,
+    basket: BASKET,
+    hybrid: { dabs_share: HYBRID_DABS_SHARE, extra_admin_share: HYBRID_EXTRA_ADMIN_SHARE },
+    grocery_establishments: UTAH_GROCERY_ESTABLISHMENTS,
+    review_status: "Not reviewed by a person. Scripts recompute the arithmetic; nothing here is a fiscal note.",
+    ...pd,
+  },
+  (_k, v) => (typeof v === "number" && !Number.isFinite(v) ? null : v),
+  1,
+);
+files["policy_designs_summary.csv"] = csvText([
+  ["design", "label", "path", "engine_alternative", "consumer_price_change_pct_vs_state_store", "grocer_margin_pct_of_its_price", "state_take_structure", "distribution_margin_pct", "state_change_no_savings_fixed_share_usd", "state_change_no_savings_limit_60_usd", "state_change_no_savings_limit_30_usd", "state_change_allocated_savings_fixed_share_usd", "min_premium_at_28pct_grocer_margin_no_savings_pct", "min_share_moving_to_break_even_no_savings_pct", "classification", "reason"],
+  ...pd.results.map((r): Cell[] => [
+    r.def.id,
+    r.def.label,
+    r.def.path,
+    r.def.engine,
+    pct(r.premium),
+    r.grocerMargin === null ? null : pct(r.grocerMargin),
+    r.structure,
+    r.distribution === null ? null : pct(r.distribution),
+    pdNet(r, "none", null),
+    pdNet(r, "none", 0.6),
+    pdNet(r, "none", 0.3),
+    pdNet(r, "allocated", null),
+    Number.isFinite(r.breakEven.minPremiumAtReference.none) ? pct(r.breakEven.minPremiumAtReference.none) : null,
+    r.breakEven.minShift.none === null ? null : pct(r.breakEven.minShift.none),
+    pd.classification[r.def.id].verdict,
+    pd.classification[r.def.id].reason,
+  ]),
+]);
+files["policy_designs_cases.csv"] = csvText([
+  ["design", "savings_case", "convenience_limit_pct", "share_of_household_purchases_moving_pct", "wine_moved_usd", "state_change_usd", "state_change_with_fees_covering_administration_usd", "state_gross_receipts_today_usd", "state_gross_receipts_after_usd"],
+  ...pd.results.flatMap((r) => r.cases.map((c): Cell[] => [r.def.id, c.savings, c.limit === null ? "fixed share" : pct(c.limit), pct(c.shift), c.moved, c.net, c.netWithFees, c.gross.today, c.gross.after])),
+]);
+files["policy_designs_flows.csv"] = csvText([
+  ["design", "when", "party", "label", "per_dollar_of_todays_price", "usd_per_year_on_wine_moved", "kept_by_state"],
+  ...pd.results.flatMap((r) => (["today", "after"] as const).flatMap((w) => r.flows[w].map((f): Cell[] => [r.def.id, w, f.party, f.label, f.perDollar, f.annual, f.state]))),
+]);
+files["policy_designs_basket.csv"] = csvText([
+  ["design", "bottle", "landed_cost_usd", "state_store_price_with_sales_tax_usd", "grocery_price_with_sales_tax_usd", "standing"],
+  ...pd.results.filter((r) => r.def.id !== "A").flatMap((r) => r.basket.map((b): Cell[] => [r.def.id, b.label, b.landed, b.stateStore, b.grocery, "illustrative price point, not a product"])),
+]);
+files["policy_designs_frontier.csv"] = csvText([
+  ["consumer_price_change_pct_vs_state_store", "max_grocer_margin_take_in_wholesale_price_pct", "max_grocer_margin_retail_charge_wholesaler_margin_pct", "max_grocer_margin_retail_charge_no_distribution_cost_pct", "max_grocer_margin_take_in_wholesale_price_allocated_savings_pct", "max_grocer_margin_retail_charge_wholesaler_margin_allocated_savings_pct"],
+  ...pd.frontier.map((p): Cell[] => [pct(p.premium), pct(p.wholesalePrice), pct(p.retailChargeReference), pct(p.retailChargeNoDistribution), pct(p.wholesalePriceAllocated), pct(p.retailChargeReferenceAllocated)]),
+]);
+files["policy_designs_direct.csv"] = csvText([
+  ["producer_cost_share_pct", "producer_premium_pct", "consumer_price_change_pct_vs_state_store", "state_change_no_savings_fixed_share_usd", "state_change_no_savings_limit_30_usd"],
+  ...pd.direct.map((d): Cell[] => [pct(d.costShare), pct(d.producerPremium), pct(d.premium), d.net, d.netLimit30]),
+]);
+files["policy_designs_criteria.csv"] = csvText([["criterion", "kind", "A", "B", "C", "D", "E"], ...pd.criteria.map((c): Cell[] => [c.label, c.kind, c.cells.A, c.cells.B, c.cells.C, c.cells.D, c.cells.E])]);
 files["export_files.json"] = JSON.stringify({ generated_at: new Date().toISOString(), project_commit: commit, files: Object.keys(files).sort() }, null, 1);
 writeAll(OUT, files);
+console.log(`policy designs: ${pd.results.length} arrangements, Pareto ${pd.pareto.join(", ")}, selected ${pd.selected.id ?? "none"} (${POLICY_DESIGNS_METHOD})`);
 const bad = rep.results.filter((a) => !a.fixed.ledger.reconciles || !a.demandAdditive || a.demand.some((d) => d.ledger && !d.ledger.reconciles));
 console.log(`grocery-wine export: ${rep.results.length} alternatives, commit ${commit}, written to ${OUT.join(" and ")}`);
 console.log(`producer-direct supply: main case and ${dr.grid.length} grid cells (${PRODUCER_DIRECT_METHOD})`);

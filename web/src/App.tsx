@@ -30,6 +30,10 @@ const FinderView = lazy(() => import("./views/FinderView").then((m) => ({ defaul
 const RevenueView = lazy(() => import("./views/RevenueView").then((m) => ({ default: m.RevenueView })));
 const OfficialsView = lazy(() => import("./views/OfficialsView").then((m) => ({ default: m.OfficialsView })));
 const ScenarioView = lazy(() => import("./views/ScenarioView").then((m) => ({ default: m.ScenarioView })));
+const DesignsView = lazy(() => import("./views/DesignsView").then((m) => ({ default: m.DesignsView })));
+const SamePriceView = lazy(() => import("./views/SamePriceView").then((m) => ({ default: m.SamePriceView })));
+const FundingView = lazy(() => import("./views/FundingView").then((m) => ({ default: m.FundingView })));
+const PolicyPages = lazy(() => import("./views/PolicyPages"));
 
 /** Optional framing for hosts that embed the dashboard (the defaults are the local research dashboard). */
 export interface AppProps {
@@ -149,6 +153,10 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
               {view === "case" && <CaseView />}
               {view === "methods" && <MethodsView />}
               {view === "downloads" && <DownloadsView manifest={man.data} />}
+              {view === "designs" && <DesignsView />}
+              {view === "sameprice" && <SamePriceView />}
+              {view === "funding" && <FundingView />}
+              {(view === "states" || view === "safeguards" || view === "framework" || view === "questions") && <PolicyPages view={view} />}
             </Suspense>
           </ErrorBoundary>
         )}

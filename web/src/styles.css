@@ -340,6 +340,12 @@ input[type="number"] {
   color: var(--text);
   max-width: 100%;
 }
+/* The rest (file pickers, untyped text fields) keep the browser's look but grow with its font-size setting; a file
+   picker's label, a flex item in a row of buttons, must not outgrow the row either. */
+input,
+label.file-pick {
+  max-width: 100%;
+}
 input[type="number"] {
   width: 6.5rem;
 }
@@ -469,11 +475,21 @@ table.data caption {
   padding: 4px 0;
 }
 dl.kv {
+  container-type: inline-size;
   display: grid;
-  grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr);
+  /* min(): the label column never outgrows the list (12px is the column gap), so the stacked layout below fits. */
+  grid-template-columns: minmax(min(8rem, 100% - 12px), max-content) minmax(0, 1fr);
   gap: 4px 12px;
   margin: 0 0 12px;
   font-size: 0.9rem;
+}
+/* Narrow (a phone at 200% text): each label above its value, instead of an 8rem label column pushing the values
+   off the screen. rem here is the page's root size, so this follows either way of doubling text. */
+@container (max-width: 15rem) {
+  dl.kv dt,
+  dl.kv dd {
+    grid-column: 1 / -1;
+  }
 }
 dl.kv dt {
   color: var(--text-2);
@@ -494,6 +510,11 @@ dl.kv dd {
   font-size: 0.8rem;
   white-space: nowrap;
   background: var(--surface);
+}
+/* In a legend or a list a chip wraps rather than run off a phone at 200% text. Tables keep it on one line, since
+   their column widths are worked out from it (they scroll instead). */
+:is(.legend, li) :is(.badge, .ev) {
+  white-space: normal;
 }
 .badge .sym {
   font-weight: 700;
@@ -750,6 +771,7 @@ svg.timeline .seg[aria-pressed="true"] rect {
 }
 /* File paths and long ids must wrap at 200% text instead of widening the page. */
 .source-list li,
+.panel li,
 .panel p {
   overflow-wrap: anywhere;
 }
@@ -1626,6 +1648,16 @@ svg.chart .row-note {
 svg.chart .row-label {
   font-size: 13px;
   fill: var(--text);
+}
+/* Public Funding charts. Without a fill, SVG text is black in dark mode; at 0.4 cell opacity the map's
+   symbols measure at least 5.0:1 against their composited cells in both themes, and the halo keeps a label
+   that crosses bars (the national line's) on the panel color (qa/accessibility.md). */
+svg.chart .tick-label {
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 svg.chart .row-label.strong,
 svg.chart .bar-value.strong {

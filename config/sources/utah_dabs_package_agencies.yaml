@@ -1,0 +1,28 @@
+source_id: utah_dabs_package_agencies
+publisher: Utah Department of Alcoholic Beverage Services (DABS)
+title: Type 2 and Type 3 package agency compensation grid
+landing_url: https://abs.utah.gov/package-agencies
+citation: >-
+  Utah Department of Alcoholic Beverage Services. Type 2 / Type 3 Package Agency Compensation Grid - Static Annual
+  Dollar Amounts (Package Agency Compensation - FY27, rev. 07-2026). https://abs.utah.gov/package-agencies
+update_frequency: Revised with each package agency contract cycle (fiscal year)
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Package agencies are private businesses (Type 2: run with another business whose main income is not liquor, such
+  as a convenience store; Type 3: small, mostly rural, mainly selling liquor) that sell liquor under contract at the
+  price the commission fixes (Utah Code 32B-2-605(7)), paid a fixed
+  annual amount by annual bottles sold and average bottle price. scripts/dabs_package_agency_grid.py reads the
+  one-page grid from the PDF's own table into web/src/lib/packageAgencyGrid.generated.ts, and a test fails when the
+  two differ. The PDF is not redistributed.
+host_min_interval_seconds: 10
+assets:
+  - asset_id: utah_dabs_pa_compensation_fy2027
+    url: https://abs.utah.gov/wp-content/uploads/Type-2-3-PA-Compensation-Schedule.pdf
+    edition: "Package Agency Compensation - FY27, Type 2 / Type 3 grid, rev. 07-2026 (one page)"
+    source_series: utah_dabs_package_agency_compensation
+    source_vintage: fy2027
+    format: pdf
+    priority: 15
+    redistribute_raw: false
+    next_action: Type 1 (resort) package agency compensation is not published on the page; not used.

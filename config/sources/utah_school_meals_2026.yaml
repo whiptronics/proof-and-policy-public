@@ -1,0 +1,43 @@
+source_id: utah_school_meals_2026
+publisher: Utah State Legislature
+title: 2026 S.B. 180, School Nutrition Amendments, and the legislature's school meals brief
+landing_url: https://le.utah.gov/~2026/bills/static/SB0180.html
+citation: >-
+  S.B. 180, School Nutrition Amendments, 2026 General Session (Sen. L. Escamilla), introduced text and fiscal note on
+  1st Substitute; Office of Legislative Research and General Counsel, School Meals Programs (revised 2025-01-16).
+update_frequency: Fixed documents
+source_family: policy
+rights_status: government_edict
+notes: >-
+  S.B. 180's status was read from the bill's status page on 2026-11-20 (the page draws it with JavaScript, so it is
+  recorded by hand in metadata/legal_history/utah_sb180_2026_status.csv): passed the Senate 18-0-11 on 2026-02-26;
+  in House Education a motion to recommend failed 3-6-6 on 2026-03-03; filed as not passed on 2026-03-06. Not law.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: ut_sb0180_2026_introduced
+    url: https://le.utah.gov/Session/2026/bills/introduced/SB0180.pdf
+    filename: SB0180.pdf
+    edition: 2026 S.B. 180, introduced text
+    source_series: utah_school_meals_2026
+    source_vintage: "2026"
+    format: pdf
+    priority: 15
+    redistribute_raw: true
+  - asset_id: ut_sb0180s01_2026_fiscal_note
+    url: https://pf.utleg.gov/public-web/sessions/2026GS/fiscal-notes/SB0180S01.fn.html
+    filename: SB0180S01.fn.html
+    edition: Fiscal note, 1st Substitute S.B. 180 (2026)
+    source_series: utah_school_meals_2026
+    source_vintage: "2026"
+    format: html
+    priority: 15
+    redistribute_raw: true
+  - asset_id: ut_olrgc_school_meals_2025
+    url: https://le.utah.gov/interim/2025/pdf/School_Meals_Programs.pdf
+    filename: School_Meals_Programs.pdf
+    edition: Office of Legislative Research and General Counsel, School Meals Programs (revised 2025-01-16)
+    source_series: utah_school_meals_2026
+    source_vintage: "2025"
+    format: pdf
+    priority: 15
+    redistribute_raw: true

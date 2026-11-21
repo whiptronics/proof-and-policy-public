@@ -235,3 +235,38 @@ This is a research preview. Read this before using any number.
   show no national value in those forms.
 - Large year-over-year changes are listed for review in the validation report, not removed; real law
   changes produce real discontinuities.
+
+## Grocery-wine designs (policy-designs@1.0)
+
+- Every result is conditional arithmetic on the inputs in `docs/methods/financial-inputs.md`, none reviewed by a
+  person. It is not a forecast, a fiscal note or an independently certified estimate.
+- No headline counts a DABS store cost as saved; no avoidable cost is measured. The allocated (2.28 cents a dollar) and
+  longer-run cases are illustrative.
+- How many households would switch, and how that depends on the price difference, is not measured. The fixed 30% share
+  and the straight-line convenience limits (60%, 30%, 15%) are illustrative.
+- The $500,000 a year of new administration is a placeholder; no estimate exists. Under the price-sensitive cases it
+  decides the sign of the result.
+- Grocer and wholesaler margins are national all-product averages, not wine in Utah. Producers' delivery costs and
+  prices to grocers (design D) are unknown and shown across a grid.
+- Drinking more or less, beer and spirits switching, out-of-state purchases, rural package agencies, local sales tax
+  and one-time implementation costs are outside the comparison.
+- The statute matrix reads the Utah Code as published online on 2026-11-19 and 27 U.S.C. 203 and 205; 27 CFR part 1
+  and Title 59, Chapter 12 were not read. It is not legal advice and no attorney has reviewed it.
+- Other states' evidence: Tennessee's study was read in abstract only; no evaluation of Colorado's 2023 change was
+  found; Pennsylvania's figures are counts, not effects. None measures what Utah's monopoly margin would do.
+
+## Public funding (public-funding@1.0)
+
+- DABS's FY2025 figures are unaudited, transcribed by hand and not reviewed by a person. They cover all liquor; no
+  wine-only public receipts exist. Page 30 and page 32 print different other income; both are kept. $19.6M of
+  nonoperating items is not itemized and is shown as unreconciled.
+- The deposits DABS reports for school meals and enforcement differ from the statutory rates times its sales; the
+  difference is not explained in the report.
+- Whether DABS's revenue on sales to grocers would count toward the earmarked deposits under the sections as written
+  is an assumption, not a legal reading. Replacement mechanisms are modeled as proposed law, never current law.
+- Census spending per pupil is not adjusted for cost differences between states and excludes buildings and debt.
+  NAEP comparisons use NCES's own significance tests. Neither shows what an added dollar would do.
+- No school-meal cost per meal and no teacher-cost comparator was sourced; they show "Not available". Statewide
+  alcohol money is not assigned to any district.
+- S.B. 180 (2026)'s status was read from the legislature's page by hand on 2026-11-20 (its page is drawn by
+  JavaScript, so it is not a pinned file).

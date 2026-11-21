@@ -468,7 +468,7 @@ def u2_components(d, out, titles):
         net = a["ledger_fixed"]["net"]
         ax.plot([a["zero_savings_net"]], [yi], "D", color=INK, ms=7, mfc=SURFACE, mew=1.2, zorder=4)
         ax.plot([net], [yi], "D", color=INK, ms=7, mec=SURFACE, mew=1.5, zorder=5)
-        ax.text(max(pos, 0) + 0.6e6, yi, f"net {ct.money(net)} ({ct.money(a['zero_savings_net'])} without savings)", va="center", fontsize=8.5, color=INK)
+        ax.text(max(pos, 0) + 0.6e6, yi, f"{ct.money(a['zero_savings_net'])} no savings, {ct.money(net)} with", va="center", fontsize=8.5, color=INK)
     ax.axvline(0, color=INK, lw=1)
     ax.set_yticks(y, [ct.alt(d, a)["short"] + (" (arithmetic only*)" if ct.alt(d, a)["retailer"]["arithmeticOnly"] else "") for a in ids], fontsize=8.5)
     ax.grid(axis="y", visible=False)
@@ -962,23 +962,23 @@ def s0(d, tn, trend, out, titles):
     a1.grid(axis="y", visible=False)
     a1.set_title("Observed: Tennessee, private licensees (2016)", fontsize=9.5)
     a1.set_xlabel("Change a year, constant 2024 $ (descriptive)")
-    ids = ["A_target", "C_take", "C_break_even", "B20_target", "R2", "R1"]  # designs that keep revenue whole on top
+    ids = ["A_target", "C_take", "C_break_even", "B20_target", "R2", "R1"]  # highest with the assumed savings on top
     y = np.arange(len(ids))[::-1]
     for yi, aid in zip(y, ids, strict=True):
         a = ct.alt(d, aid)
-        n = a["ledger_fixed"]["net"]
+        n = a["zero_savings_net"]  # bars count no store savings; the label adds the figure with them
         a2.barh(yi, n, color=BLUE if n >= -0.5 else RED, height=0.55)
         cons = a["price_stack"]["consumerChange"]
-        a2.text(max(n, 0) + 0.5e6, yi, f"{ct.money(n)}; price {cons * 100:+.0f}%", va="center", ha="left", fontsize=8.5)
+        a2.text(max(n, 0) + 0.5e6, yi, f"{ct.money(n)}; price {cons * 100:+.0f}%\n({ct.money(a['ledger_fixed']['net'])} with savings)", va="center", ha="left", fontsize=8.5)
     a2.set_yticks(y, [ct.alt(d, a)["short"] for a in ids], fontsize=8.5)
     a2.axvline(0, color=INK, lw=1)
-    a2.set_xlim(-22e6, 14e6)
+    a2.set_xlim(-17e6, 17e6)
     a2.set_xticks([-15e6, -10e6, -5e6, 0, 5e6])
     a2.xaxis.set_major_formatter(m_fmt)
     a2.grid(axis="y", visible=False)
     a2.set_title("Model: Utah, state stores open (fixed volume)", fontsize=9.5)
-    a2.set_xlabel("State revenue change, $ a year; grocery price vs a state store")
-    head(fig, *titles["S0"], "Left: before-and-after description, not an effect estimate, not applied to Utah. Right: project model, conditional on inputs U01-U18; Ref. 1 and 2 are the brief's original cases (5¢ savings). Separate panels and axes.")
+    a2.set_xlabel("State revenue change, no store savings ($ a year)")
+    head(fig, *titles["S0"], "Left: before-and-after description, not an effect estimate, not applied to Utah. Right: project model, conditional on inputs U01-U18; bars count no store savings, labels add the figure with the assumed 2.28¢ (Ref. 1 and 2, the brief's original cases: 5¢). Separate panels and axes.")
     save(fig, out, "00_summary.png")
 
 

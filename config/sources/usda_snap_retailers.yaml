@@ -1,0 +1,26 @@
+source_id: usda_snap_retailers
+publisher: U.S. Department of Agriculture, Food and Nutrition Service (SNAP Retailer Policy and Management Division)
+title: SNAP retailer location data - currently authorized retailers (Utah grocery store types)
+landing_url: https://www.arcgis.com/home/item.html?id=8b260f9a10b0459aa441ad8588c2251c
+citation: >-
+  USDA Food and Nutrition Service, SNAP Retailer Location data (currently authorized SNAP retailers), ArcGIS
+  feature layer owned by FNS_SNAP_RPMD; Utah records of store types Supermarket, Super Store and Grocery Store.
+update_frequency: Updated by FNS as retailers are authorized or withdrawn (the layer's data was last edited 2026-11-05)
+source_family: context
+rights_status: public_domain_us_federal
+notes: >-
+  Used as the list of Utah grocery stores because it is public, geocoded and classifies store types; a grocery store
+  that does not accept SNAP is missing from it. FNS store types are FNS's own, not Census's NAICS 445110 (County
+  Business Patterns counts 411 grocery establishments in Utah). Convenience stores, "Other" and specialty stores are
+  left out, as the framework's first phase leaves them out.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: usda_snap_retailers_ut_grocery_2026_11
+    url: "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0/query?where=State%3D%27UT%27%20AND%20Store_Type%20IN%20(%27Supermarket%27%2C%27Super%20Store%27%2C%27Grocery%20Store%27)&outFields=Record_ID%2CStore_Name%2CCity%2CZip_Code%2CCounty%2CStore_Type%2CLatitude%2CLongitude&returnGeometry=false&orderByFields=Record_ID&f=json"
+    filename: snap-retailers-ut-grocery.json
+    edition: "SNAP Retailer Location data, Utah Supermarket, Super Store and Grocery Store records, read 2026-11-20"
+    source_series: usda_snap_retailer_locations
+    source_vintage: 2026-11
+    format: json
+    priority: 15
+    redistribute_raw: false

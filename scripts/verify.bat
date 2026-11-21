@@ -68,6 +68,7 @@ call :run "export grocery-wine" npm --prefix web run export:grocery-wine
 call :run "export tennessee" npm --prefix web run export:tennessee
 call :run "grocery-wine independent check" "%VENV%\python.exe" scripts\grocery_wine_alternatives_check.py
 call :run "grocery-wine purchase-flow check" "%VENV%\python.exe" scripts\grocery_wine_flows_check.py
+call :run "policy-design check" "%VENV%\python.exe" scripts\policy_designs_check.py
 >>"!LOG!" echo === working tree at end: git status --short
 >>"!LOG!" 2>&1 git status --short
 call :now END

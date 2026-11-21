@@ -8,7 +8,7 @@ revenue scenarios, and a local research dashboard. The same data and models powe
 **[proofandpolicy.us](https://proofandpolicy.us)**; this repository runs on its own and needs nothing from the
 website.
 
-**Status: research preview, release 0.5.1.** Coverage is partial and declared series by series in
+**Status: research preview, release 0.6.0.** Coverage is partial and declared series by series in
 [docs/coverage-report.md](docs/coverage-report.md). Nothing here establishes a causal effect of any
 policy. Hand-entered values and policy codings are labeled with who extracted them; none has yet been
 reviewed by a person (an AI assistant did the extraction and checks; see the AI disclosure below), and they stay
@@ -59,10 +59,13 @@ The Utah revenue scenarios, the grocery-wine analysis and their checks need no d
 in `web/src/lib/*.ts` with their sources, so `?v=scenario` and `?v=initiative` show the same results as the website
 even on the example build. `python scripts/grocery_wine_briefing_example.py` recomputes the worked example
 independently; `npm --prefix web run export:grocery-wine` writes the purchase-flow tables, which
-`python scripts/grocery_wine_flows_check.py` then recomputes with separately written closed forms.
+`python scripts/grocery_wine_flows_check.py` then recomputes with separately written closed forms, and
+`python scripts/policy_designs_check.py` does the same for the five-design comparison (`?v=designs`). Its derivations,
+input register and the two-page legislative briefing are generated from the model: see `docs/methods/policy-designs.md`
+and `docs/reproduction.md`.
 
 The full release tables (CSV, Parquet and DuckDB, with checksums and release notes) are attached to each
-[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.5.1.
+[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.6.0.
 They can always be rebuilt from the sources below.
 
 ## Why this exists, and what it does not claim

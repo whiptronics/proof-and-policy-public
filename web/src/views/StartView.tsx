@@ -1,5 +1,4 @@
-// Start here: the guided entry point. Utah grocery wine first (four questions, then the proposal, economics, evidence and
-// tradeoffs, in views/UtahOverview.tsx), then the research areas and questions; each question opens a tool with
+// Start here: the guided entry point. Utah grocery wine first (sections A to H, in views/UtahOverview.tsx), then the research areas and questions; each question opens a tool with
 // sensible, editable inputs, or (for the cross-state question) a short form that opens Explore.
 import { lazy, Suspense, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { ErrorNote, Go, Loading } from "../components/common";
@@ -57,19 +56,21 @@ export function StartView() {
     <>
       <section className="panel hero" aria-labelledby="st-h">
         <p className="kicker">Independent public-policy research</p>
-        <h2 id="st-h">Wine in Utah Grocery Stores</h2>
-        <p className="hero-sub">An evidence-based examination of retail access, consumer prices, state revenue, and implementation.</p>
+        <h2 id="st-h">Why can't Utahns buy wine with their groceries?</h2>
+        <p className="hero-sub">
+          Utah already permits grocery stores to sell beer. Explore whether licensed grocery wine sales can expand convenience while protecting
+          state revenue and maintaining responsible oversight.
+        </p>
         <p className="lede">
-          Utah sells wine to take home only through state liquor stores and package agencies. This research asks whether grocery stores could
-          sell it too while keeping public revenue and regulation, and what each way of doing it would mean. Every value links to its source,
-          and every result says what it rests on.
+          This research sets out a design that keeps every bottle at today&rsquo;s state-store price, compares it with other ways of doing it,
+          checks each against Utah law and other states, and says what every figure rests on. It examines a proposal; it does not campaign for one.
         </p>
         <div className="row-actions hero-actions">
           <Go to={{ v: "briefing" }} reset className="button primary-link">
-            Read the two-minute briefing
+            Read the Two-Minute Case
           </Go>
-          <Go to={{ v: "methods" }} reset className="button">
-            Methods &amp; data
+          <Go to={{ v: "sameprice" }} reset className="button">
+            Explore the Numbers
           </Go>
         </div>
       </section>

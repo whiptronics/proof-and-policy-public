@@ -1,0 +1,35 @@
+source_id: utah_dabs_store_locator
+publisher: Utah Department of Alcoholic Beverage Services (DABS)
+title: DABS store locator - state liquor stores and package agencies, with posted hours
+landing_url: https://abs.utah.gov/shop-products/find-store/
+citation: >-
+  Utah Department of Alcoholic Beverage Services, Find a Store (the store locator's own location search, every
+  state liquor store and package agency within 500 miles of central Utah). https://abs.utah.gov/shop-products/find-store/
+update_frequency: Changes when stores open, close or change hours (no schedule)
+source_family: context
+rights_status: facts_with_citation
+notes: >-
+  Two requests to the locator's search (the same one its map makes), one per category: State Liquor Store (9) and
+  Package Agency (8). Each record has the address, latitude and longitude, and the hours DABS posts for each day of
+  the week. A package agency missing from the locator (resort and hotel agencies may not be listed) is missing here.
+  The consumer access script refuses a response that reaches the request's result limit.
+host_min_interval_seconds: 10
+assets:
+  - asset_id: utah_dabs_state_stores_2026_11
+    url: "https://abs.utah.gov/wp-admin/admin-ajax.php?action=store_search&lat=39.32&lng=-111.09&max_results=100&search_radius=500&filter=9"
+    filename: dabs-state-liquor-stores.json
+    edition: "DABS store locator, category State Liquor Store, read 2026-11-20"
+    source_series: utah_dabs_store_locations
+    source_vintage: 2026-11
+    format: json
+    priority: 15
+    redistribute_raw: false
+  - asset_id: utah_dabs_package_agencies_2026_11
+    url: "https://abs.utah.gov/wp-admin/admin-ajax.php?action=store_search&lat=39.32&lng=-111.09&max_results=100&search_radius=500&filter=8"
+    filename: dabs-package-agencies.json
+    edition: "DABS store locator, category Package Agency, read 2026-11-20"
+    source_series: utah_dabs_store_locations
+    source_vintage: 2026-11
+    format: json
+    priority: 15
+    redistribute_raw: false

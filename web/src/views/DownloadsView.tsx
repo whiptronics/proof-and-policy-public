@@ -86,16 +86,18 @@ export function DownloadsView({ manifest }: { manifest: Manifest }) {
             {manifest.export.generated_at} from <span className="mono">{manifest.export.exported_from_commit}</span>
           </dd>
         </dl>
-        <table className="data">
-          <tbody>
-            {Object.entries(manifest.counts).map(([k, v]) => (
-              <tr key={k}>
-                <th scope="row">{k.replaceAll("_", " ")}</th>
-                <td className="num">{v.toLocaleString("en-US")}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="table-wrap">
+          <table className="data">
+            <tbody>
+              {Object.entries(manifest.counts).map(([k, v]) => (
+                <tr key={k}>
+                  <th scope="row">{k.replaceAll("_", " ")}</th>
+                  <td className="num">{v.toLocaleString("en-US")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   );

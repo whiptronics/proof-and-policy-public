@@ -654,8 +654,8 @@ function AlternativesSection() {
             <tr>
               <th scope="col">Arrangement</th>
               <th scope="col" className="num">Grocery price vs state store</th>
-              <th scope="col" className="num">State change, fixed volume</th>
-              <th scope="col" className="num">Same, no avoidable savings</th>
+              <th scope="col" className="num">State change, fixed volume, no store costs saved</th>
+              <th scope="col" className="num">Same, with the savings assumption (illustrative)</th>
               <th scope="col" className="num">Exploratory: old price response</th>
               <th scope="col" className="num">Grocer's gross margin, share of its price</th>
               <th scope="col">Savings assumption</th>
@@ -675,9 +675,9 @@ function AlternativesSection() {
                   </th>
                   <td className="num">{pct(r.fixed.stack.consumerChange)}</td>
                   <td className="num">
-                    <strong>{millions(r.fixed.ledger.net)}</strong>
+                    <strong>{millions(r.zeroSavings.net)}</strong>
                   </td>
-                  <td className="num">{millions(r.zeroSavings.net)}</td>
+                  <td className="num">{millions(r.fixed.ledger.net)}</td>
                   <td className="num">{r.def.pricing === "matched" ? "no price change" : millions(r.demand.find((d) => d.id === "price_constant")!.net)}</td>
                   <td className="num">{margin(r)}</td>
                   <td className="small">{savingsWords(r)}</td>

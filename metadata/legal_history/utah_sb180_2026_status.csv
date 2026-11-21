@@ -1,0 +1,12 @@
+date,action,location,vote,read_from,read_on,read_by,human_reviewed
+2026-01-22,Numbered bill publicly distributed,Legislative Research and General Counsel,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-01-22,Senate 1st reading (introduced),Senate Rules Committee,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-01-27,Senate to standing committee,Senate Education Committee,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-01-29,Senate received fiscal note from Fiscal Analyst,Senate Education Committee,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-02-12,Senate committee: substitute recommended (#0 to #1) and favorable recommendation,Senate Education Committee,4-0-3,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-02-24,Senate floor amendment #1; passed 2nd reading,Senate 2nd Reading Calendar,22-2-5,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-02-26,Senate passed 3rd reading; to House,Clerk of the House,18-0-11,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-02-26,House 1st reading (introduced); to standing committee,House Education Committee,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-03-03,House committee: held (8-1-6); motion to recommend failed,House Education Committee,3-6-6,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-03-05,House committee report: sent to Rules,House Rules Committee,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false
+2026-03-06,House strike enacting clause; Senate filed (bills not passed),Senate file for bills not passed,,https://le.utah.gov/~2026/bills/static/SB0180.html,2026-11-20,Claude (machine-assisted),false

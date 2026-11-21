@@ -801,6 +801,14 @@ costs, the access and recapture effects, the replacement tax and the discount) i
 One-time implementation costs, grocers' and private wholesalers' profits and local sales tax are still outside it.
 These are arithmetic on stated assumptions, not estimates.
 
+What exists now (2026-11-19): the five-design comparison (`policy-designs@1.0`, `?v=designs`), on the same FY2025
+baseline and the alternatives' own ledger. It counts DABS's gross margin and any state charge, state sales tax, store
+costs saved and the new administration, against today. Gross receipts are reported apart and never as net revenue. No
+headline counts a store cost as saved. Dedicated deposits (school meals, enforcement) are figured on DABS's liquor
+sales, so whether DABS's sales to grocers count is an open legal question (matrix row M09), and under charge designs
+the charge must be allocated to keep the funds whole. Derivations: `docs/methods/policy-designs.md`; inputs and their
+provenance: `docs/methods/financial-inputs.md`; independent recomputation: `scripts/policy_designs_check.py`.
+
 ## Tennessee
 
 Tennessee wine-in-food-store revenue is not isolated. Census T10 for Tennessee is all alcohol taxes.

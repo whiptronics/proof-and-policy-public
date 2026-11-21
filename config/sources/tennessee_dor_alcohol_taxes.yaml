@@ -1,0 +1,27 @@
+source_id: tennessee_dor_alcohol_taxes
+publisher: Tennessee Department of Revenue
+title: Alcohol Tax Manual (June 2025)
+landing_url: https://www.tn.gov/revenue/taxes/alcoholic-beverage-taxes.html
+citation: >-
+  Tennessee Department of Revenue, Alcohol Tax Manual, June 2025.
+  https://www.tn.gov/content/dam/tn/revenue/documents/tax_manuals/june-2025/Alcohol-Tax-Manual.pdf
+update_frequency: Revised editions published by the department (a June 2026 edition also exists)
+source_family: law
+rights_status: facts_with_citation
+notes: >-
+  The department's own manual of who pays Tennessee's alcoholic beverage taxes and at what rate. The June 2025 edition
+  is the one that closed Tennessee's FY2025. The tax overview page (tn.gov/revenue/taxes/alcoholic-beverage-taxes.html)
+  answered automated requests with HTTP 403 on 2026-11-20. Read for the Public
+  Funding page's comparison of Utah, Tennessee and Colorado (devplan item PPF-407, 2026-11-20): the tax base wine
+  sold by Tennessee food stores pays. It is the department's guidance, not the Tennessee Code itself.
+host_min_interval_seconds: 5
+assets:
+  - asset_id: tn_dor_alcohol_tax_manual_2025_06
+    url: https://www.tn.gov/content/dam/tn/revenue/documents/tax_manuals/june-2025/Alcohol-Tax-Manual.pdf
+    filename: tn-dor-alcohol-tax-manual-2025-06.pdf
+    edition: Tennessee Department of Revenue, Alcohol Tax Manual, June 2025
+    source_series: tennessee_dor_alcohol_taxes
+    source_vintage: "2025-06"
+    format: pdf
+    priority: 20
+    redistribute_raw: false

@@ -187,7 +187,8 @@ export function SourceRef({ assetId, locator, page }: { assetId: string; locator
             Open original{pdf && page ? ` at page ${page}` : ""} ↗
           </a>
         )}
-        {a.local_copy_servable && (
+        {/* /local-raw/ exists only on the development server; on the website the link was a 404 crawlers followed. */}
+        {import.meta.env.DEV && a.local_copy_servable && (
           <a href={`/local-raw/${a.asset_id}${pdf && page ? `#page=${page}` : ""}`} target="_blank" rel="noreferrer">
             Local copy (development server)
           </a>

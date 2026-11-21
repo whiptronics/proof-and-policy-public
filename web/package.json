@@ -1,7 +1,7 @@
 {
   "name": "alcohol-policy-research-dashboard",
   "private": true,
-  "version": "0.5.1",
+  "version": "0.6.0",
   "type": "module",
   "description": "Local, read-only research dashboard for the alcohol policy and revenue dataset. It reads the files written by `alcohol-data dashboard export` and never edits research values.",
   "license": "MIT",
@@ -15,6 +15,8 @@
     "typecheck": "tsc --noEmit --pretty false",
     "test": "vitest run",
     "export:grocery-wine": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/groceryWine.js",
+    "docs:framework": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/frameworkDocs.js",
+    "brief:legislative": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/legislativeBrief.js",
     "export:tennessee": "tsc -p tsconfig.export.json && node ../data/processed/export-build/export/tennessee.js"
   },
   "dependencies": {

@@ -27,6 +27,15 @@ sources:
   - arkansas_legislature
   - cdc_cdi
   - utah_dabs_sales_analysis
+  - utah_dabs_package_agencies
+  - utah_dabs_store_locator
+  - usda_snap_retailers
+  - census_centers_of_population
+  - utah_code_retail_rules
+  - utah_code_fiscal_earmarks
+  - utah_school_meals_2026
+  - census_school_finances
+  - naep_2024
   - census_msrs
   - census_economic_census
   - utah_tax_commission
@@ -35,6 +44,9 @@ sources:
   - utah_acfr
   - pa_auditor_general_plcb
   - census_trade_margins
+  - usda_school_meal_rates
+  - usbe_school_finance
+  - tennessee_dor_alcohol_taxes
 # SHA-256 of every input the build reads. Updated only by 'fetch --update-pins' (reviewed change).
 pins_file: config/builds/preview.pins.json
 policy_events: data/curated/policy_events.csv

@@ -23,6 +23,14 @@ examined below as a hypothesis.
 
 ## Short answer
 
+**Updated 2026-11-19.** The five-design comparison supersedes every headline below that counts allocated store savings:
+no headline now counts any DABS cost as saved. Its derivations, inputs and full results are in
+[`docs/methods/policy-designs.md`](../../methods/policy-designs.md) (generated from the model) and on `?v=designs`; the
+two-page `legislative-briefing.pdf` in this folder is printed from the same model. On that rule, DABS wholesale at today's
+shelf price leaves the state +$0.36M a year ahead if 30% of household wine purchases move, and −$0.20M or −$0.50M if
+price-sensitive shoppers mostly stay; private wholesale with a charge equal to DABS's margin, +$0.63M. The sections
+below are kept as the record of the earlier work.
+
 **Updated 2026-10-19.** The points below are about existing wine purchases moving to grocers and nothing else. The
 purchase-flow section near the end adds beer, spirits, out-of-state and additional purchases, and designs that
 preserve the state's collection. Its main changes:

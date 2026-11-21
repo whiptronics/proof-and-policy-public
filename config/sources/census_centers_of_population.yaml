@@ -1,0 +1,25 @@
+source_id: census_centers_of_population
+publisher: U.S. Census Bureau
+title: 2020 Census centers of population by block group, Utah
+landing_url: https://www.census.gov/geographies/reference-files/time-series/geo/centers-population.html
+citation: >-
+  U.S. Census Bureau, 2020 Census Centers of Population by Block Group, Utah (CenPop2020_Mean_BG49.txt).
+  https://www.census.gov/geographies/reference-files/time-series/geo/centers-population.html
+update_frequency: Decennial (2020 Census)
+source_family: context
+rights_status: public_domain_us_federal
+notes: >-
+  The 2020 Census population of each Utah block group and the latitude and longitude of its mean center of
+  population. The consumer access script measures straight-line distance from each center to the nearest store,
+  weighted by population; travel distance and time are not measured.
+host_min_interval_seconds: 2
+assets:
+  - asset_id: census_cenpop2020_bg_ut
+    url: https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG49.txt
+    filename: CenPop2020_Mean_BG49.txt
+    edition: "2020 Census centers of population by block group, Utah"
+    source_series: census_centers_of_population
+    source_vintage: "2020"
+    format: csv
+    priority: 15
+    redistribute_raw: false

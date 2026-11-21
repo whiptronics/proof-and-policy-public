@@ -295,6 +295,14 @@
     "sha256": "9fc306ecc4f9633092e2432c2db2acdf53798da0480e6f6beeb953d583b41ede",
     "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2023/cbp23st.zip"
   },
+  "census_cenpop2020_bg_ut": {
+    "bytes": 88549,
+    "edition": "2020 Census centers of population by block group, Utah",
+    "filename": "CenPop2020_Mean_BG49.txt",
+    "retrieved_at": "2026-11-20T18:43:09Z",
+    "sha256": "b69876d2932392d1863f3ae01690a4998392bc9571b10d9cc84242b1ca730320",
+    "url": "https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG49.txt"
+  },
   "census_ec2017_basic": {
     "bytes": 79563421,
     "edition": "2017 Economic Census, EC1700BASIC.dat (all sectors, summary statistics; file dated 2021-05-26)",
@@ -310,6 +318,22 @@
     "retrieved_at": "2026-10-09T21:05:00Z",
     "sha256": "a82ed7d5e0bfa08777cf8730074ed817c0e4d251077b5179833f35fdbff9ee7f",
     "url": null
+  },
+  "census_elsec_fy2024_sumtables": {
+    "bytes": 290596,
+    "edition": "2024 Annual Survey of School System Finances, summary tables (released 2026-05-07)",
+    "filename": "elsec24_sumtables.xlsx",
+    "retrieved_at": "2026-11-20T21:48:00Z",
+    "sha256": "848133174f299957653bbc7070633cf3ff23e4242695ccb628893fb8f6571154",
+    "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24_sumtables.xlsx"
+  },
+  "census_elsec_fy2024_units": {
+    "bytes": 12639997,
+    "edition": "2024 Annual Survey of School System Finances, individual unit file (released 2026-05-07)",
+    "filename": "elsec24.xlsx",
+    "retrieved_at": "2026-11-20T21:48:10Z",
+    "sha256": "7e69f35a44c1d03c9b5a9127a074bd4feed705e7a950bf028305135241cfd758",
+    "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24.xlsx"
   },
   "census_govfin_indfin_1967_2012": {
     "bytes": 261733609,
@@ -1327,6 +1351,54 @@
     "sha256": "20b23aa891c14de258e6514a4f30d7dffaf3b5f6e9d51cd3117afec876452747",
     "url": "https://www.tabc.texas.gov/services/tabc-licenses-permits/tabc-license-permit-types/"
   },
+  "law_ut_32b_2_301_v20250507": {
+    "bytes": 15634,
+    "edition": "Utah Code 32B-2-301, version effective 2025-05-07 (current when read 2026-11-20)",
+    "filename": "C32B-2-S301_2025050720250507.html",
+    "retrieved_at": "2026-11-20T21:47:47Z",
+    "sha256": "6bc50f817160b93a36d0fd230706f33518ca3ec5e81ad86ce968f0437db0470a",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S301_2025050720250507.html"
+  },
+  "law_ut_32b_2_304_v20240501": {
+    "bytes": 16562,
+    "edition": "Utah Code 32B-2-304, version effective 2024-05-01, superseded 2026-03-13 (in force throughout FY2025)",
+    "filename": "C32B-2-S304_2024050120240501.html",
+    "retrieved_at": "2026-11-21T04:47:47Z",
+    "sha256": "3449530c1adb09ad3b659d6a8959b8a39ed3d03c8b1c0b0266324f6a9b6bbee8",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S304_2024050120240501.html"
+  },
+  "law_ut_32b_2_304_v20260313": {
+    "bytes": 17404,
+    "edition": "Utah Code 32B-2-304, version effective 2026-03-13 (current when read 2026-11-20)",
+    "filename": "C32B-2-S304_2026031320260313.html",
+    "retrieved_at": "2026-11-20T21:47:49Z",
+    "sha256": "c2e3f4cf46d5b7ad80cd212902bae3ea3e2a69849dc5d0419c06872060d1be25",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S304_2026031320260313.html"
+  },
+  "law_ut_32b_2_305_v20240501": {
+    "bytes": 11839,
+    "edition": "Utah Code 32B-2-305, version effective 2024-05-01 (current when read 2026-11-20)",
+    "filename": "C32B-2-S305_2024050120240501.html",
+    "retrieved_at": "2026-11-20T21:47:50Z",
+    "sha256": "78988b2467b3b53ab23ba8d911356311d0c268c13b3e5b1fe887e95cab197a05",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S305_2024050120240501.html"
+  },
+  "law_ut_32b_2_306_v20240501": {
+    "bytes": 12220,
+    "edition": "Utah Code 32B-2-306, version effective 2024-05-01, superseded 2026-05-06 (in force throughout FY2025)",
+    "filename": "C32B-2-S306_2024050120240501.html",
+    "retrieved_at": "2026-11-21T04:47:48Z",
+    "sha256": "197ea5728959b87c99ec95fc64aa98f960aadc9ecfb50cb8a785a8dedb7cca4c",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S306_2024050120240501.html"
+  },
+  "law_ut_32b_2_306_v20260506": {
+    "bytes": 9071,
+    "edition": "Utah Code 32B-2-306, version effective 2026-05-06 (current when read 2026-11-20)",
+    "filename": "C32B-2-S306_2026050620260506.html",
+    "retrieved_at": "2026-11-20T21:47:52Z",
+    "sha256": "11083ef41b2f425fbf2464c073c1e8cc5cb35592e002df0460774c21c97303b0",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S306_2026050620260506.html"
+  },
   "law_ut_32b_2_501_current": {
     "bytes": 7337,
     "edition": "Utah Code 32B-2-501 (Commission's power to establish a state store); version file named current by the section page on retrieval",
@@ -1335,6 +1407,14 @@
     "sha256": "0f8f8b9fd47c555d878fe4fb113ef5169d40af7a89d137fe6466692c389d5838",
     "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S501_1800010118000101.html"
   },
+  "law_ut_32b_2_503_current": {
+    "bytes": 14236,
+    "edition": "Utah Code 32B-2-503 (Operational requirements for a state store); version file named current by the section page on retrieval",
+    "filename": "C32B-2-S503_1800010118000101.html",
+    "retrieved_at": "2026-11-20T18:50:39Z",
+    "sha256": "9e9ec1b96bb9d59f852c19070d4026c6d5b662aac10fbf667a8067996ab52058",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S503_1800010118000101.html"
+  },
   "law_ut_32b_2_601_current": {
     "bytes": 11479,
     "edition": "Utah Code 32B-2-601 (Commission's power to issue a package agency); version file named current by the section page on retrieval",
@@ -1342,6 +1422,14 @@
     "retrieved_at": "2026-10-07T23:05:34Z",
     "sha256": "80b1200a8183b784d0914ac05cee16e03deed35e90772afeb61884600a7adcb0",
     "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S601_1800010118000101.html"
+  },
+  "law_ut_32b_2_605_current": {
+    "bytes": 37347,
+    "edition": "Utah Code 32B-2-605 (Operational requirements for package agency); version file named current by the section page on retrieval",
+    "filename": "C32B-2-S605_1800010118000101.html",
+    "retrieved_at": "2026-11-20T18:50:42Z",
+    "sha256": "7d709b104edae924fea46c531ff9ecf71bdae2ac2a929fc006d2a68c1baf54de",
+    "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S605_1800010118000101.html"
   },
   "law_va_4_1_103": {
     "bytes": 39169,
@@ -1455,6 +1543,70 @@
     "sha256": "0e0b5dd9d671df95c9f6d777cc69e3842b930c61a82205261eebde9c063a3aa7",
     "url": "https://wyoleg.gov/statutes/compress/title12.pdf"
   },
+  "naep_2024_math4_scores": {
+    "bytes": 18385,
+    "edition": "NAEP 2024 mathematics grade 4, average scale scores, NAEP Data Service",
+    "filename": "naep_2024_math4_scores.json",
+    "retrieved_at": "2026-11-20T21:48:12Z",
+    "sha256": "2c540a4aa44c4df1cc474007ce5fdc3b4beee043364e6f94a4f76cc273c2b6f8",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=mathematics&grade=4&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_math4_sig": {
+    "bytes": 1497443,
+    "edition": "NAEP 2024 mathematics grade 4, significance tests between jurisdictions, NAEP Data Service",
+    "filename": "naep_2024_math4_sig.json",
+    "retrieved_at": "2026-11-20T21:48:15Z",
+    "sha256": "342fcb5608be8c0781e7a427e6042cc1beb41b12a314aa86529bb7992ab07bc5",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=mathematics&grade=4&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_math8_scores": {
+    "bytes": 18390,
+    "edition": "NAEP 2024 mathematics grade 8, average scale scores, NAEP Data Service",
+    "filename": "naep_2024_math8_scores.json",
+    "retrieved_at": "2026-11-20T21:48:17Z",
+    "sha256": "0a9e20a966844075f215912b15bae4e7028b6b7bcf7520169332c11f50d5e3ca",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=mathematics&grade=8&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_math8_sig": {
+    "bytes": 1497742,
+    "edition": "NAEP 2024 mathematics grade 8, significance tests between jurisdictions, NAEP Data Service",
+    "filename": "naep_2024_math8_sig.json",
+    "retrieved_at": "2026-11-20T21:48:19Z",
+    "sha256": "b6e2d31adf04939dce2925c30c6751a13b7ebe7a2ad06dcf4089c72ee3f025a7",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=mathematics&grade=8&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_read4_scores": {
+    "bytes": 18392,
+    "edition": "NAEP 2024 reading grade 4, average scale scores, NAEP Data Service",
+    "filename": "naep_2024_read4_scores.json",
+    "retrieved_at": "2026-11-20T21:48:21Z",
+    "sha256": "e30e22eac8287782b8f33a58da94e253d617caba438be8c900f7d777c446a8a1",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=reading&grade=4&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_read4_sig": {
+    "bytes": 1497392,
+    "edition": "NAEP 2024 reading grade 4, significance tests between jurisdictions, NAEP Data Service",
+    "filename": "naep_2024_read4_sig.json",
+    "retrieved_at": "2026-11-20T21:48:24Z",
+    "sha256": "97cabbc761963d213054a11220ad63c2075dd0a70bf1ece49f159241aedc94b0",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=reading&grade=4&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_read8_scores": {
+    "bytes": 18393,
+    "edition": "NAEP 2024 reading grade 8, average scale scores, NAEP Data Service",
+    "filename": "naep_2024_read8_scores.json",
+    "retrieved_at": "2026-11-20T21:48:26Z",
+    "sha256": "bb1acabaac05b7874c02b7dcd9b4f310978e5fe6a2499330d35668aece745ec5",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=reading&grade=8&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
+  "naep_2024_read8_sig": {
+    "bytes": 1497914,
+    "edition": "NAEP 2024 reading grade 8, significance tests between jurisdictions, NAEP Data Service",
+    "filename": "naep_2024_read8_sig.json",
+    "retrieved_at": "2026-11-20T21:48:29Z",
+    "sha256": "bd044e9ab1162999e140efd0bf822997f3de843d2e80294ea834f7cdbc9edb50",
+    "url": "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=reading&grade=8&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+  },
   "nhtsa_state_ai_estimates_2022": {
     "bytes": 1821981,
     "edition": "State Alcohol-Impaired-Driving Estimates: 2022 Data (DOT HS 813 579, May 2024); tables for 2013 (FARS 2013 Final File) and 2022 (FARS 2022 ARF)",
@@ -1502,6 +1654,14 @@
     "retrieved_at": "2026-10-14T16:09:44Z",
     "sha256": "683c99c9303f549d24b40af37329b32496225733b0fac1b4140f6d8af034b14a",
     "url": "https://www.paauditor.gov/wp-content/uploads/fedLCBAuditReport121125.pdf"
+  },
+  "tn_dor_alcohol_tax_manual_2025_06": {
+    "bytes": 832628,
+    "edition": "Tennessee Department of Revenue, Alcohol Tax Manual, June 2025",
+    "filename": "tn-dor-alcohol-tax-manual-2025-06.pdf",
+    "retrieved_at": "2026-11-21T05:45:24Z",
+    "sha256": "0d82842bdb5e3193ccd8897d7655b5c1dcb3368e0da001ac49628924dee754bd",
+    "url": "https://www.tn.gov/content/dam/tn/revenue/documents/tax_manuals/june-2025/Alcohol-Tax-Manual.pdf"
   },
   "tn_dor_collections_june_2010": {
     "bytes": 133706,
@@ -1662,6 +1822,30 @@
     "retrieved_at": "2026-10-09T22:47:57Z",
     "sha256": "6e7bb086a3c791490361968a3094f377f7726c5d0c4900fec03cc42db2305a3d",
     "url": "https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-albers-10m.json"
+  },
+  "usbe_current_expenditure_per_pupil_fy2024": {
+    "bytes": 282803,
+    "edition": "Superintendent's Annual Report FY2024, current expenditures per pupil in fall enrollment, FY2020-2024",
+    "filename": "usbe-2024-current-expenditures-per-pupil-fy2020-2024.pdf",
+    "retrieved_at": "2026-11-21T05:04:07Z",
+    "sha256": "cbba94593d134ae82675d53ba7b79acdc235031a313b16940a1c2e39937db45c",
+    "url": "https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/2024%20Total%20Current%20Expenditures%20%20per%20Pupil%20in%20Fall%20Enrollment%20Fiscal%20Year%202020-2024.pdf"
+  },
+  "usda_nslp_rates_sy2024_25": {
+    "bytes": 15283,
+    "edition": "89 FR 56720 (2024-07-10), rates for July 1, 2024 - June 30, 2025",
+    "filename": "FR-2024-07-10-2024-15175.htm",
+    "retrieved_at": "2026-11-21T05:04:06Z",
+    "sha256": "50c742f8029e7af82c568358596ac77db23ef4973c82810882f2b7b100750bfb",
+    "url": "https://www.govinfo.gov/content/pkg/FR-2024-07-10/html/2024-15175.htm"
+  },
+  "usda_snap_retailers_ut_grocery_2026_11": {
+    "bytes": 94046,
+    "edition": "SNAP Retailer Location data, Utah Supermarket, Super Store and Grocery Store records, read 2026-11-20",
+    "filename": "snap-retailers-ut-grocery.json",
+    "retrieved_at": "2026-11-20T18:43:09Z",
+    "sha256": "bd798bf6dd6f36e2eadf7ed8667e6f8225f30d3fb8fdc7b6f31e49f6385f5217",
+    "url": "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0/query?where=State%3D'UT'+AND+Store_Type+IN+('Supermarket','Super+Store','Grocery+Store')&outFields=Record_ID,Store_Name,City,Zip_Code,County,Store_Type,Latitude,Longitude&returnGeometry=false&orderByFields=Record_ID&f=json"
   },
   "ut_2003gs_hb0244_enrolled": {
     "bytes": 688602,
@@ -2279,6 +2463,14 @@
     "sha256": "d832c7a4addf121fb28ff9169c0fac353223d0842c99debe5750a1107eb37f94",
     "url": "https://le.utah.gov/lrgc/recodification.htm"
   },
+  "ut_olrgc_school_meals_2025": {
+    "bytes": 272205,
+    "edition": "Office of Legislative Research and General Counsel, School Meals Programs (revised 2025-01-16)",
+    "filename": "School_Meals_Programs.pdf",
+    "retrieved_at": "2026-11-20T21:47:58Z",
+    "sha256": "933fe102879c7b7181c26d907b10446240d98f3612b1cf64ec8c22140b989127",
+    "url": "https://le.utah.gov/interim/2025/pdf/School_Meals_Programs.pdf"
+  },
   "ut_passed_bills_2002s4": {
     "bytes": 36437,
     "edition": "Passed bills, 2002 Fourth Special Session",
@@ -2559,6 +2751,22 @@
     "sha256": "8a639cb76cca7192ab8981e9130ede3672e046555662a25ae9e2b49c3f3fa321",
     "url": "https://le.utah.gov/~2019/bills/static/SB0132.html"
   },
+  "ut_sb0180_2026_introduced": {
+    "bytes": 30499,
+    "edition": "2026 S.B. 180, introduced text",
+    "filename": "SB0180.pdf",
+    "retrieved_at": "2026-11-20T21:47:54Z",
+    "sha256": "34c4e2b6916fcc57988be0cbcfe3c5e99cb858cab4a74df22c2b585ae4339c31",
+    "url": "https://le.utah.gov/Session/2026/bills/introduced/SB0180.pdf"
+  },
+  "ut_sb0180s01_2026_fiscal_note": {
+    "bytes": 12067,
+    "edition": "Fiscal note, 1st Substitute S.B. 180 (2026)",
+    "filename": "SB0180S01.fn.html",
+    "retrieved_at": "2026-11-20T21:47:56Z",
+    "sha256": "df86d013063f0772914810838e03b49e5f6e6d37583148b93541facf414af0ec",
+    "url": "https://pf.utleg.gov/public-web/sessions/2026GS/fiscal-notes/SB0180S01.fn.html"
+  },
   "utah_acfr_fy2022": {
     "bytes": 6538591,
     "edition": "Annual Comprehensive Financial Report, fiscal year ended June 30, 2022 (260 pages)",
@@ -2646,6 +2854,22 @@
     "retrieved_at": "2026-10-07T00:50:21Z",
     "sha256": "ed35073d08904971edce24ecb07070e1472a6cb32b5b31fba5d37ff1cffbbf63",
     "url": "https://abs.utah.gov/wp-content/uploads/90th_Annual_Report_2025.pdf"
+  },
+  "utah_dabs_pa_compensation_fy2027": {
+    "bytes": 209764,
+    "edition": "Package Agency Compensation - FY27, Type 2 / Type 3 grid, rev. 07-2026 (one page)",
+    "filename": "Type-2-3-PA-Compensation-Schedule.pdf",
+    "retrieved_at": "2026-11-20T18:36:23Z",
+    "sha256": "0f73651151cd3d42b592ad8caf93118f3d99ab3dedd6d3860ea41134e13fdb7a",
+    "url": "https://abs.utah.gov/wp-content/uploads/Type-2-3-PA-Compensation-Schedule.pdf"
+  },
+  "utah_dabs_package_agencies_2026_11": {
+    "bytes": 65303,
+    "edition": "DABS store locator, category Package Agency, read 2026-11-20",
+    "filename": "dabs-package-agencies.json",
+    "retrieved_at": "2026-11-20T18:43:08Z",
+    "sha256": "cdda1a1bd28c65932f8b25a6d960705725511fe19f2f45af4ac74724a49804d6",
+    "url": "https://abs.utah.gov/wp-admin/admin-ajax.php?action=store_search&lat=39.32&lng=-111.09&max_results=100&search_radius=500&filter=8"
   },
   "utah_dabs_sales_analysis_fy2025_p11": {
     "bytes": 4772545,
@@ -2774,6 +2998,14 @@
     "retrieved_at": "2026-10-09T21:05:14Z",
     "sha256": "89ffd51fce4a68180e61c17950cc214e66da1a45447be8d124aa44ff18c1fbc5",
     "url": null
+  },
+  "utah_dabs_state_stores_2026_11": {
+    "bytes": 141921,
+    "edition": "DABS store locator, category State Liquor Store, read 2026-11-20",
+    "filename": "dabs-state-liquor-stores.json",
+    "retrieved_at": "2026-11-20T18:42:59Z",
+    "sha256": "226957b20e86a181d3a098a545e77373e1257dc9e41eba295c12c8eb3cd696b1",
+    "url": "https://abs.utah.gov/wp-admin/admin-ajax.php?action=store_search&lat=39.32&lng=-111.09&max_results=100&search_radius=500&filter=9"
   },
   "utah_tc_pub25_rev_2026_09": {
     "bytes": 1139962,

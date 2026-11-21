@@ -1,239 +1,222 @@
-// The start page's Utah overview: four questions, then the proposal, the economics, the evidence and the tradeoffs, each
-// with its main point first and the detail behind a disclosure. Loaded on demand (it pulls in the scenario models), and
-// every figure is computed by the functions the briefing and the initiative page use, so the start page cannot drift
-// from them.
+// The start page's Utah overview, in the plan's order: the existing system, the proposed change, what consumers would
+// see, public revenue, other states, the risks, the framework, and how to check it all (sections A to H). Loaded on
+// demand. Every figure comes from the design model (lib/policyDesigns.ts, through lib/framework.ts) with no store costs
+// counted as saved, so the start page cannot drift from the Economics page or the briefing.
 import { useMemo } from "react";
 import { Go } from "../components/common";
+import { HowWeKnow } from "../components/HowWeKnow";
 import { dabsDollar, statutoryFloor } from "../lib/bottle";
+import { feeBurden, headline } from "../lib/framework";
 import { INITIATIVES } from "../lib/initiatives";
-import { directDef } from "../lib/producerDirect";
-import { alternativesReport, evaluate, type AltResult, type LegalNote } from "../lib/wineAlternatives";
+import { CONSUMER_ACCESS as AC } from "../lib/consumerAccess.generated";
+import { defaultDesignsReport } from "../lib/policyDesigns";
+import { samePriceHeadline } from "../lib/samePrice";
+import { amendmentsFor } from "../lib/statutes";
 
-const amount = (v: number) => `$${(Math.abs(v) / 1e6).toFixed(1)}M`;
-const pct = (v: number) => `${(v * 100).toFixed(0)}%`;
+const m = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
+const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
 const usd = (v: number) => `$${v.toFixed(2)}`;
 
-function LegalList({ notes }: { notes: LegalNote[] }) {
-  return (
-    <ul className="small source-list">
-      {notes.map((n) => (
-        <li key={n.item}>
-          <strong>{n.item}</strong> ({n.status}). {n.text} <span className="muted">{n.cite}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 export default function UtahOverview({ verified }: { verified: string[] }) {
-  const alt = useMemo(() => alternativesReport(), []);
-  const get = (id: string) => alt.results.find((r) => r.def.id === id)!;
-  const a = get("A_target");
-  const c = get("C_take");
-  const d = useMemo(() => evaluate(directDef()), []);
-  const lower = [get("B20_matched"), get("C20_matched")].map((r) => r.fixed.ledger.net);
-  const demand = (r: AltResult, id: string) => r.demand.find((d) => d.id === id)!.net;
-  const fewer = [a, c].flatMap((r) => [demand(r, "price_constant"), demand(r, "price_linear")]);
+  const r = useMemo(() => defaultDesignsReport(), []);
+  const h = headline(r);
   const data = INITIATIVES[0].worked.data;
   const floor = statutoryFloor(10);
   const parts = dabsDollar(data);
   const share = (id: string) => parts.find((p) => p.id === id)!.share;
-  // A $10 bottle at DABS's observed margin, split the way the FY2025 income statement splits a dollar of sales.
   const shelf = floor.landed / share("cost");
   const at = (id: string) => share(id) * shelf;
-  const both = a.legal.filter((n) => c.legal.some((m) => m.item === n.item));
-  const only = (r: AltResult, other: AltResult) => r.legal.filter((n) => !other.legal.some((m) => m.item === n.item));
+  const s = samePriceHeadline();
+  const small = feeBurden(r)[2];
 
   return (
     <>
-      <section className="panel" aria-labelledby="st-questions">
-        <h2 id="st-questions">Four questions</h2>
-        <ol className="finding-cards">
-          <li>
-            <p className="finding-tag">Question 1 · the proposal</p>
-            <h3>What would change if grocery stores could sell wine?</h3>
-            <p>
-              Licensed grocery stores could sell sealed wine to take home. State liquor stores would keep selling everything they sell now. Every
-              design needs a new grocery wine license.
-            </p>
-            <a href="#st-proposal">The proposal</a>
-          </li>
-          <li>
-            <p className="finding-tag">Question 2 · state revenue</p>
-            <h3>What happens to Utah's public revenue?</h3>
-            <p>
-              It depends on the design. On the model's figures the state is about {amount(a.fixed.ledger.net)} a year ahead with DABS supplying
-              grocers at today's price, and {amount(c.fixed.ledger.net)} ahead with private wholesalers paying a charge equal to DABS's markup.
-              Making grocers match state-store prices lowers it.
-            </p>
-            <a href="#st-economics">The economics</a>
-          </li>
-          <li>
-            <p className="finding-tag">Question 3 · other states</p>
-            <h3>What can we learn from other states?</h3>
-            <p>
-              Grocery-wine law is verified over time for {verified.length} states. Before-and-after comparisons, with Tennessee's 2016 change as the
-              worked example, describe what happened there; they do not show what the law caused.
-            </p>
-            <a href="#st-evidence">The evidence</a>
-          </li>
-          <li>
-            <p className="finding-tag">Question 4 · the design</p>
-            <h3>How would different distribution and taxation arrangements affect the outcome?</h3>
-            <p>
-              Who supplies the grocers and how the state is paid decide the result more than the sale itself: DABS, private wholesalers or
-              the producers themselves. Each design changes the law in different places and trades revenue, prices and administration
-              differently.
-            </p>
-            <a href="#st-tradeoffs">The tradeoffs</a>
-          </li>
-        </ol>
-      </section>
-
-      <section className="panel" aria-labelledby="st-proposal">
-        <h2 id="st-proposal">The proposal</h2>
-        <p className="lede">
-          Licensed grocery stores that meet set standards could sell <strong>sealed wine to take home</strong>. State liquor stores and package
-          agencies would keep selling everything they sell now. Beer, spirits, bars and restaurants would not change.
+      <section className="panel" aria-labelledby="st-a">
+        <p className="finding-tag">A · The existing system</p>
+        <h2 id="st-a">Grocery stores may sell beer, but not wine</h2>
+        <p>
+          A Utah grocery store can hold an off-premise beer retailer license. Wine is <em>liquor</em> under Utah law, so it can be bought to take
+          home only at a state liquor store or a contract package agency run for DABS, the Department of Alcoholic Beverage Services. DABS is both
+          the wholesaler and the retailer.
         </p>
         <p>
-          A bill would also decide <strong>who supplies the grocers and how the state is paid</strong>: DABS (Utah's Department of Alcoholic
-          Beverage Services) as the wholesaler, private wholesalers paying the state a charge, or producers selling to grocers directly with the
-          same charge. Letting grocers sell wine is a smaller change than ending state liquor stores, which these designs do not do.
+          Utah does not mainly tax wine; it sells it. DABS must mark wine up at least 88.5% over what it costs to land (Utah Code §
+          32B-2-304(2)(b)). At DABS's FY{data.fy} margin a bottle that costs {usd(floor.landed)} to land sells for {usd(shelf)}: {usd(at("operating"))}{" "}
+          pays for stores, staff and the warehouse, {usd(at("transfers"))} for school meals and other transfers, and {usd(at("net_profit"))} reaches the
+          General Fund.
         </p>
-        <details>
-          <summary>What current law says, and what would have to change</summary>
-          <h3>Every design</h3>
-          <LegalList notes={both} />
-          <h3>DABS as the wholesaler</h3>
-          <LegalList notes={only(a, c)} />
-          <h3>Private wholesalers and a state charge</h3>
-          <LegalList notes={only(c, a)} />
-          <h3>Producers selling to grocers directly</h3>
-          <LegalList notes={only(d, c)} />
-          <p className="small muted">
-            Read from the statutes in the saved sources; "unresolved" means the text does not settle it and both readings are shown. Not legal
-            advice, and not reviewed by a person.
-          </p>
-        </details>
       </section>
 
-      <section className="panel" aria-labelledby="st-economics">
-        <h2 id="st-economics">The economics</h2>
-        <p className="finding">
-          <strong>Utah does not mainly tax wine; it sells it.</strong> DABS must price wine at least 88.5% above what it costs to land (Utah Code §
-          32B-2-304(2)(b)): a bottle that costs {usd(floor.landed)} carries at least {usd(floor.markup)} of markup, {usd(floor.price)} before sales
-          tax.
+      <section className="panel" aria-labelledby="st-b">
+        <p className="finding-tag">B · The proposed change</p>
+        <h2 id="st-b">Licensed grocers could sell sealed wine</h2>
+        <p>
+          Licensed grocery stores could sell sealed wine to take home. What would stay regulated: a state license with local consent, ID checks on
+          every sale, staff training, compliance checks and penalties, as off-premise beer has today. State stores keep selling everything,
+          spirits stay where they are, and bars and restaurants do not change.
         </p>
         <p>
-          That markup is part of the price, not a tax, and not profit. At DABS's actual FY{data.fy} margin the same bottle sells for{" "}
-          {usd(shelf)}: {usd(at("cost"))} pays for the wine, {usd(at("operating"))} for DABS's stores, staff and warehouse,{" "}
-          {usd(at("transfers"))} for school-meals and other transfers, and {usd(at("net_profit"))} reaches the General Fund as net profit.
+          The bill would also decide who supplies grocers and how the state is paid: DABS as the wholesaler, licensed private wholesalers paying a
+          charge, or producers selling directly. Each changes the law in different places ({amendmentsFor("B").length} provisions for DABS
+          wholesale, {amendmentsFor("C").length} for private wholesale).
         </p>
-        <ul className="findings">
-          <li>
-            <strong>DABS as wholesaler, selling to grocers at today's price:</strong> the state about {amount(a.fixed.ledger.net)} a year ahead;
-            grocery wine about {pct(a.fixed.stack.consumerChange)} above the state store.
-          </li>
-          <li>
-            <strong>Private wholesalers paying a state charge equal to DABS's markup:</strong> about {amount(c.fixed.ledger.net)} a year ahead;
-            grocery wine about {pct(c.fixed.stack.consumerChange)} above the state store.
-          </li>
-          <li>
-            <strong>Producers selling to grocers directly, with the same charge:</strong> about {amount(d.fixed.ledger.net)} a year ahead when
-            delivering costs producers what it earns a wholesaler; cheaper delivery would lower the grocery price, not raise the state's take.
-          </li>
-          <li>
-            <strong>Grocers required to match state-store prices:</strong> the grocer's margin comes out of the state's share, {amount(Math.max(...lower))}{" "}
-            to {amount(Math.min(...lower))} a year less.
-          </li>
-        </ul>
+        <Go to={{ v: "framework" }} reset>
+          The proposed framework and the change matrix
+        </Go>
+      </section>
+
+      <section className="panel" aria-labelledby="st-c">
+        <p className="finding-tag">C · For shoppers</p>
+        <h2 id="st-c">Wine where you buy groceries, at today&rsquo;s price</h2>
+        <p>
+          Under the framework a bottle costs <strong>the same at a grocery store as at a state store</strong>: DABS sells to grocers below its shelf
+          price and grocers charge the price the commission fixes, as state stores and package agencies must. What changes is distance. Half of
+          Utahns live within {AC.distance.grocery.median.toFixed(2)} miles of a grocery store and {AC.distance.stateStore.median.toFixed(2)} miles of
+          a state store, and by law no state store may sell on a Sunday.
+        </p>
+        <div className="table-wrap">
+          <table className="data">
+            <caption className="sr-only">Stores in Utah and the share of Utahns living near one</caption>
+            <thead>
+              <tr>
+                <th scope="col">Store</th>
+                <th scope="col">In Utah</th>
+                <th scope="col">Utahns within 1 mile</th>
+                <th scope="col">Within 5 miles</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">State liquor store</th>
+                <td>{AC.outlets.stateStores}</td>
+                <td>{pct(AC.distance.stateStore.within[0])}</td>
+                <td>{pct(AC.distance.stateStore.within[2])}</td>
+              </tr>
+              <tr>
+                <th scope="row">Grocery store</th>
+                <td>{AC.outlets.grocery}</td>
+                <td>{pct(AC.distance.grocery.within[0])}</td>
+                <td>{pct(AC.distance.grocery.within[2])}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p className="small muted">
-          Model results, at fixed volume with 30% of household wine purchases moving to grocers: conditional, not forecasts. FY{data.fy} figures,
-          not reviewed by a person. The $10 bottle is split the way DABS's income statement splits a dollar of all its sales, not wine alone.
+          Straight-line distances from 2020 Census block groups; grocery stores are USDA&rsquo;s SNAP-authorized supermarkets, super stores and
+          grocery stores; state stores are those DABS&rsquo;s store locator lists. If a bill let grocers set their own prices instead, prices could
+          rise; the five designs page models that option.
         </p>
-        <div className="row-actions">
-          <Go to={{ v: "briefing" }} reset className="button primary-link">
-            The briefing: price a bottle yourself
-          </Go>
-          <Go to={{ v: "initiative" }} reset>
-            Every design, in the full analysis
-          </Go>
-          <Go to={{ v: "scenario" }} reset>
-            Change the assumptions
-          </Go>
-        </div>
-        <details>
-          <summary>Gross collections are not net revenue</summary>
-          <p className="small">
-            What the state collects on a bottle (DABS's markup and sales tax) is gross. DABS pays its operating costs out of the markup, then the
-            school-meals and enforcement deposits and other transfers, and only the rest is net profit. So the revenue change for a design counts
-            the markup and any charge, sales tax, the store costs DABS saves and the new costs it takes on, never the markup alone.
-          </p>
-        </details>
+        <Go to={{ v: "sameprice" }} reset>
+          The same-shelf-price design
+        </Go>
       </section>
 
-      <section className="panel" aria-labelledby="st-evidence">
-        <h2 id="st-evidence">The evidence</h2>
+      <section className="panel" aria-labelledby="st-d">
+        <p className="finding-tag">D · Public revenue</p>
+        <h2 id="st-d">The state&rsquo;s side: a choice of margin</h2>
         <p>
-          Grocery-wine law is verified over time for {verified.length} states ({verified.join(", ")}). Before-and-after comparisons show what
-          happened there, with comparison states over the same years: they describe, they do not prove cause.
+          At today&rsquo;s price the grocer&rsquo;s margin comes out of the state&rsquo;s share of the bottle, less what DABS stops spending. With DABS
+          selling to grocers at {pct(s.priceToGrocers)} of its shelf price and license fees covering the new administration, the state gives up{" "}
+          <strong>{m(s.cost.none).replace("+", "")} a year</strong> if DABS saves nothing, {m(s.cost.allocated).replace("+", "")} if its card fees and
+          agency contracts fall with sales, and {m(s.cost.longerRun).replace("+", "")} if its wages fall too. Household wine purchases{" "}
+          {pct(s.neededNone, 1)} higher would cover the first. If grocers set their own prices instead, DABS wholesale leaves the state{" "}
+          {m(h.bFixed)} a year ahead when 30% of household purchases move.
         </p>
-        <details>
-          <summary>Tennessee, July 2016: the worked example</summary>
-          <p className="small">
-            Tennessee's grocery stores began selling wine on July 1, 2016. Other things changed around the same time (a rule against selling
-            wine below cost, beer sales in package stores, and an accounting relabeling in FY2018), so a before-and-after difference cannot be
-            given to the grocery law alone. The analysis plan was written before the results, and the comparison uses neighboring states and
-            placebo dates.
-          </p>
-        </details>
-        <div className="row-actions">
-          <Go to={{ v: "change" }} reset className="button primary-link">
-            Before &amp; after
-          </Go>
-          <Go to={{ v: "case" }} reset>
-            Tennessee worked example
-          </Go>
-          <Go to={{ v: "finder" }} reset>
-            Comparison states for Utah
-          </Go>
-        </div>
+        <HowWeKnow
+          claim={`same shelf price at ${pct(s.margin)}: ${m(-s.cost.none)} a year`}
+          inputs="DABS FY2025 wine sales and income statement; household share of wine (82%); landed cost share."
+          assumptions="30% of household wine purchases move to grocers at today's price; administration $0.50M a year (no estimate exists), covered by license fees; no DABS cost saved in the first figure."
+          calculation="The purchase-flow model with DABS selling to grocers below its shelf price and grocers charging today's price: the grocer's margin on the wine that moves, less DABS's costs that fall."
+          output={`${m(-s.cost.none)} a year with nothing saved; ${m(-s.cost.allocated)} with card fees and agency contracts falling; ${m(-s.cost.longerRun)} with wages falling too.`}
+          period={`FY${data.fy} dollars, a year`}
+          limits="Conditional scenarios, not forecasts; every input is software-transcribed and unreviewed."
+          reproduce="npm test in web/ (samePrice.test.ts checks the figures against the alternatives engine)."
+        />
+        <Go to={{ v: "sameprice" }} reset className="button primary-link">
+          Explore the numbers
+        </Go>
       </section>
 
-      <section className="panel" aria-labelledby="st-tradeoffs">
-        <h2 id="st-tradeoffs">The tradeoffs</h2>
+      <section className="panel" aria-labelledby="st-e">
+        <p className="finding-tag">E · Other states</p>
+        <h2 id="st-e">What other states show, and what they cannot</h2>
         <ul className="findings">
           <li>
-            <strong>Regulation.</strong> Every design needs a new grocery wine license and the enforcement to go with it. The model counts new
-            licensing, enforcement, administration and supply costs of about {amount(a.reconciliation.newCosts)} a year in the DABS design and{" "}
-            {amount(c.reconciliation.newCosts)} in the private design.
+            <strong>Tennessee, 2016.</strong> A peer-reviewed study finds no significant change in the number of liquor stores and higher wine-tax
+            receipts. Tennessee taxes wine by excise; Utah earns a margin, so the revenue result does not carry over.
           </li>
           <li>
-            <strong>Operations.</strong> With DABS as the wholesaler, DABS supplies grocers as well as its own stores. Its stores handle fewer
-            bottles, and the model counts about {amount(a.reconciliation.avoidableCosts)} a year of store costs saved. With private wholesalers,
-            the wholesalers need licenses and the state needs a way to collect the charge.
+            <strong>Colorado, 2023.</strong> Every beer retailer's license was converted automatically; no government evaluation exists yet.
           </li>
           <li>
-            <strong>Money.</strong> If the higher grocery price sends some shoppers back to state stores, both designs stay ahead (
-            {amount(demand(a, "return_to_stores"))} and {amount(demand(c, "return_to_stores"))}). In an exploratory case where Utahns buy less
-            wine in total instead, they come out about {amount(Math.max(...fewer))} to {amount(Math.min(...fewer))} a year short.
-          </li>
-          <li>
-            <strong>Prices and convenience.</strong> Shoppers could buy wine where they buy groceries, at about {pct(a.fixed.stack.consumerChange)}{" "}
-            to {pct(c.fixed.stack.consumerChange)} above the state store; state stores keep today's prices.
-          </li>
-          <li>
-            <strong>Public health.</strong> The model counts money, not drinking. Measures of drinking and alcohol-related deaths are in the data for
-            every state, around each law change too; none of them isolates what a law caused.
+            <strong>Pennsylvania, 2016.</strong> The state stayed the wholesaler while permit holders, 559 grocery stores among them in 2025, resell
+            its wine: the closest structure to DABS wholesale.
           </li>
         </ul>
+        <p className="small muted">Grocery-wine law is verified over time for {verified.length} states in this dataset.</p>
+        <Go to={{ v: "states" }} reset>
+          Other states, with evidence strength
+        </Go>
+      </section>
+
+      <section className="panel" aria-labelledby="st-f">
+        <p className="finding-tag">F · Risks</p>
+        <h2 id="st-f">What could go wrong</h2>
+        <ul className="findings">
+          <li>
+            <strong>Fiscal.</strong> Nobody has measured how many households would switch, what DABS could save, or what licensing would cost.
+          </li>
+          <li>
+            <strong>Public health.</strong> More outlets usually mean more drinking; the Community Preventive Services Task Force recommends limiting
+            outlet density.
+          </li>
+          <li>
+            <strong>Existing businesses.</strong> Rural package agencies could lose sales; a flat fee that covers the administration is{" "}
+            {pct(small.feeShare)} of a small store's wine margin.
+          </li>
+          <li>
+            <strong>Implementation.</strong> Rules, training, delivery to grocers and enforcement all cost money before any revenue arrives.
+          </li>
+        </ul>
+        <Go to={{ v: "safeguards" }} reset>
+          Public health and safeguards
+        </Go>
+      </section>
+
+      <section className="panel" aria-labelledby="st-g">
+        <p className="finding-tag">G · The framework</p>
+        <h2 id="st-g">Today&rsquo;s price, at the grocery store</h2>
+        <p>
+          The framework keeps DABS as the wholesaler and the shelf price where it is: DABS sells to licensed grocers below its shelf price and
+          grocers charge the state-store price. Around that it sets grocery stores first, a commission license with local consent, beer&rsquo;s
+          safeguards extended to wine, fees that cover the cost, yearly reporting and a review after three years. DABS&rsquo;s price to grocers is
+          the bill&rsquo;s main fiscal choice.
+        </p>
+        <Go to={{ v: "framework" }} reset>
+          The 14-point framework
+        </Go>{" "}
+        · <Go to={{ v: "questions" }} reset>Hard questions</Go>
+      </section>
+
+      <section className="panel" aria-labelledby="st-h2">
+        <p className="finding-tag">H · Verify the research</p>
+        <h2 id="st-h2">Check every number</h2>
+        <p>
+          The model, its inputs and its checks are open: each figure links to its source, the downloads carry the data, and the code is public at
+          github.com/whiptronics/proof-and-policy-public. Written with AI assistance and not reviewed by a person.
+        </p>
         <div className="row-actions">
-          <Go to={{ v: "briefing" }} reset className="button primary-link">
-            The two-minute briefing
+          <Go to={{ v: "designs" }} reset>
+            The design model
           </Go>
-          <Go to={{ v: "map", mm: "adults_binge" }} reset>
-            Adults who binge drank, by state
+          <Go to={{ v: "methods" }} reset>
+            Methods
+          </Go>
+          <Go to={{ v: "sources" }} reset>
+            Sources
+          </Go>
+          <Go to={{ v: "downloads" }} reset>
+            Downloads
           </Go>
         </div>
       </section>

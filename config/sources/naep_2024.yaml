@@ -1,0 +1,90 @@
+source_id: naep_2024
+publisher: National Center for Education Statistics (NCES), National Assessment of Educational Progress
+title: NAEP 2024 state results, reading and mathematics, grades 4 and 8 (NAEP Data Service)
+landing_url: https://www.nationsreportcard.gov/api_documentation.aspx
+citation: >-
+  U.S. Department of Education, Institute of Education Sciences, National Center for Education Statistics, National
+  Assessment of Educational Progress (NAEP), 2024 Reading and Mathematics Assessments, retrieved from the NAEP Data
+  Service (GetAdhocData). https://www.nationsreportcard.gov/api_documentation.aspx
+update_frequency: Every two years for reading and mathematics (2024 is the latest state results)
+source_family: context
+rights_status: public_domain_us_federal
+notes: >-
+  Average scale scores for all students in public schools, each state, the District of Columbia and the national
+  public sample. The sig files are NCES's own significance tests between jurisdictions (sigacrossjuris); the page
+  reports a state as above or below the nation only where NCES's test says so, never from the point estimates alone.
+  Outcome measures, not spending measures; nothing here estimates how money affects scores.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: naep_2024_math4_scores
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=mathematics&grade=4&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_math4_scores.json
+    edition: "NAEP 2024 mathematics grade 4, average scale scores, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: true
+  - asset_id: naep_2024_math4_sig
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=mathematics&grade=4&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_math4_sig.json
+    edition: "NAEP 2024 mathematics grade 4, significance tests between jurisdictions, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: false
+  - asset_id: naep_2024_math8_scores
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=mathematics&grade=8&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_math8_scores.json
+    edition: "NAEP 2024 mathematics grade 8, average scale scores, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: true
+  - asset_id: naep_2024_math8_sig
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=mathematics&grade=8&subscale=MRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_math8_sig.json
+    edition: "NAEP 2024 mathematics grade 8, significance tests between jurisdictions, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: false
+  - asset_id: naep_2024_read4_scores
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=reading&grade=4&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_read4_scores.json
+    edition: "NAEP 2024 reading grade 4, average scale scores, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: true
+  - asset_id: naep_2024_read4_sig
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=reading&grade=4&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_read4_sig.json
+    edition: "NAEP 2024 reading grade 4, significance tests between jurisdictions, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: false
+  - asset_id: naep_2024_read8_scores
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=data&subject=reading&grade=8&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_read8_scores.json
+    edition: "NAEP 2024 reading grade 8, average scale scores, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: true
+  - asset_id: naep_2024_read8_sig
+    url: "https://www.nationsreportcard.gov/DataService/GetAdhocData.aspx?type=sigacrossjuris&subject=reading&grade=8&subscale=RRPCM&variable=TOTAL&jurisdiction=NP,AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY&stattype=MN:MN&Year=2024"
+    filename: naep_2024_read8_sig.json
+    edition: "NAEP 2024 reading grade 8, significance tests between jurisdictions, NAEP Data Service"
+    source_series: naep_2024
+    source_vintage: "2024"
+    format: json
+    priority: 14
+    redistribute_raw: false
