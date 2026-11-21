@@ -1,0 +1,26 @@
+source_id: utah_uhp_position_costs
+publisher: Utah Department of Public Safety, Utah Highway Patrol (in a Utah State Legislature interim committee packet)
+title: "Bangerter Highway - Mountain View Corridor Resource Analysis / Proposal (2022): cost per position title"
+landing_url: https://le.utah.gov/interim/2022/pdf/00003562.pdf
+citation: >-
+  Utah Highway Patrol, "Bangerter Highway - Mountain View Corridor Resource Analysis / Proposal," cost and salary
+  numbers as of July 6, 2022, Utah State Legislature interim document 00003562 (2022).
+update_frequency: One-time agency estimate
+source_family: context
+rights_status: facts_with_citation
+notes: >-
+  The Highway Patrol's own estimate of the ongoing yearly cost of one position (salary, benefits and related ongoing
+  costs, in July 2022 prices) for a staffing proposal. An agency estimate for a budget request, not an audited cost.
+  The Public Funding page uses the trooper's ongoing cost; the one-time column is not used. Read 2026-11-21 for the
+  page's public-value scale (devplan item PPF-404).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: ut_interim_2022_00003562
+    url: https://le.utah.gov/interim/2022/pdf/00003562.pdf
+    filename: 00003562.pdf
+    edition: UHP resource analysis, costs as of 2022-07-06 (interim document 00003562)
+    source_series: utah_uhp_position_costs
+    source_vintage: "2022-07-06"
+    format: pdf
+    priority: 20
+    redistribute_raw: true

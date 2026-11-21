@@ -47,6 +47,12 @@ sources:
   - usda_school_meal_rates
   - usbe_school_finance
   - tennessee_dor_alcohol_taxes
+  - usda_school_meal_costs
+  - utah_code_teacher_supplies
+  - utah_uhp_position_costs
+  - usbe_capital_outlay
+  - usbe_educator_salaries
+  - utah_auditor_teacher_pay
 # SHA-256 of every input the build reads. Updated only by 'fetch --update-pins' (reviewed change).
 pins_file: config/builds/preview.pins.json
 policy_events: data/curated/policy_events.csv

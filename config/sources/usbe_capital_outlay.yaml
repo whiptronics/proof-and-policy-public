@@ -1,0 +1,35 @@
+source_id: usbe_capital_outlay
+publisher: Utah State Board of Education, Financial Operations
+title: School Plant Capital Outlay Report (Superintendent's Annual Report, FY2023 and FY2024)
+landing_url: https://www.schools.utah.gov/superintendentannualreport
+citation: >-
+  Utah State Board of Education, Superintendent's Annual Report, Financial Operations, "School Plant Capital Outlay
+  Report," 2023 and 2024.
+update_frequency: Annual
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  New school buildings and additions that districts reported, with estimated cost and square footage. The reports'
+  own footnote: costs come from the SP-4 form districts submit and "are not final costs". The Public Funding page uses
+  the three new district elementary schools these two reports list, and the middle of their estimated costs, as a
+  one-time cost; no build time is given. Read 2026-11-21 for the page's public-value scale (devplan item PPF-404).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: usbe_school_plant_capital_outlay_2023
+    url: https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2023/School%20Plant%20Capital%20Outlay%20Report%202023%20sqft.pdf
+    filename: School-Plant-Capital-Outlay-Report-2023-sqft.pdf
+    edition: School Plant Capital Outlay Report 2023
+    source_series: usbe_capital_outlay
+    source_vintage: "2023"
+    format: pdf
+    priority: 20
+    redistribute_raw: true
+  - asset_id: usbe_school_plant_capital_outlay_2024
+    url: https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/School%20Plant%20Capital%20Outlay%20Report%202024%20sqft.pdf
+    filename: School-Plant-Capital-Outlay-Report-2024-sqft.pdf
+    edition: School Plant Capital Outlay Report 2024
+    source_series: usbe_capital_outlay
+    source_vintage: "2024"
+    format: pdf
+    priority: 20
+    redistribute_raw: true

@@ -385,10 +385,13 @@ export interface Comparator {
   year: string;
   source: string;
   note: string;
+  /** A one-time cost set against a yearly amount: shown as one every so many years. */
+  oneTime?: boolean;
 }
 
 const dest = (id: string) => PF.dabs.destinations.find((d) => d.id === id)!.amount;
 const UT = PF.education.states.find((s) => s.usps === "UT")!;
+const CMP = PF.comparators;
 const FREE_LUNCH = Math.round((PF.meals.freeLunchReimbursement.section11 + PF.meals.freeLunchReimbursement.section4) * 100) / 100;
 
 export const COMPARATORS: Comparator[] = [
@@ -397,9 +400,23 @@ export const COMPARATORS: Comparator[] = [
   { id: "general_fund", label: "FY2025 net profit transfer to the General Fund", amount: dest("general_fund"), unit: "share", unitLabel: "of the transfer", year: "FY2025", source: "DABS 90th Annual Report, p. 32", note: "Unrestricted: the Legislature appropriates it for any purpose." },
   { id: "per_pupil", label: "A year of current spending for one Utah public-school student", amount: UT.ppcs, unit: "units", unitLabel: "student-years", year: "FY2024", source: "Census, 2024 Annual Survey of School System Finances, Table 8", note: "Current spending only (no buildings or debt). The comparison is a scale, not a number of students who would be served." },
   { id: "free_lunch_reimbursement", label: "Federal reimbursement for one free school lunch (a reimbursement rate, not a cost)", amount: FREE_LUNCH, unit: "units", unitLabel: "free lunches' federal reimbursement", year: PF.meals.freeLunchReimbursement.schoolYear, source: "USDA Food and Nutrition Service, 89 FR 56720 (July 10, 2024), Sections 4 and 11, contiguous states", note: `What the federal government pays a school for one free lunch, July 2024 to June 2025: Section 11 ($${PF.meals.freeLunchReimbursement.section11.toFixed(2)}) plus Section 4 (${Math.round(PF.meals.freeLunchReimbursement.section4 * 100)} cents) where under 60% of lunches are free or reduced-price; ${Math.round(PF.meals.freeLunchReimbursement.section4HighNeedExtra * 100)} cents more at 60% or above, and ${Math.round(PF.meals.freeLunchReimbursement.performanceExtra * 100)} cents more for schools certified for the meal-pattern payment. USDA Foods and state money come on top. Not what a lunch costs to make, and not a number of children who would be fed.` },
-  { id: "meal_cost", label: "Cost of one school meal", amount: null, unit: "units", unitLabel: "meals", year: "—", source: "Not available", note: "The legislature's brief gives the prices families pay ($3.56 lunch, $2.17 breakfast), not what a meal costs; no sourced cost per meal is used." },
-  { id: "teacher", label: "A teacher's total compensation", amount: null, unit: "units", unitLabel: "teachers", year: "—", source: "Not available", note: "No sourced figure for salary plus benefits for a defined Utah teaching role is in this project." },
+  { id: "meal_cost", label: "Full cost of one school lunch (national, school year 2014-15)", amount: CMP.mealCost.lunchFullWeighted, unit: "units", unitLabel: "lunches at that cost", year: CMP.mealCost.schoolYear, source: "USDA Food and Nutrition Service, School Nutrition and Meal Cost Study, Volume 3 summary (April 2019), p. 1", note: `The mean full cost to produce a reimbursable lunch, weighted by lunches served, across the nation in school year 2014-15, in that year's dollars (not adjusted for inflation). Full cost adds district costs not charged to food service to the reported cost ($${CMP.mealCost.lunchReportedWeighted.toFixed(2)}); for the average school food authority the two were $${CMP.mealCost.lunchFullAverage.toFixed(2)} and $${CMP.mealCost.lunchReportedAverage.toFixed(2)}, against a free-lunch subsidy of $${CMP.mealCost.freeLunchSubsidy.toFixed(2)} then. No later study with published cost figures was found (the follow-up study of 2022-23 had none). The legislature's brief gives the prices families pay ($3.56 lunch, $2.17 breakfast), not what a meal costs.` },
+  { id: "teacher", label: "Average total compensation of one Utah teacher, FY2025 (includes benefits)", amount: CMP.teacher.totalCompensationMean, unit: "units", unitLabel: "teachers' yearly total compensation", year: CMP.teacher.fiscalYear, source: "Office of the State Auditor, Transparent Utah Teacher Compensation Dashboard, FY2025 (downloaded 2026-11-21)", note: `The mean over ${CMP.teacher.teachers.toLocaleString("en-US")} teachers whose primary role was classroom teaching, each counted once per district or charter school, as the dashboard counts them. Total compensation includes benefits and some pay for non-teaching roles; teaching pay alone averaged $${Math.round(CMP.teacher.instructionalMean).toLocaleString("en-US")}. USBE's statewide average teacher salary for ${CMP.teacher.usbeSalary.schoolYear}, salary only, was $${CMP.teacher.usbeSalary.mean.toLocaleString("en-US", { minimumFractionDigits: 2 })}. A scale, not a count of teachers who could be hired.` },
+  { id: "classroom_supplies", label: "Teaching supplies money for one K-6 classroom teacher for a year (set in law)", amount: CMP.supplies.k6, unit: "units", unitLabel: "K-6 teachers' yearly supplies money", year: "FY2026 on", source: "Utah Code 53F-2-527(2) (version effective 2025-07-01)", note: `$${CMP.supplies.k6} for each classroom teacher position in pre-kindergarten special education and kindergarten through grade 6; $${CMP.supplies.grades7to12} for grades 7 through 12. If the appropriation falls short, the state board may reduce the amounts in proportion (subsection 3). Supplies and materials only, not a classroom's whole budget.` },
+  { id: "trooper", label: "Ongoing yearly cost of one Highway Patrol trooper (2022 agency estimate)", amount: CMP.trooper.ongoing, unit: "units", unitLabel: "troopers' ongoing yearly cost", year: "FY2023", source: "Utah Highway Patrol, Bangerter Highway - Mountain View Corridor Resource Analysis / Proposal (2022), pp. 2-3, Cost Per Position Title", note: "The patrol's own estimate for a staffing proposal, in July 2022 prices, not an audited cost. Ongoing cost only; the one-time cost of a new position is left out. A scale, not a count of troopers who could be hired." },
+  { id: "new_school", label: "One new district elementary school (one-time construction estimate)", amount: CMP.school.middleCost, unit: "units", unitLabel: "new elementary schools", oneTime: true, year: "FY2023-24", source: "Utah State Board of Education, School Plant Capital Outlay Reports 2023 and 2024", note: `A one-time cost set against a yearly amount, so the comparison is one school every so many years. The middle of the three new district elementary schools the two reports list: ${CMP.school.schools.map((s) => `${s.name} (${s.district}, $${(s.cost / 1e6).toFixed(1)}M)`).join(", ")}. Estimates from the districts' SP-4 forms, which the reports say are not final costs. No build time is given.` },
 ];
+
+/** How many times a yearly amount covers a comparator, in words; a one-time cost reads as one every so many years. */
+export function compareWords(amount: number, c: Comparator): string {
+  const q = compare(amount, c);
+  if (q === null) return "Not available";
+  if (c.unit === "share") return `${(q * 100).toFixed(1)}% ${c.unitLabel}`;
+  const n = (v: number, d: number) => v.toLocaleString("en-US", { maximumFractionDigits: d });
+  if (!c.oneTime) return `about ${n(q, 0)} ${c.unitLabel}`;
+  if (q === 0) return `no ${c.unitLabel}`;
+  return q >= 1 ? `about ${n(q, 1)} ${c.unitLabel} a year` : `one every ${n(1 / q, 1)} years`;
+}
 
 /** Published findings that cut against this page's results, each read from the source on the date given. Searches
  *  that found nothing are recorded in docs/public-funding/qa/contrary-evidence.md. */

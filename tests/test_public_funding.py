@@ -32,6 +32,12 @@ ASSETS = (
         pf.TN_ACT,
         pf.CO_LAW,
         pf.NIAAA,
+        pf.TEACHER_PAY,
+        pf.USBE_SALARIES,
+        pf.SNMCS,
+        pf.SUPPLIES_LAW,
+        pf.UHP_COSTS,
+        *pf.CAPITAL_OUTLAY,
     }
     | {f"tn_dor_collections_june_{fy}" for fy in range(2012, 2026)}
 )

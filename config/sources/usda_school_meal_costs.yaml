@@ -1,0 +1,27 @@
+source_id: usda_school_meal_costs
+publisher: U.S. Department of Agriculture, Food and Nutrition Service, Office of Policy Support
+title: "School Nutrition and Meal Cost Study, Volume 3: School Meal Costs and Revenues (Summary), April 2019"
+landing_url: https://www.fns.usda.gov/research/cn/school-nutrition-and-meal-cost-study
+citation: >-
+  Food and Nutrition Service, "School Nutrition and Meal Cost Study, Final Report Volume 3: School Meal Costs and
+  Revenues, Summary of Findings," Office of Policy Support, April 2019.
+update_frequency: One-time study (SY2014-15); a successor study (SNMCS-II, SY2022-23) had no published cost figures when read
+source_family: context
+rights_status: public_domain_us_federal
+notes: >-
+  A nationally representative study of what school meals cost to produce in school year 2014-15. "Reported cost" is
+  what school food authorities charge to food service; "full cost" adds costs the district carries but does not charge
+  to food service. The Public Funding page uses the full cost of a lunch weighted by lunches served (each lunch counts
+  once), national, in 2014-15 dollars, without inflating it. Read 2026-11-21 for the page's public-value scale (devplan
+  item PPF-404); no Utah-specific or later cost per meal was found.
+host_min_interval_seconds: 3
+assets:
+  - asset_id: usda_snmcs_v3_summary_2019
+    url: https://fns-prod.azureedge.us/sites/default/files/resource-files/SNMCS-Volume3-Summary.pdf
+    filename: SNMCS-Volume3-Summary.pdf
+    edition: School Nutrition and Meal Cost Study, Volume 3 summary (April 2019), school year 2014-15 costs
+    source_series: usda_school_meal_costs
+    source_vintage: SY2014-15
+    format: pdf
+    priority: 20
+    redistribute_raw: true

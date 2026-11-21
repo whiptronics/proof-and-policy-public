@@ -266,7 +266,12 @@ This is a research preview. Read this before using any number.
   is an assumption, not a legal reading. Replacement mechanisms are modeled as proposed law, never current law.
 - Census spending per pupil is not adjusted for cost differences between states and excludes buildings and debt.
   NAEP comparisons use NCES's own significance tests. Neither shows what an added dollar would do.
-- No school-meal cost per meal and no teacher-cost comparator was sourced; they show "Not available". Statewide
-  alcohol money is not assigned to any district.
+- The public-value comparators are scales, not counts of what the money would buy. The school-lunch cost ($5.55) is
+  a national study estimate for school year 2014-15 in that year's dollars, not Utah's and not adjusted for
+  inflation; no later study with published costs was found. The teacher figure is total compensation, benefits and
+  some non-teaching pay included. The supplies amount is what the law sets, which the state board may reduce in
+  proportion. The trooper cost is the patrol's own 2022 estimate, not audited, ongoing cost only. The school cost is
+  the middle of three districts' estimates on SP-4 forms, not final costs, and is one-time, so it is shown as one
+  school every so many years. Statewide alcohol money is not assigned to any district.
 - S.B. 180 (2026)'s status was read from the legislature's page by hand on 2026-11-20 (its page is drawn by
   JavaScript, so it is not a pinned file).

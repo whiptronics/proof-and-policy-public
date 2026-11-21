@@ -16,6 +16,7 @@ import {
   bottleReceipt,
   lawIsStale,
   compare,
+  compareWords,
   consolidatedReceipts,
   decodeScenario,
   documentedOnly,
@@ -356,8 +357,8 @@ describe("comparators from USDA and USBE", () => {
     expect(c.label).toContain("a reimbursement rate, not a cost");
     expect(c.note).toContain("Not what a lunch costs");
     expect(r.source.asset).toBe("usda_nslp_rates_sy2024_25");
-    // The cost row stays empty: no sourced cost per meal exists.
-    expect(COMPARATORS.find((x) => x.id === "meal_cost")!.amount).toBeNull();
+    // The cost row is a separate, sourced cost figure, never this rate.
+    expect(COMPARATORS.find((x) => x.id === "meal_cost")!.amount).not.toBe(c.amount);
   });
 
   test("USBE's per-pupil figure is on every district and agrees with Census's for districts of 1,000 or more", () => {
@@ -448,5 +449,71 @@ describe("Tennessee and Colorado beside Utah (devplan PPF-407)", () => {
     expect(section).toContain("What these comparisons cannot show");
     expect(section).toContain("Whether either change caused anything");
     expect(section).not.toMatch(/\b(led to|resulted in|because of the (law|change)|caused by|thanks to)\b/i);
+  });
+});
+
+describe("public-value comparators (devplan PPF-404)", () => {
+  const row = (id: string) => COMPARATORS.find((x) => x.id === id)!;
+  const NEW = ["meal_cost", "teacher", "classroom_supplies", "trooper", "new_school"];
+
+  test("the five rows carry the figures read from their pinned files", () => {
+    expect(row("meal_cost").amount).toBe(5.55);
+    expect(row("teacher").amount).toBe(116031.57);
+    expect(row("classroom_supplies").amount).toBe(500);
+    expect(row("trooper").amount).toBe(135300);
+    expect(row("new_school").amount).toBe(31_000_000);
+    const school = PF.comparators.school;
+    expect(school.schools.map((s) => s.cost).sort((a, b) => a - b)[1]).toBe(school.middleCost);
+  });
+
+  test("every new row names its source, year and limits, and each figure's file is pinned", () => {
+    for (const id of NEW) {
+      const c = row(id);
+      expect(c.unit).toBe("units");
+      expect(c.source.length).toBeGreaterThan(20);
+      expect(c.note.length).toBeGreaterThan(80);
+    }
+    const C = PF.comparators;
+    for (const s of [C.teacher.source, C.teacher.usbeSalary.source, C.mealCost.source, C.supplies.source, C.trooper.source, ...C.school.sources]) {
+      expect(s.sha16).toMatch(/^[0-9a-f]{16}$/);
+      expect(s.retrieved).toBe("2026-11-21");
+    }
+    expect(row("meal_cost").note).toMatch(/not adjusted for inflation/);
+    expect(row("trooper").note).toMatch(/not an audited cost/);
+    expect(row("new_school").note).toMatch(/not final costs/);
+    for (const id of ["teacher", "trooper"]) expect(row(id).note).toMatch(/A scale, not a count/);
+  });
+
+  test("the teacher row is total compensation, and salary-only figures stay in the note", () => {
+    const c = row("teacher");
+    expect(c.label).toContain("total compensation");
+    expect(c.label).toContain("includes benefits");
+    expect(c.note).toContain("$79,296");
+    expect(c.note).toContain("$72,881.90");
+  });
+
+  test("only the school row is one-time, and it reads as one school every so many years", () => {
+    expect(COMPARATORS.filter((c) => c.oneTime).map((c) => c.id)).toEqual(["new_school"]);
+    const s = row("new_school");
+    expect(compareWords(93_000_000, s)).toBe("about 3 new elementary schools a year");
+    expect(compareWords(15_500_000, s)).toBe("one every 2 years");
+    expect(compareWords(4_000_000, s)).toBe("one every 7.8 years");
+    expect(compareWords(0, s)).toBe("no new elementary schools");
+  });
+
+  test("yearly rows read as a whole count; shares as a percentage", () => {
+    expect(compareWords(1_353_000, row("trooper"))).toBe("about 10 troopers' ongoing yearly cost");
+    expect(compareWords(5_550, row("meal_cost"))).toBe("about 1,000 lunches at that cost");
+    const share = COMPARATORS.find((c) => c.unit === "share" && c.amount !== null)!;
+    expect(compareWords(share.amount! / 4, share)).toBe(`25.0% ${share.unitLabel}`);
+    expect(compareWords(1, { ...row("teacher"), amount: null })).toBe("Not available");
+  });
+
+  test("no comparator says discount or savings, and the words are American", () => {
+    for (const c of COMPARATORS) {
+      const words = `${c.label} ${c.unitLabel} ${c.note} ${c.source}`;
+      expect(words).not.toMatch(/discount|saving/i);
+      expect(words).not.toMatch(/\b(labour|programme|centre|licence|colour|favour|organis|analys(e|ing)|honour|cheque)/i);
+    }
   });
 });

@@ -28,7 +28,7 @@ import {
   ROUTINGS,
   STATE_NAME,
   T,
-  compare,
+  compareWords,
   decodeScenario,
   documentedOnly,
   educationCsv,
@@ -887,10 +887,7 @@ export function FundingView() {
           </label>
         </div>
         {tableOf(
-          COMPARATORS.map((c) => {
-            const q = compare(amount, c);
-            return { Comparator: c.label, Year: c.year, "Base amount": c.amount === null ? "Not available" : c.unit === "units" ? (c.amount < 100 ? `$${c.amount.toFixed(2)}` : usd0(c.amount)) : musd(c.amount, 1), [`${musd(amount, 2)} is`]: q === null ? "Not available" : c.unit === "share" ? `${pct(q, 1)} ${c.unitLabel}` : `about ${n0(q)} ${c.unitLabel}`, Note: c.note, Source: c.source };
-          }),
+          COMPARATORS.map((c) => ({ Comparator: c.label, Year: c.year, "Base amount": c.amount === null ? "Not available" : c.unit === "units" ? (c.amount < 100 ? `$${c.amount.toFixed(2)}` : usd0(c.amount)) : musd(c.amount, 1), [`${musd(amount, 2)} is`]: compareWords(amount, c), Note: c.note, Source: c.source })),
           `${musd(amount, 2)} a year against sourced amounts`,
         )}
       </section>

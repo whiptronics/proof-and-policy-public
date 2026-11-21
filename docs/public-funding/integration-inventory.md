@@ -56,8 +56,9 @@ a new research release, which is the maintainer's decision.
   lab uses the existing wine terms (FY2026 wine sales; FY2025 all-product margin applied to wine, as before).
 - **No measured share of wine that would move, no measured new demand, no measured avoidable DABS cost.** These stay
   inputs; documented-input-only mode removes them and the result becomes per dollar, or undetermined.
-- **No school-meal cost per meal.** The legislative brief gives prices families pay, not costs; the comparator shows
-  "Not available".
+- **No school-meal cost per meal.** The legislative brief gives prices families pay, not costs; the comparator showed
+  "Not available" until PPF-404 (2026-11-21, release 0.6.1) added USDA's national full cost of one lunch for school
+  year 2014-15 ($5.55, not adjusted for inflation) and a Utah teacher's FY2025 total compensation, each labeled so.
 - **No district apportionment of alcohol money.** District cards show Census finances only and say "Not estimable".
 - **USBE district data** was not used at first; Census's FY2024 individual-unit file supplies the district rows. The
   gap-closing pass (same day) added USBE's own FY2024 per-pupil figure beside Census's for every district

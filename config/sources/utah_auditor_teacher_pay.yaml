@@ -1,0 +1,30 @@
+source_id: utah_auditor_teacher_pay
+publisher: Utah Office of the State Auditor (Transparent Utah)
+title: Teacher Compensation Dashboard, FY2025 teacher-level export
+landing_url: https://transparent.utah.gov/teacher-pay/
+citation: >-
+  Utah Office of the State Auditor, Transparent Utah, "Teacher Compensation Dashboard," Fiscal Years 2014-2025,
+  "Download as CSV" with the default filters, downloaded 2026-11-21.
+update_frequency: Annual (one fiscal year added each year)
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  The auditor's teacher-level compensation report: teachers whose primary role was classroom teaching and who matched a
+  teacher ID in USBE's CACTUS database, from district and charter compensation reports. "Total Compensation" includes
+  benefits and also pay from non-instructional roles; "Instructional Wages" is pay for teaching only. The dashboard is
+  an R Shiny app with no fixed download address, so the file was downloaded from its "Download as CSV" button after
+  choosing "Total Compensation" with every other filter at its default (fiscal year 2025, all districts and charter
+  schools), and imported by hand. It names individual teachers; the raw file is kept here, not redistributed, and only
+  the statewide average is published. One row per teacher per school repeats that teacher's pay, so the average counts
+  each teacher once per district or charter school, which reproduces the dashboard's displayed mean ($116,032).
+host_min_interval_seconds: 5
+assets:
+  - asset_id: utah_auditor_teacher_pay_fy2025
+    method: manual_import
+    filename: teacher_pay_data_2026-11-21.csv
+    edition: "Teacher Compensation Dashboard export, fiscal year 2025, downloaded 2026-11-21 (29,917 rows)"
+    source_series: utah_auditor_teacher_pay
+    source_vintage: FY2025
+    format: csv
+    priority: 20
+    redistribute_raw: false

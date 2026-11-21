@@ -45,6 +45,26 @@ Every other Tennessee, Colorado and NIAAA file the chapter cites was already in 
 One web search, for the address of Tennessee's tax rates: "Tennessee wine tax $1.21 per gallon Department of Revenue
 alcoholic beverage taxes wholesaler".
 
+## PPF-404 (five comparators, 2026-11-21)
+
+The rows were proposed by the parent session, which read the pages first. This session fetched each file into the
+raw cache and read every figure from the saved file. GET requests only; nothing was uploaded.
+
+| Asset | URL | Retrieved (UTC) | Bytes | SHA-256 (first 16) |
+| --- | --- | --- | --- | --- |
+| `usda_snmcs_v3_summary_2019` | https://fns-prod.azureedge.us/sites/default/files/resource-files/SNMCS-Volume3-Summary.pdf | 2026-11-21T19:11:59Z | 155,843 | 2b41815ed734478a |
+| `law_ut_53f_2_527_v20250701` | https://le.utah.gov/xcode/Title53F/Chapter2/C53F-2-S527_2025070120250507.html | 2026-11-21T19:11:59Z | 6,664 | 7a8214168e272b14 |
+| `ut_interim_2022_00003562` | https://le.utah.gov/interim/2022/pdf/00003562.pdf | 2026-11-21T19:12:02Z | 237,503 | 37346fd89d3790d5 |
+| `usbe_school_plant_capital_outlay_2023` | https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2023/School%20Plant%20Capital%20Outlay%20Report%202023%20sqft.pdf | 2026-11-21T19:12:02Z | 115,672 | 5194c7a3aa4d4f84 |
+| `usbe_school_plant_capital_outlay_2024` | https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/School%20Plant%20Capital%20Outlay%20Report%202024%20sqft.pdf | 2026-11-21T19:12:05Z | 156,009 | f5561370de4da456 |
+| `usbe_avg_salaries_sy2024_25` | https://www.schools.utah.gov/datastatistics/_datastatisticsfiles_/_reports_/_educators_/2025AverageAdministratorTeacherSalaries.xlsx | 2026-11-21T19:12:08Z | 25,334 | c3080e42d0127fa4 |
+| `utah_auditor_teacher_pay_fy2025` | https://transparent.utah.gov/teacher-pay/ (dashboard; no file address) | 2026-11-21T19:12:21Z (imported) | 4,012,740 | 66ba8e95b90dceba |
+
+The teacher-pay file has no address of its own: the dashboard was opened in the browser pane, its default filters
+submitted and "Download as CSV" pressed; the saved file was then imported with `alcohol-data import-asset`. It names
+individual teachers, so its source file marks it not to be redistributed (`redistribute_raw: false`). No web search
+was made for this item.
+
 ## Web searches (standard mode)
 
 1. Federal Register 2024 National School Lunch … reimbursement rates July 1 2024 June 30 2025

@@ -8,7 +8,7 @@ revenue scenarios, and a local research dashboard. The same data and models powe
 **[proofandpolicy.us](https://proofandpolicy.us)**; this repository runs on its own and needs nothing from the
 website.
 
-**Status: research preview, release 0.6.0.** Coverage is partial and declared series by series in
+**Status: research preview, release 0.6.1.** Coverage is partial and declared series by series in
 [docs/coverage-report.md](docs/coverage-report.md). Nothing here establishes a causal effect of any
 policy. Hand-entered values and policy codings are labeled with who extracted them; none has yet been
 reviewed by a person (an AI assistant did the extraction and checks; see the AI disclosure below), and they stay
@@ -65,7 +65,7 @@ input register and the two-page legislative briefing are generated from the mode
 and `docs/reproduction.md`.
 
 The full release tables (CSV, Parquet and DuckDB, with checksums and release notes) are attached to each
-[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.6.0.
+[GitHub release](https://github.com/whiptronics/proof-and-policy-public/releases); the website shows release 0.6.1.
 They can always be rebuilt from the sources below.
 
 ## Why this exists, and what it does not claim

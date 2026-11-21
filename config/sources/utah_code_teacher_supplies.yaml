@@ -1,0 +1,26 @@
+source_id: utah_code_teacher_supplies
+publisher: Utah State Legislature (Office of Legislative Research and General Counsel)
+title: Utah Code 53F-2-527, Teacher supplies and materials appropriation
+landing_url: https://le.utah.gov/xcode/Title53F/Chapter2/53F-2-S527.html
+citation: >-
+  Utah Code section 53F-2-527, version effective 2025-07-01 (amended by Chapter 6, 2025 General Session), le.utah.gov
+  version file.
+update_frequency: Changes with each legislative session; each version file is dated by its effective date
+source_family: policy
+rights_status: government_edict
+notes: >-
+  The amount the law sets for each classroom teacher's supplies and materials: $500 a year for pre-kindergarten special
+  education and kindergarten through grade 6, $250 for grades 7 through 12, which the State Board of Education may
+  reduce in proportion when the appropriation falls short. Supplies only, not a classroom's whole budget. Read
+  2026-11-21 for the Public Funding page's public-value scale (devplan item PPF-404).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: law_ut_53f_2_527_v20250701
+    url: https://le.utah.gov/xcode/Title53F/Chapter2/C53F-2-S527_2025070120250507.html
+    filename: C53F-2-S527_2025070120250507.html
+    edition: Utah Code 53F-2-527, version effective 2025-07-01 (current when read 2026-11-21)
+    source_series: utah_code_teacher_supplies
+    source_vintage: "20250701"
+    format: html
+    priority: 20
+    redistribute_raw: true

@@ -1,0 +1,25 @@
+source_id: usbe_educator_salaries
+publisher: Utah State Board of Education
+title: "Average Administrator and Teacher Salaries: School Year 2024-25"
+landing_url: https://www.schools.utah.gov/datastatistics/reports
+citation: >-
+  Utah State Board of Education, "Average Administrator and Teacher Salaries: School Year 2024-25" (sheet "State Avg
+  Salaries").
+update_frequency: Annual
+source_family: finance
+rights_status: facts_with_citation
+notes: >-
+  Average salaries (salary only, no benefits) by district and statewide. The Public Funding page shows the statewide
+  average teacher salary beside the State Auditor's total compensation figure as a cross-check. Read 2026-11-21 for
+  the page's public-value scale (devplan item PPF-404).
+host_min_interval_seconds: 3
+assets:
+  - asset_id: usbe_avg_salaries_sy2024_25
+    url: https://www.schools.utah.gov/datastatistics/_datastatisticsfiles_/_reports_/_educators_/2025AverageAdministratorTeacherSalaries.xlsx
+    filename: 2025AverageAdministratorTeacherSalaries.xlsx
+    edition: Average Administrator and Teacher Salaries, school year 2024-25
+    source_series: usbe_educator_salaries
+    source_vintage: SY2024-25
+    format: xlsx
+    priority: 20
+    redistribute_raw: true

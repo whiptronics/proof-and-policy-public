@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.6.1: five public-value comparators on the Public Funding page (2026-11-21)
+
+Devplan item PPF-404, at the maintainer's direction ("Yes, add them"). Prepared by Claude; not reviewed by a person.
+
+- **Public Funding, public-value scale.** Five new rows, each read from a newly pinned file and checked against its
+  printed words. The full cost of one school lunch ($5.55: USDA's School Nutrition and Meal Cost Study, national,
+  school year 2014-15, weighted by lunches, not adjusted for inflation) and a Utah teacher's average total
+  compensation in FY2025 ($116,031.57 over 25,773 teachers, Transparent Utah's dashboard, whose mean the script
+  reproduces; benefits included, with teaching pay and USBE's salary-only average in the note) replace the two rows
+  that said "Not available". New: the teaching supplies money for one K-6 classroom teacher ($500 a year, Utah Code
+  53F-2-527(2); $250 for grades 7-12), one Highway Patrol trooper's ongoing yearly cost ($135,300, the patrol's 2022
+  estimate) and one new district elementary school ($31M, the middle of three in USBE's 2023 and 2024 capital outlay
+  reports). The school is a one-time cost, so the page reads it as one school every so many years.
+- **New pinned sources:** `usda_school_meal_costs`, `usbe_educator_salaries`, `utah_auditor_teacher_pay` (the
+  dashboard's CSV, imported by hand; it names individual teachers, so the raw file is not redistributed),
+  `utah_code_teacher_supplies`, `utah_uhp_position_costs` and `usbe_capital_outlay` (two reports): 7 assets.
+- **Tests:** 6 new web tests for the rows and their wording; the provenance audit now covers 48 assets and 55
+  citations, 0 problems. No model changed: `public-funding@1.0` and `policy-designs@1.0` as in 0.6.0.
+
 ## 0.6.0: the same shelf price, five designs compared, where the money goes, and the policy pages (2026-11-20)
 
 Development plan of 2026-11-19. Prepared by Claude under the maintainer's direction; not reviewed by a person. Audit:

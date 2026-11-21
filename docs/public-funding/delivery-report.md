@@ -2,7 +2,8 @@
 
 Filled from `03_quality/DELIVERY_REPORT_TEMPLATE.md` of the devplan after building and testing, on 2026-11-20, by
 Claude (AI), and updated the same evening after a gap-closing pass approved by Ethan ("Yes, finish them") and again for
-PPF-407 at his request ("Add the Tennessee and Colorado comparators too"). Not reviewed by a person. The pass's evidence is in [qa/](qa/): commands and results, accessibility, contrary-evidence search,
+PPF-407 at his request ("Add the Tennessee and Colorado comparators too"), and on 2026-11-21 for PPF-404 ("Yes, add
+them": five public-value comparators, release 0.6.1). Not reviewed by a person. The pass's evidence is in [qa/](qa/): commands and results, accessibility, contrary-evidence search,
 independent comparison, provenance audit, legal as-of checks and the external fetch list.
 
 ## Summary
@@ -26,14 +27,24 @@ independent comparison, provenance audit, legal as-of checks and the external fe
   Tennessee's wine-tax account is shown FY2012-FY2025 under its two printed labels, kept apart; Colorado has no tax
   receipts (no evaluation found, pages refused automated access) and only NIAAA's figures beside the national ones.
   A list says what the comparisons cannot show; nothing from either state enters the model.
-- **Still not implemented, and why:** a school-meal cost per meal and a teacher-compensation comparator (no sourced
-  figure); wine-only DABS receipts (not published); the 32B-2-301 wording in force from 2022-06-01 to 2025-05-06 (not
+- **Added for PPF-404 (2026-11-21, release 0.6.1):** five rows on the public-value scale, each read from a newly
+  pinned file and checked against its printed words: the full cost of one school lunch, $5.55 (USDA's School
+  Nutrition and Meal Cost Study, national, school year 2014-15, weighted by lunches; not adjusted for inflation); a
+  Utah teacher's average total compensation, $116,031.57 (Transparent Utah, FY2025, 25,773 teachers, benefits
+  included; teaching pay alone and USBE's salary-only average are in the note); the $500 a year Utah Code
+  53F-2-527(2) sets for one K-6 classroom teacher's supplies; one Highway Patrol trooper's ongoing $135,300 a year
+  (the patrol's own July 2022 estimate); and one new district elementary school, $31M (the middle of three in USBE's
+  2023 and 2024 capital outlay reports; a one-time cost, so the page reads it as one school every so many years).
+- **Still not implemented, and why:** a school-meal cost later than school year 2014-15 (USDA's 2022-23 follow-up
+  published none); wine-only DABS receipts (not published); the 32B-2-301 wording in force from 2022-06-01 to 2025-05-06 (not
   found online); where Tennessee's wine tax goes (its revenue department's manual gives the rate and who pays, not the
   distribution); Colorado tax receipts since 2023 (the Department of Revenue's pages refused automated access).
-- **Deployment performed?** No. Nothing pushed, published or released.
+- **Deployment performed?** For 0.6.0, yes: live on proofandpolicy.us on 2026-11-21, on Ethan's go
+  (`docs/progress.md`). For 0.6.1 (PPF-404), no: prepared on this PC; nothing pushed, published or released.
 - **Local-only boundary upheld?** Yes. Source files were fetched from their official public hosts (le.utah.gov,
   census.gov, nationsreportcard.gov, api.bls.gov, abs.utah.gov, in the gap pass govinfo.gov and schools.utah.gov, and
-  for PPF-407 tn.gov) into the local raw cache, and four research pages were read for the contrary-evidence panel; no project file, data,
+  for PPF-407 tn.gov, for PPF-404 fns-prod.azureedge.us, le.utah.gov and schools.utah.gov, and the teacher-pay CSV
+  from transparent.utah.gov's dashboard in the browser pane) into the local raw cache, and four research pages were read for the contrary-evidence panel; no project file, data,
   screenshot or log was sent to any other service ([qa/external-fetches.md](qa/external-fetches.md)).
 
 ## Implementation inventory
@@ -54,6 +65,7 @@ independent comparison, provenance audit, legal as-of checks and the external fe
 | Gap pass: page | `FundingView.tsx`, `publicFunding.ts` (`CONTRARY`, `bottleReceipt`, `grocerCondition`, `lawIsStale`), `styles.css` (`.tick-label`) | counter-evidence chapter, FY2025 law column, stale-law notice, map marks "?" and "×", free-lunch and USBE rows, captions and live summary | the map, receipt and conditions use the same engine terms as before |
 | Gap pass: evidence | `scripts/public_funding_audit.py`, `docs/public-funding/qa/*` | provenance audit and independent comparison are generated | new |
 | PPF-407: Tennessee and Colorado | `config/sources/tennessee_dor_alcohol_taxes.yaml` (1 new asset); `states()` in `scripts/public_funding.py` reusing the project's Tennessee-collections and NIAAA adapters; `stateComparison()` in `publicFunding.ts`; `STATE_CASES` reused from `framework.ts` | chapter "Other States"; 18 more cited assets (17 already pinned) | context only: no state figure enters `fundingScenario()` |
+| PPF-404: five comparators | 6 new `config/sources` files (7 assets), `preview.yaml`, `public.yaml`, pins; `teacher_pay()` and `comparators()` in `scripts/public_funding.py`; five `COMPARATORS` rows and `compareWords()` in `publicFunding.ts`; the table in `FundingView.tsx` | the public-value scale; a one-time cost reads "one every N years" | the two rows that said "Not available" now carry sourced figures; no model changed |
 
 ## Fiscal and law review
 
@@ -84,12 +96,12 @@ independent comparison, provenance audit, legal as-of checks and the external fe
 
 | Command | Result | Details / artifact |
 |---|---|---|
-| Existing Python tests | pytest: 438 passed | 432 before plus 6 new; raw cache linked by a junction, then removed |
-| Existing web tests | vitest: 595 passed in 45 files | 544 before; 589 after the gap pass; 6 more for PPF-407; `tsc --noEmit` clean |
+| Existing Python tests | pytest: 438 passed | 432 before plus 6 new; raw cache linked by a junction, then removed. PPF-404: the same 438, the drift test now reading the 7 new files |
+| Existing web tests | vitest: 608 passed in 45 files | 544 before; 589 after the gap pass; 6 more for PPF-407; 602 in release 0.6.0; 6 more for PPF-404; `tsc --noEmit` clean |
 | Existing scenario export/check | `npm run docs:framework`, `npm run brief:legislative` | no diff; PDF still two pages |
 | New fiscal invariant tests | `publicFunding.test.ts` | F01–F20, conservation, engine agreement, adversarial cases, duplicated-charge reconciliation |
 | New education and legal tests | same; `tests/test_public_funding.py` | E01–E09; L01–L09; quote check; FY2025 law versions; drift test; USBE agreement bound |
-| Provenance audit | `scripts/public_funding_audit.py` | 41 assets, 48 citations, 0 problems (23 and 30 before PPF-407); red on a corrupted pin |
+| Provenance audit | `scripts/public_funding_audit.py` | 48 assets, 55 citations, 0 problems (41 and 48 before PPF-404; 23 and 30 before PPF-407); red on a corrupted pin |
 | Build/static export | `npm run build` | built; `FundingView` chunk 116.6 kB (34.6 kB gzip). Site `check.mjs` not run: it needs a research release |
 | Screenshot/accessibility review | headless Edge, browser pane | see Visual quality |
 
@@ -124,6 +136,11 @@ independent comparison, provenance audit, legal as-of checks and the external fe
 | NAEP outcomes | NAEP Data Service, 2024 math and reading, grades 4 and 8 | 2024 | observed, NCES tests | No | |
 | USBE local district | USBE Superintendent's Annual Report FY2024, current expenditures per pupil; beside the Census unit file | FY2024 (July 2023 to June 2024) | observed | No | a second measure, not the same number; median 3.6% above Census |
 | Free-lunch reimbursement | 89 FR 56720 (July 10, 2024), Sections 4 and 11 | SY2024-25 | observed rate | No | a reimbursement rate, not a cost |
+| Full cost of one school lunch | USDA FNS, School Nutrition and Meal Cost Study, Volume 3 summary (April 2019), p. 1 | SY2014-15 | observed (national study estimate) | No | not Utah's; not adjusted for inflation; no later study with costs |
+| Teacher total compensation | Office of the State Auditor, Transparent Utah Teacher Compensation Dashboard CSV; USBE average salaries 2024-25 | FY2025 | observed (the dashboard's mean reproduced) | No | includes benefits and some non-teaching pay; the CSV names people, so it is not redistributed |
+| Teacher supplies amount | Utah Code 53F-2-527(2) and (3), version effective 2025-07-01 | FY2026 on | observed text (amount set in law) | No | may be reduced in proportion; not attorney-reviewed |
+| Trooper ongoing cost | Utah Highway Patrol, Bangerter Highway - Mountain View Corridor Resource Analysis (2022), pp. 2-3 | July 2022 prices | agency estimate | No | not audited; one-time costs left out |
+| New elementary school cost | USBE School Plant Capital Outlay Reports 2023 and 2024 | FY2023-24 | district estimates (SP-4 forms) | No | not final costs; three schools only; one-time |
 | Current Utah Code | 32B-2-301, -304, -305, -306 | as of 2026-11-20 | observed text | No | not attorney-reviewed |
 | Utah Code in force in FY2025 | 2024-05-01 versions of -304, -306; -305 unchanged | FY2025 | observed text | No | -301 before 2025-05-07 not found |
 | Tennessee wine tax and payer | Tennessee Department of Revenue, Alcohol Tax Manual (June 2025), ch. 3, p. 20 | June 2025 | observed text (agency guidance) | No | not the Code itself; distribution not stated |
@@ -136,11 +153,11 @@ independent comparison, provenance audit, legal as-of checks and the external fe
 ## Remaining risks, release conditions and owner action
 
 1. **Before public release:** a person checks the DABS transcription (pages 30 and 32), the seven law quotes, the
-   FY2025 law versions, the four contrary findings, the S.B. 180 status table and the Tennessee and Colorado readings.
+   FY2025 law versions, the four contrary findings, the S.B. 180 status table, the Tennessee and Colorado readings and the five PPF-404 comparator figures.
 2. **Source-gated:** wine-only DABS receipts (DABS's wine sales by customer type are the subject of request C,
-   `docs/gaps/utah-missing-records.md`, drafted, not sent); which DABS costs are avoidable; a sourced school-meal cost
-   per meal; a teacher-compensation figure; the 32B-2-301 wording in force from 2022-06-01 to 2025-05-06.
-3. **Owner decisions:** whether the page ships in the next release and where it sits in the navigation.
+   `docs/gaps/utah-missing-records.md`, drafted, not sent); which DABS costs are avoidable; the 32B-2-301 wording in force from 2022-06-01 to 2025-05-06.
+3. **Owner decisions:** where the page sits in the navigation. Release 0.6.0 is live (2026-11-21); the
+   PPF-404 rows are in release 0.6.1, prepared locally and not pushed.
 4. **To inspect locally:** in `web/`, `npm run build`, then `node_modules/.bin/vite preview --port 4371` and open
    `http://localhost:4371/?v=funding`.
 5. **Deploy later, only with permission:** as in the earlier release entries of `docs/progress.md` (0.4.0, 0.5.1):
@@ -152,16 +169,17 @@ independent comparison, provenance audit, legal as-of checks and the external fe
 
 Counted against the 48 items (PPF-000 to PPF-508) in `01_plans/PHASES_AND_TASK_BACKLOG.md`:
 
-- **Done: 44.** PPF-000 to 004, 100, 101, 104 to 107, 200 to 206, 300 to 310, 400 to 403, 405 to 407, 500 to
-  504 and 506 to 508. PPF-406 is done as the backlog allows: no allocation rule supports district or store figures, so
+- **Done: 45.** PPF-000 to 004, 100, 101, 104 to 107, 200 to 206, 300 to 310, 400 to 403, 405 to 407 and 500 to
+  508. PPF-406 is done as the backlog allows: no allocation rule supports district or store figures, so
   the page says "Not estimable". PPF-407 (added later the same night) shows Tennessee and Colorado with their caveats
   and attributes nothing to either change; where Tennessee's wine tax goes and Colorado's receipts are marked not
   read.
-- **Done except a source-gated part: 3.** PPF-102 (no wine-only DABS receipts, so DABS figures are all liquor and
-  labeled so); PPF-103 (32B-2-301's wording before 2025-05-07 not found); PPF-404 (no sourced cost per meal or teacher
-  compensation; the free-lunch reimbursement is shown, labeled as a rate).
-- **Blocked: 1.** PPF-505 (Cloudflare static hosting check): the site's `npm run check` needs a research release,
-  and a release is Ethan's call. The page itself makes no external requests and adds no paid dependency.
+- **Done except a source-gated part: 2.** PPF-102 (no wine-only DABS receipts, so DABS figures are all liquor and
+  labeled so); PPF-103 (32B-2-301's wording before 2025-05-07 not found).
+- **Done on this PC, not deployed: 1.** PPF-404 (Ethan, 2026-11-21: "Yes, add them"): the five comparators are in
+  release 0.6.1, prepared locally; they go live only on his go. PPF-505 (Cloudflare static hosting check) moved to
+  done when 0.6.0 went live on 2026-11-21: all 268 served files matched the build and `/read/funding/` answered. The
+  page itself makes no external requests and adds no paid dependency.
 - **Not done: 0.**
 - **Human review:** none. Nothing on the page or in these documents is marked reviewed by a person.
 - **Existing tests newly failing:** none.

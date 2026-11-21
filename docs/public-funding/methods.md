@@ -15,6 +15,12 @@
 | Utah Code deposit rates and the wine markup floor | Utah Code 32B-2-301, -304, -305, -306, the versions current when read on 2026-11-20 | Each rule's quoted sentence must appear in the saved statute text, or the script stops |
 | The same rules as in force during FY2025 | The 2024-05-01 versions of 32B-2-304 and -306 (superseded 2026); -305 unchanged; -301's pre-2025-05-07 version not found | Each quote must also appear in the FY2025 version, and each version page must print its "Superseded" date (`qa/legal-as-of.md`) |
 | Federal reimbursement for one free lunch, SY2024-25 | 89 FR 56720 (July 10, 2024), Sections 4 and 11, contiguous states | Five sentences of the notice must appear in the saved text; shown as a reimbursement rate, not a cost |
+| Full cost of one school lunch, SY2014-15 ($5.55 weighted by lunches; $6.02 per average school food authority; reported costs $3.66 and $3.81; free-lunch subsidy $3.32) | USDA FNS, School Nutrition and Meal Cost Study, Volume 3 summary (April 2019), p. 1 | Four sentences must appear in page 1, its two columns read separately |
+| Utah teacher total compensation, FY2025 ($116,031.57; teaching pay $79,296.44) | Transparent Utah Teacher Compensation Dashboard, Download as CSV, default filters (29,917 rows) | Every row must be school year 2025; the export repeats a teacher's pay on one row per school, so each teacher is counted once per district or charter school (25,773); the mean must round to the dashboard's printed $116,032 |
+| USBE statewide average teacher salary, 2024-25 ($72,881.90) | USBE Average Administrator and Teacher Salaries, sheet State Avg Salaries, row Statewide | Column D's header must read "Mean Teacher Salary in Dollars"; shown in the teacher row's note only |
+| Teacher supplies amounts ($500 K-6, $250 grades 7-12) | Utah Code 53F-2-527, version effective 2025-07-01 | Subsections (2)(a), (2)(b) and (3) and the amendment line must appear in the saved text |
+| One trooper's ongoing yearly cost ($135,300) | Utah Highway Patrol resource analysis (2022, interim document 00003562), pp. 2-3 | The cost note, its date (July 6, 2022) and the Cost Per Position Title row must appear |
+| New district elementary schools (Eagle Mountain $31M, Ferron $15.5M, Cedar East $34M) | USBE School Plant Capital Outlay Reports 2023 and 2024 | Each school's row must match its project number, district, "New" description, cost and square feet; both reports' SP-4 footnote must appear; the page uses the middle cost |
 | USBE current expenditures per pupil, FY2024, by district | USBE Superintendent's Annual Report FY2024 | All 41 district rows must parse and match a Census row by name; agreement with the Census-derived figure is tested (`qa/independent-comparison.md`) |
 | Census FY2024 current spending per pupil, states and nation; district finances | 2024 Annual Survey of School System Finances, Tables 8, 11, 20 and the individual-unit file | The four press-release values (US 17,619; UT 11,347; ID 11,060; AZ 12,003) must match |
 | NAEP 2024 scores and comparisons | NAEP Data Service, `type=data` and `type=sigacrossjuris`, national public plus 51 jurisdictions | Comparisons are NCES's own significance tests, never a score difference |
@@ -92,7 +98,9 @@ the state charge is what is left after both private margins, so the result turns
 
 ## 3. Tests
 
-- `web/src/lib/publicFunding.test.ts` (49; 6 for PPF-407: the Tennessee and Colorado figures and sources, the two
+- `web/src/lib/publicFunding.test.ts` (55; 6 for PPF-404: the five figures, their pinned sources and stated limits,
+  total compensation kept apart from salary, the one-time school read as one school every so many years, the count
+  and share wording, and no "discount", "savings" or British spelling in any comparator; 6 for PPF-407: the Tennessee and Colorado figures and sources, the two
   account labels kept apart, the per-bottle arithmetic, every comparison row filled, and a check that the chapter
   states its limits and uses no causal wording, a check shown to fail on "led to"): the devplan's test-matrix rows F01–F20, E01–E09, L01–L09 and U09.
   F04 checks the tax base against the closed form (one tax line; the receipt sums to P(1 + τ)). F15 and F16 point to

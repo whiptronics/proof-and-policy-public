@@ -51,6 +51,21 @@ PY=../alcohol-policy-revenue-data/.venv/Scripts/python.exe
 | `cd web && npm run build` | built |
 | Browser pane, `?v=funding`, text doubled two ways at 320, 375, 768 and 1280 px | no sideways scroll in any of the eight cases |
 
+## PPF-404 (five comparators, 2026-11-21)
+
+| Command | Result |
+| --- | --- |
+| `alcohol-data fetch --only` each of the six fetched assets | acquired and pinned (sizes and fingerprints in [external-fetches.md](external-fetches.md)) |
+| `alcohol-data import-asset utah_auditor_teacher_pay_fy2025 teacher_pay_data_2026-11-21.csv` | imported and pinned, 4,012,740 bytes, sha256 66ba8e95b90dceba |
+| `alcohol-data sources audit --config config/builds/preview.yaml` | registries for 51 sources / 457 assets |
+| `$PY -X utf8 scripts/public_funding.py` then `--check` | written; `publicFunding.generated.ts matches` |
+| The same script with the new guards broken on purpose (a school row's cost changed; the dashboard mean changed) | stops with the row's or the mean's message; restored |
+| `$PY -X utf8 scripts/public_funding_audit.py` | 48 assets, 55 citations, 0 problems |
+| `$PY -X utf8 -m pytest -q -p no:cacheprovider` | 438 passed; 1 failed as it should: `test_versions` caught the changelog naming 0.6.1 before the version bump, so the section stays "Unreleased" until the release commit |
+| `cd web && node_modules/.bin/tsc --noEmit -p .` | clean |
+| `cd web && node_modules/.bin/vitest run` | 45 files, 608 passed (602 + 6) |
+| `cd web && npm run build` | built; `FundingView` chunk 140.2 kB (41.4 kB gzip) |
+
 ## Browser checks (Claude desktop app's browser pane, `vite preview --port 4371`, `?v=funding`)
 
 | Check | Result |

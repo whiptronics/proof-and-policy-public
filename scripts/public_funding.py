@@ -868,6 +868,116 @@ def states(raw: Path) -> dict:
     }
 
 
+# ----- public-value comparators (devplan PPF-404) ------------------------------------------------------------------------
+
+TEACHER_PAY = "utah_auditor_teacher_pay_fy2025"
+USBE_SALARIES = "usbe_avg_salaries_sy2024_25"
+SNMCS = "usda_snmcs_v3_summary_2019"
+SUPPLIES_LAW = "law_ut_53f_2_527_v20250701"
+UHP_COSTS = "ut_interim_2022_00003562"
+CAPITAL_OUTLAY = ("usbe_school_plant_capital_outlay_2023", "usbe_school_plant_capital_outlay_2024")
+# The dashboard's "Average (Mean)" for FY2025 total compensation with default filters, read 2026-11-21.
+TEACHER_DASHBOARD_MEAN = 116_032
+NEW_ELEMENTARY = (  # (report, project, district, school, printed cost, square feet): "New ... School" rows
+    (0, "4049", "Alpine", "Eagle Mountain Elementary", "$ 31,000,000.00", "83,745.00"),
+    (0, "4052", "Emery", "Ferron Elementary", "$ 15,500,000.00", "47,975.00"),
+    (1, "4076", "Iron", "Cedar East Elementary", "$ 34,000,000.00", "77,326.00"),
+)
+
+
+def teacher_pay(raw: Path) -> dict:
+    """FY2025 mean total compensation, each teacher counted once per district or charter school (the export repeats a
+    teacher's pay on one row per school taught at); this reproduces the dashboard's displayed mean."""
+    rows = list(csv.DictReader(pinned(raw, TEACHER_PAY).open(encoding="utf-8", newline="")))
+    if {r["school_year"] for r in rows} != {"2025"}:
+        raise ValueError("the teacher pay export is not fiscal year 2025 only")
+    once = {(r["cactus_id"], r["lea_name"]): r for r in rows}
+    mean = sum(float(r["total_compensation"]) for r in once.values()) / len(once)
+    if round(mean) != TEACHER_DASHBOARD_MEAN:
+        raise ValueError(f"teacher pay mean {mean:.2f} no longer reproduces the dashboard's ${TEACHER_DASHBOARD_MEAN:,}")
+    import openpyxl
+
+    ws = openpyxl.load_workbook(pinned(raw, USBE_SALARIES), data_only=True)["State Avg Salaries"]
+    statewide = next(r for r in ws.iter_rows(values_only=True) if r[0] == "Statewide")
+    if ws["D2"].value != "Mean Teacher Salary in Dollars":
+        raise ValueError("USBE salary sheet: column D is no longer the mean teacher salary")
+    return {
+        "totalCompensationMean": round(mean, 2),
+        "instructionalMean": round(sum(float(r["instructional_wages"]) for r in once.values()) / len(once), 2),
+        "teachers": len(once),
+        "rows": len(rows),
+        "leas": len({r["lea_name"] for r in rows}),
+        "fiscalYear": "FY2025",
+        "source": source(TEACHER_PAY, "Teacher Compensation Dashboard, Download as CSV, Total Compensation, default filters"),
+        "usbeSalary": {"mean": statewide[3], "schoolYear": "2024-25", "source": source(USBE_SALARIES, "sheet State Avg Salaries, row Statewide")},
+    }
+
+
+def _pdf_columns(p: Path, page: int) -> str:
+    """A two-column page read left column first, so sentences stay in order."""
+    import pdfplumber
+
+    with pdfplumber.open(p) as pdf:
+        pg = pdf.pages[page - 1]
+        halves = (pg.crop((0, 0, pg.width / 2, pg.height)), pg.crop((pg.width / 2, 0, pg.width, pg.height)))
+        return re.sub(r"\s+", " ", " ".join(h.extract_text() or "" for h in halves))
+
+
+def comparators(raw: Path) -> dict:
+    snmcs = _pdf_columns(pinned(raw, SNMCS), 1)
+    for q in (
+        "the mean reported cost to produce a reimbursable lunch was $3.81, compared to the average Federal free lunch subsidy of $3.32",
+        "the mean reported cost to produce a reimbursable lunch was $3.66",
+        "the full cost to produce a reimbursable lunch was $6.02",
+        "reimbursable lunches served by each SFA, the mean full cost to produce a reimbursable lunch was $5.55",
+    ):
+        require(snmcs, q, "SNMCS Volume 3 summary, p. 1")
+    law_text = page_text(pinned(raw, SUPPLIES_LAW))
+    for q in (
+        "(a) $500 to each classroom teacher position for pre-kindergarten special education and kindergarten through grade 6",
+        "(b) $250 to each classroom teacher position for grades 7 through 12",
+        "the state board may proportionally adjust the per-teacher amount based on the amount of available funding",
+        "Amended by Chapter 6 , 2025 General Session",
+    ):
+        require(law_text, q, "Utah Code 53F-2-527")
+    uhp = pdf_text(pinned(raw, UHP_COSTS))
+    for q in (
+        "All cost and salary information is based on current cost and salary numbers",
+        "July 6, 2022",
+        "Cost Per Position Title Trooper Sergeant Lieutenant Records Manager Dispatcher SBI MCIT Ongoing $135,300",
+    ):
+        require(uhp, q, "UHP resource analysis")
+    reports = [pdf_text(pinned(raw, a)) for a in CAPITAL_OUTLAY]
+    schools = []
+    for i, project, district, name, cost, sqft in NEW_ELEMENTARY:
+        line = re.search(rf"{project} {district} [^$]*{name} New (Elementary )?School [^$]*\{cost} {sqft}", reports[i])
+        if not line:
+            raise ValueError(f"capital outlay report {CAPITAL_OUTLAY[i]}: no new-school row for {name} at {cost}")
+        schools.append({"name": name, "district": district, "project": project, "cost": float(cost[2:].replace(",", "")), "squareFeet": float(sqft.replace(",", "")), "report": CAPITAL_OUTLAY[i][-4:]})
+    for t in reports:
+        require(t, "Costs are taken from the SP-4 form submitted by LEAs and are not final costs", "capital outlay report")
+    costs = sorted(s["cost"] for s in schools)
+    return {
+        "teacher": teacher_pay(raw),
+        "mealCost": {
+            "lunchFullWeighted": 5.55,
+            "lunchFullAverage": 6.02,
+            "lunchReportedWeighted": 3.66,
+            "lunchReportedAverage": 3.81,
+            "freeLunchSubsidy": 3.32,
+            "schoolYear": "SY2014-15",
+            "source": source(SNMCS, "p. 1, Study Findings"),
+        },
+        "supplies": {"k6": 500, "grades7to12": 250, "source": source(SUPPLIES_LAW, "Subsections (2) and (3)")},
+        "trooper": {"ongoing": 135_300, "pricesAsOf": "2022-07-06", "source": source(UHP_COSTS, "p. 2 (cost note) and p. 3, Cost Per Position Title")},
+        "school": {
+            "schools": schools,
+            "middleCost": costs[len(costs) // 2],
+            "sources": [source(a, "new elementary school rows; footnote") for a in CAPITAL_OUTLAY],
+        },
+    }
+
+
 def measure(raw: Path = RAW_DIR) -> dict:
     return {
         "dabs": dabs(dabs_rows()),
@@ -876,6 +986,7 @@ def measure(raw: Path = RAW_DIR) -> dict:
         "education": education(raw),
         "districts": districts(raw),
         "states": states(raw),
+        "comparators": comparators(raw),
     }
 
 
@@ -883,7 +994,7 @@ def render(m: dict) -> str:
     body = re.sub(r'"(\w+)":', r"\1:", json.dumps(m, ensure_ascii=False, indent=1))
     return (
         "// Generated by scripts/public_funding.py from pinned DABS, Utah Code, legislature, Census, NAEP, BLS, USDA, USBE,\n"
-        "// Tennessee, Colorado and NIAAA files; do not edit by hand. tests/test_public_funding.py fails when this file differs from what the script writes.\n"
+        "// State Auditor, Highway Patrol, Tennessee, Colorado and NIAAA files; do not edit by hand. tests/test_public_funding.py fails when this file differs from what the script writes.\n"
         f"export const PUBLIC_FUNDING = {body} as const;\n"
     )
 

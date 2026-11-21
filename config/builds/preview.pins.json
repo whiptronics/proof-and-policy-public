@@ -1431,6 +1431,14 @@
     "sha256": "7d709b104edae924fea46c531ff9ecf71bdae2ac2a929fc006d2a68c1baf54de",
     "url": "https://le.utah.gov/xcode/Title32B/Chapter2/C32B-2-S605_1800010118000101.html"
   },
+  "law_ut_53f_2_527_v20250701": {
+    "bytes": 6664,
+    "edition": "Utah Code 53F-2-527, version effective 2025-07-01 (current when read 2026-11-21)",
+    "filename": "C53F-2-S527_2025070120250507.html",
+    "retrieved_at": "2026-11-21T19:11:59Z",
+    "sha256": "7a8214168e272b1414415c77b3bdb77e1927827dd998e15e5b666cdfeacb705d",
+    "url": "https://le.utah.gov/xcode/Title53F/Chapter2/C53F-2-S527_2025070120250507.html"
+  },
   "law_va_4_1_103": {
     "bytes": 39169,
     "edition": "Code of Virginia \u00a7 4.1-103 (General powers of Board), Virginia Law Library page",
@@ -1823,6 +1831,14 @@
     "sha256": "6e7bb086a3c791490361968a3094f377f7726c5d0c4900fec03cc42db2305a3d",
     "url": "https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-albers-10m.json"
   },
+  "usbe_avg_salaries_sy2024_25": {
+    "bytes": 25334,
+    "edition": "Average Administrator and Teacher Salaries, school year 2024-25",
+    "filename": "2025AverageAdministratorTeacherSalaries.xlsx",
+    "retrieved_at": "2026-11-21T19:12:08Z",
+    "sha256": "c3080e42d0127fa4df4a249c42dc447d6ea06612a7af24ee231d950ee8443b8a",
+    "url": "https://www.schools.utah.gov/datastatistics/_datastatisticsfiles_/_reports_/_educators_/2025AverageAdministratorTeacherSalaries.xlsx"
+  },
   "usbe_current_expenditure_per_pupil_fy2024": {
     "bytes": 282803,
     "edition": "Superintendent's Annual Report FY2024, current expenditures per pupil in fall enrollment, FY2020-2024",
@@ -1830,6 +1846,22 @@
     "retrieved_at": "2026-11-21T05:04:07Z",
     "sha256": "cbba94593d134ae82675d53ba7b79acdc235031a313b16940a1c2e39937db45c",
     "url": "https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/2024%20Total%20Current%20Expenditures%20%20per%20Pupil%20in%20Fall%20Enrollment%20Fiscal%20Year%202020-2024.pdf"
+  },
+  "usbe_school_plant_capital_outlay_2023": {
+    "bytes": 115672,
+    "edition": "School Plant Capital Outlay Report 2023",
+    "filename": "School-Plant-Capital-Outlay-Report-2023-sqft.pdf",
+    "retrieved_at": "2026-11-21T19:12:02Z",
+    "sha256": "5194c7a3aa4d4f84dfd17d6081e89587267df06b1ba4240137b169034fdd65d5",
+    "url": "https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2023/School%20Plant%20Capital%20Outlay%20Report%202023%20sqft.pdf"
+  },
+  "usbe_school_plant_capital_outlay_2024": {
+    "bytes": 156009,
+    "edition": "School Plant Capital Outlay Report 2024",
+    "filename": "School-Plant-Capital-Outlay-Report-2024-sqft.pdf",
+    "retrieved_at": "2026-11-21T19:12:05Z",
+    "sha256": "f5561370de4da4560f820b48ff9b25fffb73bedce9f0ecfcaef38c9aaef89cf5",
+    "url": "https://www.schools.utah.gov/superintendentannualreport/financialoperations/fy2024/School%20Plant%20Capital%20Outlay%20Report%202024%20sqft.pdf"
   },
   "usda_nslp_rates_sy2024_25": {
     "bytes": 15283,
@@ -1846,6 +1878,14 @@
     "retrieved_at": "2026-11-20T18:43:09Z",
     "sha256": "bd798bf6dd6f36e2eadf7ed8667e6f8225f30d3fb8fdc7b6f31e49f6385f5217",
     "url": "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0/query?where=State%3D'UT'+AND+Store_Type+IN+('Supermarket','Super+Store','Grocery+Store')&outFields=Record_ID,Store_Name,City,Zip_Code,County,Store_Type,Latitude,Longitude&returnGeometry=false&orderByFields=Record_ID&f=json"
+  },
+  "usda_snmcs_v3_summary_2019": {
+    "bytes": 155843,
+    "edition": "School Nutrition and Meal Cost Study, Volume 3 summary (April 2019), school year 2014-15 costs",
+    "filename": "SNMCS-Volume3-Summary.pdf",
+    "retrieved_at": "2026-11-21T19:11:59Z",
+    "sha256": "2b41815ed734478a0216da7d41fa4773319340144ed411e494d8e216bce66ed7",
+    "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/SNMCS-Volume3-Summary.pdf"
   },
   "ut_2003gs_hb0244_enrolled": {
     "bytes": 688602,
@@ -2455,6 +2495,14 @@
     "sha256": "d29b287bc83803f9ba7cb007aeec67d29e6f2a3d0a5bb186f34dc605823cc679",
     "url": "https://le.utah.gov/session/2014/pdfdoc/Digest2014.pdf"
   },
+  "ut_interim_2022_00003562": {
+    "bytes": 237503,
+    "edition": "UHP resource analysis, costs as of 2022-07-06 (interim document 00003562)",
+    "filename": "00003562.pdf",
+    "retrieved_at": "2026-11-21T19:12:02Z",
+    "sha256": "37346fd89d3790d5dbd50fa024d2e83f521197b204236d3eeaf5857147e5d64b",
+    "url": "https://le.utah.gov/interim/2022/pdf/00003562.pdf"
+  },
   "ut_lrgc_recodification_index": {
     "bytes": 47369,
     "edition": "Office of Legislative Research and General Counsel, recodification index",
@@ -2798,6 +2846,14 @@
     "retrieved_at": "2026-10-14T16:09:42Z",
     "sha256": "96926e27870151a1580cf99a9fca60efa9cc3d5d471721b6a22d774c516f2001",
     "url": "https://finance.utah.gov/wp-content/uploads/FY25-ACFR-FINAL-reduced-size.pdf"
+  },
+  "utah_auditor_teacher_pay_fy2025": {
+    "bytes": 4012740,
+    "edition": "Teacher Compensation Dashboard export, fiscal year 2025, downloaded 2026-11-21 (29,917 rows)",
+    "filename": "teacher_pay_data_2026-11-21.csv",
+    "retrieved_at": "2026-11-21T19:12:21Z",
+    "sha256": "66ba8e95b90dcebac95fc779ead575001db221dd4295d6d7a7c848d7f2d862fa",
+    "url": null
   },
   "utah_dabs_annual_report_fy2016": {
     "bytes": 10185746,
