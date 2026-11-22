@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, type MouseEvent, type ReactNode } from "reac
 import { ErrorNote, Loading } from "./components/common";
 import { Drawer } from "./components/Drawer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Settings } from "./components/Settings";
 import { useData } from "./lib/data";
 import { AI_DISCLOSURE } from "./lib/disclosure";
 import { DESCRIPTIONS, NAV_GROUPS, TITLES, groupOf } from "./lib/nav";
@@ -83,16 +84,19 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
         Skip to content
       </a>
       <header className="app">
-        <div className="app-title">
-          <h1>{title}</h1>
-          {man.data && (
-            <p className="release" aria-label="Dataset release">
-              Data release <strong>{man.data.dataset.release_version}</strong> · build{" "}
-              <span className="mono">{man.data.dataset.build_id}</span> · law as of{" "}
-              {man.data.dataset.law_as_of_date} ({man.data.dataset.law_as_of_timezone}) · exported{" "}
-              {man.data.export.generated_at.slice(0, 10)}
-            </p>
-          )}
+        <div className="app-top">
+          <div className="app-title">
+            <h1>{title}</h1>
+            {man.data && (
+              <p className="release" aria-label="Dataset release">
+                Data release <strong>{man.data.dataset.release_version}</strong> · build{" "}
+                <span className="mono">{man.data.dataset.build_id}</span> · law as of{" "}
+                {man.data.dataset.law_as_of_date} ({man.data.dataset.law_as_of_timezone}) · exported{" "}
+                {man.data.export.generated_at.slice(0, 10)}
+              </p>
+            )}
+          </div>
+          <Settings />
         </div>
         {intro ?? (
           <p className="evolving">

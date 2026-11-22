@@ -115,11 +115,11 @@ export function BottleBreakdown() {
         subtitle={`Dollars per bottle; DABS's FY${data.fy} margin; designs from the policy alternatives report; same purchases, nothing else changes`}
         reading={
           <>
-            Each bar adds up to what the shopper pays for the same bottle. The supplier's part is the same in every bar. Blue is the state:
+            Each bar adds up to what the shopper pays for the same bottle. The supplier's part is the same in every bar. Teal is the state:
             solid for DABS's markup income, hatched for a state charge and for sales tax.
           </>
         }
-        readingText="Each bar adds up to what the shopper pays for the same bottle; the supplier's part is the same in every bar. Blue is the state: solid for DABS's markup income, hatched for a state charge and sales tax."
+        readingText="Each bar adds up to what the shopper pays for the same bottle; the supplier's part is the same in every bar. Teal is the state: solid for DABS's markup income, hatched for a state charge and sales tax."
         limits={
           <>
             Shares, not a forecast: the wholesaler's and grocer's margins are national averages, not Utah grocery wine; whether grocers would

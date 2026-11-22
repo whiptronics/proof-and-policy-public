@@ -199,12 +199,12 @@ export function BriefingView() {
           subtitle={`Dollars of a bottle that costs $100 at a state store today, before sales tax; at the grocery price each design implies; FY${fy}`}
           reading={
             <>
-              Each bar adds up to what the shopper pays. Blue is the state: solid for DABS's markup income, hatched for the state charge and sales
+              Each bar adds up to what the shopper pays. Teal is the state: solid for DABS's markup income, hatched for the state charge and sales
               tax. In both designs the state's part is at least as large as today, and the grocer's margin is added on top. The last bar is the
               same-shelf-price design at a 20% margin: the price stays the same, so the grocer's margin comes out of the state's part.
             </>
           }
-          readingText="Each bar adds up to what the shopper pays. Solid blue is DABS's markup income (before its store costs, not profit); hatched blue is the state charge and sales tax; orange shades are the sellers' gross margins; gray is the cost of the wine. In both designs the state's part is at least today's; in the last bar it shrinks."
+          readingText="Each bar adds up to what the shopper pays. Solid teal is DABS's markup income (before its store costs, not profit); hatched teal is the state charge and sales tax; orange shades are the sellers' gross margins; gray is the cost of the wine. In both designs the state's part is at least today's; in the last bar it shrinks."
           limits={
             <>
               The cost of the wine is DABS's all-product average, and private wholesalers are assumed to pay suppliers what DABS pays. Grocers

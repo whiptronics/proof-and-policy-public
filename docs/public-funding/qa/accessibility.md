@@ -57,6 +57,23 @@ numbers". Status never relies on color alone (the house rule at the top of `styl
 State bar chart (bars at 0.75 opacity): other states' bars 3.86:1 (light) and 4.73:1 (dark) against the
 panel; Utah's bar is a different hue and also carries a "UT" text label, so it is not marked by color alone.
 
+## The 0.6.2 palette
+
+The figures above were measured with the palette of 0.6.0 and 0.6.1. Release 0.6.2 changed every color token
+(the public-value mockup's palette, plus a Settings choice of Light or Dark). The same quantities, computed from the
+new tokens by `web/src/lib/theme.test.ts`, which now fails if any of them drops below its minimum:
+
+| Mark | Fill token | Light ratio | Dark ratio |
+| --- | --- | --- | --- |
+| ✓ and ? | `--series-1` at 0.4 | 8.88 | 5.08 |
+| P | `--series-3` at 0.4 | 8.75 | 5.62 |
+| R | `--series-6` at 0.4 | 9.78 | 4.90 |
+| × and – | `--line-strong` at 0.4 | 10.14 | 6.36 |
+| Other states' bars | `--series-1` at 0.75, against the panel | 3.15 | 4.19 |
+
+The lowest is 4.90:1 (R, dark). The dark values apply both when the device is dark and when Dark is chosen in
+Settings: the two copies of the dark tokens are checked to be identical.
+
 ## Not covered
 
 - No run with NVDA, JAWS, VoiceOver or TalkBack. The live-region wording was read from the DOM, not heard.

@@ -221,7 +221,7 @@ export function MapView() {
         ends: [`${domain.clipped?.low ? "≤ " : ""}${fmt(domain.min)}`, ...(domain.diverging ? ["0"] : []), `${domain.clipped?.high ? "≥ " : ""}${fmt(domain.max)}`],
         caption: [
           `${unitText}. ${domain.diverging ? "Orange = fell, blue = rose, white = no change." : "Darker = higher value, which is not by itself better or worse."} ${fixedText}${domain.clipped ? ` ${domain.clipped.note}` : ""}`,
-          "Hatched = no data; cross-hatched = suppressed by the source; white with a dark border = reported zero; orange outline = Utah." +
+          "Hatched = no data; cross-hatched = suppressed by the source; white with a dark border = reported zero; red outline = Utah." +
             (jumps.size ? ` † = the series moves ${JUMP_PCT}% or more in a single year between ${base} and ${period}.` : ""),
         ],
       }

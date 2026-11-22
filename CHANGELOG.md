@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.6.2: new color scheme and a Settings menu (2026-11-21)
+
+At the maintainer's request ("I would like the color scheme to be updated, and give options in a settings section in
+the top right like we do for all of our other sites"). Prepared by Claude; not reviewed by a person. Colors only:
+no page's layout or figures changed, and the only wording changed is the color names in chart captions.
+
+- **New color scheme** from the public-value mockup (devplan `05_visual_mockup`): cream page, white cards with a soft
+  shadow, ink text, teal links and accents, rust as the second series. Dark is built from the mockup's navy
+  sections, with teal and mint accents. Every token has a value in both, including the chart series, map, beverage,
+  waterfall, coverage-state and gain/loss tokens. The six chart series stay apart under red-green color blindness
+  (smallest OKLab distance: 0.061 light, 0.030 dark, up from 0.015).
+- **Settings** (a gear at the top right of the header): Appearance is Match my device (the default, as before),
+  Light or Dark. A choice other than Match my device is kept in this browser under `alcohol-dashboard.theme.v1`,
+  next to the saved-analysis keys, and applied before the first paint by `web/public/theme.js`, a same-origin
+  file, so the site's script policy is unchanged. The dialog works by keyboard: Escape closes it, focus starts on
+  the chosen option and returns to the gear. The `/read/` text pages carry no script, so they follow the device.
+- **Chart captions name the new colors.** Captions, legends and text alternatives (24 lines in six files) said "blue",
+  "orange", "green" or "brown" for colors the new palette changed. They now say teal, red, blue or purple, and the
+  state's sales tax and the wholesaler's margin got shades that keep "teal is the state" and "orange shades are the
+  sellers' margins" true. A test checks that each named color holds in both appearances.
+- **Contrast fixes found on the way:** control borders (`--line-strong`, 2.7:1) and warning text (`--warn-line`,
+  3.6:1) were below WCAG's minimums in light, the coverage "◧" cell's ink was 2.6:1 in light and 3.7:1 in dark,
+  and the "!" and "L" cells drew white ink on light cells in dark. All now pass.
+- **Tests:** `web/src/lib/theme.test.ts` (12 tests) checks every token in every appearance, that the two copies
+  of the dark tokens match, 70 text and mark contrast pairs in each appearance (composited where a fill is
+  translucent), the series' separation, the colors the captions name, the theme-color values and the before-paint
+  script. No model or data
+  changed.
+
 ## 0.6.1: five public-value comparators on the Public Funding page (2026-11-21)
 
 Devplan item PPF-404, at the maintainer's direction ("Yes, add them"). Prepared by Claude; not reviewed by a person.

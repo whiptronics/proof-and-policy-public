@@ -309,8 +309,8 @@ export function SamePriceView() {
           id="sp-access-chart"
           title={`${pct(A.distance.grocery.within[0])} of Utahns live within a mile of a grocery store; ${pct(A.distance.stateStore.within[0])} live within a mile of a state store`}
           subtitle={`Share of Utah's ${n0(A.population)} residents (2020 Census) within each straight-line distance of the nearest store of each kind`}
-          reading={<>Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Blue is grocery stores, orange state liquor stores, brown any DABS outlet including package agencies.</>}
-          readingText="Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Blue is grocery stores, orange state liquor stores, brown any DABS outlet including package agencies."
+          reading={<>Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Teal is grocery stores, red state liquor stores, purple any DABS outlet including package agencies.</>}
+          readingText="Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Teal is grocery stores, red state liquor stores, purple any DABS outlet including package agencies."
           limits={<>Straight-line distance from each block group&rsquo;s center of population, not travel distance or time. Grocery stores are USDA&rsquo;s SNAP-authorized supermarkets, super stores and grocery stores ({A.outlets.grocery}); a store that does not accept SNAP is missing. DABS outlets are those its store locator lists.</>}
           limitsText="Straight-line distance from each block group's center of population, not travel distance or time. Grocery stores are USDA's SNAP-authorized supermarkets, super stores and grocery stores; a store that does not accept SNAP is missing. DABS outlets are those its store locator lists."
           source={SOURCE_ACCESS}
@@ -385,8 +385,8 @@ export function SamePriceView() {
           id="sp-cover-chart"
           title={`At a ${pct(margin)} margin grocers keep ${m(cover[0].c.grocerIncome).slice(1)} a year`}
           subtitle={`$ millions a year on the ${m(rep.moved).slice(1)} of wine that moves, at today's shelf price; license fees cover the administration`}
-          reading={<>Each bar is the grocers&rsquo; income at this margin. Green is what DABS stops spending; orange is the state&rsquo;s share. The number is the change for the state.</>}
-          readingText="Each bar is the grocers' income at this margin. Green is what DABS stops spending; orange is the state's share. The number is the change for the state."
+          reading={<>Each bar is the grocers&rsquo; income at this margin. Blue is what DABS stops spending; red is the state&rsquo;s share. The number is the change for the state.</>}
+          readingText="Each bar is the grocers' income at this margin. Blue is what DABS stops spending; red is the state's share. The number is the change for the state."
           limits={<>DABS&rsquo;s costs that fall are illustrative allocations of its FY2025 expenses by sales, not measured savings. The wine that moves is a fixed {pct(DEFAULT_FLOWS.migration)} of household purchases.</>}
           limitsText="DABS's costs that fall are illustrative allocations of its FY2025 expenses by sales, not measured savings. The wine that moves is a fixed share of household purchases."
           source={SOURCE_MONEY}
@@ -394,8 +394,8 @@ export function SamePriceView() {
           filename="utah_same_price_margin_cover"
           legend={
             <ul className="chart-legend small">
-              <li>Green: DABS costs that fall</li>
-              <li>Orange: the state&rsquo;s share</li>
+              <li>Blue: DABS costs that fall</li>
+              <li>Red: the state&rsquo;s share</li>
             </ul>
           }
           csv={csvOf(coverRows)}
@@ -433,9 +433,9 @@ export function SamePriceView() {
           filename="utah_same_price_by_margin"
           legend={
             <ul className="chart-legend small">
-              <li>Solid orange: DABS saves nothing</li>
-              <li>Dashed green: card fees and agency contracts fall</li>
-              <li>Dotted blue: wages fall too</li>
+              <li>Solid red: DABS saves nothing</li>
+              <li>Dashed blue: card fees and agency contracts fall</li>
+              <li>Dotted teal: wages fall too</li>
             </ul>
           }
           csv={csvOf(curveRows)}

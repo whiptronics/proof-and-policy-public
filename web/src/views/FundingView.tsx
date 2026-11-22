@@ -458,7 +458,7 @@ export function FundingView() {
         <ChartFigure
           id="pf-dest-chart"
           title={`DABS lists ${musd(PF.dabs.destinationsSum)} going to six destinations in FY2025; the General Fund's ${musd(PF.dabs.destinations[0].amount)} is the largest`}
-          subtitle="$ millions, fiscal year 2025 (July 2024 to June 2025), all liquor; blue restricted to a purpose, orange unrestricted or collected for the Tax Commission"
+          subtitle="$ millions, fiscal year 2025 (July 2024 to June 2025), all liquor; teal restricted to a purpose, red unrestricted or collected for the Tax Commission"
           reading={<>Each bar is one amount from DABS&rsquo;s Summary Financial Information. The amounts are listed side by side, not as shares of a whole: sales tax is paid by buyers on top of prices, and the others come out of DABS&rsquo;s revenue.</>}
           readingText="Each bar is one amount from DABS's Summary Financial Information. The amounts are listed side by side, not as shares of a whole: sales tax is paid by buyers on top of prices, and the others come out of DABS's revenue."
           limits={<>Unaudited; transcribed by hand and not reviewed by a person. All liquor, not wine. The enforcement and school-meals amounts DABS reports differ from the statutory rates times its sales (below).</>}
@@ -539,8 +539,8 @@ export function FundingView() {
           id="pf-spend-chart"
           title={`Utah is ${utYearRank}th of ${covered} in current spending per pupil in FY${year}`}
           subtitle={`$ per enrolled pupil, ${real ? "in FY2024 dollars" : "as reported (nominal)"}, public elementary-secondary school systems; ${jur === "states" ? "50 states" : "50 states and D.C."}, highest first`}
-          reading={<>Each bar is a {jur === "states" ? "state" : "state or D.C."}; Utah is orange; the dashed line is the national figure.</>}
-          readingText="Each bar is a state (or D.C.); Utah is orange; the dashed line is the national figure."
+          reading={<>Each bar is a {jur === "states" ? "state" : "state or D.C."}; Utah is red; the dashed line is the national figure.</>}
+          readingText="Each bar is a state (or D.C.); Utah is red; the dashed line is the national figure."
           limits={<>Not adjusted for differences in costs between states. Current spending excludes buildings and debt. Spending is an input, not a result; it does not show how much a dollar more would change learning. {PF.education.enrollmentNote}</>}
           limitsText={`Not adjusted for differences in costs between states. Current spending excludes buildings and debt. Spending is an input, not a result. ${PF.education.enrollmentNote}`}
           source={`${CENSUS_SRC}${real ? `; BLS CPI-U ${PF.education.cpi.basis}` : ""}`}

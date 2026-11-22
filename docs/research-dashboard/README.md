@@ -239,6 +239,13 @@ of saved analysis reopen one:
 - selections saved in this browser (local storage, this computer only) or downloaded as a JSON file. A
   file opened in a later release keeps what that release holds and names what it dropped.
 
+**Settings.** The gear at the top right of the header opens Settings, which has one section, Appearance: Match my
+device (the default), Light or Dark (`web/src/lib/theme.ts`, `web/src/components/Settings.tsx`). Light or Dark is
+kept in local storage under `alcohol-dashboard.theme.v1`, so the browser holds three keys from this dashboard at
+most: that one and the two saved-analysis keys. `web/public/theme.js` applies the choice before the first paint; it
+is a file rather than inline script because the website allows scripts from its own origin only. The website's
+`/read/` text pages carry no script, so they always follow the device's light or dark setting.
+
 It is descriptive. It does not estimate effects or forecast revenue, and it is not deployed anywhere.
 
 Other documents in this folder:

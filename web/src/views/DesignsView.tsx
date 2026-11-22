@@ -242,8 +242,8 @@ export function DesignsView() {
           id="ds-flows"
           title={`Of $100 spent at a state store today, where it goes under ${get(flowDesign).def.short}`}
           subtitle="Dollars per $100 of today's state-store price before sales tax; the grocery price the design implies; FY2025 inputs"
-          reading={<>Each bar adds up to what the shopper pays. Blue is what the state keeps: DABS's markup income, a charge, sales tax. A transfer between the state and a seller is not new revenue.</>}
-          readingText="Each bar adds up to what the shopper pays. Blue is what the state keeps (DABS markup income, a charge, sales tax). A transfer between the state and a seller is not new revenue."
+          reading={<>Each bar adds up to what the shopper pays. Teal is what the state keeps: DABS's markup income, a charge, sales tax. A transfer between the state and a seller is not new revenue.</>}
+          readingText="Each bar adds up to what the shopper pays. Teal is what the state keeps (DABS markup income, a charge, sales tax). A transfer between the state and a seller is not new revenue."
           limits={<>DABS's markup income is before its operating costs, not profit. Seller margins are gross. Local sales tax is not modeled.</>}
           limitsText="DABS's markup income is before its operating costs, not profit. Seller margins are gross. Local sales tax is not modeled."
           source={SOURCE}
@@ -271,8 +271,8 @@ export function DesignsView() {
           id="ds-bottles"
           title={`A ${pick.label.toLowerCase()} bottle if grocers set their own price, by design`}
           subtitle={`Dollars, a bottle landing at $${pick.landed.toFixed(2)}; state store against each design (D's main case equals C's)`}
-          reading={<>Gray is the wine's cost; blue the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax.</>}
-          readingText="Gray is the wine's cost; blue the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax."
+          reading={<>Gray is the wine's cost; teal the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax.</>}
+          readingText="Gray is the wine's cost; teal the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax."
           limits={<>Price points, not products: real prices vary by product and store. Grocers set their own prices.</>}
           limitsText="Price points, not products: real prices vary by product and store. Grocers set their own prices."
           source={SOURCE}
@@ -335,9 +335,9 @@ export function DesignsView() {
           filename="utah_grocery_wine_frontier"
           legend={
             <ul className="chart-legend small">
-              <li>Solid blue: take inside DABS's price (B)</li>
-              <li>Solid orange: retail charge with a private wholesaler (C)</li>
-              <li>Dashed green: retail charge, delivery free</li>
+              <li>Solid teal: take inside DABS's price (B)</li>
+              <li>Solid red: retail charge with a private wholesaler (C)</li>
+              <li>Dashed blue: retail charge, delivery free</li>
             </ul>
           }
           csv={csvOf(frRows)}

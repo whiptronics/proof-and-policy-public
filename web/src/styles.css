@@ -1,137 +1,221 @@
 /* Research dashboard styles. Colors are tokens; status colors never imply good or bad, and every
-   status also carries a word and a symbol. */
+   status also carries a word and a symbol.
+
+   Three appearances (lib/theme.ts). With no data-theme on <html> the device decides: the light tokens below,
+   or the dark ones in the media block. data-theme="light" or "dark" is the reader's choice in Settings. The
+   dark tokens are written twice, once for each way of reaching dark; lib/theme.test.ts fails if the copies
+   differ and measures every text and mark pair in both appearances. Print always uses the light tokens.
+   The palette follows the public-value mockup (devplan 05_visual_mockup): ink, cream, navy, teal and mint. */
 :root {
   color-scheme: light dark;
-  --bg: #fbfbfa;
-  --surface: #ffffff;
-  --surface-2: #f2f2ef;
-  --text: #1d1f22;
-  --text-2: #4a4f57;
-  --line: #d6d6d1;
-  --line-strong: #9a9c9f;
-  --accent: #1f5d99;
-  --accent-text: #ffffff;
-  --focus: #b4531a;
-  --warn-bg: #fff4dc;
-  --warn-line: #b7791f;
-  --note-bg: #eef3f8;
-  --series-1: #1f5d99;
-  --series-2: #b4531a;
-  --series-3: #5b6b2f;
-  --series-4: #7b3f8c;
-  --series-5: #2f7f7a;
-  --series-6: #8a6d1c;
-  --ci: rgba(31, 93, 153, 0.16);
-  --transition: rgba(180, 83, 26, 0.12);
-  --map-zero: #ffffff;
-  --map-missing-bg: #e4e4df;
-  --map-missing-line: #9a9c9f;
-  --map-suppressed-line: #6b6e72;
-  --map-utah: #b4531a;
-  --map-border: #ffffff;
-  --ok: #2e6b32;
-  --bev-beer: #c08a1e;
-  --bev-wine: #8e2c5a;
-  --bev-spirits: #2f7f7a;
-  --bev-other: #7b3f8c;
-  /* coverage states */
-  --st-S: #2e5f8c;
-  --st-D: #3f7f86;
-  --st-U: #d8a93a;
-  --st-R: #1d3f5f;
-  --st-0: #ffffff;
-  --st-C: #9d3a73;
-  --st-M: #c9c9c4;
-  --st-N: #e2e2dd;
-  --st-dot: #f0f0ec;
-  --st-none: #ffffff;
-  --st-K: #33415c;
-  --st-P: #8fa0bf;
-  --st-Q: #ecebe6;
-  --st-L: #7d6aa8;
-  --st-F: #dcdcd6;
-  --st-ink-dark: #ffffff;
-  --st-ink-light: #1d1f22;
-  /* Charts: money gained and lost by the state, running totals, and who receives each part of a purchase. Gains and
-     losses are blue and orange (safe for the common color-vision differences) and always carry a sign in words. */
-  --gain: #1f5d99;
-  --loss: #b4531a;
-  --total: #6b6e72;
-  --bar-ink: #ffffff;
-  --c-supplier: #c9cbcd;
-  --c-supplier-ink: #1d1f22;
-  --c-state: #1f5d99;
-  --c-tax: #3f78b3;
-  --c-wholesaler: #b4531a;
-  --c-grocer: #e3a066;
-  --c-grocer-ink: #1d1f22;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15171a;
-    --surface: #1d2024;
-    --surface-2: #262a2f;
-    --text: #e8e8e6;
-    --text-2: #b4b8bd;
-    --line: #3a3f45;
-    --line-strong: #6d7379;
-    --accent: #7fb2e5;
-    --accent-text: #0f1418;
-    --focus: #f0a066;
-    --warn-bg: #3a3120;
-    --warn-line: #d9a441;
-    --note-bg: #1f2a36;
-    --series-1: #7fb2e5;
-    --series-2: #f0a066;
-    --series-3: #b5c77a;
-    --series-4: #c898d6;
-    --series-5: #79c7c0;
-    --series-6: #e0c36e;
-    --ci: rgba(127, 178, 229, 0.2);
-    --transition: rgba(240, 160, 102, 0.16);
+:root,
+[data-theme="light"] {
+  --bg: #f5f6f3;
+  --surface: #ffffff;
+  --surface-2: #eef2f1;
+  --text: #122536;
+  --text-2: #5b6a7b;
+  --line: #dde4e8;
+  --line-strong: #7e8d99;
+  --accent: #167877;
+  --accent-text: #ffffff;
+  --focus: #b8641c;
+  --warn-bg: #fbf1e1;
+  --warn-line: #99591a;
+  --note-bg: #e6f2ef;
+  --shadow: 0 16px 50px rgba(28, 51, 62, 0.07);
+  --series-1: #217b7c;
+  --series-2: #ad534d;
+  --series-3: #3e6c99;
+  --series-4: #152a3d;
+  --series-5: #a8701f;
+  --series-6: #9a74b3;
+  --ci: rgba(33, 123, 124, 0.16);
+  --transition: rgba(173, 83, 77, 0.12);
+  --map-zero: #ffffff;
+  --map-missing-bg: #e4e9ec;
+  --map-missing-line: #8b99a3;
+  --map-suppressed-line: #5f6f7c;
+  --map-utah: #ad534d;
+  --map-border: #ffffff;
+  --ok: #2e6b4f;
+  --bev-beer: #a8701f;
+  --bev-wine: #9b3b5a;
+  --bev-spirits: #217b7c;
+  --bev-other: #6a5a8c;
+  /* coverage states */
+  --st-S: #2f5f86;
+  --st-D: #217b7c;
+  --st-U: #d9a441;
+  --st-R: #152a3d;
+  --st-0: #ffffff;
+  --st-C: #9d3a73;
+  --st-M: #c5ced4;
+  --st-N: #e2e7ea;
+  --st-dot: #eff2f3;
+  --st-none: #ffffff;
+  --st-K: #5c6b3a;
+  --st-P: #566e94;
+  --st-Q: #ebeeef;
+  --st-L: #6d5a9c;
+  --st-F: #d9dfe2;
+  --st-ink-dark: #ffffff;
+  --st-ink-light: #122536;
+  /* Charts: money gained and lost by the state, running totals, and who receives each part of a purchase. Gains and
+     losses are teal and rust (told apart under the common color-vision differences) and always carry a sign in words. */
+  --gain: #217b7c;
+  --loss: #ad534d;
+  --total: #66737f;
+  --bar-ink: #ffffff;
+  --c-supplier: #c9d1d6;
+  --c-supplier-ink: #122536;
+  --c-state: #217b7c;
+  --c-tax: #155e5f;
+  --c-wholesaler: #a3561c;
+  --c-grocer: #e0a35f;
+  --c-grocer-ink: #122536;
+}
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Dark, reached by the device setting. Keep identical to the copy below. */
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #142839;
+    --surface: #1d3549;
+    --surface-2: #264259;
+    --text: #eef3f5;
+    --text-2: #b5c8d1;
+    --line: #36536a;
+    --line-strong: #7895a8;
+    --accent: #8fd3c9;
+    --accent-text: #0f2a33;
+    --focus: #e9a842;
+    --warn-bg: #3b3426;
+    --warn-line: #e2a95b;
+    --note-bg: #1e4249;
+    --shadow: none;
+    --series-1: #6cc4bb;
+    --series-2: #ec948c;
+    --series-3: #79a9d8;
+    --series-4: #b3c3cf;
+    --series-5: #e4b467;
+    --series-6: #d6b0e6;
+    --ci: rgba(108, 196, 187, 0.2);
+    --transition: rgba(236, 148, 140, 0.16);
     --map-zero: #ffffff;
-    --map-missing-bg: #3a3f45;
-    --map-missing-line: #6d7379;
-    --map-suppressed-line: #a7adb3;
-    --map-utah: #f0a066;
-    --map-border: #15171a;
-    --ok: #8fd18f;
-    --bev-beer: #e0b45a;
-    --bev-wine: #d97aa6;
-    --bev-spirits: #79c7c0;
-    --bev-other: #c898d6;
-    --st-S: #5f95c7;
-    --st-D: #64a9b0;
-    --st-U: #d8a93a;
-    --st-R: #9cc3ea;
-    --st-0: #1d2024;
-    --st-C: #d27aac;
-    --st-M: #4d5157;
-    --st-N: #3a3e43;
-    --st-dot: #25292e;
-    --st-none: #1d2024;
-    --st-K: #a9b8d6;
-    --st-P: #5f6f8f;
-    --st-Q: #2b2f34;
-    --st-L: #a796d0;
-    --st-F: #34383d;
-    --st-ink-dark: #0f1418;
-    --st-ink-light: #e8e8e6;
-    --gain: #7fb2e5;
-    --loss: #f0a066;
-    --total: #9aa0a6;
-    --bar-ink: #0f1418;
-    --c-supplier: #50555c;
-    --c-supplier-ink: #e8e8e6;
-    --c-state: #7fb2e5;
-    --c-tax: #a9cbef;
-    --c-wholesaler: #f0a066;
-    --c-grocer: #f6c99f;
-    --c-grocer-ink: #0f1418;
+    --map-missing-bg: #36536a;
+    --map-missing-line: #7895a8;
+    --map-suppressed-line: #a9bccb;
+    --map-utah: #ec948c;
+    --map-border: #142839;
+    --ok: #8fd6a8;
+    --bev-beer: #e4b467;
+    --bev-wine: #d77d9c;
+    --bev-spirits: #6cc4bb;
+    --bev-other: #c4a2d9;
+    --st-S: #6f9cc6;
+    --st-D: #5fb3ac;
+    --st-U: #d9a441;
+    --st-R: #a9c9e6;
+    --st-0: #1d3549;
+    --st-C: #df86b5;
+    --st-M: #4a6276;
+    --st-N: #34495b;
+    --st-dot: #223b50;
+    --st-none: #1d3549;
+    --st-K: #b9c79b;
+    --st-P: #9aa6c9;
+    --st-Q: #2a4257;
+    --st-L: #ab98d6;
+    --st-F: #3a5164;
+    --st-ink-dark: #0f1f2c;
+    --st-ink-light: #eef3f5;
+    --gain: #6cc4bb;
+    --loss: #ec948c;
+    --total: #9fb0bd;
+    --bar-ink: #0f1f2c;
+    --c-supplier: #4f667a;
+    --c-supplier-ink: #eef3f5;
+    --c-state: #6cc4bb;
+    --c-tax: #a9ddd1;
+    --c-wholesaler: #e89a5c;
+    --c-grocer: #f3c99a;
+    --c-grocer-ink: #0f1f2c;
+  }
+}
+
+/* Dark, chosen in Settings (also paints the Dark preview tile). Keep identical to the copy above. */
+@media screen {
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #142839;
+    --surface: #1d3549;
+    --surface-2: #264259;
+    --text: #eef3f5;
+    --text-2: #b5c8d1;
+    --line: #36536a;
+    --line-strong: #7895a8;
+    --accent: #8fd3c9;
+    --accent-text: #0f2a33;
+    --focus: #e9a842;
+    --warn-bg: #3b3426;
+    --warn-line: #e2a95b;
+    --note-bg: #1e4249;
+    --shadow: none;
+    --series-1: #6cc4bb;
+    --series-2: #ec948c;
+    --series-3: #79a9d8;
+    --series-4: #b3c3cf;
+    --series-5: #e4b467;
+    --series-6: #d6b0e6;
+    --ci: rgba(108, 196, 187, 0.2);
+    --transition: rgba(236, 148, 140, 0.16);
+    --map-zero: #ffffff;
+    --map-missing-bg: #36536a;
+    --map-missing-line: #7895a8;
+    --map-suppressed-line: #a9bccb;
+    --map-utah: #ec948c;
+    --map-border: #142839;
+    --ok: #8fd6a8;
+    --bev-beer: #e4b467;
+    --bev-wine: #d77d9c;
+    --bev-spirits: #6cc4bb;
+    --bev-other: #c4a2d9;
+    --st-S: #6f9cc6;
+    --st-D: #5fb3ac;
+    --st-U: #d9a441;
+    --st-R: #a9c9e6;
+    --st-0: #1d3549;
+    --st-C: #df86b5;
+    --st-M: #4a6276;
+    --st-N: #34495b;
+    --st-dot: #223b50;
+    --st-none: #1d3549;
+    --st-K: #b9c79b;
+    --st-P: #9aa6c9;
+    --st-Q: #2a4257;
+    --st-L: #ab98d6;
+    --st-F: #3a5164;
+    --st-ink-dark: #0f1f2c;
+    --st-ink-light: #eef3f5;
+    --gain: #6cc4bb;
+    --loss: #ec948c;
+    --total: #9fb0bd;
+    --bar-ink: #0f1f2c;
+    --c-supplier: #4f667a;
+    --c-supplier-ink: #eef3f5;
+    --c-state: #6cc4bb;
+    --c-tax: #a9ddd1;
+    --c-wholesaler: #e89a5c;
+    --c-grocer: #f3c99a;
+    --c-grocer-ink: #0f1f2c;
   }
 }
 
@@ -206,6 +290,133 @@ header.app {
   gap: 4px 16px;
   align-items: baseline;
   justify-content: space-between;
+}
+
+/* Settings (components/Settings.tsx): the gear sits at the top right of the header, in its own column, so the title
+   and release line wrap beside it at any width or text size. The dialog opens below it. */
+.app-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px 8px;
+}
+.app-top > .app-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.gear {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -6px -8px 0 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+}
+.gear:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+dialog.settings {
+  width: min(24rem, calc(100vw - 32px));
+  max-height: calc(100vh - 72px);
+  margin: 56px 16px auto auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 16px 50px rgba(10, 33, 47, 0.25);
+}
+dialog.settings::backdrop {
+  background: rgba(10, 22, 33, 0.35);
+}
+.settings-in {
+  padding: 12px 16px 14px;
+}
+.settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.settings-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.settings-close {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin: -4px -8px -4px 0;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: transparent;
+  border-color: transparent;
+}
+.settings-close:hover {
+  background: var(--surface-2);
+}
+.theme-choice {
+  display: grid;
+  gap: 6px;
+  padding: 6px 10px 10px;
+  margin-bottom: 10px;
+}
+.theme-option {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  min-height: 44px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.theme-option:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--note-bg);
+  font-weight: 600;
+}
+.theme-tiles {
+  display: inline-flex;
+  gap: 3px;
+  flex: none;
+}
+/* Each tile carries data-theme, so it is painted with that appearance's tokens whatever the page uses. */
+.theme-tile {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+}
+.theme-tile-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.theme-tile-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 .release {
   font-size: 0.82rem;
@@ -290,6 +501,7 @@ main {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
+  box-shadow: var(--shadow);
   padding: 14px 16px;
   margin-bottom: 16px;
   min-width: 0;
@@ -600,6 +812,7 @@ table.matrix td[aria-selected="true"] {
   background: var(--st-D);
   color: var(--st-ink-dark);
 }
+/* The same yellow in both appearances, so its ink is fixed too. */
 .st-U {
   background: var(--st-U);
   color: #1d1f22;
@@ -615,7 +828,7 @@ table.matrix td[aria-selected="true"] {
 }
 .st-C {
   background: var(--st-C);
-  color: #ffffff;
+  color: var(--st-ink-dark);
 }
 .st-M {
   background: var(--st-M);
@@ -657,7 +870,7 @@ table.matrix td[aria-selected="true"] {
 }
 .st-L {
   background: var(--st-L);
-  color: #ffffff;
+  color: var(--st-ink-dark);
 }
 .st-F {
   background: var(--st-F);
@@ -985,6 +1198,7 @@ a.button.primary-link {
   }
   .panel {
     border: 0;
+    box-shadow: none;
     padding: 0;
     margin-bottom: 14px;
     break-inside: auto;
