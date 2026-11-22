@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.3: the funding chart's labels fit (2026-11-22)
+
+One chart's layout. Prepared by Claude; not reviewed by a person. No data, figure or wording changed.
+
+- **Where the money goes: the six-destinations chart's labels fit** (the maintainer: "fix the clipped labels on the
+  funding chart"). At desktop width four labels started left of the chart and two were cut short with "…". The
+  labels now use the same layout as the Briefing charts: the full name, wrapped onto a second or third line where
+  needed, at the fixed 13 px row-label size, with the amounts at the bar-value size. Checked at 320, 375, 561, 579,
+  657 and 1169 px chart widths with normal and doubled text: every label inside the chart, none overlapping
+  another or a bar. No figure or wording changed.
+
 ## 0.6.2: new color scheme and a Settings menu (2026-11-21)
 
 At the maintainer's request ("I would like the color scheme to be updated, and give options in a settings section in

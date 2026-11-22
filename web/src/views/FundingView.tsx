@@ -5,6 +5,7 @@
 // Observed figures come from lib/publicFunding.generated.ts (scripts/public_funding.py, pinned sources only); scenario
 // figures from fundingScenario(). No number on this page is typed by hand.
 import { useEffect, useId, useMemo, useState, type ReactNode } from "react";
+import { wrapWords } from "../components/BriefCharts";
 import { ChartFigure, type Row } from "../components/ChartFigure";
 import { Go } from "../components/common";
 import { HowWeKnow } from "../components/HowWeKnow";
@@ -154,34 +155,37 @@ type Dest = (typeof PF.dabs.destinations)[number];
 
 function DestinationBars({ width, selected, pick }: { width: number; selected: string; pick: (id: string) => void }) {
   const rows = PF.dabs.destinations as readonly Dest[];
+  // Same layout as BriefCharts' BridgeChart: full labels wrapped at the fixed-size row-label, never cut short.
   const wide = width >= 560;
-  const padL = wide ? 250 : 8;
+  const labelW = wide ? Math.min(250, Math.round(width * 0.36)) : 0;
+  const padL = wide ? labelW + 12 : 8;
   const padR = 70;
-  const rowH = wide ? 30 : 48;
+  const barH = 18;
+  const lines = rows.map((r) => (wide ? wrapWords(r.label, Math.floor(labelW / 7)) : [r.label.split(" (")[0]]));
+  const rowH = wide ? Math.max(30, Math.max(...lines.map((l) => l.length)) * 15 + 8) : 48;
   const H = rows.length * rowH + 10;
   const max = Math.max(...rows.map((r) => r.amount));
   const x = (v: number) => padL + (v / max) * (width - padL - padR);
   return (
     <svg className="chart" width={width} height={H} viewBox={`0 0 ${width} ${H}`} role="img" aria-label="FY2025 amounts DABS lists as going to each destination">
       {rows.map((r, i) => {
-        const y = i * rowH + (wide ? 6 : 22);
+        const y = i * rowH + (wide ? (rowH - barH) / 2 + 5 : 22);
         const on = r.id === selected;
+        const words = lines[i];
+        const ly = wide ? y + barH / 2 + 4.5 - ((words.length - 1) * 15) / 2 : y - 6;
         return (
           <g key={r.id} onClick={() => pick(r.id)} style={{ cursor: "pointer" }}>
-            {!wide && (
-              <text x={padL} y={y - 6} className="tick-label">
-                {r.label.split(" (")[0]}
-              </text>
-            )}
-            {wide && (
-              <text x={padL - 8} y={y + 14} textAnchor="end" className="tick-label">
-                {r.label.length > 38 ? r.label.slice(0, 36) + "…" : r.label}
-              </text>
-            )}
-            <rect x={x(0)} y={y} width={Math.max(1, x(r.amount) - x(0))} height={18} fill={r.restricted ? "var(--series-1)" : "var(--series-2)"} stroke={on ? "var(--text)" : "none"} strokeWidth={2}>
+            <text x={wide ? labelW : padL} y={ly} textAnchor={wide ? "end" : "start"} className="row-label">
+              {words.map((l, k) => (
+                <tspan key={k} x={wide ? labelW : padL} dy={k === 0 ? 0 : 15}>
+                  {l}
+                </tspan>
+              ))}
+            </text>
+            <rect x={x(0)} y={y} width={Math.max(1, x(r.amount) - x(0))} height={barH} fill={r.restricted ? "var(--series-1)" : "var(--series-2)"} stroke={on ? "var(--text)" : "none"} strokeWidth={2}>
               <title>{`${r.label}: ${musd(r.amount)}`}</title>
             </rect>
-            <text x={x(r.amount) + 6} y={y + 14} className="tick-label">
+            <text x={x(r.amount) + 6} y={y + barH / 2 + 4.5} className="bar-value">
               {musd(r.amount)}
             </text>
           </g>
