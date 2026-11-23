@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { downloadPng, downloadSvg, type ChartMeta } from "../lib/chartExport";
 import { saveFile, toCsv, type Column } from "../lib/csv";
 import { useData } from "../lib/data";
+import { cellText } from "../lib/tip";
 import type { Manifest } from "../lib/types";
 
 export type Row = Record<string, string | number | boolean | null>;
@@ -106,6 +107,36 @@ export function ChartDownloads(p: ChartDownloadsProps) {
       <span className="small muted" role="status">
         {msg}
       </span>
+    </div>
+  );
+}
+
+/** The plotted rows as a table, one column per key, each cell printed with cellText: the same rows and the same text the
+ * chart's tooltips use (lib/tip.ts rowTip). */
+export function RowsTable({ rows, caption }: { rows: Row[]; caption?: string }) {
+  return (
+    <div className="table-wrap">
+      <table className="data">
+        {caption && <caption>{caption}</caption>}
+        <thead>
+          <tr>
+            {Object.keys(rows[0] ?? {}).map((k) => (
+              <th key={k} scope="col">
+                {k}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i}>
+              {Object.values(r).map((v, j) => (
+                <td key={j}>{cellText(v)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

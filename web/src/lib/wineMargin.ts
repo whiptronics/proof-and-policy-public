@@ -31,7 +31,7 @@ export const WINE_MARGIN_METHOD = "wine-margin@1.0";
 export const STATUTORY_MARKUP = { spirits: 0.885, wine: 0.885, flavoredMalt: 0.885, heavyBeer: 0.665 } as const;
 
 export const STATUTE_NOTE =
-  "Utah Code § 32B-2-304(2)(b): wine sold by the department is marked up not less than 88.5% above landed case cost (the versions effective 2024-05-01 and 2026-03-13 both say so; read through the legislature's site on 2026-10-12; the PDFs are not yet saved into the project's sources).";
+  "Utah Code § 32B-2-304(2)(b), in the versions effective 2024-05-01 and 2026-03-13, both saved in the project's sources";
 
 /** Margin on the price for a markup on cost. */
 export function marginOfMarkup(markup: number): number {

@@ -11,9 +11,13 @@ import { WINE_ALTERNATIVES_METHOD, alternativesReport, type AltResult } from "..
 import { SplitChart, SplitLegend } from "./BriefCharts";
 import { Go } from "./common";
 import { ChartFigure, type Row } from "./ChartFigure";
+import { rowTip } from "../lib/tip";
+import { minus } from "../lib/format";
 
 const usd = (v: number) => `$${v.toFixed(2)}`;
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+/** A part's cell in the table, and the same text in that segment's tooltip. */
+const partCell = (s: FlowColumn["segments"][number]) => usd(s.amount);
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 
 const DESIGNS: { id: string; label: string; law: string }[] = [
   { id: "A_target", label: "DABS design: DABS sells to grocers at today's price; the grocer adds a 28% margin", law: "Needs a grocery wine license; the markup law stays as it is" },
@@ -172,7 +176,7 @@ export function BottleBreakdown() {
                       const s = c.segments.find((g) => g.id === id);
                       return (
                         <td key={c.id} className="num" data-label={c.label}>
-                          {s ? usd(s.amount) : "—"}
+                          {s ? partCell(s) : "—"}
                         </td>
                       );
                     })}
@@ -191,7 +195,7 @@ export function BottleBreakdown() {
           </div>
         }
       >
-        {(w) => <SplitChart cols={cols} width={w} label={`One bottle that costs ${usd(landed)} to land, today and under three designs`} />}
+        {(w) => <SplitChart cols={cols} tipOf={(c, s) => rowTip({ "Part of the price": segLabel(s.id), [c.label]: partCell(s) })} width={w} label={`One bottle that costs ${usd(landed)} to land, today and under three designs`} />}
       </ChartFigure>
 
       <h4>Where DABS's markup went in FY{data.fy}</h4>

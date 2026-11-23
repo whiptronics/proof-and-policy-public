@@ -21,7 +21,7 @@ import {
   type CharData,
   type Distance,
 } from "../lib/finder";
-import { geoName, precise, words } from "../lib/format";
+import { geoName, precise, words, andList } from "../lib/format";
 import type { Geography, Manifest, MetricFile, MetricMeta, MetricsIndex, PolicyData } from "../lib/types";
 import { navigate, pickInt, pickOne, useParams, type Patch } from "../lib/url";
 
@@ -783,10 +783,10 @@ function FinderResults({ f, cd, geos, pol, man, returnTo }: { f: FinderInputs; c
             const miss = parts.filter((p) => p.d === null).map((p) => `${p.x.c.label.toLowerCase()} (${p.x.values.get(r.item)!.why ?? "no value"})`);
             return (
               <li key={r.item}>
-                <strong>{name(r.item)}</strong>: similar (under 0.5 SD) on {sim.join(", ") || "none of them"}
-                {mid.length > 0 && `; somewhat different (0.5 to 1 SD) on ${mid.join(", ")}`}
+                <strong>{name(r.item)}</strong>: similar (under 0.5 SD) on {andList(sim) || "none of them"}
+                {mid.length > 0 && `; somewhat different (0.5 to 1 SD) on ${andList(mid)}`}
                 {diff.length > 0 &&
-                  `; different (over 1 SD) on ${diff.map((p) => `${p.x.c.label.toLowerCase()} (${fmt(p.x, p.x.values.get(r.item)!.value)} vs ${fmt(p.x, p.x.values.get(f.target)!.value)})`).join(", ")}`}
+                  `; different (over 1 SD) on ${andList(diff.map((p) => `${p.x.c.label.toLowerCase()} (${fmt(p.x, p.x.values.get(r.item)!.value)} vs ${fmt(p.x, p.x.values.get(f.target)!.value)})`))}`}
                 {miss.length > 0 && `; missing ${miss.join(", ")}`}. {policyLabel}: {n.status}.
                 {control?.get(r.item) && ` Liquor control: ${verdictText(control.get(r.item)!)}.`}
                 {n.snapshot && (

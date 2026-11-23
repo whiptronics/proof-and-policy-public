@@ -1,8 +1,11 @@
 // One chart panel: series that share a unit and period kind. Lines break at missing years and at
 // comparability-group changes (trendSegments), never interpolate, and every point opens its record.
+import { useId, useRef } from "react";
 import { Area, CartesianGrid, ComposedChart, Line, ReferenceArea, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import type { Tip } from "../lib/tip";
+import { RechartsTip } from "./ChartTip";
 import { trendSegments } from "../lib/compare";
-import { formatAxis, formatValue } from "../lib/format";
+import { formatAxis, formatValue, minus } from "../lib/format";
 import { percentChange } from "../lib/formulas";
 import { navigate } from "../lib/url";
 
@@ -76,11 +79,26 @@ export function TrendChart({
     });
   });
   const data = [...rows.values()];
-  const colorOf = (key: string) => SERIES_COLORS[series.findIndex((s) => s.key === key) % SERIES_COLORS.length];
+  const box = useRef<HTMLDivElement>(null);
+  const id = useId();
+  // Each series' value in a year as the value tables print it: the value and its period.
+  const tipAt = (label: unknown): Tip | null => {
+    const row = rows.get(Number(label));
+    if (!row) return null;
+    return {
+      title: String(label),
+      rows: series.map((s) => {
+        const key = Object.keys(row).find((k) => k.startsWith(`${s.key}__`) && k.endsWith("__p"));
+        const p = key ? (row[key] as ChartPoint) : undefined;
+        return [s.label, p ? `${formatValue(p.value, unit)} (${p.period_label})` : "no value"];
+      }),
+      note: "Click a point to open its record.",
+    };
+  };
   return (
     <figure className="chart-panel" style={{ margin: 0 }}>
       <figcaption className="visually-hidden">{title}. The table below lists every value shown.</figcaption>
-      <div className="chart-box" style={{ height }} aria-hidden="true">
+      <div className="chart-box" style={{ height }} aria-hidden="true" ref={box} data-tip-box="">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 16, right: 16, bottom: 4, left: 8 }}>
             <CartesianGrid strokeDasharray="2 3" />
@@ -127,26 +145,7 @@ export function TrendChart({
             ))}
             <Tooltip
               cursor={{ stroke: "var(--line-strong)" }}
-              content={({ active, label }) => {
-                if (!active || label === undefined) return null;
-                const row = rows.get(Number(label));
-                if (!row) return null;
-                return (
-                  <div className="tip">
-                    <strong>{label}</strong>
-                    {series.map((s) => {
-                      const key = Object.keys(row).find((k) => k.startsWith(`${s.key}__`) && k.endsWith("__p"));
-                      const p = key ? (row[key] as ChartPoint) : undefined;
-                      return (
-                        <div key={s.key} style={{ color: colorOf(s.key) }}>
-                          {s.label}: {p ? `${formatValue(p.value, unit)} (${p.period_label})` : "no value"}
-                        </div>
-                      );
-                    })}
-                    <div className="muted">Click a point to open its record.</div>
-                  </div>
-                );
-              }}
+              content={({ active, label, coordinate }) => <RechartsTip active={active} label={label} coordinate={coordinate} box={box} id={id} build={tipAt} />}
             />
           </ComposedChart>
         </ResponsiveContainer>
@@ -181,7 +180,7 @@ function LargeChanges({ series, domain }: { series: ChartSeries[]; domain: [numb
       for (let i = 1; i < seg.length; i++) {
         const pc = percentChange(seg[i - 1].value, seg[i].value);
         if (pc !== undefined && Math.abs(pc) >= 50) {
-          notes.push(`${s.label}: ${pc > 0 ? "+" : ""}${pc.toFixed(0)}% from ${seg[i - 1].period_label} to ${seg[i].period_label}`);
+          notes.push(`${s.label}: ${pc > 0 ? "+" : ""}${minus(pc.toFixed(0))}% from ${seg[i - 1].period_label} to ${seg[i].period_label}`);
         }
       }
     }

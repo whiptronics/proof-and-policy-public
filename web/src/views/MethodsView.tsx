@@ -132,7 +132,7 @@ export function MethodsView() {
         <ul className="small source-list">
           <li>
             Series share a chart panel only when unit, period kind and age universe agree; otherwise they get separate
-            panels. Lines break at missing years and at comparability-group changes (e.g. BRFSS 2011), never interpolate.
+            panels. Lines break at missing years and at comparability-group changes (e.g. BRFSS 2011) and are never interpolated.
           </li>
           <li>Different geography levels (city, county, metro, state) are never compared without an explicit label.</li>
           <li>Per capita consumption is never divided by a drinking prevalence ("consumption per drinker").</li>

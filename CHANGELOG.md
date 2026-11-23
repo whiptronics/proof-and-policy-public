@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.6.4: charts say what is under the pointer, a Crimson appearance, copy fixes (2026-11-22)
+
+Prepared by Claude; not reviewed by a person. No data value, figure or finding changed; some wording did.
+
+- **Every chart says what is under the pointer** (the maintainer: "hovering your mouse over areas of graphs should
+  tell you information. For example, this graph does not tell you which states are which."). Pointing at a bar, a
+  point, a year on a line chart, a state on the map, a waterfall step, a timeline mark or a grid cell shows a small
+  box with its name and value, in the same words and number format as that chart's "Show the numbers" table: one
+  function builds the table's row and the box's text. On a touch screen a tap shows it and a tap elsewhere closes it.
+  The pointer can move onto the box without losing it, Escape closes it, and it stays until the pointer leaves. It
+  sits beside, above or below what it describes, never over it, and inside the screen down to 320 px and with
+  doubled text, where a box taller than the room scrolls. Keyboard and screen-reader users keep the tables; the box
+  adds no tab stop. The vector (SVG) chart download carries each mark's text as its title. The Same shelf price and
+  Five designs tables, and their CSV downloads, have headings in words with their units ("State liquor store (% of
+  Utahns)") instead of machine column names, so their boxes and text versions read in words too.
+- **A Crimson appearance** (the maintainer: "also add in a crimson color scheme like our "honor" color scheme from
+  mixology by whip"). Settings → Appearance adds Crimson: the near-black and warm white of Mixology by Whip's Honor
+  colors, with a flare red for links, focus and the chosen option. Chart colors are Dark's, because captions name
+  them. Every color pair the tests measure passes in Crimson as in Light and Dark.
+- **Settings gives focus back at once** (the maintainer: "fix the Settings focus delay"). Closing the dialog returns
+  focus to the gear immediately; before, Chrome took 150-500 ms, and in a background tab focus stayed inside the
+  closed dialog.
+- **Copy fixes from a read of every text page** (the maintainer, on the review's findings: "Yes, into 0.6.4").
+  Template faults: "a" before numbers said with a vowel ("an 8.9%", "an 11.1%"), "A everyday table bottle", a
+  doubled period in eight chart captions, raw coded law values ("5.0% ABV" for "5.0pct abv", "$13.10" for
+  "usd 13.10") and a raw unit id, a negative zero ("−0.0¢"), nested brackets, and the Utah page's corrections, whose
+  dates printed as empty brackets because a bare `on:` key in YAML reads as the boolean true. The scenario page sent
+  one missing input to the wrong section. British spellings (realise, labelling, relabelling) are American now, and
+  about thirty sentences are plainer. Out-of-date text: package agencies' pay "was not read" (the FY27 grid is), the
+  statute copies "are not yet saved" (both versions are), and safeguards' price point described the grocer-set-price
+  case without saying so. The Utah page's 51 state stores is dated (June 30, 2025, FY2025 annual report) beside the
+  store locator's 52 in November 2026. Negative numbers print with a minus sign, and apostrophes are straight where
+  six pages mixed curly ones in. The website's build now fails on these patterns in its text pages.
+
 ## 0.6.3: the funding chart's labels fit (2026-11-22)
 
 One chart's layout. Prepared by Claude; not reviewed by a person. No data, figure or wording changed.

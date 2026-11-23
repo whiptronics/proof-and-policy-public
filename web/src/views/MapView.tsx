@@ -9,10 +9,11 @@ import { criterionById, verdictSymbol, verdictText } from "../lib/control";
 import { metricSourceIds, monthlySourceIds, sourceLine, sourcesById } from "../lib/sources";
 import { MapLegend, USMap, fillFor } from "../components/USMap";
 import { TrendChart } from "../components/TrendChart";
+import { rowTip, tipAttr } from "../lib/tip";
 import { snapshotsFor, yearStatuses } from "../lib/analysis";
 import { saveFile, toCsv, type Column } from "../lib/csv";
 import { decodeMetric, useData, type DecodedMetric } from "../lib/data";
-import { CONVERSION_LABELS, geoName, mapLabel, precise, unitLabel, words } from "../lib/format";
+import { CONVERSION_LABELS, geoName, mapLabel, precise, unitLabel, words, minus } from "../lib/format";
 import { MAP_MEASURES, MAP_TOPICS, measureById, type MapMeasure } from "../lib/mapMeasures";
 import { cellKind, changeBetween, domainOf, gradientStops, JUMP_PCT, largestJump, rankCells, type Jump, type MapCell, type RankedCell } from "../lib/mapdata";
 import { RANKS_METHOD, rankRangeText } from "../lib/ranks";
@@ -148,14 +149,14 @@ export function MapView() {
   const domain = domainOf(allValues, diverging, !fit);
   const barMax = Math.max(0, ...cells.map((c) => (c.value === null ? 0 : Math.abs(c.value))));
   const barMin = Math.min(0, ...cells.map((c) => (c.value === null ? 0 : c.value)));
-  const fmt = (v: number | null) => (v === null ? "—" : unit === "percent_change" ? `${v > 0 ? "+" : ""}${v.toFixed(1)}%` : precise(v, unit));
+  const fmt = (v: number | null) => (v === null ? "—" : unit === "percent_change" ? `${v > 0 ? "+" : ""}${minus(v.toFixed(1))}%` : precise(v, unit));
   const jumps = new Map<string, Jump>();
   if (base)
     for (const g of stateIds) {
       const j = largestJump(rows.filter((r) => r.geo === g), base, period);
       if (j && cellMap.get(g)?.value !== null) jumps.set(g, j);
     }
-  const jumpText = (j: Jump) => `${j.pct > 0 ? "+" : ""}${j.pct.toFixed(0)}% from ${j.from} to ${j.to}`;
+  const jumpText = (j: Jump) => `${j.pct > 0 ? "+" : ""}${minus(j.pct.toFixed(0))}% from ${j.from} to ${j.to}`;
   const short = (c: RankedCell) =>
     c.kind === "suppressed"
       ? "suppr."
@@ -198,6 +199,21 @@ export function MapView() {
         ? `${name(g)}: ${fmt(c.value)}${c.rank ? `, rank ${c.rank} of ${valued}${rangeOf(c) ? ` (rank range ${rangeOf(c)} allowing for ${ivWhat})` : ""}` : ""}${jumps.has(g) ? `; includes a one-year change of ${jumpText(jumps.get(g)!)}` : ""}`
         : `${name(g)}: ${c.kind === "suppressed" ? "suppressed by the source" : `no data (${words(c.why)})`}`) +
     (ctlText(g) ? `; liquor control: ${ctlText(g)}` : "");
+  // A row of the "Every state's value" table, as text: the table prints it and the state's tooltip on the map shows it.
+  const tableCells = (c: RankedCell) => ({
+    Rank: c.rank ?? "–",
+    ...(hasRanges ? { "Rank range (5th–95th)": rangeOf(c) ?? "–" } : {}),
+    State: name(c.geo),
+    Value: c.value === null ? "—" : `${fmt(c.value)}${jumps.has(c.geo) ? "†" : ""}`,
+    Status: c.kind === "value" ? "" : c.kind === "zero" ? "reported zero" : c.kind === "suppressed" ? "suppressed by the source" : words(c.why),
+    ...(control ? { "Liquor control": ctlText(c.geo) ?? "—" } : {}),
+  });
+  const stateTip = (g: string) => {
+    const c = cellMap.get(g);
+    if (!c) return rowTip({ State: name(g), Value: "—", Status: "no data" });
+    const { Status, ...rest } = tableCells(c);
+    return rowTip(Status ? { ...rest, Status } : rest);
+  };
   const us = cellFor("nation:us", period);
   const variantText = variant && variant.key !== "all" ? ` — ${variant.label.toLowerCase()}` : "";
   const periodText = measure.monthly ? period : meta?.period_kind === "state_fiscal_year" ? `fiscal year ${period}` : period;
@@ -407,6 +423,7 @@ export function MapView() {
             title={title}
             describe={describe}
             extraClass={control ? controlClass : undefined}
+            tip={stateTip}
           />
           <MapLegend domain={domain} format={(v) => fmt(v)} unitText={unitText} fixed={fixedText} />
         </div>
@@ -522,11 +539,11 @@ export function MapView() {
               <tbody>
                 {ranked.filter((c) => !onlyVerified || control?.get(c.geo)?.verdict === "yes").map((c) => (
                   <tr key={c.geo}>
-                    <td className="num">{c.rank ?? "–"}</td>
-                    {hasRanges && <td className="num">{rangeOf(c) ?? "–"}</td>}
-                    <th scope="row">{name(c.geo)}</th>
-                    <td className="num">{c.value === null ? "—" : `${fmt(c.value)}${jumps.has(c.geo) ? "†" : ""}`}</td>
-                    <td className="small">{c.kind === "value" ? "" : c.kind === "zero" ? "reported zero" : c.kind === "suppressed" ? "suppressed by the source" : words(c.why)}</td>
+                    <td className="num">{tableCells(c).Rank}</td>
+                    {hasRanges && <td className="num">{tableCells(c)["Rank range (5th–95th)"]}</td>}
+                    <th scope="row">{tableCells(c).State}</th>
+                    <td className="num">{tableCells(c).Value}</td>
+                    <td className="small">{tableCells(c).Status}</td>
                     {control && (
                       <td className="small">
                         <ControlBadge a={control.get(c.geo)} reference={isRef(c.geo)} />
@@ -675,6 +692,7 @@ function MonthlyLines({ series, fmt }: { series: { key: string; label: string; p
   const X = (x: number) => 40 + ((x - x0) / (x1 - x0 || 1)) * 540;
   const Y = (v: number) => 10 + (1 - (v - v0) / (v1 - v0 || 1)) * 150;
   const colors = ["var(--series-1)", "var(--series-2)", "var(--series-3)"];
+  const months = [...new Map(all.map((p) => [p.year, { year: p.year, label: p.period_label }])).values()].sort((a, b) => a.year - b.year);
   return (
     <figure style={{ margin: 0 }}>
       <svg viewBox="0 0 600 180" width="100%" role="img" aria-label={`Monthly values for ${series.map((s) => s.label).join(", ")}`}>
@@ -698,6 +716,11 @@ function MonthlyLines({ series, fmt }: { series: { key: string; label: string; p
           }
           if (cur) segs.push(cur);
           return segs.map((d, j) => <path key={`${s.key}${j}`} d={d} fill="none" stroke={colors[i % 3]} strokeWidth={1.6} />);
+        })}
+        {months.map((m, i) => {
+          const a = i === 0 ? 40 : (X(months[i - 1].year) + X(m.year)) / 2;
+          const b = i === months.length - 1 ? 580 : (X(m.year) + X(months[i + 1].year)) / 2;
+          return <rect key={m.label} x={a} y={10} width={b - a} height={150} fill="transparent" {...tipAttr({ title: m.label, rows: series.map((s) => [s.label, fmt(s.points.find((p) => p.year === m.year)?.value ?? null)]) })} />;
         })}
         <text x={40} y={176} fontSize="10" fill="var(--text-2)">
           {Math.floor(x0)}

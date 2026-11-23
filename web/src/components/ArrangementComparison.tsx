@@ -1,12 +1,15 @@
 // The arrangement comparison in the Utah scenario tool (lib/arrangements.ts, ARRANGEMENTS_METHOD): the same baseline
 // and purchase assumptions, three ways for the state to collect on grocery wine, with the baseline's sources and
 // standing, the break-even values and a one-assumption chart. Proposed arrangements, not current law; not a forecast.
-import type { ReactNode } from "react";
+import { useId, useRef, type ReactNode } from "react";
+import { rowTip } from "../lib/tip";
+import { RechartsTip } from "./ChartTip";
 import { CartesianGrid, Legend, Line, LineChart, ReferenceArea, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ARRANGEMENTS_METHOD, ARRANGEMENT_LABELS, SWEEPS, compare, jointScenarios, priceBuildUp, settingsFromFields, sweep, zerosOf, type ArrangementResult, type Bounds, type BreakEven, type Comparison, type EarmarkCase, type EarmarkResult, type EarmarkRule, type JointRow, type Keep, type SweepKey, type ViabilityCase } from "../lib/arrangements";
 import { movedShare, type DepositRates, type ScenarioInputs } from "../lib/scenario";
 import type { RangeFormat, Sensitivity } from "../lib/scenarioRanges";
 import { navigate } from "../lib/url";
+import { minus } from "../lib/format";
 
 export interface BaselineRow {
   input: string;
@@ -19,7 +22,7 @@ export interface BaselineRow {
 
 const money = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : ""}$${Math.round(Math.abs(v)).toLocaleString("en-US")}`);
 const millions = (v: number) => `${v < 0 ? "−" : ""}$${(Math.abs(v) / 1e6).toFixed(1)} million`;
-const pct = (v: number, digits = 1) => `${(v * 100).toFixed(digits)}%`;
+const pct = (v: number, digits = 1) => `${minus((v * 100).toFixed(digits))}%`;
 const fmt = (v: number, f: RangeFormat | "percent" | "plain" | "money2") =>
   f === "complement" ? pct(1 - v) : f === "percent" ? pct(v) : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
 
@@ -637,7 +640,7 @@ function EarmarkTable({ c, rateStatus }: { c: Comparison; rateStatus: string }) 
         {e0.rule === "fixed" || e0.rule === "proportional" ? (
           <>
             Today Utah Code §§ 32B-2-304 and -305 make DABS deposit {pct(rate, 3)} of its gross liquor revenue in the school-meals and enforcement funds (the rates in law for the base year:{" "}
-            {oneStatus(rateStatus)}). Wine DABS no longer sells (arrangement 1) would produce no deposits under the current text; that is a legal reading by Claude, not reviewed. A guarantee
+            {oneStatus(rateStatus)}). Wine that DABS no longer sells (arrangement 1) would produce no deposits under the current text; that is a legal reading by Claude, not reviewed. A guarantee
             is a term of the proposal, not an existing requirement, and it can be written two ways. <strong>Fixed (A):</strong> {money(e0.fixed)} a year, {pct(rate, 3)} of {money(S)}, the
             sales this scenario moves, set once and paid whatever then happens: if less wine moves than estimated (as in the exploratory return reading), the two funds come out ahead of
             today and the other funds pay for it; if more moves, the two funds fall behind. <strong>Proportional (B):</strong> the same rates on the state-store sales actually lost each
@@ -966,6 +969,10 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
   // DABS's price to grocers is swept as the share below the shelf price and shown as 1 − v, on a reversed axis.
   const fmtX = (v: number) => (key === "taxRate" && set.taxKind === "excise" ? `$${v.toFixed(0)}` : key === "discount" ? `${Math.round((1 - v) * 100)}%` : spec.format === "percent" ? `${Math.round(v * 100)}%` : v.toFixed(2));
   const data = sw.points.map((p) => ({ v: p.v, private: p.private === null ? null : p.private / 1e6, wholesale: p.wholesale === null ? null : p.wholesale / 1e6 }));
+  // A row of "The chart's numbers": the table prints it and the tooltip at that value shows it.
+  const numRow = (p: (typeof sw.points)[number]) => ({ [spec.label]: fmtX(p.v), "Arrangement 1": p.private === null ? "—" : millions(p.private), "Arrangement 2": p.wholesale === null ? "—" : millions(p.wholesale) });
+  const box = useRef<HTMLDivElement>(null);
+  const id = useId();
   const entered = key === "taxRate" ? set.taxRate : key === "discount" ? set.discount : key === "avoidableCost" ? x.avoidableCost : key === "shift" ? x.shift : key === "eligible" ? (x.eligible ?? null) : key === "priceRatio" ? x.priceRatio : key === "grossMargin" ? x.grossMargin : (x.elasticity ?? null);
   const span = sw.to - sw.from;
   const step = [0.01, 0.02, 0.05, 0.1, 0.2, 0.25, 0.5, 1, 2, 5, 10, 20, 25, 50, 100].find((st) => span / st <= 7) ?? span / 6;
@@ -995,6 +1002,7 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
           </select>
         </label>
       </figcaption>
+      <div ref={box} data-tip-box="">
       <ResponsiveContainer width="100%" height={260}>
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 4, left: 0 }}>
           <CartesianGrid stroke="var(--line)" strokeDasharray="2 3" />
@@ -1013,15 +1021,20 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
             <ReferenceDot key={`w${z}`} x={z} y={0} r={4} fill="var(--series-2)" stroke="var(--surface)" strokeWidth={2} />
           ))}
           <Tooltip
-            formatter={(v: unknown, name: unknown) => [v === null || v === undefined ? "—" : `$${Number(v).toFixed(2)} million`, String(name)]}
-            labelFormatter={(l: unknown) => fmtX(Number(l))}
-            contentStyle={{ background: "var(--surface)", border: "1px solid var(--line-strong)", color: "var(--text)", fontSize: 12 }}
+            cursor={{ stroke: "var(--line-strong)" }}
+            content={({ active, label, coordinate }) => (
+              <RechartsTip active={active} label={label} coordinate={coordinate} box={box} id={id} build={(l) => {
+                const p = sw.points.find((q) => q.v === Number(l));
+                return p ? rowTip(numRow(p)) : null;
+              }} />
+            )}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line type="monotone" dataKey="private" name="1. Private retail, replacement tax" stroke="var(--series-1)" strokeWidth={2} dot={false} connectNulls={false} isAnimationActive={false} />
           <Line type="monotone" dataKey="wholesale" name="2. State wholesale" stroke="var(--series-2)" strokeWidth={2} strokeDasharray="6 3" dot={false} connectNulls={false} isAnimationActive={false} />
         </LineChart>
       </ResponsiveContainer>
+      </div>
       <p className="small" style={{ marginTop: 4 }}>
         {zText("Arrangement 1", zp, key !== "discount")}; {zText("arrangement 2", zw, key !== "taxRate")}. {spec.note} Arrangement 3 has the total of the arrangement it is built on. A crossing is a
         value at which the sign reverses, other inputs held; it is not a likely value.
@@ -1046,9 +1059,9 @@ function SweepChart({ x, c, sweepKey, get, opexShare, bounds }: { x: ScenarioInp
                 .filter((_, i) => i % 6 === 0)
                 .map((p) => (
                   <tr key={p.v}>
-                    <th scope="row">{fmtX(p.v)}</th>
-                    <td className="num">{p.private === null ? "—" : millions(p.private)}</td>
-                    <td className="num">{p.wholesale === null ? "—" : millions(p.wholesale)}</td>
+                    <th scope="row">{numRow(p)[spec.label]}</th>
+                    <td className="num">{numRow(p)["Arrangement 1"]}</td>
+                    <td className="num">{numRow(p)["Arrangement 2"]}</td>
                   </tr>
                 ))}
             </tbody>

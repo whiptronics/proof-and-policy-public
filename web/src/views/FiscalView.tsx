@@ -29,7 +29,7 @@ const COLS: Col[] = [
     key: "a90",
     metric: "census_liquor_stores_revenue@state_fiscal_year",
     label: "State liquor-store receipts",
-    kind: "Turnover, not profit: what customers paid state-run stores or wholesale (Census, FY1972 and FY1977-FY2024)",
+    kind: "Turnover, not profit: what customers paid state-run stores or state wholesalers (Census, FY1972 and FY1977-FY2024)",
     capYear: true,
   },
   {
@@ -202,7 +202,7 @@ export function FiscalView() {
           taxes on beer, wine and spirits), <strong>license fees</strong> from sellers, and its <strong>general sales tax</strong> on purchases.
           Residents buy alcohol everywhere, as the spending column shows. States that sell or wholesale spirits themselves (often called control
           states) collect the same kinds of taxes and fees, plus whatever their stores earn; Census counts store receipts apart from taxes. For
-          fiscal {a90Year}, the Census files held record liquor-store receipts for {withStores} states; the others have no liquor-store figure at
+          fiscal {a90Year}, the Census files held liquor-store receipts for {withStores} states; the others have no liquor-store figure at
           all, shown as "—" rather than zero. Some states on that list only wholesale spirits to private stores, which is why a state can show
           store receipts and private retail at the same time.
         </p>

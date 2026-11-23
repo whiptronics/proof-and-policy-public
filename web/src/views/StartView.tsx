@@ -62,7 +62,7 @@ export function StartView() {
           state revenue and maintaining responsible oversight.
         </p>
         <p className="lede">
-          This research sets out a design that keeps every bottle at today&rsquo;s state-store price, compares it with other ways of doing it,
+          This research sets out a design that keeps every bottle at today's state-store price, compares it with other ways of doing it,
           checks each against Utah law and other states, and says what every figure rests on. It examines a proposal; it does not campaign for one.
         </p>
         <div className="row-actions hero-actions">

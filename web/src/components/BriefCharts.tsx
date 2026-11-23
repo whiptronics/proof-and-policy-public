@@ -4,6 +4,7 @@
 // patterns for cost items and taxes.
 import { useId } from "react";
 import type { BridgeStep, FlowColumn } from "../lib/briefing";
+import { tipAttr, type Tip } from "../lib/tip";
 
 export const millions = (v: number, sign = true) => `${v < 0 ? "−" : sign && v > 0 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(1)}M`;
 const dollars = (v: number) => `$${v.toFixed(2)}`;
@@ -65,8 +66,8 @@ function labelAt(x0: number, x1: number, text: string, left: number, right: numb
 }
 
 /** `connect` draws the line from each bar's end to the next bar: on for a running total, off for bars that are
- * alternatives drawn from zero. */
-export function BridgeChart({ steps, width, label, connect = true }: { steps: BridgeStep[]; width: number; label: string; connect?: boolean }) {
+ * alternatives drawn from zero. `tips[i]` is step i's row in the figure's table (lib/tip.ts), shown on hover or tap. */
+export function BridgeChart({ steps, width, label, connect = true, tips }: { steps: BridgeStep[]; width: number; label: string; connect?: boolean; tips?: Tip[] }) {
   const uid = useId().replace(/:/g, "");
   const wide = width >= W_BREAK;
   const labelW = wide ? Math.min(250, Math.round(width * 0.36)) : 0;
@@ -114,7 +115,7 @@ export function BridgeChart({ steps, width, label, connect = true }: { steps: Br
         const words = wrapWords(s.label, Math.max(12, Math.floor((wide ? labelW : width - 16) / 7)));
         const ly = wide ? y + barH / 2 + 4.5 - ((words.length - 1) * 15) / 2 : y - 7 - (words.length - 1) * 15;
         return (
-          <g key={s.id}>
+          <g key={s.id} {...(tips?.[i] ? tipAttr(tips[i]) : {})}>
             <text x={wide ? labelW : padL} y={ly} textAnchor={wide ? "end" : "start"} className={total ? "row-label strong" : "row-label"}>
               {words.map((l, k) => (
                 <tspan key={k} x={wide ? labelW : padL} dy={k === 0 ? 0 : 15}>
@@ -143,7 +144,8 @@ const SEG_CLASS: Record<string, string> = {
   grocer: "s-grocer",
 };
 
-export function SplitChart({ cols, width, label }: { cols: FlowColumn[]; width: number; label: string }) {
+/** `tipOf(column, segment)` is that segment's row in the figure's table (lib/tip.ts), shown on hover or tap. */
+export function SplitChart({ cols, width, label, tipOf }: { cols: FlowColumn[]; width: number; label: string; tipOf?: (c: FlowColumn, s: FlowColumn["segments"][number]) => Tip }) {
   const uid = useId().replace(/:/g, "");
   const padL = 8;
   const padR = 8;
@@ -202,10 +204,8 @@ export function SplitChart({ cols, width, label }: { cols: FlowColumn[]; width: 
               const fill = hatched(s.id) ? { style: { fill: `url(#${uid}-${cls})` } } : { className: cls };
               const t = dollars(s.amount);
               return (
-                <g key={s.id}>
-                  <rect x={a} y={y0} width={Math.max(0, b - a - 1.5)} height={barH} {...fill}>
-                    <title>{`${s.label}: ${t}`}</title>
-                  </rect>
+                <g key={s.id} {...(tipOf ? tipAttr(tipOf(c, s)) : {})}>
+                  <rect x={a} y={y0} width={Math.max(0, b - a - 1.5)} height={barH} {...fill} />
                   {b - a >= t.length * 7.4 + 8 && (
                     <text x={(a + b) / 2} y={y0 + barH / 2 + 4.5} textAnchor="middle" className={`seg-label ${cls}`}>
                       {t}

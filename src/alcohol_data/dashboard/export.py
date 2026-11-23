@@ -550,7 +550,7 @@ class Export:
         if m["unit"] != "usd_nominal":
             return (
                 False,
-                f"Unit is {m['unit']}; constant-dollar and per-person conversions apply to nominal dollar amounts only.",
+                "Constant-dollar and per-person conversions apply to nominal dollar amounts only.",
             )
         if period_kind not in ("state_fiscal_year", "calendar_year"):
             return False, "Conversions are defined for fiscal-year and calendar-year amounts only."

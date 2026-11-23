@@ -16,9 +16,10 @@ import {
 import { DIRECT_COST_SHARES, PRODUCER_PREMIUMS } from "./producerDirect";
 import { ASSUMPTIONS, RETAILER_TARGET, WHOLESALER_MARGIN, type Standing } from "./wineAlternatives";
 import { LAW_SOURCES, STATUTES_METHOD, STATUTE_ROWS, amendmentsFor, openQuestionsFor, type RowKind } from "./statutes";
+import { minus } from "./format";
 
 const esc = (s: string) => s.replace(/\|/g, "\\|");
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const usd0 = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 
 const STATUS = (what: string) =>
@@ -108,7 +109,7 @@ export function safeguardsDoc(r: PolicyDesignsReport = defaultDesignsReport()): 
     "",
     "## Safeguards against current law",
     "",
-    "Checked against the Utah Code read on 2026-11-19 (see the matrix's sources) before calling anything new.",
+    "Checked against the Utah Code as read on 2026-11-19 (see the matrix's sources) before anything here was called new.",
     "",
     "| Safeguard | Current law for off-premise beer | Citation | Status | Proposal for wine |",
     "|---|---|---|---|---|",
@@ -170,8 +171,7 @@ export function statesDoc(): string {
       "",
       ...c.evidence.flatMap((e) => [`- **${STRENGTH_LABEL[e.strength]}.** [${esc(e.label)}](${e.url.startsWith("?") ? `https://proofandpolicy.us/${e.url}` : e.url}): ${e.text} *(${e.source})*`]),
       "",
-      `**At the same time.** ${c.concurrent}`,
-      "",
+      ...(c.concurrent === "—" ? [] : [`**At the same time.** ${c.concurrent}`, ""]),
       `**For Utah.** ${c.applies}`,
       "",
     ]),

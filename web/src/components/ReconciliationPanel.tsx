@@ -2,7 +2,9 @@
 // Census receipts and the audited fund's sales, each line with its evidence status, and the Utah-Pennsylvania
 // comparison. Reads reconciliation.json (src/alcohol_data/dashboard/reconciliation.py). Observed figures only: no
 // modeled revenue, no assumption. Values read online and not yet saved carry the ◐ mark and link to the page.
-import type { ReactNode } from "react";
+import { useId, useRef, type ReactNode } from "react";
+import type { Tip } from "../lib/tip";
+import { RechartsTip } from "./ChartTip";
 import { Bar, BarChart, CartesianGrid, Legend, ReferenceArea, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useData } from "../lib/data";
 import { analysisPatch, fromConfig } from "../lib/analysis";
@@ -91,14 +93,7 @@ function BridgeRows({ r, tol }: { r: BridgeYear; tol: number }) {
         const stat = r.variants.find((v) => v.kind === "statutory" && v.sales === s.value);
         const rep = r.variants.find((v) => v.kind === "reported" && v.sales === s.value);
         const res = (v: typeof stat) =>
-          v?.residual === null || v === undefined ? (
-            "—"
-          ) : (
-            <span className={Math.abs(v.residual) <= tol ? "" : "strong"}>
-              {thousands(v.residual)}
-              {Math.abs(v.residual) <= tol ? " =" : ""}
-            </span>
-          );
+          v?.residual === null || v === undefined ? "—" : <span className={Math.abs(v.residual) <= tol ? "" : "strong"}>{leftOver(v.residual, tol)}</span>;
         return (
           <tr key={`${r.fiscal_year}-${i}`}>
             {i === 0 && (
@@ -145,13 +140,27 @@ function BridgeRows({ r, tol }: { r: BridgeYear; tol: number }) {
   );
 }
 
-function ResidualChart({ data, tolM }: { data: ReturnType<typeof residualPoints>; tolM: number }) {
+/** A "Left over" cell: $ thousands, with "=" when it is within the tolerance. The chart's tooltip shows the same text. */
+const leftOver = (v: number | null | undefined, tol: number) => (v === null || v === undefined ? "—" : `${thousands(v)}${Math.abs(v) <= tol ? " =" : ""}`);
+
+/** A year's bars as its table row's "Left over" cells (the first sales figure, the one charted). */
+function residualTip(r: BridgeYear | undefined, label: string, tol: number): Tip | null {
+  if (!r) return null;
+  const first = r.dabs_sales[0]?.value;
+  const at = (kind: "statutory" | "reported") => leftOver(r.variants.find((x) => x.kind === kind && x.sales === first)?.residual, tol);
+  return { title: label, rows: [["Left over, statutory ($ thousands)", at("statutory")], ["Left over, reported ($ thousands)", at("reported")]] };
+}
+
+function ResidualChart({ data, tolM, tipOf }: { data: ReturnType<typeof residualPoints>; tolM: number; tipOf: (label: string) => Tip | null }) {
+  const box = useRef<HTMLDivElement>(null);
+  const id = useId();
   return (
     <figure className="chart" aria-label="Left over after the two deposits, by fiscal year">
       <figcaption className="small">
         <strong>Left over after the two statutory deposits</strong>, $ millions (DABS sales less the deposits, minus Census receipts or, for FY2025, the audited fund's sales). The shaded
         band is ±${tolM.toFixed(2)} million. * DABS prints two FY2024 sales figures; the chart uses the first, the table shows both.
       </figcaption>
+      <div ref={box} data-tip-box="">
       <ResponsiveContainer width="100%" height={240}>
         <BarChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: 0 }} barGap={2} barCategoryGap="22%">
           <CartesianGrid stroke="var(--line)" strokeDasharray="2 3" vertical={false} />
@@ -160,15 +169,15 @@ function ResidualChart({ data, tolM }: { data: ReturnType<typeof residualPoints>
           <ReferenceArea y1={-tolM} y2={tolM} fill="var(--ci)" stroke="none" ifOverflow="extendDomain" />
           <ReferenceLine y={0} stroke="var(--line-strong)" />
           <Tooltip
-            formatter={(v: unknown, name: unknown) => [v === null || v === undefined ? "—" : `$${Number(v).toFixed(2)} million`, String(name)]}
-            labelFormatter={(l: unknown) => String(l)}
-            contentStyle={{ background: "var(--surface)", border: "1px solid var(--line-strong)", color: "var(--text)", fontSize: 12 }}
+            cursor={{ fill: "var(--surface-2)" }}
+            content={({ active, label, coordinate }) => <RechartsTip active={active} label={label} coordinate={coordinate} box={box} id={id} build={(l) => tipOf(String(l))} />}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Bar dataKey="statutory" name="Deposits at the statutory rates" fill="var(--series-1)" radius={[2, 2, 0, 0]} isAnimationActive={false} />
           <Bar dataKey="reported" name="Deposits as DABS reported them" fill="var(--series-2)" radius={[2, 2, 0, 0]} isAnimationActive={false} />
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </figure>
   );
 }
@@ -204,7 +213,7 @@ export function ReconciliationPanel() {
         Only the two deposits Utah law computes on total gross liquor revenue are subtracted. Fixed-amount earmarks (Parents Empowered, underage drinking prevention, other programs)
         are not: nothing computes them on sales.
       </p>
-      <ResidualChart data={residualPoints(d.bridge)} tolM={tolM} />
+      <ResidualChart data={residualPoints(d.bridge)} tolM={tolM} tipOf={(l) => residualTip(d.bridge.find((r) => `FY${r.fiscal_year}` === l.replace("*", "")), l, d.tolerance_dollars)} />
       <div className="table-wrap">
         <table className="data recon-table">
           <caption className="small">

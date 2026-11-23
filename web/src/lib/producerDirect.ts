@@ -10,6 +10,7 @@
 // grocery price, and the state only through sales tax on it.
 import type { Assumption, AltDef, AltResult } from "./wineAlternatives";
 import { WHOLESALER_MARGIN, alternativeById, distributorMargin, evaluate } from "./wineAlternatives";
+import { minus } from "./format";
 
 export const PRODUCER_DIRECT_METHOD = "producer-direct@1.0";
 
@@ -19,12 +20,12 @@ export const DIRECT_COST_SHARES = [0, 0.1, 0.2, WHOLESALER_MARGIN] as const;
 /** What producers charge grocers over what DABS pays (its landed cost). A lower price is not shown (see D2). */
 export const PRODUCER_PREMIUMS = [0, 0.1, 0.2] as const;
 
-const pctS = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pctS = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 
 export const DIRECT_ASSUMPTIONS: Assumption[] = [
   {
     id: "D1",
-    label: "What delivering to grocers, taking their orders and administration cost the producer",
+    label: "What delivery to grocers, order-taking and administration cost the producer",
     value: `${pctS(WHOLESALER_MARGIN)} of its price to the grocer in the main case (the private wholesaler's margin); 0%, 10% and 20% in the grid`,
     standing: "illustrative",
     note: "No source measures it for Utah grocery wine. Removing the wholesaler removes its margin, not its work, so the main case assumes no saving.",

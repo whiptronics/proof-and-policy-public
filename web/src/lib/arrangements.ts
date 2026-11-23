@@ -30,6 +30,7 @@
 // proportional (today's deposit rates on the state-store sales actually lost); both are shown in every case.
 import { compute, excisePerDollar, movedShare, type DepositRates, type ScenarioInputs, type ScenarioResult } from "./scenario";
 import { sensitivity, type Sensitivity } from "./scenarioRanges";
+import { minus } from "./format";
 
 export const ARRANGEMENTS_METHOD = "utah-wine-arrangements@1.1";
 
@@ -968,7 +969,7 @@ export function jointScenarios(base: ScenarioInputs, set: ArrangementSettings, r
     const a = id === "private" ? c.private : c.wholesale;
     return { net: c.headline === "all" ? a.netAll : (a.lines?.net ?? null), breakEven: a.breakEven.value, status: a.breakEven.status };
   };
-  const pctT = (v: number) => `${(v * 100).toFixed(1)}%`;
+  const pctT = (v: number) => `${minus((v * 100).toFixed(1))}%`;
   const rows: JointRow[] = [];
   // Arrangement 2 can be given its own inputs (the parity row changes arrangement 1's price only).
   const push = (id: string, label: string, standing: JointRow["standing"], what: string, bx: ScenarioInputs, sx: ArrangementSettings, bw: ScenarioInputs = bx, sw: ArrangementSettings = sx) =>

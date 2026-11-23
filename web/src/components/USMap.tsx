@@ -4,6 +4,7 @@
 import { useState, type KeyboardEvent, type ReactNode } from "react";
 import { colorFor, inkFor, type Domain, type RankedCell } from "../lib/mapdata";
 import type { MapShapes } from "../lib/types";
+import { tipAttr, type Tip } from "../lib/tip";
 
 export const CALLOUTS = ["state:50", "state:33", "state:25", "state:44", "state:09", "state:34", "state:10", "state:24", "state:11"];
 const WIDTH = 1060;
@@ -45,6 +46,7 @@ export function USMap({
   describe,
   showValues = true,
   extraClass,
+  tip,
 }: {
   shapes: MapShapes;
   cells: Map<string, RankedCell>;
@@ -60,6 +62,8 @@ export function USMap({
   showValues?: boolean;
   /** Extra class per state (for example the liquor-control comparison: faded or dashed). */
   extraClass?: (geo: string) => string;
+  /** A state's tooltip: its row of the page's table. */
+  tip?: (geo: string) => Tip;
 }) {
   const [hover, setHover] = useState<string | null>(null);
   const geos = Object.keys(shapes.states);
@@ -127,8 +131,9 @@ export function USMap({
               onMouseLeave={() => setHover(null)}
               onFocus={() => setHover(g)}
               onBlur={() => setHover(null)}
+              {...(tip ? tipAttr(tip(g)) : {})}
             >
-              <title>{describe(c, g)}</title>
+              {!tip && <title>{describe(c, g)}</title>}
             </path>
           );
         })}

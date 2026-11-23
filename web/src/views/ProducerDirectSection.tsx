@@ -4,8 +4,9 @@
 import { useMemo } from "react";
 import { DIRECT_COST_SHARES, PRODUCER_DIRECT_METHOD, PRODUCER_PREMIUMS, directReport } from "../lib/producerDirect";
 import { WINE_ALTERNATIVES_METHOD } from "../lib/wineAlternatives";
+import { minus } from "../lib/format";
 
-const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 0) => `${minus((v * 100).toFixed(d))}%`;
 const money = (v: number) => `${v < 0 ? "−" : "+"}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 
 export function ProducerDirectSection() {
@@ -26,7 +27,7 @@ export function ProducerDirectSection() {
       </p>
       <p className="finding">
         <strong>The charge keeps the state's share of each bottle; the supply chain moves the grocery price, and sales tax with it.</strong>{" "}
-        With no store costs counted as saved, the main case leaves the state about {money(main.zeroSavings.net)} a year, the same as private
+        With no store costs counted as saved, the main case leaves the state about {money(Math.abs(main.zeroSavings.net)).slice(1)} a year {main.zeroSavings.net < 0 ? "short" : "ahead"}, the same as private
         wholesale ({money(wholesale.zeroSavings.net)}). If direct delivery cost producers nothing, grocery wine would be about{" "}
         {pct(cheapest.fixed.stack.consumerChange)} above the state store instead of {pct(main.fixed.stack.consumerChange)}, and the state would
         collect less sales tax on the lower price: across the table it comes out {money(Math.min(...nets))} to {money(Math.max(...nets))} a

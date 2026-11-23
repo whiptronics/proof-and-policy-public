@@ -6,10 +6,11 @@ import { defaultDesignsReport, type DesignId, type DesignResult, type PolicyDesi
 import { typicalGrocer } from "./packageAgency";
 import { samePriceHeadline } from "./samePrice";
 import { amendmentsFor, openQuestionsFor } from "./statutes";
+import { withArticle, minus } from "./format";
 
 export const FRAMEWORK_METHOD = "grocery-wine-framework@1.0";
 
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const usdM = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)} million`;
 const usd0 = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 
@@ -64,7 +65,7 @@ export function frameworkPoints(r: PolicyDesignsReport = defaultDesignsReport())
     { n: 10, title: "Package agencies", proposal: "DABS pays package agencies a fixed amount a year from a published grid, by bottles sold and average bottle price; the bill could keep or adjust their terms where a grocer nearby is licensed. A grocer could take some of an agency's wine sales; the effect is not estimated.", basis: "32B-2-601, -605 (pinned); DABS compensation grid FY27 (pinned)" },
     { n: 11, title: "Implementation costs", proposal: `The model's ${usdM(h.admin).replace("+", "")} a year of new administration is a placeholder: no estimate exists. Covered by fees, it is ${usd0(h.fee)} a year per store if all ${UTAH_GROCERY_ESTABLISHMENTS.count} grocery establishments were licensed. One-time costs (rules, systems, training) are not estimated.`, basis: "Business impacts" },
     { n: 12, title: "Review and reporting", proposal: "DABS reports each year on licenses by county, wine sold to grocers, compliance-check results and revenue; a fiscal review after three years decides whether to continue, change or extend the program.", basis: "Monitoring indicators" },
-    { n: 13, title: "Effective dates", proposal: "Licenses issued no earlier than a year after enactment, once rules, training and the supply contract are ready; existing beer licensees apply, with no automatic conversion.", basis: "Colorado's automatic conversion drew the objection of no local review (Blue Book argument against)" },
+    { n: 13, title: "Effective dates", proposal: "Licenses issued no earlier than a year after enactment, once rules, training and the supply contract are ready; existing beer licensees apply, with no automatic conversion.", basis: "Colorado's automatic conversion drew the objection that it allowed no local review (Blue Book argument against)" },
     { n: 14, title: "Modification or suspension", proposal: "Triggers set in rule (a compliance-check failure rate, or wine revenue below the baseline) require a review and allow the commission to pause new licenses; the program ends unless reauthorized.", basis: "Monitoring indicators" },
   ];
 }
@@ -124,7 +125,7 @@ export const INDICATORS: Indicator[] = [
   { name: "Alcohol-related crashes and injuries", source: "NHTSA FARS (already in this dataset); state injury data", note: "Trends only: a change after the law does not show the law caused it." },
   { name: "Wine and pure-alcohol volume", source: "DABS sales; NIAAA apparent consumption", note: "Wine by channel, and total ethanol, so substitution from beer or spirits can be seen." },
   { name: "DABS revenue", source: "DABS annual reports", note: "Wine margin from stores and from grocers, before and after." },
-  { name: "Dedicated funds", source: "32B-2-304(5), -305(4) deposits", note: "School-lunch and other deposits each year." },
+  { name: "Dedicated funds", source: "32B-2-304(5), -305(4) deposits", note: "School-meals and other deposits each year." },
   { name: "State stores and package agencies", source: "DABS store and agency sales", note: "Sales by store, so the effect on rural agencies is measured rather than assumed." },
 ];
 
@@ -187,14 +188,14 @@ export const STATE_CASES: StateCase[] = [
       { label: "Post-reform prices, sales, closures and tax revenue", strength: "not_read", text: "The Department of Revenue's liquor pages refused automated access, and no government or peer-reviewed evaluation of the 2023 change was found. Retailer accounts and industry claims are not used.", source: "sbg.colorado.gov (HTTP 403), 2026-11-19", url: "https://sbg.colorado.gov/liquor" },
     ],
     concurrent: "2016 legislation phased in more locations for liquor-licensed drugstores and let beer retailers sell full-strength beer; Proposition 124 (more liquor-store locations) was on the same 2022 ballot.",
-    applies: "A license state with private wholesale and an excise tax, like Tennessee. Its automatic conversion is the opposite of the licensing this framework proposes, and its observation period is short.",
+    applies: "Colorado is a license state with private wholesale and an excise tax, like Tennessee. Its automatic conversion is the opposite of the licensing this framework proposes, and its observation period is short.",
   },
   {
     id: "pa",
     state: "Pennsylvania",
     change: "Wine expanded permits (Act 39 of 2016)",
     date: "Approved June 8, 2016; permit requests from August 8, 2016",
-    legal: "A control state that is still the wholesaler and runs about 560 state stores. Restaurant and hotel licensees (including grocery and convenience stores holding restaurant licenses) may sell up to 3 liters of wine to go per sale, bought from state stores or limited wineries, at a designated register staffed by a trained cashier 18 or older, never below their purchase price. A $2,000 application fee and a renewal fee of 2% of wine bought from the state.",
+    legal: "A control state that is still the wholesaler and runs about 560 state stores. Restaurant and hotel licensees (including grocery and convenience stores holding restaurant licenses) may sell up to 3 liters of wine to go per sale, bought from state stores or limited wineries, at a designated register staffed by a trained cashier 18 or older, never below their purchase price. The permit carries a $2,000 application fee and a renewal fee of 2% of wine bought from the state.",
     evidence: [
       { label: "PLCB annual report, FY2024-25", strength: "legal_text", text: "Permits on June 30, 2025: 980 convenience stores, 559 grocery stores, 296 restaurants, 62 hotels, 9 mass merchants. Total PLCB sales $3.16 billion with taxes; liquor tax (18%) $444.4 million. No estimate of the permits' effect on revenue.", source: "PLCB annual report FY2024-25, read 2026-11-19", url: "https://www.pa.gov/agencies/lcb/about-us/reports-and-publications/annual-reports" },
       { label: "PLCB, Frequently Asked Questions: Wine Expanded Permits (October 4, 2016)", strength: "legal_text", text: "Eligibility, the 3-liter limit, hours, the designated register, scanning ID of patrons who appear under 35, and the price floor.", source: "PLCB Office of Chief Counsel, read 2026-11-19", url: "https://www.pa.gov/agencies/lcb/shop-wine-spirits/wholesale-wine-and-spirits-sales/wine-expanded-permits" },
@@ -249,7 +250,7 @@ export function businessImpacts(r: PolicyDesignsReport = defaultDesignsReport())
   const fb = feeBurden(r);
   return [
     { who: "DABS stores", effect: `Lose up to ${pct(h.B.dabsVolumeLost.fixed)} of DABS's wine sales if 30% of household purchases move; none if price-sensitive households stay. Under B, DABS's warehouse still handles every bottle.`, evidence: "computed" },
-    { who: "Rural package agencies", effect: "Paid by contract; a nearby licensed grocer could take sales. Pay terms were not read, so the effect is not estimated.", evidence: "unknown" },
+    { who: "Rural package agencies", effect: "Paid a fixed amount a year from DABS's published grid, by bottles sold and average bottle price; a nearby licensed grocer could take some of an agency's wine sales, and the effect on its pay is not estimated.", evidence: "unknown" },
     { who: "DABS employees", effect: "No staffing change is modeled. Wages fall only in the illustrative longer-run case, and no staffing plan exists.", evidence: "assessed" },
     { who: "Utah wineries and small producers", effect: "Under B they reach grocers through DABS listings, as now; under D they could sell to grocers directly but carry delivery and permit costs.", evidence: "assessed" },
     { who: "Existing alcohol retailers", effect: "Off-premise beer retailers that are not grocery stores would be outside a grocery-only first phase. Utah has no independent liquor stores: wine is sold only at state stores and contract package agencies.", evidence: "assessed" },
@@ -274,13 +275,13 @@ export function hardQuestions(r: PolicyDesignsReport = defaultDesignsReport()): 
   const s = samePriceHeadline();
   const cost = (v: number) => usdM(v).replace("+", "");
   return [
-    { q: "Would Utah lose alcohol revenue?", a: `It depends on DABS's price to grocers and on what DABS saves, which nobody has measured. With wine at today's shelf price and DABS selling to grocers at ${pct(s.priceToGrocers, 0)} of it, the state gives up ${cost(s.cost.none)} a year if DABS saves nothing and ${cost(s.cost.longerRun)} if its wages fall with sales, with license fees covering the administration; household wine purchases ${pct(s.neededNone)} higher would cover the first. If grocers set their own prices instead (design B), the state is ${usdM(h.bFixed)} a year ahead if 30% of household purchases move.`, see: "?v=sameprice" },
+    { q: "Would Utah lose alcohol revenue?", a: `It depends on DABS's price to grocers and on what DABS saves, which nobody has measured. With wine at today's shelf price and DABS selling to grocers at ${pct(s.priceToGrocers, 0)} of it, the state gives up ${cost(s.cost.none)} a year if DABS saves nothing and ${cost(s.cost.longerRun)} if its wages fall with sales, with license fees covering the administration; a rise of ${pct(s.neededNone)} in household wine purchases would cover the first. If grocers set their own prices instead (design B), the state is ${cost(Math.abs(h.bFixed))} a year ${h.bFixed < 0 ? "short" : "ahead"} if 30% of household purchases move.`, see: "?v=sameprice" },
     { q: "How much would wine cost in grocery stores?", a: "The same as at a state store. Under the framework grocers sell at the price the commission fixes, as state stores and package agencies must (point 6). If a bill let grocers set their own prices instead, the price would depend on the margin they keep; the five designs page models that option.", see: "?v=sameprice" },
     { q: "Would grocery stores actually be willing to sell it?", a: `Not known. A grocer's margin is the gap between DABS's price to it and the shelf price. Pennsylvania's licensees buy at 10% below retail and 559 grocery stores hold its wine permits. Utah's own package agency grid would pay a typical grocery store's wine volume about ${pct(typicalGrocer(s.moved).rate, 0)} of its sales, and large stores less.`, see: "?v=sameprice" },
-    { q: "Could the state collect the same revenue without distributing the wine?", a: `Yes in arithmetic: a retail-level charge equal to DABS's margin collects it (designs C and D). But a private wholesaler's margin then sits on top, so the grocery price rises ${pct(h.C.premium)}. A retail-level charge with distribution that cost nothing would break even at ${pct(ref.retailChargeNoDistribution)}.`, see: "?v=designs" },
+    { q: "Could the state collect the same revenue without distributing the wine?", a: `Yes in arithmetic: a retail-level charge equal to DABS's margin collects it (designs C and D). But a private wholesaler's margin then sits on top, so the grocery price rises ${pct(h.C.premium)}. A retail-level charge with distribution that cost nothing would break even at ${withArticle(pct(ref.retailChargeNoDistribution))} price premium.`, see: "?v=designs" },
     { q: "Could direct producer-to-grocery distribution work?", a: `Only if delivery is cheap: D beats B's price only if delivery costs less than ${pct(r.distributionToMatchB)} of the price to grocers, which nothing measures. It also needs new state authority and an answer on federal wholesaler permits.`, see: "?v=framework" },
     { q: "Would wine consumption increase?", a: "Probably somewhat: more outlets usually mean more buying. Tennessee's wine purchases rose clearly faster than its neighbors' after 2016, though total alcohol's rise was within the usual range. The revenue model counts no added drinking in its main case.", see: "?v=safeguards" },
-    { q: "Would this make underage purchases easier?", a: "More outlets mean more places to try. Utah's beer rules (ID before every sale, training, compliance checks, penalties) would extend to wine; how well they work at grocers is what the compliance-check failure rate would measure.", see: "?v=safeguards" },
+    { q: "Would this make underage purchases easier?", a: "More outlets mean more places for minors to try to buy. Utah's beer rules (ID before every sale, training, compliance checks, penalties) would extend to wine; how well they work at grocers is what the compliance-check failure rate would measure.", see: "?v=safeguards" },
     { q: "What happens to DABS employees?", a: "No layoffs are modeled. Under B, DABS still buys, stores and delivers every bottle. Store staffing would change only if store sales fall, and no staffing plan exists.", see: "?v=framework" },
     { q: "What happens to rural package agencies?", a: "Not estimated. DABS pays each one a fixed amount a year from a published grid, by bottles sold and average bottle price. A licensed grocer in an agency's town could take some of its wine sales, and with them its place on the grid; the framework leaves the agency terms to the bill.", see: "?v=sameprice" },
     { q: "Could local wineries benefit?", a: "Possibly, through grocery shelves under any design, and directly under D. Neither effect is measured.", see: "?v=framework" },

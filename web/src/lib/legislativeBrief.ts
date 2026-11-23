@@ -7,9 +7,10 @@ import { POLICY_DESIGNS_METHOD, SAVINGS_CASES, UTAH_GROCERY_ESTABLISHMENTS, defa
 import { samePriceCase, samePriceHeadline } from "./samePrice";
 import { STATUTES_METHOD, amendmentsFor, openQuestionsFor } from "./statutes";
 import { WINE_ALTERNATIVES_METHOD } from "./wineAlternatives";
+import { withArticle, minus } from "./format";
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const m = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 const sentences = (s: string, from: number, n: number) => s.split(/(?<=\.) /).slice(from, from + n).join(" ");
 // One line per state for print: which field and evidence each draws on is chosen here; the words stay in framework.ts.
@@ -70,7 +71,7 @@ thead th { border-bottom: 1.5px solid #888; font-weight: 600; }
 <div class="cols">
 <h2>Executive summary</h2>
 <ul>
-<li>Five designs were compared: today (A), DABS selling to licensed grocers (B), licensed private wholesale with a state charge (C), producers supplying grocers (D), and a hybrid (E). <b>None of B to E meets every constraint</b>: the state breaking even in every switching case with no store savings, a grocery price within ${pct(r.constraints.maxPremium, 0)} of a state store, and a ${pct(r.constraints.minGrocerMargin, 0)} grocer margin.</li>
+<li>Five designs were compared: today (A), DABS selling to licensed grocers (B), licensed private wholesale with a state charge (C), producers supplying grocers (D), and a hybrid (E). <b>None of B to E meets every constraint</b>: the state breaking even in every switching case with no store savings, a grocery price within ${pct(r.constraints.maxPremium, 0)} of a state store, and ${withArticle(pct(r.constraints.minGrocerMargin, 0))} grocer margin.</li>
 <li><b>B is the best-supported design.</b> With no store costs counted as saved, the state is ${m(h.bFixed)} a year ahead if 30% of household wine purchases move; ${m(h.b60)} if price-sensitive shoppers mostly stay; ${m(h.b30)} if almost none move, which is the new administration (a placeholder). Fees that cover the administration remove that loss.</li>
 <li><b>Wine can sell at today's price.</b> With DABS selling to grocers at ${pct(s.priceToGrocers, 0)} of its shelf price and grocers charging the state-store price, as state stores and package agencies must (32B-2-503(2), -605(7)), the state gives up ${m(s.cost.none).replace("+", "")} a year if DABS saves nothing and ${m(s.cost.longerRun).replace("+", "")} if its wages fall with sales (fees cover the administration). Half of Utahns live within ${AC.distance.grocery.median.toFixed(1)} miles of a grocery store and ${AC.distance.stateStore.median.toFixed(1)} of a state store.</li>
 <li>B needs ${amendmentsFor("B").length} statutory changes and leaves ${openQuestionsFor("B").length} legal questions open; C and D need ${amendmentsFor("C").length}, E ${amendmentsFor("E").length}.</li>

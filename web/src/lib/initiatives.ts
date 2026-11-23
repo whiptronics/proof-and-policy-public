@@ -98,7 +98,7 @@ export const INITIATIVES: Initiative[] = [
     state: "state:49",
     title: "Utah: sealed wine in qualifying grocery stores",
     asOf: "2026-10-17",
-    status: "Draft for review. Scripts recompute the arithmetic, and an AI assistant checked the source values against the documents cited; no person has reviewed them yet, and nothing here is a fiscal note.",
+    status: "Scripts recompute the arithmetic, and an AI assistant checked the source values against the documents cited; no person has reviewed them yet, and nothing here is a fiscal note.",
     advocacy: {
       who: "Ethan Whipple, who maintains this project,",
       goal: "supports changing Utah Code Title 32B so that qualifying grocery stores may sell sealed wine to take home. The analysis below is kept separate from that goal and reports results that weaken the case as well as results that help it.",

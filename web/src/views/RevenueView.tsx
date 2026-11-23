@@ -6,7 +6,7 @@ import { TrendChart, type ChartSeries } from "../components/TrendChart";
 import { downloadBundle, type ObsRow } from "../lib/bundle";
 import { panelKey } from "../lib/compare";
 import { decodeMetric, load, useData, useMany } from "../lib/data";
-import { CONVERSION_LABELS, PERIOD_KIND_LABELS, formatValue, geoName, unitLabel, words } from "../lib/format";
+import { CONVERSION_LABELS, PERIOD_KIND_LABELS, formatValue, geoName, unitLabel, words, minus } from "../lib/format";
 import { percentChange, undefinedReason } from "../lib/formulas";
 import { buildSeries, policyAnnotations, type Shown } from "../lib/series";
 import type { Coverage, Geography, Manifest, MetricFile, MetricMeta, MetricsIndex, PolicyData, SourcesData } from "../lib/types";
@@ -363,7 +363,7 @@ function ChangeReadout({ items, cf, ct, y0, y1 }: { items: { meta: MetricMeta; r
           const pc = percentChange(a, b);
           return (
             <li key={i.meta.metric_id}>
-              {i.meta.label}: {pc === undefined ? `undefined — ${undefinedReason(a, b)}` : `${pc >= 0 ? "+" : ""}${pc.toFixed(1)}%`}{" "}
+              {i.meta.label}: {pc === undefined ? `undefined — ${undefinedReason(a, b)}` : `${pc >= 0 ? "+" : ""}${minus(pc.toFixed(1))}%`}{" "}
               <span className="muted">(100 × (later − earlier) ÷ earlier; a description, not an effect)</span>
             </li>
           );

@@ -22,6 +22,7 @@ import { compute, WORKED_PROPOSALS, type DepositRates, type ScenarioInputs, type
 import { substitution, type SubstitutionResult } from "./substitution";
 import { ledger, priceStack, signWords, type AccountingOptions, type ChargePoint, type Ledger, type PriceStack } from "./wineAccounting";
 import { STATUTORY_MARKUP } from "./wineMargin";
+import { minus } from "./format";
 
 export const WINE_ALTERNATIVES_METHOD = "wine-alternatives@1.0";
 
@@ -66,7 +67,7 @@ export const ACCESS_EXPLORATORY = 0.045;
 const W = X0.wineSales ?? 0;
 const M = X0.grossMargin ?? 0;
 const G = X0.wineGallons ?? 0;
-const pctS = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pctS = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const cS = (v: number) => `${(v * 100).toFixed(2)}¢`;
 
 export const ASSUMPTIONS: Assumption[] = [
@@ -415,7 +416,7 @@ function legalNotes(def: AltDef, lever: { discount: number }): LegalNote[] {
     ...supplyNotes,
     { item: "The state charge", status: "change needed", text: "Utah collects on wine through the department's markup; no wine excise was found in the saved sources (Title 59 has a beer tax). A charge needs new taxing authority: its base, rate, collection point and administrator are the bill's choices.", cite: "Utah Code 59-15-101 (beer only); saved sources" },
     { item: "Sales-tax base", status: "unresolved", text: "Whether the charge is part of the price subject to sales tax depends on Title 59, Chapter 12 definitions, which are not in the saved sources; both treatments are shown.", cite: "not saved" },
-    { item: "Deposits", status: "unresolved", text: "Wine DABS no longer sells carries no deposit; keeping the funds whole needs an explicit allocation of the charge, which moves money between funds.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
+    { item: "Deposits", status: "unresolved", text: "Wine that DABS no longer sells carries no deposit; keeping the funds whole needs an explicit allocation of the charge, which moves money between funds.", cite: "Utah Code 32B-2-304(5), 32B-2-305(4)" },
   ];
 }
 

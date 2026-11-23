@@ -19,7 +19,7 @@ None of the four alternatives to today (B to E) meets all three constraints (the
 10. **Package agencies.** DABS pays package agencies a fixed amount a year from a published grid, by bottles sold and average bottle price; the bill could keep or adjust their terms where a grocer nearby is licensed. A grocer could take some of an agency's wine sales; the effect is not estimated. *Basis: 32B-2-601, -605 (pinned); DABS compensation grid FY27 (pinned).*
 11. **Implementation costs.** The model's $0.50 million a year of new administration is a placeholder: no estimate exists. Covered by fees, it is $1,217 a year per store if all 411 grocery establishments were licensed. One-time costs (rules, systems, training) are not estimated. *Basis: Business impacts.*
 12. **Review and reporting.** DABS reports each year on licenses by county, wine sold to grocers, compliance-check results and revenue; a fiscal review after three years decides whether to continue, change or extend the program. *Basis: Monitoring indicators.*
-13. **Effective dates.** Licenses issued no earlier than a year after enactment, once rules, training and the supply contract are ready; existing beer licensees apply, with no automatic conversion. *Basis: Colorado's automatic conversion drew the objection of no local review (Blue Book argument against).*
+13. **Effective dates.** Licenses issued no earlier than a year after enactment, once rules, training and the supply contract are ready; existing beer licensees apply, with no automatic conversion. *Basis: Colorado's automatic conversion drew the objection that it allowed no local review (Blue Book argument against).*
 14. **Modification or suspension.** Triggers set in rule (a compliance-check failure rate, or wine revenue below the baseline) require a review and allow the commission to pause new licenses; the program ends unless reauthorized. *Basis: Monitoring indicators.*
 
 ## Phased implementation
@@ -34,7 +34,7 @@ A grocery-only first phase with a three-year review is the simplest staged desig
 
 ## What would need to change for a design to meet every constraint
 
-- Collect the state's take as a retail-level charge rather than inside the wholesale price. A percentage grocer margin then does not apply to it: at a 28% grocer margin the lowest break-even premium falls from 37.9% (B) to 20.6% if distribution cost nothing, or 49.9% at the private wholesaler's reference margin.
+- Collect the state's take as a retail-level charge rather than inside the wholesale price. A percentage grocer margin then does not apply to it: at a 28% grocer margin the lowest break-even premium falls from 37.9% (B) to 20.6% if distribution cost nothing, and rises to 49.9% at the private wholesaler's reference margin.
 - Grocers accepting a lower margin on wine than the 28% all-product reference: at a 10% premium the state breaks even (no savings) with a grocer margin of 8.5% under B.
 - Cover the fixed administration with license fees so that low participation cannot turn the result negative: $1,217 a year per store if all 411 grocery establishments (CBP 2023) were licensed.
 - Measure DABS's avoidable costs. Without them, every saving is illustrative and the headline stays at zero.

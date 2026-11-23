@@ -9,7 +9,7 @@ import { analysisPatch, fromConfig, snapshotsFor, yearStatuses } from "../lib/an
 import { CONTROL_DIMS, criterionById, verdictText } from "../lib/control";
 import { decodeMetric, useData, useMany } from "../lib/data";
 import { CHARACTERISTICS, FINDER_METHOD, characteristicData, rankCandidates, similarityWord, type CharData } from "../lib/finder";
-import { geoName, precise, unitAfter, unitLabel, words } from "../lib/format";
+import { geoName, precise, unitAfter, unitLabel, words, andList } from "../lib/format";
 import { standing, type GlancePoint } from "../lib/glance";
 import { rankRangeText } from "../lib/ranks";
 import { buildSeries, type Shown } from "../lib/series";
@@ -279,7 +279,7 @@ export function UtahView() {
       <section className="panel report" aria-labelledby="ut-c">
         <h3 id="ut-c">States to compare with Utah: candidates</h3>
         <p className="small">
-          The five states most like Utah in {BASE_FROM}–{BASE_TO} on {used.map((x) => x.c.label.toLowerCase()).join(", ")}, scored by the comparison
+          The five states most like Utah in {BASE_FROM}–{BASE_TO} on {andList(used.map((x) => x.c.label.toLowerCase()))}, scored by the comparison
           finder (method {FINDER_METHOD}, its default characteristics and weights, with no state left out for its grocery-wine law, so a state
           whose law changed in these years can appear; the finder's own default leaves such states out), and four states whose governments also wholesale spirits under current law. They are
           candidates for a comparison, not matched controls: each differs from Utah in ways listed here and in many not measured.
@@ -313,12 +313,12 @@ export function UtahView() {
                     </th>
                     <td className="small">
                       {group === "control" ? "The state wholesales spirits under current law. " : ""}
-                      {w.sim.length ? `Similar (under 0.5 SD) on ${w.sim.join(", ")}.` : "Not within 0.5 SD on any default characteristic."}
-                      {w.mid.length > 0 && ` Somewhat different (0.5 to 1 SD) on ${w.mid.join(", ")}.`}
+                      {w.sim.length ? `Similar (under 0.5 SD) on ${andList(w.sim)}.` : "Not within 0.5 SD on any default characteristic."}
+                      {w.mid.length > 0 && ` Somewhat different (0.5 to 1 SD) on ${andList(w.mid)}.`}
                       {r && r.score !== null && ` Overall score ${r.score.toFixed(2)} (0 = identical).`}
                     </td>
                     <td className="small">
-                      {w.diff.length > 0 && <div>Different (over 1 SD) on {w.diff.join(", ")}.</div>}
+                      {w.diff.length > 0 && <div>Different (over 1 SD) on {andList(w.diff)}.</div>}
                       {cdiff.length > 0 && <div>Liquor control: {cdiff.join("; ")}.</div>}
                       {!w.diff.length && !cdiff.length && <span className="muted">None found among the measured characteristics and coded law.</span>}
                     </td>

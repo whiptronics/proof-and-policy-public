@@ -10,7 +10,8 @@ import { ChartFigure, type Row } from "../components/ChartFigure";
 import { Go } from "../components/common";
 import { AssumptionRegister } from "../components/Evidence";
 import { BOTTLE_METHOD, dabsAccountsBridge } from "../lib/bottle";
-import { BRIEFING_METHOD, designBridge, designSplit, whatIf } from "../lib/briefing";
+import { BRIEFING_METHOD, designBridge, designSplit, whatIf, type BridgeStep, type FlowColumn } from "../lib/briefing";
+import { rowTip } from "../lib/tip";
 import { headline } from "../lib/framework";
 import { INITIATIVES, initiativeFigures } from "../lib/initiatives";
 import { CONSUMER_ACCESS as A } from "../lib/consumerAccess.generated";
@@ -20,11 +21,19 @@ import { WINE_ALTERNATIVES_METHOD, alternativesReport } from "../lib/wineAlterna
 import { useData } from "../lib/data";
 import type { Manifest } from "../lib/types";
 import { navigate, pickOne, useParams } from "../lib/url";
+import { withArticle, minus } from "../lib/format";
 
-const pct = (v: number | null | undefined, d = 0) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(d)}%`);
+const pct = (v: number | null | undefined, d = 0) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${minus((v * 100).toFixed(d))}%`);
 const amount = (v: number) => `$${(Math.abs(v) / 1e6).toFixed(1)}M`;
 const signed = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 const usd = (v: number) => `${v < 0 ? "−" : ""}$${Math.round(Math.abs(v)).toLocaleString("en-US")}`;
+
+// Each chart table's row, keyed by its column headings: the table prints these cells and the chart's tooltip shows the
+// same row (lib/tip.ts rowTip), so the two cannot disagree.
+const splitCells = (k: FlowColumn, s: FlowColumn["segments"][number]) => ({ "Where it is sold": k.label, "Goes to": s.label, $: `$${s.amount.toFixed(2)}` });
+const stepCells = (s: BridgeStep) => ({ Step: s.label, Kind: s.kind === "revenue" ? "Revenue" : s.kind === "cost" ? "Cost change" : "Running total", "$ a year": usd(s.value) });
+const accountCells = (s: BridgeStep) => ({ Line: s.label, $: usd(s.value), Note: s.note });
+const caseCells = (b: BridgeStep) => ({ Case: b.label, "$ a year": usd(b.value) });
 
 const DESIGNS = ["dabs", "private"] as const;
 type Design = (typeof DESIGNS)[number];
@@ -98,7 +107,7 @@ export function BriefingView() {
         <h2 id="br-h">Grocery-store wine in Utah: the same price, closer to home</h2>
         <p className="lede">
           Wine could be sold in grocery stores at exactly today's state-store price: DABS stays the wholesaler and sells to grocers below its shelf price,
-          as Pennsylvania does, and most Utahns live far closer to a grocery store than to a state store. The state's cost is the grocer's margin,
+          as Pennsylvania does. Most Utahns also live far closer to a grocery store than to a state store. The state's cost is the grocer's margin,
           less what DABS stops spending. Here is how it works, what it costs, what covers it, and what nobody has measured yet.
         </p>
         <p className="small muted">
@@ -134,7 +143,7 @@ export function BriefingView() {
         <p className="finding">
           <strong>Shoppers need not pay more.</strong> If DABS sells to grocers below its shelf price and grocers charge the state-store price, a bottle
           costs the same in either store, as Utah already requires of its state stores and package agencies. The state's cost is the grocer's
-          margin, less what DABS stops spending: at a {pct(sp.margin)} margin, from {amount(sp.cover.longer_run.stateShare)} to{" "}
+          margin, less what DABS stops spending: at {withArticle(pct(sp.margin))} margin, from {amount(sp.cover.longer_run.stateShare)} to{" "}
           <strong>{amount(sp.cover.none.stateShare)} a year</strong>, with license fees covering the new administration.
         </p>
         <ul className="findings">
@@ -149,20 +158,20 @@ export function BriefingView() {
             {pct(sp.breakEvenMargin.longer_run.fees, 1)}.
           </li>
           <li>
-            <strong>What closes the rest is not measured.</strong> Household wine purchases {pct(sp.needed.none.additional.value, 1)} higher in
-            Utah, new or brought back from other states, would cover the case where DABS saves nothing.
+            <strong>What closes the rest is not measured.</strong> A rise of {pct(sp.needed.none.additional.value, 1)} in Utah household wine
+            purchases, from new buying or from wine now bought in other states, would cover the case where DABS saves nothing.
           </li>
           <li>
             <strong>If grocers set their own prices instead,</strong> the state keeps its whole share of each bottle and is about{" "}
-            {signed(hd.bFixed)} a year ahead with DABS as the wholesaler if 30% of household purchases move ({signed(hd.cFixed)} with private
-            wholesale), but grocery wine then costs more than at a state store, and if few shoppers switch the state is {signed(hd.b30)}.
+            {signed(Math.abs(hd.bFixed)).replace("+", "")} a year {hd.bFixed < 0 ? "short" : "ahead"} with DABS as the wholesaler if 30% of household purchases move ({signed(hd.cFixed)} with private
+            wholesale), but grocery wine then costs more than at a state store, and if few shoppers switch the state is {signed(Math.abs(hd.b30)).replace("+", "")} a year {hd.b30 < 0 ? "short" : "ahead"}.
           </li>
         </ul>
         <p className="small muted">
           Headline figures count no store savings; the charts below include the allocated savings and say so. Conditional results, not
-          forecasts. For the designs where grocers set their own prices, in one exploratory case with the allocated savings,
-          where the higher grocery price means Utahns buy less wine in total rather than going back to state stores, they come out about{" "}
-          {amount(Math.max(...fewer))} to {amount(Math.min(...fewer))} a year short instead. Method {WINE_ALTERNATIVES_METHOD};{" "}
+          forecasts. In one exploratory case, where the higher grocery price makes Utahns buy less wine in total instead of going back to state
+          stores, the designs where grocers set their own prices come out about {amount(Math.max(...fewer))} to {amount(Math.min(...fewer))} a
+          year short instead, allocated savings included. Method {WINE_ALTERNATIVES_METHOD};{" "}
           <Go to={{ v: "initiative" }}>every design, with its grocer margin and price, is in the full analysis</Go>.
         </p>
       </section>
@@ -170,11 +179,11 @@ export function BriefingView() {
       <section className="panel" aria-labelledby="br-same">
         <h3 id="br-same">Same shelf price: what the state gives up, and what covers it</h3>
         <p>
-          At today's price the grocer's margin comes out of the state's share of the bottle, less what DABS stops spending. At a {pct(sp.margin)}{" "}
+          At today's price the grocer's margin comes out of the state's share of the bottle, less what DABS stops spending. At {withArticle(pct(sp.margin))}{" "}
           margin, with license fees covering the new administration, the state gives up <strong>{amount(sp.cover.none.stateShare)} a year</strong> if
           DABS saves nothing, {amount(sp.cover.allocated.stateShare)} if its card fees and agency contracts fall with sales, and{" "}
-          {amount(sp.cover.longer_run.stateShare)} if its wages fall too. Household wine purchases {pct(sp.needed.none.additional.value, 1)} higher
-          would cover the first; none of these is measured.
+          {amount(sp.cover.longer_run.stateShare)} if its wages fall too. A rise of {pct(sp.needed.none.additional.value, 1)} in household wine
+          purchases would cover the first; none of these is measured.
         </p>
         <p>
           For shoppers the gain is access: {pct(A.distance.grocery.within[0])} of Utahns live within a mile of a grocery store, against{" "}
@@ -256,8 +265,8 @@ export function BriefingView() {
                             <div className="small muted">{k.law}</div>
                           </th>
                         )}
-                        <td>{s.label}</td>
-                        <td className="num">${s.amount.toFixed(2)}</td>
+                        <td>{splitCells(k, s)["Goes to"]}</td>
+                        <td className="num">{splitCells(k, s).$}</td>
                       </tr>
                     )),
                   )}
@@ -266,7 +275,7 @@ export function BriefingView() {
             </div>
           }
         >
-          {(w) => <SplitChart cols={split} width={w} label="Where the money from a $100 bottle goes today, under the two designs, and under a design that lowers state revenue" />}
+          {(w) => <SplitChart cols={split} tipOf={(k, s) => rowTip(splitCells(k, s))} width={w} label="Where the money from a $100 bottle goes today, under the two designs, and under a design that lowers state revenue" />}
         </ChartFigure>
       </section>
 
@@ -340,9 +349,9 @@ export function BriefingView() {
                 <tbody>
                   {steps.map((s) => (
                     <tr key={s.id}>
-                      <th scope="row">{s.label}</th>
-                      <td>{s.kind === "revenue" ? "Revenue" : s.kind === "cost" ? "Cost change" : "Running total"}</td>
-                      <td className="num">{usd(s.value)}</td>
+                      <th scope="row">{stepCells(s).Step}</th>
+                      <td>{stepCells(s).Kind}</td>
+                      <td className="num">{stepCells(s)["$ a year"]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -351,7 +360,7 @@ export function BriefingView() {
             </div>
           }
         >
-          {(w) => <BridgeChart steps={steps} width={w} label={`Annual change in state revenue and costs under ${DESIGN_MID[des]}: net ${millions(net)}`} />}
+          {(w) => <BridgeChart steps={steps} tips={steps.map((s) => rowTip(stepCells(s)))} width={w} label={`Annual change in state revenue and costs under ${DESIGN_MID[des]}: net ${millions(net)}`} />}
         </ChartFigure>
 
         <h4>The accounts these changes are measured against</h4>
@@ -416,9 +425,9 @@ export function BriefingView() {
                 <tbody>
                   {accounts.map((s) => (
                     <tr key={s.id}>
-                      <th scope="row">{s.label}</th>
-                      <td className="num">{usd(s.value)}</td>
-                      <td className="small">{s.note}</td>
+                      <th scope="row">{accountCells(s).Line}</th>
+                      <td className="num">{accountCells(s).$}</td>
+                      <td className="small">{accountCells(s).Note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -426,7 +435,7 @@ export function BriefingView() {
             </div>
           }
         >
-          {(w) => <BridgeChart steps={accounts} width={w} label={`DABS's FY${fy} accounts from ${amount(init.worked.data.sales)} of sales to ${amount(init.worked.data.statement.netProfit)} of net profit`} />}
+          {(w) => <BridgeChart steps={accounts} tips={accounts.map((s) => rowTip(accountCells(s)))} width={w} label={`DABS's FY${fy} accounts from ${amount(init.worked.data.sales)} of sales to ${amount(init.worked.data.statement.netProfit)} of net profit`} />}
         </ChartFigure>
       </section>
 
@@ -434,8 +443,8 @@ export function BriefingView() {
         <h3 id="br-work">What each design requires</h3>
         <ul className="findings">
           <li>
-            <strong>The state's share of each bottle is kept.</strong> DABS selling to grocers at today's price, or a private-supply charge equal to
-            DABS's markup. Whether grocers would stock wine at the price that implies, and how many shoppers would buy it there, is not yet
+            <strong>The state's share of each bottle is kept,</strong> by DABS selling to grocers at today's price or by a private-supply charge equal
+            to DABS's markup. Whether grocers would stock wine at the price that implies, and how many shoppers would buy it there, is not yet
             measured.
           </li>
           <li>
@@ -521,8 +530,8 @@ export function BriefingView() {
                 <tbody>
                   {bars.map((b) => (
                     <tr key={b.id}>
-                      <th scope="row">{b.label}</th>
-                      <td className="num">{usd(b.value)}</td>
+                      <th scope="row">{caseCells(b).Case}</th>
+                      <td className="num">{caseCells(b)["$ a year"]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -546,7 +555,7 @@ export function BriefingView() {
             </ul>
           }
         >
-          {(w) => <BridgeChart steps={bars} width={w} connect={false} label={`Net change in state revenue in each case under ${DESIGN_MID[des]}: ahead in ${ahead} of ${bars.length}`} />}
+          {(w) => <BridgeChart steps={bars} tips={bars.map((b) => rowTip(caseCells(b)))} width={w} connect={false} label={`Net change in state revenue in each case under ${DESIGN_MID[des]}: ahead in ${ahead} of ${bars.length}`} />}
         </ChartFigure>
         <h4>Not measured anywhere yet</h4>
         <ul className="small source-list">
@@ -600,8 +609,8 @@ export function BriefingView() {
         <h3 id="br-assume">What the figures assume</h3>
         <p className="small">
           The worked example's inputs, what each rests on and how far it moves that example's result. The two designs share its wine sales, wine
-          margin, households' share, the 30% that moves and the tax and deposit rates; their own inputs (a {pct(c.settings.grocerMargin)} grocer
-          margin, a {pct(c.settings.wholesalerMargin, 1)} wholesaler margin and store savings of 2.3¢ per dollar) are listed with every design in
+          margin, households' share, the 30% that moves and the tax and deposit rates; their own inputs ({withArticle(pct(c.settings.grocerMargin))} grocer
+          margin, {withArticle(pct(c.settings.wholesalerMargin, 1))} wholesaler margin and store savings of 2.3¢ per dollar) are listed with every design in
           the full analysis. A published source can still have been transcribed wrongly: none of these values has yet been checked by a person.
         </p>
         <AssumptionRegister init={init} f={f} />

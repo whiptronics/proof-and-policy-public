@@ -92,7 +92,7 @@ function Directory({ index, jur }: { index: OfficialsIndex; jur: string }) {
           sponsored or what they think. Nothing here scores, ranks or contacts anyone.
         </p>
         <p className="warn">
-          <strong>“Current in source” is the source’s own listing as of {snapshot}.</strong> It has not been checked against an official
+          <strong>“Current in source” is the source's own listing as of {snapshot}.</strong> It has not been checked against an official
           roster, and a missing end date does not by itself mean someone still holds the office. Records not marked current are historical.
           Review status: <strong>{words(index.review_status)}</strong>.
         </p>
@@ -612,7 +612,7 @@ function PolicyPanel({ index, jur, day }: { index: OfficialsIndex; jur: string; 
         <p className="small muted">No policy record for this jurisdiction carries an enactment date, so there is no date to pick here.</p>
       ) : (
         <>
-          <h4>Enactment dates in the project’s policy records ({dates.length})</h4>
+          <h4>Enactment dates in the project's policy records ({dates.length})</h4>
           <ul className="plain-list">
             {dates.map((d) => (
               <li key={d.policy_id}>

@@ -12,8 +12,9 @@ const grab = (re: RegExp) => {
   return tokens(m[1]);
 };
 const light = grab(/\n:root,\n\[data-theme="light"\] \{\n([\s\S]*?)\n\}/);
-const darkDevice = grab(/@media screen and \(prefers-color-scheme: dark\) \{\n {2}:root:not\(\[data-theme="light"\]\) \{\n([\s\S]*?)\n {2}\}/);
+const darkDevice = grab(/@media screen and \(prefers-color-scheme: dark\) \{\n {2}:root:not\(\[data-theme\]\) \{\n([\s\S]*?)\n {2}\}/);
 const darkChosen = grab(/@media screen \{\n {2}\[data-theme="dark"\] \{\n([\s\S]*?)\n {2}\}/);
+const crimson = grab(/@media screen \{\n {2}\[data-theme="crimson"\] \{\n([\s\S]*?)\n {2}\}/);
 
 // WCAG 2.x relative luminance and contrast; translucent colors are composited over their backdrop first.
 type RGB = [number, number, number];
@@ -57,9 +58,10 @@ describe("appearances in styles.css", () => {
     expect(Object.keys(light).length).toBeGreaterThan(60);
     expect(Object.keys(darkDevice).sort()).toEqual(Object.keys(light).sort());
     expect(darkChosen).toEqual(darkDevice);
+    expect(Object.keys(crimson).sort()).toEqual(Object.keys(light).sort());
   });
 
-  for (const [name, t] of [["light", light], ["dark", darkDevice]] as const) {
+  for (const [name, t] of [["light", light], ["dark", darkDevice], ["crimson", crimson]] as const) {
     const c = (k: string) => hex(t[k]);
     it(`${name}: text and marks meet WCAG contrast`, () => {
       const fails: string[] = [];
@@ -128,6 +130,7 @@ describe("appearances in styles.css", () => {
   it("theme-color is each appearance's header color", () => {
     expect(THEME_COLOR.light).toBe(light.surface);
     expect(THEME_COLOR.dark).toBe(darkDevice.surface);
+    expect(THEME_COLOR.crimson).toBe(crimson.surface);
   });
 });
 
@@ -138,8 +141,9 @@ describe("saved appearance (lib/theme.ts)", () => {
       return k === THEME_KEY ? v : null;
     },
   });
-  it("reads only the three choices; missing, junk or blocked storage is Match my device", () => {
+  it("reads only the four choices; missing, junk or blocked storage is Match my device", () => {
     expect(readTheme(store("dark"))).toBe("dark");
+    expect(readTheme(store("crimson"))).toBe("crimson");
     expect(readTheme(store("light"))).toBe("light");
     expect(readTheme(store(null))).toBe("system");
     expect(readTheme(store("purple"))).toBe("system");
@@ -192,7 +196,7 @@ describe("saved appearance (lib/theme.ts)", () => {
       new Function("window", "document", src)({ localStorage: store(saved, throws) }, d);
       return d;
     };
-    for (const t of ["light", "dark"] as const) {
+    for (const t of ["light", "dark", "crimson"] as const) {
       const d = run(t);
       expect(d.attrs.get("data-theme")).toBe(t);
       expect(contents(d)).toEqual([THEME_COLOR[t], THEME_COLOR[t]]);

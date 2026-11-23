@@ -25,6 +25,8 @@ const signed = (v: number | null | undefined, d = 3) => (v === null || v === und
 const pts = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : "+"}${Math.abs(v).toFixed(1)}`);
 const money = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : ""}$${(Math.abs(v) / 1e6).toFixed(1)}M`);
 const pct = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : "+"}${Math.abs(v).toFixed(1)}%`);
+/** A change in prose: the verb carries the sign. */
+const roseFell = (v: number | null | undefined) => `${v != null && v < 0 ? "fell" : "rose"} ${pct(v).replace(/^[+−]/, "")}`;
 const years = (ys: number[], fiscal: boolean) => (ys.length ? `${fiscal ? "FY" : ""}${ys[0]}–${fiscal ? "FY" : ""}${ys[ys.length - 1]}` : "—");
 
 function value(run: Run, v: number | null | undefined) {
@@ -277,7 +279,7 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
       <h4>Revenue</h4>
       <ul className="small source-list">
         <li>
-          Census T10 (all beverages, constant 2024 dollars) rose {pct(t10s.tnPct)} in Tennessee between FY2012–FY2015 and FY2017–FY2019,{" "}
+          Census T10 (all beverages, constant 2024 dollars) {roseFell(t10s.tnPct)} in Tennessee between FY2012–FY2015 and FY2017–FY2019,{" "}
           {pts(t10s.diffLog)} log points more than the neighbors. But Tennessee's T10 was already rising by about{" "}
           {money(t10.result?.states[0].slope ?? null)} a year before the change. Extending that trend in a straight line covers most of
           the gap against the four states where the "trends only" figure's interval excludes zero (per-state table above); this is
@@ -287,8 +289,8 @@ export function CaseResultsSection({ caseId, idx, geos, events }: { caseId: stri
         <li>
           Tennessee's wine-tax account (all channels, constant 2024 dollars) averaged {money(summarize(res.main.find((r) => r.outcome.id === "R2")!).tnBefore)} in
           FY2012–FY2016 and {money(summarize(res.main.find((r) => r.outcome.id === "R2")!).tnAfter)} in FY2017, its only year before the
-          account also took in high-alcohol beer. It had already risen in FY2016, before any grocery license. The wine enforcement tax
-          rose {pct(summarize(res.main.find((r) => r.outcome.id === "R3")!).tnPct)} on the same windows. Neither has a comparison-state
+          account also took in high-alcohol beer. It had already risen in FY2016, before any grocery license. The wine enforcement tax{" "}
+          {roseFell(summarize(res.main.find((r) => r.outcome.id === "R3")!).tnPct)} on the same windows. Neither has a comparison-state
           equivalent here.
         </li>
       </ul>

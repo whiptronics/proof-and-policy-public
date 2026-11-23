@@ -8,7 +8,7 @@ import { BuildNotice, SaveBar } from "../components/SaveBar";
 import { statusOnDay } from "../lib/analysis";
 import { toCsv, type Column } from "../lib/csv";
 import { decodeMetric, useData, useMany, type DecodedMetric } from "../lib/data";
-import { words } from "../lib/format";
+import { words, minus } from "../lib/format";
 import { SCENARIO_EXAMPLES as EXAMPLES, SCENARIO_METHOD, WORKED_PROPOSALS as PROPOSALS, breakEvenLever, compute, movedShare, stepsA, type BridgeStep, type Component, type DepositRates, type Lever, type ScenarioInputs, type WorkedProposal } from "../lib/scenario";
 import { RANGES_METHOD, combinedScenarios, sensitivity, type Combined, type RangeFormat, type RangeOverrides, type Sensitivity } from "../lib/scenarioRanges";
 import { ARRANGEMENTS_METHOD, SWEEPS, compare, settingsFromFields, type Bounds, type SweepKey } from "../lib/arrangements";
@@ -473,7 +473,7 @@ function WineMarginHelp({ reported, set }: { reported: number | null; set: (p: P
   const lead = (
     <>
       A scenario assumption, not a measured margin: the statute sets a floor. Wine is marked up not less than {STATUTORY_MARKUP.wine * 100}% above the department's landed case cost,
-      which is a margin of {floorPct}% of the shelf price ({STATUTE_NOTE}) Some wine sells below the floor (49% for small makers who apply, 17% to military installations, discontinued
+      which is a margin of {floorPct}% of the shelf price ({STATUTE_NOTE}). Some wine sells below the floor (49% for small makers who apply, 17% to military installations, discontinued
       items) and some may sell above it (prices set above the floor, and from 2026-03-13 rounding); the dataset has no wine-specific cost figure to say which way the average falls.{" "}
       <button type="button" className="link" onClick={() => set({ gm: String(floorPct) })}>
         Use {floorPct}% as an assumption
@@ -489,7 +489,7 @@ function WineMarginHelp({ reported, set }: { reported: number | null; set: (p: P
   const by = Object.fromEntries(FY_GROUPS.map((g, i) => [g, latest[i].find((o) => o.year === fy)?.value ?? null]));
   const check = crossCheck({ salesByGroup: by, reportedMargin: reported, taxRate: tax ? tax.value / 100 : null });
   if (check.mixFloor === null) return lead;
-  const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
+  const pct = (v: number) => `${minus((v * 100).toFixed(1))}%`;
   return (
     <>
       {lead}
@@ -513,7 +513,7 @@ function CostEvidenceHelp({ margin, opexShare }: { margin: number | null; opexSh
   const rows = impliedRows(cm.data, margin);
   if (!rows.length) return null;
   const span = impliedSpan(rows);
-  const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
+  const pct = (v: number) => `${minus((v * 100).toFixed(1))}%`;
   const s = cm.data.sample;
   return (
     <details className="small" style={{ marginTop: 6 }}>
@@ -540,7 +540,7 @@ function CostEvidenceHelp({ margin, opexShare }: { margin: number | null; opexSh
                 <th scope="row">{r.spec.horizon_years === 1 ? "1 year (short run)" : `${r.spec.horizon_years} years (longer run)`}</th>
                 <td>{WEIGHTING_LABEL[r.spec.weighting]}</td>
                 <td className="num">
-                  {r.spec.beta.toFixed(2)} ({r.spec.ci_low.toFixed(2)} to {r.spec.ci_high.toFixed(2)})
+                  {minus(r.spec.beta.toFixed(2))} ({minus(r.spec.ci_low.toFixed(2))} to {minus(r.spec.ci_high.toFixed(2))})
                 </td>
                 <td className="num">
                   {pct(r.value)} ({pct(r.low)} to {pct(r.high)}){r.floored ? " — slope is below the cost of goods alone" : ""}
@@ -553,7 +553,7 @@ function CostEvidenceHelp({ margin, opexShare }: { margin: number | null; opexSh
       <p>
         The two weightings disagree by more than either interval, and the equal-weight slopes are below the cost of goods alone, so the data do not pin this down: across all four the implied figure runs from {span ? pct(span.low) : "—"} to{" "}
         {span ? pct(span.high) : "—"} of sales.
-        {opexShare !== null ? ` DABS's total operating expenses were ${pct(opexShare)} of its sales: a ceiling on the operating cost that could leave with sales, not an estimate of savings.` : ""} Seventeen states is few clusters,
+        {opexShare !== null ? ` DABS's total operating expenses were ${pct(opexShare)} of its sales: a ceiling on the operating cost that could leave with sales, not an estimate of savings.` : ""} Seventeen states are few clusters for this kind of estimate,
         the Census figures cover each state's whole system rather than one beverage, and inflation moves costs and revenue together, which pushes slopes toward the average cost ratio rather than the
         cost that would actually go. An association in past data, not an effect, and not filled into the scenario.
       </p>
@@ -642,7 +642,7 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
   };
   const margin = f.sales?.value && f.gp?.value != null ? f.gp.value / f.sales.value : null;
   const opexShare = f.sales?.value && f.opex?.value != null ? f.opex.value / f.sales.value : null;
-  const p = (v: number | null) => (v === null ? "—" : `${(v * 100).toFixed(1)}%`);
+  const p = (v: number | null) => (v === null ? "—" : `${minus((v * 100).toFixed(1))}%`);
   const unreviewed = "transcribed from the unaudited DABS annual report; not reviewed by a person";
   return (
     <form onSubmit={run} aria-label="Inputs">
@@ -758,7 +758,7 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
             set={set}
             unit="gallons"
             required={false}
-            placeholder={f.gallons?.value != null ? `${Math.round(f.gallons.value)} from NIAAA` : ""}
+            placeholder={f.gallons?.value != null ? `${Math.round(f.gallons.value).toLocaleString("en-US")} from NIAAA` : ""}
             help="Leave blank to use NIAAA's figure. Needed for an excise per gallon or for volume-based substitution."
           />
         </div>
@@ -828,13 +828,13 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
               </>
             }
           />
-          <NumField label="Grocery price compared with the state store" name="r" draft={draft} set={set} unit="% (100 = same)" help="For the same wine. Lower prices mean less sales tax per bottle." />
+          <NumField label="Grocery price compared with the state store" name="r" draft={draft} set={set} unit="%, 100 = same" help="For the same wine. Lower prices mean less sales tax per bottle." />
           <NumField
             label="Pass-through of that price gap"
             name="pt"
             draft={draft}
             set={set}
-            unit="% (blank = 100)"
+            unit="%, blank = 100"
             required={false}
             help="Share of the gap above that reaches the shelf. Less than 100 means sellers keep part of it: a 90% price with 50% pass-through is a 95% price."
           />
@@ -1014,7 +1014,7 @@ function ScenarioForm({ applied, f }: { applied: Draft; f: Facts }) {
                 name="rtp"
                 draft={draft}
                 set={set}
-                unit="% (blank = 100)"
+                unit="%, blank = 100"
                 required={false}
                 help="How much of the tax grocers add to the shelf price; the rest comes out of their margin. Blank: all of it, an assumption. With an elasticity in section 5, a higher price means less wine bought."
               />
@@ -1123,12 +1123,12 @@ function missingLabel(m: string, route: string): string {
     return route === "share" ? "wine's share of DABS liquor sales (section 2)" : route === "gallons" ? "average state-store price per gallon (section 2)" : "baseline wine sales (section 2)";
   if (m === "wine gallons sold") return "wine gallons (section 2)";
   if (["gross margin on wine", "avoidable operating cost", "state sales tax rate", "new state costs of licensing and enforcement"].includes(m)) return `${m} (section 3)`;
-  if (["share of wine moving to grocery stores", "grocery price compared with the state store", "share of grocery sales the state keeps", "excise per gallon", "tax on the grocery shelf price", "DABS's price to grocers"].includes(m)) return `${m} (section 4)`;
+  if (["share of wine moving to grocery stores", "share of household wine purchases moving to grocery stores", "grocery price compared with the state store", "share of grocery sales the state keeps", "excise per gallon", "tax on the grocery shelf price", "DABS's price to grocers"].includes(m)) return `${m} (section 4)`;
   return `${m} (section 5)`;
 }
 
 const fmtSetting = (v: number, f: RangeFormat) =>
-  f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
+  f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${minus((v * 100).toFixed(1))}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
 
 /** Every assumption at once at the end of its range that lowers, then raises, the net change: sensitivity scenarios,
  * not a probability interval (lib/scenarioRanges combinedScenarios). */
@@ -1315,7 +1315,7 @@ function ScenarioResults({ d, f, man }: { d: Draft; f: Facts; man: Manifest }) {
     </tr>
   );
   const fmtRange = (v: number, f: RangeFormat) =>
-    f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${(v * 100).toFixed(1)}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
+    f === "complement" ? `${((1 - v) * 100).toFixed(1)}%` : f === "percent" ? `${minus((v * 100).toFixed(1))}%` : f === "money" ? money(v) : f === "money2" ? `$${v.toFixed(2)}` : f === "gallons" ? `${Math.round(v).toLocaleString("en-US")} gal` : v.toFixed(2);
   const evidenceText = { published: "published", data: "from data", convention: "convention" } as const;
   const sensTable = (s: typeof sensA, which: string) => (
     <div className="table-wrap">
@@ -1699,7 +1699,7 @@ interface RatesNow extends DepositRates {
 /** The comparison's baseline: each figure with its source, year, units, coverage and standing (task: a defensible
  * baseline). The audited fund's sales are a cross-check and never an input; the monthly reports' tax basis stays out. */
 function baselineRows(f: Facts, x: ScenarioInputs, d: Draft, rates: RatesNow | null): BaselineRow[] {
-  const pct = (v: number | null | undefined, k = 1) => (v === null || v === undefined ? "—" : `${(v * 100).toFixed(k)}%`);
+  const pct = (v: number | null | undefined, k = 1) => (v === null || v === undefined ? "—" : `${minus((v * 100).toFixed(k))}%`);
   const unrev = "transcribed by hand, not reviewed by a person";
   const link = (key: Key, o: Obs | undefined, label: string) => (o ? <RecordLink rec={`obs:${M[key]}:${o.observation_id}`}>{label}</RecordLink> : "not in the dataset");
   const rows: BaselineRow[] = [
@@ -1906,7 +1906,7 @@ const LEVER_LABEL: Record<Lever, string> = {
 };
 
 function leverText(lever: Lever, v: number): string {
-  return `${LEVER_LABEL[lever]} ${lever === "excise" ? `$${v.toFixed(2)} a gallon` : lever === "discount" ? `${((1 - v) * 100).toFixed(1)}% of its shelf price` : `${(v * 100).toFixed(1)}%`}`;
+  return `${LEVER_LABEL[lever]} ${lever === "excise" ? `$${v.toFixed(2)} a gallon` : lever === "discount" ? `${((1 - v) * 100).toFixed(1)}% of its shelf price` : `${minus((v * 100).toFixed(1))}%`}`;
 }
 
 /** Whether the sign of scenario A's result could reverse, and what it would take. */

@@ -3,7 +3,8 @@
 // store (lib/consumerAccess.generated.ts), who covers the grocer's margin, what closes the rest, and the Utah and
 // Pennsylvania precedents. Every figure is the purchase-flow model's or a pinned source's.
 import { useId, useMemo, useState, type ReactNode } from "react";
-import { ChartFigure, type Row } from "../components/ChartFigure";
+import { ChartFigure, RowsTable, type Row } from "../components/ChartFigure";
+import { rowTip, tipAttr } from "../lib/tip";
 import { Go } from "../components/common";
 import { HowWeKnow } from "../components/HowWeKnow";
 import { CONSUMER_ACCESS as A } from "../lib/consumerAccess.generated";
@@ -15,8 +16,9 @@ import { SAVINGS_CASES, type SavingsCase } from "../lib/policyDesigns";
 import { PA_LICENSEE_MARGIN, SAME_PRICE_METHOD, coverAt, defaultSamePriceReport, samePriceCase } from "../lib/samePrice";
 import { RETAILER_TARGET } from "../lib/wineAlternatives";
 import { DEFAULT_FLOWS } from "../lib/wineFlows";
+import { withArticle, lowerFirst, minus } from "../lib/format";
 
-const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 0) => `${minus((v * 100).toFixed(d))}%`;
 const m = (v: number, d = 2) => `${v < -5e3 ? "−" : v > 5e3 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(d)}M`;
 const usd0 = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 const n0 = (v: number) => Math.round(v).toLocaleString("en-US");
@@ -50,32 +52,29 @@ function Toggle<T extends string>({ label, value, options, set }: { label: strin
 }
 
 function tableOf(rows: Row[]): ReactNode {
-  return (
-    <div className="table-wrap">
-      <table className="data">
-        <thead>
-          <tr>
-            {Object.keys(rows[0] ?? {}).map((k) => (
-              <th key={k} scope="col">
-                {k}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              {Object.values(r).map((v, j) => (
-                <td key={j}>{String(v)}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <RowsTable rows={rows} />;
 }
 const csvOf = (rows: Row[]) => ({ columns: Object.keys(rows[0] ?? {}).map((k) => ({ key: k, kind: (typeof rows[0][k] === "number" ? "number" : "text") as "number" | "text", get: (r: Row) => r[k] })), rows });
+
+// Each table's row, built once: the table prints it and the chart's tooltip shows it (lib/tip.ts rowTip).
+const WITHIN = "Within (miles)";
+const ACCESS_COL: Record<(typeof KINDS)[number]["id"], string> = {
+  stateStore: "State liquor store (% of Utahns)",
+  dabsOutlet: "Any DABS outlet (% of Utahns)",
+  grocery: "Grocery store (% of Utahns)",
+};
+const accessRow = (i: number): Row => ({
+  [WITHIN]: A.thresholds[i],
+  [ACCESS_COL.stateStore]: Number((A.distance.stateStore.within[i] * 100).toFixed(1)),
+  [ACCESS_COL.dabsOutlet]: Number((A.distance.dabsOutlet.within[i] * 100).toFixed(1)),
+  [ACCESS_COL.grocery]: Number((A.distance.grocery.within[i] * 100).toFixed(1)),
+  "Supermarket or super store (% of Utahns)": Number((A.distance.supermarket.within[i] * 100).toFixed(1)),
+});
+/** A bar's tooltip: its distance and its own kind's column from the table's row. */
+const accessTip = (i: number, kind: (typeof KINDS)[number]["id"]) => {
+  const r = accessRow(i);
+  return rowTip({ [WITHIN]: r[WITHIN], [ACCESS_COL[kind]]: r[ACCESS_COL[kind]] });
+};
 
 /** Share of Utahns within each distance of each kind of store: one group of bars per distance. */
 function AccessChart({ width }: { width: number }) {
@@ -105,10 +104,8 @@ function AccessChart({ width }: { width: number }) {
               {s.t === 1 ? "1 mile" : `${s.t} miles`}
             </text>
             {s.v.map((v, k) => (
-              <g key={k}>
-                <rect x={x(0)} y={y0 + k * (barH + 3)} width={x(v) - x(0)} height={barH} fill={KINDS[k].color}>
-                  <title>{`${KINDS[k].label}: ${pct(v, 1)} of Utahns within ${s.t} mi`}</title>
-                </rect>
+              <g key={k} {...tipAttr(accessTip(gi, KINDS[k].id))}>
+                <rect x={x(0)} y={y0 + k * (barH + 3)} width={x(v) - x(0)} height={barH} fill={KINDS[k].color} />
                 <text x={x(v) + 4} y={y0 + k * (barH + 3) + barH - 3} className="bar-value">
                   {pct(v)}
                 </text>
@@ -122,7 +119,7 @@ function AccessChart({ width }: { width: number }) {
 }
 
 /** Where the grocer's margin comes from, one bar per savings case: DABS costs that fall, and the state's share. */
-function CoverChart({ width, rows }: { width: number; rows: { label: string; avoided: number; state: number }[] }) {
+function CoverChart({ width, rows, tips }: { width: number; rows: { label: string; avoided: number; state: number }[]; tips: Row[] }) {
   const wide = width >= 560;
   const labelW = wide ? 200 : 0;
   const padL = wide ? labelW + 10 : 6;
@@ -138,16 +135,12 @@ function CoverChart({ width, rows }: { width: number; rows: { label: string; avo
         const y = top + i * rowH + (wide ? 4 : 20);
         const state = Math.max(0, r.state);
         return (
-          <g key={r.label}>
+          <g key={r.label} {...tipAttr(rowTip(tips[i]))}>
             <text x={wide ? padL - 8 : padL} y={wide ? y + 14 : y - 6} textAnchor={wide ? "end" : "start"} className="row-label">
               {r.label}
             </text>
-            <rect x={x(0)} y={y} width={x(r.avoided) - x(0)} height={20} fill="var(--series-3)">
-              <title>{`DABS costs that fall: ${m(r.avoided)}`}</title>
-            </rect>
-            <rect x={x(r.avoided)} y={y} width={x(r.avoided + state) - x(r.avoided)} height={20} fill="var(--series-2)">
-              <title>{`The state's share: ${m(state)}`}</title>
-            </rect>
+            <rect x={x(0)} y={y} width={x(r.avoided) - x(0)} height={20} fill="var(--series-3)" />
+            <rect x={x(r.avoided)} y={y} width={x(r.avoided + state) - x(r.avoided)} height={20} fill="var(--series-2)" />
             <text x={x(r.avoided + state) + 4} y={y + 15} className="bar-value">
               {r.state < 0 ? `state +${m(-r.state).slice(1)}` : m(-r.state)}
             </text>
@@ -159,7 +152,7 @@ function CoverChart({ width, rows }: { width: number; rows: { label: string; avo
 }
 
 /** Net change for the state at today's shelf price, by grocer margin, one line per savings case. */
-function MarginChart({ width, rows }: { width: number; rows: { margin: number; nets: number[] }[] }) {
+function MarginChart({ width, rows, tipOf }: { width: number; rows: { margin: number; nets: number[] }[]; tipOf: (r: { margin: number; nets: number[] }) => Row }) {
   const padL = 50;
   const padR = 12;
   const top = 10;
@@ -197,8 +190,14 @@ function MarginChart({ width, rows }: { width: number; rows: { margin: number; n
           <title>{SAVINGS_SHORT[s.id]}</title>
         </polyline>
       ))}
+      {/* Each margin's whole column answers the pointer, with the three cases' values there (the table's row). */}
+      {rows.map((r, i) => {
+        const a = i === 0 ? padL : (x(rows[i - 1].margin) + x(r.margin)) / 2;
+        const b = i === rows.length - 1 ? width - padR : (x(r.margin) + x(rows[i + 1].margin)) / 2;
+        return <rect key={r.margin} x={a} y={top} width={b - a} height={bottom - top} fill="transparent" {...tipAttr(rowTip(tipOf(r)))} />;
+      })}
       <text x={padL} y={H - 2} className="tick">
-        Grocer&rsquo;s margin (share of today&rsquo;s shelf price)
+        Grocer's margin (share of today's shelf price)
       </text>
     </svg>
   );
@@ -225,34 +224,27 @@ export function SamePriceView() {
     [fees],
   );
 
-  const accessRows: Row[] = A.thresholds.map((t, i) => ({
-    within_miles: t,
-    state_liquor_store_pct: Number((A.distance.stateStore.within[i] * 100).toFixed(1)),
-    any_dabs_outlet_pct: Number((A.distance.dabsOutlet.within[i] * 100).toFixed(1)),
-    grocery_store_pct: Number((A.distance.grocery.within[i] * 100).toFixed(1)),
-    supermarket_or_super_store_pct: Number((A.distance.supermarket.within[i] * 100).toFixed(1)),
-  }));
+  const accessRows: Row[] = A.thresholds.map((_, i) => accessRow(i));
   const coverRows: Row[] = cover.map(({ s, c }) => ({
-    savings_case: SAVINGS_SHORT[s],
-    grocer_margin_pct: Number((margin * 100).toFixed(0)),
-    grocer_income_usd: Math.round(c.grocerIncome),
-    dabs_costs_that_fall_usd: Math.round(c.dabsCostsAvoided),
-    state_share_usd: Math.round(c.stateShare),
+    "Savings case": SAVINGS_SHORT[s],
+    "Grocer margin (%)": Number((margin * 100).toFixed(0)),
+    "Grocer income ($ a year)": Math.round(c.grocerIncome),
+    "DABS costs that fall ($ a year)": Math.round(c.dabsCostsAvoided),
+    "State's share ($ a year)": Math.round(c.stateShare),
   }));
-  const curveRows: Row[] = curve
-    .filter((_, i) => i % 2 === 0)
-    .map((r) => ({ grocer_margin_pct: Math.round(r.margin * 100), ...Object.fromEntries(cases.map((s, k) => [`net_usd_${s}`, Math.round(r.nets[k])])) }));
+  const curveRow = (r: { margin: number; nets: number[] }): Row => ({ "Grocer margin (%)": Math.round(r.margin * 100), ...Object.fromEntries(cases.map((s, k) => [`Net if ${lowerFirst(SAVINGS_SHORT[s])} ($ a year)`, Math.round(r.nets[k])])) });
+  const curveRows: Row[] = curve.filter((_, i) => i % 2 === 0).map(curveRow);
 
   return (
     <>
       <section className="panel" aria-labelledby="sp-h">
         <p className="finding-tag">The design</p>
-        <h2 id="sp-h">Wine at the grocery store, at today&rsquo;s state-store price</h2>
+        <h2 id="sp-h">Wine at the grocery store, at today's state-store price</h2>
         <p className="lede">
           A bottle would cost the same at a grocery store as it does at a state liquor store today. DABS stays the only wholesaler and sells to
-          licensed grocers below its shelf price; the difference is the grocer&rsquo;s margin. Shoppers pay nothing more. Pennsylvania&rsquo;s state
+          licensed grocers below its shelf price; the difference is the grocer's margin. Shoppers pay nothing more. Pennsylvania's state
           stores sell to licensees at {pct(PA_LICENSEE_MARGIN.value)} below retail, and Utah already pays its package agencies, private businesses
-          that include stores run alongside a convenience store, to sell at the state&rsquo;s price.
+          (some run alongside a convenience store), to sell at the state's price.
         </p>
         <ul className="finding-cards">
           <li>
@@ -266,7 +258,7 @@ export function SamePriceView() {
             <h3>Closer to home</h3>
             <p>
               Half of Utahns live within {mi(A.distance.grocery.median)} of a grocery store, against {mi(A.distance.stateStore.median)} of a state store.{" "}
-              {pct(A.distance.grocery.within[0])} live within a mile of one, against {pct(A.distance.stateStore.within[0])}.
+              {pct(A.distance.grocery.within[0])} live within a mile of a grocery store, against {pct(A.distance.stateStore.within[0])} for a state store.
             </p>
           </li>
           <li>
@@ -278,17 +270,17 @@ export function SamePriceView() {
             </p>
           </li>
           <li>
-            <h3>The state&rsquo;s side</h3>
+            <h3>The state's side</h3>
             <p>
               At a {pct(PA_LICENSEE_MARGIN.value)} margin, with license fees covering the new administration, the state gives up {m(-at10.none).slice(1)} a
-              year if DABS saves nothing and {m(-at10.longer_run).slice(1)} if its wages fall with sales. Household wine purchases{" "}
-              {pct(rep.needed.none.additional.value ?? 0, 1)} higher would cover the first.
+              year if DABS saves nothing and {m(-at10.longer_run).slice(1)} if its wages fall with sales. A rise of{" "}
+              {pct(rep.needed.none.additional.value ?? 0, 1)} in household wine purchases would cover the first.
             </p>
           </li>
         </ul>
         <HowWeKnow
           claim="the same-price design"
-          inputs={`DABS FY2025 wine sales and margin; ${pct(DEFAULT_FLOWS.migration)} of household DABS wine (${m(rep.moved).slice(1)} a year) moving to grocers at today's price; Pennsylvania's licensee price (${pct(PA_LICENSEE_MARGIN.value)} below retail); ${A.outlets.stateStores + A.outlets.packageAgencies} DABS outlets, ${A.outlets.grocery} SNAP grocery stores and ${n0(A.population)} Utahns in ${n0(A.blockGroups)} Census block groups.`}
+          inputs={`DABS FY2025 wine sales and margin; ${pct(DEFAULT_FLOWS.migration)} of household DABS wine (${m(rep.moved).slice(1)} a year) moving to grocers at today's price; Pennsylvania's licensee price (${pct(PA_LICENSEE_MARGIN.value)} below retail); ${A.outlets.stateStores + A.outlets.packageAgencies} DABS outlets, ${A.outlets.grocery} SNAP grocery stores and ${n0(A.population)} Utahns in ${n0(A.blockGroups)} block groups (2020 Census).`}
           assumptions={`License fees equal to the new administration ($${(rep.admin / 1e6).toFixed(2)}M a year, a placeholder; ${usd0(rep.feePerStore)} a store across ${n0(rep.admin / rep.feePerStore)} grocery establishments). Savings beyond none are illustrative allocations, not measured.`}
           calculation="The purchase-flow model (wineFlows.ts) with DABS selling to grocers below its shelf price and grocers charging today's price; checked equal to the alternatives engine at every margin (samePrice.test.ts). Distances are straight-line miles from each block group's center of population, weighted by population."
           output={`${m(at10.none)} a year at 10% with nothing saved; ${m(at10.longer_run)} with wages falling. A typical Utahn is ${mi(A.distance.grocery.median)} from a grocery store and ${mi(A.distance.stateStore.median)} from a state store.`}
@@ -311,7 +303,7 @@ export function SamePriceView() {
           subtitle={`Share of Utah's ${n0(A.population)} residents (2020 Census) within each straight-line distance of the nearest store of each kind`}
           reading={<>Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Teal is grocery stores, red state liquor stores, purple any DABS outlet including package agencies.</>}
           readingText="Each group is a distance; each bar is the share of Utahns who live that close to the nearest store of that kind. Teal is grocery stores, red state liquor stores, purple any DABS outlet including package agencies."
-          limits={<>Straight-line distance from each block group&rsquo;s center of population, not travel distance or time. Grocery stores are USDA&rsquo;s SNAP-authorized supermarkets, super stores and grocery stores ({A.outlets.grocery}); a store that does not accept SNAP is missing. DABS outlets are those its store locator lists.</>}
+          limits={<>Straight-line distance from each block group's center of population, not travel distance or time. Grocery stores are USDA's SNAP-authorized supermarkets, super stores and grocery stores ({A.outlets.grocery}); a store that does not accept SNAP is missing. DABS outlets are those its store locator lists.</>}
           limitsText="Straight-line distance from each block group's center of population, not travel distance or time. Grocery stores are USDA's SNAP-authorized supermarkets, super stores and grocery stores; a store that does not accept SNAP is missing. DABS outlets are those its store locator lists."
           source={SOURCE_ACCESS}
           methods="consumer-access@1.0 (scripts/consumer_access.py)"
@@ -369,25 +361,25 @@ export function SamePriceView() {
       </section>
 
       <section className="panel" aria-labelledby="sp-cover">
-        <h2 id="sp-cover">Who covers the grocer&rsquo;s margin?</h2>
+        <h2 id="sp-cover">Who covers the grocer's margin?</h2>
         <p>
-          At today&rsquo;s price the shopper pays the same, so the grocer&rsquo;s margin comes from DABS&rsquo;s side of the bottle: partly from costs
-          DABS no longer has when it sells less at its own stores, and the rest from the state&rsquo;s share. License fees are set to cover the new
+          At today's price the shopper pays the same, so the grocer's margin comes from DABS's side of the bottle: partly from costs
+          DABS no longer has when it sells less at its own stores, and the rest from the state's share. License fees are set to cover the new
           administration.
         </p>
         <div className="controls">
           <label>
-            Grocer&rsquo;s margin {pct(margin)}
+            Grocer's margin {pct(margin)}
             <input type="range" min={0} max={RETAILER_TARGET} step={0.01} value={margin} onChange={(e) => setMargin(Number(e.target.value))} />
           </label>
         </div>
         <ChartFigure
           id="sp-cover-chart"
-          title={`At a ${pct(margin)} margin grocers keep ${m(cover[0].c.grocerIncome).slice(1)} a year`}
+          title={`At ${withArticle(pct(margin))} margin grocers keep ${m(cover[0].c.grocerIncome).slice(1)} a year`}
           subtitle={`$ millions a year on the ${m(rep.moved).slice(1)} of wine that moves, at today's shelf price; license fees cover the administration`}
-          reading={<>Each bar is the grocers&rsquo; income at this margin. Blue is what DABS stops spending; red is the state&rsquo;s share. The number is the change for the state.</>}
+          reading={<>Each bar is the grocers' income at this margin. Blue is what DABS stops spending; red is the state's share. The number is the change for the state.</>}
           readingText="Each bar is the grocers' income at this margin. Blue is what DABS stops spending; red is the state's share. The number is the change for the state."
-          limits={<>DABS&rsquo;s costs that fall are illustrative allocations of its FY2025 expenses by sales, not measured savings. The wine that moves is a fixed {pct(DEFAULT_FLOWS.migration)} of household purchases.</>}
+          limits={<>DABS's costs that fall are illustrative allocations of its FY2025 expenses by sales, not measured savings. The wine that moves is a fixed {pct(DEFAULT_FLOWS.migration)} of household purchases.</>}
           limitsText="DABS's costs that fall are illustrative allocations of its FY2025 expenses by sales, not measured savings. The wine that moves is a fixed share of household purchases."
           source={SOURCE_MONEY}
           methods={SAME_PRICE_METHOD}
@@ -395,13 +387,13 @@ export function SamePriceView() {
           legend={
             <ul className="chart-legend small">
               <li>Blue: DABS costs that fall</li>
-              <li>Red: the state&rsquo;s share</li>
+              <li>Red: the state's share</li>
             </ul>
           }
           csv={csvOf(coverRows)}
           table={tableOf(coverRows)}
         >
-          {(width) => <CoverChart width={width} rows={cover.map(({ s, c }) => ({ label: SAVINGS_SHORT[s], avoided: c.dabsCostsAvoided, state: c.stateShare }))} />}
+          {(width) => <CoverChart width={width} tips={coverRows} rows={cover.map(({ s, c }) => ({ label: SAVINGS_SHORT[s], avoided: c.dabsCostsAvoided, state: c.stateShare }))} />}
         </ChartFigure>
         <p className="small">
           The state breaks even at a grocer margin of {pct(Math.max(0, rep.breakEvenMargin.allocated.fees), 1)} if card fees and agency contracts fall
@@ -424,7 +416,7 @@ export function SamePriceView() {
           id="sp-margin-chart"
           title="At today's shelf price, the state's change depends on the grocer's margin and on DABS's savings"
           subtitle={`Net change in state revenue against today, $ a year, by grocer margin; ${fees === "fees" ? "license fees cover the administration" : "no license fees"}; shoppers pay today's price throughout`}
-          reading={<>Each line is a savings case. Where a line crosses $0 the state breaks even. The grocer&rsquo;s margin is the design&rsquo;s main setting: it is the bill&rsquo;s choice, not the shopper&rsquo;s price.</>}
+          reading={<>Each line is a savings case. Where a line crosses $0 the state breaks even. The grocer's margin is the design's main setting: it is the bill's choice, not the shopper's price.</>}
           readingText="Each line is a savings case. Where a line crosses $0 the state breaks even. The grocer's margin is the bill's choice, not the shopper's price."
           limits={<>No extra purchases are counted. Savings beyond none are illustrative. Not a forecast.</>}
           limitsText="No extra purchases are counted. Savings beyond none are illustrative. Not a forecast."
@@ -441,21 +433,21 @@ export function SamePriceView() {
           csv={csvOf(curveRows)}
           table={tableOf(curveRows)}
         >
-          {(width) => <MarginChart width={width} rows={curve} />}
+          {(width) => <MarginChart width={width} rows={curve} tipOf={curveRow} />}
         </ChartFigure>
       </section>
 
       <section className="panel" aria-labelledby="sp-close">
         <h2 id="sp-close">What closes the rest</h2>
         <p>
-          The model above counts no new purchases. If wine where people shop is bought by some who do not buy it now, or replaces wine Utahns buy in
-          other states, the state collects DABS&rsquo;s margin on it. These are the amounts that would make the state whole at a{" "}
+          The model above counts no new purchases. If wine sold where people shop draws buyers who do not buy it now, or replaces wine Utahns buy in
+          other states, the state collects DABS's margin on it. These are the amounts that would make the state whole at a{" "}
           {pct(PA_LICENSEE_MARGIN.value)} margin with license fees, whether new purchases or wine now bought out of state (the model counts the
           two the same); none is measured.
         </p>
         <div className="table-wrap">
           <table className="data">
-            <caption>Wine bought in Utah that would cover the state&rsquo;s share (share of household DABS wine, {m(householdWine).slice(1)} a year)</caption>
+            <caption>Wine bought in Utah that would cover the state's share (share of household DABS wine, {m(householdWine).slice(1)} a year)</caption>
             <thead>
               <tr>
                 <th scope="col">Savings case</th>
@@ -482,17 +474,17 @@ export function SamePriceView() {
       </section>
 
       <section className="panel" aria-labelledby="sp-prec">
-        <h2 id="sp-prec">Utah and Pennsylvania already have private stores sell the state&rsquo;s wine</h2>
+        <h2 id="sp-prec">Utah and Pennsylvania already have private stores sell the state's wine</h2>
         <p>
-          <b>Utah.</b> DABS pays each package agency a fixed amount a year, by bottles sold and average bottle price, to sell at the state&rsquo;s prices
-          (grid revision {PACKAGE_AGENCY_GRID.revision}). If the wine that moves were shared evenly by Utah&rsquo;s grocery stores, a typical store would
-          sell about {n0(typical.bottles)} bottles a year ({usd0(typical.sales)} at DABS&rsquo;s average of ${DABS_WINE_BOTTLES.all.averagePrice.toFixed(2)}),
+          <b>Utah.</b> DABS pays each package agency a fixed amount a year, by bottles sold and average bottle price, to sell at the state's prices
+          (grid revision {PACKAGE_AGENCY_GRID.revision}). If the wine that moves were shared evenly by Utah's grocery stores, a typical store would
+          sell about {n0(typical.bottles)} bottles a year ({usd0(typical.sales)} at DABS's average of ${DABS_WINE_BOTTLES.all.averagePrice.toFixed(2)}),
           and the grid would pay it {usd0(typical.pay)}, {pct(typical.rate)} of its sales. Large stores cost less: at {n0(rates[rates.length - 1].bottles)}{" "}
           bottles the grid pays {pct(rates[rates.length - 1].rate, 1)}.
         </p>
         <div className="table-wrap">
           <table className="data">
-            <caption>What DABS&rsquo;s package agency grid would pay for wine alone, at DABS&rsquo;s FY2026 average wine bottle price</caption>
+            <caption>What DABS's package agency grid would pay for wine alone, at DABS's FY2026 average wine bottle price</caption>
             <thead>
               <tr>
                 <th scope="col">Wine bottles a year</th>
@@ -518,13 +510,13 @@ export function SamePriceView() {
           </table>
         </div>
         <p className="small">
-          Package agencies sell every product DABS stocks, and the grid pays on all of it; applying it to wine alone is this page&rsquo;s assumption.
-          A package agency sells DABS&rsquo;s inventory; under this design grocers would buy theirs. Source: {SOURCE_AGENCY}.
+          Package agencies sell every product DABS stocks, and the grid pays on all of it; applying it to wine alone is this page's assumption.
+          A package agency sells DABS's inventory; under this design grocers would buy theirs. Source: {SOURCE_AGENCY}.
         </p>
         <p>
           <b>Pennsylvania.</b> State stores sell to licensees at {pct(PA_LICENSEE_MARGIN.value)} below retail, and{" "}
           {pa.evidence[0].text.match(/(\d+) grocery stores/)![1]} grocery stores held wine permits on June 30, 2025. Pennsylvania lets grocers set
-          their own prices, and the one report found says they charge a little more than state stores. Utah&rsquo;s design would set the price instead.{" "}
+          their own prices, and the one report found says they charge a little more than state stores. Utah's design would set the price instead.{" "}
           <Go to={{ v: "states" }}>What happened elsewhere</Go>
         </p>
       </section>

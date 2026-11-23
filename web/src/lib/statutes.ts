@@ -141,7 +141,7 @@ export const STATUTE_ROWS: StatuteRow[] = [
     id: "M09",
     provision: "Deposits to dedicated funds",
     cite: "Utah Code 32B-2-304(5), 32B-2-305(4)",
-    effect: "Deposits are figured on DABS's gross revenue from sales of liquor. Wine DABS no longer sells carries none.",
+    effect: "Deposits are figured on DABS's gross revenue from sales of liquor. Wine that DABS no longer sells carries none.",
     change: "B: decide whether DABS's sales to grocers count. C, D, E: allocate part of the charge explicitly if the funds are to stay whole.",
     purpose: "Keeps school-lunch and other dedicated deposits from falling with DABS's sales.",
     dependencies: "M07",

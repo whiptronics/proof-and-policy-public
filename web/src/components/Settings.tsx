@@ -6,7 +6,7 @@ import { browserStorage } from "../lib/analysis";
 import { applyTheme, readTheme, THEME_KEY, THEME_LABELS, THEMES, writeTheme, type Theme } from "../lib/theme";
 
 /** A preview drawn with that appearance's own tokens (data-theme on the tile), so it shows what it offers. */
-function Tile({ t }: { t: "light" | "dark" }) {
+function Tile({ t }: { t: Exclude<Theme, "system"> }) {
   return (
     <span className="theme-tile" data-theme={t}>
       <span className="theme-tile-card">
@@ -24,6 +24,10 @@ export function Settings() {
   const [kept, setKept] = useState(true);
 
   const open = () => {
+    // A click doesn't always focus the gear (Safari, scripted clicks), and showModal() hands focus back on close to
+    // whatever had it: focusing the gear first makes every close return there at once. The close event below is too
+    // late: Chrome fires it with the next frame, 150-500 ms on the funding page and never in a hidden tab.
+    gear.current?.focus();
     dialog.current?.showModal();
     dialog.current?.querySelector<HTMLInputElement>("input:checked")?.focus();
   };
@@ -59,7 +63,7 @@ export function Settings() {
         id="settings"
         className="settings"
         aria-labelledby="settings-h"
-        onClose={() => gear.current?.focus()}
+        onClose={() => gear.current?.focus()} // fallback for browsers that don't restore focus themselves
         onClick={(e) => e.target === dialog.current && dialog.current.close()}
       >
         <div className="settings-in">

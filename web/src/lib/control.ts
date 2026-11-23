@@ -1,6 +1,7 @@
 // Liquor-control arrangements, compared across states. Four separate dimensions (spirits and wine; wholesale
 // and retail) are read from verified day runs only. A dated current-law snapshot is reported beside the
 // verdict, labeled as such, and never decides it: a snapshot says nothing about any other day.
+import { words } from "./format";
 import type { Segment, Snapshot } from "./types";
 
 export interface ControlDim {
@@ -136,7 +137,6 @@ export interface Assessment {
   currentLaw: { verdict: Exclude<Verdict, "unknown">; date: string } | null;
 }
 
-const words = (v: string) => v.replaceAll("_", " ");
 
 function combine(parts: Verdict[]): Verdict {
   if (parts.some((p) => p === "no")) return "no";

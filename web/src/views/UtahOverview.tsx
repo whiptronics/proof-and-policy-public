@@ -12,9 +12,10 @@ import { CONSUMER_ACCESS as AC } from "../lib/consumerAccess.generated";
 import { defaultDesignsReport } from "../lib/policyDesigns";
 import { samePriceHeadline } from "../lib/samePrice";
 import { amendmentsFor } from "../lib/statutes";
+import { minus } from "../lib/format";
 
 const m = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
-const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 0) => `${minus((v * 100).toFixed(d))}%`;
 const usd = (v: number) => `$${v.toFixed(2)}`;
 
 export default function UtahOverview({ verified }: { verified: string[] }) {
@@ -67,7 +68,7 @@ export default function UtahOverview({ verified }: { verified: string[] }) {
 
       <section className="panel" aria-labelledby="st-c">
         <p className="finding-tag">C · For shoppers</p>
-        <h2 id="st-c">Wine where you buy groceries, at today&rsquo;s price</h2>
+        <h2 id="st-c">Wine where you buy groceries, at today's price</h2>
         <p>
           Under the framework a bottle costs <strong>the same at a grocery store as at a state store</strong>: DABS sells to grocers below its shelf
           price and grocers charge the price the commission fixes, as state stores and package agencies must. What changes is distance. Half of
@@ -102,8 +103,8 @@ export default function UtahOverview({ verified }: { verified: string[] }) {
           </table>
         </div>
         <p className="small muted">
-          Straight-line distances from 2020 Census block groups; grocery stores are USDA&rsquo;s SNAP-authorized supermarkets, super stores and
-          grocery stores; state stores are those DABS&rsquo;s store locator lists. If a bill let grocers set their own prices instead, prices could
+          Straight-line distances from 2020 Census block groups; grocery stores are USDA's SNAP-authorized supermarkets, super stores and
+          grocery stores; state stores are those DABS's store locator lists. If a bill let grocers set their own prices instead, prices could
           rise; the five designs page models that option.
         </p>
         <Go to={{ v: "sameprice" }} reset>
@@ -113,14 +114,14 @@ export default function UtahOverview({ verified }: { verified: string[] }) {
 
       <section className="panel" aria-labelledby="st-d">
         <p className="finding-tag">D · Public revenue</p>
-        <h2 id="st-d">The state&rsquo;s side: a choice of margin</h2>
+        <h2 id="st-d">The state's side: a choice of margin</h2>
         <p>
-          At today&rsquo;s price the grocer&rsquo;s margin comes out of the state&rsquo;s share of the bottle, less what DABS stops spending. With DABS
+          At today's price the grocer's margin comes out of the state's share of the bottle, less what DABS stops spending. With DABS
           selling to grocers at {pct(s.priceToGrocers)} of its shelf price and license fees covering the new administration, the state gives up{" "}
           <strong>{m(s.cost.none).replace("+", "")} a year</strong> if DABS saves nothing, {m(s.cost.allocated).replace("+", "")} if its card fees and
-          agency contracts fall with sales, and {m(s.cost.longerRun).replace("+", "")} if its wages fall too. Household wine purchases{" "}
-          {pct(s.neededNone, 1)} higher would cover the first. If grocers set their own prices instead, DABS wholesale leaves the state{" "}
-          {m(h.bFixed)} a year ahead when 30% of household purchases move.
+          agency contracts fall with sales, and {m(s.cost.longerRun).replace("+", "")} if its wages fall too. A rise of{" "}
+          {pct(s.neededNone, 1)} in household wine purchases would cover the first. If grocers set their own prices instead, DABS wholesale
+          leaves the state {m(Math.abs(h.bFixed)).replace("+", "")} a year {h.bFixed < 0 ? "short" : "ahead"} when 30% of household purchases move.
         </p>
         <HowWeKnow
           claim={`same shelf price at ${pct(s.margin)}: ${m(-s.cost.none)} a year`}
@@ -185,12 +186,12 @@ export default function UtahOverview({ verified }: { verified: string[] }) {
 
       <section className="panel" aria-labelledby="st-g">
         <p className="finding-tag">G · The framework</p>
-        <h2 id="st-g">Today&rsquo;s price, at the grocery store</h2>
+        <h2 id="st-g">Today's price, at the grocery store</h2>
         <p>
           The framework keeps DABS as the wholesaler and the shelf price where it is: DABS sells to licensed grocers below its shelf price and
-          grocers charge the state-store price. Around that it sets grocery stores first, a commission license with local consent, beer&rsquo;s
-          safeguards extended to wine, fees that cover the cost, yearly reporting and a review after three years. DABS&rsquo;s price to grocers is
-          the bill&rsquo;s main fiscal choice.
+          grocers charge the state-store price. Around that it sets grocery stores first, a commission license with local consent, beer's
+          safeguards extended to wine, fees that cover the cost, yearly reporting and a review after three years. DABS's price to grocers is
+          the bill's main fiscal choice.
         </p>
         <Go to={{ v: "framework" }} reset>
           The 14-point framework

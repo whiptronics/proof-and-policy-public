@@ -56,8 +56,8 @@ Every solution is bounded: a share in [0, 1], a margin below 1, a price to groce
 | Design | Share that must move, no savings / allocated | Lowest premium at a 28% grocer margin, no savings / allocated | Grocer margin at a 10% premium, no savings (negative: no margin works) | Savings per $ needed at its own lever |
 |---|---|---|---|---|
 | B. DABS wholesale to licensed grocers | 17.5% / 7.9% | 37.9% / 34.9% | 8.5% | 0.00¢ |
-| C. Licensed private wholesale | 13.3% / 6.9% | 49.9% / 47.7% | -20.4% | 0.00¢ |
-| D. Authorized direct supply | 13.3% / 6.9% | 49.9% / 47.7% | -20.4% | 0.00¢ |
+| C. Licensed private wholesale | 13.3% / 6.9% | 49.9% / 47.7% | −20.4% | 0.00¢ |
+| D. Authorized direct supply | 13.3% / 6.9% | 49.9% / 47.7% | −20.4% | 0.00¢ |
 
 At a 28% grocer margin with no savings, the state breaks even at a premium of 37.9% with the take in DABS's price, 49.9% with a retail-level charge and a 29.5% wholesaler, and 20.6% if delivery cost nothing. A charge design matches B's lowest premium only if delivery costs less than 19.8% of the price to grocers.
 

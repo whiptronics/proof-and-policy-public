@@ -2,7 +2,7 @@
 // so a plotted point, its table cell and its CSV row are the same value with the same inputs.
 import type { ObsRow } from "./bundle";
 import type { DecodedMetric } from "./decode";
-import { unitAfter } from "./format";
+import { unitAfter, words } from "./format";
 import { FORMULA_VERSION, indexToBase, undefinedReason } from "./formulas";
 import type { ChartPoint } from "../components/TrendChart";
 import type { ConversionKind, FiscalYearRule, MetricMeta, MetricsIndex, PolicyEvent } from "./types";
@@ -91,7 +91,7 @@ export function policyAnnotations(
     const d = e.effective_start;
     const { year, kind } = placeDate(d, geoId, periodKind, rules);
     if (year < range[0] || year > range[1]) continue;
-    const label = `${periodKind === "state_fiscal_year" ? `FY${year}` : year}: ${e.dimension_label} → ${e.policy_value.replaceAll("_", " ")} from ${d}`;
+    const label = `${periodKind === "state_fiscal_year" ? `FY${year}` : year}: ${e.dimension_label} → ${words(e.policy_value)} from ${d}`;
     out.push({ year, label, kind });
   }
   return out;

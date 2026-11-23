@@ -36,6 +36,7 @@ import {
   type FixedCase,
   type Overrides,
 } from "./wineAlternatives";
+import { minus } from "./format";
 
 export const PRICE_SHARE_METHOD = "wine-price-share@1.0";
 
@@ -86,7 +87,7 @@ export interface GridArrangement {
 }
 
 const TAKE = leverOf(alternativeById("C_take")).charge;
-const pctS = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pctS = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 
 export const GRID_ARRANGEMENTS: GridArrangement[] = [
   {
@@ -196,7 +197,7 @@ export function positionOf(st: PriceStack): SellerPosition {
 
 export const POSITION_WORDS: Record<SellerPosition, string> = {
   below_cost: "below acquisition cost",
-  at_cost: "at acquisition cost (zero margin)",
+  at_cost: "at acquisition cost, zero margin",
   below_reference: `positive, below the ${pctS(RETAILER_TARGET, 0)} reference`,
   reference_or_above: `at or above the ${pctS(RETAILER_TARGET, 0)} reference`,
   not_split: "not split",

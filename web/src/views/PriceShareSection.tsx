@@ -3,6 +3,7 @@
 // the page, the CSVs and the charts cannot disagree.
 import { useMemo, useState } from "react";
 import { ChartDownloads, type Row } from "../components/ChartFigure";
+import { rowTip, tipAttr } from "../lib/tip";
 import type { Column } from "../lib/csv";
 import { colorFor, gradientStops, inkFor, type Domain } from "../lib/mapdata";
 import { COST_LINES, ELASTICITY, RETAILER_TARGET, WHOLESALER_MARGIN } from "../lib/wineAlternatives";
@@ -24,6 +25,7 @@ import {
   type SellerPosition,
   type VolumeBasis,
 } from "../lib/winePriceShare";
+import { withArticle } from "../lib/format";
 
 const pct = (v: number | null | undefined, d = 1) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : ""}${Math.abs(v * 100).toFixed(d)}%`);
 /** $ millions to one decimal, or two under $0.095M, so a small loss or gain never reads as "−0.0" or "+0.0". */
@@ -48,6 +50,18 @@ function find(rep: PriceShareReport, a: GridArrangement, p: number, s: number, s
 const priceAt = (rep: PriceShareReport, a: GridArrangement, p: number) => rep.prices.find((k) => k.arrangement === a.id && Math.abs(k.premium - p) < 1e-12)!;
 const breakEvenAt = (rep: PriceShareReport, a: GridArrangement, p: number, sv: SavingsCase, vb: VolumeBasis) =>
   rep.shareBreakEvens.find((b) => b.arrangement === a.id && Math.abs(b.premium - p) < 1e-12 && b.savings === sv && b.volume === vb)!;
+/** A grid cell in the table's words and formats: the table prints these and the cell's tooltip shows them. */
+function cellWords(rep: PriceShareReport, a: GridArrangement, p: number, s: number) {
+  const pt = priceAt(rep, a, p);
+  return {
+    Premium: pct(p, 0),
+    "Share moving": pct(s, 0),
+    "$M a year, source-based savings": m1(find(rep, a, p, s, "source_based", "fixed_volume").net),
+    "$M a year, no avoidable savings": m1(find(rep, a, p, s, "none", "fixed_volume").net),
+    "Grocer's gross margin": pct(pt.grocerMargin),
+    "Seller position": SHORT_POSITION[pt.position],
+  };
+}
 const markersOf = (rep: PriceShareReport, a: GridArrangement) => rep.markers.find((k) => k.arrangement === a.id)!;
 const rangesOf = (rep: PriceShareReport, a: GridArrangement, sv: SavingsCase, vb: VolumeBasis) => rep.preserved.find((k) => k.arrangement === a.id && k.savings === sv && k.volume === vb)!.ranges;
 
@@ -61,10 +75,10 @@ function breakEvenWords(rep: PriceShareReport, a: GridArrangement, p: number, sv
 /** The premiums that keep receipts whole at 30%, in words, with the grocer's margin at the start of each range. */
 function rangeWords(rep: PriceShareReport, a: GridArrangement, sv: SavingsCase, vb: VolumeBasis): string {
   const rs = rangesOf(rep, a, sv, vb);
-  if (!rs.length) return `at no premium up to ${pct(PREMIUM_SEARCH_MAX, 0)}`;
+  if (!rs.length) return `at none of the premiums tested (0% to ${pct(PREMIUM_SEARCH_MAX, 0)})`;
   return rs
     .map((r) => {
-      const span = r.to === null ? (r.from === 0 ? `at every premium from 0% to ${pct(PREMIUM_SEARCH_MAX, 0)}` : `from a ${pct(r.from)} premium`) : `from ${r.from === 0 ? "0%" : `a ${pct(r.from)} premium`} to ${pct(r.to)}`;
+      const span = r.to === null ? (r.from === 0 ? `at every premium from 0% to ${pct(PREMIUM_SEARCH_MAX, 0)}` : `from ${withArticle(pct(r.from))} premium`) : `from ${r.from === 0 ? "0%" : `${withArticle(pct(r.from))} premium`} to ${pct(r.to)}`;
       const g = r.fromPoint;
       const at = `the grocer's gross margin is ${pct(g.grocerMargin)}${a.supply === "private" ? ` after the wholesaler's assumed ${pct(WHOLESALER_MARGIN)}` : ""} (${POSITION_WORDS[g.position]})`;
       const end = r.toPoint ? `, ${pct(r.toPoint.grocerMargin)} at the upper end` : "";
@@ -128,14 +142,7 @@ function GridChart({ rep, a, domain, refs }: { rep: PriceShareReport; a: GridArr
         SHARES.map((s, j) => {
           const k = find(rep, a, p, s, "source_based", "fixed_volume");
           const fill = colorFor(k.net, domain);
-          const pt = priceAt(rep, a, p);
-          return (
-            <g key={`${i}-${j}`}>
-              <rect x={L + i * CW + 1} y={T + (SHARES.length - 1 - j) * RH + 1} width={CW - 2} height={RH - 2} rx="2" fill={fill}>
-                <title>{`Premium ${pct(p, 0)}, ${pct(s, 0)} of household purchases moving: ${money(k.net)} a year (no avoidable savings: ${money(find(rep, a, p, s, "none", "fixed_volume").net)}). Grocer's gross margin ${pct(pt.grocerMargin)}, ${POSITION_WORDS[pt.position]}.`}</title>
-              </rect>
-            </g>
-          );
+          return <rect key={`${i}-${j}`} x={L + i * CW + 1} y={T + (SHARES.length - 1 - j) * RH + 1} width={CW - 2} height={RH - 2} rx="2" fill={fill} />;
         }),
       )}
       {cost !== null && cost > L && (
@@ -181,14 +188,19 @@ function GridChart({ rep, a, domain, refs }: { rep: PriceShareReport; a: GridArr
           );
         }),
       )}
+      {/* Over the lines and values, each cell answers the pointer with its table cell (cellWords). */}
+      {PREMIUMS.map((p, i) =>
+        SHARES.map((s, j) => (
+          <rect key={`h${i}-${j}`} x={L + i * CW} y={T + (SHARES.length - 1 - j) * RH} width={CW} height={RH} fill="transparent" {...tipAttr(rowTip(cellWords(rep, a, p, s)))} />
+        )),
+      )}
       {/* Each existing alternative sits in the top of its row, above the cell values, at its own premium. */}
       {refs.map((r) => (
-        <g key={r.n}>
+        <g key={r.n} {...tipAttr({ title: r.label, rows: [] })}>
           <circle cx={xOf(r.premium)} cy={yOf(r.share) - 9} r="5.5" fill="var(--surface)" stroke="var(--text)" strokeWidth="1.3" />
           <text x={xOf(r.premium)} y={yOf(r.share) - 6.2} textAnchor="middle" fontSize="8" fontWeight="700" fill="var(--text)">
             {r.n}
           </text>
-          <title>{r.label}</title>
         </g>
       ))}
       {PREMIUMS.filter((_, i) => i % 2 === 0).map((p) => (
@@ -252,10 +264,12 @@ function MarginChart({ rep, a }: { rep: PriceShareReport; a: GridArrangement }) 
       </text>
       <polyline points={pts.map((q) => `${xOf(q.p)},${yM(q.g)}`).join(" ")} fill="none" stroke="var(--series-1)" strokeWidth="2" />
       {pts.map((q) => (
-        <circle key={q.p} cx={xOf(q.p)} cy={yM(q.g)} r="4" fill="var(--series-1)" stroke="var(--surface)" strokeWidth="2">
-          <title>{`Premium ${pct(q.p, 0)}: grocer's gross margin ${pct(q.g)}`}</title>
-        </circle>
+        <circle key={q.p} cx={xOf(q.p)} cy={yM(q.g)} r="4" fill="var(--series-1)" stroke="var(--surface)" strokeWidth="2" />
       ))}
+      {PREMIUMS.map((p) => {
+        const w = cellWords(rep, a, p, WORKED_SHARE);
+        return <rect key={`h${p}`} x={xOf(p) - CW / 2} y={MT} width={CW} height={MH - MT - 18} fill="transparent" {...tipAttr(rowTip({ Premium: w.Premium, "Grocer's gross margin": w["Grocer's gross margin"], "Seller position": w["Seller position"] }))} />;
+      })}
       {[M_LO, 0, 0.2, 0.4, M_HI].map((g) => (
         <text key={g} x={L - 6} y={yM(g) + 3.5} textAnchor="end" fontSize="10" fill="var(--text-2)">
           {pct(g, 0)}
@@ -342,7 +356,7 @@ function GridTable({ rep, a }: { rep: PriceShareReport; a: GridArrangement }) {
             </th>
             {PREMIUMS.map((p) => (
               <td key={p} className="num small">
-                {pct(priceAt(rep, a, p).grocerMargin)}
+                {cellWords(rep, a, p, WORKED_SHARE)["Grocer's gross margin"]}
               </td>
             ))}
           </tr>
@@ -354,7 +368,7 @@ function GridTable({ rep, a }: { rep: PriceShareReport; a: GridArrangement }) {
               const pos = priceAt(rep, a, p).position;
               return (
                 <td key={p} className={`num small ps-pos-${pos}`}>
-                  {SHORT_POSITION[pos]}
+                  {cellWords(rep, a, p, WORKED_SHARE)["Seller position"]}
                 </td>
               );
             })}
@@ -368,12 +382,11 @@ function GridTable({ rep, a }: { rep: PriceShareReport; a: GridArrangement }) {
                 {s === WORKED_SHARE && <span className="small muted"> (worked)</span>}
               </th>
               {PREMIUMS.map((p) => {
-                const k = find(rep, a, p, s, "source_based", "fixed_volume");
-                const z = find(rep, a, p, s, "none", "fixed_volume");
+                const w = cellWords(rep, a, p, s);
                 return (
                   <td key={p} className={`num${priceAt(rep, a, p).position === "below_cost" ? " ps-belowcost" : ""}`}>
-                    <strong>{m1(k.net)}</strong>
-                    <span className="small muted ps-zero">{m1(z.net)}</span>
+                    <strong>{w["$M a year, source-based savings"]}</strong>
+                    <span className="small muted ps-zero">{w["$M a year, no avoidable savings"]}</span>
                   </td>
                 );
               })}
@@ -573,11 +586,11 @@ export function PriceShareSection() {
               <p className="small">
                 State annual change at fixed volume with the source-based savings; one color scale for all four arrangements.{" "}
                 {mk.grocerCost !== null && mk.grocerCost > 0
-                  ? `Below a ${pct(mk.grocerCost)} premium the grocer would sell below its acquisition cost if the wholesaler kept ${pct(WHOLESALER_MARGIN)}. `
+                  ? `Below ${withArticle(pct(mk.grocerCost))} premium the grocer would sell below its acquisition cost if the wholesaler kept ${pct(WHOLESALER_MARGIN)}. `
                   : mk.grocerCost !== null && Math.abs(mk.grocerCost) < 1e-9
                     ? "At a 0% premium the grocer sells at its acquisition cost (no margin). "
                     : ""}
-                {mk.reference !== null ? `The grocer's margin reaches ${pct(RETAILER_TARGET, 0)} at a ${pct(mk.reference)} premium. ` : ""}
+                {mk.reference !== null ? `The grocer's margin reaches ${pct(RETAILER_TARGET, 0)} at ${withArticle(pct(mk.reference))} premium. ` : ""}
                 Existing alternatives on this grid: {refs.length ? refs.map((r) => r.label).join("; ") : "none"}.
               </p>
               <ChartDownloads

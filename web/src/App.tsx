@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, type MouseEvent, type ReactNode } from "reac
 import { ErrorNote, Loading } from "./components/common";
 import { Drawer } from "./components/Drawer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { useChartTips } from "./components/ChartTip";
 import { Settings } from "./components/Settings";
 import { useData } from "./lib/data";
 import { AI_DISCLOSURE } from "./lib/disclosure";
@@ -70,6 +71,7 @@ export function App({ title = "Proof & Policy research dashboard", intro, hide =
     "start",
   );
   const man = useData<Manifest>("manifest.json");
+  useChartTips(); // one tooltip for every chart (components/ChartTip.tsx)
 
   useEffect(() => {
     document.title = `${TITLES[view]} · ${title}`;

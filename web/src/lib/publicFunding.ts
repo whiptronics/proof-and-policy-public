@@ -26,7 +26,7 @@ export const ROUTINGS: { id: Routing; label: string; text: string }[] = [
   {
     id: "law_as_written",
     label: "The deposit sections as written",
-    text: "The deposits stay on DABS's own sales revenue (32B-2-304(5), -305(4), -306(3)). Wine DABS sells to grocers is assumed to count, at DABS's price to grocers; wine a private wholesaler sells does not.",
+    text: "The deposits stay on DABS's own sales revenue (32B-2-304(5), -305(4), -306(3)). Wine that DABS sells to grocers is assumed to count, at DABS's price to grocers; wine that a private wholesaler sells does not.",
   },
   {
     id: "retail_value",

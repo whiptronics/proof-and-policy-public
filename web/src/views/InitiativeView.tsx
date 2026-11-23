@@ -13,15 +13,16 @@ import { useParams } from "../lib/url";
 import { FlowsSection } from "./FlowsSection";
 import { PriceShareSection } from "./PriceShareSection";
 import { ProducerDirectSection } from "./ProducerDirectSection";
+import { withArticle, minus } from "../lib/format";
 
 const money = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : ""}$${Math.round(Math.abs(v)).toLocaleString("en-US")}`);
 const millions = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < 0 ? "−" : v > 0 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(1)}M`);
-const pct = (v: number | null | undefined, digits = 1) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(digits)}%`);
+const pct = (v: number | null | undefined, digits = 1) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${minus((v * 100).toFixed(digits))}%`);
 const amount = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `$${(Math.abs(v) / 1e6).toFixed(1)}M`);
 const cents = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(1)}¢`);
 
 function breakEvenText(b: BreakEven, kind: "tax" | "discount"): string {
-  if (b.status === "found" && b.value !== null) return kind === "tax" ? `a ${pct(b.value)} tax on the sellers' price` : `a price to grocers of at least ${pct(1 - b.value)} of today's shelf price`;
+  if (b.status === "found" && b.value !== null) return kind === "tax" ? `${withArticle(pct(b.value))} tax on the sellers' price` : `a price to grocers of at least ${pct(1 - b.value)} of today's shelf price`;
   if (b.status === "not_needed") return "none needed";
   if (b.status === "none_in_range") return "none in the supported range";
   return "not computable";
@@ -85,7 +86,7 @@ export function InitiativeView() {
       <header className="panel">
         <h2 id="in-h">{init.title}</h2>
         <p className="warn">
-          <strong>Draft.</strong> {init.status}
+          <strong>Draft for review.</strong> {init.status}
         </p>
         <p className="small muted">
           This is an independent, personal research project. It is not a government agency, a nonprofit or an institution with
@@ -129,8 +130,8 @@ export function InitiativeView() {
             {Math.round((f.settings.wholesalerMargin ?? NaN) * 100)} cents of theirs.
           </li>
           <li>
-            <strong>With the 20% tax or DABS's 80% price to grocers held fixed, the loss holds across every input range tested.</strong> No single input
-            moved within its tested range, and no combination of the documented bounds, brings either to break even; a higher price to grocers
+            <strong>With the 20% tax or DABS's 80% price to grocers held fixed, the loss holds across every input range tested.</strong> Neither moving any
+            single input within its tested range nor combining the documented bounds brings either to break even; a higher price to grocers
             or a larger tax does (<a href="#in-alt">policy alternatives</a>, wine-alternatives@1.0). It would take sellers keeping about{" "}
             {cents(f.robustness.keepAtBreakEven)} a dollar, grocery wine priced {pct((Wh.viability?.shift.shelf ?? NaN) - 1, 0)} (DABS supply)
             to {pct((P.viability?.shift.shelf ?? NaN) - 1, 0)} (private) above state stores, or an untested switch from beer (
@@ -432,7 +433,7 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
                 {pct(P.sellersAtBreakEven?.margin)} gross margin on their own price, where national averages come to about {pct(need, 0)} for
                 wholesaler and grocer together (a reference, not a minimum).
                 {P.sellersAtBreakEven?.grocer && P.sellersAtBreakEven.grocer.perDollar < 0
-                  ? ` If the wholesaler kept its assumed ${pct(set.wholesalerMargin)}, the grocer would sell below its acquisition cost (a ${pct(P.sellersAtBreakEven.grocer.margin)} gross margin), so this is not a workable arrangement as specified.`
+                  ? ` If the wholesaler kept its assumed ${pct(set.wholesalerMargin)}, the grocer would sell below its acquisition cost (${withArticle(pct(P.sellersAtBreakEven.grocer.margin))} gross margin), so this is not a workable arrangement as specified.`
                   : ""}
               </td>
             </tr>
@@ -467,7 +468,7 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
             <tr>
               <th scope="row">Grocery shelf price, sellers earning national average margins (example: the state-store price)</th>
               <td data-label="Private supply" className="num">
-                {pct(pv?.shift.shelf)} of today's price, with a {pct(pv?.shift.lever)} tax
+                {pct(pv?.shift.shelf)} of today's price, with {withArticle(pct(pv?.shift.lever))} tax
               </td>
               <td data-label="DABS supply" className="num">
                 {pct(wv?.shift.shelf)}, with DABS's price to grocers at least {pct(1 - (wv?.shift.lever ?? NaN))} of today's shelf price
@@ -587,7 +588,7 @@ function BreakEvenSection({ init, f }: { init: Initiative; f: InitiativeFigures 
       <h4>Evidence that would most narrow this</h4>
       <ul className="small">
         <li>What margin grocers would accept on wine, or what they would charge for it: the break-even depends on sellers keeping under {cents(r.keepAtBreakEven)} a dollar at today's prices, and no source measures either.</li>
-        <li>DABS's operating costs that would actually stop per dollar of wine sales leaving the stores: it sets that {cents(r.keepAtBreakEven)}.</li>
+        <li>DABS's operating costs that would actually stop per dollar of wine sales leaving the stores: this sets the {cents(r.keepAtBreakEven)} figure.</li>
         <li>DABS wine sales by customer type, and how much household buying would move: these set the size of the loss.</li>
       </ul>
       <p className="no-print small">

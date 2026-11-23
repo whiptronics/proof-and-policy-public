@@ -5,11 +5,13 @@
 import type { KeyboardEvent } from "react";
 import { ErrorNote, Loading, RecordLink } from "../components/common";
 import { useData } from "../lib/data";
+import { tipAttr } from "../lib/tip";
 import { SUPPORT_LABELS, geoName, words } from "../lib/format";
 import type { Geography, LedgerRun, PolicyData, PolicyEvent, Segment, Snapshot } from "../lib/types";
 import { navigate, pickInt, pickOne, useParams } from "../lib/url";
 
 const DAY = 86400000;
+const OPEN = "Click or press Enter to open its record.";
 const t = (d: string) => Date.parse(`${d}T00:00:00Z`);
 const W = 1000;
 const LANE_H = 30;
@@ -289,8 +291,7 @@ function LaneSvg({
           <line key={y} x1={x(t(`${y}-01-01`))} x2={x(t(`${y}-01-01`))} y1={0} y2={LANE_H} stroke="var(--line)" strokeWidth={y % 5 === 0 ? 1 : 0.4} />
         ))}
         {lane.segments.length === 0 && (
-          <g>
-            <title>No verified days: unknown for every day shown</title>
+          <g {...tipAttr({ title: "No verified days: unknown for every day shown", rows: [] })}>
             <rect x={0} y={4} width={W} height={LANE_H - 8} fill={`url(#${hatch})`} />
           </g>
         )}
@@ -305,8 +306,7 @@ function LaneSvg({
             : `${words(s.state)}, verified ${s.segment_start} to ${s.segment_end} (${s.days.toLocaleString("en-US")} days)`;
           const wpx = x(b) - x(a);
           return (
-            <g key={s.segment_start} className="seg" role={pid ? "button" : "img"} tabIndex={pid ? 0 : -1} aria-label={text} onClick={() => pid && navigate({ rec: `policy:${pid}` })} onKeyDown={pid ? press(`policy:${pid}`) : undefined}>
-              <title>{text}</title>
+            <g key={s.segment_start} className="seg" role={pid ? "button" : "img"} tabIndex={pid ? 0 : -1} aria-label={text} onClick={() => pid && navigate({ rec: `policy:${pid}` })} onKeyDown={pid ? press(`policy:${pid}`) : undefined} {...tipAttr({ title: text, rows: [], note: pid ? OPEN : undefined })}>
               <rect x={x(a)} y={4} width={Math.max(wpx, 2)} height={LANE_H - 8} fill={unknown ? `url(#${hatch})` : color(s.state)} stroke="var(--surface)" strokeWidth={0.5} />
               {wpx > 70 && (
                 <text x={x(a) + 4} y={LANE_H / 2 + 4} style={{ fill: unknown ? "var(--text-2)" : "var(--st-ink-dark)", fontSize: 11 }}>
@@ -324,8 +324,7 @@ function LaneSvg({
           return marks
             .filter((m) => t(m.d) >= from && t(m.d) <= to)
             .map((m) => (
-              <g key={e.policy_id + m.what} className="seg" role="button" tabIndex={0} aria-label={`${words(e.policy_value)}: ${m.what} ${m.d}`} onClick={() => navigate({ rec: `policy:${e.policy_id}` })} onKeyDown={press(`policy:${e.policy_id}`)}>
-                <title>{`${words(e.policy_value)}: ${m.what} ${m.d}`}</title>
+              <g key={e.policy_id + m.what} className="seg" role="button" tabIndex={0} aria-label={`${words(e.policy_value)}: ${m.what} ${m.d}`} onClick={() => navigate({ rec: `policy:${e.policy_id}` })} onKeyDown={press(`policy:${e.policy_id}`)} {...tipAttr({ title: `${words(e.policy_value)}: ${m.what} ${m.d}`, rows: [], note: OPEN })}>
                 <text x={x(t(m.d)) - 5} y={LANE_H + 1} style={{ fontSize: 11, fill: "var(--text)" }}>
                   {m.sym}
                 </text>
@@ -340,8 +339,7 @@ function LaneSvg({
           const text = `Snapshot ${day ?? `${s.observed_year} (year only)`}: ${words(s.policy_value)} — ${s.citation}. Says nothing about other days.`;
           const cx = (x(a) + x(b)) / 2;
           return (
-            <g key={s.snapshot_id} className="seg" role="button" tabIndex={0} aria-label={text} onClick={() => navigate({ rec: `snapshot:${s.snapshot_id}` })} onKeyDown={press(`snapshot:${s.snapshot_id}`)}>
-              <title>{text}</title>
+            <g key={s.snapshot_id} className="seg" role="button" tabIndex={0} aria-label={text} onClick={() => navigate({ rec: `snapshot:${s.snapshot_id}` })} onKeyDown={press(`snapshot:${s.snapshot_id}`)} {...tipAttr({ title: text, rows: [], note: OPEN })}>
               {day ? (
                 <path d={`M ${cx} 2 L ${cx + 7} ${LANE_H / 2} L ${cx} ${LANE_H - 2} L ${cx - 7} ${LANE_H / 2} Z`} fill={color(s.policy_value)} stroke="var(--text)" strokeWidth={1.2} />
               ) : (
@@ -358,8 +356,7 @@ function LaneSvg({
           const b = t(r.verified_through) + DAY;
           if (b <= from || a >= to) return null;
           return (
-            <g key={r.claim_id + r.verified_from}>
-              <title>{`Dates ${words(r.temporal_status)}, ${r.verified_from} to ${r.verified_through} (claim ${r.claim_id})`}</title>
+            <g key={r.claim_id + r.verified_from} {...tipAttr({ title: `Dates ${words(r.temporal_status)}, ${r.verified_from} to ${r.verified_through} (claim ${r.claim_id})`, rows: [] })}>
               <rect x={x(a)} y={LANE_H + 4} width={Math.max(x(b) - x(a), 1)} height={SUB_H - 2} fill={TEMPORAL_FILL[r.temporal_status] ?? "var(--st-M)"} stroke="var(--surface)" strokeWidth={0.5} />
             </g>
           );

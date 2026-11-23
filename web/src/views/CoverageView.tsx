@@ -4,6 +4,7 @@ import { CODE_STYLE, Empty, ErrorNote, Go, Legend, Loading, RecordLink, SourceRe
 import { downloadBundle } from "../lib/bundle";
 import { saveFile, toCsv } from "../lib/csv";
 import { decodeMetric, load, useData } from "../lib/data";
+import { tipAttr } from "../lib/tip";
 import { formatValue, PERIOD_KIND_LABELS, unitLabel, words } from "../lib/format";
 import { countCodes, queue } from "../lib/research";
 import type { Coverage, Geography, Manifest, MetricFile, MetricsIndex, Research, SourcesData } from "../lib/types";
@@ -366,8 +367,8 @@ function Matrix({
                     data-rc={`${r}-${c}`}
                     className={CODE_STYLE[code]?.cls ?? "st-space"}
                     tabIndex={r === r0 && c === c0 ? 0 : -1}
-                    title={titleAt(g, y, code)}
                     aria-label={titleAt(g, y, code)}
+                    {...tipAttr({ title: titleAt(g, y, code), rows: [] })}
                     aria-selected={isSel}
                     onClick={() => {
                       setFocus([r, c]);

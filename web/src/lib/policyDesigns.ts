@@ -25,6 +25,7 @@ import { bottleScale } from "./bottle";
 import { amendmentsFor, openQuestionsFor } from "./statutes";
 import { DIRECT_COST_SHARES, PRODUCER_PREMIUMS, directDef } from "./producerDirect";
 import { COST_LINES, RETAILER_TARGET, WHOLESALER_MARGIN, alternativeById, distributorMargin, evaluateFixed, leverOf, type AltDef, type FixedCase, type Overrides } from "./wineAlternatives";
+import { minus } from "./format";
 
 export const POLICY_DESIGNS_METHOD = "policy-designs@1.0";
 
@@ -562,7 +563,7 @@ export interface Criterion {
   cells: Record<DesignId, string>;
 }
 
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const usd = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
 
 export function criteria(rs: DesignResult[]): Criterion[] {
@@ -668,7 +669,7 @@ export function policyDesignsReport(c: Constraints = DEFAULT_CONSTRAINTS): Polic
         id: null,
         reason: `No modeled arrangement meets all three constraints (the state breaks even with no savings under every convenience limit, a grocery price within ${pct(c.maxPremium, 0)} of the state store, and a grocer margin of at least ${pct(c.minGrocerMargin, 0)}). B, DABS wholesale at today's price, is the best-supported design: with no savings it keeps the state ahead if the 30% share moves (${usd(b.cases.find((x) => x.savings === "none" && x.limit === null)!.net)} a year), it has the lowest premium of the designs whose inputs are measured or referenced (${pct(b.premium)}), and no other design beats it on revenue, price and grocer margin at once. At that premium few households would switch under the price-sensitive cases, so the convenience gain is small and the fixed administration turns the result negative unless license fees cover it. D could have a lower premium only if delivery costs less than ${pct(distributionToMatchB)} of the price to grocers, which nothing measures.`,
         whatWouldNeedToChange: [
-          `Collect the state's take as a retail-level charge rather than inside the wholesale price. A percentage grocer margin then does not apply to it: at a 28% grocer margin the lowest break-even premium falls from ${pct(atRef.wholesalePrice)} (B) to ${pct(atRef.retailChargeNoDistribution)} if distribution cost nothing, or ${pct(atRef.retailChargeReference)} at the private wholesaler's reference margin.`,
+          `Collect the state's take as a retail-level charge rather than inside the wholesale price. A percentage grocer margin then does not apply to it: at a 28% grocer margin the lowest break-even premium falls from ${pct(atRef.wholesalePrice)} (B) to ${pct(atRef.retailChargeNoDistribution)} if distribution cost nothing, and ${atRef.retailChargeReference > atRef.wholesalePrice ? "rises" : "falls"} to ${pct(atRef.retailChargeReference)} at the private wholesaler's reference margin.`,
           `Grocers accepting a lower margin on wine than the 28% all-product reference: at a 10% premium the state breaks even (no savings) with a grocer margin of ${pct(b.breakEven.grocerMarginAt10)} under B.`,
           `Cover the fixed administration with license fees so that low participation cannot turn the result negative: $${Math.round(t.admin / UTAH_GROCERY_ESTABLISHMENTS.count).toLocaleString("en-US")} a year per store if all ${UTAH_GROCERY_ESTABLISHMENTS.count} grocery establishments (CBP ${UTAH_GROCERY_ESTABLISHMENTS.year}) were licensed.`,
           "Measure DABS's avoidable costs. Without them, every saving is illustrative and the headline stays at zero.",

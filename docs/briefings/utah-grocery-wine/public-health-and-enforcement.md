@@ -13,7 +13,7 @@ More grocery outlets are not harmless. Under the framework grocery prices equal 
 
 ## Safeguards against current law
 
-Checked against the Utah Code read on 2026-11-19 (see the matrix's sources) before calling anything new.
+Checked against the Utah Code as read on 2026-11-19 (see the matrix's sources) before anything here was called new.
 
 | Safeguard | Current law for off-premise beer | Citation | Status | Proposal for wine |
 |---|---|---|---|---|
@@ -39,7 +39,7 @@ Checked against the Utah Code read on 2026-11-19 (see the matrix's sources) befo
 | Alcohol-related crashes and injuries | NHTSA FARS (already in this dataset); state injury data | Trends only: a change after the law does not show the law caused it. |
 | Wine and pure-alcohol volume | DABS sales; NIAAA apparent consumption | Wine by channel, and total ethanol, so substitution from beer or spirits can be seen. |
 | DABS revenue | DABS annual reports | Wine margin from stores and from grocers, before and after. |
-| Dedicated funds | 32B-2-304(5), -305(4) deposits | School-lunch and other deposits each year. |
+| Dedicated funds | 32B-2-304(5), -305(4) deposits | School-meals and other deposits each year. |
 | State stores and package agencies | DABS store and agency sales | Sales by store, so the effect on rural agencies is measured rather than assumed. |
 
 A change after the law starts does not show the law caused it: crashes, sales and compliance all move for other reasons. The indicators are for review against a comparison (beer retailers, other years, or other states), not for crediting or blaming the program.

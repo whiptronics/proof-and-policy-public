@@ -97,8 +97,29 @@ export function formatAxis(v: number, unit: string): string {
 }
 
 export function words(code: string | null | undefined): string {
-  return (code ?? "").replaceAll("_", " ");
+  // Coded law values read as words: usd_13.10 is $13.10, 5.0pct is 5.0%, abv is ABV.
+  return (code ?? "")
+    .replaceAll("_", " ")
+    .replace(/\busd (\d)/g, "$$$1")
+    .replace(/(\d)pct\b/g, "$1%")
+    .replace(/\babv\b/g, "ABV")
+    .replace(/\babw\b/g, "ABW");
 }
+
+/** A number with "a" or "an" as it is said: an 8.9%, an 11.1%, an 18%, an 80%, a 28%, a 110%. */
+export function withArticle(n: string): string {
+  const lead = /^[−-]/.test(n) ? "" : (n.match(/\d[\d,]*/)?.[0] ?? "").split(",")[0];
+  return `${lead.startsWith("8") || lead === "11" || lead === "18" ? "an" : "a"} ${n}`;
+}
+
+/** "a, b and c": a list in a sentence. */
+export const andList = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
+/** A sentence's first letter in lowercase, for text joined after a colon or semicolon; FY2025 and other acronyms stay. */
+export const lowerFirst = (t: string) => (/^[A-Z][a-z]/.test(t) ? t[0].toLowerCase() + t.slice(1) : t);
+
+/** A typographic minus for a formatted number ("-3.2" is "−3.2"); a negative that rounds to zero loses its sign. */
+export const minus = (s: string) => (/^-0(\.0*)?$/.test(s) ? s.slice(1) : s.replace(/^-/, "−"));
 
 /** How a snapshot's excerpt supports its value (policy_snapshots.support_basis). */
 export const SUPPORT_LABELS: Record<string, { short: string; long: string }> = {

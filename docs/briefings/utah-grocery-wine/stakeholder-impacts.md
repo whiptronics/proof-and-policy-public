@@ -8,7 +8,7 @@ Figures are design B at the fixed share (30% of household wine purchases moving)
 | Who | Likely effect | Basis |
 |---|---|---|
 | DABS stores | Lose up to 24.6% of DABS's wine sales if 30% of household purchases move; none if price-sensitive households stay. Under B, DABS's warehouse still handles every bottle. | computed |
-| Rural package agencies | Paid by contract; a nearby licensed grocer could take sales. Pay terms were not read, so the effect is not estimated. | unknown |
+| Rural package agencies | Paid a fixed amount a year from DABS's published grid, by bottles sold and average bottle price; a nearby licensed grocer could take some of an agency's wine sales, and the effect on its pay is not estimated. | unknown |
 | DABS employees | No staffing change is modeled. Wages fall only in the illustrative longer-run case, and no staffing plan exists. | assessed |
 | Utah wineries and small producers | Under B they reach grocers through DABS listings, as now; under D they could sell to grocers directly but carry delivery and permit costs. | assessed |
 | Existing alcohol retailers | Off-premise beer retailers that are not grocery stores would be outside a grocery-only first phase. Utah has no independent liquor stores: wine is sold only at state stores and contract package agencies. | assessed |

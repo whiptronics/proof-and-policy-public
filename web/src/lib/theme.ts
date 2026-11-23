@@ -1,17 +1,17 @@
-// The reader's appearance choice: Match my device (the default), Light or Dark. A choice is data-theme on <html>;
+// The reader's appearance choice: Match my device (the default), Light, Dark or Crimson. A choice is data-theme on <html>;
 // styles.css holds the palettes. public/theme.js applies a saved choice before the first paint (a same-origin file,
 // because the site's Content-Security-Policy allows no inline script); lib/theme.test.ts keeps it in step with this
 // file. The /read/ text pages carry no script, so they always follow the device.
-export const THEMES = ["system", "light", "dark"] as const;
+export const THEMES = ["system", "light", "dark", "crimson"] as const;
 export type Theme = (typeof THEMES)[number];
 
-export const THEME_LABELS: Record<Theme, string> = { system: "Match my device", light: "Light", dark: "Dark" };
+export const THEME_LABELS: Record<Theme, string> = { system: "Match my device", light: "Light", dark: "Dark", crimson: "Crimson" };
 
 /** The one browser-storage key this choice uses, named like the saved-analysis keys (lib/analysis.ts, lib/saved.ts). */
 export const THEME_KEY = "alcohol-dashboard.theme.v1";
 
 /** The header color (--surface) of each appearance, for <meta name="theme-color">; the test checks it against styles.css. */
-export const THEME_COLOR = { light: "#ffffff", dark: "#1d3549" } as const;
+export const THEME_COLOR = { light: "#ffffff", dark: "#1d3549", crimson: "#171113" } as const;
 
 const isTheme = (v: unknown): v is Theme => typeof v === "string" && (THEMES as readonly string[]).includes(v);
 

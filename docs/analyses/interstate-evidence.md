@@ -31,11 +31,11 @@ A state that changes its law is not chosen at random, and other things change at
 
 **At the same time.** 2016 legislation phased in more locations for liquor-licensed drugstores and let beer retailers sell full-strength beer; Proposition 124 (more liquor-store locations) was on the same 2022 ballot.
 
-**For Utah.** A license state with private wholesale and an excise tax, like Tennessee. Its automatic conversion is the opposite of the licensing this framework proposes, and its observation period is short.
+**For Utah.** Colorado is a license state with private wholesale and an excise tax, like Tennessee. Its automatic conversion is the opposite of the licensing this framework proposes, and its observation period is short.
 
 ## Pennsylvania: Wine expanded permits (Act 39 of 2016) (Approved June 8, 2016; permit requests from August 8, 2016)
 
-**Law.** A control state that is still the wholesaler and runs about 560 state stores. Restaurant and hotel licensees (including grocery and convenience stores holding restaurant licenses) may sell up to 3 liters of wine to go per sale, bought from state stores or limited wineries, at a designated register staffed by a trained cashier 18 or older, never below their purchase price. A $2,000 application fee and a renewal fee of 2% of wine bought from the state.
+**Law.** A control state that is still the wholesaler and runs about 560 state stores. Restaurant and hotel licensees (including grocery and convenience stores holding restaurant licenses) may sell up to 3 liters of wine to go per sale, bought from state stores or limited wineries, at a designated register staffed by a trained cashier 18 or older, never below their purchase price. The permit carries a $2,000 application fee and a renewal fee of 2% of wine bought from the state.
 
 - **Law and official figures only.** [PLCB annual report, FY2024-25](https://www.pa.gov/agencies/lcb/about-us/reports-and-publications/annual-reports): Permits on June 30, 2025: 980 convenience stores, 559 grocery stores, 296 restaurants, 62 hotels, 9 mass merchants. Total PLCB sales $3.16 billion with taxes; liquor tax (18%) $444.4 million. No estimate of the permits' effect on revenue. *(PLCB annual report FY2024-25, read 2026-11-19)*
 - **Law and official figures only.** [PLCB, Frequently Asked Questions: Wine Expanded Permits (October 4, 2016)](https://www.pa.gov/agencies/lcb/shop-wine-spirits/wholesale-wine-and-spirits-sales/wine-expanded-permits): Eligibility, the 3-liter limit, hours, the designated register, scanning ID of patrons who appear under 35, and the price floor. *(PLCB Office of Chief Counsel, read 2026-11-19)*
@@ -51,7 +51,5 @@ A state that changes its law is not chosen at random, and other things change at
 **Law.** Mississippi's ABC is the state's wholesaler of spirits and wine and licenses about 1,700 package and on-premises retailers; Wyoming's Department of Revenue runs wholesale distribution; Montgomery County, Maryland wholesales, runs 25 stores and shares retail with about 1,100 license holders; Idaho's division controls beverages over 16% alcohol.
 
 - **Law and official figures only.** [NABCA control-state directory](https://www.nabca.org/control-state-directory-and-info): Agency profiles in the agencies' own words. They do not say, for most states, which beverages are controlled at wholesale or retail, or where wine may be sold. *(nabca.org, read 2026-11-19)*
-
-**At the same time.** —
 
 **For Utah.** Mississippi and Wyoming show a state wholesaler of wine supplying private retailers, as in design B, but whether grocery stores there sell wine, and at what margin, was not read. They are structure, not evidence of effects.

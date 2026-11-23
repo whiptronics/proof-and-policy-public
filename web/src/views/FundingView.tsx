@@ -6,7 +6,8 @@
 // figures from fundingScenario(). No number on this page is typed by hand.
 import { useEffect, useId, useMemo, useState, type ReactNode } from "react";
 import { wrapWords } from "../components/BriefCharts";
-import { ChartFigure, type Row } from "../components/ChartFigure";
+import { ChartFigure, RowsTable, type Row } from "../components/ChartFigure";
+import { rowTip, tipAttr } from "../lib/tip";
 import { Go } from "../components/common";
 import { HowWeKnow } from "../components/HowWeKnow";
 import { saveFile, type Column } from "../lib/csv";
@@ -56,12 +57,16 @@ import { STATE_CASES } from "../lib/framework";
 import { POLICY_DESIGNS_METHOD, SAVINGS_CASES, type SavingsCase } from "../lib/policyDesigns";
 import { RETAILER_TARGET } from "../lib/wineAlternatives";
 import { navigate, useParams } from "../lib/url";
+import { lowerFirst, minus } from "../lib/format";
 
-const pct = (v: number, d = 0) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 0) => `${minus((v * 100).toFixed(d))}%`;
 const musd = (v: number, d = 1) => `$${(v / 1e6).toFixed(d)}M`;
 const signed = (v: number | null, d = 2) => (v === null ? "Undetermined" : `${v < -5e3 ? "−" : v > 5e3 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(d)}M`);
 const usd0 = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
-const cents = (v: number) => `${v < -5e-5 ? "−" : v > 5e-5 ? "+" : ""}${Math.abs(v * 100).toFixed(1)}¢`;
+const cents = (v: number) => {
+  const c = Math.abs(v * 100).toFixed(1);
+  return `${c === "0.0" ? "" : v < 0 ? "−" : "+"}${c}¢`;
+};
 const n0 = (v: number) => Math.round(v).toLocaleString("en-US");
 const lowerOrHigher = (v: number) => `${Math.abs(v * 100).toFixed(1)}% ${v < 0 ? "lower" : "higher"}`;
 const cons = PF.states.consumption.byState;
@@ -117,31 +122,7 @@ function Slider({ label, value, min, max, step, show, set, disabled }: { label: 
 }
 
 function tableOf(rows: Row[], caption?: string): ReactNode {
-  return (
-    <div className="table-wrap">
-      <table className="data">
-        {caption && <caption>{caption}</caption>}
-        <thead>
-          <tr>
-            {Object.keys(rows[0] ?? {}).map((k) => (
-              <th key={k} scope="col">
-                {k}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              {Object.values(r).map((v, j) => (
-                <td key={j}>{v === null ? "—" : String(v)}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <RowsTable rows={rows} caption={caption} />;
 }
 
 function csvOf(rows: Row[]): { columns: Column<Row>[]; rows: Row[] } {
@@ -153,7 +134,7 @@ function csvOf(rows: Row[]): { columns: Column<Row>[]; rows: Row[] } {
 
 type Dest = (typeof PF.dabs.destinations)[number];
 
-function DestinationBars({ width, selected, pick }: { width: number; selected: string; pick: (id: string) => void }) {
+function DestinationBars({ width, selected, pick, tips }: { width: number; selected: string; pick: (id: string) => void; tips: Row[] }) {
   const rows = PF.dabs.destinations as readonly Dest[];
   // Same layout as BriefCharts' BridgeChart: full labels wrapped at the fixed-size row-label, never cut short.
   const wide = width >= 560;
@@ -174,7 +155,7 @@ function DestinationBars({ width, selected, pick }: { width: number; selected: s
         const words = lines[i];
         const ly = wide ? y + barH / 2 + 4.5 - ((words.length - 1) * 15) / 2 : y - 6;
         return (
-          <g key={r.id} onClick={() => pick(r.id)} style={{ cursor: "pointer" }}>
+          <g key={r.id} onClick={() => pick(r.id)} style={{ cursor: "pointer" }} {...tipAttr(rowTip(tips[i]))}>
             <text x={wide ? labelW : padL} y={ly} textAnchor={wide ? "end" : "start"} className="row-label">
               {words.map((l, k) => (
                 <tspan key={k} x={wide ? labelW : padL} dy={k === 0 ? 0 : 15}>
@@ -182,9 +163,7 @@ function DestinationBars({ width, selected, pick }: { width: number; selected: s
                 </tspan>
               ))}
             </text>
-            <rect x={x(0)} y={y} width={Math.max(1, x(r.amount) - x(0))} height={barH} fill={r.restricted ? "var(--series-1)" : "var(--series-2)"} stroke={on ? "var(--text)" : "none"} strokeWidth={2}>
-              <title>{`${r.label}: ${musd(r.amount)}`}</title>
-            </rect>
+            <rect x={x(0)} y={y} width={Math.max(1, x(r.amount) - x(0))} height={barH} fill={r.restricted ? "var(--series-1)" : "var(--series-2)"} stroke={on ? "var(--text)" : "none"} strokeWidth={2} />
             <text x={x(r.amount) + 6} y={y + barH / 2 + 4.5} className="bar-value">
               {musd(r.amount)}
             </text>
@@ -195,7 +174,7 @@ function DestinationBars({ width, selected, pick }: { width: number; selected: s
   );
 }
 
-function SpendingBars({ width, rows, us, year }: { width: number; rows: { usps: string; name: string; value: number | null }[]; us: number | null; year: string }) {
+function SpendingBars({ width, rows, us, year, tips }: { width: number; rows: { usps: string; name: string; value: number | null }[]; us: number | null; year: string; tips: Row[] }) {
   const H = 260;
   const padL = 44;
   const padB = 34;
@@ -215,9 +194,7 @@ function SpendingBars({ width, rows, us, year }: { width: number; rows: { usps: 
       ))}
       {rows.map((r, i) =>
         r.value === null ? null : (
-          <rect key={r.usps} x={padL + i * bw + 1} y={y(r.value)} width={Math.max(1, bw - 2)} height={y(0) - y(r.value)} fill={r.usps === "UT" ? "var(--series-2)" : "var(--series-1)"} opacity={r.usps === "UT" ? 1 : 0.75}>
-            <title>{`${r.name}: ${usd0(r.value)}`}</title>
-          </rect>
+          <rect key={r.usps} x={padL + i * bw + 1} y={y(r.value)} width={Math.max(1, bw - 2)} height={y(0) - y(r.value)} fill={r.usps === "UT" ? "var(--series-2)" : "var(--series-1)"} opacity={r.usps === "UT" ? 1 : 0.75} />
         ),
       )}
       {us !== null && (
@@ -235,6 +212,10 @@ function SpendingBars({ width, rows, us, year }: { width: number; rows: { usps: 
           </text>
         ) : null,
       )}
+      {/* Each state's whole column answers the pointer: a bar is about 5px wide on a phone. */}
+      {rows.map((r, i) => (
+        <rect key={`tip-${r.usps}`} x={padL + i * bw} y={10} width={bw} height={y(0) - 10} fill="transparent" {...tipAttr(rowTip(tips[i]))} />
+      ))}
       <text x={padL} y={H - 6} className="tick-label">
         Highest
       </text>
@@ -257,6 +238,8 @@ const REGION: Record<Region, { sym: string; label: string; fill: string }> = {
 const UNPROVEN = { sym: "?", label: "Shoppers pay no more and the state is no worse off, at a grocer margin no measure shows is workable", fill: "var(--series-1)" };
 const NO_MARGIN = { sym: "×", label: "Both tests met only because the grocer earns nothing: not a workable design", fill: "var(--line-strong)" };
 const cellMark = (p: MapPoint) => (p.region !== "both" ? REGION[p.region] : p.grocer === "not_satisfied" ? NO_MARGIN : p.grocer === "undetermined" ? UNPROVEN : REGION.both);
+/** One map cell as a table row: the table lists some cells, and every cell's tooltip is this row. */
+const mapRow = (p: MapPoint): Row => ({ "Price vs today": pct(p.price - 1), "Grocer margin": pct(p.grocerMargin), "State per $ that moves": cents(p.netPerDollar), Region: cellMark(p).label });
 
 function FeasibilityMap({ width, a, savings, mark }: { width: number; a: "B" | "C"; savings: SavingsCase; mark: { price: number; grocerMargin: number; distribution: number } }) {
   const pts = priceRevenueMap(a, savings, mark.distribution);
@@ -273,10 +256,8 @@ function FeasibilityMap({ width, a, savings, mark }: { width: number; a: "B" | "
         const xx = padL + i * cw;
         const yy = 6 + (MAP_MARGINS.length - 1 - j) * ch;
         return (
-          <g key={`${p.price}-${p.grocerMargin}`}>
-            <rect x={xx + 1} y={yy + 1} width={cw - 2} height={ch - 2} fill={cellMark(p).fill} opacity={0.4}>
-              <title>{`Price ${pct(p.price - 1)} vs today, grocer margin ${pct(p.grocerMargin)}: ${cellMark(p).label} (${cents(p.netPerDollar)} per $ that moves)`}</title>
-            </rect>
+          <g key={`${p.price}-${p.grocerMargin}`} {...tipAttr(rowTip(mapRow(p)))}>
+            <rect x={xx + 1} y={yy + 1} width={cw - 2} height={ch - 2} fill={cellMark(p).fill} opacity={0.4} />
             {/* Always drawn: without the symbol a narrow map says its result by color alone. */}
             <text x={xx + cw / 2} y={yy + ch / 2 + 4} textAnchor="middle" className="tick-label" fontSize={cw > 22 ? undefined : 10} style={{ stroke: "none" }} aria-hidden="true">
               {cellMark(p).sym}
@@ -304,7 +285,7 @@ function FeasibilityMap({ width, a, savings, mark }: { width: number; a: "B" | "
         ) : null,
       )}
       <text x={padL} y={H - 6} className="tick-label">
-        {width < 420 ? "Shelf price vs. today →" : "Shelf price against today’s state-store price →"}
+        {width < 420 ? "Shelf price vs. today →" : "Shelf price against today's state-store price →"}
       </text>
     </svg>
   );
@@ -385,7 +366,7 @@ export function FundingView() {
   const bridgeRows: Row[] = PF.dabs.bridge.map((b) => ({ Step: b.label, "$M": Number((b.amount / 1e6).toFixed(3)), Kind: b.kind }));
   const spendRows: Row[] = yearRows.map((s, i) => ({ Rank: s.value === null ? "—" : i + 1, State: s.name, [`FY${year} per pupil ($${real ? ", FY2024 dollars" : ""})`]: s.value === null ? null : Math.round(s.value) }));
   const programRows: Row[] = r.programs.map((p) => ({ Program: p.label, "Per $ that moves": cents(p.perDollar), "Today ($M)": p.baseline === null ? "Undetermined" : Number((p.baseline / 1e6).toFixed(2)), "After ($M)": p.after === null ? "Undetermined" : Number((p.after / 1e6).toFixed(2)), Change: signed(p.delta), "Kept whole": COND[p.financiallyProtected].label, "Routing specified": COND[p.legallySpecified].label }));
-  const mapRows: Row[] = x.arrangement === "A" ? [] : priceRevenueMap(x.arrangement, shown.savings, shown.distribution).filter((p) => p.grocerMargin === 0.1 || p.grocerMargin === 0.25 || p.price === 1).map((p) => ({ "Price vs today": pct(p.price - 1), "Grocer margin": pct(p.grocerMargin), "State per $ that moves": cents(p.netPerDollar), Region: cellMark(p).label }));
+  const mapRows: Row[] = x.arrangement === "A" ? [] : priceRevenueMap(x.arrangement, shown.savings, shown.distribution).filter((p) => p.grocerMargin === 0.1 || p.grocerMargin === 0.25 || p.price === 1).map(mapRow);
 
   const copyLink = async () => {
     const url = `${location.origin}${location.pathname}?v=funding&fs=${code}`;
@@ -403,10 +384,10 @@ export function FundingView() {
         <p className="finding-tag">Public Funding</p>
         <h2 id="pf-overview">What does a bottle of wine fund?</h2>
         <p className="lede">
-          Follow Utah&rsquo;s alcohol revenue from the shelf to public programs, and explore what different wine retail systems could change.
+          Follow Utah's alcohol revenue from the shelf to public programs, and explore what different wine retail systems could change.
         </p>
         <p className="small muted">
-          The financial baseline below describes all of DABS&rsquo;s liquor sales (spirits, wine and heavy beer). The Revenue Lab examines changes
+          The financial baseline below describes all of DABS's liquor sales (spirits, wine and heavy beer). The Revenue Lab examines changes
           to the wine retail channel only. These are different totals and are labeled separately throughout.
         </p>
         <ul className="finding-cards">
@@ -425,7 +406,7 @@ export function FundingView() {
           <li>
             <h3>School meals</h3>
             <p>
-              <strong>{musd(school.amount, 1)}</strong> deposited for school meals in FY2025. By law 10% of DABS&rsquo;s gross liquor revenue goes to the
+              <strong>{musd(school.amount, 1)}</strong> deposited for school meals in FY2025. By law 10% of DABS's gross liquor revenue goes to the
               Uniform School Fund for the school meals program (Utah Code 32B-2-304(5)).
             </p>
           </li>
@@ -452,18 +433,18 @@ export function FundingView() {
       <section className="panel" aria-labelledby="pf-dollar">
         <h2 id="pf-dollar">Where does the money go?</h2>
         <p>
-          State alcohol revenue is not one tax. Utah&rsquo;s system combines retail sales, markups, statutory deposits, operating costs and transfers
+          State alcohol revenue is not one tax. Utah's system combines retail sales, markups, statutory deposits, operating costs and transfers
           to public accounts. Select a destination to see its source and legal restrictions.
         </p>
         <p className="small">
-          <strong>Markup vs. tax.</strong> A markup is the difference between selling price and acquisition cost. Utah&rsquo;s minimum wine markup is
+          <strong>Markup vs. tax.</strong> A markup is the difference between selling price and acquisition cost. Utah's minimum wine markup is
           88.5% <em>on landed cost</em>, which is a {pct(0.885 / 1.885, 1)} margin on the selling price; it is not net profit, and it is not a sales tax.
         </p>
         <ChartFigure
           id="pf-dest-chart"
           title={`DABS lists ${musd(PF.dabs.destinationsSum)} going to six destinations in FY2025; the General Fund's ${musd(PF.dabs.destinations[0].amount)} is the largest`}
           subtitle="$ millions, fiscal year 2025 (July 2024 to June 2025), all liquor; teal restricted to a purpose, red unrestricted or collected for the Tax Commission"
-          reading={<>Each bar is one amount from DABS&rsquo;s Summary Financial Information. The amounts are listed side by side, not as shares of a whole: sales tax is paid by buyers on top of prices, and the others come out of DABS&rsquo;s revenue.</>}
+          reading={<>Each bar is one amount from DABS's Summary Financial Information. The amounts are listed side by side, not as shares of a whole: sales tax is paid by buyers on top of prices, and the others come out of DABS's revenue.</>}
           readingText="Each bar is one amount from DABS's Summary Financial Information. The amounts are listed side by side, not as shares of a whole: sales tax is paid by buyers on top of prices, and the others come out of DABS's revenue."
           limits={<>Unaudited; transcribed by hand and not reviewed by a person. All liquor, not wine. The enforcement and school-meals amounts DABS reports differ from the statutory rates times its sales (below).</>}
           limitsText="Unaudited; transcribed by hand and not reviewed by a person. All liquor, not wine. The enforcement and school-meals amounts DABS reports differ from the statutory rates times its sales."
@@ -473,7 +454,7 @@ export function FundingView() {
           csv={csvOf(destRows)}
           table={tableOf(destRows, "FY2025 amounts DABS lists as going to each destination")}
         >
-          {(width) => <DestinationBars width={width} selected={dest} pick={setDest} />}
+          {(width) => <DestinationBars width={width} selected={dest} pick={setDest} tips={destRows} />}
         </ChartFigure>
         <div className="row-actions no-print" role="group" aria-label="Choose a destination">
           {PF.dabs.destinations.map((d) => (
@@ -512,7 +493,7 @@ export function FundingView() {
         </div>
         <h3>The FY2025 income statement, step by step</h3>
         <p>
-          DABS&rsquo;s page 30 statement closes exactly: sales less the cost of liquor, plus other income, less operating expenses and nonoperating
+          DABS's page 30 statement closes exactly: sales less the cost of liquor, plus other income, less operating expenses and nonoperating
           items, leaves the net profit transferred to the General Fund. {musd(-PF.dabs.bridge.find((b) => b.id === "nonop_rest")!.amount)} of nonoperating
           items is not itemized in this transcription; it is left unassigned rather than labeled a cost.
         </p>
@@ -531,7 +512,7 @@ export function FundingView() {
         <p className="lede">Funding measures and student outcomes tell different parts of the story.</p>
         <p>
           In FY2024 Utah ranked {ut.rank}th of {ut.of} states in current public-school spending per pupil ({usd0(ut.ppcs)} against {usd0(PF.education.us.ppcs)}{" "}
-          for the nation), according to the Census Bureau; counting the District of Columbia, as Census&rsquo;s own ranking table does, it is {utDc.rank}th of{" "}
+          for the nation), according to the Census Bureau; counting the District of Columbia, as Census's own ranking table does, it is {utDc.rank}th of{" "}
           {utDc.of}. This is a spending comparison, not an overall school-quality ranking.
         </p>
         <div className="controls no-print">
@@ -553,7 +534,7 @@ export function FundingView() {
           csv={csvOf(spendRows)}
           table={tableOf(spendRows, "Current spending per pupil by state, fiscal year 2024, highest first")}
         >
-          {(width) => <SpendingBars width={width} rows={yearRows} us={usYear} year={year} />}
+          {(width) => <SpendingBars width={width} rows={yearRows} us={usYear} year={year} tips={spendRows} />}
         </ChartFigure>
         {tableOf(
           Object.keys(utSeries).map((y) => ({ "Fiscal year": y, "Utah ($)": utSeries[y] === null ? null : Math.round(utSeries[y]!), "United States ($)": usSeries[y] === null ? null : Math.round(usSeries[y]!), "Utah as a share of the nation": utSeries[y] && usSeries[y] ? pct(utSeries[y]! / usSeries[y]!, 1) : null })),
@@ -561,8 +542,8 @@ export function FundingView() {
         )}
         <h3>Student results: NAEP 2024</h3>
         <p>
-          Utah&rsquo;s public-school students scored significantly higher than the national public-school average on{" "}
-          {naepHigher === naepAll.length ? "every one of the" : `${naepHigher} of the ${naepAll.length}`} 2024 assessments below, by NCES&rsquo;s own
+          Utah's public-school students scored significantly higher than the national public-school average on{" "}
+          {naepHigher === naepAll.length ? "every one of the" : `${naepHigher} of the ${naepAll.length}`} 2024 assessments below, by NCES's own
           significance tests. Spending and scores are separate measures: neither, alone or together, shows how an additional dollar would change
           achievement.
         </p>
@@ -593,7 +574,7 @@ export function FundingView() {
         <h2 id="pf-lab">Could changing the retail channel preserve public funding?</h2>
         <p>
           Explore the tradeoffs among net public receipts, grocery margins and the final price paid for the same bottle. Every figure comes from the
-          project&rsquo;s design engine ({POLICY_DESIGNS_METHOD}); this page adds the per-program ledger. The wine that moves is valued at today&rsquo;s
+          project's design engine ({POLICY_DESIGNS_METHOD}); this page adds the per-program ledger. The wine that moves is valued at today's
           state-store prices.
         </p>
         {linkBad && <p className="callout">The scenario in this link was not valid, so the page shows the default scenario.</p>}
@@ -659,7 +640,7 @@ export function FundingView() {
                 <td>School meals, enforcement and the underage drinking campaign, each tested on its own</td>
               </tr>
               <tr>
-                <th scope="row">Grocer&rsquo;s margin</th>
+                <th scope="row">Grocer's margin</th>
                 <td>
                   <Chip c={r.conditions.grocer} />
                 </td>
@@ -674,7 +655,7 @@ export function FundingView() {
         {r.missing.length > 0 && (
           <ul className="small">
             {r.missing.map((m) => (
-              <li key={m}>We cannot evaluate this fully: {m}</li>
+              <li key={m}>We cannot evaluate this fully: {lowerFirst(m)}</li>
             ))}
           </ul>
         )}
@@ -686,9 +667,9 @@ export function FundingView() {
         <h3>What each program receives on the wine that moves</h3>
         {tableOf(programRows, "Earmarked deposits, today and under the scenario")}
         <p className="small">
-          The programs&rsquo; changes and the rest (the General Fund and other accounts, {signed(r.rest)}) add up to the state&rsquo;s net change: routing
-          money to a program moves it between state accounts and adds none. The underage drinking campaign&rsquo;s deposit follows sales two years later.
-          A private seller&rsquo;s sales do not pay the deposits unless a bill says so; 32B-2-304(6)(a) already makes package agencies at a
+          The programs' changes and the rest (the General Fund and other accounts, {signed(r.rest)}) add up to the state's net change: routing
+          money to a program moves it between state accounts and adds none. The underage drinking campaign's deposit follows sales two years later.
+          A private seller's sales do not pay the deposits unless a bill says so; 32B-2-304(6)(a) already makes package agencies at a
           manufacturing facility remit {pct(PACKAGE_AGENCY_REMITTANCE, 3)} of their revenue to the same three accounts.
         </p>
         {x.arrangement !== "A" && (
@@ -722,14 +703,14 @@ export function FundingView() {
           <>
             <h3>Stress test</h3>
             <p className="small">
-              The state&rsquo;s net change at this price and margin when the unmeasured inputs vary: the share that moves from 5% to 60% and new purchases
+              The state's net change at this price and margin when the unmeasured inputs vary: the share that moves from 5% to 60% and new purchases
               from 0% to 5%. Range endpoints are conditional sensitivity results, not statistically estimated confidence intervals.
             </p>
             {tableOf(stress.map((s) => ({ "DABS costs saved": SAV_SHORT[s.savings], "License fees cover administration": s.fees ? "yes" : "no", Lowest: signed(s.min), "at (share, new)": `${pct(s.minAt.share)}, ${pct(s.minAt.additional, 1)}`, Highest: signed(s.max), "at (share, new) ": `${pct(s.maxAt.share)}, ${pct(s.maxAt.additional, 1)}` })), "State net change a year as the share that moves and new purchases vary")}
           </>
         )}
         <HowWeKnow
-          claim="What each design does to the state's revenue and to each earmarked program, at the inputs chosen."
+          claim="what each design does to the state's revenue and to each earmarked program, at the inputs chosen."
           inputs="DABS's FY2025 gross margin on all liquor (applied to wine), DABS's FY2026 wine sales, the state sales tax rate, the deposit rates in Utah Code 32B-2-304(5), -305(4) and -306(3)."
           assumptions="The share that moves, new purchases, DABS savings, the grocer and wholesaler margins and the routing of the deposits are choices or assumptions, not measurements."
           calculation="The design engine's closed form gives the state's net change per $ that moves; each program receives its rate times its base (DABS's sales, the grocery sale, or nothing); the rest is the difference."
@@ -824,7 +805,7 @@ export function FundingView() {
         <p>
           <span className="tag tag-assumption">Not enacted</span> {PF.meals.sb180.summary} Status read from the{" "}
           <a href={PF.meals.sb180.readFrom} rel="noreferrer">
-            legislature&rsquo;s bill page
+            legislature's bill page
           </a>{" "}
           on {PF.meals.sb180.readOn}. Its fiscal note says the FY2027 base appropriation for school meals from liquor sales is {musd(PF.meals.fy2027LiquorBase)}.
         </p>
@@ -899,7 +880,7 @@ export function FundingView() {
       <section className="panel" aria-labelledby="pf-local">
         <h2 id="pf-local">What does public funding look like in your community?</h2>
         <p>
-          District-level school finances from Census&rsquo;s FY2024 survey. Statewide alcohol revenues are not assigned to a particular school or county
+          District-level school finances from Census's FY2024 survey. Statewide alcohol revenues are not assigned to a particular school or county
           unless an actual funding allocation rule establishes that connection.
         </p>
         <div className="controls no-print">
@@ -938,7 +919,7 @@ export function FundingView() {
         <h2 id="pf-states">What happened in Tennessee and Colorado?</h2>
         <p>
           Both states let grocery stores sell wine: Tennessee in 2016 and Colorado in 2023. Both are license states, where private wholesalers sell wine to
-          stores and the state taxes each gallon or liter. Utah&rsquo;s money arrives another way, so this compares how the systems work and what was
+          stores and the state taxes each gallon or liter. Utah's money arrives another way, so this compares how the systems work and what was
           measured afterward. Nothing here estimates an effect of either change, and nothing from these states enters the Revenue Lab.
         </p>
         {tableOf(
@@ -953,7 +934,7 @@ export function FundingView() {
             {s.id === "tn" ? (
               <>
                 <p>
-                  Tennessee&rsquo;s wine-tax account took in {musd(tnFy2017.amount, 1)} in FY2017, the first full year of food-store licenses:{" "}
+                  Tennessee's wine-tax account took in {musd(tnFy2017.amount, 1)} in FY2017, the first full year of food-store licenses:{" "}
                   {pct(PF.states.tennessee.fy2017OverAverage, 1)} above its FY2012&ndash;FY2016 average, in dollars of each year. It had already risen{" "}
                   {pct(tnFy2016.amount / tnFy2015.amount - 1, 1)} in FY2016, before the first license. From FY2018 the same account also carries high-alcohol
                   beer, so later years are a different measure and are not joined to the earlier ones.
@@ -970,8 +951,8 @@ export function FundingView() {
               </>
             ) : (
               <p>
-                No government or peer-reviewed evaluation of Colorado&rsquo;s change was found, and the Department of Revenue&rsquo;s liquor pages refused
-                automated access, so no tax receipts are shown. NIAAA&rsquo;s figures put wine bought per Colorado resident 21+ at{" "}
+                No government or peer-reviewed evaluation of Colorado's change was found, and the Department of Revenue's liquor pages refused
+                automated access, so no tax receipts are shown. NIAAA's figures put wine bought per Colorado resident 21+ at{" "}
                 {cons.CO[2022].wine.toFixed(3)} gallons of ethanol in 2022 and {cons.CO[2024].wine.toFixed(3)} in 2024, {lowerOrHigher(cons.CO[2024].wine / cons.CO[2022].wine - 1)};
                 the national figure was {lowerOrHigher(cons.US[2024].wine / cons.US[2022].wine - 1)} over the same years. Two years, with no comparison states,
                 cannot separate the change from the national trend.
@@ -996,15 +977,15 @@ export function FundingView() {
         <ul className="small">
           <li>Whether either change caused anything. Both states chose to change, other laws changed at the same time, and nothing here holds the rest equal.</li>
           <li>
-            What Utah would collect. Tennessee and Colorado tax each gallon or liter whoever sells it; Utah&rsquo;s revenue is DABS&rsquo;s margin on the wine
-            DABS sells. A rise in their receipts says nothing about what Utah keeps when a bottle leaves DABS; the Revenue Lab computes that from Utah&rsquo;s
+            What Utah would collect. Tennessee and Colorado tax each gallon or liter whoever sells it; Utah's revenue is DABS's margin on the wine
+            DABS sells. A rise in their receipts says nothing about what Utah keeps when a bottle leaves DABS; the Revenue Lab computes that from Utah's
             own terms.
           </li>
           <li>
             How much wine would move in Utah. Utah adults bought {cons.UT[lastYear].wine.toFixed(3)} gallons of wine ethanol each in {lastYear}, against{" "}
             {cons.US[lastYear].wine.toFixed(3)} nationally, so a percentage seen elsewhere starts from a different base, and drinking habits differ too.
           </li>
-          <li>What people drank. NIAAA counts sales and shipments in each state, which buying across a state line also moves.</li>
+          <li>What people drank. NIAAA counts sales and shipments in each state, so buying across a state line moves the count too.</li>
         </ul>
         <p className="small">
           Published studies of both states, labeled by the strength of their evidence, are on the <Go to={{ v: "states" }} reset>Other States</Go> page.
@@ -1014,7 +995,7 @@ export function FundingView() {
       <section className="panel" aria-labelledby="pf-against">
         <h2 id="pf-against">What cuts the other way?</h2>
         <p>
-          Published findings that point against this page&rsquo;s results, and the limits it states elsewhere, in one place. Each finding was read from its
+          Published findings that point against this page's results, and the limits it states elsewhere, in one place. Each finding was read from its
           source on the date shown; none has been reviewed by a person.
         </p>
         <ol>
@@ -1037,7 +1018,7 @@ export function FundingView() {
         <ul className="small">
           <li>A measured account, in any state, of what happened to school money earmarked from liquor sales after a privatization.</li>
           <li>
-            Results from Pennsylvania&rsquo;s 2016 wine permits, under which grocers buy their wine from the state: no grocery-channel revenue, volume or price
+            Results from Pennsylvania's 2016 wine permits, under which grocers buy their wine from the state: no grocery-channel revenue, volume or price
             comparison was found, though it is the closest working case of a state staying the wholesaler.
           </li>
           <li>A Utah estimate of how much drinking would change if grocers sold wine.</li>
@@ -1056,7 +1037,7 @@ export function FundingView() {
       <section className="panel" aria-labelledby="pf-evidence">
         <h2 id="pf-evidence">Every conclusion has a source, a method and a limit</h2>
         <p>
-          Open any source to see its edition and fingerprint, or download the underlying tables. The project is independently maintained; {AI_DISCLOSURE}{" "}
+          Open any source to see its edition and fingerprint, or download the underlying tables. The project is independently maintained. {AI_DISCLOSURE}{" "}
           The modeling is not a government fiscal note and does not forecast outcomes.
         </p>
         <div className="row-actions no-print">
@@ -1081,7 +1062,7 @@ export function FundingView() {
         )}
         <h3>Questions this page leaves open</h3>
         <ul className="small">
-          <li>What share of DABS&rsquo;s public receipts comes from wine rather than all liquor?</li>
+          <li>What share of DABS's public receipts comes from wine rather than all liquor?</li>
           <li>Which DABS operating costs would really be avoided if some wine sales moved?</li>
           <li>Which collection mechanism would replace the earmarked deposits, and would it hold if volumes were lower than expected?</li>
           <li>Can a grocer cover its costs with no increase in the shelf price?</li>

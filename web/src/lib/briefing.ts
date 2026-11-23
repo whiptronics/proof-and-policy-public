@@ -122,7 +122,7 @@ const CASES: { id: string; label: string; basis: CaseBasis; group: WhatIfBar["gr
   { id: "return_to_stores", label: "Some shoppers stay with state stores", basis: "exploratory", group: "smaller" },
   { id: "price_constant", label: "Shoppers buy less wine, harsher reading", basis: "exploratory", group: "smaller" },
   { id: "price_linear", label: "Same, with straight-line demand", basis: "exploratory", group: "smaller" },
-  { id: "recapture", label: "Utahns buy here wine they now buy in other states", basis: "illustrative", group: "larger" },
+  { id: "recapture", label: "Utahns buy wine here that they now buy in other states", basis: "illustrative", group: "larger" },
   { id: "access", label: "Easier access adds wine sales", basis: "exploratory", group: "larger" },
   { id: "all", label: "Buy less, buy here and easier access together", basis: "illustrative", group: "larger" },
 ];

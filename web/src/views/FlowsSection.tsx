@@ -3,9 +3,10 @@
 import { useMemo } from "react";
 import { FLOW_ASSUMPTIONS, WINE_FLOWS_METHOD, arrangementTerms, type FlowArrangementId } from "../lib/wineFlows";
 import { breakEvenTable, scenarioRuns, type ScenarioRun } from "../lib/wineFlowScenarios";
+import { minus } from "../lib/format";
 
 const millions = (v: number | null | undefined) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${v < -5e4 ? "−" : v > 5e4 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(1)}M`);
-const pct = (v: number | null | undefined, digits = 1) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(digits)}%`);
+const pct = (v: number | null | undefined, digits = 1) => (v === null || v === undefined || !Number.isFinite(v) ? "—" : `${minus((v * 100).toFixed(digits))}%`);
 
 const DESIGNS: FlowArrangementId[] = ["preserved_dabs", "preserved_private", "dabs_discount_20", "private_tax_20"];
 const ROWS: { id: string; label: string }[] = [

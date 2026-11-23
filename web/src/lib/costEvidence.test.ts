@@ -112,7 +112,7 @@ describe("the later Census years, as a comparison", () => {
     const s = extensionSummary(X);
     expect(s).toContain("reach FY2024");
     expect(s).toContain("FY2016-FY2024 added (135 more state-years, after leaving out 2 that are flagged or repeat the year before, and 1 changes");
-    expect(s).toContain("run 0.25 to 0.83, against 0.14 to 0.68 here; in 1 of 2, one slope falls outside");
+    expect(s).toContain("from 0.25 to 0.83, against 0.14 to 0.68 here; in 1 of 2, one slope falls outside");
     expect(s).toContain("stays on FY1972-FY2015");
     expect(extensionSummary({ ...X, slopes: [X.slopes[1]] })).toContain("none falls outside the other's interval");
     expect(extensionSummary({ ...X, slopes: [] })).toBe("");

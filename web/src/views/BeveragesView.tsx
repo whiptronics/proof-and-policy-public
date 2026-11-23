@@ -2,7 +2,9 @@
 // consumption) for a state, an optional second state and the United States, three panels on one scale,
 // with each beverage's share. Part 2: what Utah's state liquor stores sold, by beverage and month (DABS
 // Sales Analysis Reports), next to all alcohol shipped into Utah for scale. Nothing here is measured drinking.
+import { useId, useRef } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { RechartsTip } from "../components/ChartTip";
 import { ErrorNote, Go, Loading, RecordLink, SourceNote } from "../components/common";
 import { metricSourceIds, monthlySourceIds, sourceLine, sourcesById } from "../lib/sources";
 import { SERIES_COLORS, TrendChart, type ChartSeries } from "../components/TrendChart";
@@ -20,12 +22,12 @@ import {
 } from "../lib/beverages";
 import { saveFile, toCsv, type Column } from "../lib/csv";
 import { decodeMetric, useData, useMany, type DecodedMetric } from "../lib/data";
-import { formatAxis, formatValue, geoName } from "../lib/format";
+import { formatAxis, formatValue, geoName, minus } from "../lib/format";
 import { buildSeries } from "../lib/series";
 import type { Geography, Manifest, MetricFile, MetricsIndex, MonthlyFile, MonthlyMeta, SourcesData } from "../lib/types";
 import { navigate, pickInt, pickOne, useParams } from "../lib/url";
 
-const pct = (v: number | null) => (v === null ? "n/a" : `${v > 0 ? "+" : ""}${v.toFixed(1)}%`);
+const pct = (v: number | null) => (v === null ? "n/a" : `${v > 0 ? "+" : ""}${minus(v.toFixed(1))}%`);
 const gal = (v: number | null | undefined) => (v === null || v === undefined ? "—" : v.toFixed(2));
 const millions = (v: number) => `${(v / 1e6).toFixed(2)} million`;
 
@@ -330,6 +332,8 @@ function DabsSection({
   const ok = metas.every(Boolean) && fyMetas.every(Boolean) && caseMetas.every(Boolean);
   const files = useMany<MonthlyFile>(ok ? metas.map((m) => m!.file) : []);
   const fyFiles = useMany<MetricFile>(ok ? [...fyMetas, ...caseMetas].map((m) => m!.file) : []);
+  const monthBox = useRef<HTMLDivElement>(null);
+  const monthId = useId();
   if (!ok) return <section className="panel"><p className="small muted">The DABS monthly reports are not in this build.</p></section>;
   if (files.error || fyFiles.error) return <ErrorNote error={(files.error ?? fyFiles.error)!} />;
   if (!files.data || !fyFiles.data || files.data.length !== metas.length) return <Loading what="Utah state-store sales" />;
@@ -411,13 +415,21 @@ function DabsSection({
       </SourceNote>
 
       <h4>Month by month</h4>
-      <div className="chart-box" style={{ height: 260 }} aria-hidden="true">
+      <div className="chart-box" style={{ height: 260 }} aria-hidden="true" ref={monthBox} data-tip-box="">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartRows} margin={{ top: 12, right: 16, bottom: 4, left: 8 }}>
             <CartesianGrid strokeDasharray="2 3" />
             <XAxis dataKey="month" />
             <YAxis tickFormatter={(v: number) => formatAxis(v, unit)} width={72} />
-            <Tooltip formatter={(v: unknown, k: unknown) => [fmt(v as number), DABS_LABELS[k as DabsGroup]]} />
+            <Tooltip
+              cursor={{ stroke: "var(--line-strong)" }}
+              content={({ active, label, coordinate }) => (
+                <RechartsTip active={active} label={label} coordinate={coordinate} box={monthBox} id={monthId} build={(l) => {
+                  const r = chartRows.find((x) => x.month === l);
+                  return r ? { title: String(l), rows: lineGroups.map((g) => [DABS_LABELS[g], fmt((r as Record<string, unknown>)[g] as number | null)] as [string, string]) } : null;
+                }} />
+              )}
+            />
             {lineGroups.map((g, i) => (
               <Line key={g} dataKey={g} stroke={SERIES_COLORS[i % SERIES_COLORS.length]} strokeWidth={2} dot={{ r: 2.5 }} connectNulls={false} isAnimationActive={false} />
             ))}

@@ -4,6 +4,7 @@
 import { CONTROL_DIMS, CRITERIA, assess, dimStatus, tally, verdictSymbol, verdictText, type Assessment, type Criterion } from "../lib/control";
 import type { PolicyData } from "../lib/types";
 import { Go, RecordLink } from "./common";
+import { words } from "../lib/format";
 
 const labelOf = (dim: string) => CONTROL_DIMS.find((d) => d.dim === dim)?.short ?? dim;
 
@@ -110,12 +111,12 @@ export function ControlDims({ a, compact = false }: { a: Assessment; compact?: b
             {lab}:{" "}
             {d.value ? (
               <>
-                {d.policyIds[0] ? <RecordLink rec={`policy:${d.policyIds[0]}`}>{d.value.replaceAll("_", " ")}</RecordLink> : d.value.replaceAll("_", " ")}{" "}
+                {d.policyIds[0] ? <RecordLink rec={`policy:${d.policyIds[0]}`}>{words(d.value)}</RecordLink> : words(d.value)}{" "}
                 <span className="muted">(verified)</span>
               </>
             ) : snap ? (
               <>
-                <RecordLink rec={`snapshot:${snap.snapshot_id}`}>{snap.policy_value.replaceAll("_", " ")}</RecordLink>{" "}
+                <RecordLink rec={`snapshot:${snap.snapshot_id}`}>{words(snap.policy_value)}</RecordLink>{" "}
                 <span className="muted">{compact ? `(current law, ${snap.observed_on})` : `(current law, ${snap.observed_on}; history not verified)`}</span>
               </>
             ) : d.knownDays ? (

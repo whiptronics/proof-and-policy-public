@@ -150,7 +150,7 @@ fy2024:
     - status: documented
       text: >-
         The FY2024 income statement does not add up either: net operating income (192,737) plus the non-operating total
-        (-71,981) is 120,756, against a printed net liquor profit of 113,347, which equals the five-year summary and the
+        (−71,981) is 120,756, against a printed net liquor profit of 113,347, which equals the five-year summary and the
         liquor profit transfer in the FY2024 ACFR. The FY2025 column of the same statement adds up.
       sources: [asset:utah_dabs_annual_report_fy2024, asset:utah_dabs_annual_report_fy2025, figure:acfr24_gf_transfer_fy2024]
     - status: documented
@@ -256,16 +256,16 @@ sales_tax_basis:
     sources: [asset:utah_acfr_fy2025, asset:utah_acfr_fy2024]
     scenario_use: Not used by the scenarios.
 corrections:
-  - on: "2026-10-14"
+  - "on": "2026-10-14"
     was: >-
-      2026-10-13: "the gap is the statutory 10% school-meals deposit" plus about the Parents Empowered and underage
+      2026-10-13: "the gap is the statutory 10% school-meals deposit" plus roughly the Parents Empowered and underage
       drinking prevention amounts, with FY2024 leaving $27-32 million after the 10%.
     now: >-
       The second component is the statutory enforcement-fund deposit (DABS's "Transfer to SBI"), which earlier
       extraction had missed; Parents Empowered and underage drinking prevention are fixed amounts and do not belong in
       the bridge. Exclusion from Census receipts is inferred, not documented. FY2024's residual is $17.5 million after
       both statutory deposits.
-  - on: "2026-10-14 (later)"
+  - "on": "2026-10-14 (later)"
     was: >-
       That Census and the auditors leave the deposits out was inferred, and FY2024 looked like a one-year break.
     now: >-
@@ -280,7 +280,7 @@ peer:
   saved_analysis: utah_and_liquor_control_peers_revenue
   structure: >-
     Both states wholesale and retail through their own systems. Utah's Department of Alcoholic Beverage Services sells
-    spirits, wine and heavy beer through 51 state stores and contract package agencies; Pennsylvania's Liquor Control
+    spirits, wine and heavy beer through state stores (51 at June 30, 2025, in DABS's FY2025 annual report; 52 on its store locator in November 2026) and contract package agencies; Pennsylvania's Liquor Control
     Board sells wine and spirits through Fine Wine & Good Spirits stores, online and to licensees. Pennsylvania collects
     an 18% liquor tax and 6% sales tax on its sales, which its sales figure excludes; Utah has no separate liquor tax,
     and the statutory deposits sit inside DABS's sales. Utah's figures are DABS's own (unaudited); Pennsylvania's are

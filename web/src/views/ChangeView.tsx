@@ -373,7 +373,7 @@ function ChangeForm({ applied, idx, geos, pol }: { applied: ChangeInputs; idx: M
               <p className="help">
                 {METRIC_HELP[o.metric] ?? meta.definition} Unit: {unitLabel(meta.unit)}; {PERIOD_KIND_LABELS[meta.period_kind]?.toLowerCase()}; data {meta.first_year}–
                 {meta.last_year}. {SHOWN_HELP[o.shown]}
-                {unavailable.length > 0 && ` Other formats are not available: ${unavailable[0].why}`}
+                {unavailable.length > 0 && ` Other formats are not available. ${unavailable[0].why}`}
               </p>
             </div>
           );
@@ -714,7 +714,7 @@ function ChangeResults({
           {!verified && <li>The change date {c.date} is your assumption. The dataset has no verified change of this policy on that date.</li>}
           {reform?.requires_local_adoption && (
             <li>
-              The change applied only where localities opted in ({words(reform.policy_value)}). Which places and how many stores is not in the dataset, so
+              The change applied only where localities opted in ({words(reform.policy_value)}). Which places adopted it, and how many stores, are not in the dataset, so
               the share of {name(c.target)} actually exposed is unknown.
             </li>
           )}
@@ -967,7 +967,7 @@ function OutcomeBlock({ n, run, c, geos, verified }: { n: number; run: OutcomeRu
         <h3 id={id}>
           Outcome {n}: {m.label}
         </h3>
-        <Empty>Not available as {SHOWN_LABELS[run.shown].toLowerCase()}: {run.unavailable}</Empty>
+        <Empty>Not available as {SHOWN_LABELS[run.shown].toLowerCase()}. {run.unavailable}</Empty>
       </section>
     );
   }

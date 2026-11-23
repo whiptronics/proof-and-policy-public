@@ -83,7 +83,7 @@ export function extensionSummary(x: ExtensionCheck): string {
   const outside = x.slopes.filter((s) => s.extended_outside_base_interval || s.base_outside_extended_interval).length;
   return (
     `The Census files now reach FY${e.last_year}. Run again with FY${b.last_year + 1}-FY${e.last_year} added (${e.state_years - b.state_years} more state-years, after leaving out ` +
-    `${x.extended_excluded.length} that are flagged or repeat the year before, and ${crossing} changes across a classification break), the four slopes run ` +
+    `${x.extended_excluded.length} that are flagged or repeat the year before, and ${crossing} changes across a classification break), the estimate gives four slopes from ` +
     `${range(x.slopes.map((s) => s.extended.beta))}, against ${range(x.slopes.map((s) => s.base.beta))} here; ` +
     (outside === 0
       ? "none falls outside the other's interval. "

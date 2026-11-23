@@ -4,7 +4,8 @@
 // their data tables and downloads.
 import { useId, useMemo, useState } from "react";
 import { BridgeChart, SplitChart, SplitLegend } from "../components/BriefCharts";
-import { ChartFigure, type Row } from "../components/ChartFigure";
+import { ChartFigure, RowsTable, type Row } from "../components/ChartFigure";
+import { rowTip, tipAttr } from "../lib/tip";
 import { Go } from "../components/common";
 import { HowWeKnow } from "../components/HowWeKnow";
 import { headline } from "../lib/framework";
@@ -22,13 +23,14 @@ import {
   type SavingsCase,
 } from "../lib/policyDesigns";
 import { RETAILER_TARGET, WHOLESALER_MARGIN, WINE_ALTERNATIVES_METHOD } from "../lib/wineAlternatives";
+import { withArticle, lowerFirst, minus } from "../lib/format";
 
 const SOURCE =
   "DABS FY2025 annual report and FY2026 monthly sales reports; Utah Code § 32B-2-304; Census 2022 wholesale and retail trade surveys (reference margins); Census County Business Patterns 2023 (grocery establishments)";
 const METHODS = `${POLICY_DESIGNS_METHOD}; ${WINE_ALTERNATIVES_METHOD}`;
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 const m = (v: number) => `${v < -0.5 ? "−" : v > 0.5 ? "+" : ""}$${(Math.abs(v) / 1e6).toFixed(2)}M`;
-const LIMIT_LABEL = (l: number | null) => (l === null ? "30% of household purchases move (fixed share)" : `price-sensitive: nobody moves at a ${pct(l, 0)} premium`);
+const LIMIT_LABEL = (l: number | null) => (l === null ? "30% of household purchases move (fixed share)" : `price-sensitive: nobody moves at ${withArticle(pct(l, 0))} premium`);
 const ALT: DesignId[] = ["B", "C", "D", "E"];
 
 const SEG: Record<Flow["party"], { id: string; to: FlowSegment["to"]; kind: FlowSegment["kind"] }> = {
@@ -60,7 +62,7 @@ function bars(items: { id: string; label: string; value: number }[]): BridgeStep
   return items.map((i) => ({ id: i.id, label: i.label, kind: "revenue", value: i.value, from: 0, to: i.value, note: "" }));
 }
 
-function FrontierChart({ width, rows }: { width: number; rows: { premium: number; series: number[] }[] }) {
+function FrontierChart({ width, rows, tipOf }: { width: number; rows: { premium: number; series: number[] }[]; tipOf: (r: { premium: number; series: number[] }) => Row }) {
   const names = ["Take inside DABS's price (B)", "Retail charge, private wholesale (C)", "Retail charge, delivery free (lower bound)"];
   const padL = 44;
   const padR = 12;
@@ -99,6 +101,11 @@ function FrontierChart({ width, rows }: { width: number; rows: { premium: number
           <title>{n}</title>
         </polyline>
       ))}
+      {/* Each premium's whole column answers the pointer, with the three lines' values there (the table's row). */}
+      {rows.map((r, i) => {
+        const half = (x(rows[Math.min(i + 1, rows.length - 1)].premium) - x(rows[Math.max(i - 1, 0)].premium)) / (i === 0 || i === rows.length - 1 ? 2 : 4);
+        return <rect key={r.premium} x={Math.max(padL, x(r.premium) - half)} y={top} width={Math.min(x(r.premium) + half, width - padR) - Math.max(padL, x(r.premium) - half)} height={bottom - top} fill="transparent" {...tipAttr(rowTip(tipOf(r)))} />;
+      })}
       <text x={padL} y={H - 2} className="tick">
         Consumer price against a state store
       </text>
@@ -144,44 +151,24 @@ export function DesignsView() {
       ? bars(ALT.map((d) => ({ id: d, label: get(d).def.short, value: caseOf(get(d)).net })))
       : bars(ALT.flatMap((d) => [{ id: `${d}-g`, label: `${get(d).def.short}: state receipts on the moved wine, change`, value: caseOf(get(d)).gross.after - caseOf(get(d)).gross.today }]));
   const frontierRows = rep.frontier.map((f) => ({ premium: f.premium, series: [f.wholesalePrice, f.retailChargeReference, f.retailChargeNoDistribution] }));
-  const flowRows: Row[] = flowCols.flatMap((c) => c.segments.map((s) => ({ column: c.label, item: s.label, recipient: s.to, usd_per_100_today: Number(s.amount.toFixed(4)) })));
-  const tableOf = (rows: Row[]) => (
-    <div className="table-wrap">
-      <table className="data">
-        <thead>
-          <tr>
-            {Object.keys(rows[0] ?? {}).map((k) => (
-              <th key={k} scope="col">
-                {k}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              {Object.values(r).map((v, j) => (
-                <td key={j}>{String(v)}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  // Each table's row, built once: the table prints it and the chart's tooltip shows it (lib/tip.ts rowTip).
+  const flowRow = (c: FlowColumn, s: FlowColumn["segments"][number]): Row => ({ Bar: c.label, Item: s.label, "Goes to": s.to, "$ per $100 today": Number(s.amount.toFixed(4)) });
+  const flowRows: Row[] = flowCols.flatMap((c) => c.segments.map((s) => flowRow(c, s)));
+  const tableOf = (rows: Row[]) => <RowsTable rows={rows} />;
   const csvOf = (rows: Row[]) => ({ columns: Object.keys(rows[0] ?? {}).map((k) => ({ key: k, kind: (typeof rows[0][k] === "number" ? "number" : "text") as "number" | "text", get: (r: Row) => r[k] })), rows });
 
-  const bottleRows: Row[] = bottleCols.map((c) => ({ design: c.label, shelf_usd: Number(c.shelf.toFixed(2)), with_sales_tax_usd: Number(c.consumer.toFixed(2)), state_usd: Number(c.state.toFixed(2)) }));
-  const revRows: Row[] = revenueSteps.map((s) => ({ design: s.label, usd_per_year: Math.round(s.value) }));
-  const frRows: Row[] = frontierRows.filter((_, i) => i % 5 === 0).map((f) => ({ premium_pct: Number((f.premium * 100).toFixed(0)), b_max_grocer_margin_pct: Number((f.series[0] * 100).toFixed(1)), c_max_grocer_margin_pct: Number((f.series[1] * 100).toFixed(1)), free_delivery_max_grocer_margin_pct: Number((f.series[2] * 100).toFixed(1)) }));
-  const wiRows: Row[] = (["B", "C"] as const).map((d) => ({ design: d, premium_pct: Number((what[d].premium * 100).toFixed(1)), share_moving_pct: Number((what[d].share * 100).toFixed(1)), net_usd_per_year: Math.round(what[d].net) }));
+  const bottleRows: Row[] = bottleCols.map((c) => ({ Design: c.label, "Shelf price ($)": Number(c.shelf.toFixed(2)), "With sales tax ($)": Number(c.consumer.toFixed(2)), "To the state, sales tax included ($)": Number(c.state.toFixed(2)) }));
+  const revRows: Row[] = revenueSteps.map((s) => ({ Design: s.label, "Change ($ a year)": Math.round(s.value) }));
+  const frRow = (f: { premium: number; series: number[] }): Row => ({ "Price premium (%)": Number((f.premium * 100).toFixed(0)), "Take inside DABS's price (B): highest grocer margin (%)": Number((f.series[0] * 100).toFixed(1)), "Retail charge, private wholesale (C): highest grocer margin (%)": Number((f.series[1] * 100).toFixed(1)), "Retail charge, delivery free: highest grocer margin (%)": Number((f.series[2] * 100).toFixed(1)) });
+  const frRows: Row[] = frontierRows.filter((_, i) => i % 5 === 0).map(frRow);
+  const wiRows: Row[] = (["B", "C"] as const).map((d) => ({ Design: get(d).def.short, "Price premium (%)": Number((what[d].premium * 100).toFixed(1)), "Households moving (%)": Number((what[d].share * 100).toFixed(1)), "Net ($ a year)": Math.round(what[d].net) }));
 
   return (
     <>
       <section className="panel" aria-labelledby="ds-h">
         <h2 id="ds-h">Five designs compared</h2>
         <p>
-          In these designs grocers set their own prices on top of the state&rsquo;s share of each bottle. The framework&rsquo;s own design keeps the
+          In these designs grocers set their own prices on top of the state's share of each bottle. The framework's own design keeps the
           shelf price where it is instead: <Go to={{ v: "sameprice" }}>Same shelf price</Go>.
         </p>
         <p className="lede">
@@ -253,7 +240,7 @@ export function DesignsView() {
           csv={csvOf(flowRows)}
           table={tableOf(flowRows)}
         >
-          {(width) => <SplitChart cols={flowCols} width={width} label="Split of $100 at a state store, today and under the chosen design" />}
+          {(width) => <SplitChart cols={flowCols} tipOf={(c, g) => rowTip(flowRow(c, g))} width={width} label="Split of $100 at a state store, today and under the chosen design" />}
         </ChartFigure>
         <p className="small">
           A year on the wine that moves (fixed share): suppliers{" "}
@@ -269,7 +256,7 @@ export function DesignsView() {
         <Toggle label="Bottle (illustrative price points)" value={bottle} options={B.basket.map((b) => [b.id, b.label])} set={setBottle} />
         <ChartFigure
           id="ds-bottles"
-          title={`A ${pick.label.toLowerCase()} bottle if grocers set their own price, by design`}
+          title={`${/^[aeiou]/i.test(pick.label) ? "An" : "A"} ${pick.label.toLowerCase()} bottle if grocers set their own price, by design`}
           subtitle={`Dollars, a bottle landing at $${pick.landed.toFixed(2)}; state store against each design (D's main case equals C's)`}
           reading={<>Gray is the wine's cost; teal the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax.</>}
           readingText="Gray is the wine's cost; teal the state's take and sales tax; orange the sellers' margins. The total is the shelf price with sales tax."
@@ -282,7 +269,7 @@ export function DesignsView() {
           csv={csvOf(bottleRows)}
           table={tableOf(bottleRows)}
         >
-          {(width) => <SplitChart cols={bottleCols} width={width} label="A bottle's price split, state store against each design" />}
+          {(width) => <SplitChart cols={bottleCols} tipOf={(c, g) => rowTip({ Design: c.label, Part: g.label, "Dollars": Number(g.amount.toFixed(2)) })} width={width} label="A bottle's price split, state store against each design" />}
         </ChartFigure>
       </section>
 
@@ -294,7 +281,7 @@ export function DesignsView() {
         <ChartFigure
           id="ds-revenue"
           title={view === "net" ? "Net change in state revenue against today, by design" : "Change in the state's gross receipts on the wine that moves"}
-          subtitle={`$ millions a year, FY2025; ${LIMIT_LABEL(limit)}; ${SAVINGS_CASES.find((s) => s.id === savings)!.label}`}
+          subtitle={`$ millions a year, FY2025; ${LIMIT_LABEL(limit)}; ${lowerFirst(SAVINGS_CASES.find((s) => s.id === savings)!.label)}`}
           reading={
             view === "net" ? (
               <>Net counts what the state keeps on the moved wine, minus what it no longer collects and the new administration. Losses come from margin given to sellers and from fixed costs when few switch; gains from sales tax on a higher price.</>
@@ -311,7 +298,7 @@ export function DesignsView() {
           csv={csvOf(revRows)}
           table={tableOf(revRows)}
         >
-          {(width) => <BridgeChart steps={revenueSteps} width={width} connect={false} label="State revenue change by design" />}
+          {(width) => <BridgeChart steps={revenueSteps} tips={revRows.map((r) => rowTip(r))} width={width} connect={false} label="State revenue change by design" />}
         </ChartFigure>
       </section>
 
@@ -319,8 +306,8 @@ export function DesignsView() {
         <h2 id="ds-front">The revenue-neutrality frontier</h2>
         <p>
           Each line is the highest grocer margin at which the state still breaks even (no savings) for a given grocery price. Above a line the state
-          loses. Collecting the take as a retail charge, with free delivery, would break even at {pct(rep.frontierAtReference.retailChargeNoDistribution)}{" "}
-          at a 28% margin, against {pct(rep.frontierAtReference.wholesalePrice)} for B.
+          loses. Collecting the take as a retail charge, with free delivery, would break even at{" "}
+          {withArticle(pct(rep.frontierAtReference.retailChargeNoDistribution))} price premium with a 28% grocer margin, against {pct(rep.frontierAtReference.wholesalePrice)} for B.
         </p>
         <ChartFigure
           id="ds-frontier"
@@ -343,7 +330,7 @@ export function DesignsView() {
           csv={csvOf(frRows)}
           table={tableOf(frRows)}
         >
-          {(width) => <FrontierChart width={width} rows={frontierRows} />}
+          {(width) => <FrontierChart width={width} rows={frontierRows} tipOf={frRow} />}
         </ChartFigure>
       </section>
 
@@ -382,7 +369,7 @@ export function DesignsView() {
           csv={csvOf(wiRows)}
           table={tableOf(wiRows)}
         >
-          {(width) => <BridgeChart steps={bars((["B", "C"] as const).map((d) => ({ id: d, label: `${get(d).def.short}: ${pct(what[d].share, 0)} of households move`, value: what[d].net })))} width={width} connect={false} label="What-if state revenue change" />}
+          {(width) => <BridgeChart tips={wiRows.map((r) => rowTip(r))} steps={bars((["B", "C"] as const).map((d) => ({ id: d, label: `${get(d).def.short}: ${pct(what[d].share, 0)} of households move`, value: what[d].net })))} width={width} connect={false} label="What-if state revenue change" />}
         </ChartFigure>
         <p className="small">
           See also <Go to={{ v: "scenario" }}>the scenario calculator</Go> and <Go to={{ v: "initiative" }}>the full analysis</Go>.

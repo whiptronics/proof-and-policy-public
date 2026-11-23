@@ -2,6 +2,7 @@
 // (src/alcohol_data/fiscal_bridge.py); this module only labels and arranges it. Evidence statuses are words with a
 // symbol, never a score and never color alone.
 import type { BridgeYear, EvidenceStatus, ReconValue } from "./types";
+import { minus } from "./format";
 
 export const STATUS_META: Record<EvidenceStatus, { label: string; sym: string }> = {
   documented: { label: "Documented", sym: "✓" },
@@ -22,7 +23,7 @@ export function thousands(v: number | null | undefined): string {
 
 export function share(v: number | null | undefined, digits = 1): string {
   if (v === null || v === undefined || !Number.isFinite(v)) return "—";
-  return `${(v * 100).toFixed(digits)}%`;
+  return `${minus((v * 100).toFixed(digits))}%`;
 }
 
 /** Rate as printed in the statute: 10%, 1%, 0.875%, 1.695%. */

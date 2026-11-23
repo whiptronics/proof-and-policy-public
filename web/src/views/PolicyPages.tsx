@@ -7,9 +7,10 @@ import { INDICATORS, PHASING, SAFEGUARDS, SAFEGUARD_STATUS_LABEL, STATE_CASES, S
 import { defaultDesignsReport } from "../lib/policyDesigns";
 import { LAW_SOURCES, STATUTE_ROWS, amendmentsFor, openQuestionsFor, type RowKind } from "../lib/statutes";
 import type { View } from "../lib/url";
+import { minus } from "../lib/format";
 
 const STATUS_NOTE = "A proposal for review by qualified legal and fiscal experts: not enacted law, not legal advice, not attorney-reviewed. Written with AI assistance and not reviewed by a person.";
-const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
+const pct = (v: number) => `${minus((v * 100).toFixed(1))}%`;
 const usd0 = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 
 /** An internal "?v=..." link or an external URL. */
@@ -90,9 +91,11 @@ function StatesPage() {
               </li>
             ))}
           </ul>
-          <p>
-            <strong>At the same time.</strong> {c.concurrent}
-          </p>
+          {c.concurrent !== "—" && (
+            <p>
+              <strong>At the same time.</strong> {c.concurrent}
+            </p>
+          )}
           <p>
             <strong>For Utah.</strong> {c.applies}
           </p>
@@ -131,14 +134,15 @@ function SafeguardsPage() {
             </a>
           </li>
           <li>
-            <strong>Price.</strong> Grocery prices about {pct(premium)} above state stores under DABS wholesale would damp the effect of easier access; by
+            <strong>Price.</strong> At the same shelf price as a state store, as the framework proposes, price does not damp easier access. If
+            grocers set their own prices instead (design B, DABS wholesale), grocery prices about {pct(premium)} above state stores would damp it; by
             how much is not measured.
           </li>
         </ul>
       </section>
       <section className="panel" aria-labelledby="sg-t">
         <h2 id="sg-t">Safeguards, checked against current law</h2>
-        <p className="small muted">Read from the Utah Code on 2026-11-19 before calling anything new.</p>
+        <p className="small muted">Checked against the Utah Code as read on 2026-11-19 before anything here was called new.</p>
         <div className="table-wrap">
           <table className="data">
             <thead>

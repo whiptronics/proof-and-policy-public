@@ -2,6 +2,7 @@
 // units and settings, its reading and limits, its sources and the release it was drawn from. Colors are copied from the
 // page, so the image matches the theme it was saved in. Browser only.
 import { saveFile } from "./csv";
+import { readTip, tipText } from "./tip";
 
 export interface ChartMeta {
   title: string;
@@ -57,6 +58,16 @@ export function composeSvg(svg: SVGSVGElement, meta: ChartMeta): { text: string;
       if (v) d.style.setProperty(p, v);
     }
   });
+  // Each mark's tooltip becomes its <title>, so the file keeps the names and values a reader hovered for (after the
+  // style pass above, which pairs elements by position).
+  for (const m of clone.querySelectorAll("[data-tip]")) {
+    const tip = readTip(m);
+    m.removeAttribute("data-tip");
+    if (!tip) continue;
+    const t = document.createElementNS("http://www.w3.org/2000/svg", "title");
+    t.textContent = tipText(tip);
+    m.prepend(t);
+  }
   const box = svg.getBoundingClientRect();
   const vb = svg.viewBox.baseVal;
   const cw = Math.max(320, Math.round(vb && vb.width ? vb.width : box.width));

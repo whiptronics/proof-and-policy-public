@@ -6,7 +6,7 @@ import { analysisPatch, caseDimension, casePanelAnalysis } from "../lib/analysis
 import type { ObsRow } from "../lib/bundle";
 import { saveFile } from "../lib/csv";
 import { decodeMetric, useData, useMany } from "../lib/data";
-import { CONVERSION_LABELS, PERIOD_KIND_LABELS, formatValue, geoName, unitLabel, words } from "../lib/format";
+import { CONVERSION_LABELS, PERIOD_KIND_LABELS, formatValue, geoName, unitLabel, words, minus } from "../lib/format";
 import { percentChange, windowMean } from "../lib/formulas";
 import { buildSeries, policyAnnotations } from "../lib/series";
 import type { CaseStudy, Geography, Manifest, MetricFile, MetricMeta, MetricsIndex, PolicyData, Research } from "../lib/types";
@@ -206,7 +206,7 @@ export function CaseView() {
                             </th>
                             <td className="num">{a.mean === undefined ? `— missing ${a.missing.join(", ")}` : formatValue(a.mean, u)}</td>
                             <td className="num">{b.mean === undefined ? `— missing ${b.missing.join(", ")}` : formatValue(b.mean, u)}</td>
-                            <td className="num">{pc === undefined ? "— not computed (a window is incomplete)" : `${pc >= 0 ? "+" : ""}${pc.toFixed(1)}%`}</td>
+                            <td className="num">{pc === undefined ? "— not computed (a window is incomplete)" : `${pc >= 0 ? "+" : ""}${minus(pc.toFixed(1))}%`}</td>
                           </tr>
                         );
                       })}

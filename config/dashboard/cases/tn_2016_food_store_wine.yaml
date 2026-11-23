@@ -80,8 +80,8 @@ panels:
     metrics: [{metric_id: brfss_binge_5m_4f_pct@survey_year}]
     note: "Survey estimate with 95% confidence band; adults 18+."
 what_changed:
-  - "2014 Tenn. Pub. Acts ch. 554 (signed 2014-03-20) created retail food store wine licenses. The Alcoholic Beverage Commission begins issuing them on 2016-07-01, and before that date no retail food store may sell wine (Tenn. Code Ann. 57-3-803(a), as enacted)."
-  - "Licenses issue only in a county or municipality that authorized wine in retail food stores by local referendum (57-3-801(a)(1), 57-3-803(a)); no such referendum could be held before the regular November 2014 election (57-3-801(c))."
+  - "2014 Tenn. Pub. Acts ch. 554 (signed 2014-03-20) created retail food store wine licenses. The Alcoholic Beverage Commission could begin issuing them on 2016-07-01, and before that date no retail food store may sell wine (Tenn. Code Ann. 57-3-803(a), as enacted)."
+  - "Licenses are issued only in a county or municipality that authorized wine in retail food stores by local referendum (57-3-801(a)(1), 57-3-803(a)); no such referendum could be held before the regular November 2014 election (57-3-801(c))."
   - "Eligible stores are defined by their food sales (57-3-802(1)); wine sold under the license may not exceed 18% alcohol by volume (57-3-803(c))."
   - "The same act added the Unfair Wine Sales Law from 2016-07-01 (no retail wine sales below cost plus 20%) and let package stores sell beer from 2014-07-01."
 collected:
@@ -145,7 +145,7 @@ confounders:
   - {name: "Local adoption", status: unknown, note: "Licenses only where a referendum passed; which places and when is not in the dataset."}
   - {name: "COVID-19 pandemic", status: not_coded, note: "Covers FY2020-FY2021 and calendar 2020-2021 of the post windows; on- and off-premise sales shifted everywhere."}
   - {name: "Tennessee T10 jump in FY2022 (+39% nominal, +30% in constant dollars)", status: unexplained, note: "Just after the post window; not explained in the dataset. Charts show it."}
-  - {name: "Virginia T10 swings (FY2015 +23%, FY2017 -18%, constant dollars)", status: unexplained, note: "Affects the comparison; not explained in the dataset."}
+  - {name: "Virginia T10 swings (FY2015 +23%, FY2017 −18%, constant dollars)", status: unexplained, note: "Affects the comparison; not explained in the dataset."}
   - {name: "Other alcohol tax changes in any state shown", status: not_checked, note: "Not coded for 2011-2021 except Utah's beer tax."}
   - {name: "Tourism and cross-border purchases", status: not_collected, note: "Apparent consumption counts them."}
 selection_doc: docs/research-dashboard/case-study-selection.md

@@ -34,6 +34,7 @@ import { INITIATIVES, proposalInputs } from "./initiatives";
 import { WORKED_PROPOSALS } from "./scenario";
 import { COST_LINES, ELASTICITY, alternativeById, evaluateFixed, type Overrides } from "./wineAlternatives";
 import { STATUTORY_MARKUP, marginOfMarkup } from "./wineMargin";
+import { minus } from "./format";
 
 export const WINE_FLOWS_METHOD = "wine-purchase-flows@1.0";
 
@@ -727,7 +728,7 @@ export interface FlowAssumption {
 }
 
 const fmt$ = (v: number) => `$${(v / 1e6).toFixed(1)}M`;
-const pct = (v: number, d = 1) => `${(v * 100).toFixed(d)}%`;
+const pct = (v: number, d = 1) => `${minus((v * 100).toFixed(d))}%`;
 
 export const FLOW_ASSUMPTIONS: FlowAssumption[] = [
   { id: "F01", label: "DABS wine sales, FY2025, at state-store prices before sales tax", value: fmt$(FLOW_BASE.wine.value), evidence: "derived", source: "DABS FY2025 annual report (liquor sales) x wine's 33.5% share of the FY2026 monthly reports' gross sales", range: "-", note: "Includes licensee purchases; only the household share can move." },

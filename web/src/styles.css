@@ -1,10 +1,10 @@
 /* Research dashboard styles. Colors are tokens; status colors never imply good or bad, and every
    status also carries a word and a symbol.
 
-   Three appearances (lib/theme.ts). With no data-theme on <html> the device decides: the light tokens below,
-   or the dark ones in the media block. data-theme="light" or "dark" is the reader's choice in Settings. The
+   Four appearances (lib/theme.ts). With no data-theme on <html> the device decides: the light tokens below,
+   or the dark ones in the media block. data-theme="light", "dark" or "crimson" is the reader's choice in Settings. The
    dark tokens are written twice, once for each way of reaching dark; lib/theme.test.ts fails if the copies
-   differ and measures every text and mark pair in both appearances. Print always uses the light tokens.
+   differ and measures every text and mark pair in every appearance. Print always uses the light tokens.
    The palette follows the public-value mockup (devplan 05_visual_mockup): ink, cream, navy, teal and mint. */
 :root {
   color-scheme: light dark;
@@ -84,9 +84,10 @@
   color-scheme: light;
 }
 
-/* Dark, reached by the device setting. Keep identical to the copy below. */
+/* Dark, reached by the device setting when no appearance is chosen. Keep identical to the copy below. (Not
+   :not([data-theme="light"]): that also matched a chosen Crimson and, being more specific, painted it navy.) */
 @media screen and (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme]) {
     --bg: #142839;
     --surface: #1d3549;
     --surface-2: #264259;
@@ -216,6 +217,77 @@
     --c-wholesaler: #e89a5c;
     --c-grocer: #f3c99a;
     --c-grocer-ink: #0f1f2c;
+  }
+}
+
+/* Crimson, chosen in Settings: Whiptronics' Honor palette (Mixology by Whip, honor_mode/). Crimson is a signal, not a
+   wallpaper: the page is near-black and warm white, and the crimson family marks links, focus and the selected choice.
+   Flare (#ff3b52), not crimson (#e72b43), because the accent is mostly link text, and crimson as text misses 4.5:1 on a
+   card. Chart colors are Dark's: they carry information (captions name them), so only the navy grays turned warm. */
+@media screen {
+  [data-theme="crimson"] {
+    color-scheme: dark;
+    --bg: #0b090a;
+    --surface: #171113;
+    --surface-2: #21161a;
+    --text: #fff6f2;
+    --text-2: #c5b4b2;
+    --line: #4a2028;
+    --line-strong: #8f7579;
+    --accent: #ff3b52;
+    --accent-text: #0b090a;
+    --focus: #ff3b52;
+    --warn-bg: #3b3426;
+    --warn-line: #e2a95b;
+    --note-bg: #2a161b;
+    --shadow: none;
+    --series-1: #6cc4bb;
+    --series-2: #ec948c;
+    --series-3: #79a9d8;
+    --series-4: #ece8e8;
+    --series-5: #e4b467;
+    --series-6: #d6b0e6;
+    --ci: rgba(108, 196, 187, 0.2);
+    --transition: rgba(236, 148, 140, 0.16);
+    --map-zero: #ffffff;
+    --map-missing-bg: #3d2a2f;
+    --map-missing-line: #9c898a;
+    --map-suppressed-line: #c5b4b2;
+    --map-utah: #ec948c;
+    --map-border: #0b090a;
+    --ok: #8fd6a8;
+    --bev-beer: #e4b467;
+    --bev-wine: #d77d9c;
+    --bev-spirits: #6cc4bb;
+    --bev-other: #c4a2d9;
+    --st-S: #6f9cc6;
+    --st-D: #5fb3ac;
+    --st-U: #d9a441;
+    --st-R: #a9c9e6;
+    --st-0: #171113;
+    --st-C: #df86b5;
+    --st-M: #5a4a4e;
+    --st-N: #3a2c30;
+    --st-dot: #251a1e;
+    --st-none: #171113;
+    --st-K: #b9c79b;
+    --st-P: #9aa6c9;
+    --st-Q: #2c2024;
+    --st-L: #ab98d6;
+    --st-F: #43353a;
+    --st-ink-dark: #0b090a;
+    --st-ink-light: #fff6f2;
+    --gain: #6cc4bb;
+    --loss: #ec948c;
+    --total: #b3a6a7;
+    --bar-ink: #0b090a;
+    --c-supplier: #5e4b50;
+    --c-supplier-ink: #fff6f2;
+    --c-state: #6cc4bb;
+    --c-tax: #a9ddd1;
+    --c-wholesaler: #e89a5c;
+    --c-grocer: #f3c99a;
+    --c-grocer-ink: #0b090a;
   }
 }
 
@@ -966,12 +1038,47 @@ svg.timeline .seg[aria-pressed="true"] rect {
 .recharts-cartesian-grid line {
   stroke: var(--line);
 }
-.recharts-tooltip-wrapper .tip {
-  background: var(--surface);
+/* The one chart tooltip (components/ChartTip.tsx): text and text-2 on surface, measured in every appearance by
+   lib/theme.test.ts. Sized in rem so it grows with the reader's text size, and never wider than the screen. */
+.chart-tip {
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  max-width: min(22rem, calc(100% - 16px)); /* 100% of a fixed box leaves out a scrollbar; 100vw does not */
+  padding: 6px 10px 7px;
   border: 1px solid var(--line-strong);
-  padding: 6px 8px;
-  font-size: 0.82rem;
+  border-radius: 6px;
+  background: var(--surface);
   color: var(--text);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+  font-size: 0.875rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+  overflow-y: auto; /* only when placeTip shortens it: big text on a small screen */
+  overscroll-behavior: contain;
+}
+.chart-tip[hidden] {
+  display: none;
+}
+.chart-tip strong {
+  display: block;
+  margin-bottom: 2px;
+}
+.chart-tip-k {
+  color: var(--text-2);
+}
+.chart-tip-k::after {
+  content: ":";
+}
+.chart-tip-note {
+  margin-top: 3px;
+  color: var(--text-2);
+}
+/* A mark that only informs; one that opens a record keeps its pointer. */
+[data-tip]:not([role="button"]):not([tabindex]) {
+  cursor: help;
 }
 
 .grid-2 {
